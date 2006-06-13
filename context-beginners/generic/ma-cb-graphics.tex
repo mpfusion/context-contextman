@@ -1,0 +1,313 @@
+\startenvironment ma-cb-graphics
+
+% We use \METAPOST\ to generate fancy shapes at run time. While
+% typesetting this manual, \TEX\ therefore calls about
+% 750||1000 times for \METAPOST. This kind of graphic inclusion
+% is still under development, but at the moment already rather
+% robust. Adding fancy shapes is a three step proces:
+%
+% \startopsomming[n,opelkaar]
+% \som  define a MP graphic
+% \som  call this graphic as overlay
+% \som  attach this overlay as background
+% \stopopsomming
+%
+% Some graphics are reused, but the random and deeply buried
+% ones are generated any time they're needed.
+
+% When producing the PDF version, we enable object handling,
+% a feature that is not yet implemented in a higher level
+% command. (is now automatic)
+
+% \doifmode{screen}{\useMPboxtrue}
+
+% We don't use MP graphics that use fonts, so here's a time
+% saving switch, again not meant for common users.
+
+\DontUseMetaPostGraphics
+
+% Some bounding box hack.
+
+%\startMPinclusions
+%  input mp-tool.mp
+%\stopMPinclusions
+
+% Here are the graphics themselves. The reusable ones are
+% saved under names specifying their dimensions and some more
+% etc. Those shapes evolved and probably can be defined more
+% efficient. Let it be. In some occasions we fool around with
+% the dimensions. This is on purpose!
+
+% Will be reprogrammed to use parameters ! ! ! ! ! messy now
+
+\def\MPclipOne#1#2#3#4#5%
+  {\startuseMPgraphic{clip:one}
+     w := #1;  width  := 100;  wfactor := w/width;
+     h := #2;  height := 100;  hfactor := h/height;
+     %
+     color lightred;  lightred  := (.90,.50,.50);
+     color lightgray; lightgray := (.95,.95,.95);
+     color gray;      gray      := (.50,.50,.50);
+     %
+     def random_delta (expr d) =
+       d-(uniformdeviate 2d)
+     enddef;
+     %
+     z1 = (0,height);
+     z2 = (0,0);
+     z3 = (width,0);
+     z4 = (width,height);
+     %
+     z5 = (width+random_delta(.2width),height+random_delta(.2height));
+     z6 = (.5width+random_delta(.1width),height+random_delta(.1height));
+     %
+     pickup pencircle
+       xscaled (#3/wfactor)
+       yscaled (#3/(2*hfactor))
+       rotated 30;
+     %
+     draw z5..z1..z2..z3..z4..z6 withcolor #4;
+     %
+     pickup pencircle
+       xscaled (#3/wfactor)
+       yscaled (#3/hfactor);
+     %
+     draw z1 withcolor #5;
+     draw z2 withcolor #5;
+     draw z3 withcolor #5;
+     draw z4 withcolor #5;
+     draw z5 withcolor #5;
+     draw z6 withcolor #5;
+     %
+     newwidth  := (xpart (urcorner currentpicture)) -
+                  (xpart (llcorner currentpicture));
+     newheight := (ypart (urcorner currentpicture)) -
+                  (ypart (llcorner currentpicture));
+     %
+     currentpicture := currentpicture
+      xscaled (w/newwidth) yscaled (h/newheight);
+   \stopuseMPgraphic
+   \useMPgraphic{clip:one}{}}
+
+\def\MPclipTwo#1#2#3#4#5#6% \unexpanded goes wrong in etex!
+  {delta  := #3;
+   width  := #1-delta;
+   height := #2-delta;
+   %
+   color lightred;  lightred  := (.90,.50,.50);
+   color lightgray; lightgray := (.95,.95,.95);
+   color gray;      gray      := (.50,.50,.50);
+   %
+   vardef gamma =
+     g := #4; ((g/3) + (uniformdeviate (2g/3)))
+   enddef;
+   %
+   z1 = (0,0);
+   z2 = (width,0);
+   z3 = (width,height);
+   z4 = (0,height);
+   %
+   x12= .5[x1,x2]; y12=y1+gamma;
+   y23= .5[y2,y3]; x23=x2-gamma;
+   x34= .5[x3,x4]; y34=y3-gamma;
+   y41= .5[y4,y1]; x41=x4+gamma;
+   %
+   pickup pencircle
+     xscaled delta
+     yscaled .5delta
+     rotated 30;
+   %
+   path p;
+   p := z1..z12..z2 &
+        z2..z23..z3 &
+        z3..z34..z4 &
+        z4..z41..z1 & cycle;
+   fill p withcolor #6;
+   draw p withcolor #5;}
+
+\def\MPclipTwoA#1#2#3#4#5#6%
+  {\startreusableMPgraphic{clip:twoA:#1#2#3}{}
+     \MPclipTwo{#1}{#2}{#3}{#4}{#5}{#6}%
+   \stopreusableMPgraphic
+   \reuseMPgraphic{clip:twoA:#1#2#3}{}}
+
+\def\MPclipTwoB#1#2#3#4#5#6%
+  {\startuseMPgraphic{clip:twoB}{}
+     \MPclipTwo{#1}{#2}{#3}{#4}{#5}{#6}%
+   \stopuseMPgraphic
+   \useMPgraphic{clip:twoB}{}}
+
+\def\MPclipThree#1#2% no reuse here, due to pre-processing
+  {\startuseMPgraphic{clip:three}{}
+     %
+     delta  := #2;
+     width  := #1-delta;
+     %
+     z1 = (0,0);
+     z2 = (width,0);
+     %
+     pickup pencircle
+       scaled delta;
+     %
+     draw z1--z2 withcolor (.5,.5,.5);
+     %
+     pickup pencircle
+       scaled 3delta;
+     %
+     draw z1 withcolor green;
+     draw z2 withcolor green;
+     %
+   \stopuseMPgraphic
+   \useMPgraphic{clip:three}{}}
+
+\def\MPclipFourR#1#2#3%
+  {\startreusableMPgraphic{clip:fourR:#1#2#3}{}
+     %
+     delta  := #3;
+     width  := #1-delta;
+     height := (#2-delta)/3;
+     %
+     z1 = (0,3height);
+     z2 = (0,2height);
+     z3 = (width,1.5height);
+     z4 = (0,height);
+     z5 = (0,0);
+     %
+     pickup pencircle
+       xscaled delta
+       yscaled .5delta
+       rotated 30;
+     %
+     draw z1--z2{up}..z3..{up}z4--z5 withcolor (.5,.5,.5);
+     %
+     pickup pencircle
+       scaled delta;
+     %
+     draw z1 withcolor red;
+     draw z2 withcolor red;
+     draw z3 withcolor red;
+     draw z4 withcolor red;
+     draw z5 withcolor red;
+     %
+   \stopreusableMPgraphic
+   \reuseMPgraphic{clip:fourR:#1#2#3}{}}
+
+\def\MPclipFourL#1#2#3%
+  {\startreusableMPgraphic{clip:fourL:#1#2#3}{}
+     %
+     delta  := #3;
+     width  := #1-delta;
+     height := (#2-delta)/3;
+     %
+     z1 = (0,3height);
+     z2 = (0,2height);
+     z3 = (-width,1.5height);
+     z4 = (0,height);
+     z5 = (0,0);
+     %
+     pickup pencircle
+       xscaled delta
+       yscaled .5delta
+       rotated 30;
+     %
+     draw z1--z2{up}..z3..{up}z4--z5 withcolor (.5,.5,.5);
+     %
+     pickup pencircle
+       scaled delta;
+     %
+     draw z1 withcolor red;
+     draw z2 withcolor red;
+     draw z3 withcolor red;
+     draw z4 withcolor red;
+     draw z5 withcolor red;
+     %
+   \stopreusableMPgraphic
+   \reuseMPgraphic{clip:fourL:#1#2#3}{}}
+
+\def\MPclipFive#1#2#3#4%
+  {\startreusableMPgraphic{clip:five:#1#2#3#4}{}
+     %
+     delta  := #4;
+     width  := #1-delta;
+     height := #2-delta;
+     lines  := #3;
+     %
+     z1 = (0,0);
+     z2 = (lines,0);
+     z3 = (.5width,height);
+     z4 = (width-lines,0);
+     z5 = (width,0);
+     %
+     pickup pencircle
+       xscaled delta
+       yscaled .5delta
+       rotated 30;
+     %
+     draw z1--z2{dir 135}...z3...{dir -135}z4--z5 withcolor (.5,.5,.5);
+     %
+     pickup pencircle
+       scaled delta;
+     %
+     draw z1 withcolor red;
+     draw z2 withcolor red;
+     draw z3 withcolor red;
+     draw z4 withcolor red;
+     draw z5 withcolor red;
+     %
+   \stopreusableMPgraphic
+   \reuseMPgraphic{clip:five:#1#2#3#4}{}}
+
+\def\MPclipSix#1#2%
+  {\startreusableMPgraphic{clip:six:#1#2}{}
+     %
+     delta  := #2;
+     height := #1-delta;
+     %
+     color green; green := (.1,.8,.1);
+     %
+     z1 = (0,0);
+     z2 = (0,height);
+     %
+     pickup pencircle
+       scaled delta;
+     %
+     draw z1--z2 withcolor (.5,.5,.5);
+     %
+     pickup pencircle
+       scaled 3delta;
+     %
+     draw z1 withcolor green;
+     draw z2 withcolor green;
+     %
+   \stopreusableMPgraphic
+   \reuseMPgraphic{clip:six:#1#2}{}}
+
+\def\MPclipSeven#1#2#3%
+  {\startreusableMPgraphic{clip:seven:#1#2}{}
+     %
+     width  := #1;
+     height := #2;
+     delta  := #3;
+     %
+     color green; green := (.1,.8,.1);
+     %
+     x1 = x4 = 0; x2 = x3 = width;
+     y1 = y2 = 0; y3 = y4 = height;
+     %
+     pickup pencircle
+       scaled delta;
+     %
+     draw z1--z2--z3--z4--cycle withcolor (.5,.5,.5);
+     %
+     pickup pencircle
+       scaled 3delta;
+     %
+     draw z1 withcolor green;
+     draw z2 withcolor green;
+     draw z3 withcolor green;
+     draw z4 withcolor green;
+     %
+   \stopreusableMPgraphic
+   \reuseMPgraphic{clip:seven:#1#2}{}}
+
+\stopenvironment

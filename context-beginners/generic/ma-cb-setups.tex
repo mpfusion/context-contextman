@@ -1,0 +1,27 @@
+\startenvironment ma-cb-setups
+
+% All \CONTEXT\ commands are described in \type{setupb.tex}
+% and the typesetting of this file is taken care of in
+% \type{setupa.tex}.
+%
+% These files make both \type{<} and \type{>} active and
+% therefore it's kind of tricky to load modules that use
+% \type{\ifnum} and \type{\ifdim} afterwards. Nevertheless,
+% we load the whole bunch now!
+
+\usemodule[set-11] \loadsetups
+
+\unprotect
+
+\setupsetup
+  [\c!criterium=\v!used]
+
+\setupframedtexts
+  [setuptext]
+  [\c!background=SetupAchtergrond,
+   \c!offset=15pt,
+   \c!frame=\v!off]
+
+\protect
+
+\stopenvironment

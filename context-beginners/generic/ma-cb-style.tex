@@ -1,0 +1,644 @@
+\startenvironment ma-cb-style
+
+% The strange mix of english and dutch is due to the fact
+% that much of the core of \CONTEXT\ is still dutch.
+%
+% Beware, this module looks awful. This is due to the fact
+% that we use one setup for many interface languages and many
+% alternative layouts. A single language setup looks much
+% better and readible.
+
+\usemodule[res-trace] % so that we know what graphics are used
+
+\usemodule[units]
+\usemodule[chemic]
+\usemodule[chart]
+
+\setupexternalfigures[directory={../generic}]
+
+\unprotect
+
+% The layout dimensions are based on the A4 paper dimensions.
+% That way users can print this manual themselves.
+
+\setuplayout
+  [\c!backspace=3cm,
+   \c!margin=2cm,
+   \c!margindistance=.5cm,
+   \c!width=15cm,
+   \c!topspace=2cm,
+   \c!header=2cm,
+   \c!footer=2cm,
+   \c!height=25.7cm]
+
+% There will be three versions:
+%
+% \startopsomming
+% \som  bound: the real paper one
+% \som  print: the user printable one
+% \som  screen: the interactive version
+% \stopopsomming
+%
+% This mode mechanism is rather new but painfully simple.
+
+\startmode[bound]
+
+\setuplayout
+  [%\c!marking=\v!on,
+   %\c!scale=.8,
+   \c!location=\v!doublesided]
+
+\stopmode
+
+% The lucida fonts look a bit more informal.
+
+\startmode[atpragma]
+
+    \usetypescriptfile[type-buy]
+    \usetypescript[lucida][texnansi]
+    \setupbodyfont[lucida,10pt]
+
+\stopmode
+
+\startnotmode[atpragma]
+
+    \usetypescriptfile[type-buy]
+    \usetypescript[palatino][\defaultencoding]
+    \setupbodyfont[palatino,10pt]
+
+\stopnotmode
+
+% We enable colors and define an aditional color, used in the
+% chapter headings.
+
+\setupcolors
+  [\c!state=\v!start]
+
+% \doifmode{bound}
+%   {\setupcolors[\c!conversie=\v!altijd]}
+
+\definecolor
+  [headrule][r=0,g=1,b=0]
+
+% Let's keep the text compact.
+
+\setupwhitespace
+  [\v!medium]
+
+\setupblank
+  [\v!medium]
+
+% We indent verbatim with the default indenting value.
+
+\setuptyping
+  [\c!margin=\v!standard,
+   \c!blank=\v!medium]
+
+% Manuals as usual need a bit more tolerance, because a lot
+% of in||line verbatim is used.
+
+\setuptolerance
+  [\v!verytolerant]
+
+% This manual makes heavy use of backgrounds. During a run,
+% about 800 metaclips are generated.
+
+\defineoverlay
+  [KopAchtergrond]
+  [\MPclipOne{\overlaywidth}{\overlayheight}{10pt}{gray}{red}]
+
+\defineoverlay
+  [MargeAchtergrond]
+  [\MPclipOne{\overlaywidth}{\overlayheight}{7.5pt}{gray}{red}]
+
+\defineoverlay
+  [IndexAchtergrond]
+  [\MPclipOne{\overlaywidth}{\overlayheight}{5pt}{gray}{red}]
+
+\defineoverlay
+  [StatusAchtergrondL]
+  [\MPclipFourL{\overlaywidth}{\overlayheight}{5pt}]
+
+\defineoverlay
+  [StatusAchtergrondR]
+  [\MPclipFourR{\overlaywidth}{\overlayheight}{5pt}]
+
+\defineoverlay
+  [TitelAchtergrond]
+  [\MPclipOne{\overlaywidth}{\overlayheight}{20pt}{gray}{red}]
+
+\defineoverlay
+  [AuteurAchtergrond]
+  [\MPclipOne{\overlaywidth}{\overlayheight}{15pt}{gray}{red}]
+
+\defineoverlay
+  [IntroAchtergrond]
+  [\MPclipOne{\overlaywidth}{\overlayheight}{5pt}{lightgray}{lightred}]
+
+\defineoverlay
+  [MenuAchtergrond]
+  [\MPclipTwoA{\overlaywidth}{\overlayheight}{3pt}{3pt}{red}{white}]
+
+\defineoverlay
+  [SetupAchtergrond]
+  [\MPclipTwoB{\overlaywidth}{\overlayheight}{5pt}{8pt}{blue}{lightgray}]
+
+\defineoverlay
+  [NummerAchtergrond]
+  [\MPclipFive{\overlaywidth}{\overlayheight}{30pt}{5pt}]
+
+\defineoverlay
+  [FiguurAchtergrond]
+  [\MPclipSeven{\overlaywidth}{\overlayheight}{2pt}]
+
+% We precede footnotes by a nice line. Due to preprocessing
+% this is a to be a 'use' graphic, not a 'resuse' one! When
+% I got a more clearer vision of the concept, 'reused'
+% graphics will be possible too. (The solution is rather
+% simple, but sort of fuzzy.)
+
+\unexpanded\def\VoetnootLijn
+  {\dimen0=.4\makeupwidth
+   \expanded{\MPclipThree{\the\dimen0}{2pt}}}
+
+\setupfootnotes
+  [\c!rule=\VoetnootLijn]
+
+% This looks ok, but in a manual like this, it is confusing.
+%
+% \starttypen
+% \stelplaatsblokin
+%   [\v!figuur]
+%   [\c!background=FiguurAchtergrond,
+%    \c!frame=\v!off,\c!backgroundoffset=3pt]
+% \stoptypen
+%
+% So, I decided to comment this one out.
+
+% Chapter titles have a fancy shape around them. Because we
+% have a lot of small chapters, we don't go to a new page.
+
+\setuphead
+  [\v!chapter]
+  [\c!command=\HeadCommand,
+   \c!page=,
+   \c!before=\vskip36pt plus 6pt minus 6pt,
+   \c!after=\vskip24pt]
+
+% Titles look the same, but here we go to a new page.
+
+\setuphead
+  [\v!title]
+  [\c!command=\HeadCommand,
+   \c!page=\v!right,
+   \c!before=\vskip36pt plus 6pt minus 6pt,
+   \c!after=\vskip24pt]
+
+% The next definition is not that complicated, once one knows
+% a bit of \TEX. Watch the \type{\getpagestatus} and
+% \type{\ifrightpage}.
+
+% \def\HeadCommand#1#2%
+%   {\hbox to \hsize
+%      {\getpagestate
+%       \doifmodeelse{screen}
+%         {\hss}
+%         {\ifrightpage\hss\fi}%
+%       \framed
+%         [\c!background=KopAchtergrond,
+%          \c!width=\v!fit,
+%          \c!height=\v!fit,
+%          \c!frame=\v!off,
+%          \c!strut=\v!no,
+%          \c!offset=24pt,
+%          \c!align=\v!middle]
+%         {\doifmode{*sectionnumber}
+%            {#1\kern.5em% strut niet geset, zou wel moeten
+%             \hbox{\color[headrule]{\vrule\!!width1pt\!!height1.5\ht\strutbox\!!depth1.25\dp\strutbox}}%
+%             \kern.5em}%
+%          #2}%
+%       \doifmodeelse{screen}
+%         {\hss}
+%         {\ifrightpage\else\hss\fi}}}
+
+\def\HeadCommand#1#2%
+  {\alignedline{\v!outer}{\v!left}
+     {\framed
+        [\c!background=KopAchtergrond,
+         \c!width=\v!fit,
+         \c!height=\v!fit,
+         \c!frame=\v!off,
+         \c!strut=\v!no,
+         \c!offset=24pt,
+         \c!align=\v!middle]
+        {\doifmode{*sectionnumber}
+           {#1\kern.5em% strut niet geset, zou wel moeten
+            \hbox{\color[headrule]{\vrule\!!width1pt\!!height1.5\ht\strutbox\!!depth1.25\dp\strutbox}}%
+            \kern.5em}%
+         #2}}}
+
+% The current chapter number is typeset in the (outer) margin
+% and slowly moves down. We could have directly put it in the
+% margin but using the footermargin as starting point works
+% better.
+
+\setupfootertexts
+  [\v!margin]
+  [][\PlaatschapterStatus]
+
+\unexpanded\def\PlaatschapterStatus
+  {\determineheadnumber[\v!chapter]%
+   \ifnum\currentheadnumber>0
+     \vbox to \makeupheight
+       {\scratchcounter=\lastpage
+        \advance\scratchcounter by -\realpageno
+        \vskip2cm
+        \vskip0pt plus \realpageno cm
+        \edef\StatusAchtergrond
+          {StatusAchtergrond%
+           \ifodd\realpageno R\else\ifdubbelzijdig L\else R\fi\fi}%
+        \framed
+          [\c!background=\StatusAchtergrond,
+           \c!width=36pt,
+           \c!height=72pt,
+           \c!frame=\v!off]
+          {\lower.5\dp\strutbox\hbox
+             {\bfb\getmarking[\v!chapter\v!number]}}
+        \vskip0pt plus \scratchcounter cm
+        \vskip2cm}
+   \fi}
+
+% The index is put on a double collumned grid. The numbers is
+% surrounded by a shape.
+
+\setupregister
+  [\v!index]
+  [\c!command=\IndexCommando,
+   \c!before={\blank[\v!line]},
+   \c!after=]
+
+\unexpanded\def\IndexCommando#1%
+  {\fittoptobaselinegrid
+   \framed
+     [\c!background=IndexAchtergrond,
+      \c!width=36pt,
+      \c!height=\v!fit,
+      \c!align=\v!middle,
+      \c!frame=\v!off,
+      \c!offset=4pt]
+     {#1}}
+
+% The very first version used keywords in the margin. The
+% next settings applied to the level one margin word (we can
+% stack margin words, you see).
+%
+% \starttyping
+% \setupinmargin
+%   [\c!location=\v!left]
+%
+% \setupinmargin
+%   [1]
+%   [\c!background=MargeAchtergrond,
+%    \c!width=\v!fit,
+%    \c!height=\v!fit,
+%    \c!align=\v!middle,
+%    \c!style=\tfx\setupinterlinespace,
+%    \c!offset=8pt]
+% \stoptyping
+%
+% When bound, we use a double sided layout and put the
+% pagenumber in the margin, enhanced by a fancy background.
+
+\startmode[bound]
+
+\setuppagenumbering[\c!alternative=\v!doublesided]
+
+\stopmode
+
+\setuppagenumbering
+  [\c!location={\v!footer,\v!middle},
+   \c!command=\NummerCommando]
+
+\unexpanded\def\NummerCommando#1%
+  {\framed
+     [\c!background=NummerAchtergrond,
+      \c!frame=\v!off,
+      \c!offset=6pt]
+     {\lower.5\dp\strutbox\hbox spread 60pt{\hss#1\hss}}}
+
+% We put the chapter title in the head. If we wouldn't have
+% to center, the more simple setting would be:
+%
+% \starttypen
+% \setupheadertexts[\v!chapter][]
+% \stoptypen
+
+\setupheadertexts
+  []
+
+\setupheadertexts
+  [{\hfill\getmarking[\v!chapter]\hfill}]
+  []
+
+% Guess what the next one does.
+
+\setupitemgroup
+  [\v!itemize]
+  [1][\v!autointro]
+
+% Indeed, it prevents breaks between one||liners and
+% following itemizations.
+
+% The cover page is a real piece of art. Just watch.
+
+\newbox\CoverBackgroundBox
+
+\def\CoverBackground
+  {\ifvoid\CoverBackgroundBox
+     \global\setbox\CoverBackgroundBox=\vbox to \paperheight
+       {\hsize\paperwidth
+        \emergencystretch3em
+        \iflocation
+          \switchtobodyfont[5pt]
+        \else
+          \switchtobodyfont[7pt]
+        \fi
+        \parfillskip0pt
+        \setupsetup
+          [\c!command=\test]
+        \def\test##1%
+          {\dontleavehmode
+           \framed
+             [\c!background=IntroAchtergrond,
+              \c!frame=\v!off]
+             {\type{##1}}%\writetexcommand{##1}}%
+           \hskip1.25em plus 1em minus 1em}
+% beter :
+%
+% \oninterlineskip
+% \baselineskip \vsize plus 1fill minus 1fill
+% \parfillskip0pt
+% \leftskip3pt
+% \rightskip3pt
+% \leavevmode\plaatselkesetup\unskip
+%
+        \beginofshapebox
+          \leftskip3pt
+          \rightskip3pt
+          \plaatselkesetup
+        \endofshapebox
+        \doreshapebox
+          {\box\shapebox}
+          {\penalty\shapepenalty}
+          {\kern\shapekern}
+          {\vfil}
+        \kern3pt
+        \vfilneg
+        \flushshapebox
+        \vfilneg
+        \kern3pt}%
+   \fi
+   \copy\CoverBackgroundBox}
+
+\defineoverlay[geintje][\CoverBackground]
+
+% In interactive mode we make the text area active. Click and
+% go to the table of contents.
+
+\unexpanded\def\TitleButton% zou iets standaards moeten zijn
+  {\button                 % nog eens iets achter page
+     [\c!height=\vsize,    % moeten kunnen zetten
+      \c!width=\hsize,
+      \c!frame=\v!off]
+     {}%
+     [contents]}
+
+\def\TitlePage#1#2#3%
+  {\setupbackgrounds
+     [\v!rightpage]
+     [\c!background=geintje]
+   \setuptexttexts
+     [\TitleButton]
+     []
+   \startmakeup
+     [\v!standard]
+     [\c!doublesided=\v!empty,
+      \c!headerstate=\v!none,
+      \c!footerstate=\v!none]
+   \hbox to \hsize
+     {\hss
+      \definedfont[SansBold at 40pt]% \setfont lsb at 40pt    % change this into something available
+      \framed
+        [\c!background=TitelAchtergrond,
+         \c!width=\v!fit,
+         \c!height=\v!fit,
+         \c!align=\v!middle,
+         \c!frame=\v!off,
+         \c!offset=40pt]
+        {#1}}
+   \vfill
+   \hbox to \hsize
+     {\definedfont[SansBold at 14pt]% \setfont lsb at 14pt    % change this into something available
+      \framed
+        [\c!background=AuteurAchtergrond,
+         \c!frame=\v!off,
+         \c!width=\v!fit,
+         \c!height=\v!fit,
+         \c!align=\v!middle,
+         \c!offset=20pt]
+        {#2}
+      \hss}
+   \hbox to \hsize
+     {\hss
+      \definedfont[SansBold at 20pt]% \setfont lsb at 20pt    % change this into something available
+      \framed
+        [\c!background=AuteurAchtergrond,
+         \c!frame=\v!off,
+         \c!width=\v!fit,
+         \c!height=\v!fit,
+         \c!align=\v!middle,
+         \c!offset=35pt]
+        {#3\\PRAGMA ADE}}
+   \stopmakeup
+   %\setuplayout[\c!marking=\v!off]
+   \setuptexttexts
+   \setupbackgrounds
+     [\v!rightpage]
+     [\c!background=]
+   \doifmode{screen}
+     {\setupbackgrounds
+        [\v!page]
+        [\c!background=\v!screen,
+         \c!backgroundscreen=.95]
+      \setupbackgrounds
+        [\v!text][\v!text]
+        [\c!backgroundoffset=.25cm,
+         \c!depth=.125cm,
+         \c!background=\v!color,
+         \c!backgroundcolor=white]}}
+
+% The backpage uses the same background and overlays a piece
+% of text.
+
+\def\StartBackPage
+  {\page[\v!yes,\v!blank,\v!left]
+   \setupbackgrounds
+     [\v!leftpage]
+     [\c!background=geintje]
+   \setuptexttexts
+     [\TitleButton][]
+   \startmakeup
+     [\v!standard]
+     [\c!page=,
+      \c!doublesided=\v!no,
+      \c!headerstate=\v!none,
+      \c!footerstate=\v!none]
+   \setuptolerance
+     [\v!verytolerant]
+   \vfill
+   \framed
+     [\c!background=\v!color,
+      \c!backgroundcolor=white,
+      \c!frame=\v!off,
+      \c!offset=10pt,
+      \c!corner=\v!round,
+      \c!width=.4\makeupwidth,
+      \c!height=\textheight,
+      \c!align=\v!middle,
+      \c!strut=\v!no]
+     \bgroup
+     \vfil}
+
+\def\StopBackPage
+  {\vfil
+   \egroup
+   \hfill
+   \vfill
+   \stopmakeup}
+
+% We draw a nice line between columns. The next command does
+% the job. Of course a normal line can be set more easily,
+% but here we hook in a command.
+
+\unexpanded\def\KolommenLijn
+  {\vsmash
+     {\hbox to 36pt
+        {\hss
+         \vbox
+           {\vskip-\maxcolumnheight
+            \dimen0=\maxcolumnheight
+            \advance\dimen0 by \maxcolumndepth
+            \expanded{\MPclipSix{\the\dimen0}{2pt}}}%
+         \hss}}}
+
+% To save space we don't start chapters on a new page, except
+% in appendices and the introduction. These settings happen
+% in dedicated setups sections (see later). We also add some
+% white space between table of content entries.
+
+\setupsectionblock
+  [\v!frontmatter]
+  [\c!page=\v!right,
+   \c!before={\setups{introduction}\writebetweenlist[\v!chapter]{\blank[\v!line]}}]
+
+\setupsectionblock
+  [\v!bodymatter]
+  [\c!page=\v!right,
+   \c!before={\setups{bodymatter}\writebetweenlist[\v!chapter]{\blank[\v!line]}}]
+
+\setupsectionblock
+  [\v!appendix]
+  [\c!page=\v!right,
+   \c!before={\setups{appendix}\writebetweenlist[\v!chapter]{\blank[\v!line]}}]
+
+\setupsectionblock
+  [\v!backmatter]
+  [\c!page=\v!right,
+   \c!before={\setups{backmatter}\writebetweenlist[\v!chapter]{\blank[\v!line]}}]
+
+\startsetups introduction
+  \setuphead[\v!chapter][\c!page=\v!right]
+\stopsetups
+
+\startsetups bodymatter
+  \setuphead[\v!chapter][\c!page=]
+\stopsetups
+
+\startsetups appendix
+  \setuphead[\v!chapter][\c!page=\v!right]
+\stopsetups
+
+\startsetups backmatter
+  \setuphead[\v!chapter][\c!page=\v!right]
+\stopsetups
+
+% In normal documents one will never find awful things like
+% below. Because we want an international setup, we just call
+% the chapters in an indirect way.
+
+\def\Introduction#1% nothing funny yet
+  {\getvalue{\v!title}[intro]{#1}} % == \titel[intro]{#1}
+
+% In a previous version I aligned the columns to the middle.
+% Watch the column postprocessor routine!
+
+\def\TableOfContents#1%
+  {\getvalue{\v!title}[contents]{#1}
+   \bgroup
+   %\def\postprocesscolumnline##1%
+   %  {\ifodd\currentcolumn
+   %     \hss##1\relax
+   %   \else
+   %     \relax##1\hss
+   %   \fi}%
+   \startcolumns[\c!n=2,\c!distance=36pt,\c!rule=\KolommenLijn]
+   \placelist
+     [\v!chapter]
+     [\c!criterium=\v!all,
+      \c!before=,
+      \c!after=\vskip0pt] % makes it breakable
+   \stopcolumns
+   \egroup}
+
+\def\NormalIndex#1%
+  {\getvalue{\v!chapter}[subind]{#1}
+   \bgroup
+   \startcolumns[\c!n=2,\c!distance=36pt,\c!rule=\KolommenLijn]
+   \placeregister[\v!index]
+   \stopcolumns
+   \egroup}
+
+\def\CommandIndex#1%
+  {\getvalue{\v!chapter}[comind]{#1}
+   \bgroup
+   \startcolumns[\c!n=2,\c!distance=36pt,\c!rule=\KolommenLijn]
+   \placeregister[Command][\c!before={\blank[\v!line]}]
+   \stopcolumns
+   \egroup}
+
+\def\CommandList#1%
+  {\getvalue{\v!chapter}[comdefs]{#1}
+   \bgroup
+   \component ma-cb-\currentmainlanguage-commandlist
+   \blank[2*\v!big]
+   \setupsetup[\c!reference=2]
+   \placesetup
+   \egroup}
+
+\defineregister
+  [Command]
+  [Commands]
+
+\setupregister
+  [Command]
+  [bagger=oeps,\c!indicator=\v!off]
+
+\def\Copyright{\component ma-cb-copyright.tex }
+\def\Colofon  {\component ma-cb-colophon.tex }
+
+% Oh, how far more easy it would have been if we could put
+% this in the text directly. But consistency is needed.
+
+\protect
+
+\stopenvironment

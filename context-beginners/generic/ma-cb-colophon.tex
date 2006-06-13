@@ -1,0 +1,85 @@
+\startcomponent ma-cb-colophon
+
+% The colofon consists of a few funny framed texts centered
+% on the page.
+
+\unprotect
+
+% We finish the current page and go to the next right page.
+% The intermediate pages are as empty as can be.
+
+\page[\v!yes,\v!blank,\v!right]
+
+% Next we build the colofon page.
+
+\startmakeup[\v!standard]
+
+% This reference is needed for the interactive version.
+
+\pagereference[colofon]
+
+% We align the text in the middle.
+
+\setupalign
+  [\v!medium]
+
+% We use the default \framed macro but add a background. For
+% most texts an offset of 20pt is adequate.
+
+\setupframed
+  [\c!frame=\v!off,
+   \c!background=AuteurAchtergrond,
+   \c!width=\v!fit,
+   \c!align=\v!middle,
+   \c!offset=20pt]
+
+% We switch to a bit larger bold face and adapt the baseline
+% distance accordingly.
+
+\bfa \setupinterlinespace
+
+\doifsomething{\getvariable{document}{author}}
+  {\dontleavehmode
+   \framed{{\bfx Base Text Author}\\\getvariable{document}{author}}
+   \vfill}
+
+\doifsomething{\getvariable{document}{translator}}
+  {\dontleavehmode
+   \framed{{\bfx Translations}\\\getvariable{document}{translator}}
+   \vfill}
+
+\doifsomething{\getvariable{document}{contributer}}
+  {\dontleavehmode
+   \framed{{\bfx Contributions}\\\getvariable{document}{contributer}}
+   \vfill}
+
+\dontleavehmode\framed{{\bfx Design and Style}\\Hans Hagen  }\vfill
+\dontleavehmode\framed{{\bfx Illustrations   }\\Johan Jonker}\vfill
+
+% We need a bit bigger offset here and also let \frame
+% calculate the dimensions automatically by only setting the
+% aligment to middle.
+
+\dontleavehmode \framed
+  [\c!offset=30pt,
+   \c!align=\v!middle]
+  {PRAGMA ADE\\
+   Ridderstraat 27\\
+   8061GH Hasselt NL\\
+   +31 (0)38 477 53 69\\
+   www.pragma-ade.com}
+
+\vfill
+
+\dontleavehmode \framed
+  {\currentdate}
+
+\vfill
+
+\stopmakeup
+
+% Done.
+
+\protect
+
+\stopcomponent
