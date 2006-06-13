@@ -1,0 +1,65 @@
+\startonderdeel ma-cb-nl-margintexts
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Margeteksten}
+
+\index{margetekst}
+
+\Command{\tex{inmarge}}
+\Command{\tex{inlinker}}
+\Command{\tex{inrechter}}
+\Command{\tex{margetitel}}
+
+Het is eenvoudig om teksten in de marge te plaatsen. Het
+commando daarvoor is \type{\inmarge}.
+
+\shortsetup{inmarge}
+
+In een van de eerdere voorbeelden is al met \type{\inmarge}
+gewerkt.
+
+\typebuffer[margefiguur]
+
+Dit resulteert in een figuur in de \paginareferentie
+[margefiguur]\haalbuffer[margefiguur]marge. Een
+figuur in de marge is natuurlijk erg smal en te klein om
+goed te kunnen weergeven.
+
+Hieronder worden enkele voorbeelden van margeteksten
+gegeven.
+
+\startbuffer
+De Ridderstraat \inmarge{Ridderstraat} heeft een logische
+naam. In de 14e en 15e eeuw woonde de adel en prominente
+mensen in deze straat. Enkele van hun grote huizen staan er
+nog en zijn later in gebruik genomen als armenhuis
+\inrechter{armen-\\huis} en bejaardenhuis.
+
+Tot aan \inlinker[laag]{\tfc 1940}1940 was er een synagoge
+in de Ridderstraat. Ongeveer 40 joodse inwoners van Hasselt
+vierden daar hun Sabbat. Tijdens de oorlog werden deze joden
+naar Westerbork gestuurd en vandaar uit verder
+getransporteerd naar de vernietigingskampen in Duitsland en
+Polen. Geen van de joodse families keerde terug. De
+synagoge werd in 1958 afgebroken.
+\stopbuffer
+
+\typebuffer
+
+De commando's \type{\inmarge}, \type{\inlinker} en
+\type{\inrechter} hebben allen een vergelijkbare functie. In
+een tweezijdig document plaatst \type{\inmarge} de
+margeteksten automatisch in de correcte marge. De \type{\\}
+zijn om regelafbreking af te dwingen. Het voorbeeld komt er
+als volgt uit te zien:
+
+\haalbuffer
+
+Margeteksten worden ingesteld met:
+
+\starttypen
+\stelinmargesin
+\stoptypen
+
+\stoponderdeel

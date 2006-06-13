@@ -1,0 +1,59 @@
+\startonderdeel ma-cb-nl-setupcommands
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Instellingen}
+
+\index{instellingen}
+\index{layout}
+
+Instellingen van commando's worden in het instelgebied van de
+invoerfile geplaatst. De commando's hebben een globaal
+karakter en zijn van toepassing op het volledige document.
+
+In \in{bijlage}[comdefs] is een compleet overzicht gegeven
+van alle commando's en de mogelijke parameters en
+instellingen.
+
+De \type{stel...in}||commando's hebben allen dezelfde
+structuur en zien er bijvoorbeeld als volgt uit:
+
+\startbuffer
+\setup{stelalineasin}
+\stopbuffer
+
+\haalbuffer
+
+
+Een instellingscommando bestaat uit een min of meer logische
+naam en een aantal vierkante haken. De vierkante haken
+kunnen optioneel zijn. In dat geval zijn de \type{[ ]} in de
+commandodefinitie schuin gedrukt {\tt \sl [ ]}.
+
+\starttypen
+\steleencommandoin[.1.][.2.][..,..=..,..]
+\stoptypen
+
+De komma's geven aan dat er een lijst van parameters kan
+worden ingegeven. De lijst met opties die bij de definitie
+is opgenomen, begint met \type{.1.} en \type{.2.}. Deze geven
+de mogelijke opties aan die in het eerste en tweede paar
+haken kunnen worden opgenomen. Vervolgens worden parameters
+en hun mogelijke waarden in het derde paar haken geplaatst.
+
+De standaardopties en -waarden zijn in de definitie
+onderstreept. Bovendien zijn enkele waarden schuin gedrukt:
+{\sl sectie}, {\sl naam}, {\sl maat}, {\sl
+getal}, {\sl commando} en {\sl tekst}. Deze waarden kunt u
+zelf invoeren.
+
+\starttabulatie[|S||]
+\NC sectie   \NC  verwacht een sectienaam, zoals hoofdstuk, paragraaf enz. \NC\NR
+\NC naam     \NC verwacht een logische naam \NC\NR
+\NC maat     \NC verwacht een getal met eenheid in \type{cm pt em ex sp in} \NC\NR
+\NC getal    \NC verwacht een getal \NC\NR
+\NC commando \NC verwacht een commando, omgeven door \type{{}} \NC\NR
+\NC tekst    \NC verwacht tekst \NC\NR
+\stoptabulatie
+
+\stoponderdeel

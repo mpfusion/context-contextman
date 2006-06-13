@@ -1,0 +1,268 @@
+\startonderdeel ma-cb-nl-fonts
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Fonts en fontovergangen}
+
+\paragraaf{Introductie}
+
+\index{Computer Modern Roman}
+\index{Lucida Bright}
+\index[ams]{\kap{AMS}}
+\index{\kap{PS}--fonts}
+
+De standaard font in \CONTEXT\ is {\em Computer Modern
+Roman} (\type{cmr}). Bovendien is Lucida Bright (\type{lbr})
+een volwaardig alternatief en zijn symbolen van de {\em
+American Society} (\type{ams}) beschikbaar. Verder kunnen
+PostScript fonts (\type{pos}) worden gebruikt.
+
+\paragraaf{Fontstijl en grootte}
+
+\index{font+stijl}
+\index{font+grootte}
+
+\Command{\tex{stelkorpsin}}
+\Command{\tex{switchnaarkorps}}
+
+Voorkeuren voor een fontfamilie, stijl en grootte worden
+ingesteld met:
+
+\shortsetup{stelkorpsin}
+
+Wanneer u in het instelgebied typt
+\type{\stelkorpsin[schreefloos,9pt]} {\switchnaarkorps[ss,9pt]
+komt de tekst in uw document er ongeveer zo uit te zien.}
+
+Veranderingen in de font op een willekeurige plaats in het
+document kunnen worden gedaan met:
+
+\shortsetup{switchnaarkorps}
+
+\startbuffer
+Op 10 november, een dag voor Sint Maarten, trekt de jeugd
+van Hasselt van deur tot deur om een speciaal liedje te
+zingen en zichzelf te begeleiden op de {\em foekepot}. Ze
+gaan niet weg voordat ze wat geld of wat snoepgoed hebben
+gekregen. Het liedje gaat als volgt:
+
+\startsmaller
+\switchnaarkorps[klein]
+\startregels
+Foekepotterij, foekepotterij,
+Geef mij een centje dan ga'k voorbij.
+Geef mij een alfje dan blijf ik staan,
+'k Zal nog liever naar m'n arrenmoeder gaan.
+Hier woont zo'n rieke man, die zo vulle gäven kan.
+Gäf wat, old wat, gäf die arme stumpers wat,
+'k Eb zo lange met de foekepot elopen.
+'k Eb gien geld om brood te kopen.
+Foekepotterij, foekepotterij,
+Geef mij een centje dan ga'k voorbij.
+\stopregels
+\stopsmaller
+\stopbuffer
+
+\typebuffer
+
+Hierbij wordt opgemerkt dat \type{\startsmaller} $\cdots$
+\type{\stopsmaller} ook het begin en het einde aangeven van
+de fontovergang. De functie van \type{\startregels} en
+\type{\stopregels} in dit voorbeeld spreekt voor zich.
+
+\start
+\haalbuffer
+\stop
+
+Indien u een overzicht wilt van de fontfamilie kunt u het
+volgende commando invoeren:
+
+\startbuffer
+\toonkorps[cmr]
+\stopbuffer
+
+\typebuffer
+
+\haalbuffer
+
+\paragraaf{Fontstijl- en grootte||overgang in commando's}
+
+In enkele commando's kan men de \type{letter} instellen.
+Bijvoorbeeld:
+
+\startbuffer
+\stelkopin[hoofdstuk][letter=\tfd]
+\stopbuffer
+
+\typebuffer
+
+In dit geval wordt de fontgrootte voor het zetten van de
+hoofdstukken aangegeven met het commando \type{\tfd}. In
+plaats van een dergelijk commando kunnen ook de volgende
+opties van het actuele font worden ingegeven:
+
+\startbuffer
+normaal  vet  schuin  vetschuin  type  mediaeval
+klein  kleinvet  kleinschuin  kleinvetschuin  kleintype
+kapitaal kap
+\stopbuffer
+
+\typebuffer
+
+\paragraaf{Locale fontstijl- en fontgrootte||overgang}
+
+\Command{\tex{rm}}
+\Command{\tex{ss}}
+\Command{\tex{tt}}
+\Command{\tex{sl}}
+\Command{\tex{bf}}
+\Command{\tex{tfa}}
+\Command{\tex{tfb}}
+\Command{\tex{tfc}}
+\Command{\tex{tfd}}
+
+In de tekst kunt u de stijl veranderen in roman, sans serif
+en teletype met \type{\rm}, \type{\ss} en \type{\tt}. De
+lettertypen italic en boldface worden veranderd met
+\type{\sl} en \type{\bf}. De grootte kan vari\"eren van 4pt
+tot 12pt en wordt veranderd met \type{\switchnaarkorps}.
+
+Het actuele font wordt steeds aangeduid met \type{\tf}.
+Indien u naar een grotere letter wilt overgaan, kunt u
+\type{\tfa}, \type{\tfb}, \type{\tfc} en \type{\tfd} typen.
+In aanvulling op \type{a}, \type{b}, \type{c} en \type{d}
+mag u ook \type{\sl}, \type{\it} en \type{\bf} gebruiken.
+
+\startbuffer
+{\tfc Muntslag}
+
+In de periode van {\tt 1404} tot {\tt 1585} had Hasselt een
+eigen muntatelier en mocht het zelf munten slaan. Dit recht
+werd door andere steden aangevochten, maar de
+{\switchnaarkorps[7pt] bisschop van Utrecht} ging niet in op
+deze {\slb protesten}.
+\stopbuffer
+
+\typebuffer
+
+de accolades geven het begin en eind van de fontovergangen
+aan.
+
+\haalbuffer
+
+\paragraaf{Herdefini\"eren fontgrootte}
+
+\Command{\tex{definieerkorps}}
+
+Voor speciale toepassingen kunt u de fontgrootte
+herdefini\"eren.
+
+\shortsetup{definieerkorps}
+
+Een definitie kan er als volgt uitzien:
+
+\startbuffer
+\definieerkorps[10pt][rm][tfe=Regular at 36pt]
+
+{\tfe Hasselt!}
+\stopbuffer
+
+\typebuffer
+
+Vervolgens produceert \type{\tfe} de 36pt grote letters:
+\hbox{\haalbuffer}
+
+\paragraaf{Klein kapitaal}
+
+\index{klein kapitaal}
+
+\Command{\tex{kap}}
+
+Afkortingen als \PDF\ (\voluit{PDF}) worden gezet in pseudo
+klein kapitaal. Een klein kapitaal is iets kleiner dan
+kapitaal van het actuele font. Pseudo klein kapitaal wordt
+gemaakt met:
+
+\shortsetup{kap}
+
+Als u \type{PDF}, \type{\kap{PDF}} en \type{\sc pdf} vergelijkt:
+
+\regelmidden{PDF, \kap{PDF} en {\sc pdf}}
+
+dan ziet u de verschillen. Het commando \type{\sc} toont een
+'echte' klein kapitaal. De reden voor het gebruik van pseudo
+klein kapitaal heeft te maken met persoonlijke voorkeuren.
+
+\paragraaf{Benadrukken}
+
+\index{benadrukken}
+
+\Command{\tex{em}}
+
+Om consistent tekstfragmenten te kunnen benadrukken bestaat
+het commando:
+
+\starttypen
+\em
+\stoptypen
+
+Benadrukte woorden worden schuin gezet.
+
+\startbuffer
+Als u door Hasselt loopt, moet u uitkijken voor {\em
+Amsterdammers}. Een {\em Amsterdammer} is {\bf \em geen}
+inwoner van Amsterdam, maar een kleine stenen pilaar die
+wordt gebruikt om trottoir en straat te scheiden. Wandelaars
+zouden door die {\em Amsterdammers} beschermd moeten worden
+tegen auto's e.d., maar heel vaak verwonden zij zich omdat ze
+over de paaltjes struikelen.
+\stopbuffer
+
+\typebuffer
+
+Dit wordt:
+
+\haalbuffer
+
+{\em Een benadrukt woord binnen een benadrukte zin wordt weer
+{\em normaal} gedrukt en vet benadrukken zou er {\bf als
+volgt uit moeten {\em zien}}}.
+
+\paragraaf{Typeletters / verbatim}
+
+\index{typeletters}
+\index{verbatim}
+
+\Command{\tex{starttypen}}
+\Command{\tex{type}}
+\Command{\tex{steltypenin}}
+\Command{\tex{steltypein}}
+
+Indien tekst in een typeletter moet worden weergegeven,
+gebruikt u:
+
+\shortsetup{starttypen}
+
+In een tekst typt u:
+
+\shortsetup{type}
+
+De accolades omsluiten de tekst die in een typeletter moet
+worden weergegeven. Een waarschuwing is op zijn plaats. Bij
+het werken met \type{\type} moeten regelovergangen extra
+worden gecontroleerd, omdat het afbreekmechanisme niet
+werkt.
+
+U kunt met betrekking tot typen het een en ander instellen
+met:
+
+\shortsetup{steltypenin}
+\shortsetup{steltypein}
+
+\pagina
+
+\paragraaf{Encodings}
+
+Deze paragraaf moet nog gevuld worden.
+
+\stoponderdeel

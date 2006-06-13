@@ -1,0 +1,119 @@
+\startonderdeel ma-cb-nl-modules
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Laden van modules}
+
+\index{module+chemie}
+\index{module+eenheid}
+\index{module+chart}
+\index{module+pictex}
+\index{chemische structuren}
+\index{stroomschema's}
+\index{eenheden}
+
+\Command{\tex{gebruikmodule}}
+
+Uit oogpunt van efficiency is besloten om bepaalde
+functionaliteit van \CONTEXT\ onder te brengen in modules.
+Op dit moment zijn de volgende modules beschikbaar:
+
+\startopsomming[opelkaar]
+\som \type{eenheid} voor het gebruik van \kap{SI}||eenheden
+\som \type{chemie} voor het zetten van chemische structuren
+\som \type{pictex} voor het tekenen van plaatjes (wordt
+      gebruikt in combinatie met module \type{chemie})
+\som \type{chart} voor het tekenen van stroomschema's en
+     organogrammen
+\stopopsomming
+
+Een module wordt in het instelgebied van de invoerfile
+geladen door middel van:
+
+\shortsetup{gebruikmodule}
+
+Van de module \type{units} hebben we al meerdere voorbeelden
+gegeven. Van de modules \type{chemie} en \type{chart} geven
+we hier twee voorbeelden zonder nadere uitleg. Voor een
+toelichting op beide modules verwijzen we naar de
+afzonderlijke handleidingen.
+
+Chemische structuren kunnen er indrukwekkend uitzien.
+
+\startbuffer
+\plaatsformule[-]
+\startformule
+\startchemie[schaal=klein,breedte=passend,boven=3000,onder=3000]
+  \chemie[SIX,SB2356,DB14,Z2346,SR3,RZ3,-SR6,+SR6,-RZ6,+RZ6]
+         [C,N,C,C,H,H,H]
+  \chemie[PB:Z1,ONE,Z0,DIR8,Z0,SB24,DB7,Z27,PE][C,C,CH_3,O]
+  \chemie[PB:Z5,ONE,Z0,DIR6,Z0,SB24,DB7,Z47,PE][C,C,H_3C,O]
+  \chemie[SR24,RZ24][CH_3,H_3C]
+  \bottext{Verbinding A}
+\stopchemie
+\stopformule
+\stopbuffer
+
+\haalbuffer
+
+Hoewel chemische structuren met slechts twee commando's
+worden gedefinieerd, is wel enige oefening nodig om de
+juiste resultaten te verkrijgen. De invoer voor de formule
+ziet er als volgt uit:
+
+\typebuffer
+
+Als we gebruik maken van de module \type{chart} voor het
+defini\"eren van een organogram kan de definitie er als
+volgt uitzien.
+
+\setupFLOWcharts
+  [breedte=11\bodyfontsize,
+   hoogte=3\bodyfontsize,
+   dx=1\bodyfontsize,
+   dy=2\bodyfontsize]
+
+\setupFLOWlines
+  [pijl=nee]
+
+\startbuffer
+\startFLOWchart[organogram]
+  \startFLOWcell
+    \shape    {action}
+    \name     {01}
+    \location {2,1}
+    \text     {Hasselt}
+    \connect  [bt]{02}
+    \connect  [bt]{03}
+    \connect  [bt]{04}
+  \stopFLOWcell
+  \startFLOWcell
+    \shape    {action}
+    \name     {02}
+    \location {1,2}
+    \text     {Mastenbroek}
+  \stopFLOWcell
+  \startFLOWcell
+    \shape    {action}
+    \name     {03}
+    \location {2,2}
+    \text     {Genne}
+  \stopFLOWcell
+  \startFLOWcell
+    \shape    {action}
+    \name     {04}
+    \location {3,2}
+    \text     {Zwartewaterklooster}
+  \stopFLOWcell
+\stopFLOWchart
+
+\FLOWchart[organogram]
+\stopbuffer
+
+\typebuffer
+
+Het resultaat wordt dan:
+
+\regelmidden{\haalbuffer}
+
+\stoponderdeel

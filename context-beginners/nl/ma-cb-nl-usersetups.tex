@@ -1,0 +1,32 @@
+\startonderdeel ma-cb-nl-usersetups
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Gebruikersinstellingen}
+
+Als \CONTEXT\ wordt aangeroepen, worden enkele
+voorgedefinieerde instellingen geladen. Deze instellingen
+worden gedaan in de file \type{cont-sys.tex}. Gebruikers
+kunnen hun eigen instellingen in deze file opnemen.
+\CONTEXT\ moet deze file natuurlijk wel kunnen vinden in de
+door u aangemaakte directory structuur.
+
+De \type{readme} file die bij de \CONTEXT||distributie wordt
+meegeleverd geeft meer informatie over systeem specifieke
+instellingen. De meest belangrijke toevoeging aan deze file
+heeft betrekking op de gewenste output:
+
+\starttypen
+\steluitvoerin[pdftex]
+\stoptypen
+
+Dit commando vertelt \CONTEXT\ om \PDF||output te genereren,
+terwijl \DVI||output wordt gegenereerd met de instelling:
+
+\starttypen
+\steluitvoerin[dvipsone,dviwindo]
+\stoptypen
+
+De laatste instelling is de standaard instelling.
+
+\stoponderdeel

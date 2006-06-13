@@ -1,0 +1,99 @@
+\startonderdeel ma-cb-nl-commands
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Defini\"eren van commando's / macro's}
+
+\CONTEXT\ is een set macro's gebaseerd op \TEX. \TEX\ is
+zowel een typografisch systeem als een programmeertaal. Dit
+betekent dat u ook zelf programma's cq. macro's kunt
+schrijven indien u een dergelijke flexibiliteit nodig heeft.
+
+Een nieuw commando wordt gedefinieerd met:
+
+\shortsetup{definieer}
+
+Het een en ander wordt gedemonstreerd door middel van
+een voorbeeld.
+
+U heeft een rijk ge\"{\i}llustreerd document en u wordt er moe van
+om steeds bij iedere figuur het volgende in te typen:
+
+\startbuffer
+\plaatsfiguur
+  [hier,forceer]
+  [fig:logische naam]
+  {Bijschrift.}
+  {\externfiguur[filenaam][breedte=5cm]}
+\stopbuffer
+
+\typebuffer
+
+U kunt een eigen commando maken waarin een aantal variabelen
+worden opgenomen, zoals:
+
+\startopsomming[opelkaar]
+\som logische naam
+\som bijschrift
+\som filenaam
+\stopopsomming
+
+De commandodefinitie zou er als volgt uit kunnen zien:
+
+\startbuffer
+\definieer[3]\plaatsmijnfiguur%
+  {\plaatsfiguur
+     [hier,forceer]
+     [fig:#1]
+     {#2}
+     {\externfiguur[#3][breedte=5cm]}}
+
+\plaatsmijnfiguur
+   {leeuw}
+   {De Nederlandse leeuw houdt de wacht.}
+   {ma-cb-13}
+\stopbuffer
+
+\typebuffer
+
+Het tussen haakjes geplaatste \type{[3]} geeft aan dat het
+commando drie variabelen verwacht: \type{#1}, \type{#2} en
+\type{#3}. In de commando||aanroep van
+\type{\plaatsmijnfiguur} staan de variabelen tussen
+accolades. Het resultaat kan er als volgt uitzien:
+
+\haalbuffer
+
+Op deze manier kunnen zeer geavanceerde commando's worden
+gedefinieerd, maar dat wordt aan uw eigen inventiviteit
+overgelaten.
+
+In aanvulling op het defini\"eren van commando's kunt u ook
+zelf \type{\start} $\cdots$ \type{\stop} paren defini\"eren.
+
+\shortsetup{definieerstartstop}
+
+Bijvoorbeeld:
+
+\startbuffer
+\definieerstartstop
+   [stars]
+   [commandos={\inlinker{\hbox to \linkermargebreedte
+                 {\leaders\hbox{$\star$}\hfill}}},
+    voor=\blanko,
+    na=\blanko]
+
+\startstars {\em Hasselter Juffers} zijn een soort zoete
+koekjes en hun naam berust niet op toeval. Op 21 juli 1233
+werd het Zwartewaterklooster opgericht. Het klooster was
+bedoeld voor ongetrouwde meisjes en vrouwen van stand. Deze
+meisjes en vrouwen werden {\em juffers} genoemd. \stopstars
+\stopbuffer
+
+\typebuffer
+
+Dit resulteert in:
+
+\haalbuffer
+
+\stoponderdeel

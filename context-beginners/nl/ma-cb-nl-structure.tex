@@ -1,0 +1,58 @@
+\startonderdeel ma-cb-nl-structure
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Het defini\"eren van een document}
+
+Ieder document wordt gestart met \type{\starttekst} en
+afgesloten met \type{\stoptekst}. Alle overige invoer vindt
+plaats tussen deze commando's en \CONTEXT\ verwerkt alleen
+die informatie.
+
+Instellingen die van toepassing zijn op het gehele document
+worden in het instelgebied voor \type{\starttekst} gedaan.
+
+\startbuffer
+\stelkorpsin[12pt]
+\starttekst
+Dit is een eenregelig document.
+\stoptekst
+\stopbuffer
+
+\typebuffer
+
+Binnen \type{\starttekst} $\cdots$ \type{\stoptekst}
+kan een document worden opgedeeld in vier secties:
+
+\startopsomming[n,opelkaar]
+\som inleidingen
+\som hoofdteksten
+\som uitleidingen
+\som bijlagen
+\stopopsomming
+
+Deze secties worden gedefinieerd met:
+
+\starttypen
+\startinleidingen  ... \stopinleidingen
+\starthoofdteksten ... \stophoofdteksten
+\startuitleidingen ... \stopuitleidingen
+\startbijlagen     ... \stopbijlagen
+\stoptypen
+
+In de in- en uitleidende secties produceert het commando
+\type{\hoofdstuk} een niet genummerde titel in de
+inhoudsopgave. Bovendien kan een afwijkende paginanummering
+worden ingesteld. Binnen {\em inleidingen} worden meestal de
+inhoudsopgave, lijsten met figuren of tabellen, het
+voorwoord, het dankwoord enz. geplaatst.
+
+De sectie bijlagen is (inderdaad) bedoeld voor bijlagen. De
+koppen worden alfabetisch genummerd. Ook in deze sectie kan
+gewoon \type{\hoofdstuk} worden gebruikt.
+
+De secties worden ingesteld met:
+
+\shortsetup{stelsectieblokin}
+
+\stoponderdeel

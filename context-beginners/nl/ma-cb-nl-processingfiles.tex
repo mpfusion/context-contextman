@@ -1,0 +1,58 @@
+\startonderdeel ma-cb-nl-processingfiles
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Verwerkingsslagen}
+
+\index[texutil]{\TEXUTIL}
+\index[tuo]{{\tt tuo}--file}
+\index{invoerfile+verwerken}
+
+Tijdens de verwerking schrijft \CONTEXT\ informatie
+naar de file \type{myfile.tui}. Deze informatie wordt
+gebruikt in een volgende verwerkingsslag. Een deel van die
+informatie wordt verwerkt door het programma \TEXUTIL.
+Informatie over registers en lijsten worden opgeslagen in de
+file \type{myfile.tuo}. Deze informatie wordt (indien nodig)
+door \CONTEXT\ gefilterd en gebruikt.
+
+\starttypen
+texutil --references filename
+\stoptypen
+
+Als \CONTEXT\ een figuur niet kan vinden kan een hulpfile
+worden aangemaakt met:
+
+\starttypen
+texutil --figures *.*
+\stoptypen
+
+Als \EPS\ illustraties moeten worden omgezet naar \PDF\ dan
+is er het commando:
+
+\starttypen
+texutil --figures --epspage --epspdf
+\stoptypen
+
+Om \CONTEXT\ te runnen wordt het programma \TEXEXEC\
+gebruikt:
+
+\starttypen
+texexec filename
+\stoptypen
+
+\TEXEXEC\ verwerkt de file zo vaak als nodig is om
+referenties en lijsten correct te kunnen plaatsen. Diverse
+instellingen van \CONTEXT\ kunnen op de commandoregel worden
+ingevoerd. Een \PDF||file wordt bijvoorbeeld aangemaakt door
+in te typen:
+
+\starttypen
+texexec --output=pdf filenaam
+\stoptypen
+
+Bij twijfel kan altijd \type{--help} worden ingetypt
+voor meer informatie over de mogelijke opties. Een
+afzonderlijke \TEXEXEC||handleiding is beschikbaar.
+
+\stoponderdeel

@@ -1,0 +1,240 @@
+\startonderdeel ma-cb-nl-paragraphs
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Paragrafen en witruimte}
+
+\paragraaf{Inleiding}
+
+\index{paragraaf}
+
+\Command{\tex{par}}
+\Command{\tex{alinea}}
+
+In \TEX\ en \CONTEXT\ is de belangerijkste eenheid van tekst
+een paragraaf. Een nieuwe paragraaf wordt gestart met:
+
+\startopsomming[opelkaar]
+\som een lege regel
+\som het \TEX||commando \type{\par}
+\stopopsomming
+
+In de \ASCII\ invoerfile worden lege regels gebruikt als
+paragraafscheiders. Dit heeft als voordeel dat er een goed
+leesbare tekst ontstaat, waarin fouten makkelijk kunnen
+worden opgespoord.
+
+Bij het gebruiken van commando's waarin paragrafen expliciet
+moeten worden afgesloten, moet \type{\par} worden gebruikt.
+
+\startbuffer
+Tijdens een van de oorlogen die rond Hasselt werden
+uitgevochten werd Hasselt belegerd. Na enige tijd ontstond er
+een voedselprobleem en brak er een hongersnood uit in de
+stad. Alles wat eetbaar was werd opgegeten. Op \'e\'en koe na.
+Deze koe werd in leven gelaten en zelfs zeer goed
+verzorgd.\par
+E\'en keer per dag werd de koe over de verdedigingswerken van
+Hasselt geleid en de bewoners zorgden ervoor dat de
+belegeraars de koe goed konden zien. Zo leek het dat er
+genoeg voedsel in de stad was en dat de belegering nog lang
+kon duren. De belegeraars werden hierdoor zo ontmoedigd dat
+ze het beleg opbraken.\par
+In de Hoogstraat in Hasselt staat een huis met een gevelsteen
+waarop een koe is afgebeeld. Deze steen herinnert aan de
+belegering en de slimheid van de Hasselternaren.
+\stopbuffer
+
+\typebuffer
+
+Deze tekst kan ook zonder \type{\par}s worden ingevoerd als
+er met lege regels worden gewerkt.
+
+\startbuffer
+Tijdens een van de oorlogen die rond Hasselt werden
+uitgevochten werd Hasselt belegerd. Na enige tijd ontstond er
+een voedselprobleem en brak er een hongersnood uit in de
+stad. Alles wat eetbaar was werd opgegeten. Op een koe na.
+Deze koe werd in leven gelaten en zelfs zeer goed verzorgd.
+
+Een keer per dag werd de koe over de verdedigingswerken van
+Hasselt geleid en de bewoners zorgden ervoor dat de
+belegeraars de koe goed konden zien. Zo leek het dat er
+genoeg voedsel in de stad was en dat de belegering nog lang
+kon duren. De belegeraars werden hierdoor zo ontmoedigd dat
+ze de belegering opbraken.
+
+In de Hoogstraat in Hasselt staat een huis met een gevelsteen
+waarop een koe is afgebeeld. Deze steen herinnert aan de
+belegering en de slimheid van de Hasseltenaren.
+\stopbuffer
+
+\typebuffer
+
+\paragraaf{Witruimte tussen paragrafen}
+
+\index{witruimte tussen paragrafen}
+
+\Command{\tex{stelwitruimtein}}
+\Command{\tex{geenwitruimte}}
+\Command{\tex{witruimte}}
+\Command{\tex{startregelcorrectie}}
+\Command{\tex{blanko}}
+\Command{\tex{stelblankoin}}
+\Command{\tex{startopelkaar}}
+\Command{\tex{startvanelkaar}}
+
+De verticale witruimte tussen paragrafen
+wordt ingesteld met:
+
+\shortsetup{stelwitruimtein}
+
+Dit document wordt geproduceerd met
+\type{\stelwitruimtein[middel]}.
+
+Wanneer de witruimte tussen paragrafen is ingesteld, zijn de
+volgende commando's beschikbaar, hoewel ze zelden hoeven te
+worden gebruikt:
+
+\starttypen
+\geenwitruimte
+\witruimte
+\stoptypen
+
+Indien paragrafen lijnen bevatten dan verdient witruimte
+extra aandacht, bijvoorbeeld bij:
+
+\startbuffer
+\omlijnd{Ridderstraat 27, 8061GH Hasselt}
+\stopbuffer
+
+\haalbuffer
+
+moet een correctie worden uitgevoerd. Deze correctie kan
+worden uitgevoerd met:
+
+\shortsetup{startregelcorrectie}
+
+Indien u zou intypen:
+
+\startbuffer
+\startregelcorrectie
+\omlijnd{Ridderstraat 27, 8061GH Hasselt}
+\stopregelcorrectie
+\stopbuffer
+
+\typebuffer
+
+dan krijgt u een beter resultaat.
+
+\haalbuffer
+
+Een ander commando dat betrekking heeft op verticale
+witruimte is:
+
+\shortsetup{blanko}
+
+Het hakenpaar is optioneel en u kunt tussen haken de
+hoeveelheid witruimte opgeven. De mogelijke opties zijn
+veelvouden van: \type{klein}, \type{middel} en \type{groot}
+en zijn gerelateerd aan de korpsgrootte.
+
+\startbuffer
+In offici\"ele aanduidingen gaat de naam Hasselt altijd
+vergezeld van de afkorting Ov. Dit is een afkorting van de
+provincie Overijssel.
+\blanko[2*groot]
+Het grappige is dat er in Nederland geen tweede Hasselt is.
+De toevoeging is daarom overbodig.
+\blanko
+De toevoeging is een overblijfsel uit de tijd dat Nederland
+en Belgi\"e nog tot hetzelfde koninkrijk behoorden.
+\blanko[2*groot]
+Hasselt in Belgi\"e ligt in de provincie Limburg. Zouden de
+Belgen hun brieven adresseren met Hasselt (Li)?
+\stopbuffer
+
+\typebuffer
+
+Het commando \type{\blanko} zonder haken is de standaard
+witruimte. Het voorbeeld komt er als volgt uit te zien:
+
+\haalbuffer
+
+De witruimte kan worden ingesteld met:
+
+\shortsetup{stelblankoin}
+
+Verticale witruimte kan worden onderdrukt met het
+commando||paar:
+
+\shortsetup{startopelkaar}
+
+In deze handleiding is de witruimte ingesteld op
+\type{middel}. In de volgende situatie wordt die instelling
+genegeerd en worden de regels op elkaar geplaatst.
+
+\startbuffer
+\startopelkaar
+Hasselt (Ov) ligt in Overijssel.
+
+Hasselt (Li) ligt in Limburg.
+
+Let wel: we praten over Belgisch Limburg want er is
+ook een Nederlands Limburg.
+\stopopelkaar
+\stopbuffer
+
+\typebuffer
+
+Dit wordt:
+
+\haalbuffer
+
+De tegenhanger hiervan is:
+
+\shortsetup{startvanelkaar}
+
+Een verticale verplaatsing over een bepaalde afstand kan
+worden afgedwongen met \type{\omlaag}. De verschuiving
+wordt tussen de vierkante haken ingesteld.
+
+\shortsetup{omlaag}
+
+\paragraaf{Inspringen}
+
+\index{inspringen}
+\index{paragraaf+inspringen}
+
+\Command{\tex{inspringen}}
+\Command{\tex{nietinspringen}}
+\Command{\tex{stelinspringenin}}
+
+Een redelijke mate van inspringen wordt bereikt met:
+
+\starttypen
+\stelinspringenin[middel]
+\stoptypen
+
+Dit levert ingesprongen alineas. Standaard wordt na
+witruimte, zoals afgedwongen door \type {\blanko}, niet
+ingesprongen.
+
+Tussendoor kunt u het inspringen be\"\i nvloeden met het
+commando
+
+\shortsetup{inspringen}
+
+Tussen haken worden de voorkeuren aangegeven. Als u \type
+{nooit} meegeeft, dan wordt vanaf dat moment niet meer
+ingesprongen, terwijl met \type {geen} alleen de volgende
+alinea wordt be\"{\i}nvloed.
+
+Als inspringen aan staat, en u wilt {\em niet} inspringen,
+dan kunt u ook het volgende commando gebruiken:
+
+\starttypen
+\nietinspringen
+\stoptypen
+
+\stoponderdeel

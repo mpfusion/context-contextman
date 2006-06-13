@@ -1,0 +1,89 @@
+\startonderdeel ma-cb-nl-registers
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Registers}
+
+\index{register}
+
+\Command{\tex{index}}
+\Command{\tex{plaatsindex}}
+\Command{\tex{volledigeindex}}
+\Command{\tex{definieerregister}}
+\Command{\tex{plaatsregister}}
+\Command{\tex{volledigeregister}}
+\Command{\tex{stelregistersin}}
+
+Het is mogelijk om een of meer registers te genereren.
+Standaard is hiervoor het commando \type{\index}
+beschikbaar. Voor het toevoegen van een woord aan de lijst
+typt u bijvoorbeeld:
+
+\starttypen
+\index{stadhuis}
+\stoptypen
+
+Het woord {\em stadhuis} zal als een ingang in het register
+verschijnen. Een register wordt alfabetisch gesorteerd met
+behulp van het programma \TEXUTIL. In sommige gevallen kan
+een indexwoord niet worden gesorteerd. Dit is het geval bij
+bepaalde symbolen. Dergelijke ingangen worden als volgt
+gedefinieerd:
+
+\starttypen
+\index[minteken]{$-$}
+\stoptypen
+
+De ingang wordt nu gesorteerd op het woord tussen vierkante
+haken {\em minteken}.
+
+Soms zijn er sub- en  subsubingangen. Deze worden op een
+vergelijkbare wijze gedefinieerd:
+
+\starttypen
+\index{stadhuis+locatie}
+\index{stadhuis+architectuur}
+\stoptypen
+
+Het register zelf wordt (meestal aan het eind van een
+document) gegenereerd met:
+
+\starttypen
+\plaatsindex
+\stoptypen
+
+of:
+
+\starttypen
+\volledigeindex
+\stoptypen
+
+Het commando \type{\index} is een voorgedefinieerd
+\CONTEXT||commando, maar het is ook mogelijk uw eigen
+registers te defini\"eren.
+
+\shortsetup{definieerregister}
+
+Een register gebaseerd op de straten van Hasselt kan als
+volgt worden gedefinieerd.
+
+\starttypen
+\definieerregister[straat][straten]
+\stoptypen
+
+Op dit moment is er een registercommando \type{\straat}
+beschikbaar. Een ingang wordt dan ingevoerd met
+\type{\straat{Ridderstraat}}. Het register zelf wordt
+opgeroepen met:
+
+\starttypen
+\plaatsstraat
+\volledigestraat
+\plaatsregister[straat]
+\stoptypen
+
+De weergave van de registers wordt ingesteld met:
+
+\shortsetup{stelregisterin}
+
+\stoponderdeel

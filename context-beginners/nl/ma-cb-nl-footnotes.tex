@@ -1,0 +1,99 @@
+\startonderdeel ma-cb-nl-footnotes
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Voetnoten}
+
+\index{voetnoten}
+
+\Command{\tex{voetnoot}}
+\Command{\tex{stelvoetnotenin}}
+
+Indien u een tekst wilt annoteren met voetnoten gebruikt u
+\type{\voetnoot}. Het commando ziet er als volgt uit:
+
+\shortsetup{voetnoot}
+
+De vierkante haken zijn optioneel en bedoeld voor een
+logische naam waarmee het voetnootnummer meerdere malen kan
+worden opgeroepen. De accolades bevatten de tekst die in de
+voetnoot moet worden weergegeven.
+
+Een voetnootnummer kan worden opgeroepen met:
+
+\shortsetup{noot}
+
+Indien u de onderstaande tekst heeft ingevoerd:
+
+\startbuffer
+De Hanze was een laat||middeleeuws commercieel verbond van
+steden in het Noorden en rond de Baltische Zee. Het verbond
+werd gesloten voor het bevorderen en de bescherming van de
+handel van haar leden.\voetnoot[oorlog]{Dit was de bron van
+veel jaloezie tussen steden onderling en veroorzaakte menige
+oorlog.} In de Hanzeperiode werd levendig gehandeld in hout,
+wol, metaal, stoffen, zout, wijn en bier. De handel
+veroorzaakte grote groei in de Hanzesteden\voetnoot{Hasselt
+was ook zo'n stad.} en het lokte vele oorlogen
+uit.\noot[oorlog]
+\stopbuffer
+
+\typebuffer
+
+Krijgt u:
+
+\haalbuffer
+
+Het nummeren van voetnoten gebeurt automatisch. De wijze van
+weergave van voetnoten wordt ingesteld met het commando:
+
+\shortsetup{stelvoetnotenin}
+
+Voetnoten hoeven niet altijd onderaan een pagina te worden
+geplaatst, maar kunnen bijvoorbeeld ook aan het eind van een
+hoofdstuk worden geplaatst met het commando:
+
+\shortsetup{plaatsvoetnoten}
+
+U kunt voetnoten ook koppelen aan bijvoorbeeld een tabel. We
+spreken dan van zogenaamde lokale voetnoten. De commando's
+zijn:
+
+\shortsetup{startlokalevoetnoten}
+
+\shortsetup{plaatslokalevoetnoten}
+
+
+Een voorbeeld
+illustreert het gebruik:
+
+\startbuffer
+\startlokalevoetnoten[n=0]
+  \plaatstabel
+    {Teruggang van bedrijvigheid in Hasselt.}
+     \starttabel[|l|c|c|c|c|]
+       \HL
+       \NC
+       \NC Ovens\voetnoot{Bron: Uit de geschiedenis van Hasselt.}
+       \NC Smidsen \NC Brouwketels \NC Pannebakkerijen \NC\SR
+       \HL
+       \NC 1682 \NC 15 \NC 9 \NC 3 \NC 2 \NC\FR
+       \NC 1752 \NC ~6 \NC 4 \NC 0 \NC 0 \NC\LR
+       \HL
+       \stoptabel
+  \plaatslokalevoetnoten
+\stoplokalevoetnoten
+\stopbuffer
+
+\typebuffer
+
+\haalbuffer
+
+Ook kunnen voetnoten, in plaats van onderaan een bladzijde,
+aan het eind van een tekst of hoofdstuk worden geplaatst.
+Hiervoor zetten we \type {plaats} op \type {tekst} en
+gebruiken het volgende commando om de noten te plaatsen:
+
+\shortsetup{plaatsvoetnoten}
+
+\stoponderdeel

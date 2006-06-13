@@ -1,0 +1,137 @@
+\startonderdeel ma-cb-nl-tabulations
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Tabulatie / Opmaak van alinea's}
+
+\index{kolommen}
+\index{alinea opmaak}
+\index{tabulatie}
+\index{tabel+lopende tekst}
+\Command{\tex{starttabulatie}}
+\Command{\tex{definieertabulatie}}
+\Command{\tex{steltabulatiein}}
+\Command{\tex{NR}}
+\Command{\tex{NC}}
+\Command{\tex{startchemie}}
+
+Soms is het wenselijk om alineas zodanig vorm te geven dat
+de informatie overzichtelijker wordt weergegeven. Dit wordt
+gedaan met:
+
+\shortsetup{starttabulatie}
+
+Het tabulatiemechanisme is vergelijkbaar met het
+tabelmechanisme. Tabulatie wordt vooral gebruikt als complete
+alinea's in een cel van een tabel moet worden geplaatst. Het
+tabulatiemechanisme werkt bovendien goed bij
+pagina||overgangen.
+
+Een tabulatie zou er als volgt uit kunnen zien:
+
+\startbuffer
+\starttabulatie[|w(1.5cm)B|p(6.0cm)|p|]
+\NC 1252
+    \NC Hasselt verkrijgt stadsrechten van bisschop Hendrik van
+        Vianden.
+    \NC Hendrik van Vianden werd door andere steden onder druk
+        gezet om de stadsrechten niet te verlenen. Het kostte
+        Hasselt veel tijd om de bisschop te overtuigen. Nadat
+        Hasselt de bisschop had gesteund bij een kleine oorlog
+        tegen de Drenten werden de stadsrechten verleend. \NC\NR
+\NC 1350
+    \NC Hasselt treedt toe tot het Hanzepact om haar internationale
+        handel te beschermen.
+    \NC Het Hanzepact was van groot belang voor de handelaren
+        van Hasselt. Goederen werden in die dagen door iedere
+        stad, op iedere hoofdstraat en bij iedere
+        rivieroversteekplaats apart belast. Belastingvrije
+        routes door heel Europa was een van de voordelen van
+        het lidmaatschap. Hasselt is altijd een van de kleinere
+        leden van het pact geweest. \NC\NR
+\stoptabulatie
+\stopbuffer
+
+\typebuffer
+
+Hierbij wordt de eerste kolom 1,5 \Centi \Meter\ breed en
+vet (\type{B}) gezet. De tweede kolom is 6 \Centi \Meter\
+breed en wordt als een alinea gezet. De resterende ruimte
+wordt door de laatste alinea gebruikt.
+
+\haalbuffer
+
+Net als in het tabelmechanisme is er een aantal
+formaataanduidingen en -commando's. In
+\in{tabel}[tab:tabulatieformaataanduidingen] ziet u een
+overzicht van deze aanduidingen en commando's.
+
+\plaatstabel[][tab:tabulatieformaataanduidingen]
+  {Tabulatie commando;'s.}
+\starttabel[|lT|l|lT|l|]
+\NC l                 \NC left align
+\NC I                 \NC \it italic
+\NC \FR
+\NC c                 \NC center
+\NC R                 \NC \sl roman
+\NC \MR
+\NC r                 \NC right align
+\NC S                 \NC \sl slanted
+\NC \MR
+\NC i\sl n            \NC spacing left
+\NC T                 \NC \tt teletype
+\NC \MR
+\NC j\sl n            \NC spacing right
+\NC m                 \NC in||line math
+\NC \MR
+\NC k\sl n            \NC spacing around
+\NC M                 \NC display  math
+\NC \MR
+\NC w({\sl d})        \NC 1 line,   fixed width
+\NC f\tex{command}    \NC font specification
+\NC \MR
+\NC p({\sl d})        \NC paragraph, fixed width
+\NC b\arg{..}         \NC place \type{..} before the entry
+\NC \MR
+\NC p                 \NC paragraph, maximum width
+\NC a\arg{..}         \NC place \type{..} after the entry
+\NC \MR
+\NC B                 \NC \bf boldface
+\NC h\tex{command}    \NC apply \tex{command} on the entry
+\NC \LR
+\stoptabel
+
+Een tweede voorbeeld voor het herinrichten van
+alineas vindt u hieronder.
+
+\startbuffer
+\definieertabulatie[ChemPar][|l|p|l|]
+
+\startChemPar
+\NC Kalkoven
+    \NC Hasselt heeft zijn eigen kalkovens. Deze werden in 1504
+        gebouwd en produceerden kalk tot 1956. Tegenwoordig
+        vormen de ovens een toeristische attractie.
+    \NC \chemie{CaCO_3,~,GIVES,~,CaO,~,+,~,CO_2} \NC\NR
+\stopChemPar
+\stopbuffer
+
+\typebuffer
+
+Het voorbeeld komt er ongeveer als volgt uit te zien:
+
+\haalbuffer
+
+De chemische module wordt in een andere handleiding
+toegelicht.
+
+In het voorbeeld wordt ook het commando ge\"{\i}ntroduceerd
+om vooraf de alinealayout te defini\"eren.
+
+\shortsetup{definieertabulatie}
+
+en dan is er ook nog:
+
+\shortsetup{steltabulatiein}
+
+\stoponderdeel

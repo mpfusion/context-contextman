@@ -1,0 +1,471 @@
+\startonderdeel ma-cb-nl-tables
+
+\produkt ma-cb-nl
+
+\hoofdstuk[tabellen]{Tabellen}
+
+\index{tabellen}
+\index{floating blocks}
+
+\Command{\tex{plaatstabel}}
+\Command{\tex{steltabellenin}}
+\Command{\tex{starttabel}}
+\Command{\tex{startcombinatie}}
+\Command{\tex{stelplaatsblokkenin}}
+\Command{\tex{stelblokkopjesin}}
+\Command{\tex{NR}}
+\Command{\tex{FR}}
+\Command{\tex{LR}}
+\Command{\tex{MR}}
+\Command{\tex{SR}}
+\Command{\tex{VL}}
+\Command{\tex{NC}}
+\Command{\tex{HL}}
+\Command{\tex{DL}}
+\Command{\tex{DC}}
+\Command{\tex{DR}}
+\Command{\tex{LOW}}
+\Command{\tex{TWO}}
+\Command{\tex{THREE}}
+
+{\em In het algemeen bestaat een tabel uit een aantal
+kolommen die onafhankelijk van elkaar zijn gecentreerd of
+links of rechts zijn uitgelijnd. Kolommen kunnen ook zijn
+uitgelijnd op de decimale komma. Koppen worden boven een of
+meerdere kolommen geplaatst en horizontale en verticale
+lijnen worden geheel of gedeeltelijk over de breedte van de
+tabel getrokken.}
+
+Dit schrijft Michael J. Wichura in zijn inleiding op de
+handleiding van \TABLE\ (\TABLE\ manual, 1988). Michael
+Wichura is tevens de auteur van de \TABLE||macro's die
+\CONTEXT\ gebruikt om tabellen te zetten. Er zijn meerdere
+\CONTEXT||macro's aan toegevoegd ten behoeve van consistente
+horizontale spati\"ering en om het opmaken van tabellen iets
+inzichtelijker te maken.\voetnoot{\CONTEXT\ is gemaakt voor
+niet||technici in het \kap{WYSIWYG}||tijdperk. Daarom is
+steeds gekozen voor begrijpelijke benamingen van commando's
+en zijn veel handelingen voorgedefinieerd om het
+programmeren in \TEX\ overbodig te maken. Mede daardoor is
+ook het opmaken van tabellen iets eenvoudiger geworden.}
+
+Voor het plaatsen van de tabel wordt gebruik gemaakt van
+\type{\plaatstabel} dat ook weer een verbijzondering is van:
+
+\shortsetup{plaatsblok}
+
+Verder wordt voor het plaatsen van de tabel gebruik gemaakt
+van:
+
+\shortsetup{starttabel}
+
+De definitie van een tabel zou er als volgt uit kunnen zien:
+
+\startbuffer
+\plaatstabel[hier][tab:schepen]{Schepen die Hasselt aandeden.}
+\starttabel[|c|c|]
+\HL
+\NC \bf Jaar \NC \bf Aantal schepen \NC\SR
+\HL
+\NC 1645 \NC 450 \NC\FR
+\NC 1671 \NC 480 \NC\MR
+\NC 1676 \NC 500 \NC\MR
+\NC 1695 \NC 930 \NC\LR
+\HL
+\stoptabel
+\stopbuffer
+
+\typebuffer
+
+Na verwerking wordt \in{tabel}[tab:schepen] gegenereerd.
+
+\haalbuffer
+
+Het eerste commando \type{\plaatstabel} heeft dezelfde
+functie als \type{\plaatsfiguur}. Het draagt zorg voor
+verticale spati\"ering en tabelnummering. Het floatmechanisme
+wordt ge\"{\i}nitieerd en de tabel komt uiteindelijk op de meest
+optimale plaats in het document terecht.
+
+De tabelinhoud wordt tussen het \type{\starttabel} $\cdots$
+\type{\stoptabel} paar ingevoerd. Tussen vierkante haken
+achter \type{\starttabel} wordt het tabelformaat
+gedefinieerd met formaataanduidigen en gescheiden door
+kolomscheiders \type{|} (zie
+\in{tabel}[tab:formaataanduidingen]).
+
+\plaatstabel
+  []
+  [tab:formaataanduidingen]
+  {Tabel formaataanduidingen.}
+\starttabel[|l|l|]
+\HL
+\NC \bf Aanduiding \NC \bf Betekenis \NC\SR
+\HL
+\NC \type{|}    \NC kolomscheider                                  \NC\FR
+\NC \type{c}    \NC centreer                                       \NC\MR
+\NC \type{l}    \NC links uitlijnen                                \NC\MR
+\NC \type{r}    \NC rechts uitlijnen                               \NC\MR
+\NC \type{s<n>} \NC spatie tussen kolommen op waarde $n = 0, 1, 2$ \NC\MR
+\NC \type{w<>}  \NC kolombreedte                                   \NC\LR
+\HL
+\stoptabel
+
+In aanvulling op formaataanduidingen zijn er
+formaatcommando's. \in{Tabel}[tab:formaatcommandos] toont
+een aantal essenti\"ele commando's.
+
+\plaatstabel
+  [hier]
+  [tab:formaatcommandos]
+  {Tabel formaatcommando's.}
+\starttabel[|l|l|]
+\HL
+\NC \bf Commando              \NC \bf Betekenis                            \NC\SR
+\HL
+\NC \type{\JustLeft}          \NC links uitlijnen en negeer kolomindeling  \NC\FR
+\NC \type{\JustRight}         \NC rechts uitlijnen en negeer kolomindeling \NC\MR
+\NC \type{\JustCenter}        \NC centreer en negeer kolomindeling         \NC\MR
+\NC \type{\SetTableToWidth{}} \NC specificeer tabelbreedte                 \NC\MR
+\NC \type{\use{n}}            \NC gebruik de ruimte over van $n$ kolommen  \NC\LR
+\HL
+\stoptabel
+
+In de voorbeelden die u tot nu toe heeft gezien zijn een
+aantal \CONTEXT\ tabelcommando's toegepast. Deze commando's
+zijn ietwat langer dan de originele commando's, maar zijn
+minder cryptisch en dragen zorg voor veel tabeltypografie.
+In \in{tabel}[tab:contextformaatcommandos] is een overzicht
+gegeven van deze commando's.
+
+\plaatstabel
+  [hier]
+  [tab:contextformaatcommandos]
+  {\CONTEXT\ tabel formaatcommando's.}
+{\steltabellenin[korps=klein]
+\starttabel[|l|l|l|]
+\HL
+\NC \bf Commando  \NC \NC \bf Betekenis \NC\SR
+\HL
+\NC \type{\NR}        \NC next row
+    \NC maak rij, geen aanpassing verticale witruimte \NC\FR
+\NC \type{\FR}        \NC first row
+    \NC maak rij, aanpassing bovenruimte \NC\MR
+\NC \type{\LR}        \NC last row
+    \NC maak rij, aanpassing onderruimte  \NC\MR
+\NC \type{\MR}        \NC mid row
+    \NC maak rij, aanpassing boven- en onderruimte \NC\MR
+\NC \type{\SR}        \NC separate row
+    \NC maak rij, aanpassing boven- en onderruimte \NC\MR
+\NC \type{\VL}        \NC vertical line
+    \NC maak een verticale lijn tot de volgende kolom \NC\MR
+\NC \type{\NC}        \NC next column
+    \NC ga naar de volgende kolom \NC\MR
+\NC \type{\HL}        \NC horizontal line
+    \NC maak een horizontale lijn \NC\MR
+\NC \type{\DL}        \NC division line$^\star$
+    \NC maak een horizontale lijn over de kolombreedte \NC\MR
+\NC \type{\DL[n]}     \NC division line$^\star$
+    \NC maak een horizontale lijn over $n$ kolommen \NC\MR
+\NC \type{\DC}        \NC division column$^\star$
+    \NC maak een spatie over de breedte van de kolom \NC\MR
+\NC \type{\DR} \NC division row$^\star$
+    \NC maak een rij, aanpassing onder- en bovenruimte \NC\MR
+\NC \type{\LOW{tekst}} \NC ---
+    \NC verlaag {\em tekst} \NC\MR
+\NC \type{\TWO}, \type{\THREE} etc.  \NC ---
+    \NC gebruik ruimte over {\em twee}, {\em drie} kolommen \NC\LR
+\HL
+\NC \use3 \JustLeft{$^\star$ \type{\DL, \DC} en \type{\DR}
+worden in combinatie gebruikt.} \NC\FR
+\stoptabel}
+
+De tabellen en hun definitie worden hieronder getoond. Voor
+meer uitleg en voorbeelden van geavanceerde tabellen kunt u
+de \TABLE\ manual van M.J. Wichura raadplegen.
+
+\startbuffer
+\plaatstabel
+  [hier,forceer]
+  [tab:effect van commandos]
+  {Effect van formaatcommando's.}
+{\startcombinatie[2*1]%
+  {\starttabel[|c|c|]%
+   \HL
+   \VL \bf Jaar \VL \bf Inwoners \VL\SR
+   \HL
+   \VL 1675 \VL  ~428 \VL\FR
+   \VL 1795 \VL  1124 \VL\MR
+   \VL 1880 \VL  2405 \VL\MR
+   \VL 1995 \VL  7408 \VL\LR
+   \HL
+   \stoptabel}
+  {standaard}
+  {\starttabel[|c|c|]%
+   \HL
+   \VL \bf Jaar \VL \bf Inwoners \VL\NR
+   \HL
+   \VL 1675 \VL  ~428 \VL\NR
+   \VL 1795 \VL  1124 \VL\NR
+   \VL 1880 \VL  2405 \VL\NR
+   \VL 1995 \VL  7408 \VL\NR
+   \HL
+   \stoptabel}
+  {alleen \type{\NR}}
+\stopcombinatie}
+\stopbuffer
+
+\typebuffer
+
+In het bovenstaande voorbeeld worden in de eerste tabel
+\type{\SR}, \type{\FR}, \type{\MR} en \type{\LR} gebruikt.
+Deze commando's zorgen voor een correcte interlinie. Zoals u
+hieronder kunt zien, zorgt \type{\NR} alleen maar voor een
+nieuwe rij.
+
+\haalbuffer
+
+In het voorbeeld hieronder worden voorbeelden van het
+instellen van kolomspati\"ering door middel van \type{s0} en
+\type{s1} aanduidingen getoond.
+
+\startbuffer
+\plaatstabel
+  [hier,forceer]
+  [tab:inwoneraantallen]
+  {Effect van formaataanduidingen.}
+{\startcombinatie[3*2]
+  {\starttabel[|c|c|]
+   \HL
+   \VL \bf Jaar \VL \bf Inwoners \VL\SR
+   \HL
+   \VL 1675 \VL  ~428 \VL\FR
+   \VL 1795 \VL  1124 \VL\MR
+   \VL 1880 \VL  2405 \VL\MR
+   \VL 1995 \VL  7408 \VL\LR
+   \HL
+   \stoptabel}
+  {standaard}
+  {\starttabel[s0 | c | c |]
+   \HL
+   \VL \bf Jaar \VL \bf Inwoners \VL\SR
+   \HL
+   \VL 1675 \VL  ~428 \VL\FR
+   \VL 1795 \VL  1124 \VL\MR
+   \VL 1880 \VL  2405 \VL\MR
+   \VL 1995 \VL  7408 \VL\LR
+   \HL
+   \stoptabel}
+  {\type{s0}}
+  {\starttabel[| s0 c | c |]
+   \HL
+   \VL \bf Jaar \VL \bf Inwoners \VL\SR
+   \HL
+   \VL 1675 \VL  ~428 \VL\FR
+   \VL 1795 \VL  1124 \VL\MR
+   \VL 1880 \VL  2405 \VL\MR
+   \VL 1995 \VL  7408 \VL\LR
+   \HL
+   \stoptabel}
+  {\type{s0} in kolom~1}
+  {\starttabel[| c | s0 c |]
+   \HL
+   \VL \bf Jaar \VL \bf Inwoners \VL\SR
+   \HL
+   \VL 1675 \VL  ~428 \VL\FR
+   \VL 1795 \VL  1124 \VL\MR
+   \VL 1880 \VL  2405 \VL\MR
+   \VL 1995 \VL  7408 \VL\LR
+   \HL
+   \stoptabel}
+  {\type{s0} in kolom~2}
+  {\starttabel[s1 | c | c |]
+   \HL
+   \VL \bf Jaar \VL \bf Inwoners \VL\SR
+   \HL
+   \VL 1675 \VL  ~428 \VL\FR
+   \VL 1795 \VL  1124 \VL\MR
+   \VL 1880 \VL  2405 \VL\MR
+   \VL 1995 \VL  7408 \VL\LR
+   \HL
+   \stoptabel}
+  {\type{s1}}
+  {}
+  {}
+\stopcombinatie}
+\stopbuffer
+
+\typebuffer
+
+Na verwerking zullen de tabellen er als volgt uitzien.
+
+\haalbuffer
+
+De standaard tabel heeft een kolomspati\"ering van \type{s2}.
+
+Kolommen worden vaak gescheiden door een verticale lijn
+en rijen door middel van een horizontale lijn.
+
+\startbuffer
+\plaatstabel
+  [hier,forceer]
+  [tab:divisions]
+  {Het effect van opties.}
+\starttabel[|c|c|c|]
+\NC Steenwijk  \NC Zwartsluis \NC Hasselt    \NC\SR
+\DC            \DL            \DC               \DR
+\NC Zwartsluis \VL Hasselt    \VL Steenwijk  \NC\SR
+\DC            \DL            \DC               \DR
+\NC Hasselt    \NC Steenwijk  \NC Zwartsluis \NC\SR
+\stoptabel
+\stopbuffer
+
+\typebuffer
+
+\haalbuffer
+
+Een zinvoller voorbeeld vindt u hieronder.
+
+\startbuffer
+\plaatstabel
+  [hier,forceer]
+  [tab:voorbeeldcontextcommandos]
+  {Effect van \CONTEXT||formaatcommando's.}
+\starttabel[|l|c|c|c|c|]
+\HL
+\VL \FIVE \JustCenter{Gemeenteraadsverkiezingen 1994}    \VL\SR
+\HL
+\VL \LOW{Partij} \VL \THREE{Districten} \VL \LOW{Totaal} \VL\SR
+\DC              \DL[3]                 \DC              \DR
+\VL              \VL 1   \VL 2   \VL 3  \VL              \VL\SR
+\HL
+\VL PvdA         \VL 351 \VL 433 \VL 459 \VL 1243 \VL\FR
+\VL CDA          \VL 346 \VL 350 \VL 285 \VL ~981 \VL\MR
+\VL VVD          \VL 140 \VL 113 \VL 132 \VL ~385 \VL\MR
+\VL HKV/RPF/SGP  \VL 348 \VL 261 \VL 158 \VL ~767 \VL\MR
+\VL GPV          \VL 117 \VL 192 \VL 291 \VL ~600 \VL\LR
+\HL
+\stoptabel
+\stopbuffer
+
+\typebuffer
+
+In de laatste kolom wordt een \type{~} (vaste spatie)
+gebruikt om een viercijferig getal te simuleren. Het
+\type{~} heeft de breedte van een cijfer.
+
+\haalbuffer
+
+Soms worden tabellen te groot en is het wenselijk het korps
+of de rij- en kolomspati\"ering aan te passen. Dergelijke
+aanpassingen worden gedaan met:
+
+\shortsetup{steltabellenin}
+
+\startbuffer
+\plaatstabel
+  [hier,forceer]
+  [tab:steltabellenin]
+  {Gebruik van \type{\steltabellenin}.}
+{\startcombinatie[1*3]
+  {\steltabellenin[korps=10pt]
+   \starttabel[|c|c|c|c|c|c|]
+   \HL
+   \VL \use6 \JustCenter{Afname van rijkdom in guldens (Dfl)} \VL\SR
+   \HL
+   \VL Jaar \VL 1.000--2.000
+            \VL 2.000--3.000
+            \VL 3.000--5.000
+            \VL 5.000--10.000
+            \VL   over 10.000 \VL\SR
+   \HL
+   \VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
+   \VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
+   \VL 1750 \VL 12 \VL 3 \VL 2  \VL 2  \VL -- \VL\MR
+   \VL 1808 \VL ~9 \VL 2 \VL -- \VL -- \VL -- \VL\LR
+   \HL
+   \stoptabel}
+  {\tt korps=10pt}
+  {\steltabellenin[korps=8pt]
+   \starttabel[|c|c|c|c|c|c|]
+   \HL
+   \VL \use6 \JustCenter{Afname van rijkdom in guldens (Dfl)} \VL\SR
+   \HL
+   \VL Jaar \VL 1.000--2.000
+            \VL 2.000--3.000
+            \VL 3.000--5.000
+            \VL 5.000--10.000
+            \VL   over 10.000 \VL\SR
+   \HL
+   \VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
+   \VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
+   \VL 1750 \VL 12 \VL 3 \VL 2  \VL 2  \VL -- \VL\MR
+   \VL 1808 \VL ~9 \VL 2 \VL -- \VL -- \VL -- \VL\LR
+   \HL
+   \stoptabel}
+  {\tt korps=8pt}
+  {\steltabellenin[korps=6pt, afstand=klein]
+   \starttabel[|c|c|c|c|c|c|]
+   \HL
+   \VL \use6 \JustCenter{Afname van rijkdom in guldens (Dfl)} \VL\SR
+   \HL
+   \VL Jaar \VL 1.000--2.000
+            \VL 2.000--3.000
+            \VL 3.000--5.000
+            \VL 5.000--10.000
+            \VL   over 10.000 \VL\SR
+   \HL
+   \VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
+   \VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
+   \VL 1750 \VL 12 \VL 3 \VL 2  \VL 2  \VL -- \VL\MR
+   \VL 1808 \VL ~9 \VL 2 \VL -- \VL -- \VL -- \VL\LR
+   \HL
+   \stoptabel}
+  {\tt korps=6pt, afstand=klein}
+\stopcombinatie}
+\stopbuffer
+
+\typebuffer
+
+\haalbuffer
+
+U kunt tevens de tabel als geheel instellen met:
+
+\shortsetup{stelplaatsblokkenin}
+
+De nummering en de labels worden ingesteld met:
+
+\shortsetup{stelblokkopjesin}
+
+De genoemde commando's worden in het instelgebied van de
+invoerfile geplaatst.
+
+\startbuffer
+\stelplaatsblokkenin[plaats=links]
+\stelblokkopjesin[letter=vetschuin]
+
+\plaatstabel
+  [][tab:opening]{Openingstijden bibliotheek.}
+\starttabel[|l|c|c|]
+\HL
+\VL \bf Dag   \VL \use2 \bf Openingstijden \VL\SR
+\HL
+\VL Maandag   \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\FR
+\VL Dinsdag   \VL                \VL                \VL\MR
+\VL Woensdag  \VL 10.00 -- 12.00 \VL 14.00 -- 17.30 \VL\MR
+\VL Donderdag \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\MR
+\VL Vrijdag   \VL 14.00 -- 17.30 \VL                \VL\MR
+\VL Zaterdag  \VL 10.00 -- 12.30 \VL                \VL\LR
+\HL
+\stoptabel
+\stopbuffer
+
+\typebuffer
+
+Het resultaat is weergegeven in \in{tabel}[tab:opening].
+
+\start
+\haalbuffer
+\stop
+
+\stoponderdeel

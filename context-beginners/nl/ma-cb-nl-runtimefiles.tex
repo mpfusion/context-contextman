@@ -1,0 +1,37 @@
+\startonderdeel ma-cb-nl-runtimefiles
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Hulpfiles}
+
+\index[tui]{{\tt tui}--file}
+\index[tuo]{{\tt tuo}--file}
+\index[tub]{{\tt tub}--file}
+\index[tuf]{{\tt tuf}--file}
+\index{hulpfiles}
+
+\CONTEXT\ produceert gedurende de verschillende
+verwerkingsslagen een aantal hulpfiles. Indien uw invoerfile
+\type{mijnfile.tex} heet, kunnen de volgende files op uw
+directory worden aangemaakt.
+
+\starttabel[|l|l|l|]
+\HL
+\NC \bf File          \NC \bf Inhoud        \NC \bf Status \NC\SR
+\HL
+\NC \tt mijnfile.tex  \NC tekst             \NC niet verwijderen      \NC\SR
+\HL
+\NC \tt mijnfile.tui  \NC input informatie  \NC kan worden verwijderd \NC\FR
+\NC \tt mijnfile.tuo  \NC output informatie \NC niet verwijderen      \NC\MR
+\NC \tt mijnfile.tub  \NC block informatie  \NC niet verwijderen      \NC\MR
+\NC \tt mijnfile.tmp  \NC buffer informatie \NC kan worden verwijderd \NC\LR
+\HL
+\NC \tt texutil.tuf   \NC figuur informatie     \NC niet verwijderen      \NC\FR
+\NC \tt mpgraph.mp    \NC \METAPOST\ informatie \NC kan worden verwijderd \NC\LR
+\HL
+\NC \tt mijnfile.dvi  \NC gezette tekst     \NC kan worden verwijderd \NC\FR
+\NC \tt mijnfile.ps   \NC printbare tekst   \NC kan worden verwijderd \NC\LR
+\HL
+\stoptabel
+
+\stoponderdeel

@@ -1,0 +1,683 @@
+\startonderdeel ma-cb-nl-whatever
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Diversen}
+
+\paragraaf{Een titelpagina}
+
+\index{titelpagina}
+
+\Command{\tex{startstandaardopmaak}}
+\Command{\tex{definieeropmaak}}
+
+In het eerste voorbeeld van deze handleiding op
+\op{pagina}[invoerfile] heeft u het volgende commando
+gezien:
+
+\shortsetup{startopmaak}
+
+Dit commando wordt gebruikt om titelpagina's op te maken.
+Kenmerkend voor een titelpagina is namelijk dat de layout
+meestal afwijkt van die van het overige document. Met het
+commando||paar \type{\start ... \stopstandaardopmaak} kan
+binnen de bestaande zetspiegel dan ook een afwijkende pagina
+worden opgemaakt.
+
+Een eenvoudige titelpagina kan er als volgt uitzien:
+
+\startbuffer
+\startstandaardopmaak
+\blanko
+\regelrechts{\tfd Hasselt in de 21ste eeuw}
+\blanko
+\regelrechts{\tfb Een toekomstschets}
+\vfill
+\regelrechts{\tfa C. van Marle}
+\regelrechts{Hasselt, 2001}
+\stopstandaardopmaak
+\stopbuffer
+
+\typebuffer
+
+In een dubbelzijdig opgemaakt document moet men zich enige
+moeite getroosten om de \citeer{achterkant} te bedrukken.
+
+\startbuffer
+\startstandaardopmaak[dubbelzijdig=nee]
+\blanko
+\regelrechts{\tfd Hasselt in de 21ste eeuw}
+\blanko
+\regelrechts{\tfb Een toekomstschets}
+\vfill
+\regelrechts{\tfa C. van Marle}
+\regelrechts{Hasselt, 2001}
+\stopstandaardopmaak
+\startstandaardopmaak[pagina=nee]
+\vfill
+\copyright 2001
+
+Dit boek wordt opgedragen aan de Hasselter bevolking.
+Speciale dank gaat uit naar J. Jonker voor het bewerken van
+het fotomateriaal, waardoor men zich een nauwkeurig beeld
+kan vormen van het toekomstige Hasselt.
+\stopstandaardopmaak
+\stopbuffer
+
+\typebuffer
+
+Eigen opmaken kunnen worden gedefinieerd en ingesteld met:
+
+\shortsetup{definieeropmaak}
+
+en
+
+\shortsetup{stelopmaakin}
+
+\paragraaf[floatingblocks]{Zwevende blokken / Floating blocks}
+
+\index{floating blocks}
+\index{zwevende blokken}
+
+\Command{\tex{definieerplaatsblok}}
+\Command{\tex{stelplaatsblokin}}
+\Command{\tex{stelplaatsblokkenin}}
+\Command{\tex{stelblokkopjesin}}
+\Command{\tex{plaatsintermezzo}}
+
+Een blok is in \CONTEXT\ een tekstelement, zoals een tabel
+of een figuur die op een speciale manier wordt afgehandeld.
+U heeft al het gebruik van \type{\plaatsfiguur} en
+\type{\plaatstabel} gezien. Beide zijn voorbeelden van
+floating blocks of zwevende blokken. Het floatmechanisme is
+beschreven in \in{hoofdstuk}[figuren] en \in[tabellen].
+
+Dergelijke blokken kunnen worden gedefinieerd met:
+
+\shortsetup{definieerplaatsblok}
+
+Tussen de vierkante haken wordt de naam in enkel- en meervoud
+vermeld. Bijvoorbeeld:
+
+\starttypen
+\defineerplaatsblok[intermezzo][intermezzos]
+\stoptypen
+
+Na deze definitie zijn de volgende commando's beschikbaar:
+
+\starttypen
+\plaatsintermezzo[][]{}{}
+\startintermezzotekst ... \stopintermezzotekst
+\plaatslijstmetintermezzos
+\volledigelijstmetintermezzos
+\stoptypen
+
+Het nieuw gedefinieerde (zwevende) blok kan worden ingesteld
+door middel van:
+
+\shortsetup{stelplaatsblokin}
+
+De layout van dergelijke blokken wordt ingesteld met:
+
+\shortsetup{stelplaatsblokkenin}
+
+De nummering en de labels worden ingesteld met:
+
+\shortsetup{stelblokkopjesin}
+
+Deze commando's worden meestal in het instelgebied van de
+invoerfile geplaatst en zijn geldig voor alle floating
+blocks in het document.
+
+\startbuffer
+\stelplaatsblokkenin[plaats=midden]
+\stelblokkopjesin[plaats=onder,kopletter=vetschuin]
+
+\plaatsintermezzo{Een intermezzo.}
+\startkadertekst
+Aan het begin van deze eeuw liep er een tramlijn van Zwolle
+naar Blokzijl via Hasselt. Andere vormen van transport
+werden belangrijker en net voor de Tweede Wereldoorlog werd
+de lijn opgeheven. Tegenwoordig zou zo'n tramlijn best
+rendabel kunnen draaien.
+\stopkadertekst
+\stopbuffer
+
+\typebuffer
+
+\start
+\haalbuffer
+\stop
+
+\paragraaf[tekstblokken]{Tekstblokken}
+
+\index{tekstblokken}
+
+\Command{\tex{definieerblok}}
+\Command{\tex{gebruikblokken}}
+\Command{\tex{verbergblokken}}
+\Command{\tex{stelblokin}}
+
+Een ander soort blok is het tekstblok. Een tekstblok is
+meestal een stuk tekst dat meerdere malen in een document
+wordt gebruikt (maar dat u maar eenmaal wilt invoeren).
+
+Een tekstblok wordt gedefinieerd met:
+
+\shortsetup{definieerblok}
+
+De naam van het tekstblok wordt tussen vierkante haken
+geplaatst. Het is ook mogelijk een lijst van namen op die
+plaats in te voeren. De namen worden gescheiden door komma's.
+
+U kunt bijvoorbeeld het volgende blok defini\"eren:
+
+\starttypen
+\definieerblok[nederlands]
+\stoptypen
+
+Vervolgens is na deze definitie het volgende commando||paar
+beschikbaar:
+
+\starttypen
+\beginvannederlands ... \eindvannederlands
+\stoptypen
+
+Blokken worden gemanipuleerd met:
+
+\shortsetup{verbergblokken}
+\shortsetup{gebruikblokken}
+\shortsetup{handhaafblokken}
+\shortsetup{selecteerblokken}
+
+Hieronder wordt met een voorbeeld de werking van
+tekstblokken ge\"{\i}llustreerd. Tekstblokken worden voornamelijk
+gebruikt bij vragen en antwoorden in studieboeken of in
+meertalige documenten.
+
+\startbuffer
+\definieerblok[nederlands,engels]
+
+\verbergblokken[nederlands,engels]
+
+\beginvanengels[dedemsvaart-e]
+Since 1810 the Dedemsvaart caused some prosperity in Hasselt. All
+ships went through the canals of Hasselt and the shops on both
+sides of the canals prospered.
+\eindvanengels
+
+\beginvannederlands[dedemsvaart-n]
+Sinds 1810 zorgde de Dedemsvaart voor enige welvaart in Hasselt.
+Alle schepen voeren door de grachten en de winkels aan weerszijden
+van de gracht floreerden.
+\eindvannederlands
+
+\gebruikblokken[engels][dedemsvaart-e]
+\stopbuffer
+
+\typebuffer
+
+Dit resulteert in:
+
+\haalbuffer
+
+Indien u dergelijke blokken consequent zou gebruiken kunt u
+meertalige documenten maken. Voor dat doel is het dan ook
+mogelijk tekstblokken in een aparte externe file op te slaan.
+Dat ziet er als volgt uit:
+
+\startbuffer
+\stelblokin[nederlands][file=bewaar-n]
+\stopbuffer
+
+\typebuffer
+
+De nederlandse tekstblokken worden bewaard in de file
+\type{bewaar-n.tex} en de tekstfragmenten kunnen met hun
+logische naam worden aangeroepen. Met \type{\stelblokin}
+wordt de weergave ingesteld.
+
+\paragraaf{Tekst bufferen (bewaren voor later gebruik)}
+
+\index{tekst bufferen}
+
+\Command{\tex{startbuffer}}
+\Command{\tex{haalbuffer}}
+\Command{\tex{typebuffer}}
+\Command{\tex{stelbufferin}}
+
+Informatie kan tijdelijk worden opgeslagen om later in het
+document te worden gebruikt. Deze optie wordt het bufferen
+van teksten genoemd.
+
+\shortsetup{startbuffer}
+
+Bijvoorbeeld:
+
+\starttypen
+\startbuffer[visite]
+Als u wilt weten wat Hasselt u kan bieden, moet u dit stadje maar
+eens komen bezoeken. Als u deze handleiding meeneemt, zult u
+ongetwijfeld sommige locaties herkennen.
+\stopbuffer
+
+\haalbuffer[visite]
+\stoptypen
+
+Met \type{\haalbuffer[visite]} wordt de tekst opgeroepen. De
+logische naam is optioneel. Met \type{\typebuffer[visite]}
+wordt de getypte tekst van de tekstbuffer opgeroepen en
+geplaatst.
+
+Buffers worden ingesteld met:
+
+\shortsetup{stelbufferin}
+
+\paragraaf{Tekst verbergen}
+
+\index{tekst verbergen}
+
+\Command{\tex{startverbergen}}
+
+Tekst worden verborgen met:
+
+\shortsetup{startverbergen}
+
+De tekst tussen dit commando||paar wordt niet verwerkt.
+
+\paragraaf{Lijnen}
+
+\index{lijnen}
+\index{punten}
+
+\Command{\tex{haarlijn}}
+\Command{\tex{starttekstlijn}}
+\Command{\tex{dunnelijn}}
+\Command{\tex{dunnelijnen}}
+\Command{\tex{steldunnelijnenin}}
+\Command{\tex{punten}}
+\Command{\tex{onderstrepen}}
+\Command{\tex{doorstreep}}
+\Command{\tex{invullijn}}
+\Command{\tex{invulregels}}
+\Command{\tex{stelinvullijnenin}}
+\Command{\tex{stelinvulregelsin}}
+
+Er zijn vele commando's om lijnen te tekenen. Om een enkele
+lijn te trekken, typt u:
+
+\shortsetup{haarlijn}
+
+of:
+
+\shortsetup{dunnelijn}
+
+Meerdere lijnen worden opgeroepen met:
+
+\shortsetup{dunnelijnen}
+
+Tekst en lijnen kunnen ook worden gecombineerd.
+
+\shortsetup{starttekstlijn}
+
+Bijvoorbeeld:
+
+\startbuffer
+\starttekstlijn{Hasselt -- Amsterdam}
+Als u een rechte lijn trekt van Hasselt naar Amsterdam moet
+u een afstand overbruggen van bijna 145 \Kilo \Meter.
+\stoptekstlijn
+
+Als u twee rechte lijnen trekt van Hasselt naar Amsterdam
+dan overbrugt u een afstand van 290 \Kilo \Meter.
+
+Amsterdam \dunnelijnen[n=3] Hasselt
+\stopbuffer
+
+\haalbuffer
+
+Deze voorbeelden zijn als volgt ingevoerd:
+
+\typebuffer
+
+Het tekenen van lijnen verdient altijd extra aandacht. De
+witruimte voor en na de lijnen wil nog weleens anders worden
+dan in eerste instantie mag worden verwacht.
+
+De afstand tussen lijnen kunt u instellen met:
+
+\shortsetup{steldunnelijnenin}
+
+Er zijn enkele aanvullende commando's:
+
+\shortsetup{stelinvullijnenin}
+\shortsetup{stelinvulregelsin}
+
+Deze commando's worden in voorbeelden ge\"{\i}llustreerd:
+
+\startbuffer
+\stelinvullijnenin[breedte=2cm]
+\stelinvulregelsin[breedte=3cm]
+
+\invullijnen[n=1]{\bf naam}
+\invullijnen[n=3]{\bf adres}
+
+\invulregel{Kunt u het \onderstreep{aantal}
+huizen in Hasselt noemen?} \par
+
+Streep \doorstrepen{Hasselt door in deze tekst}\punten[18]
+\stopbuffer
+
+\typebuffer
+
+Dit wordt na verwerken:
+
+\haalbuffer
+
+Deze commando's zijn ontwikkeld voor vragenlijsten e.d.
+
+Opgemerkt moet worden dat \TEX\ tekst die wordt doorgehaald
+met \type{\doorstreep} of \type{\doorstrepen} niet afbreekt.
+
+\paragraaf{Super- en subscript in tekst}
+
+\index{subscript}
+\index{superscript}
+
+\Command{\tex{laag}}
+\Command{\tex{hoog}}
+\Command{\tex{laho}}
+
+\startbuffer
+Het is vrij eenvoudig om \hoog{superscript} en
+\laag{subscript} in de tekst te plaatsen. Hoe dit
+\laho{subscript}{superscript} wordt genoemd, is niet bekend,
+maar het ziet er niet uit.
+\stopbuffer
+
+\haalbuffer
+
+Deze tekst is gemaakt met \type{\laag{}}, \type{\hoog{}} en
+\type{\laho{}{}}. De tekst wordt tussen de accolades
+geplaatst.
+
+\paragraaf{Datum}
+
+\index{datum}
+
+\Command{\tex{huidigedatum}}
+
+De systeemdatum kan in uw document worden opgenomen met:
+
+\starttypen
+\huidigedatum
+\stoptypen
+
+\paragraaf{Positioneren}
+
+\index{positioneren}
+
+\Command{\tex{positioneer}}
+\Command{\tex{stelpositionerenin}}
+
+Voor zeer speciale toepassingen is het soms wenselijk tekst
+op een pagina te positioneren. Positioneren gebeurt met:
+
+\shortsetup{positioneer}
+
+De haakjes omsluiten de $x,y$||co\"ordinaten, de accolades
+bevatten de tekst die moet worden gepositioneerd.
+
+Het $x,y$||stelsel wordt ingesteld met:
+
+\shortsetup{stelpositionerenin}
+
+Bij het instellen kan gebruik gemaakt worden van
+schaalfactoren en eenheden. Een voorbeeld licht het commando
+\type{\positioneer} verder toe.
+
+\startbuffer
+\def\dobbelvijf%
+  {\omlijnd
+     [breedte=42pt,hoogte=42pt,offset=0pt]
+     {\stelpositionerenin
+        [eenheid=pt,factor=12,xoffset=-11pt,yoffset=-8pt]%
+      \startpositioneren
+        \positioneer(1,1){$\bullet$}%
+        \positioneer(1,3){$\bullet$}%
+        \positioneer(2,2){$\bullet$}%
+        \positioneer(3,1){$\bullet$}%
+        \positioneer(3,3){$\bullet$}%
+      \stoppositioneren}}
+
+\plaatsfiguur{Dit is vijf.}{\dobbelvijf}
+\stopbuffer
+
+\typebuffer
+
+Dit toch wel lastige voorbeeld komt er als volgt uit te
+zien.
+
+\haalbuffer
+
+\paragraaf{Roteren van tekst, figuren en tabellen}
+
+\index{roteren}
+
+\Command{\tex{roteer}}
+
+In een aantal gevallen is het noodzakelijk om teksten,
+figuren of tabellen te roteren. Dergelijke objecten worden
+geroteerd met:
+
+\shortsetup{roteer}
+
+De vierkante haken zijn optioneel en worden gebruikt om de
+rotatie in te stellen: \type{rotatie=90}. De accolades
+bevatten de tekst of het object dat geroteerd moet worden.
+
+\startbuffer
+Hasselt heeft haar stadsrechten in 1252 gekregen. Vanaf die
+tijd bezat Hasselt het \roteer[rotatie=90]{recht}
+om een eigen zegel op offici\"ele documenten te plaatsen. Het
+zegel toont de Heilige Stephanus die bekend staat als een van
+de eerste christelijke martelaren en als de beschermheilige
+van \roteer[rotatie=270]{Hasselt}. Na de Reformatie werd het
+zegel opnieuw ontworpen. Bovendien verloor Stephanus zijn
+'heiligheid'. Vanaf die dag wordt hij dan ook afgebeeld zonder
+aureool.
+\stopbuffer
+
+\typebuffer
+
+Dit resulteert in een wel erg lelijke tekst:
+
+\haalbuffer
+
+Ook figuren kunt u roteren met:
+
+\startbuffer
+\plaatsfiguur
+  [][fig:rotatie]
+  {De Vispoort is 180 \Degrees\ geroteerd.}
+  \roteer[rotatie=180]
+  {\externfiguur[ma-cb-15][breedte=10cm]}
+\stopbuffer
+
+\typebuffer
+
+U ziet in \in{figuur}[fig:rotatie] dat roteren een figuur
+soms erg onduidelijk kan maken.
+
+\haalbuffer
+
+We kunnen roteren instellen met:
+
+\shortsetup{stelroterenin}
+
+\paragraaf{Nieuwe regel}
+
+\index{nieuwe regel}
+
+\Command{\tex{crlf}}
+\Command{\tex{startregels}}
+
+Een nieuwe regel kan worden afgedwongen met:
+
+\shortsetup{crlf}
+
+De afkorting \type{\crlf} staat voor carriage return en
+linefeed.
+
+Wanneer meerdere regels onder elkaar moeten worden geplaatst
+en moeten worden afgebroken op een door u aangegeven plaats
+kunt u dat als volgt doen:
+
+\shortsetup{startregels}
+
+\startbuffer
+Op een houten paneel in het stadhuis kan men lezen:
+
+\startregels
+Heimelijcken haet
+eigen baet
+jongen raet
+Door diese drie wilt verstaen
+is het Roomsche Rijck vergaen.
+\stopregels
+
+Dit rijmpje waarschuwt magistraten van Hasselt ervoor dat
+persoonlijke voordelen en gevoelens de besluitvorming
+niet mogen be\"{\i}nvloeden.
+\stopbuffer
+
+\typebuffer
+
+\haalbuffer
+
+In enkele commando's worden regelovergangen gegenereerd met
+\type{\\}. Als u het commando \type{\inmarge{in de\\marge}}
+intypt wordt de margetekst over twee regels verdeeld.
+
+\paragraaf{Afbrekingen}
+
+\index{afbreking}
+\index{taal}
+
+\Command{\tex{hoofdtaal}}
+\Command{\tex{taal}}
+\Command{\tex{nl}}
+\Command{\tex{en}}
+\Command{\tex{fr}}
+\Command{\tex{de}}
+\Command{\tex{sp}}
+
+Bij het schrijven van meertalige teksten dient u er rekening
+mee te houden dat afbreekmechanismen per taal kunnen
+verschillen.
+
+Een afbreekmechanisme wordt geactiveerd met:
+
+\shortsetup{hoofdtaal}
+
+Tussen de vierkante haken typt u het taalgebied in
+\type{nl}, \type{fr}, \type{en}, \type{de} en \type{sp}.
+
+Om over te gaan van de ene taal op de andere kunt u de
+volgende schrijfwijze hanteren:
+
+\starttypen
+\taal[nl] \taal[en]  \taal[de]  \taal[fr]  \taal[sp]
+\stoptypen
+
+of:
+
+\starttypen
+\nl  \en  \de  \fr  \sp
+\stoptypen
+
+Het voorbeeld hieronder geeft enkele overgangen van talen
+weer:
+
+\startbuffer
+\en If you want to know more about Hasselt the best book to
+read is {\nl \em Uit de geschiedenis van Hasselt} by
+F.~Peereboom.
+\stopbuffer
+
+\typebuffer
+
+\start
+\haalbuffer
+\stop
+
+Het afbreekmechanisme van \TEX\ en dus ook van \CONTEXT\
+is zeer goed. Indien het voorkomt dat \TEX\ een woord
+verkeerd afbreekt, kunt u zelf een afbreekpatroon defini\"eren.
+Dergelijke afbreekpatronen worden in het instelgebied van de
+invoerfile gedefinieerd met:
+
+\startbuffer
+\hyphenation{ge-schie-de-nis}
+\stopbuffer
+
+\typebuffer
+
+\paragraaf[externe texfiles]{Invoer van andere {\tt tex}||files}
+
+\index{invoer van \TEX--files}
+
+\Command{\tex{input}}
+
+Informatie kan in meerdere \TEX||files worden ondergebracht
+om vervolgens op de juiste plaats in de invoerfile te worden
+geladen. Het kan bijvoorbeeld effici\"enter zijn om een
+document op te splitsen in meerdere files, zodat partieel
+verwerken mogelijk wordt.
+
+Een andere \TEX||file (met de naam \type{eenfile.tex}) kan
+in de invoerfile worden geladen met:
+
+\type{\input eenfile.tex}
+
+De extensie is optioneel, dus werkt dit ook:
+
+\type{\input eenfile}
+
+Het commando \type{\input} is een \TEX||commando.
+
+\paragraaf{Commentaar in de invoerfile}
+
+\index{commentaar}
+\index[procent]{\% in input file}
+
+Alle tekst tussen \type{\starttekst} en  \type{\stoptekst}
+wordt tijdens de verwerking met \CONTEXT\ meegenomen en
+gezet. Het kan echter zijn dat u tekstfragmenten wel wilt
+bewaren, maar niet wilt laten verwerken. Ook kan het zijn dat
+u uw opmaak wilt voorzien van commentaar.
+
+Alle tekst die wordt voorafgegaan door een \type{%}||teken
+wordt door \CONTEXT\ gezien als commentaar en wordt niet
+verwerkt.
+
+\startbuffer
+% In grote documenten kunt u de verschillende onderdelen
+% onderbrengen in meerdere files.
+%
+% Bijvoorbeeld:
+%
+% \input hass01.tex  % hoofdstuk 1 over Hasselt
+% \input hass02.tex  % hoofdstuk 2 over Hasselt
+% \input hass03.tex  % hoofdstuk 3 over Hasselt
+\stopbuffer
+
+\typebuffer
+
+Als u de \type{%} zou weghalen voor de
+\type{\input}||commando's dan worden de drie files geladen
+en op die plek in het document geplaatst. Het commentaar dat
+de inhoud van de files beschrijft wordt echter niet
+meegenomen.
+
+\stoponderdeel

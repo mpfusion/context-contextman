@@ -1,0 +1,71 @@
+\startonderdeel ma-cb-nl-units
+
+\produkt ma-cb-nl
+
+\hoofdstuk[eenheden]{Eenheden}
+
+\index{eenheden}
+\index[sieenheden]{\kap{SI}--eenheden}
+
+\Command{\tex{eenheid}}
+\Command{\tex{promille}}
+\Command{\tex{procent}}
+
+Om consistentie in het gebruik van eenheden en dimensies in
+een document af te dwingen kunt u uw eigen eenheden
+defini\"eren. Eenheden worden gedefinieerd in het instelgebied
+van uw invoerfile.
+
+\CONTEXT\ heeft een eigen module waarin nagenoeg alle
+\SI||eenheden zijn opgenomen. Als de module \type{eenheid}
+met \type{\gebruikmodule[eenheid]} geladen is, kunnen
+eenheden als volgt worden opgeroepen:
+
+\startbuffer
+\Meter \Per \Square \Meter
+\Kubic \Meter \Per \Sec
+\Square \Milli \Meter \Per \Inch
+\Centi \Liter \Per \Sec
+\Meter \Inverse \Sec
+\Newton \Per \Square \Inch
+\Newton \Times \Meter \Per \Square \Sec
+\stopbuffer
+
+\typebuffer
+
+Dit lijkt veel typewerk maar zorgt wel voor een zeer
+consistente weergave in uw document. Het commando eenheid
+zorgt er tevens voor dat waarde en eenheid bij een
+regelovergang niet van elkaar worden gescheiden. Het
+resultaat ziet er als volgt uit:
+
+\startsmaller
+\startregels
+\haalbuffer
+\stopregels
+\stopsmaller
+
+U definieert uw eigen eenheden met:
+
+\starttypen
+\eenheid[Ounce]{oz}{}
+\stoptypen
+
+\eenheid[Ounce]{oz}{}
+
+Indien dit commando in het instelgebied van uw invoerfile is
+ingevoerd, kunt u vervolgens in uw document bijvoorbeeld
+gebruik maken van het commando \type{\Ounce}. U typt
+bijvoorbeeld \type{15.6 \Ounce} en krijgt 15.6 \Ounce.
+
+Het commando \type{\eenheid} is een toepassing van het
+commando \type{\synoniem}. Zie \in{hoofdstuk}[synoniemen]
+voor meer informatie.
+
+Om de eenheid percentage en promillage consistent te kunnen
+gebruiken zijn de volgende commando's beschikbaar:
+
+\type{\procent} \crlf
+\type{\promille}
+
+\stoponderdeel

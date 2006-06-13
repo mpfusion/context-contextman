@@ -1,0 +1,150 @@
+\startonderdeel ma-cb-nl-document
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Het maken van een document}
+
+\index{invoerfile}
+
+Laten we aannemen dat u een eenvoudig document wilt maken.
+Het heeft enige structuur en bevat een titelpagina, een
+aantal hoofdstukken en paragrafen. Natuurlijk is er een
+inhoudsopgave en een index.
+
+\CONTEXT\ maakt een dergelijk document automatisch als u de
+juiste invoer aanreikt door middel van een file. U dient dus
+eerst een zogenaamde invoerfile te maken. Een invoerfile
+heeft een naam en een extensie. U kunt een willekeurige naam
+kiezen, maar de extensie dient \type{tex} te zijn. Als u een
+file met de naam \type{mijnfile.tex} maakt, zult u geen
+problemen tegenkomen bij het runnen van \CONTEXT.
+
+Een \paginareferentie[invoerfile] invoerfile zou er als
+volgt uit kunnen zien:
+
+\startbuffer
+\starttekst
+
+\startstandaardopmaak
+\regelmidden{Een Document Titel}
+\regelmidden{door}
+\regelmidden{De Auteur}
+\stopstandaardopmaak
+
+\volledigeinhoud
+
+\hoofdstuk{Inleiding}
+
+... uw tekst\index{een indexwoord} ...
+
+\hoofdstuk{Eerste hoofdstuk}
+
+\paragraaf[eerste paragraaf]{De eerste paragraaf}
+
+... uw tekst ...
+
+\paragraaf{De tweede paragraaf}
+
+\subparagraaf{de eerste subparagraaf}
+
+... uw tekst\index{nog een indexwoord} ...
+
+\subparagraaf{de tweede subparagraaf}
+
+... uw tekst ...
+
+\paragraaf{De derde paragraaf}
+
+... uw tekst ...
+
+\hoofdstuk{Nog een hoofdstuk}
+
+... uw tekst ...
+
+\hoofdstuk[laatste hoofdstuk]{Het laatste hoofdstuk}
+
+... uw tekst ...
+
+\volledigeindex
+
+\stoptekst
+\stopbuffer
+
+{\switchnaarkorps[9pt]\typebuffer}
+
+\CONTEXT\ verwacht een \ASCII\ invoerfile. Natuurlijk kunt u
+iedere tekstverwerker gebruiken, maar u dient niet te
+vergeten dat \CONTEXT\ alleen \ASCII\ invoer kan verwerken.
+De meeste tekstverwerkers kunnen uw invoerfile exporteren
+als standaard \ASCII\ ook wel {\em tekst} genoemd.
+
+De invoerfile bevat de tekst die u wilt zetten en de
+\CONTEXT||commando's. Een \CONTEXT||commando begint met een
+backslash~\tex{}. Met het commando \type{\starttekst} geeft
+u het begin van de tekst aan. Het gebied voor
+\type{\starttekst} wordt het instelgebied genoemd en wordt
+gebruikt voor het defini\"eren van nieuwe commando's en het
+instellen van de layout van uw document.
+
+Een commando wordt meestal gevolgd door een linker en
+rechter vierkante haak \type{[]} en/of een linker en rechter
+accolade \type{{}}. Het in het voorbeeld gegeven commando
+\type{\hoofdstuk[laatste hoofdstuk]{Het laatste hoofdstuk}}
+vertelt aan \CONTEXT\ een aantal acties uit te voeren ten
+behoeve van layout, typografie en structuur. Die acties zijn
+bijvoorbeeld:
+
+\startopsomming[n,opelkaar]
+\som begin op een nieuwe pagina
+\som verhoog het hoofdstuknummer met \'e\'en
+\som plaats het hoofdstuknummer voor de hoofdstuktitel
+\som reserveer witruimte na de hoofdstuktitel
+\som gebruik een grote letter voor de titel
+\som plaats de titel en het nummer in de inhoudsopgave
+\stopopsomming
+
+Deze acties worden uitgevoerd op het argument dat tussen de
+beide accolades staat: {\em Het laatste hoofdstuk}.
+
+Tot nu toe is nog niet gesproken over \type{[laatste
+hoofdstuk]} dat tussen het commando en de titel staat. Dit
+is een label met een logische naam dat wordt gebruikt om
+naar het bewuste hoofdstuk te verwijzen. Dit wordt gedaan
+met het commando \type{\in[laatste hoofdstuk]} dat het
+nummer teruggeeft of het commando \type{\over[laatste
+hoofdstuk]} dat de titel genereert.
+
+Nu kan de lijst met acties worden uitgebreid met:
+
+\startopsomming[verder]
+\som geef het label \type{laatste hoofdstuk} de waarde van
+     het hoofdstuknummer (en sla het nummer en de titel
+     op voor later gebruik)
+\stopopsomming
+
+Andere acties met betrekking tot voetteksten, resetten van
+nummering en interactiviteit worden hier nog buiten
+beschouwing gelaten.
+
+Indien u \CONTEXT\ dit voorbeeld van een invoerfile laat
+processen, krijgt u een zeer eenvoudig document met een
+aantal genummerde hoofdstukken en paragrafen, een
+inhoudsopgave en een register dat twee ingangen bevat.
+
+Tijdens het processen van de invoerfile handelt \CONTEXT\
+veel zaken af. Een van die zaken is bijvoorbeeld
+paginanummering. Maar om een inhoudsopgave aan te maken (die
+meestal aan het begin van het document moet worden
+geplaatst) heeft \CONTEXT\ in eerste instantie te weinig
+informatie. De invoerfile moet daarom twee maal worden
+verwerkt.
+
+\CONTEXT\ produceert een aantal hulpfiles om bepaalde
+informatie op te slaan. Deze files worden verwerkt door
+\TEXUTIL. In een enkel geval moet de invoerfile drie maal
+worden verwerkt door \CONTEXT. U kunt \TEXEXEC\ gebruiken om
+\CONTEXT\ van de commandline op te roepen. Dit \PERL||script
+houdt ook bij hoe vaak een file moet worden verwerkt.
+\TEXEXEC\ is onderdeel van de standaard \CONTEXT||distributie.
+
+\stoponderdeel

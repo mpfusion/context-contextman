@@ -1,0 +1,283 @@
+\startonderdeel ma-cb-nl-itemizations
+
+\produkt ma-cb-nl
+
+\hoofdstuk[opsommingen]{Opsommingen}
+
+\index{opsommingen}
+\index{kolommen in opsommingen}
+
+\Command{\tex{startopsomming}}
+\Command{\tex{stelopsommingin}}
+\Command{\tex{definieersymbool}}
+\Command{\tex{som}}
+\Command{\tex{kop}}
+
+Informatie kan worden gestructureerd met behulp van
+opsommingen. Er zijn genummerde en ongenummerde opsommingen.
+Het commando om opsommingen te maken ziet er als volgt uit:
+
+\shortsetup{startopsomming}
+
+Bijvoorbeeld:
+
+\startbuffer
+\startopsomming[R,opelkaar,ruim]
+\som Hasselt ontstond in 14e eeuw.
+\som Hasselt staat bekend als een Hanzestad.
+\som Hasselt's naam is ontleend aan een boom.
+\stopopsomming
+\stopbuffer
+
+\typebuffer
+
+Binnen het \type{\startopsomming} $\cdots$
+\type{\stopopsomming} paar wordt ieder nieuw gegeven gestart
+met het commando \type{\som}. De spatie achter \type{\som}
+is vereist. In het bovenstaande voorbeeld specificeert
+\type{R} dat een romeinse nummering is gewenst en
+\type{opelkaar} zorgt ervoor dat de items zonder witruimte
+opelkaar worden geplaatst. De instelling \type{ruim} zorgt
+voor extra ruimte na de scheider. In gezette vorm ziet het
+voorbeeld er als volgt uit:
+
+\haalbuffer
+
+Voor het zetten van opsommingen zijn twee verwerkingsslagen
+nodig. Dit betekent dat u uw invoerfile twee keer door
+\CONTEXT\ moet laten verwerken om een correcte layout te
+verkrijgen. Tussen de vierkante haken staat informatie over
+de itemscheiders en locale instellingen van opsommingen.
+
+\plaatstabel
+  [hier]
+  [tab:iteminstellingen]
+  {Itemscheiders in opsommingen.}
+\starttabel[|l|l|]
+\HL
+\NC \bf Argument \NC \bf Itemscheider \NC\SR
+\HL
+\NC 1        \NC $\bullet$             \NC\FR
+\NC 2        \NC $-$                   \NC\MR
+\NC 3        \NC $\star$               \NC\MR
+\NC $\vdots$ \NC $\vdots$              \NC\MR
+\NC n        \NC 1 2 3 4 \onbekend     \NC\MR
+\NC a        \NC a b c d \onbekend     \NC\MR
+\NC A        \NC A B C D \onbekend     \NC\MR
+\NC r        \NC i ii iii iv \onbekend \NC\MR
+\NC R        \NC I II III IV \onbekend \NC\LR
+\HL
+\stoptabel
+
+U kunt natuurlijk ook een eigen itemscheider defini\"eren door
+middel van het commando \type{\definieersymbool}. Als u
+bijvoorbeeld het volgende invoert:
+
+\startbuffer
+\definieersymbool[5][$\clubsuit$]
+
+\startopsomming[5,opelkaar]
+\som Hasselt werd gebouwd op een rivierduin.
+\som Hasselt ligt op een kruising van twee rivieren.
+\stopopsomming
+\stopbuffer
+
+\typebuffer
+
+Krijgt u:
+
+\haalbuffer
+
+Soms zijn binnen een opsomming koppen gewenst. In die gevallen
+wordt in plaats van het commando \type{\som} het commando
+\type{\kop} ingevoerd.
+
+\startbuffer
+Hasselt ligt in Overijssel en er is een aantal gebruiken dat
+typerend is voor deze provincie.
+
+\startopsomming
+
+\kop kraamschudden
+
+     Na de geboorte van een kind komen de buren de nieuwe
+     ouders bezoeken. De vrouwen bewonderen het kind en de
+     mannen beoordelen het kind (als het een jongen is) op
+     zijn fysieke kenmerken. De buren brengen een
+     krentewegge mee. Dat is een krentebrood van ongeveer 1
+     \Meter\ lengte. Natuurlijk wordt ook op het nieuwe kind
+     geklonken.
+
+\kop nabuurschap (naberschop)
+
+     In de kleine gemeenschappen waren de mensen vroeger
+     sterk op elkaar aangewezen. Leden van zo'n {\em
+     nabuurschap} hielpen elkaar bij het oogsten,
+     begrafenissen of tegenslagen die de gemeenschap te
+     verwerken kreeg.
+
+\kop Abraham / Sarah
+
+     Als mensen 50 worden, wordt er van hen gezegd dat ze
+     Abraham of Sarah zien. Het is gewoonte deze mensen een
+     Abraham of Sarah van speculaas te geven.
+
+\stopopsomming
+\stopbuffer
+
+\typebuffer
+
+Het commando \type{\kop} kan worden ingesteld met
+\type{\stelopsommingin}. In geval van een pagina||overgang
+zal een nieuwe \type{\kop} altijd aan het begin van de
+eerstvolgende pagina worden geplaatst.
+
+Het eerdere ingevoerde voorbeeld over oude gebruiken komt er
+na verwerking als volgt uit te zien:
+
+\haalbuffer
+
+De mogelijke instellingen van opsommingen zijn weergegeven in
+\in{tabel}[tab:tabelinstellingen].
+
+\plaatstabel
+  [hier,forceer]
+  [tab:tabelinstellingen]
+  {Instellingen van opsommingen.}
+\starttabel[|l|l|]
+\HL
+\NC \bf Optie   \NC \bf Betekenis                             \NC\SR
+\HL
+\NC standaard   \NC standaard instellingen                    \NC\FR
+\NC opelkaar    \NC geen witruimte tussen onderdelen          \NC\MR
+\NC aanelkaar   \NC geen wit voor en na de opsomming          \NC\MR
+\NC aansluitend \NC weinig witruimte na de scheider           \NC\MR
+\NC ruim        \NC extra witruimte na de scheider            \NC\MR
+\NC inmarge     \NC scheider in de marge                      \NC\MR
+\NC opmarge     \NC scheider op de marge                      \NC\MR
+\NC afsluiter   \NC afsluiter na de scheider                  \NC\MR
+\NC kolommen    \NC in kolommen                               \NC\MR
+\NC intro       \NC geen pagina--overgang na introductieregel \NC\MR
+\NC verder      \NC doornummeren                              \NC\LR
+\HL
+\stoptabel
+
+U kunt lokale instellingen meegeven tussen de vierkante
+haken direct achter het commando \type{\startopsomming},
+maar voor de consistentie kunt u de voorkeuren ook voor het
+gehele document instellen met \type{\stelopsommingin}.
+
+De instelling \type{kolommen} wordt altijd gebruikt in
+combinatie met een geschreven aantal. Indien u typt:
+
+\startbuffer
+\startopsomming[n,kolommen,vier,ruim]
+\som Achter 't Werk
+.
+.
+.
+\som Justitiebastion
+\stopopsomming
+\stopbuffer
+
+\typebuffer
+
+Krijgt u:
+
+\startbuffer
+\startopsomming[n,kolommen,vier]
+\som Achter 't Werk
+\som Baangracht
+\som Brouwersgracht
+\som Eikenlaan
+\som Eiland
+\som Gasthuisstraat
+\som Heerengracht
+\som Hofstraat
+\som Hoogstraat
+\som Julianakade
+\som Justitiebastion
+\stopopsomming
+\stopbuffer
+
+\haalbuffer
+
+Als u een opsomming na een kort intermezzo verder wilt laten
+lopen dan kan dat. Als u bijvoorbeeld
+\type{\startopsomming[verder,kolommen,drie,ruim]} intypt,
+gaat de nummering verder in drie kolommen.
+
+\startbuffer
+\startopsomming[verder,kolommen,drie,ruim]
+\som Kaai
+\som Kalverstraat
+\som Kastanjelaan
+\som Keppelstraat
+\som Markt
+\som Meestersteeg
+\som Prinsengracht
+\som Raamstraat
+\som Ridderstraat
+\som Rosmolenstraat
+\som Royenplein
+\som Van Nahuijsweg
+\som Vicariehof
+\som Vissteeg
+\som Watersteeg
+\som Wilhelminalaan
+\som Ziekenhuisstraat
+\stopopsomming
+\stopbuffer
+
+\haalbuffer
+
+De instelling \type{ruim} vergroot de horizontale witruimte
+tussen scheider en itemtekst.
+
+\shortsetup{stelopsommingin}
+
+Een opsomming binnen een opsomming wordt automatisch op de
+juiste wijze gezet. Als u bijvoorbeeld intypt:
+
+\startbuffer
+Steden kunnen zelf de hoogte van bepaalde belastingen
+vaststellen. Hierdoor kunnen de kosten voor gemeentelijke
+belastingen van stad tot stad verschillen. Die verschillen
+lopen op tot 50\% in belastingen als:
+
+\stelopsommingin[2][breedte=5em]
+\startopsomming[n]
+
+\som de onroerend goed belasting
+
+     De onroerend goed belasting bestaat uit twee
+     componenten:
+
+     \startopsomming[a,opelkaar]
+     \som het deel voor de eigenaar
+     \som het deel voor de huurder / bewoner
+     \stopopsomming
+
+     In het geval dat een pand geen huurder heeft, betaalt
+     de eigenaar beide componenten.
+
+\som de hondenbelasting
+
+     De eigenaar van een hond betaalt hondenbelasting. Als een
+     hond wordt aangeschaft of doodgaat, dient dat te worden
+     gemeld bij de gemeente.
+
+\stopopsomming
+\stopbuffer
+
+\typebuffer
+
+Dan wordt subopsomming automatisch geplaatst en de
+horizontale witruimte op het tweede niveau ingesteld met
+\type{\stelopsommingin[2][breedte=5em]}.
+
+\start
+\haalbuffer
+\stop
+
+\stoponderdeel

@@ -1,0 +1,530 @@
+\startonderdeel ma-cb-nl-math
+
+\produkt ma-cb-nl
+
+\hoofdstuk[formules]{Wiskundig zetwerk}
+
+\paragraaf{Inleiding}
+
+\index {wiskundig zetwerk}
+\index {mathematisch zetwerk}
+
+\TEX\ is h\'et typesetting programma voor wiskundig zetwerk.
+Ondanks dat is dit niet het uitgebreide hoofdstuk over
+wiskundig zetwerk dat u zou verwachten. We raden u de
+volgende boeken aan om het typesetten van formules onder de
+knie te krijgen:\voetnoot{In deze inleiding op
+wiskundig zetwerk is gebruik gemaakt van {\em \TEX niques}
+van Arthur Samuel.}
+
+\startopsomming[opelkaar]
+\som {\em The \TeX Book} door D.E. Knuth
+\som {\em The Beginners Book of \TeX} door S. Levy and R. Seroul
+\stopopsomming
+
+Bovendien zal in de toekomst een \CONTEXT\ math module en de
+bijbehorende handleiding het licht zien.
+
+
+\paragraaf{Het typesetten van wiskundig zetwerk}
+
+\index {math mode}
+\index {display mode}
+\index {text mode}
+
+Bij het typesetten van mathematisch zetwerk gelden
+gewoonlijk andere regels dan bij het zetten van normale
+tekst. Deze regels zijn in grote lijnen bekend bij \TEX\ en
+we kunnen er daardoor op vertrouwen dat \TEX\ correct
+mathematisch zetwerk oplevert.
+
+We noemen hier een aantal regels voor mathematisch zetwerk:
+
+\startopsomming[n,opelkaar]
+
+\som Karakters worden gezet in $math\ italic$ (niet te
+     verwarren met de normale {\it italic karakters} in een
+     font).
+
+\som Er worden symbolen gebruikt, zoals griekse letters
+     ($\alpha$, $\chi$) en de gebruikelijke mathematische
+     symbolen ($\leq$, $\geq$, $\in$).
+
+\som De spati\"ering verschilt sterk van die van normale
+     tekst.
+
+\som Voor het uitlijnen van mathematische expressies gelden
+     andere regels.
+
+\som De sub|-| en superscripts worden automatisch verkleind,
+     zoals in $a^{b}_{c}$.
+
+\som De wijze van typesetten van sommige symbolen in de
+     lopende tekst (text mode) verschilt van die van
+     in losstaande formules (display mode).
+
+\stopopsomming
+
+Bij het opmaken van een wiskundige expressie werkt u in de
+zogenaamde math mode en kunnen formules worden gedefinieerd
+met behulp van plain \TEX||commando's.
+
+Math mode kent twee verschijningsvormen: textmode en
+displaymode. Wiskundige expressies in textmode worden tussen
+\type{$} en \type{$} geplaatst, in displaymode tussen
+\type{$$} en \type{$$}.
+
+\startbuffer
+De gemeente Hasselt beslaat een gebied van 42,05 \Square
+\Kilo \Meter. Bij een denkbeeldige cirkel met de Markt als
+middelpunt $M$ kan de diameter van de cirkel worden
+berekend met ${{1}\over{4}} \pi r^2$.
+\stopbuffer
+
+\typebuffer
+
+Dit wordt:
+
+\haalbuffer
+
+De vele \type{{}} in ${{1}\over{4}} \pi r^2$ zijn essentieel
+om operaties in de expressie te scheiden. Als de buitenste
+accolades worden weggelaten: \type{${1}\over{4} \pi r^2$},
+wordt een ongewenst resultaat verkregen: ${1}\over{4} \pi
+r^2$.
+
+De letters en cijfers in een mathematische expressie worden
+door \TEX\ in drie groottes gezet, namelijk
+text size         $a+b$,
+script size       $\scriptstyle a+b$ en
+scriptscript size $\scriptscriptstyle a+b$.
+We gebruiken hier de engelse uitdrukkingen, omdat we
+invloed op \TEX\ kunnen uitoefenen met de commando's
+\type{\scriptstyle} en \type{\scriptscriptstyle}.
+
+Symbolen als $\int$ en $\sum$ worden in textmode
+anders gezet dan in displaymode. Als u \type
+{$\sum_{n=1}^{m}$} of \type {$\int_{-\infty}^{+\infty}$}
+intypt, krijgt u {$\sum_{n=1}^{m}$} en
+{$\int_{-\infty}^{+\infty}$}. Maar als u in de display
+mode \type {$$\sum_{n=1}^{m}$$} en \type
+{$$\int_{-\infty}^{+\infty}$$} intypt, krijgt u:
+
+\startformule
+\sum_{n=1}^{m} \quad {\rm en} \quad \int_{-\infty}^{+\infty}
+\stopformule
+
+Met de commando's \type {\nolimits} en \type{\limits}
+kunnen we de weergave van \type{\sum} en \type{\int}
+be\"{\i}nvloeden:
+
+\startformule
+\sum_{n=1}^{m}\nolimits \quad {\rm en} \quad \int_{-\infty}^{+\infty}\limits
+\stopformule
+
+Voor het zetten van breuken is het commando \type
+{\over} beschikbaar. In \CONTEXT\ gebruiken we echter het
+alternatief \type {\frac}. Om ${\frac{a}{1+b}}+c$ te
+verkrijgen, typen we het volgende in
+\type {${\frac{a}{1+b}}+c$}.
+
+Andere commando's om expressies boven elkaar te zetten,
+zijn:
+
+\startbuffer[atop]
+${a} \atop {b}$
+\stopbuffer
+\startbuffer[choose]
+${n+1} \choose {k}$
+\stopbuffer
+\startbuffer[brack]
+${m} \brack {n}$
+\stopbuffer
+\startbuffer[brace]
+${m} \brace {n-1}$
+\stopbuffer
+
+\starttabulatie[|l|l|l|l|]
+\NC \type {\atop}
+\NC \typebuffer[atop]
+\NC \mathstrut\haalbuffer[atop]
+\NC
+\NC\NR
+\NC \type {\choose}
+\NC \typebuffer[choose]
+\NC
+\NC \mathstrut\haalbuffer[choose]
+\NC\NR
+\NC \type {\brack}
+\NC \typebuffer[brack]
+\NC \mathstrut\haalbuffer[brack]
+\NC
+\NC\NR
+\NC \type {\brace}
+\NC \typebuffer[brace]
+\NC
+\NC \mathstrut\haalbuffer[brace]
+\NC\NR
+\stoptabulatie
+
+\TEX\ vergroot expressiescheiders als (~) en $\{~\}$
+automatisch als de linker en rechter scheider worden
+voorafgegaan door respectievelijk de commando's \type
+{\left} en \type {\right}. Als we \type
+{$$1+\left(\frac{1}{1-x^{x-2}}\right)^3$$} typen, krijgen
+we:
+
+\startformule
+1+\left(\frac{1}{1-x^{x-2}}\right)^3
+\stopformule
+
+Het realiseren van een sub|| en superscript gebeurt met de
+karakters \citeer{\type{_}} en \citeer{\type{^}}. Ze hebben
+betrekking op het eerstvolgende karakter, zodat bij meerdere
+karakters gegroepeerd moet worden met $\{$~$\}$.
+
+In specifieke situaties kunnen expressiescheiders ook worden
+voorafgegaan door de commando's \type{\bigl}, \type{\Bigl},
+\type{\biggl} en \type{\Biggl} en zijn rechtse tegenhangers.
+Nog grotere scheiders kunnen worden gemaakt door
+\type{\left} en \type{\right} in een
+\type{\vbox}||constructie te plaatsen. Als we een
+fantasie||expressie als \type{$$\left(\vbox to
+16pt{}x^{2^{2^{2^{2}}}}\right)$$} typen, krijgen we:
+
+\startformule
+\left(\vbox to 16pt{}x^{2^{2^{2^{2}}}}\right)
+\stopformule
+
+In de display mode voldoen de volgende scheiders aan
+dit mechanisme:
+
+\starttabulatie[|l|l|l|l|l|l|l|l|]
+\NC \type{\lfloor}      \NC $\lfloor$
+\NC \type{\langle}      \NC $\langle$
+\NC \type{\vert}        \NC $\vert$
+\NC \type{\downarrow}   \NC $\downarrow$
+\NC\NR
+\NC \type{\rfloor}      \NC $\rfloor$
+\NC \type{\rangle}      \NC $\rangle$
+\NC \type{\Vert}        \NC $\Vert$
+\NC \type{\Downarrow}   \NC $\Downarrow$
+\NC\NR
+\NC \type{\lceil}       \NC $\lceil$
+\NC \type{/}            \NC $/$
+\NC \type{\uparrow}     \NC $\uparrow$
+\NC \type{\updownarrow} \NC $\updownarrow$
+\NC\NR
+\NC \type{\rceil}       \NC $\rceil$
+\NC \type{\backslash}   \NC $\backslash$
+\NC \type{\Uparrow}     \NC $\Uparrow$
+\NC \type{\Updownarrow} \NC $\Updownarrow$
+\NC\NR
+\stoptabulatie
+
+In de dispay mode zouden we eigenlijk maar een
+breuk moeten plaatsen of anders overgaan op $a/b$
+schrijfwijze. We typen voor:
+
+\startformule
+a_0 + {\frac{a}{a_1 + \frac{1}{a_2}}}
+\stopformule
+
+dus niet \type{$$a_0+{\frac{a}{a_1+\frac{1}{a_2}}}$$}
+maar we geven de voorkeur aan
+\type{$$a_0 + {\frac{a}{a_1 + 1/a_2}}$$},
+zodat we het volgende krijgen:
+
+\startformule
+a_0 + {\frac{a}{a_1 + 1/a_2}}
+\stopformule
+
+Bovendien kan ook het commando \type{\displaystyle} worden
+gebruikt. Als we bijvoorbeeld
+\type {$$a_0 + {\frac{a}{a_1 + \frac{1}{\strut \displaystyle a_2}}}$$}
+typen, krijgen we:
+
+\startformule
+a_0 + {\frac{a}{a_1 + \frac{1}{\displaystyle a_2}}}
+\stopformule
+
+In de voorbeelden hieronder illustreren we verder zonder
+enig commentaar de commando's \type{\matrix},
+\type{\pmatrix}, \type{\ldots}, \type{\cdots} en
+\type{\cases}.
+
+\start
+\steltypenin[na={\vskip1ex}]
+
+\starttypen
+$$A=\left(\matrix{
+             x-\lambda & 1         & 0         \cr
+             0         & x-\lambda & 1         \cr
+             0         & 0         & x-\lambda \cr}\right)$$
+\stoptypen
+
+\startformule
+A=\left(\matrix{
+             x-\lambda & 1         & 0         \cr
+             0         & x-\lambda & 1         \cr
+             0         & 0         & x-\lambda \cr}\right)
+\stopformule
+
+\starttypen
+$$A=\left|\matrix{x-\mu& 1     & 0    \cr
+                  0    & x-\mu & 1    \cr
+                  0    & 0     &x-\mu \cr}\right|$$
+\stoptypen
+\startformule
+A=\left|\matrix{x-\mu& 1     & 0    \cr
+                0    & x-\mu & 1    \cr
+                0    & 0     &x-\mu \cr}\right|
+\stopformule
+
+\starttypen
+$$A=\pmatrix{a_{11} & a_{12} & \ldots & a_{1n} \cr
+             a_{21} & a_{22} & \ldots & a_{2n} \cr
+             \vdots & \vdots & \ddots & \vdots \cr
+             a_{m1} & a_{m2} & \ldots & a_{mn} \cr}$$
+\stoptypen
+
+\startformule
+A=\pmatrix{a_{11} & a_{12} & \ldots & a_{1n} \cr
+           a_{21} & a_{22} & \ldots & a_{2n} \cr
+           \vdots & \vdots & \ddots & \vdots \cr
+           a_{m1} & a_{m2} & \ldots & a_{mn} \cr}
+\stopformule
+
+\starttypen
+$$|x|=\cases{ x, & als $x\geq0$; \cr
+             -x, & anders        \cr}$$
+\stoptypen
+
+\startformule
+|x|=\cases{ x, & als $x\geq0$; \cr
+           -x, & anders        \cr}
+\stopformule
+\stop
+
+Als we tekst in een mathematische expressie willen opnemen
+moeten we daar enige moeite voor doen. In de eerste plaats
+wordt de spatie niet gezet en moeten we deze afdwingen met
+\type{ \ } (backslash). Daarnaast moeten we een
+fontwisseling aangeven, omdat we de tekst niet in $math\
+italic$ willen zetten, maar in de actuele font. In \CONTEXT\
+typen we bijvoorbeeld \type{$$x^3+{\tf de\ lagere\ orde\
+termen}$$} om het volgende te krijgen:
+
+\startformule
+x^3+{\tf de\ lagere\ orde\ termen}
+\stopformule
+
+Voor de mathematische functies als $\sin$ en $\tan$ die als
+normale tekst in een mathematische expressie worden
+weergegeven, is in \TEX\ een aantal functies
+voorgedefinieerd:
+
+\starttabulatie[|l|l|l|l|l|l|l|l|]
+\NC \type{\arccos} \NC \type{\cos} \NC \type{\csc} \NC \type{\exp} \NC \type{\ker} \NC \type{\limsup} \NC \type{\min} \NC \type{\sinh} \NC\NR
+\NC \type{\arcsin} \NC \type{\cosh} \NC \type{\deg} \NC \type{\gcd} \NC \type{\lg} \NC \type{\ln} \NC \type{\Pr} \NC \type{\sup} \NC\NR
+\NC \type{\arctan} \NC \type{\cot} \NC \type{\det} \NC \type{\hom} \NC \type{\lim} \NC \type{\log} \NC \type{\sec} \NC \type{\tan} \NC\NR
+\NC \type{\arg} \NC \type{\coth} \NC \type{\dim} \NC \type{\inf} \NC \type{\liminf} \NC \type{\max} \NC \type{\sin} \NC \type{\tanh} \NC\NR
+\stoptabulatie
+
+Als we voor een sinusfunctie
+\type {$$\sin 2\theta=2\sin\theta\cos\theta$$}
+of voor een limietfunctie
+\type {$$\lim_{x\to0}{\frac{\sin x}{x}}=1$$} intypen,
+dan krijgen we:
+
+\startformule
+\sin 2\theta=2\sin\theta\cos\theta
+\quad {\tf of} \quad
+\lim_{x\to0}{\frac{\sin x}{x}}=1
+\stopformule
+
+Bij afleidingen willen we soms mathematische uitdrukkingen
+uitlijnen, bijvoorbeeld onder het \citeer{$=$}||teken. Dit
+doen we met het commando \type{\eqalign}. We typen
+bijvoorbeeld:
+
+\startbuffer
+$$\eqalign{
+      ax^2+bx+c &= 0                                \cr
+              x &= \frac{-b \pm \sqrt{b^2-4ac}}{2a} \cr}$$
+\stopbuffer
+
+\typebuffer
+
+en we krijgen:
+
+\startformule
+\eqalign{
+      ax^2+bx+c &= 0                                \cr
+              x &= \frac{-b \pm \sqrt{b^2-4ac}}{2a} \cr}
+\stopformule
+
+Lange mathematische expressies willen we misschien op
+meerdere plaatsen laten uitlijnen. Let in het volgende
+voorbeeld op de tweede regel:
+
+\startbuffer
+$$\eqalign{
+     ax+bx+\cdots+yx+zx &         = x(a +b+ \cdots \cr
+                        &\phantom{= x(a~}+y+z)     \cr
+                        &         = y              \cr}$$
+\stopbuffer
+
+\typebuffer
+
+Het resultaat hiervan is:
+
+\startformule
+\eqalign{
+     ax+bx+\cdots+yx+zx &         = x(a +b+ \cdots \cr
+                        &\phantom{= x(a~}+y+z)     \cr
+                        &         = y              \cr}
+\stopformule
+
+Naast het commando \type{\phantom} bestaan ook de commando's
+\type{\hphantom} zonder hoogte en diepte en \type{\vphantom}
+zonder breedte.
+
+Spati\"ering binnen een mathematische expressie kan meestal
+worden overgelaten aan \TEX. In situaties waar toch moet
+worden ingegrepen, zijn de volgende commando's beschikbaar:
+
+\starttabulatie[|l|r|]
+\NC \type{\!} \NC $-\frac{1}{6}$\type{\quad} \NC\NR
+\NC \type{\,} \NC $\frac{1}{6}$\type{\quad}  \NC\NR
+\NC \type{\>} \NC $\frac{2}{9}$\type{\quad}  \NC\NR
+\NC \type{\;} \NC $\frac{5}{18}$\type{\quad} \NC\NR
+\stoptabulatie
+
+De \citeer{spaties} zijn gerelateerd aan \type{\quad}. Deze
+maat staat voor de breedte van een hoofdletter \citeer{M}.
+
+Het gebruik van het commando \type{\prime} spreekt voor zich
+als we het volgende intypen \type{$y_1^\prime+y_2^{\prime\prime}$}
+krijgen we namelijk $y_1^\prime+y_2^{\prime\prime}$.
+
+We verkrijgen $\root 3 \of {x^2+y^2}$ met
+\type{$\root 3 \of {x^2+y^2}$}.
+
+Tot slot wijzen we op het effect van het commando
+\type{\mathstrut} waarmee consistentie kan worden
+afgedwongen in de hoogte van bijvoorbeeld het wortel||teken.
+Met \type{$\sqrt{\mathstrut a}+\sqrt{\mathstrut d}+\sqrt{\mathstrut y}$}
+krijgen we $\sqrt{\mathstrut a}+\sqrt{\mathstrut d}+\sqrt{\mathstrut y}$
+in plaats van $\sqrt{a}+\sqrt{d}+\sqrt{y}$.
+
+Zie \in{bijlage}[overzichten] voor een overzicht van
+een groot aantal math commando's.
+
+\paragraaf{Het plaatsen van formules}
+
+\index{formule}
+
+\Command{\tex{plaatsformule}}
+\Command{\tex{startformule}}
+\Command{\tex{stelformulesin}}
+
+Het plaatsen van genummerde formules doet u met:
+
+\shortsetup{plaatsformule}
+\shortsetup{startformule}
+
+Een tweetal voorbeelden:
+
+\startbuffer
+\plaatsformule[formule:eenformule]
+  $$y=x^2$$
+
+\plaatsformule
+  \startformule
+    \int_0^1 x^2 dx
+  \stopformule
+\stopbuffer
+
+\typebuffer
+
+\haalbuffer
+
+De \CONTEXT||commando's \type{\startformule} en
+\type{\stopformule} vervangen de begin en eind \type{$$}.
+Als u namelijk typt:
+
+\startbuffer
+$$
+\int_0^1 x^2 dx
+$$
+\stopbuffer
+
+\typebuffer
+
+dan krijgt u een expressie die weliswaar op het midden van
+de pagina wordt 'gedisplayed', maar niet optimaal wordt
+gespatieerd.
+
+\haalbuffer
+
+Het commando \type{\plaatsformule[]} zorgt voor de witruimte
+voor en na een formule en zorgt tevens voor het nummeren. De
+vierkante haken zijn optioneel en worden gebruikt voor het
+verwijzen naar de formule en voor het aan- en uitzetten van
+nummeren.
+
+\startbuffer
+\plaatsformule[eerste]
+\startformule
+  y=x^2
+\stopformule
+
+\plaatsformule[middelste]
+\startformule
+  y=x^3
+\stopformule
+
+\plaatsformule[laatste]
+\startformule
+  y=x^4
+\stopformule
+\stopbuffer
+
+\haalbuffer
+
+\in{Formule}[middelste] is als volgt ingevoerd:
+
+\startbuffer
+\plaatsformule[middelste]
+  \startformule
+     y=x^3
+  \stopformule
+\stopbuffer
+
+\typebuffer
+
+Het label \type{[middelste]} wordt gebruikt voor het
+verwijzen naar deze formule. Zo'n referentie wordt
+opgeroepen met \type{\in{formule}[middelste]}.
+
+Indien nummering ongewenst is, typt u:
+
+\type{\plaatsformule[-]}
+
+Het nummeren van formules wordt ingesteld met
+\type{\stelnummerenin}. In deze handleiding is het nummeren
+ingesteld met \type{\stelnummerenin[wijze=perhoofdstuk]}.
+Dit betekent dat het hoofdstuknummer voorafgaat aan het
+formulenummer en dat het nummeren van de formule bij ieder
+nieuw hoofdstuk wordt gereset. Uit oogpunt van consistentie
+wordt het nummeren van tabellen, figuren en formules met
+hetzelfde commando ingesteld. Het commando
+\type{\stelnummerenin} dient dan ook in het instelgebied van
+uw invoerfile te staan.
+
+Formules kunnen worden ingesteld met:
+
+\shortsetup{stelformulesin}
+
+\stoponderdeel

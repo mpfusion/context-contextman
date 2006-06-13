@@ -1,0 +1,242 @@
+\startonderdeel ma-cb-nl-figures
+
+\produkt ma-cb-nl
+
+\hoofdstuk[figuren]{Figuren}
+
+\index{figuur}
+%\zieindex{picture}{figure}
+\index{floating blocks}
+
+\Command{\tex{plaatsfiguur}}
+\Command{\tex{startfiguurtekst}}
+\Command{\tex{stelfigurenin}}
+\Command{\tex{gebruikexternfiguur}}
+\Command{\tex{startcombinatie}}
+\Command{\tex{stelplaatsblokkenin}}
+\Command{\tex{stelblokkopjesin}}
+\Command{\tex{externfiguur}}
+
+Foto's en figuren worden in uw document geplaatst met het
+volgende commando:
+
+\startbuffer
+\plaatsfiguur
+   []
+   [fig:kerk]
+   {Stephanus Kerk.}
+   {\externfiguur[ma-cb-24][breedte=.4\tekstbreedte]}
+\stopbuffer
+
+\typebuffer
+
+Na verwerking wordt dit:
+
+\haalbuffer
+
+Het commando \type{\plaatsfiguur} zorgt voor nummering en
+verticale witruimte voor en na het figuur. Bovendien
+initieert het commando het floatmechanisme. Dit mechanisme
+zorgt ervoor dat de figuur blijft 'zweven' tot de meest
+optimale locatie in het document is gevonden. Meestal is dit
+verplaatsen van een figuur nodig, omdat figuren relatief
+groot zijn. Het floatmechanisme kan worden be\"{\i}nvloed binnen
+het eerste hakenpaar.
+
+Het commando \type{\plaatsfiguur} is een verbijzondering van
+het commando:
+
+\shortsetup{plaatsblok}
+
+De mogelijke opties van \type{\plaatsfiguur} worden
+beschreven in \in{tabel}[tab:plaatsfiguur].
+
+\plaatstabel
+  [hier]
+  [tab:plaatsfiguur]
+  {Opties in \type{\plaatsfiguur}.}
+\starttabel[|l|l|]
+\HL
+\NC \bf Optie \NC \bf Betekenis \NC\SR
+\HL
+\NC hier       \NC  plaats figuur bij voorkeur op deze locatie  \NC\FR
+\NC forceer    \NC  plaats de figuur altijd op deze lokatie     \NC\MR
+\NC pagina     \NC  plaats figuur op een eigen pagina           \NC\MR
+\NC boven      \NC  plaats de figuur boven aan de pagina        \NC\MR
+\NC onder      \NC  plaats de figuur onder aan de pagina        \NC\MR
+\NC links      \NC  plaats figuur tegen de linkermarge          \NC\MR
+\NC rechts     \NC  plaats figuur tegen de rechtermarge         \NC\MR
+\NC marge      \NC  plaats figuur in de marge                   \NC\LR
+\HL
+\stoptabel
+
+Het tweede paar vierkante haken wordt gebruikt voor
+verwijzingen naar de figuur. U kunt naar dit figuur
+verwijzen door te typen:
+
+\starttypen
+\in{figuur}[fig:kerk]
+\stoptypen
+
+De eerste accolades van \type{\plaatsfiguur} worden gebruikt
+voor de bijschrijft. Op die plaats kan iedere gewenste tekst
+worden ingevoerd. Indien u geen nummering of bijschrift
+wenst, typt u \type{{geen}}. Het label {\em figuur} wordt
+ingesteld met \type{\stelblokkopjesin} en het nummeren wordt
+ingesteld of hersteld met \type{\stelnummerenin} (zie
+\in{paragraaf}[floatingblocks]).
+
+Het tweede paar accolades wordt gebruikt om externe
+figuurfiles aan te roepen of het figuur te defini\"eren.
+
+In het volgende voorbeeld ziet u hoe
+\inlijnd[hoogte=1em]{Hasselt} wordt gedefinieerd binnen het
+laatste accoladepaar en wordt de functie van
+\type{\plaatsfiguur{}{}} toegelicht.
+
+\startbuffer
+\plaatsfiguur
+  {Een omlijnd Hasselt.}
+  {\omlijnd{\tfd Hasselt}}
+
+\stopbuffer
+
+\typebuffer
+
+Dit wordt:
+
+\haalbuffer
+
+Meestal worden figuren opgemaakt of opgewerkt in pakketten
+als Corel Draw of Illustrator en foto's worden --- na inscannen
+--- opgewerkt met PhotoShop. De figuren zijn dan beschikbaar als
+files. Welke types kunnen worden gebruikt hangt af van het
+gebruikte back||end. In geval van \PDFTEX\ zijn \type {JPG}, \type
+{PNG} en \type {PDF} files terwijl ook \METAPOST\ uitvoer kan
+worden afgehandeld. In een normale situatie zoekt \CONTEXT\ het
+best beschikbare fileformaat uit.
+
+In \in{figuur}[fig:grachten] ziet u een foto en een
+opgemaakt plaatje in \'e\'en figuur.
+
+\startbuffer
+\plaatsfiguur
+  [hier,forceer]
+  [fig:grachten]
+  {Grachten in Hasselt.}
+  {\startcombinatie[2*1]
+     {\externfiguur[ma-cb-03][breedte=.4\tekstbreedte]}
+        {een bitmap foto}
+     {\externfiguur[gracht][breedte=.4\tekstbreedte]}
+        {een vector plaatje}
+   \stopcombinatie}
+\stopbuffer
+
+\haalbuffer
+
+U kunt deze figuur als volgt maken:
+
+\typebuffer
+
+In de figuur worden twee plaatjes gecombineerd met:
+
+\shortsetup{startcombinatie}
+
+De commando's \type{\startcombinatie} $\cdots$
+\type{\stopcombinatie} worden gebruikt voor het combineren
+van twee of meer plaatjes in \'e\'en figuur. Het aantal
+plaatjes wordt tussen de vierkante haakjes ingetypt. Wanneer
+de plaatjes onder elkaar moeten staan, typt u \type{[1*2]}.
+U kunt zich misschien voorstellen wat er gebeurt als u zes
+plaatjes combineert met \type{[3*2]}
+(\type{[kolommen*rijen]}).
+
+De voorbeelden hiervoor zijn eigenlijk al voldoende om goed
+ge\"{\i}llustreerde documenten te cre\"eren. Soms is het echter
+wenselijk om figuur en tekst meer met elkaar te combineren.
+U kunt daarvoor gebruik maken van het commando:
+
+\shortsetup{startbloktekst}
+
+Het effect van:
+
+\startbuffer
+\startfiguurtekst
+  [links]
+  [fig:inwoners]
+  {geen}
+  {\externfiguur[ma-cb-18][breedte=.5\zetbreedte]}
+  Het inwonersaantal van Hasselt heeft altijd
+  gevarieerd met de economische ontwikkelingen. De
+  Dedemsvaart werd bijvoorbeeld rond 1810 gegraven. Dit
+  kanaal loopt door Hasselt en de handel floreerde. De
+  populatie nam binnen 10 jaar toe met ongeveer 40\%.
+  Tegenwoordig heeft de Dedemsvaart geen economische waarde
+  meer en zijn de grachten slechts een toeristische
+  attractie. Toch vind je nog overal herinneringen aan die
+  bloeiende tijd.
+\stopfiguurtekst
+\stopbuffer
+
+\typebuffer
+
+wordt in de onderstaande figuur getoond.
+
+\start
+\steltolerantiein[zeersoepel]
+\haalbuffer
+\stop
+
+\shortsetup{externfiguur}
+
+Het laatste paar accolades bevat het commando
+\type{\externfiguur}. Dit commando geeft u de vrijheid om
+met een figuur te doen wat u wilt. Het commando
+\type{\externfiguur} heeft twee paren van vierkante haken.
+Het eerste paar wordt gebruikt voor de filenaam van de
+figuur zonder extensie, het tweede voor het fileformaat en
+de dimensies. Het is niet moeilijk te voorspellen wat er
+gebeurt als u het volgende intypt:\voetnoot{Zie
+\op{pagina}[margefiguur].}
+
+\startbuffer[margefiguur]
+\inmarge
+  {\externfiguur
+     [ma-cb-23]
+     [breedte=\margebreedte]}
+\stopbuffer
+
+\typebuffer[margefiguur]
+
+De opmaak van figuren wordt ingesteld met:
+
+\shortsetup{stelplaatsblokkenin}
+
+De nummering en de labels worden ingesteld met:
+
+\shortsetup{stelblokkopjesin}
+
+De beide commando's worden in het instelgebied van de
+invoerfile geplaatst en zijn geldig voor het totale
+document.
+
+\startbuffer
+\stelplaatsblokkenin
+  [plaats=rechts]
+
+\stelblokkopjesin
+  [plaats=boven,
+   letter=vetschuin]
+
+\plaatsfiguur
+  {Een karakteristiek zicht op Hasselt.}
+  {\externfiguur[ma-cb-12][breedte=8cm]}
+\stopbuffer
+
+\typebuffer
+
+\start
+\haalbuffer
+\stop
+
+\stoponderdeel

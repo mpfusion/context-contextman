@@ -1,0 +1,114 @@
+\startonderdeel ma-cb-nl-heads
+
+\produkt ma-cb-nl
+
+\hoofdstuk[koppen]{Koppen}
+
+\index{koppen}
+
+\Command{\tex{hoofdstuk}}
+\Command{\tex{paragraaf}}
+\Command{\tex{subparagraaf}}
+\Command{\tex{titel}}
+\Command{\tex{onderwerp}}
+\Command{\tex{subonderwerp}}
+\Command{\tex{stelkopin}}
+\Command{\tex{stelkoppenin}}
+
+De structuur van een document wordt bepaald door zijn
+koppen, zoals hoofdstukken, paragrafen en subpragrafen.
+Koppen worden gecre\"eerd met de commando's die in
+\in{tabel}[tab:koppen] staan:
+
+\plaatstabel[hier][tab:koppen]{Koppen.}
+\starttabel[|l|l|]
+\HL
+\NC \bf Genummerde kop    \NC \bf Ongenummerde kop \NC\SR
+\HL
+\NC \tex{hoofdstuk}       \NC \tex{titel}           \NC\FR
+\NC \tex{paragraaf}       \NC \tex{onderwerp}       \NC\MR
+\NC \tex{subparagraaf}    \NC \tex{subonderwerp}    \NC\MR
+\NC \tex{subsubparagraaf} \NC \tex{subsubonderwerp} \NC\MR
+\NC \onbekend             \NC \onbekend             \NC\LR
+\HL
+\stoptabel
+
+\shortsetup{hoofdstuk}
+\shortsetup{paragraaf}
+\shortsetup{subparagraaf}
+\shortsetup{titel}
+\shortsetup{onderwerp}
+\shortsetup{subonderwerp}
+
+Deze commando's produceren een kop en een kopnummer in een
+bepaalde grootte en met een vooraf ingestelde verticale
+witruimte voor en na de kop.
+
+De koppen hebben twee verschijningsvormen. Bijvoorbeeld:
+
+\starttypen
+\titel[hasselt bij nacht]{Hasselt bij nacht}
+\stoptypen
+
+en
+
+\starttypen
+\titel{Hasselt bij nacht}
+\stoptypen
+
+De vierkante haken zijn optioneel en worden gebruikt voor
+interne verwijzingen. Verwijzen doet u bijvoorbeeld met:
+\type{\op{pagina}[hasselt bij nacht]}.
+
+Natuurlijk kunnen koppen in een door u zelf gedefinieerde
+vormgeving worden weergegeven. Dit gebeurt met de commando's
+\type{\stelkopin} en \type{\definieerkop}.
+
+\shortsetup{definieerkop}
+\shortsetup{stelkopin}
+
+\startbuffer
+\definieerkop
+  [mijnkop]
+  [paragraaf]
+
+\stelkopin
+  [mijnkop]
+  [nummerletter=vet,
+   tekstletter=vet,
+   voor={\haarlijn\pagina[nee]},
+   na={\geenwitruimte\pagina[nee]\haarlijn}]
+
+\mijnkop[mijnkop]{In Hasselt wonen kopstukken}
+\stopbuffer
+
+\typebuffer
+
+Een nieuwe kop \type{\mijnkop} wordt gedefinieerd en erft
+daarbij de eigenschappen van \type{\paragraaf}. Een
+dergelijke kop ziet er als volgt uit:
+
+\haalbuffer
+
+Een ander commando met betrekking tot koppen is
+\type{\stelkoppenin}. U kunt dit commando gebruiken
+voor het instellen van de nummering van genummerde koppen.
+Als u typt:
+
+\startbuffer
+\stelkoppenin
+  [variant=inmarge,
+   scheider=--]
+\stopbuffer
+
+\typebuffer
+
+zullen alle nummers in de marge verschijnen en worden
+subnummers als volgt weergegeven: 1--1.
+
+Commando's als \type{\stelkoppenin} worden bij voorkeur in
+het instelgebied van uw invoerfile geplaatst.
+
+\shortsetup{stelkoppenin}
+
+\stoponderdeel

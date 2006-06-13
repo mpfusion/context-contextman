@@ -1,0 +1,83 @@
+\startonderdeel ma-cb-nl-composedcharacters
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Samengestelde karakters}
+
+\paragraaf{Inleiding}
+
+In \in{hoofdstuk}[speciale kars] heeft u gezien dat u voor
+speciale karakters meer dan een karakter moet intypen. Dit
+geldt voor \# \$ \% \& \_ $\{$ en $\}$. Karakters met
+accenten moeten worden samengesteld om uiteindelijk het
+juiste karakter te krijgen.
+
+Ook in de mathematische mode bestaan geaccentueerde
+karakters. Het valt buiten het bestek van deze handleiding
+om daar op in te gaan. Zie voor dit onderwerp het \TeX Book
+van Donald E. Knuth.
+
+\paragraaf{Geaccentueerde karakters}
+
+\index{accenten}
+
+Geaccentueerde letters moeten in \CONTEXT\ worden samengesteld.
+\in{Tabel}[tab:accenten] toont hoe dit gebeurt. Het karakter
+{\em u} is hier slechts een voorbeeld.
+
+\let\MySign=\=
+\plaatstabel
+  [hier,forceer]
+  [tab:accenten]
+  {Geaccentueerde karakters.}
+\starttabel[|c|c|c|c|]
+\HL
+\NC \bf U typt \NC \bf U krijgt \VL \bf U typt \NC \bf U krijgt \NC\SR
+\HL
+\NC \type{\`{u}} \NC \`{u}       \VL \type{\u{u}}  \NC \u{u}  \NC\FR
+\NC \type{\'{u}} \NC \'{u}       \VL \type{\v{u}}  \NC \v{u}  \NC\MR
+\NC \type{\^{u}} \NC \^{u}       \VL \type{\H{u}}  \NC \H{u}  \NC\MR
+\NC \type{\"{u}} \NC \"{u}       \VL \type{\b{u}}  \NC \b{u}  \NC\MR
+\NC \type{\~{u}} \NC \~{u}       \VL \type{\c{u}}  \NC \c{u}  \NC\MR
+\NC \type{\={u}} \NC \MySign{u}  \VL \type{\d{u}}  \NC \d{u}  \NC\MR
+\NC \type{\.{u}} \NC \.{u}       \VL               \NC        \NC\LR
+\HL
+\stoptabel
+
+Omdat \`{i} of \'{j} ongewenst is voor een geaccentueerde
+{\em i} en {\em j} worden deze letters als volgt
+samengesteld:
+
+\type{\"{\i}} ~~~ \"{\i} \crlf
+\type{\^{\j}} ~~~ \^{\j}
+
+\paragraaf{Buitenlandse karakters}
+
+\index{buitenlandse karakters}
+
+De wijze van samenstellen van enkele buitenlandse karakters
+wordt in \in{tabel}[tab:buitenlandse karakters] getoond.
+
+%
+% be ware of the spanish questionmark and exclamation
+%
+
+\plaatstabel
+  [hier,forceer]
+  [tab:buitenlandse karakters]
+  {Buitenlandse karakters.}
+\starttabel[|c|c|c|c|]
+\HL
+\NC \bf U typt \NC \bf U krijgt \VL \bf U typt \NC \bf U krijgt \NC\SR
+\HL
+\NC \type{\oe} \NC \oe \VL \type{\O}        \NC \O      \NC\FR
+\NC \type{\OE} \NC \OE \VL \type{\l}        \NC \l      \NC\MR
+\NC \type{\ae} \NC \ae \VL \type{\L}        \NC \L      \NC\MR
+\NC \type{\AE} \NC \AE \VL \type{\SS}       \NC \SS     \NC\MR
+\NC \type{\aa} \NC \aa \VL \type{?}\type{`} \NC ?`      \NC\MR
+\NC \type{\AA} \NC \AA \VL \type{!}\type{`} \NC !`      \NC\MR
+\NC \type{\o}  \NC \o  \VL                  \NC         \NC\LR
+\HL
+\stoptabel
+
+\stoponderdeel

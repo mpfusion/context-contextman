@@ -1,0 +1,94 @@
+\startonderdeel ma-cb-nl-gettingstarted
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Het verwerken van een file}
+
+\index{invoerfile+verwerken}
+\index[dvifile]{\type{dvi}--file}
+
+Als u een invoerfile wilt verwerken met \CONTEXT\ typt u na
+de prompt:
+
+\starttypen
+context filenaam
+\stoptypen
+
+Het commando \type{context} kan per systeem verschillen. Vraag
+zonodig uw systeembeheerder met welk commando u \CONTEXT\
+opstart. Als uw filenaam \type{mijnfile.tex} is, dan kan dat
+zijn:
+
+\starttypen
+context mijnfile
+\stoptypen
+
+of als \TEXEXEC\ goed is ge\"{\i}nstalleerd:
+
+\starttypen
+texexec --pdf mijnfile
+\stoptypen
+
+
+de extensie \type{.tex} hoeft niet te worden ingetypt.
+
+Nadat \Enter\ is ingevoerd, wordt de verwerking gestart.
+\CONTEXT\ geeft informatie over de verwerkingsstappen op het
+beeldscherm. Als de verwerking succesvol is verlopen,
+verschijnt de prompt en heeft \CONTEXT\ een
+\type{dvi}||file of een \PDF||file aangemaakt.
+
+Indien de verwerking niet goed verloopt, bijvoorbeeld omdat
+u \type{\stptekst} in plaats van \type{\stoptekst} heeft
+ingetypt, geeft \CONTEXT\ een \type{ ? }  op het beeldscherm
+en geeft aan dat er een fout commando is verwerkt. Er wordt
+een indicatie gegeven van het type fout en bovendien wordt
+het regelnummer aangegeven.
+
+Achter het door \CONTEXT\ geproduceerde vraagteken kunt u de
+volgende invoer geven:
+
+\starttabulatie[|||]
+\NC \type{H} \NC voor helpinformatie over de fout \NC\NR
+\NC \type{I} \NC voor het invoeren van het correcte \CONTEXT\ commando \NC\NR
+\NC \type{Q} \NC voor het overgaan op batchverwerking \NC\NR
+\NC \type{X} \NC voor het stoppen van de verwerking \NC\NR
+\NC \Enter\  \NC voor het negeren van de fout \NC\NR
+\stoptabulatie
+
+Meestal is \Enter\ de beste optie en de verwerking zal gewoon
+doorgaan. Op het moment dat de verwerking is afgelopen, kunt u
+de fout herstellen met behulp van uw tekstverwerker.
+
+Sommige fouten zijn aanleiding voor \CONTEXT\ om een
+\type{ * } op het beeldscherm te genereren en de verwerking te
+stoppen. Deze fout wordt veroorzaakt door een {\em fatal
+error} in de invoerfile. Deze fout kan niet genegeerd worden
+en de enige optie die u heeft is het typen van \type{\stop}
+(in ernstige gevallen kunt u ook \type{Ctrl-Z} typen). Het
+programma wordt gestopt en u kunt de fout herstellen.
+
+Tijdens de verwerking informeert \CONTEXT\ de gebruiker over
+de acties die op het document (invoerfile) worden
+uitgevoerd. \CONTEXT\ toont bijvoorbeeld de paginanummers en
+hoofdstuk- en paragraaftitels op het scherm. Bovendien
+worden waarschuwingen gegeven. Waarschuwingen hebben meestal
+een typografisch karakter en geven bijvoorbeeld aan dat het
+afbreken van bepaalde woorden niet of niet goed verloopt.
+Alle informatie over de verwerking wordt opgeslagen in een
+\type{log}||file waarin de fouten en waarschuwingen en de
+bijbehorende regelnummers nog eens kunnen worden
+geraadpleegd.
+
+Indien de verwerking succesvol is verlopen heeft \CONTEXT\
+een nieuwe file aangemaakt \type{mijnfile.dvi} of
+\type{mijnfile.pdf}. De afkorting \type{dvi} staat voor {\em
+device indepent}. Dit betekent dat de file een min of meer
+onafhankelijk formaat heeft en met behulp van geschikte
+PostScript (\PS) printerdrivers kan worden omgezet naar een
+\PS||file ten behoeve van afdrukken of bekijken. \PDF\ staat
+voor Portable Document Format en is een platform
+onafhankelijk formaat voor het afdrukken en bekijken van
+de \PDF||files.
+
+\stoponderdeel

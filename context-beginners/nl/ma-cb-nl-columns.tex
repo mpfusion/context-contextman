@@ -1,0 +1,84 @@
+\startonderdeel ma-cb-nl-columns
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Kolommen}
+
+\index{kolommen}
+
+\Command{\tex{startkolommen}}
+\Command{\tex{stelkolommenin}}
+\Command{\tex{kolom}}
+
+Eenvoudige recht||toe recht||aan tekst kan in kolommen worden
+gezet. Als u het tekstfragment vooraf laat gaan door
+\type{\startkolommen} en afsluit met \type{\stopkolommen}
+wordt alles er tussenin in het opgegeven aantal kolommen
+gezet.
+
+\shortsetup{startkolommen}
+
+\startbuffer
+\startkolommen[n=3,tolerantie=zeersoepel]
+Hasselt is een oude Hanzestad ongeveer 12 \Kilo \Meter\ ten
+noorden van Zwolle aan de rivier het Zwartewater.
+
+De stad heeft een lange historie sinds het verkrijgen van de
+stadrechten in 1252. Herinneringen aan die rijke historie
+zijn terug te vinden in de monumenten die nog steeds het
+gezicht van het centrum van Hasselt bepalen.
+
+De Sint Stephanuskerk domineert het aanzien van Hasselt. Het
+is een laat||gothische kerk die dateert uit 1479 met een
+magnifiek orgel. Het voormalige stadhuis staat op de Markt.
+Gebouwd tussen 1500 en 1550 herbergt het een grote collectie
+wapens, waaronder de grootste collectie haakbussen in de
+wereld.
+
+Verder is er een korenmolen 'De Zwaluw' te vinden die
+dateert uit 1748 en de 'Stenendijk', een unieke gemetselde
+dijk. Ook kunt u de nog steeds werkende kalkovens
+bezichtigen.
+
+Het stadscentrum met de vestingwerken, het Van Stolkspark en
+de druk bezochte kades nodigen uit voor een wandeling.
+
+Het gebied rond Hasselt moet ook worden genoemd. In de
+winter huizen in de nabijgelegen polder Mastenbroek
+duizenden ganzen. In de zomer groeit aan de oevers van het
+Zwartewater de zeldzame Kievitsbloem. Als u die gaat
+bekijken, komt u langs plaatsjes als Genne, Streukel en
+Cellemuiden. Ideaal voor een wandel- of fietstocht.
+
+Hasselt is ook een belangrijk watersportcentrum. De meren
+van noord||west Overijssel, de IJssel, de Overijsselse Vecht
+en de randmeren zijn goed bereikbaar vanuit de jachthaven
+'De Molenwaard'. Zeilen, vissen, zwemmen en kano\"en zijn
+sporten die in Hasselt goed kunnen worden beoefend.
+
+Jaarlijks keren bepaalde festiviteiten terug. Zo is er aan
+het eind van de maand augustus het Eui||festival.
+\stopkolommen
+\stopbuffer
+
+\typebuffer
+
+%\pagina[voorkeur] % zou niet moeten
+
+Het resultaat is een drie||koloms tekst. Ten behoeve van het
+uitlijnen wordt het afbreekmechanisme ingesteld met
+\type{tolerantie=zeersoepel}.
+
+{\switchnaarkorps[9pt]\haalbuffer}
+
+Indien mogelijk kan een kolom worden afgedwongen met
+\type{\kolom}. Het instellen van kolommen gebeurt met:
+
+\shortsetup{stelkolommenin}
+
+In de meeste gevallen krijgt u een beter resultaat
+als u de tekst op het \citeer{grid} laat typesetten. Dit
+gebeurt door \type{grid=ja} in te stellen bij het commando
+\type {\stellayoutin}.
+
+\stoponderdeel

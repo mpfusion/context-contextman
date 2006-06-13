@@ -1,0 +1,57 @@
+\startonderdeel ma-cb-nl-color
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Kleur}
+
+\index{kleur}
+
+\Command{\tex{stelkleurenin}}
+\Command{\tex{kleur}}
+\Command{\tex{definieerkleur}}
+
+Teksten kunnen in kleur worden gezet met:
+
+\shortsetup{kleur}
+
+Het gebruik van kleuren wordt geactiveerd door:
+
+\starttypen
+\stelkleurenin[status=start]
+\stoptypen
+
+Vanaf dat moment zijn de basiskleuren beschikbaar.
+Basiskleuren zijn rood, groen en blauw.
+
+\startbuffer
+\startkleur[rood]
+Hasselt is een \kleur[groen]{kleurrijke} stad.
+\stopkleur
+\stopbuffer
+
+\typebuffer
+
+\haalbuffer
+
+Op een zwart||wit printer ziet u alleen maar grijswaarden.
+In een elektronisch document verschijnen de kleuren zoals
+bedoeld.
+
+Het is ook mogelijk uw eigen kleuren te defini\"eren met:
+
+\shortsetup{definieerkleur}
+
+Bijvoorbeeld:
+
+\startbuffer
+\definieerkleur[donkerrood]  [r=.5,g=.0,b=.0]
+\definieerkleur[donkergroen] [r=.0,g=.5,b=.0]
+\stopbuffer
+
+\typebuffer
+
+Na de definitie zijn de kleuren donkerrood en donkergroen
+beschikbaar als de commando's \type{\donkerrood} en
+\type{\donkergroen}.
+
+\stoponderdeel

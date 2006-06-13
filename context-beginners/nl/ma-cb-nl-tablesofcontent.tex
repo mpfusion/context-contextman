@@ -1,0 +1,186 @@
+\startonderdeel ma-cb-nl-tablesofcontent
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Inhoudsopgave (lijsten)}
+
+\index{inhoudsopgave}
+\index{lijst}
+
+\Command{\tex{volledigeinhoud}}
+\Command{\tex{plaatsinhoud}}
+\Command{\tex{definieerlijst}}
+\Command{\tex{stellijstin}}
+\Command{\tex{schrijfnaarlijst}}
+\Command{\tex{schrijftussenlijst}}
+\Command{\tex{definieersamengesteldelijst}}
+\Command{\tex{stelsamengesteldelijstin}}
+
+Een inhoudsopgave bevat hoofdstuktitels, hoofdstuknummers en
+paginanummers en kan worden uitgebreid met de titels van
+paragrafen, subparagrafen enz. Een inhoudsopgave wordt
+automatisch gegenereerd door in te typen:
+
+\starttypen
+\plaatsinhoud
+\stoptypen
+
+Afhankelijk van de locatie in het document wordt vervolgens
+een inhoudsopgave aangemaakt. Aan het begin van een document
+wordt een volledige inhoudsopgave gegenereerd, bestaande uit
+hoofdstukken, paragrafen, subparagrafen enz.
+Aan het begin van een hoofdstuk echter:
+
+\startbuffer
+\hoofdstuk{Hasselt in de zomer}
+
+\plaatsinhoud
+
+\paragraaf{Hasselt in juli}
+
+\paragraaf{Hasselt in augustus}
+\stopbuffer
+
+\typebuffer
+
+wordt alleen een lijst van (sub)paragraaftitels en de
+corresponderende paragraafnummers en paginanummers geplaatst.
+
+Het commando \type{\plaatsinhoud} is beschikbaar nadat een
+zogenaamde samengestelde lijst is gedefinieerd met:
+
+\shortsetup{definieersamengesteldelijst}
+
+Dit commando en \type{\definieerlijst} staan u toe om uw
+eigen lijsten aan te maken die nodig zijn om een document te
+structureren.
+
+Het gebruik van deze commando's wordt ge\"{\i}llustreerd aan de
+inhoudsopgave.
+
+\startbuffer
+\definieerlijst[hoofdstuk]
+\stellijstin
+   [hoofdstuk]
+   [voor=\blanko,
+    na=\blanko,
+    letter=vet]
+
+\definieerlijst[paragraaf]
+\stellijstin
+   [paragraaf]
+   [variant=d]
+\stopbuffer
+
+\typebuffer
+
+Tijdens het verwerken van de invoerfile worden twee lijsten
+aangemaakt die gecombineerd worden tot \'e\'en inhoudsopgave
+met \type{\definieersamengesteldelijst}.
+
+\startbuffer
+\defineersamengesteldelijst
+   [inhoud]
+   [hoofdstuk,paragraaf]
+   [niveau=subparagraaf]
+\stopbuffer
+
+\typebuffer
+
+Er zijn nu twee commando's beschikbaar \type{\plaatsinhoud}
+en \type{\volledigeinhoud}. Met het tweede commando wordt
+tevens de titel {\em inhoud} boven de inhoudsopgave geplaatst.
+
+De vormgeving van de lijsten kan worden be\"{\i}nvloed met
+de parameter \type{variant}.
+
+\plaatstabel
+  [hier,forceer]
+  [tab:alternatieven]
+  {Alternatieven voor lijstweergave.}
+\starttabel[|c|l|]
+\HL
+\NC \bf Alternatief \NC \bf Weergave \NC\SR
+\HL
+\NC \type{a} \NC nummer -- titel -- paginanummer            \NC\FR
+\NC \type{b} \NC nummer -- titel -- spaties -- paginanummer \NC\MR
+\NC \type{c} \NC nummer -- titel -- dots -- paginanummer    \NC\MR
+\NC \type{d} \NC nummer -- titel -- paginanummer (continu)  \NC\MR
+\NC \type{e} \NC gereserveerd voor interactieve documenten  \NC\MR
+\NC \type{f} \NC gereserveerd voor interactieve documenten  \NC\LR
+\HL
+\stoptabel
+
+De lijsten worden ingesteld met:
+
+\shortsetup{stellijstin}
+\shortsetup{stelsamengesteldelijstin}
+
+Indien u de layout van een inhoudsopgave wilt veranderen dan
+moet u in gedachten houden dat het om een lijst gaat.
+
+\startbuffer
+\stelsamengesteldelijstin
+  [inhoud]
+  [variant=c,
+   titeluitlijnen=nee,
+   breedte=2.5cm]
+\stopbuffer
+
+\typebuffer
+
+Het resultaat is een iets andere layout dan de standaard
+layout.
+
+Lijsten worden geplaatst met:
+
+\shortsetup{plaatslijst}
+
+Indien u een inhoud plaatst, kunt u bijvoorbeeld intypen:
+
+\starttypen
+\plaatslijst[inhoud][niveau=paragraaf]
+\stoptypen
+
+of:
+
+\starttypen
+\plaatsinhoud[niveau=paragraaf]
+\stoptypen
+
+Dan worden alleen de paragrafen in de inhoudsopgave opgenomen.
+Een dergelijke optie komt van pas bij documenten waarin
+bijvoorbeeld subsubsubsubsubparagrafen voorkomen die u niet
+in de inhoudsopgave wilt opnemen.
+
+Een lange lijst of een grote inhoudsopgave neemt meer dan
+\'e\'en pagina in beslag. Om een pagina||overgang af te kunnen
+dwingen is het volgende commando beschikbaar:
+
+\starttypen
+\volledigeinhoud[2.2,8.5,12.3.3]
+\stoptypen
+
+Een nieuwe pagina wordt gegenereerd na paragraaf 2.2 en 8.5
+en subparagraaf~12.3.3.
+
+Sporadisch heeft u wellicht de behoefte om teksten in uw
+inhoudsopgave tussen te voegen. Dit wordt gedaan met:
+
+\shortsetup{schrijfnaarlijst}
+\shortsetup{schrijftussenlijst}
+
+Indien u bijvoorbeeld een opmerking in uw inhoudsopgave wilt
+maken vlak na een paragraaf met de titel {\em Hotels in
+Hasselt} dan kunt u bijvoorbeeld intypen:
+
+\startbuffer
+\paragraaf{Hotels in Hasselt}
+\schrijftussenlijst[paragraaf]{\blanko}
+\schrijfnaarlijst[paragraaf]{}{---moet nog worden aangemaakt---}
+\schrijftussenlijst[paragraaf]{\blanko}
+\stopbuffer
+
+\typebuffer
+
+\stoponderdeel

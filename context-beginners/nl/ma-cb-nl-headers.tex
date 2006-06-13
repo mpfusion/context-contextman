@@ -1,0 +1,58 @@
+\startonderdeel ma-cb-nl-headers
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Hoofd- en voetteksten}
+
+\index{hoofdteksten}
+\index{voetteksten}
+
+\Command{\tex{stelvoettekstenin}}
+\Command{\tex{stelhoofdtekstenin}}
+\Command{\tex{stelhoofdin}}
+\Command{\tex{stelvoetin}}
+\Command{\tex{geenhoofdenvoetteksten}}
+
+Documenten hebben soms hoofd- en voetteksten die voor
+allerlei doeleinden worden gebruikt. De commando's om hoofd-
+en voetteksten te plaatsen zijn:
+
+\shortsetup{stelvoettekstenin}
+\shortsetup{stelhoofdtekstenin}
+
+Het eerste paar haken is optioneel en bedoeld voor de
+locatie van de voet- of hoofdtekst (\type{tekst},
+\type{rand} enz.). De voet- en hoofdtekst zelf worden tussen
+de overige vierkante haken geplaatst. In een enkelzijdig
+document zijn alleen het tweede en derde paar vierkante
+haken nodig. Het tweede paar van bijvoorbeeld
+\type{\stelvoettekstenin} bevat de tekst linksonder en het
+tweede paar de tekst die rechtsonder moet komen te staan. In
+een dubbelzijdig document zijn nog twee paren beschikbaar
+voor teksten in de voet van de linker pagina.
+
+\startbuffer
+\stelvoettekstenin[Handleiding][paragraaf]
+\stopbuffer
+
+\typebuffer
+
+In dit voorbeeld verschijnt de tekst {\em Handleiding} in de
+linker onderhoek van de pagina en titel van de actuele
+paragraaf in de rechteronderhoek. Deze voettekst verandert
+automatisch bij overgang naar een volgende paragraaf.
+
+De hoofd- en voetteksten kunnen worden ingesteld met de
+commando's:
+
+\shortsetup{stelhoofdin}
+\shortsetup{stelvoetin}
+
+Als de hoofd- en/of voetteksten op een bepaalde pagina niet
+nodig zijn, typt u:
+
+\starttypen
+\geenhoofdenvoetregels
+\stoptypen
+
+\stoponderdeel

@@ -1,0 +1,80 @@
+\startonderdeel ma-cb-nl-pagebackgrounds
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Achtergronden op paginavlakken}
+
+\index{paginavlakken}
+\index{achtergrond+paginavlakken}
+
+\Command{\tex{stelachtergrondenin}}
+
+De achtergrond van ieder paginavlak kan worden ingesteld.
+Het commando daarvoor is:
+
+\shortsetup{stelachtergrondenin}
+
+De eerste twee paren haken worden gebruikt om de
+paginavlakken te defini\"eren. Het laatste paar wordt gebruikt
+om de instellingen vast te leggen.
+
+\plaatsfiguur
+  [hier]
+  [fig:paginavlakken]
+  {De paginavlakken ingesteld met \type{\stelachtergrondenin}.}
+{\hbox{\omlijnd[breedte=1.5cm,kader=uit]{}
+\omlijnd[breedte=2cm,kader=uit]{\tt linker}
+\omlijnd[breedte=2.5cm,kader=uit]{\tt linker}
+\omlijnd[breedte=3cm,kader=uit]{\tt tekst}
+\omlijnd[breedte=2.5cm,kader=uit]{\tt rechter}
+\omlijnd[breedte=2cm,kader=uit]{\tt rechter}}
+\hbox{\omlijnd[breedte=1.5cm,kader=uit]{}
+\omlijnd[breedte=2cm,kader=uit]{\tt rand}
+\omlijnd[breedte=2.5cm,kader=uit]{\tt marge}
+\omlijnd[breedte=3cm,kader=uit]{\tt tekst}
+\omlijnd[breedte=2.5cm,kader=uit]{\tt marge}
+\omlijnd[breedte=2cm,kader=uit]{\tt rand}}
+\hbox{\omlijnd[breedte=1.5cm,kader=uit]{\tt boven}
+\omlijnd[breedte=2cm]{}
+\omlijnd[breedte=2.5cm]{}
+\omlijnd[breedte=3cm]{}
+\omlijnd[breedte=2.5cm]{}
+\omlijnd[breedte=2cm]{}}
+\hbox{\omlijnd[breedte=1.5cm,kader=uit]{\tt hoofd}
+\omlijnd[breedte=2cm]{}
+\omlijnd[breedte=2.5cm,achtergrond=raster]{}
+\omlijnd[breedte=3cm,achtergrond=raster]{}
+\omlijnd[breedte=2.5cm,achtergrond=raster]{}
+\omlijnd[breedte=2cm]{}}
+\hbox{\omlijnd[breedte=1.5cm,kader=uit,hoogte=3cm]{\tt tekst}
+\omlijnd[breedte=2cm,hoogte=3cm]{}
+\omlijnd[breedte=2.5cm,hoogte=3cm,achtergrond=raster]{}
+\omlijnd[breedte=3cm,hoogte=3cm,achtergrond=raster]{}
+\omlijnd[breedte=2.5cm,hoogte=3cm,achtergrond=raster]{}
+\omlijnd[breedte=2cm,hoogte=3cm]{}}
+\hbox{\omlijnd[breedte=1.5cm,kader=uit]{\tt voet}
+\omlijnd[breedte=2cm]{}
+\omlijnd[breedte=2.5cm,achtergrond=raster]{}
+\omlijnd[breedte=3cm,achtergrond=raster]{}
+\omlijnd[breedte=2.5cm,achtergrond=raster]{}
+\omlijnd[breedte=2cm]{}}
+\hbox{\omlijnd[breedte=1.5cm,kader=uit]{\tt onder}
+\omlijnd[breedte=2cm]{}
+\omlijnd[breedte=2.5cm]{}
+\omlijnd[breedte=3cm]{}
+\omlijnd[breedte=2.5cm]{}
+\omlijnd[breedte=2cm]{}}}
+
+Indien u de achtergronden in de grijze gebieden van
+\in{figuur}[fig:paginavlakken] wilt wijzigen, typt u:
+
+\startbuffer
+\stelachtergrondenin
+  [hoofd,tekst,voet]
+  [linkermarge,tekst,rechtermarge]
+  [achtergrond=raster]
+\stopbuffer
+
+\typebuffer
+
+\stoponderdeel

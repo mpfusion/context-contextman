@@ -1,0 +1,92 @@
+\startonderdeel ma-cb-nl-synonyms
+
+\produkt ma-cb-nl
+
+\hoofdstuk[synoniemen]{Synoniemen}
+
+\index{synoniemen}
+
+\Command{\tex{definieersynoniemen}}
+\Command{\tex{stelsynoniemenin}}
+\Command{\tex{afkorting}}
+\Command{\tex{voluit}}
+\Command{\tex{eenheid}}
+\Command{\tex{laadafkortingen}}
+\Command{\tex{plaatslijstmetafkortingen}}
+\Command{\tex{volledigelijstmetafkortingen}}
+
+In een document dienen sommige woorden consistent te worden
+weergegeven. Denk daarbij bijvoorbeeld aan afkortingen. Om
+die consistentie af te dwingen is het onderstaande commando
+beschikbaar:
+
+\shortsetup{definieersynoniemen}
+
+Het eerste paar haken bevat de naam van het synoniemcommando
+in enkelvoud, het tweede paar in meervoud. Het derde paar
+haken bevat een commando.
+
+Het commando \type{\afkortingen} wordt gedefinieerd door:
+
+\starttypen
+\definieersynoniemen[afkorting][afkortingen][\voluit]
+\stelsynoniemenin[letter=kap]
+\stoptypen
+
+Vervolgens kan het commando \type{\afkorting} worden gebruikt
+om afkortingen te defini\"eren:
+
+\starttypen
+\afkorting{ANWB}{Algemene Nederlandse Wielrijders Bond}
+\afkorting{VVV}{Vereniging voor Vreemdelingen Verkeer}
+\afkorting{NS}{Nederlandse Spoorwegen}
+\stoptypen
+
+\afkorting{VVV}{Vereniging voor Vreemdelingen Verkeer}
+
+Als u typt:
+
+\startbuffer
+De \VVV\ (\voluit{VVV}) kan u voorzien van alle toeristische
+informatie over Hasselt.
+\stopbuffer
+
+\typebuffer
+
+Dan krijgt u dit:
+
+\haalbuffer
+
+De lijsten met synoniemen of afkortingen kunnen het best
+worden gedefinieerd in het instelgebied van de invoerfile. U
+kunt dergelijke informatie ook opslaan in een externe file
+(\type{afkort.tex}) die u vervolgens apart laadt:
+
+\type{\input afkort.tex} \quad \quad (zie \in{paragraaf}[externe texfiles])
+
+Indien u een lijst met afkortingen in uw document wilt
+opnemen, typt u:
+
+\starttypen
+\plaatslijstmetafkortingen
+\stoptypen
+
+of
+
+\starttypen
+\volledigelijstmetafkortingen
+\stoptypen
+
+Een complete en gesorteerde lijst met afkortingen wordt
+vervolgens gegenereerd.
+
+De weergave van lijsten kan worden be\"{\i}nvloed met:
+
+\starttypen
+\stelsynoniemenin
+\stoptypen
+
+In het \in{hoofdstuk}[eenheden] vindt u een andere
+toepassing van synoniemen.
+
+\stoponderdeel

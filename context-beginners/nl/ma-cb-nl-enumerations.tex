@@ -1,0 +1,103 @@
+\startonderdeel ma-cb-nl-enumerations
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Genummerde definities}
+
+\index{genummerde definities}
+
+\Command{\tex{doornummeren}}
+\Command{\tex{steldoornummerenin}}
+
+Met \type{\doornummeren} worden tekstelementen als
+opmerkingen en vragen (antwoorden) gedefinieerd.
+Genummerde opmerkingen worden verkregen door:
+
+\shortsetup{doornummeren}
+
+Bijvoorbeeld:
+
+\startbuffer[a]
+\doornummeren
+  [opmerking]
+  [plaats=boven,
+   tekst=Opmerking,
+   tussen=\blanko,
+   na=\blanko]
+\stopbuffer
+
+\typebuffer[a]
+
+Na definitie zijn de commando's \type{\opmerking},
+\type{\subopmerking}, \type{\resetopmerking} en
+\type{\volgendeopmerking} beschikbaar. Opmerkingen worden nu
+als volgt ingevoerd:
+
+\startbuffer[b]
+\opmerking Aan het begin van de middeleeuwen was Hasselt een
+bedevaartsoord. De zogenaamde {\em Heilige Stede} werd
+afgebroken gedurende de reformatie. Na 300 jaar werd in 1930
+de {\em Heilige Stede} weer heropend.
+
+\subopmerking Tegenwoordig is de {\em Heilige Stede} gesloten
+en is slechts eens per jaar geopend tijdens een kerkdienst in
+de open lucht. \par
+\stopbuffer
+
+\typebuffer[b]
+
+\start
+\haalbuffer[a]\haalbuffer[b]
+\stop
+
+U kunt het nummeren herstellen \type{\resetopmerking} of
+\type{\resetsubopmerking} of ophogen met
+\type{\volgendeopmerking} of \type{\volgendesubopmerking}.
+Normaal gebeurt dit automatisch per hoofdstuk.
+
+De layout van genummerde definities wordt ingesteld met
+\type{\doornummeren} of met:
+
+\shortsetup{steldoornummerenin}
+
+De layout van \type{\opmerking} en \type{\subopmerking} uit
+het voorbeeld kan worden ingesteld met:
+
+\starttypen
+\steldoornummerenin[opmerking][kopletter=vet]
+\steldoornummerenin[subopmerking][kopletter=schuin]
+\stoptypen
+
+Indien een nummer niet nodig is, typt u:
+
+\starttypen
+\opmerking[-]
+\stoptypen
+
+In het geval dat een tekstelement uit meerdere alineas
+bestaat, moet het commando||paar \type{\startopmerking}
+$\cdots$ \type{\stopopmerking} worden gebruikt. Dit
+commando||paar is beschikbaar na definitie van {\bf
+Opmerking} met \type{\doornummeren[opmerking]}.
+
+Een langere definitie zou er als volgt uit kunnen zien:
+
+\startbuffer[c]
+\startopmerking
+Aan het begin van de Middeleeuwen was Hasselt een
+bedevaartsoord. De zogenaamde {\em Heilige Stede} werd
+afgebroken gedurende de reformatie. Na 300 jaar werd in 1930
+de {\em Heilige Stede} weer heropend.
+
+Tegenwoordig is de {\em Heilige Stede} gesloten en slechts
+eens per jaar geopend tijdens een kerkdienst in de open lucht.
+\stopopmerking
+\stopbuffer
+
+\typebuffer[c]
+
+\start
+\haalbuffer[a]\haalbuffer[c] \par
+\stop
+
+\stoponderdeel

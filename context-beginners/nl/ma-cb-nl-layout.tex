@@ -1,0 +1,226 @@
+\startonderdeel ma-cb-nl-layout
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Paginalayout}
+
+\index{layout}
+\index{paginalayout}
+\index{pagina ontwerp}
+
+\Command{\tex{stellayoutin}}
+\Command{\tex{paslayoutaan}}
+\Command{\tex{toonkader}}
+\Command{\tex{tooninstellingen}}
+\Command{\tex{toonlayout}}
+\Command{\tex{startlokaal}}
+
+De paginalayout van dit document is gedefinieerd met:
+
+\shortsetup{stellayoutin}
+
+U dient bekend te zijn met de parameters waarmee de
+paginalayout kan worden ingesteld. Een pagina is ingedeeld
+in vlakken die worden aangeduid met tekst, marge, hoofd,
+voet enz.
+
+De verschillende vlakken worden in
+\in{figuur}[fig:paginalayout] schematisch weergegeven.
+
+\startbuffer
+\hbox
+  {\omlijnd[breedte=1.5cm,kader=uit]           {}
+   \omlijnd[breedte=2cm,kader=uit]             {linker}
+   \omlijnd[breedte=2.5cm,kader=uit]           {linker}
+   \omlijnd[breedte=3cm,kader=uit]             {tekst}
+   \omlijnd[breedte=2.5cm,kader=uit]           {rechter}
+   \omlijnd[breedte=2cm,kader=uit]             {rechter}}
+\hbox
+  {\omlijnd[breedte=1.5cm,kader=uit]           {}
+   \omlijnd[breedte=2cm,kader=uit]             {rand}
+   \omlijnd[breedte=2.5cm,kader=uit]           {marge}
+   \omlijnd[breedte=3cm,kader=uit]             {tekst}
+   \omlijnd[breedte=2.5cm,kader=uit]           {marge}
+   \omlijnd[breedte=2cm,kader=uit]             {rand}}
+\hbox
+  {\omlijnd[breedte=1.5cm,kader=uit]           {boven}
+   \omlijnd[breedte=2cm]                       {}
+   \omlijnd[breedte=2.5cm]                     {}
+   \omlijnd[breedte=3cm]                       {}
+   \omlijnd[breedte=2.5cm]                     {}
+   \omlijnd[breedte=2cm]                       {}}
+\hbox
+  {\omlijnd[breedte=1.5cm,kader=uit]           {hoofd}
+   \omlijnd[breedte=2cm]                       {}
+   \omlijnd[breedte=2.5cm]                     {}
+   \omlijnd[breedte=3cm]                       {}
+   \omlijnd[breedte=2.5cm]                     {}
+   \omlijnd[breedte=2cm]                       {}}
+\hbox
+  {\omlijnd[breedte=1.5cm,kader=uit,hoogte=3cm]{tekst}
+   \omlijnd[breedte=2cm,hoogte=3cm]            {}
+   \omlijnd[breedte=2.5cm,hoogte=3cm]          {}
+   \omlijnd[breedte=3cm,hoogte=3cm]            {}
+   \omlijnd[breedte=2.5cm,hoogte=3cm]          {}
+   \omlijnd[breedte=2cm,hoogte=3cm]            {}}
+\hbox
+  {\omlijnd[breedte=1.5cm,kader=uit]           {voet}
+   \omlijnd[breedte=2cm]                       {}
+   \omlijnd[breedte=2.5cm]                     {}
+   \omlijnd[breedte=3cm]                       {}
+   \omlijnd[breedte=2.5cm]                     {}
+   \omlijnd[breedte=2cm]                       {}}
+\hbox
+  {\omlijnd[breedte=1.5cm,kader=uit]           {onder}
+   \omlijnd[breedte=2cm]                       {}
+   \omlijnd[breedte=2.5cm]                     {}
+   \omlijnd[breedte=3cm]                       {}
+   \omlijnd[breedte=2.5cm]                     {}
+   \omlijnd[breedte=2cm]                       {}}
+\stopbuffer
+
+\plaatsfiguur
+  [hier]
+  [fig:paginalayout]
+  {De vlakverdeling van een pagina.}
+  {\tt\haalbuffer}
+
+De paginalayout kan worden opgeroepen met \type{\toonkader}.
+Na verwerking wordt de layout met kaders weergegeven. Het
+commando \type{\tooninstellingen} geeft de instelwaarden
+weer. Een combinatie van beide commando is
+\type{\toonlayout}.
+
+De waarde van de layout parameters zijn beschikbaar als
+commando's (zie \in{tabel}[tab:parameters]). Dit maakt het
+mogelijk nauwkeurig te werken bij het defini\"eren van
+afmetingen van bijvoorbeeld kolommen, figuren en tabellen.
+Een aantal van deze waarden wordt in
+\in{tabel}[tab:aantalparameters] toegelicht.
+
+\plaatstabel
+  [hier,forceer]
+  [tab:aantalparameters]
+  {Een aantal parameters die als commando beschikbaar zijn.}
+\starttabel[|l|l|]
+\HL
+\NC \bf Commando         \NC \bf Betekenis            \NC\SR
+\HL
+\NC \type{\zetbreedte}   \NC breedte van zetgebied    \NC\FR
+\NC \type{\zethoogte}    \NC hoogte van het zetgebied \NC\MR
+\NC \type{\tekstbreedte} \NC breedte van tekst vlak   \NC\MR
+\NC \type{\teksthoogte}  \NC hoogte van tekst vlak    \NC\LR
+\HL
+\stoptabel
+
+Indien u een breedte van een kolom of een figuur wilt
+defini\"eren is het verstandig om deze te relateren aan de
+\type{\zetbreedte} of \type{\zethoogte}. Bij verandering van
+deze waarden worden de breedte of hoogte van de kolom of
+figuur proportioneel meeveranderd.
+
+\startbuffer
+\plaatsfiguur
+  [hier]
+  [fig:trapgevel]
+  {Een trapgevel.}
+  {\externfiguur[ma-cb-19][breedte=.6\zetbreedte]}
+\stopbuffer
+
+\typebuffer
+
+Na verwerking wordt \in{figuur}[fig:trapgevel] geplaatst.
+
+\haalbuffer
+
+De overige afstanden en maten worden in
+\in{tabel}[tab:parameters] getoond.
+
+Het commando \type{\stellayoutin} wordt gedefinieerd in het
+instelgebied van de invoerfile, dus voor het
+\type{\starttekst}||commando. Dit betekent dat de waarden een
+globaal karakter hebben en betrekking hebben op het volledige
+document. Kleine wijzigingen in die layout op lokaal niveau
+worden gedaan met:
+
+\startbuffer
+\paslayoutaan[21,38][hoogte=+.5cm]
+\stopbuffer
+
+\typebuffer
+
+In dit geval wordt op pagina 21 en 38 de standaardhoogte met
+0,5 \Centi \Meter\ verhoogd.
+
+
+Voor lokale aanpassingen in de layout kunt u gebruik maken
+van:
+
+\shortsetup{startlokaal}
+
+\startbuffer
+\start
+
+\startlokaal
+  \stellayoutin[hoogte=+.5cm]
+\stoplokaal
+
+Hasselt heeft een compleet andere vormgeving dan de meeste
+andere steden als gevolg van de versterkingen en
+verdedigingswerken.
+
+\stop
+\stopbuffer
+
+\typebuffer
+
+Het wordt afgeraden dergelijke tijdelijke aanpassingen te
+vaak uit te voeren.
+
+\startbuffer
+\starttabelkop
+\HL
+\NC \bf Parameter        \NC \bf Beschikbaar als commando \NC\SR
+\HL
+\stoptabelkop
+
+\starttabelstaart
+\HL
+\stoptabelstaart
+
+\starttabellen[|l|l|]
+\NC bovenafstand         \NC \type{\bovenafstand}        \NC\FR
+\NC bovenhoogte          \NC \type{\bovenhoogte}         \NC\MR
+\NC hoofdafstand         \NC \type{\hoofdafstand}        \NC\MR
+\NC hoofdhoogte          \NC \type{\hoofdhoogte}         \NC\MR
+\NC kopniveau            \NC \type{\kopniveau}           \NC\MR
+\NC kopwit               \NC \type{\kopwit}              \NC\MR
+\NC rugwit               \NC \type{\rugwit}              \NC\MR
+\NC margeafstand         \NC \type{\margeafstand}        \NC\MR
+\NC margebreedte         \NC \type{\margebreedte}        \NC\MR
+\NC linkermargebreedte   \NC \type{\linkermargebreedte}  \NC\MR
+\NC rechtermargebreedte  \NC \type{\rechtermargebreedte} \NC\MR
+\NC randafstand          \NC \type{\randafstand}         \NC\MR
+\NC randbreedte          \NC \type{\randbreedte}         \NC\MR
+\NC linkerrandbreedte    \NC \type{\linkerrandbreedte}   \NC\MR
+\NC rechterrandbreedte   \NC \type{\rechterrandbreedte}  \NC\MR
+\NC papierbreedte        \NC \type{\papierbreedte}       \NC\MR
+\NC papierhoogte         \NC \type{\papierhoogte}        \NC\MR
+\NC zetbreedte           \NC \type{\zetbreedte}          \NC\MR
+\NC zethoogte            \NC \type{\zethoogte}           \NC\MR
+\NC tekstbreedte         \NC \type{\tekstbreedte}        \NC\MR
+\NC teksthoogte          \NC \type{\teksthoogte}         \NC\MR
+\NC voetafstand          \NC \type{\voetafstand}         \NC\MR
+\NC voethoogte           \NC \type{\voethoogte}          \NC\MR
+\NC onderhoogte          \NC \type{\onderhoogte}         \NC\MR
+\NC onderafstand         \NC \type{\onderafstand}        \NC\LR
+\stoptabellen
+\stopbuffer
+
+\splitsplaatsblok[regels=1]
+  {\plaatstabel
+     [hier][tab:parameters]
+     {Parameters voor pagina layout.}}
+  {\haalbuffer}
+
+\stoponderdeel

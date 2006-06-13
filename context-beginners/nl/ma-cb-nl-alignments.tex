@@ -1,0 +1,55 @@
+\startonderdeel ma-cb-nl-alignments
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Uitlijnen}
+
+\index{uitlijnen}
+
+\Command{\tex{steluitlijnenin}}
+\Command{\tex{steltolerantiein}}
+\Command{\tex{regelrechts}}
+\Command{\tex{regellinks}}
+\Command{\tex{regelmidden}}
+
+Horizontaal en verticaal uitlijnen wordt ingesteld met:
+
+\shortsetup{steluitlijnenin}
+
+Afzonderlijke regels kunnen worden uitgelijnd met:
+
+\starttypen
+\regelrechts{}
+\regellinks{}
+\regelmidden{}
+\stoptypen
+
+\startbuffer
+\regellinks{Hasselt is gebouwd op een zandheuvel.}
+\regelmidden{Hasselt ligt aan een kruising van twee rivieren.}
+\regelrechts{Hasselt is vernoemd naar een hazelaar.}
+\stopbuffer
+
+\typebuffer
+
+Na het verwerken ziet dit er als volgt uit:
+
+\haalbuffer
+
+Uitlijnen van een alinea wordt gedaan met het
+commando||paar:
+
+\shortsetup{startuitlijnen}
+
+Bij het uitlijnen kan een tolerantie en de richting
+(verticaal of horizontaal) worden ingesteld.
+Normaal is de tolerantie \type{zeerstreng}. In kolommen
+kan het uitlijnen soepeler worden ingesteld
+\type{zeersoepel}. De uitlijntolerantie in deze handleiding
+is als volgt ingesteld:
+
+\starttypen
+\steltolerantiein[horizontaal,zeer streng]
+\stoptypen
+
+\stoponderdeel

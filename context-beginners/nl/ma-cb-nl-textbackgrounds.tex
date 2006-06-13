@@ -1,0 +1,43 @@
+\startonderdeel ma-cb-nl-textbackgrounds
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Achtergronden bij tekst}
+
+\index{achtergrond+tekst}
+
+\Command{\tex{stelachtergrondin}}
+\Command{\tex{startachtergrond}}
+
+Een alinea of paragraaf kan worden benadrukt met bijvoorbeeld
+een achtergrond. Een achtergrond wordt aangemaakt met het
+commando||paar:
+
+\shortsetup{startachtergrond}
+
+Een voorbeeld kan het gebruik toelichten:
+
+\startbuffer
+\stelachtergrondin[achtergrond=raster,hoek=rond]
+
+\startachtergrond
+Hasselt heeft een aantal prominente mensen voortgebracht.
+Recent is aan het licht gekomen dat Kilian van Rensselaer
+een belangrijke rol heeft gespeeld bij de oprichting van de
+staat New York.
+\stopachtergrond
+\stopbuffer
+
+\typebuffer
+
+Dit wordt weergegeven als:
+
+\haalbuffer
+
+Een achtergrond kan over meerdere pagina's doorlopen. Met:
+
+\shortsetup{stelachtergrondin}
+
+kunnen de instellingen van achtergronden worden gewijzigd.
+
+\stoponderdeel

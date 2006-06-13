@@ -1,0 +1,46 @@
+\startonderdeel ma-cb-nl-framedtexts
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Omlijnde paragrafen}
+
+\index{omlijnd+paragraaf}
+
+\Command{\tex{startkadertekst}}
+\Command{\tex{stelkadertekstenin}}
+
+Voor het omkaderen van complete alineas wordt het volgende
+commando||paar gebruikt:
+
+\shortsetup{startkadertekst}
+
+\startbuffer
+\definieerplaatsblok[intermezzo]
+
+\plaatsintermezzo[hier][blok:brug]{Een intermezzo.}
+\startkadertekst[breedte=.8\zetbreedte]
+Een brug over het Zwartewater was essentieel voor Hasselt.
+De bisschop van Utrecht gaf zijn toestemming voor de bouw
+in 1486.
+\blanko
+Andere steden in de omgeving van Hasselt waren bang voor de
+hoge tolgelden die Hasselt bij passage over zo'n brug zou
+kunnen vragen. Deze steden hebben de bouw lange tijd
+tegengehouden.
+\stopkadertekst
+\stopbuffer
+
+\typebuffer
+
+Dit voorbeeld illustreert het commando
+\type{\definieerplaatsblok}. Meer informatie vindt u in
+\in{paragraaf}[tekstblokken]. De \type{\blanko} is
+noodzakelijk om een lege regel af te dwingen.
+
+\haalbuffer
+
+Het omkaderen wordt ingesteld met:
+
+\shortsetup{stelkadertekstenin}
+
+\stoponderdeel

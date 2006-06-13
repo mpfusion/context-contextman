@@ -1,0 +1,59 @@
+\startonderdeel ma-cb-nl-specialcharacters
+
+\produkt ma-cb-nl
+
+\hoofdstuk[speciale kars]{Speciale karakters}
+
+\index{speciale karakters}
+
+U heeft gezien dat \CONTEXT\ commando's beginnen met een
+\tex{} (backslash). Dit betekent dat \tex{} een speciale
+betekenis heeft voor \CONTEXT. Naast \tex{} zijn er
+andere karakters die speciale aandacht nodig hebben wanneer
+ze in getypte of gezette vorm moeten worden weergegeven.
+\in{Tabel}[tab:speckars] geeft een overzicht van deze
+speciale karakters en de manier waarop ze moeten worden
+ingevoerd om ze correct te kunnen weergeven in uw document.
+
+\let\normalunderscore=\_
+\let\normaltilde     =\~
+
+\plaatstabel[hier,forceer][tab:speckars]
+  {Speciale karakters (1).}
+  \starttabel[|c|c|c|c|c|]
+  \HL
+  \NC \bf \LOW{Speciaal karakter} \NC \use2 \bf Getypte vorm \NC \use2 \bf Gezette vorm \NC\FR
+  \NC                         \NC \bf Type \NC \bf Geeft \NC \bf Type \NC \bf Geeft \NC\LR
+  \HL
+  \NC \type{#} \NC \type{\type{#}} \NC \type{#} \VL \type{\#} \NC \# \NC\FR
+  \NC \type{$} \NC \type{\type{$}} \NC \type{$} \VL \type{\$} \NC \$ \NC\MR
+  \NC \type{&} \NC \type{\type{&}} \NC \type{&} \VL \type{\&} \NC \& \NC\MR
+  \NC \type{%} \NC \type{\type{%}} \NC \type{%} \VL \type{\%} \NC \% \NC\LR
+  \HL
+  \stoptabel
+
+Andere speciale karakters hebben een betekenis bij het
+zetten van mathematische formules en de meeste kunnen alleen
+in mathematische mode\voetnoot{Het woord {\em mode} is
+dusdanig ingeburgerd dat de auteurs het niet nodig
+achtten het woord te vervangen door {\em toestand}.} worden
+gebruikt (zie \in{hoofdstuk}[formules]).
+
+\plaatstabel
+  [hier,forceer]
+  [tab:speciale kars]
+  {Speciale karakters (2).}
+  \starttabel[|c|c|c|c|c|]
+  \HL
+  \NC \bf \LOW{Speciale karakters} \NC \use2 \bf Getypte vorm \NC \use2 \bf Gezette vorm \NC\FR
+  \NC                         \NC \bf Type \NC \bf Geeft \NC \bf Type \NC \bf Geeft \NC\LR
+  \HL
+  \NC \type{+} \NC \type{\type{+}} \NC \type{+} \VL \type{$+$} \NC $+$ \NC\FR
+  \NC \type{-} \NC \type{\type{-}} \NC \type{-} \VL \type{$-$} \NC $-$ \NC\MR
+  \NC \type{=} \NC \type{\type{=}} \NC \type{=} \VL \type{$=$} \NC $=$ \NC\MR
+  \NC \type{<} \NC \type{\type{<}} \NC \type{<} \VL \type{$<$} \NC $<$ \NC\MR
+  \NC \type{>} \NC \type{\type{>}} \NC \type{>} \VL \type{$>$} \NC $>$ \NC\LR
+  \HL
+  \stoptabel
+
+\stoponderdeel

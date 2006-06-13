@@ -1,0 +1,95 @@
+\startonderdeel ma-cb-nl-descriptions
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Definities}
+
+\index{definities}
+
+\Command{\tex{doordefinieren}}
+\Command{\tex{steldoordefinierenin}}
+
+Om definities, begrippen en concepten enigszins consistent
+weer te geven, wordt gebruik gemaakt van:
+
+\shortsetup{doordefinieren}
+
+Bijvoorbeeld:
+
+\startbuffer
+\doordefinieren
+  [concept]
+  [plaats=aanelkaar,kopletter=vet,breedte=ruim]
+
+\concept{Hasselter juffer} Een traditioneel koekje van
+besuikerd bladerdeeg. Erg zoet en erg lekker. Vergelijkbaar
+met het Arnhemse meisje (krakeling). \par
+\stopbuffer
+
+\typebuffer
+
+Een dergelijke definitie wordt als volgt weergegeven:
+
+\haalbuffer
+
+Maar het is ook mogelijk om een andere vormgeving te kiezen:
+
+\startbuffer
+\doordefinieren
+  [concept]
+  [plaats=boven,
+   kopletter=vet,
+   breedte=ruim,
+   letter=schuin]
+
+\concept{Hasselter bitter} Een sterk alcoholische drank (tot
+40\%) gemengd met kruiden om een specifieke smaak te
+verkrijgen. Het wordt verkocht in een stenen kruik en dient
+koud te worden geserveerd. \par
+
+\doordefinieren
+  [concept]
+  [plaats=inmarge,kopletter=vet,breedte=ruim]
+
+\concept{Euifeest} Een hooifeest om het einde van een periode
+van hard werken af te sluiten. De festiviteiten vinden in de
+laatste week van augustus plaats. \par
+\stopbuffer
+
+\start
+\haalbuffer
+\stop
+
+Indien de definitie uit meer dan een alinea bestaat kunt u
+\type{\start...} $\cdots$ \type{\stop...} gebruiken.
+
+\startbuffer
+\doordefinieren
+  [concept]
+  [plaats=rechts,
+   kopletter=vet,
+   breedte=ruim]
+
+\startconcept{Euifeest}
+Een hooifeest om een periode van hard werken af te sluiten.
+Het feest vindt plaats aan het eind van augustus en duurt
+een week.
+De stad wordt volledig versierd en verlicht en dit heeft
+Hasselt de bijnaam {\em Lichtstad van het Noorden} gegeven.
+Het feest eindigt in een traditionele braderie.
+\stopconcept
+\stopbuffer
+
+\typebuffer
+
+Dit wordt:
+
+\haalbuffer
+
+De vormgeving kan worden vastgelegd binnen het tweede paar
+van vierkante haken in \type{\doordefinieren[][]}. Meestal
+wordt dit echter gedaan met het commando:
+
+\shortsetup{steldoordefinierenin}
+
+\stoponderdeel

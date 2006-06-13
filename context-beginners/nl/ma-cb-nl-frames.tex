@@ -1,0 +1,61 @@
+\startonderdeel ma-cb-nl-frames
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Omlijnde tekst}
+
+\index{omlijnd+tekst}
+
+\Command{\tex{omlijnd}}
+\Command{\tex{stelomlijnenin}}
+\Command{\tex{inlijnd}}
+
+Tekst kan met \type{\omlijnd} worden \inlijnd{omlijnd}. Het
+commando ziet er als volgt uit:
+
+\shortsetup{omlijnd}
+
+De vierkante haken zijn optioneel en bevatten de
+instellingen. De accolades bevatten de te omlijnen tekst.
+
+\startbuffer
+\omlijnd[hoogte=3em,breedte=passend]{Hasselt krijgt de ruimte}
+\stopbuffer
+
+\typebuffer
+
+Dit wordt:
+
+\startregelcorrectie
+\haalbuffer
+\stopregelcorrectie
+
+Een ander voorbeeld van \type{\omlijnd} met de instellingen
+wordt hieronder getoond. We gebruiken hier overigens een
+variant die rekening houdt met de regeldiepte:
+\type{\inlijnd}.
+
+\startbuffer
+\regellinks
+  {\inlijnd[breedte=passend]{Inwoners van Hasselt}}
+\regelmidden
+  {\inlijnd[hoogte=1.5cm,kader=uit]{hebben een}}
+\regelrechts
+  {\inlijnd[achtergrond=raster]{historische achtergrond}}
+\stopbuffer
+
+\typebuffer
+
+Dit leidt tot:
+
+\startregelcorrectie
+\haalbuffer
+\stopregelcorrectie
+
+Het \type{\omlijnd}||commando is zeer geavanceerd en wordt
+in zeer veel macro's ingezet. Het commando wordt ingesteld
+met:
+
+\shortsetup{stelomlijndin}
+
+\stoponderdeel

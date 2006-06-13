@@ -1,0 +1,88 @@
+\startonderdeel ma-cb-nl-pages
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Pagina's en paginanummering}
+
+\index{paginanummering}
+
+\Command{\tex{pagina}}
+\Command{\tex{stelnummeringin}}
+\Command{\tex{startuitstellen}}
+
+Een pagina||overgang wordt afgedwongen of geblokkeerd met:
+
+\shortsetup{pagina}
+
+De eventuele opties worden tussen vierkante haakjes
+geplaatst. De opties worden in \in{tabel}[tab:pagina opties]
+toegelicht.
+
+\plaatstabel
+  []
+  [tab:pagina opties]
+  {Pagina opties.}
+\starttabel[|l|l|]
+\HL
+\NC \bf Optie \NC \bf Betekenis \NC\SR
+\HL
+\NC \type{ja}            \NC gedwongen pagina--overgang \NC\FR
+\NC \type{opmaak}        \NC gedwongen pagina--overgang zonder opvullen \NC\MR
+\NC \type{nee}           \NC geen pagina--overgang \NC\MR
+\NC \type{voorkeur}      \NC bij voorkeur hier een pagina--overgang \NC\MR
+\NC \type{grotevoorkeur} \NC bij grote voorkeur hier een pagina--overgang \NC\MR
+\NC \type{links}         \NC volgende pagina is een linker pagina \NC\MR
+\NC \type{rechts}        \NC volgende pagina is een rechter pagina  \NC\MR
+\NC \type{blokkeer}      \NC volgende commando geen effect \NC\MR
+\NC \type{reset}         \NC volgende commando heeft effect \NC\MR
+\NC \type{leeg}          \NC voeg een lege pagina toe \NC\MR
+\NC \type{laatste}       \NC vul pagina's aan tot een even nummer \NC\MR
+\NC \type{viertal}       \NC vul pagina's aan tot een viertal is bereikt \NC\LR
+\HL
+\stoptabel
+
+Paginanummering vindt automatisch plaats, maar nummers
+kunnen worden afgedwongen met:
+
+\starttypen
+\pagina[25]
+\stoptypen
+
+Soms is het beter om een relatief paginanummer in te voeren
+(indien vooraf niet bekend is welk paginanummer de laatste
+pagina heeft) \type{[+2]} of \type{[-2]}.
+
+De positie van de paginanummers op een pagina hangen af van
+uw eigen voorkeur en of het gaat om een enkel- of
+dubbelzijdig document. Het nummeren van pagina's wordt
+ingesteld met:
+
+\shortsetup{stelnummeringin}
+
+De voorkeuren worden tussen de vierkante haakjes geplaatst.
+
+Tabellen en figuren nemen nogal wat ruimte in op een pagina.
+Het plaatsen van dergelijke tekstelementen kan tijdelijk
+worden uitgesteld, zodat u zelf kunt bepalen waar de figuren
+en tabellen worden geplaatst. Dit wordt gedaan met:
+
+\shortsetup{startuitstellen}
+
+Als u bijvoorbeeld typt:
+
+\startbuffer
+\startuitstellen
+\plaatsfiguur
+  {Een uitgesteld figuur.}
+  {\externfiguur[ma-cb-16][breedte=\tekstbreedte]}
+\stopuitstellen
+\stopbuffer
+
+\typebuffer
+
+De figuur wordt bovenaan de volgende pagina geplaatst,
+waardoor de lopende tekst zo min mogelijk wordt verstoord.
+
+\haalbuffer
+
+\stoponderdeel

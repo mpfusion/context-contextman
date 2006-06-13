@@ -1,0 +1,258 @@
+\startonderdeel ma-cb-nl-interactivity
+
+\produkt ma-cb-nl
+
+\hoofdstuk{Interactiviteit in elektronische documenten}
+
+\paragraaf{Inleiding}
+
+\index[reader]{\READER}
+\index[exchange]{\EXCHANGE}
+\index[distiller]{\DISTILLER}
+
+Documenten kunnen elektronisch worden uitgegeven, zodat ze
+op een computer kunnen worden geraadpleegd en op een scherm
+kunnen worden weergegeven.
+
+Interactiviteit betekent dat specifieke gebieden in het
+document actief (hyperlinks) zijn gemaakt. Dit houdt in dat
+die gebieden (meestal met de muis) kunnen worden
+geselecteerd en aangeklikt. Het aanklikken resulteert in een
+sprong naar het aangewezen doelgebied. Bij het raadplegen
+van een index kan bijvoorbeeld op een ingang worden geklikt,
+waarna naar de corresponderende pagina wordt gesprongen.
+
+Interactie heeft betrekking op:
+
+\startopsomming[opelkaar]
+\som actieve hoofdstuknummers in inhoudsopgaven
+\som actieve paginanummers in registers
+\som actieve paginanummers, hoofdstuknummers en
+     figuurnummers in verwijzingen naar pagina's,
+     hoofdstukken, figuren enz.
+\som actieve titels, paginanummer, hoofdstuknummers in
+     externe verwijzingen naar andere interactieve
+     documenten
+\som actieve menu's ten behoeve van navigatie hulpmiddelen
+\stopopsomming
+
+De interactiviteit hangt af van het programma dat wordt
+gebruikt voor het bekijken van het document. In deze
+handleiding wordt ervan uitgegaan dat u \PDFTEX\ gebruikt
+voor het produceren van uw \PDF||documenten of \DISTILLER\
+gebruikt voor het omzetten van uw \POSTSCRIPT||documenten.
+Vervolgens kunt u die documenten bekijken of raadplegen met
+\READER, \EXCHANGE\ of \GHOSTVIEW.
+
+\CONTEXT\ is een zeer goed hulpmiddel voor de produktie van
+elektronische of interactieve \PDF||documenten. In deze
+handleiding wordt slechts een klein deel van de
+functionaliteit besproken. De auteurs hebben echter besloten
+alle documenten rond \CONTEXT, inclusief de broncode, tevens
+elektronisch beschikbaar te maken, zodat u een goed inzicht
+kan krijgen in de mogelijkheden van \CONTEXT.
+
+\paragraaf{Interactie}
+
+\index{interactie}
+
+\Command{\tex{stelinteractiein}}
+
+Interactiviteit wordt geactiveerd door:
+
+\shortsetup{stelinteractiein}
+
+Bijvoorbeeld:
+
+\startbuffer
+\stelinteractiein
+  [status=start,
+   kleur=groen,
+   letter=vet]
+\stopbuffer
+
+\typebuffer
+
+De zogenaamde hyperlinks worden nu automatisch gegenereerd
+en actieve woorden worden vetgroen weergegeven.
+
+Het interactieve document is aanzienlijk groter (in
+MegaBytes) dan zijn papieren tegenhanger, omdat hyperlinks
+ruimte in beslag nemen. Ook de verwerkingstijd van een
+document neemt toe. Het is daarom verstandig de interactie
+pas te activeren als het document zijn eindstadium heeft
+bereikt.
+
+\paragraaf{Interactie binnen een document}
+
+\Command{\tex{in}}
+\Command{\tex{op}}
+\Command{\tex{naar}}
+
+In \in{hoofdstuk}[verwijzen] heeft u gezien dat u
+verwijzingen kunt aanmaken met \type{\in} en \type{\op}. U
+zult zich wellicht hebben afgevraagd waarom u ook {\em
+hoofdstuk} moest intypen bij een verwijzing als
+\type{\in{hoofdstuk}[introductie]}. In de eerste plaats
+worden {\em hoofdstuk} en het corresponderende nummer niet
+van elkaar gescheiden bij regelovergangen. In de tweede
+plaats worden zowel het woord {\em hoofdstuk} als het
+hoofdstuknummer in de interactieve toestand afwijkend gezet
+(meestal vet groen) en worden beide aanklikbaar. Hierdoor
+kan de gebruiker makkelijker een doelgebied selecteren.
+
+Er is een commando dat alleen betekenis heeft
+in een interactief document.
+
+\shortsetup{naar}
+
+De accolades bevatten tekst en de haken omsluiten de
+verwijzing.
+
+\startbuffer
+In \naar{Hasselt}[fig:cityplan] zijn de straten
+cirkelvormig aangelegd.
+\stopbuffer
+
+\typebuffer
+
+In het interactieve document is {\em Hasselt} groen
+en actief. Er wordt een sprong gerealiseerd naar een kaart
+van Hasselt.
+
+\paragraaf{Interactie tussen documenten}
+
+\Command{\tex{uit}}
+\Command{\tex{gebruikexterndocument}}
+
+Het is mogelijk om van en naar meerdere documenten te
+springen. Allereerst dient u het document te defini\"eren
+waarnaar u wilt verwijzen.
+
+\shortsetup{gebruikexterndocument}
+
+De eerste haken bevatten een logische naam voor het externe
+document, het tweede paar de filenaam zonder extensie en het
+derde paar wordt gebruikt voor een titel van het document.
+
+Vervolgens kunt u refereren naar het externe document met:
+
+\shortsetup{uit}
+
+De accolades bevatten tekst en de vierkante haken de
+verwijzing. Hierna volgt een voorbeeld.
+
+\startbuffer
+\gebruikexterndocument[hia][hasboek][Hasselt in augustus]
+
+De meeste toeristische attracties worden beschreven in
+\uit[hia]. Een beschrijving van het Eui||feest wordt gegeven
+in \uit[hia::euifeest]. Een beschrijving van het
+\naar{Eui--feest}[hia::euifeest] vindt u in \uit[hia]. Het
+eui||feest is beschreven op \op{pagina}[hia::euifeest] in
+\uit[hia]. Zie voor meer informatie
+\in{hoofdstuk}[hia::euifeest] in \uit[hia].
+\stopbuffer
+
+\typebuffer
+
+Het commando \type{\gebruikexterndocument} wordt meestal in
+het instelgebied van de invoerfile gedefinieerd.
+
+De dubbele \type{::} geven aan dat het gaat om een
+referentie naar een extern document.
+
+Na het verwerken van uw invoerfile en de file
+\type{hasboek.tex} (allebei ten minste twee maal verwerkt
+ten behoeve van de referenties) heeft u twee
+\PDF||documenten. De referenties hierboven hebben de
+volgende betekenis:
+
+\startopsomming[opelkaar]
+\som \type{\uit[hia]} produceert een actieve titel die u in
+     het derde hakenpaar van het commando
+     \type{\gebruikexterndocument} heeft gedefinieerd en is
+     gelinked (verwijst) naar de eerste pagina van
+     \type{hasboek.pdf}
+\som \type{\uit[hia::euifeest]} produceert een actieve titel
+     en is gelinked (verwijst) naar de pagina waar hoofdstuk {\em
+     Eui||feest} begint
+\som \type{\naar{Eui--feest}[hia::euifeest]} produceert een
+     actief woord {\em Eui||feest} en is gelinked (verwijst)
+     naar de pagina waar hoofdstuk {\em Eui||feest} begint
+\som \type{\op{pagina}[hia::euifeest]} produceert een actief
+     woord {\em pagina} en paginanummer en is gelinked
+     (verwijst) naar die pagina
+\som \type{\in{hoofdstuk}[hia::euifeest]} produceert een
+     actief woord {\em hoofdstuk} en hoofdstuknummer en is
+     gelinked aan dat hoofdstuk
+\stopopsomming
+
+Zoals u ziet scheidt de \type{::} de (logische) filenaam
+en het doelgebied.
+
+\paragraaf{Menu's}
+
+U kunt navigatiehulpmiddelen defini\"eren met:
+
+\shortsetup{definieerinteractiemenu}
+
+De eerste haakjes zijn bedoeld voor een logische naam van
+het menu, waarmee het menu in een later stadium kan worden
+opgeroepen. Het tweede paar wordt gebruikt om de plaats op
+het scherm vast te leggen. Het derde paar bevat de
+instellingen.
+
+Een menudefinitie kan er als volgt uitzien:
+
+\startbuffer
+\stelkleurenin
+  [status=start]
+
+\stelinteractiein
+  [status=start,
+   menu=aan]
+
+\definieerinteractiemenu
+  [mijnmenu]
+  [rechts]
+  [status=start,
+   uitlijnen=midden,
+   achtergrond=raster,
+   kader=aan,
+   breedte=\margebreedte,
+   letter=kleinvet,
+   kleur=]
+
+\stelinteractiemenuin
+  [mijnmenu]
+  [{Inhoud[inhoud]},
+   {Index[index]},
+   {\vfill},
+   {Stoppen[VerlaatViewer]}]
+\stopbuffer
+
+\typebuffer
+
+Deze definitie produceert een menu aan de rechterkant van
+ieder scherm. De menuknoppen bevatten de teksten {\em
+Inhoud}, {\em Index} en {\em Stoppen} en hebben
+respectievelijk de volgende functies: een sprong naar de
+inhoudsopgave, een sprong naar de index en het verlaten van
+de viewer. De labels \type{inhoud} en \type{index} zijn
+voorgedefinieerd. Andere voorgedefinieerde locaties zijn
+\type{EerstePagina}, \type{LaatstePagina},
+\type{VolgendePagina} en \type{VorigePagina}.
+
+Een actie als \type{VerlaatViewer} is nodig om het
+elektronische document zo onafhankelijk mogelijk te maken
+van de viewer. Andere voorgedefinieerde acties zijn
+\type{VorigeSprong}, \type{DoorzoekDocument} en
+\type{PrintDocument}. De betekenis van deze acties spreken
+voor zich.
+
+Menu's worden ingesteld met:
+
+\shortsetup{stelinteractiemenuin}
+
+\stoponderdeel

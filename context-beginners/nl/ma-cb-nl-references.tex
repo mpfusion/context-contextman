@@ -1,0 +1,122 @@
+\startonderdeel ma-cb-nl-references
+
+\produkt ma-cb-nl
+
+\hoofdstuk[verwijzen]{Verwijzen naar tekstelementen}
+
+\index{verwijzen}
+\index{label}
+
+\Command{\tex{in}}
+\Command{\tex{op}}
+\Command{\tex{paginareferentie}}
+
+Om te verwijzen van de ene naar de andere plaats in het
+document kan het volgende commando worden gebruikt:
+
+\shortsetup{in}
+
+De accolades bevatten tekst, de haken bevatten een logische
+naam (een label). Als u in een document een volgend
+hoofdstuk hebt gedefinieerd:
+
+\starttypen
+\hoofdstuk[hotel]{Hotels in Hasselt}
+\stoptypen
+
+dan kunt u naar dat hoofdstuk verwijzen met:
+
+\starttypen
+\in{hoofdstuk}[hotel]
+\stoptypen
+
+Na verwerking is het hoofdstuknummer beschikbaar en de
+verwijzing zou er als volgt uit kunnen zien: {\em hoofdstuk
+23}. Het commando \type{\in} wordt gebruikt voor allerlei
+verwijzingen naar hoofdstukken, paragrafen, figuren,
+tabellen, formules enz.
+
+Een ander voorbeeld:
+
+\startbuffer
+Er is een aantal dingen dat u in Hasselt kunt doen:
+
+\startopsomming[n,opelkaar]
+\som zwemmen
+\som zeilen
+\som[wandelen] wandelen
+\som fietsen
+\stopopsomming
+
+Activiteiten als \in{activiteit}[wandelen] die zijn
+beschreven op \op{pagina}[wandelen] zijn erg vermoeiend.
+\stopbuffer
+
+\typebuffer
+
+Dit komt er als volgt uit te zien:
+
+\haalbuffer
+
+Het label \type{wandelen} geeft dus een itemnummer terug,
+maar ook een paginanummer. Het is dus mogelijk om naar
+pagina's te verwijzen met:
+
+\shortsetup{op}
+
+Bijvoorbeeld met:
+
+\starttypen
+\op{pagina}[wandelen]
+\stoptypen
+
+Dit commando wordt veel gebruikt in combinatie met:
+
+\shortsetup{paginareferentie}
+
+en
+
+\shortsetup{tekstreferentie}
+
+Als u naar het hoofdstuk {\em Hotels in Hasselt} en de
+bijbehorende bladzijde wilt verwijzen, kunt u bijvoorbeeld
+de volgende tekst invoeren:
+
+\startbuffer
+Kijk in \in{hoofdstuk}[hotel] op \op{pagina}[hotel] voor een
+compleet overzicht van  accomodaties in
+\paginareferentie[accomodaties]Hasselt.
+\stopbuffer
+
+\typebuffer
+
+Er worden een hoofdstuknummer en een paginanummer
+gegenereerd bij het verwerken van de invoerfile. Op andere
+plaatsen in het document kan naar de locatie
+\type{accomodaties} worden verwezen met
+\type{\op{pagina}[accomodaties]}.
+
+Het is ook toegestaan om een serie labels te defini\"eren:
+
+\startbuffer
+\plaatsfiguur
+  [hier]
+  [fig:eengracht,fig:eenboot]
+  {Een gracht in Hasselt.}
+  {\externfiguur[ma-cb-08][breedte=10cm]}
+
+Er zijn veel grachten in Hasselt (zie \in{figuur}[fig:eengracht]).
+.
+.
+.
+Boten mogen gewoon in de gracht aanleggen (zie
+\in{figuur}[fig:eenboot]).
+\stopbuffer
+
+\typebuffer
+
+Dit wordt:
+
+\haalbuffer
+
+\stoponderdeel
