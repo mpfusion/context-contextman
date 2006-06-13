@@ -1,0 +1,85 @@
+\startcomponent ma-cb-en-pages
+
+\product ma-cb-en
+
+\chapter{Page breaking and page numbering}
+
+\index{page breaking}
+\index{page numbering}
+
+\Command{\tex{page}}
+\Command{\tex{setuppagenumbering}}
+\Command{\tex{startpostponing}}
+
+A page can be enforced or blocked by:
+
+\shortsetup{page}
+
+The options can be stated within the brackets. The options
+and their meaning are presented in \in{table}[tab:page
+options]
+
+\placetable
+  []
+  [tab:page options]
+  {Page options.}
+\starttable[|l|l|]
+\HL
+\NC \bf Option \NC \bf Meaning \NC\SR
+\HL
+\NC \type{yes}           \NC enforce a page \NC\FR
+\NC \type{makeup}        \NC enforce a page without filling \NC\MR
+\NC \type{no}            \NC no page \NC\MR
+\NC \type{preference}    \NC prefer a new page here \NC\MR
+\NC \type{bigpreference} \NC great preference for a new page here \NC\MR
+\NC \type{left}          \NC next page is a left handside page \NC\MR
+\NC \type{right}         \NC next page is a right handside page \NC\MR
+\NC \type{disable}       \NC following commands have no effect \NC\MR
+\NC \type{reset}         \NC following commands do have effect \NC\MR
+\NC \type{empty}         \NC insert an empty page \NC\MR
+\NC \type{last}          \NC add pages till even number is reached \NC\MR
+\NC \type{quadruple}     \NC add pages till a multiple of four
+  is reached  \NC\LR
+\HL
+\stoptable
+
+Page numbering happens automatically but you can enforce
+a page number with:
+
+\starttyping
+\page[25]
+\stoptyping
+
+Sometimes it is better to state a relative page number like
+\type{[+2]} or \type{[-2]}.
+
+The position of the page numbers on a page depend on your own
+preferences and if it concerns a one sided or double sided
+document. Page numbering can be set up with:
+
+\shortsetup{setuppagenumbering}
+
+The preferences are placed within the brackets.
+
+Tables or figures may take up a lot of space. The placing of
+these text elements can be postponed till the next page break.
+This is done with:
+
+\shortsetup{startpostponing}
+
+\startbuffer
+\startpostponing
+\placefigure
+  {A postponed figure.}
+  {\externalfigure[ma-cb-16][width=\textwidth]}
+\stoppostponing
+\stopbuffer
+
+\typebuffer
+
+The figure will be placed at the top of next page and will
+cause minimal disruption of the running text.
+
+\getbuffer
+
+\stopcomponent

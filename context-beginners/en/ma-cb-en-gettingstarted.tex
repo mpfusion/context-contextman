@@ -1,0 +1,86 @@
+\startcomponent ma-cb-en-gettingstarted
+
+\product ma-cb-en
+
+\chapter{How to process a file}
+
+\index{input file+processing}
+\index[dvifile]{\type{dvi}--file}
+\index[pdffile]{\type{pdf}--file}
+
+If you want to process a \CONTEXT\ input file, you might
+type at the command line prompt:
+
+\starttyping
+context filename
+\stoptyping
+
+The availability of the batch command \type{context} depends
+on the system you're using. Ask your system administrator
+the command you use to start \CONTEXT. If your filename is
+\type{myfile.tex} this can be:
+
+\starttyping
+context myfile
+\stoptyping
+
+or when \TEXEXEC\ is properly installed:
+
+\starttyping
+texexec --pdf myfile
+\stoptyping
+
+the extension \type{.tex} is not needed.
+
+After pressing \Enter\ processing will be started. \CONTEXT\
+will show processing information on your screen. If
+processing is succesful the command line prompt will return
+and \CONTEXT\ will produce a \type{dvi} or \type{pdf} file.
+
+If processing is not succesful ---for example because you
+typed \type{\stptext} instead of \type{\stoptext}---
+\CONTEXT\ produces a \type{ ? } on your terminal and tells
+you it has just processed an error. It will give you some
+basic information on the type of error and the line number
+where the error becomes effective.
+
+At the instant of \type{ ? } you can type:
+
+\starttabulate[|||]
+\NC \type{H} \NC for help information on your error \NC\NR
+\NC \type{I} \NC for inserting the correct \CONTEXT\ command \NC\NR
+\NC \type{Q} \NC for quiting and entering batch mode \NC\NR
+\NC \type{X} \NC for exiting the running mode \NC\NR
+\NC \Enter   \NC for ignoring the error \NC\NR
+\stoptabulate
+
+Most of the time you will type \Enter\ and processing will
+continue. Then you can edit the input file and fix the error.
+
+Some errors will produce a~\type{ * } on your screen and
+processing will stop. This error is due to a fatal error in
+your input file. You can't ignore this error and the only
+option you have is to type \type{\stop} or {\sc Ctrl}~Z. The
+program will be halted and you can fix the error.
+
+During the processing of your input file \CONTEXT\ will also
+inform you of what it is doing with your document. For
+example it will show page numbers and information about
+process steps. Further more it gives warnings. These are of
+a typographical order and tells you when line breaking is not
+successful. All information on processing is stored in a
+\type{log} file that can be used for reviewing warnings and
+errors and the respective line numbers where they occur in
+your file.
+
+When processing is succesful \CONTEXT\ produces a new file,
+with the extension \type{.dvi} or \type{.pdf} so the files
+\type{myfile.dvi} or \type{myfile.pdf} are generated. The
+abbreviation \type{dvi} stands for Device Indepent. This
+means that the file can be processed by a suitable
+PostScript (\PS) printer driver to make the file suitable
+for printing or viewing. The abbreviation \PDF\ stands for
+Portable Document Format. This is a platform independent
+format for printing and viewing.
+
+\stopcomponent

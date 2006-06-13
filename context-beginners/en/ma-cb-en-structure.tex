@@ -1,0 +1,58 @@
+\startcomponent ma-cb-en-structure
+
+\product ma-cb-en
+
+\chapter{Defining a document}
+
+Every document is started with \type{\starttext} and closed
+with \type{\stoptext}. All textual input is placed between
+these two commands and \CONTEXT\ will only process that
+information.
+
+Setup information is placed in the set up area just before
+\type{\starttext}.
+
+\startbuffer
+\setupbodyfont[12pt]
+\starttext
+This is a one line document.
+\stoptext
+\stopbuffer
+
+\typebuffer
+
+Within the \type{\starttext} $\cdots$ \type{\stoptext} a
+document can be divided into four main divisions:
+
+\startitemize[n,packed]
+\item front matter
+\item body matter
+\item back matter
+\item appendices
+\stopitemize
+
+The divisions are defined with:
+
+\starttyping
+\startfrontmatter ... \stopfrontmatter
+\startbodymatter  ... \stopbodymatter
+\startbackmatter  ... \stopbackmatter
+\startappendices  ... \stopappendices
+\stoptyping
+
+In the front matter as well as back matter section the
+command \type{\chapter} produces an un-numbered header in
+the table of contents. This section is mostly used for the
+table of contents, the list of figures and tables, the
+preface, the acknowledgements etc. This section often
+has a roman page numbering.
+
+The appendices section is used for (indeed) appendices.
+Headers may be typeset in a different way; for example,
+\type{\chapter} may be numbered alphabetically.
+
+Section style can be set up with:
+
+\shortsetup{setupsectionblock}
+
+\stopcomponent

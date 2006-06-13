@@ -1,0 +1,55 @@
+\startcomponent ma-cb-en-color
+
+\product ma-cb-en
+
+\chapter{Color}
+
+\index{color}
+
+\Command{\tex{setupcolors}}
+\Command{\tex{color}}
+\Command{\tex{definecolor}}
+
+Text can be set in color.
+
+\shortsetup{setupcolors}
+
+The use of colors has to be
+activated by:
+
+\starttyping
+\setupcolors[state=start]
+\stoptyping
+
+Now the basic colors are available (red, green and blue).
+
+\startbuffer
+\startcolor[red]
+Hasselt is a very \color[green]{colorful} town.
+\stopcolor
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+On a black and white printer you will see only grey shades.
+In an electronic document these colors will be as expected.
+
+You can define your own colors with:
+
+\shortsetup{definecolor}
+
+For example:
+
+\startbuffer
+\definecolor[darkred]   [r=.5,g=.0,b=.0]
+\definecolor[darkgreen] [r=.0,g=.5,b=.0]
+\stopbuffer
+
+\typebuffer
+
+Now the colors \type{darkred} and \type{darkgreen} are
+available.
+
+\stopcomponent

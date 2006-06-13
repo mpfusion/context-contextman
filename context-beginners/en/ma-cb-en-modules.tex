@@ -1,0 +1,118 @@
+\startcomponent ma-cb-en-modules
+
+\product ma-cb-en
+
+\chapter{Using modules}
+
+\index{module+chemic}
+\index{module+unit}
+\index{module+chart}
+\index{module+pictex}
+\index{chemical structures}
+\index{flowcharts}
+\index{units}
+
+\Command{\tex{usemodule}}
+
+For reasons of efficiency the author decided to implement
+some functionality of \CONTEXT\ by means of external
+modules. At this moment you can load the following modules:
+
+\startitemize[packed]
+\item \type{chemic} for typesetting chemical structures
+\item \type{units} for using \cap{SI} units
+\item \type{pictex} for drawing pictures (is used in
+      conjunction with module \type{chemic})
+\item \type{chart} for drawing flowcharts and organograms
+\stopitemize
+
+Loading is done in the set up area of your input file and done
+by means of:
+
+\shortsetup{usemodule}
+
+We have shown a number of examples of the module
+\type{units}. Below we give two examples of the
+modules \type{chemic} and \type{chart} without any further
+explanations. These modules are described in two separate
+manuals.
+
+Chemical structures may look very impressive.
+
+\startbuffer
+\placeformula[-]
+\startformula
+\startchemical[scale=small,width=fit,top=3000,bottom=3000]
+  \chemical[SIX,SB2356,DB14,Z2346,SR3,RZ3,-SR6,+SR6,-RZ6,+RZ6]
+           [C,N,C,C,H,H,H]
+  \chemical[PB:Z1,ONE,Z0,DIR8,Z0,SB24,DB7,Z27,PE][C,C,CH_3,O]
+  \chemical[PB:Z5,ONE,Z0,DIR6,Z0,SB24,DB7,Z47,PE][C,C,H_3C,O]
+  \chemical[SR24,RZ24][CH_3,H_3C]
+  \bottext{Compound A}
+\stopchemical
+\stopformula
+\stopbuffer
+
+\getbuffer
+
+\CONTEXT\ relies on \METAPOST\ to draw these kind of
+chemical structures. Although these chemical structures are
+defined with only two or three commands, it takes some
+practice to get the right results. This is how the input
+looks:
+
+\typebuffer
+
+While using the module \type{chart} a definition of an
+organogram may look like this:
+
+\setupFLOWcharts
+  [breedte=11\bodyfontsize,
+   hoogte=3\bodyfontsize,
+   dx=1\bodyfontsize,
+   dy=2\bodyfontsize]
+
+\setupFLOWlines
+  [pijl=nee]
+
+\startbuffer
+\startFLOWchart[organogram]
+  \startFLOWcell
+    \shape    {action}
+    \name     {01}
+    \location {2,1}
+    \text     {Hasselt}
+    \connect  [bt]{02}
+    \connect  [bt]{03}
+    \connect  [bt]{04}
+  \stopFLOWcell
+  \startFLOWcell
+    \shape    {action}
+    \name     {02}
+    \location {1,2}
+    \text     {Mastenbroek}
+  \stopFLOWcell
+  \startFLOWcell
+    \shape    {action}
+    \name     {03}
+    \location {2,2}
+    \text     {Genne}
+  \stopFLOWcell
+  \startFLOWcell
+    \shape    {action}
+    \name     {04}
+    \location {3,2}
+    \text     {Zwartewaterklooster}
+  \stopFLOWcell
+\stopFLOWchart
+
+\FLOWchart[organogram]
+\stopbuffer
+
+\typebuffer
+
+The result will be:
+
+\midaligned{\getbuffer}
+
+\stopcomponent

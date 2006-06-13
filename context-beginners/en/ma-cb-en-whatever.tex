@@ -1,0 +1,648 @@
+\startcomponent ma-cb-en-whatever
+
+\product ma-cb-en
+
+\chapter[]{Miscellaneous}
+
+\section{A titlepage}
+
+\index{titlepage}
+
+\Command{\tex{startstandardmakeup}}
+\Command{\tex{definemakeup}}
+\Command{\tex{setupmakeup}}
+
+In the first example of this manual on \at{page}[inputfile]
+we used the command:
+
+\shortsetup{start<<name>>makeup}
+
+This command can be used to define titlepages. Such a
+command is needed since title pages often have a different
+layout than that of the bodytext. With the command pair
+\type{\start ... \stopstandardmakeup} you can make up a page
+within the default page dimensions.
+
+A simple titlepage may look like this:
+
+\startbuffer
+\startstandardmakeup
+\blank
+\rightaligned{\tfd Hasselt in the 21st century}
+\blank
+\rightaligned{\tfb The future}
+\vfill
+\rightaligned{\tfa C. van Marle}
+\rightaligned{Hasselt, 2001}
+\stopstandardmakeup
+\stopbuffer
+
+\typebuffer
+
+In a doublesided document you have to go through some
+additional actions to typeset the back of the titlepage.
+
+\startbuffer
+\startstandardmakeup[doublesided=no]
+\blank
+\rightaligned{\tfd Hasselt in the 21st century}
+\blank
+\rightaligned{\tfb The future}
+\vfill
+\rightaligned{\tfa C. van Marle}
+\rightaligned{Hasselt, 2001}
+\stopstandardmakeup
+\startstandardmakeup[page=no]
+\vfill
+\copyright 2001
+
+This book is dedicated to the people living in Hasselt. We
+want to thank photographer J. Jonker for manipulating the
+photos in this book in such a way that readers can get a
+clear picture of Hasselt's future look.
+\stopstandardmakeup
+\stopbuffer
+
+\typebuffer
+
+Your own make ups can be made and set up with:
+
+\shortsetup{definemakeup}
+
+and
+
+\shortsetup{setupmakeup}
+
+\section[floatingblocks]{Floating blocks}
+
+\index{floating blocks}
+
+\Command{\tex{definefloat}}
+\Command{\tex{setupfloat}}
+\Command{\tex{setupfloats}}
+\Command{\tex{setupcaptions}}
+\Command{\tex{placeintermezzo}}
+
+A block in \CONTEXT\ is a text element, for example a table
+or a figure that you can process in a special way. You have
+already seen the use of \type{\placefigure} and
+\type{\placetable}. These are both examples of floating
+blocks. The floating mechanism is described in
+\in{chapter}[figures] and \in[tables].
+
+You can define these kind of blocks yourself with:
+
+\shortsetup{definefloat}
+
+The bracket pairs are used for the name in singular and
+plural form. For example:
+
+\starttyping
+\definefloat[intermezzo][intermezzi]
+\stoptyping
+
+Now the following commands are available:
+
+\starttyping
+\placeintermezzo[][]{}{}
+\startintermezzotext ... \stopintermezzotext
+\placelistofintermezzi
+\completelistofintermezzi
+\stoptyping
+
+The newly defined floating block can be set up with:
+
+\shortsetup{setupfloat}
+
+You can set up the layout of floating blocks with:
+
+\shortsetup{setupfloats}
+
+You can set up the numbering and the labels with:
+
+\shortsetup{setupcaption}
+
+These commands are typed in the set up area of your input
+file and will have a global effect on all floating blocks.
+
+\startbuffer
+\setupfloats[location=middle]
+\setupcaption[location=bottom,headstyle=boldslanted]
+
+\placeintermezzo{An intermezzo.}
+\startframedtext
+At the beginning of this century there was a tramline from Zwolle to
+Blokzijl via Hasselt. Other means of transport became more important
+and just before the second world war the tramline was stopped.
+Nowadays such a tramline would have been very profitable.
+\stopframedtext
+\stopbuffer
+
+\typebuffer
+
+\start
+\getbuffer
+\stop
+
+\section[textblocks]{Text blocks}
+
+\index{text blocks}
+
+\Command{\tex{defineblock}}
+\Command{\tex{useblocks}}
+\Command{\tex{hideblocks}}
+\Command{\tex{setupblock}}
+
+Another type of block is a text block. A text block for
+example is one or more paragraphs you want to use several times.
+
+You have to define a text block with:
+
+\shortsetup{defineblock}
+
+You give the name of text blocks between brackets;
+you can also type a list of names if you separate them by
+commas. For example you can define:
+
+\starttyping
+\defineblock[dutch]
+\stoptyping
+
+After defining the text block the following command is
+available:
+
+\starttyping
+\begindutch ... \enddutch
+\stoptyping
+
+Text blocks are manipulated with:
+
+\shortsetup{hideblocks}
+\shortsetup{useblocks}
+\shortsetup{keepblocks}
+\shortsetup{selectblocks}
+
+An example shows the possibilities of text blocks.
+
+\startbuffer
+\defineblock[dutch,english]
+
+\hideblocks[dutch,english]
+
+\beginenglish[dedemsvaart-e]
+After 1810 the Dedemsvaart brought some prosperity to Hasselt. All
+ships went through the canals of Hasselt and the shops on both
+sides of the canals prospered.
+\endenglish
+
+\begindutch[dedemsvaart-d]
+Sinds 1810 veroorzaakte de Dedemsvaart enige welvaart in Hasselt.
+Alle schepen voeren door de grachten en de winkels aan weerszijden
+van de gracht floreerden.
+\enddutch
+
+\useblocks[english][dedemsvaart-e]
+\stopbuffer
+
+\typebuffer
+
+This will result in:
+
+\getbuffer
+
+If you continue defining these blocks you could make
+a bilingual manual. For that purpose it is also possible to
+store the text blocks in an external file. This would look
+something like this:
+
+\startbuffer
+\setupblock[dutch][file=store-d]
+\stopbuffer
+
+\typebuffer
+
+The Dutch text blocks are stored in the file \type
+{store-d.tex} and the text fragments can be called upon by
+their logical names.
+
+\section{Storing text for later use}
+
+\index{storing text}
+
+\Command{\tex{startbuffer}}
+\Command{\tex{getbuffer}}
+\Command{\tex{typebuffer}}
+\Command{\tex{setupbuffer}}
+
+You can store information temporarily for future use in your
+document with:
+
+\shortsetup{startbuffer}
+
+For example:
+
+\starttyping
+\startbuffer[visit]
+If you want to see what Hasselt has in store you should come and
+visit it some time. If you take this manual with you, you will
+recognise some locations.
+\stopbuffer
+
+\getbuffer[visit]
+\stoptyping
+
+With \type{\getbuffer[visit]} you recall the stored text.
+The logical name is optional. With \type{\typebuffer[visit]}
+you get back the typeset version of the content of the
+buffer.
+
+Buffers are set up with:
+
+\shortsetup{setupbuffer}
+
+\section{Hiding text}
+
+\index{hiding text}
+
+\Command{\tex{starthiding}}
+
+Text can be hidden with:
+
+\shortsetup{starthiding}
+
+The text in between will not be processed.
+
+\section{Lines}
+
+\index{lines}
+
+\Command{\tex{hairline}}
+\Command{\tex{starttextrule}}
+\Command{\tex{thinrule}}
+\Command{\tex{thinrules}}
+\Command{\tex{setupthinrules}}
+
+There are many comands to draw lines. For a single line you
+type:
+
+\shortsetup{hairline}
+
+or:
+
+\shortsetup{thinrule}
+
+For more lines you type:
+
+\shortsetup{thinrules}
+
+Text in combination with lines is also possible:
+
+\startbuffer
+\starttextrule{Hasselt -- Amsterdam}
+If you draw a straight line from Hasselt to Amsterdam you would have
+to cover a distance of almost 145 \Kilo \Meter.
+\stoptextrule
+
+If you draw two straight lines from Hasselt to Amsterdam you would
+have to cover a distance of almost 290 \Kilo \Meter.
+
+Amsterdam \thinrules[n=3] Hasselt
+\stopbuffer
+
+\getbuffer
+
+\typebuffer
+
+You always have to be careful in drawing lines. Empty lines
+around \type{\thinrules} must not be forgotten and the
+vertical spacing is always a point of concern.
+
+You can set up line spacing with:
+
+\shortsetup{setupthinrules}
+
+There are a few complementary commands that might be very
+useful.
+
+\shortsetup{setupfillinrules}
+\shortsetup{setupfillinlines}
+
+These commands are introduced in the examples below:
+
+\startbuffer
+\setupfillinrules[width=2cm]
+\setupfillinlines[width=3cm]
+
+\fillinrules[n=1]{\bf name}
+\fillinrules[n=3]{\bf adress}
+
+\fillinline{Can you please state the \underbar{number} of houses
+            in Hasselt.} \par
+
+Strike out \overstrikes{Hasselt in this text}\periods[18]
+\stopbuffer
+
+\typebuffer
+
+This will become:
+
+\getbuffer
+
+These commands are used in questionaires. Text that is
+struck out or underlined will not be hyphenated.
+
+\section{Super- and subscript in text}
+
+\index{subscript}
+\index{superscript}
+
+\Command{\tex{low}}
+\Command{\tex{high}}
+\Command{\tex{lohi}}
+
+\startbuffer
+It is very easy to put \high{superscript} and \low{subscript} in your
+text. What would you call this version \lohi{subscript}{superscript}?
+It looks strange!
+\stopbuffer
+
+\getbuffer
+
+This ugly text was made with \type{\low{}}, \type{\high{}}
+and \type{\lohi{}{}}. The text was placed between the curly
+braces.
+
+\section{Date}
+
+\index{date}
+
+\Command{\tex{currentdate}}
+
+You can introduce the system date in your text with:
+
+\starttyping
+\currentdate
+\stoptyping
+
+\section{Positioning}
+
+\index{positioning}
+
+\Command{\tex{position}}
+\Command{\tex{setupositioning}}
+
+Sometimes you feel the need to position text on a page or
+within a text element. You can position text with:
+
+\shortsetup{position}
+
+The parenthesis enclose the $x,y$ coordinates, the curly
+braces enclose the text you want to position.
+
+You can set up the $x,y$ axes with:
+
+\shortsetup{setuppositioning}
+
+You can use units and scaling factors. An example will
+illustrate \type{\position}.
+
+\startbuffer
+\def\dicefive%
+  {\framed
+     [width=42pt,height=42pt,offset=0pt]
+     {\setuppositioning
+        [unit=pt,factor=12,xoffset=-11pt,yoffset=-8pt]%
+      \startpositioning
+        \position(1,1){$\bullet$}%
+        \position(1,3){$\bullet$}%
+        \position(2,2){$\bullet$}%
+        \position(3,1){$\bullet$}%
+        \position(3,3){$\bullet$}%
+      \stoppositioning}}
+
+\placefigure{This is five.}{\dicefive}
+\stopbuffer
+
+\typebuffer
+
+This is a rather complex example but it would look something
+like this.
+
+\getbuffer
+
+\section{Rotating text, figures and tables}
+
+\index{rotating}
+
+\Command{\tex{rotate}}
+
+In a number of cases you would like to rotate text or
+figures. You can rotate text and objects with:
+
+\shortsetup{rotate}
+
+The first bracket pair is optional. Within that bracket pair
+you specify the rotation: \type{rotation=90}. The curly
+braces contain the text or object you want to rotate.
+
+\startbuffer
+Hasselt got its municipal rights in 1252. From that time on it had
+the \rotate[rotation=90]{right} to use its own seal on official
+documents. This seal showed Holy Stephanus known as one of the first
+Christian martyrs, and was the \rotate[rotation=270]{patron} of
+Hasselt. After the Reformation the seal was redesigned and Stephanus
+lost his `holiness' and was from that time on depicted without his
+aureole.
+\stopbuffer
+
+\typebuffer
+
+This results in a very ugly paragraph:
+
+\getbuffer
+
+You can rotate a figure just as easily:
+
+\startbuffer
+\placefigure
+  [][fig:rotation]
+  {The 180 \Degrees\ rotated fishing port (de Vispoort).}
+  \rotate[rotation=180]{\externalfigure[ma-cb-15][width=10cm]}
+\stopbuffer
+
+\typebuffer
+
+You can see in \in{figure}[fig:rotation] that it is not
+always clear what you get when you rotate.
+
+\getbuffer
+
+We can set up rotating with:
+
+\shortsetup{setuprotate}
+
+\section{Carriage return}
+
+\index{carriage return}
+
+\Command{\tex{crlf}}
+\Command{\tex{startlines}}
+
+A new line can be enforced with:
+
+\shortsetup{crlf}
+
+When a number of lines should be followed by {\em carriage
+return and line feed} you can use:
+
+\shortsetup{startlines}
+
+\starttyping
+\startlines
+.
+.
+.
+\stoplines
+\stoptyping
+
+\startbuffer
+On a wooden panel in the town hall of Hasselt you can read:
+
+\startlines
+Heimelijcken haet
+eigen baet
+jongen raet
+Door diese drie wilt verstaen
+is het Roomsche Rijck vergaen.
+\stoplines
+
+This little rhyme contains a warning for the magistrates of
+Hasselt: don't allow personal benefits or feelings to
+influence your wisdom in decision making.
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+In a few commands new lines are generated by \type{\\}. For
+example if you type \type{\inmargin{in the\\margin}} then
+the text will be divided over two lines.
+
+\section{Hyphenation}
+
+\index{hyphenation}
+\index{language}
+
+\Command{\tex{mainlanguage}}
+\Command{\tex{language}}
+\Command{\tex{nl}}
+\Command{\tex{en}}
+\Command{\tex{fr}}
+\Command{\tex{sp}}
+\Command{\tex{de}}
+
+When writing multi-lingual texts you have to be aware of
+the fact that hyphenation may differ from one language to
+another.
+
+To activate a language you type:
+
+\shortsetup{mainlanguage}
+
+Between the brackets you fill in \type{nl}, \type{fr},
+\type{en}, \type{de} and \type{sp}.
+
+To change from one language to another you can use the
+shorthand versions:
+
+\starttyping
+\language[nl]  \language[en]  \language[de]
+\language[fr]  \language[sp]
+\stoptyping
+
+or
+
+\starttyping
+\nl  \en  \de  \fr  \sp
+\stoptyping
+
+An example:
+
+\startbuffer
+If you want to know more about Hasselt, the best book to read is
+probably {\nl \em Uit de geschiedenis van Hasselt} by
+F.~Peereboom.
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+If a word is wrongly hyphenated you can define points of
+hyphenation yourself. This is done in the set up area of
+your input file:
+
+\startbuffer
+\hyphenation{his-to-ry}
+\stopbuffer
+
+\typebuffer
+
+\section{Comment in input file}
+
+\index{comment}
+\index[percent]{\% in input file}
+
+All text between \type{\starttext} and \type{\stoptext}
+will be processed while running \CONTEXT. Sometimes however
+you may have text fragments you don't want to be processed or
+you want to comment on your \CONTEXT\ commands.
+
+If you preceed your text with the percentage sign \type{%}
+it will not be processed.
+
+\startbuffer
+% In very big documents you can use the command input for
+% different files.
+%
+% For example:
+%
+% \input hass01.tex  % chapter 1 on Hasselt
+% \input hass02.tex  % chapter 2 on Hasselt
+% \input hass03.tex  % chapter 3 on Hasselt
+\stopbuffer
+
+\typebuffer
+
+When you delete the \type{%} before \type{\input}
+the three files will be processed. The comment describing the
+contents of the files will not be processed.
+
+\section{Input of another {\tt tex} file}
+
+\index{input other \TEX--files}
+
+\Command{\tex{input}}
+
+In a number of situations you may want to insert other
+\TEX\ files in your input file. For example, sometimes it is more
+efficient to specify \CONTEXT\ sources in more than one file
+in order to be able to partially process your files.
+
+Another file (with the name \type{another.tex}) can be
+inserted by:
+
+\starttyping
+\input another.tex
+\stoptyping
+
+The extension is optional so this will work too:
+
+\starttyping
+\input another
+\stoptyping
+
+The command \type{\input} is a \TEX\ command.
+
+\stopcomponent

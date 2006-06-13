@@ -1,0 +1,56 @@
+\startcomponent ma-cb-en-processingfiles
+
+\product ma-cb-en
+
+\chapter{Processing steps}
+
+\index[texutil]{\TEXUTIL}
+\index[tuo]{{\tt tuo}--file}
+\index{input file+processing}
+
+During processing \CONTEXT\ writes information in the file
+\type{myfile.tui}. This information is used in the next
+pass. Part of this information is processed by the program
+\TEXUTIL. Information on registers and lists are written in
+the file \type{myfile.tuo}. The information in this file is
+filtered and used (when necessary) by \CONTEXT.
+
+\starttyping
+texutil --references filename
+\stoptyping
+
+When \CONTEXT\ cannot find a figure, you can generate a
+figure auxilliary file by saying:
+
+\starttyping
+texutil --figures *.*
+\stoptyping
+
+or whatever specification suits.
+
+When one wants to convert \EPS\ illustrations to \PDF\ ones,
+there is:
+
+\starttyping
+texutil --figures --epspage --epspdf
+\stoptyping
+
+One can use \TEXEXEC\ to run \CONTEXT:
+
+\starttyping
+texexec filename
+\stoptyping
+
+\CONTEXT\ runs as many times as needed to get the references
+straight. One can also specify specific needs on the command
+line. For instance if pdf output is desired you type:
+
+\starttyping
+texexec --pdf filename
+\stoptyping
+
+When in doubt, say \type{--help} and you get all the
+information needed to proceed. A \TEXEXEC\ manual is
+available.
+
+\stopcomponent

@@ -1,0 +1,265 @@
+\startcomponent ma-cb-en-fonts
+
+\product ma-cb-en
+
+\chapter{Fonts and font switches}
+
+\section{Introduction}
+
+\index{Computer Modern Roman}
+\index{Lucida Bright}
+\index{AMS}
+\index{\cap{PS}--fonts}
+
+The default font in \CONTEXT\ is the {\em Computer Modern
+Roman} (\type{cmr}). You can also use Lucida Bright
+(\type{lbr}) as a full alternative and symbols of the {\em
+American Mathematical Society} (\type{ams}). Standard
+PostScript fonts (\type{pos}) are also available.
+
+\section{Fontstyle and size}
+
+\index{font+style}
+\index{font+size}
+
+\Command{\tex{setupbodyfont}}
+\Command{\tex{switchtobodyfont}}
+
+You select the font family, style and size for a document
+with:
+
+\shortsetup{setupbodyfont}
+
+If you typed \type{\setupbodyfont[sansserif,9pt]}
+{\switchtobodyfont[ss,9pt] in the setup area of the input
+file your text would look something like this.}
+
+For changes in mid-document and on section level you
+should use:
+
+\shortsetup{switchtobodyfont}
+
+\startbuffer
+On November 10th (one day before Saint Martensday) the youth of
+Hasselt go from door to door to sing a special song and they
+accompany themselves with a {\em foekepot}. They won't leave
+before you give them some money or sweets. The song goes like this:
+
+\startnarrower
+\switchtobodyfont[small]
+\startlines
+Foekepotterij, foekepotterij,
+Geef mij een centje dan ga'k voorbij.
+Geef mij een alfje dan blijf ik staan,
+'k Zal nog liever naar m'n arrenmoeder gaan.
+Hier woont zo'n rieke man, die zo vulle gäven kan.
+Gäf wat, old wat, gäf die arme stumpers wat,
+'k Eb zo lange met de foekepot elopen.
+'k Eb gien geld om brood te kopen.
+Foekepotterij, foekepotterij,
+Geef mij een centje dan ga'k voorbij.
+\stoplines
+\stopnarrower
+\stopbuffer
+
+\typebuffer
+
+Notice that \type{\startnarrower} $\cdots$
+\type{\stopnarrower} is also used as a begin and end of the
+fontswitch. The function of \type{\startlines} and
+\type{\stoplines} in this example is obvious.
+
+\start
+\getbuffer
+\stop
+
+If you want an overview of the available font family you can
+type:
+
+\startbuffer
+\showbodyfont[cmr]
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+\section{Style and size switch in commands}
+
+In a number of commands one of the parameters is
+\type{character} to indicate the desired typestyle. For
+example:
+
+\startbuffer
+\setuphead[chapter][style=\tfd]
+\stopbuffer
+
+\typebuffer
+
+In this case the character size for chapters is indicated with
+a command \type{\tfd}. But instead of a command you could
+use the predefined options that are related to the actual
+typeface:
+
+\startbuffer
+normal  bold  slanted  boldslanted  type  mediaeval
+small  smallbold  smallslanted  smallboldslanted smalltype
+capital cap
+\stopbuffer
+
+\typebuffer
+
+\section{Local font style and size}
+
+\Command{\tex{rm}}
+\Command{\tex{ss}}
+\Command{\tex{tt}}
+\Command{\tex{sl}}
+\Command{\tex{bf}}
+\Command{\tex{tfa}}
+\Command{\tex{tfb}}
+\Command{\tex{tfc}}
+\Command{\tex{tfd}}
+
+In the running text (local) you can change the {\em
+typestyle} into roman, sans serif and teletype with
+\type{\rm}, \type{\ss} and \type{\tt}.
+
+You can change the {\em typeface} like italic and boldface
+with \type{\sl} and \type{\bf}.
+
+The {\em typesize} is available from 4pt to 12pt and is
+changed with \type{\switchtobodyfont}.
+
+The actual style is indicated with \type{\tf}. If you want
+to change into a somewhat greater size you can type
+\type{\tfa}, \type{\tfb}, \type{\tfc} and \type{\tfd}. An
+addition of \type{a}, \type{b}, \type{c} and \type{d} to
+\type{\sl}, \type{\it} and \type{\bf} is also allowed.
+
+\startbuffer
+{\tfc Mintage}
+
+In the period from {\tt 1404} till {\tt 1585} Hasselt had its own
+{\sl right of coinage}. This right was challenged by other cities,
+but the {\switchtobodyfont[7pt] bishops of Utrecht} did not honour
+these {\slb protests}.
+\stopbuffer
+
+\typebuffer
+
+The curly braces indicate begin and end of style or size
+switches.
+
+\getbuffer
+
+\section{Redefining fontsize}
+
+\index{fontsize}
+
+\Command{\tex{definebodyfont}}
+
+For special purposes you can define your own fontsize.
+
+\shortsetup{definebodyfont}
+
+A definition could look like this:
+
+\startbuffer
+\definebodyfont[10pt][rm][tfe=Regular at 36pt]
+
+{\tfe Hasselt!}
+\stopbuffer
+
+\typebuffer
+
+Now \type{\tfe} will produce 36pt characters saying:
+{\hbox{\getbuffer}}
+
+\section{Small caps}
+
+\index{small caps}
+
+\Command{\tex{kap}}
+
+Abbreviations like \PDF\ (\infull{PDF}) are printed in
+pseudo small caps. A small capital is somewhat smaller than
+the capital of the actual typeface. Pseudo small caps are
+produced with:
+
+\shortsetup{kap}
+
+If you compare \type{PDF}, \type{\kap{PDF}} and \type{\sc pdf}:
+
+\midaligned{PDF, \kap{PDF} and {\sc pdf}}
+
+you can see the difference. The command \type{\sc} shows the
+real small caps. The reason for using pseudo small caps
+instead of real small caps is just a matter of taste.
+
+\section{Emphasized}
+
+\index{emphasized}
+
+\Command{\tex{em}}
+
+To emphasize words consistently throughout your document
+you use:
+
+\starttyping
+\em
+\stoptyping
+
+Empasized words appear in a slanted style.
+
+\startbuffer
+If you walk through Hasselt you should {\bf \em watch out} for
+{\em Amsterdammers}. An {\em Amsterdammer} is {\bf \em not} a
+person from Amsterdam but a little stone pilar used to separate
+sidewalk and road. A pedestrian should be protected by these
+{\em Amsterdammers} against cars but more often people get hurt
+from tripping over them.
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+{\em An emphasize within an emphasize is {\em normal} again
+and a boldface emphasize looks like {\bf this or \em this}}.
+
+\section{Teletype / verbatim}
+
+\index{type}
+\index{verbatim}
+
+\Command{\tex{starttyping}}
+\Command{\tex{type}}
+\Command{\tex{setuptyping}}
+\Command{\tex{setuptype}}
+
+If you want to display typed text and want to keep your
+line breaking exactly as it is you use:
+
+\shortsetup{starttyping}
+
+In the text you can use:
+
+\shortsetup{type}
+
+The curly braces enclose the text you want in teletype.
+You have to be careful with \type{\type} because the
+line breaking mechanism does not work anymore.
+
+You can set up the `typing' with:
+
+\shortsetup{setuptyping}
+\shortsetup{setuptype}
+
+\page
+
+\section{Encodings}
+
+This section is stil to be filled.
+
+\stopcomponent

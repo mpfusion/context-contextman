@@ -1,0 +1,220 @@
+\startcomponent ma-cb-en-layout
+
+\product ma-cb-en
+
+\chapter{Page layout}
+
+\index{layout}
+\index{page design}
+
+\Command{\tex{setuplayout}}
+\Command{\tex{adaptlayout}}
+\Command{\tex{showlayout}}
+\Command{\tex{showsetups}}
+\Command{\tex{showmakeup}}
+\Command{\tex{startlocal}}
+
+The page layout is defined by:
+
+\shortsetup{setuplayout}
+
+This command is typed in the set up area of your input file.
+
+You have to familiarize yourself with the parameters that
+describe your page layout. A page is divided in a number of
+areas such as the text, margin, head, foot etc. The size of
+these areas can be set with \type{\setuplayout}.
+
+The different areas in the page layout are shown in
+\in{figure}[fig:pagelayout].
+
+\placefigure
+  [here]
+  [fig:pagelayout]
+  {The page layout.}
+  {\hbox{\framed[width=1.5cm,frame=off]{}
+   \framed[width=2cm,frame=off]{\tt left}
+   \framed[width=2.5cm,frame=off]{\tt left}
+   \framed[width=3cm,frame=off]{\tt text}
+   \framed[width=2.5cm,frame=off]{\tt right}
+   \framed[width=2cm,frame=off]{\tt right}}
+   \hbox{\framed[width=1.5cm,frame=off]{}
+   \framed[width=2cm,frame=off]{\tt edge}
+   \framed[width=2.5cm,frame=off]{\tt margin}
+   \framed[width=3cm,frame=off]{\tt text}
+   \framed[width=2.5cm,frame=off]{\tt margin}
+   \framed[width=2cm,frame=off]{\tt edge}}
+   \hbox{\framed[width=1.5cm,frame=off]{\tt top}
+   \framed[width=2cm]{}
+   \framed[width=2.5cm]{}
+   \framed[width=3cm]{}
+   \framed[width=2.5cm]{}
+   \framed[width=2cm]{}}
+   \hbox{\framed[width=1.5cm,frame=off]{\tt header}
+   \framed[width=2cm]{}
+   \framed[width=2.5cm]{}
+   \framed[width=3cm]{}
+   \framed[width=2.5cm]{}
+   \framed[width=2cm]{}}
+   \hbox{\framed[width=1.5cm,frame=off,height=3cm]{\tt text}
+   \framed[width=2cm,height=3cm]{}
+   \framed[width=2.5cm,height=3cm]{}
+   \framed[width=3cm,height=3cm]{}
+   \framed[width=2.5cm,height=3cm]{}
+   \framed[width=2cm,height=3cm]{}}
+   \hbox{\framed[width=1.5cm,frame=off]{\tt footer}
+   \framed[width=2cm]{}
+   \framed[width=2.5cm]{}
+   \framed[width=3cm]{}
+   \framed[width=2.5cm]{}
+   \framed[width=2cm]{}}
+   \hbox{\framed[width=1.5cm,frame=off]{\tt bottom}
+   \framed[width=2cm]{}
+   \framed[width=2.5cm]{}
+   \framed[width=3cm]{}
+   \framed[width=2.5cm]{}
+   \framed[width=2cm]{}}}
+
+If you want to look at your page layout you can type the
+command \type{\showframe} and process one page or the whole
+file. The areas are shown in a number of frames.
+
+The command \type{\showsetups} shows the values of the
+parameters. A combination of both commands is
+\type{\showlayout}.
+
+The values of the layout parameters are available
+as commands (see \in{table}[tab:parameters]).
+This enables you to work more accurately when defining
+measures of columns, figures and tables. A few of these
+parameters are explained in \in{table}[tab:fewparameters].
+
+\placetable
+  [here,force]
+  [tab:fewparameters]
+  {A few parameters as commands.}
+\starttable[|l|l|]
+\HL
+\NC \bf Commands         \NC \bf Meaning               \NC\SR
+\HL
+\NC \type{\makeupwidth}  \NC width of the typing area  \NC\FR
+\NC \type{\makeupheight} \NC height of the typing area \NC\MR
+\NC \type{\textwidth}    \NC width of the text area    \NC\MR
+\NC \type{\textheight}   \NC height of the text area   \NC\LR
+\HL
+\stoptable
+
+If you want to define the width of a column or the height of
+a figure you can do it relative to the \type{\makeupwidth}
+or \type{\makeupheight}. Changes in page width or page height
+will alter columns and figures proportionally.
+
+\startbuffer
+\placefigure
+  [here]
+  [fig:stepgable]
+  {A stepgable.}
+  {\externalfigure[ma-cb-19][width=.6\textwidth]}
+\stopbuffer
+
+\typebuffer
+
+After processing this would become:
+
+\getbuffer
+
+The other distances and measures are shown in
+\in{table}[tab:parameters].
+
+The command \type{\setuplayout} is defined in the set up
+area of your input file, before the
+\type{\starttext} command. This means that the values of
+the parameters have a global effect and are default
+throughout the document. Nevertheless you might want to make
+slight changes in the page design for a number of pages.
+
+\startbuffer
+\adaptlayout[21,38][height=+.5cm]
+\stopbuffer
+
+\typebuffer
+
+In this case page 21 and 38 have a height of .5~cm + default
+height.
+
+For local changes in the page layout you can use:
+
+\shortsetup{startlocal}
+
+For example:
+
+\startbuffer
+
+\start
+
+\startlocal
+  \setuplayout[height=+.5cm]
+\stoplocal
+
+Hasselt has a completely different layout than most other cities
+because of its fortifications and moats.
+
+\stop
+
+\stopbuffer
+
+\typebuffer
+
+It is advisable not to use these local changes to often.
+It is always better to alter the text than to change the
+page layout.
+
+\startbuffer
+
+\starttablehead
+\HL
+\NC \bf Parameter       \NC \bf Available command       \NC\SR
+\HL
+\stoptablehead
+
+\starttabletail
+\HL
+\stoptabletail
+
+\starttables[|l|l|]
+\NC topdistance         \NC \type{\topheight}           \NC\FR
+\NC topheight           \NC \type{\topheight}           \NC\MR
+\NC headerdistance      \NC \type{\headerdistance}      \NC\MR
+\NC headerheight        \NC \type{\headerheight}        \NC\MR
+\NC topspace            \NC \type{\topspace}            \NC\MR
+\NC headlevel           \NC \type{\headerlevel}         \NC\MR
+\NC backspace           \NC \type{\backspace}           \NC\MR
+\NC margindistance      \NC \type{\margindistance}      \NC\MR
+\NC marginwidth         \NC \type{\marginwidth}         \NC\MR
+\NC leftmarginwidth     \NC \type{\leftmarginwidth}     \NC\MR
+\NC rightmarginwidth    \NC \type{\rightmarginwidth}    \NC\MR
+\NC edgedistance        \NC \type{\edgedistance}        \NC\MR
+\NC edgewidth           \NC \type{\edgewidth}           \NC\MR
+\NC leftedgewidth       \NC \type{\leftedgewidth}       \NC\MR
+\NC rightedgewidth      \NC \type{\rightedgewidth}      \NC\MR
+\NC paperheight         \NC \type{\paperheight}         \NC\MR
+\NC paperwidth          \NC \type{\paperwidth}          \NC\MR
+\NC makeupheight        \NC \type{\makeupheight}        \NC\MR
+\NC makeupwidth         \NC \type{\makeupwidth}         \NC\MR
+\NC textheight          \NC \type{\textheight}          \NC\MR
+\NC textwidth           \NC \type{\textwidth}           \NC\MR
+\NC footerdistance      \NC \type{\footerdistance}      \NC\MR
+\NC footerheight        \NC \type{\footerheight}        \NC\MR
+\NC bottomdistance      \NC \type{\bottomdistance}      \NC\MR
+\NC bottomheight        \NC \type{\bottomheight}        \NC\LR
+\stoptables
+
+\stopbuffer
+
+\splitfloat[lines=1]
+  {\placetable
+     [here][tab:parameters]
+     {Parameters for page design.}}
+  {\getbuffer}
+
+\stopcomponent

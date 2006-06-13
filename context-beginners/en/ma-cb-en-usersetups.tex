@@ -1,0 +1,32 @@
+\startcomponent ma-cb-en-usersetups
+
+\product ma-cb-en
+
+\chapter{User specifications}
+
+\index{\tt cont-sys.tex}
+
+When \CONTEXT\ is run a number of predefined parameters is
+loaded. These parameters are set up in the file
+\type{cont-sys.tex}. Users can define their own preferences
+(housestyle) in this file. Be aware of the fact that
+\CONTEXT\ has to be able to find this file. The
+\type{readme} file that goes with the distribution tells
+some more about site specific setups. The most important
+addition to this file probbably concerns the output:
+
+\starttyping
+\setupoutput[pdftex]
+\stoptyping
+
+tells \CONTEXT\ to produce \PDF\ output instead of \DVI,
+while
+
+\starttyping
+\setupoutput[dvipsone,dviwindo]
+\stoptyping
+
+sets things up for those programs. By default \DVIPS\ output
+is set up.
+
+\stopcomponent

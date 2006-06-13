@@ -1,0 +1,52 @@
+\startcomponent ma-cb-en-alignments
+
+\product ma-cb-en
+
+\chapter{Alignment}
+
+\index{alignment}
+
+\Command{\tex{setupalign}}
+\Command{\tex{setup tolerance}}
+\Command{\tex{rightaligned}}
+\Command{\tex{leftlines}}
+\Command{\tex{midaligned}}
+
+Horizontal and vertical alignment can be set up with:
+
+\shortsetup{setupalign}
+
+Single lines can be aligned with:
+
+\starttyping
+\rightaligned{}
+\leftaligned{}
+\midaligned{}
+\stoptyping
+
+\startbuffer
+\leftaligned  {Hasselt was built on a sandhill.}
+\midaligned   {Hasselt was built on the crossing of two rivers.}
+\rightaligned {Hasselt's name stems from hazelwood.}
+\stopbuffer
+
+\typebuffer
+
+After processing this would look like:
+
+\getbuffer
+
+Alignment of a paragraph is done with:
+
+\shortsetup{startalignment}
+
+In case of alignment you can specify a tolerance and the
+direction (vertical or horizontal). Normally the tolerance
+is \type{verystrict}. In colums you could specify
+\type{verytolerant}. The tolerance in this manual is:
+
+\starttyping
+\setuptolerance[horizontal,verystrict]
+\stoptyping
+
+\stopcomponent

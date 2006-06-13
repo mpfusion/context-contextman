@@ -1,0 +1,82 @@
+\startcomponent ma-cb-en-composedcharacters
+
+\product ma-cb-en
+
+\chapter{Composite characters}
+
+\section{Introduction}
+
+In \in{chapter}[special chars] you have already seen that
+you have to type more than one token to obtain special
+characters like \# \$ \% \& \_ $\{$ and $\}$. Accented
+characters or foreign symbols have to be composed to produce
+the right typesetted character.
+
+It is not within the scope of this manual to go into
+accented characters in math mode. See the {\TEX Book by
+Donald E. Knuth} on that subject.
+
+\section{Accents}
+
+\index{accents}
+
+Accented characters have to be composed in \CONTEXT.
+\in{Table}[tab:accents] shows you how to do this. The
+character {\em u} is just an example here.
+
+\let\MySign=\=
+\placetable
+  [here,force]
+  [tab:accents]
+  {Accents.}
+\starttable[|c|c|c|c|]
+\HL
+\NC \bf You type \NC \bf You get \VL \bf You type  \NC \bf You get \NC\SR
+\HL
+\NC \type{\`{u}} \NC \`{u}       \VL \type{\u{u}}  \NC \u{u}       \NC\FR
+\NC \type{\'{u}} \NC \'{u}       \VL \type{\v{u}}  \NC \v{u}       \NC\MR
+\NC \type{\^{u}} \NC \^{u}       \VL \type{\H{u}}  \NC \H{u}       \NC\MR
+\NC \type{\"{u}} \NC \"{u}       \VL \type{\b{u}}  \NC \b{u}       \NC\MR
+\NC \type{\~{u}} \NC \~{u}       \VL \type{\c{u}}  \NC \c{u}       \NC\MR
+\NC \type{\={u}} \NC \MySign{u}  \VL \type{\d{u}}  \NC \d{u}       \NC\MR
+\NC \type{\.{u}} \NC \.{u}       \VL               \NC             \NC\LR
+\HL
+\stoptable
+
+You don't want \`{i} or \'{j} so for an
+accented {\em i} and {\em j} you compose the characters as
+follows:
+
+\type{\"{\i}} ~~~ \"{\i} \crlf
+\type{\^{\j}} ~~~ \^{\j}
+
+\section{Foreign symbols}
+
+\index{foreign symbols}
+
+The composition of characters that appear in foreign
+languages is shown in \in{table}[tab:foreign symbols].
+
+%
+% be ware of the spanish questionmark and exclamation
+%
+
+\placetable
+  [here,force]
+  [tab:foreign symbols]
+  {Foreign characters.}
+\starttable[|c|c|c|c|]
+\HL
+\NC \bf You type \NC \bf You get \VL \bf You type     \NC \bf You get \NC\SR
+\HL
+\NC \type{\oe}   \NC \oe         \VL \type{\O}        \NC \O          \NC\FR
+\NC \type{\OE}   \NC \OE         \VL \type{\l}        \NC \l          \NC\MR
+\NC \type{\ae}   \NC \ae         \VL \type{\L}        \NC \L          \NC\MR
+\NC \type{\AE}   \NC \AE         \VL \type{\SS}       \NC \SS         \NC\MR
+\NC \type{\aa}   \NC \aa         \VL \type{?}\type{`} \NC ?`          \NC\MR
+\NC \type{\AA}   \NC \AA         \VL \type{!}\type{`} \NC !`          \NC\MR
+\NC \type{\o}    \NC \o          \VL                  \NC             \NC\LR
+\HL
+\stoptable
+
+\stopcomponent

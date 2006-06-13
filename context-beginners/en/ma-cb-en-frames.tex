@@ -1,0 +1,60 @@
+\startcomponent ma-cb-en-frames
+
+\product ma-cb-en
+
+\chapter{Outlined text}
+
+\index{outline+text}
+
+\Command{\tex{framed}}
+\Command{\tex{setupframed}}
+\Command{\tex{inframed}}
+
+You can \inframed{outline} a text with \type{\framed}. The
+command looks like this:
+
+\shortsetup{framed}
+
+The bracket pair is optional and contains the set up
+parameters. The curly braces enclose the text. To be honest,
+the outlined text in the last paragraph was done with
+\type{\inframed}. This command takes care of the interline
+spacing.
+
+\startbuffer
+\framed[height=3em,width=fit]{Hasselt needs more space}
+\stopbuffer
+
+\typebuffer
+
+This becomes:
+
+\startbaselinecorrection
+\getbuffer
+\stopbaselinecorrection
+
+Some other examples of \type{\framed} and its set up
+parameters are shown below. This time we use the in||line
+alternative \type{\inframed}.
+
+\startbuffer
+\leftaligned
+  {\inframed[width=fit]{People in Hasselt}}
+\midaligned
+  {\inframed[height=1.5cm,frame=off]{have a}}
+\rightaligned
+  {\inframed[background=screen]{historic background}}
+\stopbuffer
+
+\typebuffer
+
+This leads to:
+
+\getbuffer
+
+The \type{\framed} command is very sophisticated and it is
+used in many macros. The command to set up frames is:
+
+\shortsetup{setupframed}
+
+\stopcomponent

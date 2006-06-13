@@ -1,0 +1,78 @@
+\startcomponent ma-cb-en-columns
+
+\product ma-cb-en
+
+\chapter{Columns}
+
+\index{columns}
+
+\Command{\tex{startcolums}}
+\Command{\tex{setupcolumns}}
+\Command{\tex{column}}
+
+Simple documents can be typeset in columns. If you
+preceed a text fragment by \type{\startcolumns} and close
+the text fragment by \type{\stopcolumns} everything in
+between will be set in columns.
+
+\shortsetup{startcolumns}
+
+\startbuffer
+\startcolumns[n=3,tolerance=verytolerant]
+Hasselt is an old Hanseatic City, situated 12~km north of Zwolle at
+the river Zwartewater.
+
+The city has a long history since obtaining the city charter around
+1252. Part and parcel of this history can be traced back to a large
+number of monuments to be admired in the city center.
+
+There you will find the St. Stephanus church, a late gothic church
+dating back to 1479 with a magnificent organ. The former Municipal
+Building is situated on The Market Place. Constituted between 1500
+and 1550 it houses a large collection of weapons, amongst which one
+of the largest collection of black powder guns (haakhussen) in the
+whole world should be mentioned.
+
+Furthermore there is a corn windmill `The Swallow', dating back to
+1748 as well as the `Stenendijk', a unique embankment and the last
+shell limekiln in Europe still in full operation.
+
+The city center with the townmoat adorned by lime-trees, the Van
+Stolkspark and the hustle and bustle at the docks are ideally suited
+for a stroll.
+
+The area around Hasselt is also worth mentioning. In wintertime
+polder Mastenbroek harbours large numbers of geese. In summertime the
+hamlets Genne, Streukel and Celle\-mui\-den form, together with the very
+rare lapwing flowers (Lat. Fritillaria meleagris) found on the banks
+of the river Zwatewater, the ideal surroundings for walking or
+cycling trips.
+
+Hasselt also is a very important center for watersports. The lakes of
+northwest Overijssel, the river IJssel, the Overijsselse Vecht and
+the Randmeren are within easy reach from the yacht harbour `De
+Molenwaard'. Sailing, fishing, swimming and canoeing can be fully
+enjoyed in Hasselt.
+
+Furthermore some events of special interest should be
+mentioned. Every year at the end of August Hasselt celebrates the
+`Eui Festival' (hay festival).
+\stopcolumns
+\stopbuffer
+
+\typebuffer
+
+The result will be a three column text.
+
+{\switchtobodyfont[9pt]\getbuffer}
+
+If possible a new column can be enforced with \type{\column}.
+You can set up columns with:
+
+\shortsetup{setupcolumns}
+
+In most cases you will obtain a better result by type
+setting the text on \quote{grid}. This is done by typing
+\type{grid=yes} in the command \type {\setuplayout}.
+
+\stopcomponent

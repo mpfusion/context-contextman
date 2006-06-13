@@ -1,0 +1,37 @@
+\startcomponent ma-cb-en-runtimefiles
+
+\product ma-cb-en
+
+\chapter{Auxilliary files}
+
+\index[tui]{{\tt tui}--file}
+\index[tuo]{{\tt tuo}--file}
+\index[tub]{{\tt tub}--file}
+\index[tuf]{{\tt tuf}--file}
+\index{auxilliary files}
+
+\CONTEXT\ will produce a number of auxilliary files during
+processing. If your input file is called \type{myfile.tex} the
+following files may appear on your working directory.
+
+\starttable[|l|l|l|]
+\HL
+\NC \bf File        \NC \bf Content        \NC \bf State          \NC\SR
+\HL
+\NC \tt myfile.tex  \NC text               \NC do not remove      \NC\SR
+\HL
+\NC \tt myfile.tui  \NC input information  \NC can be removed     \NC\FR
+\NC \tt myfile.tuo  \NC output information \NC do not remove      \NC\MR
+\NC \tt myfile.tub  \NC block information  \NC do not remove      \NC\MR
+\NC \tt myfile.tmp  \NC buffer information \NC can be removed     \NC\LR
+\HL
+\NC \tt texutil.tuf \NC figure information     \NC generate if needed \NC\FR
+\NC \tt mpgraph.mp  \NC \METAPOST\ information \NC can be removed     \NC\LR
+\HL
+\NC \tt myfile.dvi  \NC typeset text       \NC can be removed     \NC\FR
+\NC \tt myfile.ps   \NC printable text     \NC can be removed     \NC\MR
+\NC \tt myfile.pdf  \NC printable text     \NC can be removed     \NC\LR
+\HL
+\stoptable
+
+\stopcomponent

@@ -1,0 +1,65 @@
+\startcomponent ma-cb-en-units
+
+\product ma-cb-en
+
+\chapter[units]{Units}
+
+\index{units}
+\index[siunit]{\cap{SI}--unit}
+
+\Command{\tex{unit}}
+\Command{\tex{permille}}
+\Command{\tex{percent}}
+
+To force yourself to use dimensions and units consistently
+throughout the document you can make your own list with
+units. These are specified in the set up area of your
+input file.
+
+In \CONTEXT\ there is an external module available that
+contains almost all \SI||units. When this module is loaded
+with \type{\usemodule[units]} you can call units with:
+
+\startbuffer
+\Meter \Per \Square \Meter
+\Cubic \Meter \Per \Sec
+\Square \Milli \Meter \Per \Inch
+\Centi \Liter \Per \Sec
+\Meter \Inverse \Sec
+\Newton \Per \Square \Inch
+\Newton \Times \Meter \Per \Square \Sec
+\stopbuffer
+
+\typebuffer
+
+It looks like a lot of typing but it does guarantee a
+consistent use of units. The command \type{\unit} also
+prevents the separation of value and unit at line breaks,
+because a number typeset at the end of a line and the unit
+at the beginning of the next one, is far from perfect.
+These examples come out as:
+
+\startnarrower
+\startlines
+\getbuffer
+\stoplines
+\stopnarrower
+
+You can define your own units with:
+
+\starttyping
+\unit[Ounce]{oz}{}
+\stoptyping
+
+\unit[Ounce]{oz}{}
+
+Later on in the document you can type \type{15.6 \Ounce}
+that will be displayed as 15.6 \Ounce.
+
+In order to write \percent\  and \permille\ in a consistent
+way there are two specific commands:
+
+\type{\percent} \crlf
+\type{\permille}
+
+\stopcomponent
