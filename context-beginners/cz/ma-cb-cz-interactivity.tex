@@ -1,0 +1,246 @@
+% Translation:
+\startcomponent ma-cb-cz-interactivity
+\project ma-cb
+\product ma-cb-cz
+
+\environment ma-cb-env-cz
+
+\chapter{Interactive mode in electronic documents}
+
+\section{Introduction}
+
+\index[reader]{\READER}
+\index[exchange]{\EXCHANGE}
+\index[distiller]{\DISTILLER}
+
+Nowadays documents can be made electronically available for
+consulting on a computer and displaying on a computer screen.
+
+Interaction means that you can click on active areas and
+jump to the indicated areas. For example if you consult a
+register you can click on a (active) page number and you will
+jump to the corresponding page.
+
+Interaction relates to:
+
+\startitemize[packed]
+\item active chapter numbers in table of content
+\item active page numbers in registers
+\item active page numbers, chapter numbers and figure numbers in
+      internal references to pages, chapters, figures etc.
+\item active titles, page numbers, and chapter numbers in
+      external references to other interactive documents
+\item active menus as navigation tools
+\stopitemize
+
+Interactivity depends on the program you use to view the
+interactive document. We assume that you will use \PDFTEX\
+for producing a \PDF\ document directly or use \DISTILLER\
+to convert a \POSTSCRIPT\ file into a \PDF\ one. It is
+obvious that you will then use \READER, \EXCHANGE, or
+\GHOSTVIEW\ for viewing.
+
+\CONTEXT\ is a very powerful system for producing electronic
+or interactive \PDF\ documents. However only a few standard
+features are described in this chapter. As the authors of
+this manual are planning to make all \CONTEXT\ related
+manuals electronically (sources included) available, reverse
+engineering is one of the options to become more acquainted
+with the possibilities of \CONTEXT.
+
+\section{Interactive mode}
+
+\index{interactive mode}
+
+\Command{\tex{setupinteraction}}
+
+The interactive mode is activated by:
+
+\shortsetup{setupinteraction}
+
+For example:
+
+\startbuffer
+\setupinteraction
+  [state=start,
+   color=green,
+   style=bold]
+\stopbuffer
+
+\typebuffer
+
+The hyper links are now generated automatically and the
+active words are displayed in bold green.
+
+The interactive document is considerably bigger (in MB's)
+than its paper cousin because hyperlinks consume space. You
+will also notice that processing time becomes longer.
+Therefore it is advisable to de-activate the interactive mode
+as long as your document is under construction.
+
+\section{Interaction within a document}
+
+\index{interaction+internal}
+
+\Command{\tex{in}}
+\Command{\tex{at}}
+\Command{\tex{goto}}
+
+Earlier you have seen how to make a reference with
+\type{\in} and \type{\at}. You may have wondered why you had
+to type \type{\in{chapter}[chap:introduction]}. In the first
+place {\em chapter} and its corresponding chapter number
+will not be separated at line breaking. In the second place
+the word {\em chapter} and its number are typeset
+differently in the interactive mode. This gives the user a
+larger clickable area.
+
+In interactive mode there is one other command that has
+little meaning in the paper variant.
+
+\shortsetup{goto}
+
+The curly braces contain text, the brackets contain a
+reference (logical name, location).
+
+\startbuffer
+In \goto{Hasselt}[fig:cityplan] all streets are build in a
+circular way.
+\stopbuffer
+
+\typebuffer
+
+In the interactive document {\em Hasselt} will be green and
+active. You will jump to a map of Hasselt.
+
+\section{Interaction between documents}
+
+\index{interaction+external}
+
+\Command{\tex{from}}
+\Command{\tex{useexternaldocument}}
+
+It is possible to link one document to another. First you
+have to state that you want to refer to another document.
+This is done by:
+
+\shortsetup{useexternaldocument}
+
+The first bracket pair must contain a logical name of the
+document, the second pair the file name of the other document
+and the third pair is used for the title of the document.
+
+For refering to these other documents you can use:
+
+\shortsetup{from}
+
+The curly braces contain text and the brackets contain the
+reference.
+
+Look at the example below.
+
+\startbuffer
+\useexternaldocument[hia][hasbook][Hasselt in August]
+
+Most tourist attractions are described in \from[hia]. A description
+of the Eui||feest is found in \from[hia::euifeest]. A description
+of the \goto{Eui||feest}[hia::euifeest] is found in \from[hia]. The
+eui||feest is described on \at{page}[hia::euifeest] in \from[hia].
+See for more information \in{chapter}[hia::euifeest] in \from[hia].
+\stopbuffer
+
+\typebuffer
+
+The \type{\useexternaldocument} is usually typed in the
+set up area of your input file.
+
+After processing your input file (at least two times to get
+the references right), and the file \type{hasbook.tex},
+you will have two \PDF\ documents. The references
+above have the following meaning:
+
+\startitemize[packed]
+\item \type{\from[hia]} will produce the active title you gave
+      in the third bracket pair of
+      \type{\useexternaldocument} and is linked to the
+      first page of \type{hasbook.pdf}
+\item \type{\from[hia::euifeest]} will produce an active title
+      and is linked to the page where chapter Eui||feest
+      begins
+\item \type{\goto{Eui||feest}[hia::euifeest]} will produce an
+      active word {\em Eui||feest} and is linked to the page
+      where chapter Eui||feest begins
+\item \type{\at{page}[hia::euifeest]} will produce an active
+      word {\em page} and page number and is linked to that
+      page
+\item \type{\in{chapter}[hia::euifeest]} will produce on
+      active word {\em chapter} and chapter number and is
+      linked to that chapter
+\stopitemize
+
+As you can see the \type{::} separates the (logical) file name
+and the destination in that file.
+
+\section{Menus}
+
+You can define navigation tools with:
+
+\shortsetup{defineinteractionmenu}
+
+The first bracket pair is used for a logical name that can
+be used to recall the menu. The second pair contains the
+location on the screen. The third pair is used for setting
+up the menu.
+
+A typical menu definition might look like this:
+
+\startbuffer
+\setupcolors
+  [state=start]
+
+\setupinteraction
+  [state=start,
+   menu=on]
+
+\defineinteractionmenu
+  [mymenu]
+  [right]
+  [state=start,
+   align=middle,
+   background=screen,
+   frame=on,
+   width=\marginwidth,
+   style=smallbold,
+   color=]
+
+\setupinteractionmenu
+  [mymenu]
+  [{Content[content]},
+   {Index[index]},
+   {\vfill},
+   {Stop[ExitViewer]}]
+\stopbuffer
+
+\typebuffer
+
+This will produce a menu on the right hand side of every
+screen. The menu buttons contain the text {\em Content}, {\em
+Index} and {\em Stop} with respectively the following
+functions: jump to the table of contents, jump to the index
+and leave the viewer. The labels to obvious destinations
+like \type{content} and \type{index} are predefined. Other
+predefined destinations are \type{FirstPage},
+\type{LastPage}, \type{NextPage} and
+\type{PreviousPage}.
+
+An action like \type{ExitViewer} is necessary to make an
+electronic document self containing. Other predefined
+actions you can use are \type{PrintDocument},
+\type{SearchDocument} and \type{PreviousJump}. The meaning of
+these actions is obvious.
+
+Menus are set up with:
+
+\shortsetup{setupinteractionmenu}
+
+\stopcomponent

@@ -1,0 +1,231 @@
+% Translation:
+\startcomponent ma-cb-cz-figures
+\project ma-cb
+\product ma-cb-cz
+
+\environment ma-cb-env-cz
+
+\chapter[figures]{Figures}
+
+\index{figure}
+%\zieindex{picture}{figure}
+\index{floating blocks}
+
+\Command{\tex{placefigure}}
+\Command{\tex{startfiguretext}}
+\Command{\tex{setupfigures}}
+\Command{\tex{startcombination}}
+\Command{\tex{setupfloats}}
+\Command{\tex{setupcaptions}}
+\Command{\tex{externalfigure}}
+
+Photographs and pictures can be inserted in your document
+with the following command:
+
+\startbuffer
+\placefigure
+   [][fig:church]
+   {Stephanus Church.}
+   {\externalfigure[ma-cb-24][width=.4\textwidth]}
+\stopbuffer
+
+\typebuffer
+
+After processing this will come out as
+\in{figure}[fig:church] at the first available place.
+
+\getbuffer
+
+The command \type{\placefigure} handles numbering and
+vertical spacing before and after your figure. Furthermore
+this command initializes a float mechanism, which means that
+\CONTEXT\ looks whether there is enough space for your
+figure on the page. If not the figure will be placed at
+another location and the text carries on, while the figure
+floats in your document until the optimal location is found.
+You can influence this mechanism within the first bracket
+pair.
+
+The command \type{\placefigure} is a predefined example of:
+
+\shortsetup{placeblock}
+
+The options are described in \in{table}[tab:placefigure].
+
+\placetable
+  [here]
+  [tab:placefigure]
+  {Options in \type{\placefigure}.}
+\starttable[|l|l|]
+\HL
+\NC \bf Option \NC \bf Meaning                             \NC\SR
+\HL
+\NC here       \NC put figure at this location if possible \NC\FR
+\NC force      \NC force figure placement here             \NC\MR
+\NC page       \NC put figure on its own page              \NC\MR
+\NC top        \NC put the figure at the top of the page   \NC\MR
+\NC bottom     \NC put the figure at the botom of the page \NC\MR
+\NC left       \NC place figure at the left margin         \NC\MR
+\NC right      \NC place figure at the right margin        \NC\MR
+\NC margin     \NC place figure in the margin              \NC\LR
+\HL
+\stoptable
+
+The second bracket pair is used for cross-referencing. You can
+refer to this particular figure by typing:
+
+\starttyping
+\in{figure}[fig:church]
+\stoptyping
+
+The first brace pair is used for the caption. You can type
+any text you want. If you want no caption and no number, you
+can type \type{{none}}. The figure labels are set up with
+\type{\setupcaptions} and the numbering is (re)set by
+\type{\setupnumbering} (see \in{paragraph}[floatingblocks]).
+
+The second brace pair is used for defining the figure and
+addressing the file names of external figures.
+
+In the next example you see how
+\inframed[height=1em]{Hasselt} is defined within the last
+brace pair to show you the function of \type{\placefigure{}{}}.
+
+\startbuffer
+\placefigure
+  {A framed Hasselt.}
+  {\framed{\tfd Hasselt}}
+\stopbuffer
+
+\typebuffer
+
+This will produce:
+
+\getbuffer
+
+However, your pictures are often created using programs like
+Corel Draw or Illustrator and photos are --- after scanning ---
+improved in packages like PhotoShop. Then the figures are
+available as files. \CONTEXT\ supports all types that are handled
+by the backend driver used. If you use \PDFTEX\ you can insert
+\type {JPG}, \type {PNG} and (pages from) \type {PDF} files as
+well as \METAPOST\ output (\type {MPS} files). Users normally can
+trust \CONTEXT\ to find the best possible file type.
+
+In \in{figure}[fig:canals] you see a photo and a graphic
+combined into one figure.
+
+\startbuffer
+\placefigure
+  [here,force]
+  [fig:canal]
+  {The Hasselt Canals.}
+  {\startcombination[2*1]
+     {\externalfigure[ma-cb-03][width=.4\textwidth]}
+         {a bitmap picture}
+     {\externalfigure[gracht][width=.4\textwidth]}
+         {a vector graphic}
+   \stopcombination}
+\stopbuffer
+
+\getbuffer
+
+You can produce this figure by typing something like:
+
+\typebuffer
+
+In this figure two pictures are combined with:
+
+\shortsetup{startcombination}
+
+The \type{\startcombination} $\cdots$
+\type{\stopcombination} pair is used for combining two
+pictures in one figure. You can type the number of pictures
+within the bracket pair. If you want to display one picture
+below the other you would have typed \type{[1*2]}. You can
+imagine what happens when you combine 6~pictures as
+\type{[3*2]} (\type{[rows*columns]}).
+
+The examples shown above are enough for creating illustrated
+documents. Sometimes however you want a more integrated
+layout of the picture and the text. For that purpose
+you can use:
+
+\shortsetup{startframedtext}
+
+Figure and table texts are already predefined:
+
+\startbuffer
+\startfiguretext
+  [left]
+  [fig:citizens]
+  {none}
+  {\externalfigure[ma-cb-18][width=.5\makeupwidth]}
+   Hasselt has always had a varying number of citizens due to
+   economic events. For example the Dedemsvaart was dug around
+   1810. This canal runs through Hasselt and therefore trade
+   flourished. This led to a population growth of almost 40\%
+   within 10~years. Nowadays the Dedemsvaart has no commercial
+   value anymore and the canals have become a tourist
+   attraction. But reminders of these prosperous times can be
+   found everywhere.
+\stopfiguretext
+\stopbuffer
+
+\typebuffer
+
+is shown in the figure below.
+
+\start
+\setuptolerance[verytolerant]
+\getbuffer
+\stop
+
+\shortsetup{externalfigure}
+
+The last curly brace pair encloses the command
+\type{\externalfigure}. This command gives you the freedom
+to do anything you want with a figure.
+\type{\externalfigure} has two bracket pairs. The first is
+used for the exact file name without extension, the second
+for file formats and dimensions. It is not difficult to
+guess what happens if you type:\footnote{See
+\at{page}[marginpicture]}.
+
+\startbuffer[marginpicture]
+\inmargin
+  {\externalfigure
+     [ma-cb-23]
+     [width=\marginwidth]}
+\stopbuffer
+
+\typebuffer[marginpicture]
+
+You can set up the layout of figures with:
+
+\shortsetup{setupfloats}
+
+You can set up the numbering and the labels with:
+
+\shortsetup{setupcaptions}
+
+These commands are typed in the set up area of your input
+file and have a global effect on all floating blocks.
+
+\startbuffer
+\setupfloats
+  [location=right]
+\setupcaptions
+  [location=top,
+   style=boldslanted]
+
+\placefigure
+  {A characteristic view on Hasselt.}
+  {\externalfigure[ma-cb-12][width=8cm]}
+\stopbuffer
+
+\typebuffer
+
+{\getbuffer}
+
+\stopcomponent
