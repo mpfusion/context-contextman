@@ -1,0 +1,7 @@
+Translation "ConteXt on excursion", terminology, vocabulary
+-----------------------------------------------------------
+
+layout				= formatovani
+logical name			= referenèní pojmenování
+local footnotes			= lokální poznámky
+setup				= nastaveni
