@@ -1,0 +1,44 @@
+% Translation:
+\startcomponent ma-cb-cz-textbackgrounds
+
+\product ma-cb-cz
+
+\environment ma-cb-env-cz
+
+\chapter{Background text}
+
+\index{background+text}
+
+\Command{\tex{setupbackground}}
+\Command{\tex{startbackground}}
+
+To emphasize a section you can use backgrounds. A
+background is set with the command pair:
+
+\shortsetup{startbackground}
+
+An example can illustrate the use:
+
+\startbuffer
+\setupbackground[background=screen,corner=round]
+
+\startbackground
+Hasselt has produced a number of well known people. Only recently
+it turned out that Kilian van Rensselaer played a prominent role
+in the foundation of the State of New York.
+\stopbackground
+\stopbuffer
+
+\typebuffer
+
+This would be displayed as:
+
+\getbuffer
+
+Backgrounds can span multiple pages. With:
+
+\shortsetup{setupbackground}
+
+you can vary the display of the backgrounds.
+
+\stopcomponent

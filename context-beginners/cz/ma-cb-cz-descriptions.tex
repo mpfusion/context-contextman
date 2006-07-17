@@ -1,40 +1,83 @@
 % Translation:
+% 2006-07-14 Martina Plachá
 \startcomponent ma-cb-cz-descriptions
 \project ma-cb
 \product ma-cb-cz
 
 \environment ma-cb-env-cz
 
-\chapter{Definitions}
+%\chapter{Definitions}
+\chapter{Definice pojmù}
 
+%\index{definition}
 \index{definition}
 
 \Command{\tex{definedescription}}
 \Command{\tex{setupdescriptions}}
 
-If you want to display notions, concepts and ideas in a
-consistent manner you can use:
+%If you want to display notions, concepts and ideas in a
+%consistent manner you can use:
+
+%\shortsetup{definedescription}
+Pokud chcete zobrazit poznámky, koncepty a my¹lenky stálým nemìnným
+zpùsobem, mù¾ete pou¾ít:
 
 \shortsetup{definedescription}
 
-For example:
+%For example:
+Na pøíklad:
+
+% \startbuffer
+% \definedescription
+%   [concept]
+%   [location=serried,headstyle=bold,width=broad]
+
+% \concept{Hasselter juffer} A sort of biscuit made of puff pastry and
+% covered with sugar. It tastes very sweet. \par
+% \stopbuffer
+
+% \typebuffer
 
 \startbuffer
 \definedescription
   [concept]
   [location=serried,headstyle=bold,width=broad]
 
-\concept{Hasselter juffer} A sort of biscuit made of puff pastry and
-covered with sugar. It tastes very sweet. \par
+\concept{Hasseltské juffery} Druh su¹enky, vyrobený z~nadýchaného
+tìsta, sypaný cukrem. Je velmi sladký. \par
 \stopbuffer
 
 \typebuffer
 
-It would look like this:
+%It would look like this:
+Bude to vypadat takto:
 
 \getbuffer
 
-But you can also choose other layouts:
+%But you can also choose other layouts:
+Mù¾ete také pou¾ít jiné formátování:
+
+% \startbuffer
+% \definedescription
+%   [concept]
+%   [location=top,
+%    headstyle=bold,
+%    width=broad,
+%    style=slanted]
+
+% \concept{Hasselter bitter} A very strong alcoholic drink (up to 40\%)
+% mixed with herbs to give it a special taste. It is sold in a stone
+% flask and it should be served {\em ijskoud} (as cold as ice). \par
+
+% \definedescription
+%   [concept]
+%   [location=inmargin,headstyle=bold,width=broad]
+
+% \concept{Euifeest} A harvest home to celebrate the end of a period of
+% hard work. The festivities take place in the last week of August.
+% \par
+
+% \stopbuffer
 
 \startbuffer
 \definedescription
@@ -44,16 +87,17 @@ But you can also choose other layouts:
    width=broad,
    style=slanted]
 
-\concept{Hasselter bitter} A very strong alcoholic drink (up to 40\%)
-mixed with herbs to give it a special taste. It is sold in a stone
-flask and it should be served {\em ijskoud} (as cold as ice). \par
+\concept{Hasseltská hoøká} Silný alkoholický nápoj (40\,\%) s~pøidanými 
+bylinkami a velmi specifickou chutí. Prodává se v~kameninových lahvièkách
+a podává se {\em ijskoud} (ledová).
+\par
 
 \definedescription
   [concept]
   [location=inmargin,headstyle=bold,width=broad]
 
-\concept{Euifeest} A harvest home to celebrate the end of a period of
-hard work. The festivities take place in the last week of August.
+\concept{Euifeest} Do¾ínky, oslava skliznì a konce období lopotné práce.
+Tyto slavnosti  se konají poslední týden v~srpnu.
 \par
 
 \stopbuffer
@@ -62,8 +106,26 @@ hard work. The festivities take place in the last week of August.
 \getbuffer
 \stop
 
-If you have more than one paragraph in such a definition you can use
-a \type{\start...}||\type{\stop...} pair.
+%If you have more than one paragraph in such a definition you can use
+%a \type{\start...}||\type{\stop...} pair.
+
+Máte-li v~takové definici více odstavcù, pou¾ijte dvojici
+\type{\start...}||\type{\stop...}:
+
+% \startbuffer
+% \definedescription
+%   [concept]
+%   [location=right,
+%    headstyle=bold,
+%    width=broad]
+
+% \startconcept{Euifeest} A harvest home to celebrate the end of a
+% period of hard work.
+% This event takes place at the end of August and lasts one week. The
+% city is completely illuminated and the streets are decorated. This
+% feast week ends with a {\em Braderie}.
+% \stopconcept
+% \stopbuffer
 
 \startbuffer
 \definedescription
@@ -72,22 +134,28 @@ a \type{\start...}||\type{\stop...} pair.
    headstyle=bold,
    width=broad]
 
-\startconcept{Euifeest} A harvest home to celebrate the end of a
-period of hard work.
-This event takes place at the end of August and lasts one week. The
-city is completely illuminated and the streets are decorated. This
-feast week ends with a {\em Braderie}.
+\startconcept{Euifeest} Do¾ínky, oslava skliznì a konce období lopotné
+práce. Tato událost se koná na konci srpna a trvá pøesnì týden. Mìsto
+je celé osvìtlené a ulice  ozdobené. Tento sváteèní týden je zakonèen
+{\em Braderie}.
 \stopconcept
 \stopbuffer
 
 \typebuffer
 
-This would become:
+%This would become:
+Bude to vypadat následovnì:
 
 \getbuffer
 
-Layout is set up within the second bracket pair of
-\type{\definedescription[][]}. But you can also use:
+%Layout is set up within the second bracket pair of
+%\type{\definedescription[][]}. But you can also use:
+
+Formátování je nastaveno druhou hranatou závorkou
+v~\type{\definedescription[][]}.
+
+%Lze také pou¾ít: 
+Po \type{\definedescription[][]} lze je¹tì zmìnit jeho formátování pomocí:
 
 \shortsetup{setupdescriptions}
 
