@@ -5,3 +5,5 @@ layout				= formatovani
 logical name			= referenèní pojmenování
 local footnotes			= lokální poznámky
 setup				= nastaveni
+itemize                         = odrá¾ky
+columns in itemize              = odrá¾ky ve sloupcích
