@@ -1,14 +1,14 @@
-% Translation:
+%token  Translation:
 \startcomponent ma-cb-cz-itemizations
 \project ma-cb
 \product ma-cb-cz
 
 \environment ma-cb-env-cz
 
-\chapter[itemize]{Itemize}
+\chapter[itemize]{Odrá¾ky~a výèty}
 
-\index{itemize}
-\index{columns in itemize}
+\index{odrá¾ky}
+\index{odrá¾ky ve sloupcích}
 
 \Command{\tex{startitemize}}
 \Command{\tex{setupitemize}}
@@ -16,44 +16,66 @@
 \Command{\tex{item}}
 \Command{\tex{head}}
 
+
+%One way of structuring your information is by way of
+%enumeration or summing up items. The itemize command looks
+%like this:
 Jedním ze zpùsobù, jak rozèlenit vá¹ text,
 je vyjmenování, nebo shrnutí jednotlivých polo¾ek.
 Syntaxe pøíkazu pro tento úèel vypadá takto:
 
 \shortsetup{startitemize}
 
+%For example:
 Pøíklad:
+---
+%\item Hasselt was founded in the 14th century.
+%\item Hasselt is known as a so called Hanze town.
+%\item Hasselt's name stems from a tree.
 
 \startbuffer
 \startitemize[R,packed,broad]
-\item Hasselt bylo zalo¾eno ve 14.století
-\item Hasselt je známo také jako Hanzovní mìsto (mìsto obchodního cechu)
-\item Jméno Hasselt vychází z názvu stromu
+\item Hasselt bylo zalo¾eno ve 14.století.
+\item Hasselt je známo také jako Hanzovní mìsto (mìsto obchodního cechu).
+\item Jméno Hasselt vychází~z názvu stromu.
 \stopitemize
 \stopbuffer
 
 \typebuffer
 
+%Within the \type{\startitemize} $\cdots$ \type{\stopitemize}
+%pair you start a new item with \type{\item}. The space after
+%\type{\item} is required. In the example above \type{R}
+%specifies Roman numbering and \type{packed} keeps line
+%spacing to a minimum. The parameter \type{broad} takes care
+%of vertical spacing after the item separator. The example
+%would produce:
 
 Uvnitø  \type{\startitemize} $\cdots$ \type{\stopitemize}
-zaènìte ka¾dou novou polo¾ku tokenem \type{\item} a za
+zaènìte ka¾dou novou polo¾ku pøíkazem \type{\item}~a za
 \type{\item} nezapomeòte na mezeru. V na¹em pøíkladu parametr \type{R}
-specifikuje øímské èíslování a  \type{packed} minimální mezeru mezi øádky.
-Parametr \type{broad} zajistí rozumnou vertikální mezeru mezi znaèkou a textem.
+specifikuje øímské èíslování~a  \type{packed} minimální mezeru mezi øádky.
+Parametr \type{broad} zajistí rozumnou vertikální mezeru mezi znaèkou~a textem.
 Ná¹ pøíklad by vypadal:
 
 \getbuffer
 
+%Itemization is~a two pass job. This means that you have to
+%run your file twice for an optimal layout. The bracket pair
+%contains information on item seperators and local set up
+%variables.
+
 Rozèlenìní textu do polo¾ek je dvoufázový proces. To znamená, ¾e pro získání
 optimálního rozlo¾ení budete muset svùj soubor pøekompilovat dvakrát. V závorkách
-je obsa¾ena informace o stylu pøedznaèení a lokální nastavení promìnných.
+je obsa¾ena informace~o symbolu odrá¾ky~a lokální nastavení promìnných.
 
 \placetable
   [here]
   [tab:itemsetup]
-  {Item separators in itemize.}
+  {Nastavení formátu odrá¾ek.}
 \starttable[|l|l|]
 \HL
+%\NC \bf Argument \NC \bf Item separator   \NC\SR
 \NC \bf Argument \NC \bf Pøedznaèení   \NC\SR
 \HL
 \NC 1            \NC $\bullet$            \NC\FR
@@ -68,56 +90,106 @@ je obsa¾ena informace o stylu pøedznaèení a lokální nastavení promìnných.
 \HL
 \stoptable
 
-Mù¾ete také nadefinovat svùj vlastní styl pøedznaèení pomocí tokenu
+%You can also define your own item separator by means of
+%\type{\definesymbol}. For example if you try this:
+
+Mù¾ete také nadefinovat své vlastní znaèky odrá¾ek pomocí pøíkazu
 \type{\definesymbol}. Vyzkou¹ejte napøíklad
+
+
+%\item Hasselt was built on a riverdune.
+%\item Hasselt lies at the crossing of two rivers.
 
 \startbuffer
 \definesymbol[5][$\clubsuit$]
-
 \startitemize[5,packed]
-\item Hasselt byl zbudován na píseèném pøesypu
-\item Hasselt le¾í na soutoku dvou øek
+\item Hasselt byl zbudován na píseèném pøesypu.
+\item Hasselt le¾í na soutoku dvou øek.
 \stopitemize
 \stopbuffer
 
 \typebuffer
 
-Mìli byste dostat tento výstup:
+%You will get:
+Dostanete pak tento výstup:
 
 \getbuffer
 
-Nìkdy je potøeba mít oznaèené jednotlivé polo¾ky neèíslované.
-V takovém pøípadì byste mìli pou¾ít místo \type{\item} token \type{\head}.
+%Sometimes you would like to have headers within an
+%enumeration. In that case you should use \type{\head} instead
+%of \type{\item}.
+Nìkdy je potøeba mít jednotlivé polo¾ky neèíslované.
+V takovém pøípadì pou¾ijte  místo \type{\item} pøíkaz \type{\head}.
+
+
+%Hasselt lies in the province of Overijssel and there are a number of
+%customs that are typical of this province.
+
+%\head kraamschudden \hfill (child welcoming)
+
+%      When a child is born the neighbours come to visit the new
+%      parents. The women come to admire the baby and the men come to
+%      judge the baby (if it is a boy) on other aspects.
+%      The neighbours will bring a {\em krentenwegge} along. A
+%      krentenwegge is a loaf of currant bread of about 1 \Meter\
+%      long. Of course the birth is celebrated with {\em jenever}.
+
+%\head nabuurschap (naberschop) \hfill (neighbourship)
+
+
+%      Smaller communities used to be very dependent on the
+%      cooperation among the members for their well being. Members of
+%      the {\em nabuurschap} helped each other in difficult times
+%      during harvest times, funerals or any hardship that fell upon
+%      the community.
+
+
+%\head Abraham \& Sarah  \hfill (identical)
+
+%      When people turn 50 in Hasselt it is said that they see Abraham
+%      or Sarah. The custom is to give these people a {\em speculaas}
+%      Abraham or a Sarah. Speculaas is a kind of hard spiced biscuit.
+
+
+
 
 
 \startbuffer
-Hasselt le¾í v provincii Overijssel, pro kterou je typické
+Hasselt le¾í~v provincii Overijssel, pro kterou je typické
 mno¾ství rùzných zvyklostí.
 
 \startitemize
 
+
 \head kraamschudden \hfill (vítání novorozenìte)
 
+
+
       Po narození dítìte, sousedé nav¹tíví novopeèené rodièe.
-      Zatímco ¾eny pøíchazí dítì obdivovat, mu¾i (pokud jde o chlapce)
+      Zatímco ¾eny pøichází dítì obdivovat, mu¾i (pokud jde~o chlapce)
       hodnotí  ostatní aspekty. Je zvykem ¾e sebou pøiná¹í 
-      {\em krentenwegge}, co¾ je asi 1 \Meter dlouhý
+      {\em krentenwegge}, co¾ je asi 1 \Meter\ dlouhý
       hrozinkový chléb. Nedílnou souèástí oslav narození 
       je samozøejmì tradièní alkoholický nápoj.
 
 
+
 \head nabuurschap (naberschop) \hfill (spoleèenství)
 
+
+
       Malé komunity bývaly velmi závislé na vzájemné pomoci
-      pøíslu¹ných èlenù. Tito èlenové {\em nabuurschap}ù si pomáhali v
-      èasích ¾ní, pohøbù a vùbec pøi v¹ech tì¾kostech, 
+      pøíslu¹ných èlenù. Tito èlenové {\em nabuurschap}ù si pomáhali~v
+      èasích ¾ní, pohøbù~a vùbec pøi v¹ech tì¾kostech, 
       které na komunitu doléhaly.
+
 
 
 \head Abraham \& Sarah  \hfill (stáøí)
 
-      Kdy¾ lidé v Hasseltu dosáhnou padesáti let, øíká se o nich, ¾e
-      se vídají s Abrahamem a Sárou. Je zvykem dát jim
+
+      Kdy¾ lidé~v Hasseltu dosáhnou padesáti let, øíká se~o nich, ¾e
+      se vídají~s Abrahamem~a Sárou. Je zvykem dát jim
       tzv. {\em speculaas}, co¾ je zvlá¹tní druh 
       silnì koøenìných sucharù. 
 
@@ -127,16 +199,22 @@ mno¾ství rùzných zvyklostí.
 
 \typebuffer
 
-Zpùsob zobrazení tokenu \type{\head} mù¾e být ovlivnìno pomocí \type{\setupitemize}.
-V pøípadì zlomu stránky, se \type{\head} objeví v¾dy na 
-nové stránce. (Pøíkaz \type {\Meter} bude vysvìtlen v kapitole 
-\in{chapter} [units].)
+%The \type{\head} can be set up with \type{\setupitemize}.
+%In case of a page breaking a \type{\head} will appear on a
+%new page. (The \type {\Meter} command is explained in \in
+%{chapter} [units].)
+Zpùsob jakým se pøíkaz \type{\head} vysází, mù¾e být 
+ovlivnìno pomocí \type{\setupitemize}. V pøípadì zlomu stránky,
+se \type{\head} objeví v¾dy na nové stránce. (Pøíkaz \type {\Meter}
+ bude vysvìtlen~v kapitole \in{chapter} [units].)
 
-Pøíklad o starých zvycích by mìl vypadat takto:
+%The example of old customs will look like this:
+Pøíklad~o starých zvycích vypadá takto:
 
 \getbuffer
 
-Parametry pro nastavení zpùsobu zobrazení polo¾ek jsou uvedeny v 
+%The set up parameters of itemize are described in
+Parametry pro nastavení zpùsobu zobrazení polo¾ek jsou uvedeny~v 
 \in{table}[tab:tablesetup].
 
 \placetable
@@ -145,33 +223,51 @@ Parametry pro nastavení zpùsobu zobrazení polo¾ek jsou uvedeny v
   {Parametry pro \type{\startitemize}}
 \starttable[|l|l|]
 \HL
+%\NC \bf Set up \NC \bf Meaning                                      \NC\SR
 \NC \bf Parametr  \NC \bf Význam                               \NC\SR
 \HL
-\NC standard   \NC standartní (globalní) nastavení                  \NC\FR
+%\NC standard   \NC standard (global) set up                  \NC\FR
+%\NC packed     \NC no vertical spacing between items                \NC\MR
+%\NC serried    \NC no horizontal spacing between separator and text \NC\MR
+%\NC joinedup   \NC no vertical spacing before and after itemize     \NC\MR
+%\NC broad      \NC horizontal spacing between separator and text    \NC\MR
+%\NC inmargin   \NC place separator in margin                        \NC\MR
+%\NC atmargin   \NC place separator on margin                        \NC\MR
+%\NC stopper    \NC place full stop after separator                  \NC\MR
+%\NC columns    \NC put items in columns                             \NC\MR
+%\NC intro      \NC prevent page breaking after introduction line      \NC\MR
+%\NC continue   \NC continue numbering or lettering                  \NC\LR
+\NC standard   \NC standardní (globalní) nastavení                  \NC\FR
 \NC packed     \NC bez vertikální mezery mezi polo¾kami             \NC\MR
-\NC serried    \NC ¾ádná horiz.mezera mezi znaèkou a textem         \NC\MR
-\NC joinedup   \NC ¾ádné odsazení pøed a po bloku polo¾ek           \NC\MR
-\NC broad      \NC horizontální mezera mezi znaèkou a textem        \NC\MR
+\NC serried    \NC ¾ádná horiz.mezera mezi znaèkou~a textem         \NC\MR
+\NC joinedup   \NC ¾ádné odsazení pøed~a po bloku polo¾ek           \NC\MR
+\NC broad      \NC horizontální mezera mezi znaèkou~a textem        \NC\MR
 \NC inmargin   \NC umístit znaèku polo¾ek do okraje                 \NC\MR
-\NC atmargin   \NC umístit znaèku polo¾ek k okraji                  \NC\MR
-\NC stopper    \NC place full stop after separator                  \NC\MR
+\NC atmargin   \NC umístit znaèku polo¾ek~k okraji                  \NC\MR
+\NC stopper    \NC umístí ukonèení znaèky (implicitnì '.')          \NC\MR
 \NC columns    \NC rozmísti polo¾ky do sloupcù                      \NC\MR
-\NC intro      \NC prevent page breaking after introduction line    \NC\MR
-\NC continue   \NC pokraèování v èíslování                          \NC\LR
+\NC intro      \NC brání stránkovému zlomu mezi odrá¾kami~a jejich uvozujícím odstavcem    \NC\MR
+\NC continue   \NC pokraèování~v èíslování                          \NC\LR
 \HL
 \stoptable
 
+
+%You can use the set up parameters in \type{\startitemize},
+%but for reasons of consistency you can make them valid for
+%the complete document with \type{\setupitemize}.
 Zpùsob zobrazení polo¾ek je sice mo¾né mìnit pomocí \type{\startitemize},
-ale z dùvodu jednotného vzhledu je vhodné vyu¾ít jednotného nastavení
+ale~z dùvodu jednotného vzhledu je vhodné vyu¾ít jednotného nastavení
 pro celý dokument, prostøednictvím \type{\setupitemize}.
 
-Parameter \type{columns} se pou¾ívá spoleènì s oznaèením
+
+%The parameter \type{columns} is used in conjunction with
+%a number. If you type this:
+Parameter \type{columns} se pou¾ívá spoleènì~s oznaèením
 poètu, napøíklad kód:
 
 \startbuffer
 \startitemize[n,columns,four]
 \item Achter 't Werk
-.
 .
 .
 \item Justitiebastion
@@ -180,7 +276,8 @@ poètu, napøíklad kód:
 
 \typebuffer
 
-by mìl vrátit:
+%You will get:
+vysází:
 
 \startbuffer
 \startitemize[n,columns,four]
@@ -200,11 +297,13 @@ by mìl vrátit:
 
 \getbuffer
 
-Nìkdy je potøeba po krátké pøestávce pokraèovat v èíslování polo¾ek.
+%Sometimes you want to continue the enumeration after a short
+%intermezzo. Then you type for example
+%\type{\startitemize[continue,columns,three,broad]} and
+%numbering will continue in a three column format.
+Nìkdy je potøeba po krátké pøestávce pokraèovat~v èíslování polo¾ek.
 To lze provést pomocí...
-
 \type{\startitemize[continue,columns,three,broad]} 
-
 èíslování pak bude pokraèovat ve formátu tøí sloupcù.
 
 \startbuffer
@@ -231,30 +330,69 @@ To lze provést pomocí...
 
 \getbuffer
 
+%The parameter \type{broad} enlarges the horizontal space
+%between item separator and itemtext.
 Parameter \type{broad} zvìt¹uje horizontální mezeru
-mezi znaèkou polo¾ky a jejím textem.
+mezi znaèkou polo¾ky~a jejím textem.
 
 \shortsetup{setupitemize}
 
+%An itemize within an itemize is automatically typeset in a
+%correct way. For example if you type:
 Vnoøené polo¾ky jsou automaticky vysázeny obvyklým zpùsobem. Pokud napøíklad 
 napí¹ete:
 
+
+%In the Netherlands the cities can determine the size of a number of
+%taxes. So the cost of living can differ from town to town. There are
+%differences of up to 50\% in taxes such as:
+
+%\item real estate tax
+
+%      The real estate tax is divided into two components:
+
+%      \item the ownership tax
+%      \item the tenant tax
+%      If the real estate has no tenant the owner pays both components.
+%\item dog licence fee
+
+
+%      The owner of one or more dogs pays a fee. When a dog has died
+%      or been sold the owner has to inform city hall.
+
+
+
+
+
+
+
+
+
 \startbuffer
 V Nizozemí mohou jednotlivá mìsta urèovat vý¹ku celé øady daní, tak¾e 
-èástka potøebná k ¾ivotu se li¹í mìsto od mìsta, nìkde rozdíly v daních 
-pøesahují i 50\%.
+èástka potøebná~k ¾ivotu se li¹í mìsto od mìsta, nìkde rozdíly~v daních 
+pøesahují~i 50\,\%.
 
 \setupitemize[2][width=5em]
 \startitemize[n]
 
-\item Danì za bydlení jsou rozdìleny na dvì èásti:
+
+
+\item Danì za bydlení.
+
+
+      Danì za bydlení jsou rozdìleny na dvì èásti:
+
+
 
       \startitemize[a,packed]
-      \item daò z vlastnictví nemovitosti
-      \item nájem
+      \item daò~z vlastnictví nemovitosti,
+      \item nájem.
       \stopitemize
 
+
       Pokud nemovitost nemá nájemníka, platí vlastník objetku obì èásti.
+
 
 \item poplatek za psa
 
@@ -266,10 +404,13 @@ pøesahují i 50\%.
 
 \typebuffer
 
-potom horizontální odsazení mezi znaèkou a textem vnoøené polo¾ky
+%then the horizontal space between item separator and text at
+%the second level is set with
+potom horizontální odsazení mezi znaèkou~a textem vnoøené polo¾ky
 lze nastavit pomocí:
 \type{\setupitemize[2][width=5em]}.
 
+%The example will look like this:
 Ná¹ pøíklad pak bude vypadat takto:
 
 \start
