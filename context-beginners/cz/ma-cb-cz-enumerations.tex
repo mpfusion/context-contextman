@@ -1,49 +1,87 @@
 % Translation:
+% 2006-07-27 Martina Plachá
 \startcomponent ma-cb-cz-enumerations
 \project ma-cb
 \product ma-cb-cz
 
 \environment ma-cb-env-cz
 
-\chapter{Numbered definitions}
+%\chapter{Numbered definitions}
+\chapter{Èíslované poznámky}
 
-\index{numbered definition}
+%\index{numbered definition}
+\index{èíslované poznámky}
 
 \Command{\tex{defineenumeration}}
 \Command{\tex{setupenumerations}}
 
-With \type{\defineenumeration} you can number text elements
-like remarks or questions. If you want to make numbered
-remarks in your document you use:
+%With \type{\defineenumeration} you can number text elements
+%like remarks or questions. If you want to make numbered
+%remarks in your document you use:
+%
+%\shortsetup{defineenumeration}
+
+U¾itím pøíkazu \type{\defineenumeration} mù¾eme oèíslovat èásti textu, 
+jako poznámky nebo otázky. Pokud chceme takovéto oèíslované poznámky 
+v dokumentu vyrobit, pou¾ijeme:
 
 \shortsetup{defineenumeration}
 
-For example:
+
+%For example:
+Napøíklad:
+
+% \startbuffer[a]
+% \defineenumeration
+%   [remark]
+%   [location=top,
+%    text=Remark,
+%    inbetween=\blank,
+%    after=\blank]
+% \stopbuffer
+
+% \typebuffer[a]
 
 \startbuffer[a]
 \defineenumeration
   [remark]
   [location=top,
-   text=Remark,
+   text=Poznámka,
    inbetween=\blank,
    after=\blank]
 \stopbuffer
 
 \typebuffer[a]
 
-Now the new commands \type{\remark}, \type{\subremark},
-\type{\resetremark} and \type{\nextremark} are available and
-you can type remarks like this:
+%Now the new commands \type{\remark}, \type{\subremark},
+%\type{\resetremark} and \type{\nextremark} are available and
+%you can type remarks like this:
+
+Nyní jsou pøíkazy \type{\remark}, \type{\subremark},
+\type{\resetremark} a \type{\nextremark} pou¾itelné a mù¾eme psát poznámky typu:
+
+
+% \startbuffer[b]
+% \remark In the early medieval times Hasselt was a place of
+% pilgrimage. The {\em Heilige Stede} (Holy Place) was torn down during
+% the Reformation. In 1930, after 300 years the {\em Heilige Stede} was
+% reopened.
+%
+% \subremark Nowadays the {\em Heilige Stede} is closed again but once
+% a year an open air service is held on the same spot. \par
+% \stopbuffer
 
 \startbuffer[b]
-\remark In the early medieval times Hasselt was a place of
-pilgrimage. The {\em Heilige Stede} (Holy Place) was torn down during
-the Reformation. In 1930, after 300 years the {\em Heilige Stede} was
-reopened.
+\remark Na zaèátku støedovìku byl Hasselt poutním místem.
+Toto {\em Heilige Stede} (Posvátné místo) bylo str¾eno a znièeno
+bìhem období reformace. V roce 1930 po 300 letech
+bylo {\em Heilige Stede} znovu vybudováno a otevøeno.
 
-\subremark Nowadays the {\em Heilige Stede} is closed again but once
-a year an open air service is held on the same spot. \par
+\subremark Nyní je {\em Heilige Stede} opìt uzavøeno,
+ale jednou roènì se na tomté¾ místì koná bohoslu¾ba
+pod otevøeným nebem. \par
 \stopbuffer
+
 
 \typebuffer[b]
 
@@ -51,47 +89,77 @@ a year an open air service is held on the same spot. \par
 \getbuffer[a]\getbuffer[b]
 \stop
 
-You can reset numbering with \type{\resetremark} of
-\type{\resetsubremark} or increment a number with
-\type{\nextremark} of \type{\nextsubremark}. This is
-normally done automatically per chapter, section or
-whatever.
+% You can reset numbering with \type{\resetremark} or
+% \type{\resetsubremark} or increment a number with
+% \type{\nextremark} of \type{\nextsubremark}. This is
+% normally done automatically per chapter, section or
+% whatever.
 
-You can set up the layout of \type{\defineenumeration} with:
+U¾itím \type{\resetremark} nebo \type{\resetsubremark} 
+mù¾eme opìt èíslovat od zaèátku. Èíslo zvý¹íme pou¾itím
+\type{\nextremark} nebo \type{\nextsubremark}. Normálnì se poznámky
+èíslují automaticky po kapitolách nebo èástech knihy.
+
+%You can set up the layout of \type{\defineenumeration} with:
+%\shortsetup{setupenumerations}
+
+Úpravu \type{\defineenumeration} si mù¾eme nastavit takto:
 
 \shortsetup{setupenumerations}
 
-You can also vary the layout of {\bf Remark} and {\bf
-Subremark} in the example above by:
+%You can also vary the layout of {\bf Remark} and {\bf
+%Subremark} in the example above by:
+
+Úpravu {\bf Poznámky} a \quote{\bf Podpoznámky} ve vý¹e uvedeném
+pøíkladu nastavíme pomocí:
+
+% \starttyping
+% \setupenumeration[remark][headstyle=bold]
+% \setupenumeration[subremark][headstyle=slanted]
+% \stoptyping
 
 \starttyping
 \setupenumeration[remark][headstyle=bold]
-\setupenumeration[subremark][headstyle=slanted]
+\setupenumeration[subremark][headstyle=slanted,text=Podpoznámka]
 \stoptyping
 
-If a number becomes obsolete you can type:
 
-\starttyping
-\remark[-]
-\stoptyping
+% If the remark contains more than one paragraph you will
+% have to use the command pair
+% \type{\startremark} $\cdots$ \type{\stopremark} that becomes
+% available after defining {\bf Remark} with
+% \type{\defineenumeration[remark]}.
 
-If the remark contains more than one paragraph you will
-have to use the command pair
-\type{\startremark} $\cdots$ \type{\stopremark} that becomes
-available after defining {\bf Remark} with
+Obsahuje-li poznámka více ne¾ jeden odstavec, musíme pou¾ít párový pøíkaz
+\type{\startremark} $\cdots$ \type{\stopremark}, se kterým lze
+pracovat po pøedchozím nadefinování {\bf Poznámky} u¾itím
 \type{\defineenumeration[remark]}.
 
-So the example above would look like this:
+%So the example above would look like this:
+Pøedchozí pøíklad bude vypadat takto:
+
+% \startbuffer[c]
+% \startremark
+% In the early medieval times Hasselt was a place of pilgrimage. The
+% {\em Heilige Stede} (Holy Place) was torn down during the
+% Reformation.
+
+% After 300 years in 1930 the {\em Heilige Stede} was reopened.
+% Nowadays the {\em Heilige Stede} is closed again but once a year an
+% open air service is held on the same spot.
+% \stopremark
+% \stopbuffer
 
 \startbuffer[c]
 \startremark
-In the early medieval times Hasselt was a place of pilgrimage. The
-{\em Heilige Stede} (Holy Place) was torn down during the
-Reformation.
+zaèátku støedovìku byl Hasselt poutním místem.
+Toto {\em Heilige Stede} (Posvátné místo) bylo str¾eno
+a znièeno bìhem období reformace.
 
-After 300 years in 1930 the {\em Heilige Stede} was reopened.
-Nowadays the {\em Heilige Stede} is closed again but once a year an
-open air service is held on the same spot.
+V roce 1930 po 300 letech bylo {\em Heilige Stede}
+znovu vybudováno a otevøeno. Nyní je {\em Heilige Stede}
+opìt uzavøeno, ale jednou roènì se na tomté¾ 
+místì koná bohoslu¾ba pod otevøeným nebem.
 \stopremark
 \stopbuffer
 
@@ -99,6 +167,46 @@ open air service is held on the same spot.
 
 \start
 \getbuffer[a]\getbuffer[c] \par
+\stop
+
+%If a number becomes obsolete you can type:
+
+% \starttyping
+% \remark[-] or startremark[-]
+% \stoptyping
+
+Pokud nechceme danou poznámku èíslovat, pou¾ijeme:
+
+\starttyping
+\remark[-] nebo \startremark[-]
+\stoptyping
+
+%For example:
+Napøíklad:
+
+% \startbuffer[d]
+% \startremark[-]
+% In the early medieval times Hasselt was a place of pilgrimage. The
+% {\em Heilige Stede} (Holy Place) was torn down during the
+% Reformation.
+
+% After 300 years in 1930 the {\em Heilige Stede} was reopened.
+% Nowadays the {\em Heilige Stede} is closed again but once a year an
+% open air service is held on the same spot.
+% \stopremark
+% \stopbuffer
+
+\startbuffer[d]
+\remark[-]
+Na zaèátku støedovìku byl Hasselt poutním místem.
+Toto {\em Heilige Stede} (Posvátné místo) bylo str¾eno
+a znièeno bìhem období reformace.\par
+\stopbuffer
+
+\typebuffer[d]
+
+\start
+\getbuffer[a]\getbuffer[d] \par
 \stop
 
 \stopcomponent
