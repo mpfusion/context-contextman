@@ -1,73 +1,129 @@
 % Translation:
+% pøelo¾il: jaih
 \startcomponent ma-cb-cz-math
 \project ma-cb
 \environment ma-cb-env-cz
 
 \product ma-cb-cz
 
-\chapter[formulas]{Typesetting math}
+%\chapter[formulas]{Typesetting math}
+\chapter[formulas]{Sazba matematiky}
 
 \section{Introduction}
 
-\index {math}
+%\index {math}
+\index {matematika}
 
-\TEX\ is {\em the} typesetting program for math. However,
-this is not the extensive chapter on typesetting math you
-might expect. We advise you to do some further reading on
-typesetting formulae in \TEX. See for example: \footnote{In
-this introduction on typesetting math we relied on the
-booklet {\em \TEX niques} by Arthur Samuel.}
+%\TEX\ is {\em the} typesetting program for math. However,
+%this is not the extensive chapter on typesetting math you
+%might expect. We advise you to do some further reading on
+%typesetting formulae in \TEX. See for example: \footnote{In
+%this introduction on typesetting math we relied on the
+%booklet {\em \TEX niques} by Arthur Samuel.}
+
+
+\TEX\ je {\em pøedev¹ím} sázecí program pro matematiku. Nicménì
+toto není rozsáhlá kapitola týkající se sazby matematiky, jak
+mo¾ná oèekáváte. Pokud potøebujete v \TEX u sázet vzorce,
+doporuèejeme vám ke studiu napøíklad: \footnote{V tìchto
+instrukcích o sazbì matematiky se opíráme o kní¾ku
+{\em \TEX niques}, kterou napsal Arthur Samuel.}
+
+%\startitemize[packed]
+%\item {\em The \TeX Book} by D.E. Knuth
+%\item {\em The Beginners Book of \TeX} by S. Levy and R. Seroul
+%\stopitemize
 
 \startitemize[packed]
-\item {\em The \TeX Book} by D.E. Knuth
-\item {\em The Beginners Book of \TeX} by S. Levy and R. Seroul
+\item {\em The \TeX Book}, autor: D.E. Knuth
+\item {\em The Beginners Book of \TeX}, autoøi: S. Levy a R. Seroul
 \stopitemize
 
-Furthermore a \CONTEXT\ math module and its
-accompanying manual will be published in due time.
+
+
+%Furthermore a \CONTEXT\ math module and its
+%accompanying manual will be published in due time.
+
+
+Kromì tohoto bude v brzké dobì vydán \CONTEXT ový matematický
+modul a k tomu pøíslu¹ná dokumentace.
+
 
 \section{Typesetting math}
 
-\index {math mode}
-\index {display mode}
-\index {text mode}
+%\index {math mode}
+%\index {display mode}
+%\index {text mode}
 
-Normally different conventions are applied for typesetting
-normal text and math text. These conventions are \quote{known}
-by \TEX\ and applied accordingly when generating a document.
-We can rely on \TEX\ for delivering high quality math output.
 
-A number of conventions for math are:
+\index {matematický re¾im}
+\index {zobrazovací re¾im}
+\index {textový re¾im}
+
+
+%Normally different conventions are applied for typesetting
+%normal text and math text. These conventions are \quote{known}
+%by \TEX\ and applied accordingly when generating a document.
+%We can rely on \TEX\ for delivering high quality math output.
+
+
+V bì¾ných situacích se zvyklosti pro sazbu bì¾ného a matematického
+ textu li¹í. \TEX\ tyto zvyklosti zná a bìhem vytváøení dokumentu
+je pøesnì aplikuje. Pøi po¾adavcích na vysokou kvalitu sazby matematického
+výstupu se mù¾eme na \TEX\ plnì spolehnout.
+
+
+%A number of conventions for math are:
+Nìkolik zvyklostí pro sazbu matematiky:
 
 \startitemize[n,packed]
 
-\item Characters are typeset in $math\ italic$ (don't confuse
-      this with the normal {\it italic characters} in a font).
+%\item Characters are typeset in $math\ italic$ (don't confuse
+%this with the normal {\it italic characters} in a font).
+\item Znaky jsou sázeny v $matematicke\  kurzive$ (neplést
+      s {\it bì¾nou kurzívou} pøi pou¾ití fontù)
 
-\item Symbols like Greek characters ($\alpha$, $\chi$)
-      and math symbols ($\leq$, $\geq$, $\in$) are used.
+%\item Symbols like Greek characters ($\alpha$, $\chi$)
+%      and math symbols ($\leq$, $\geq$, $\in$) are used.
+\item U¾ívají se symboly jako Øecké znaky ($\alpha$, $\chi$)
+      a  matematické znaèky ($\leq$, $\geq$, $\in$)
 
-\item Spacing will differ from normal spacing.
+%\item Spacing will differ from normal spacing.
+\item Délky mezer jsou také jiné, ne¾ v bì¾ném textu
 
-\item Math expression have a different alignment than that of
-      the running text.
+%\item Math expression have a different alignment than that of
+%      the running text.
+\item V matematických výrazech se také u¾ívá jiný zpùsob 
+      zarovnání textu
 
-\item  The sub and superscripts are downsized automatically,
-      like in $a^{b}_{c}$.
+%\item  The sub and superscripts are downsized automatically,
+%      like in $a^{b}_{c}$.
+\item  Horní a dolní indexy jsou umístìny automaticky.
+       Napøíklad: $a^{b}_{c}$.
 
 \item Certain symbols have different appearances in the
       inline and display mode.
 
 \stopitemize
 
-When typesetting math you have to work in the so called math
-mode in which math expressions can be defined by means of
-plain \TEX||commands.
+%When typesetting math you have to work in the so called math
+%mode in which math expressions can be defined by means of
+%plain \TEX||commands.
 
-Math mode has two alternatives: text mode and display mode.
-Math mode in text mode is activated by \type{$} and
-\type{$}, while display mode is activated by \type{$$} and
-\type{$$}.
+Pøi sazbì matemtiky musíte pracovat v tak zvaném matematickém
+re¾imu, ve kterém jsou výrazy definovány pomocí pøíkazù
+plain \TEX u.
+
+%Math mode has two alternatives: text mode and display mode.
+%Math mode in text mode is activated by \type{$} and
+%\type{$}, while display mode is activated by \type{$$} and
+%\type{$$}.
+
+
+Matematický re¾im má dvì alternativy: textový re¾im a zobrazovací
+re¾im. Textový matematický re¾im je aktivován pomocí \type{$} a
+\type{$}, zatímco zobrazovací matematický re¾im je oznaèen pomocí
+\type{$$} a \type{$$}.
 
 \startbuffer
 The Hasselt community covers an area of 42,05 \Square \Kilo \Meter.
