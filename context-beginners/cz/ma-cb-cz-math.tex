@@ -125,56 +125,91 @@ re¾im. Textový matematický re¾im je aktivován pomocí \type{$} a
 \type{$}, zatímco zobrazovací matematický re¾im je oznaèen pomocí
 \type{$$} a \type{$$}.
 
-\startbuffer
-The Hasselt community covers an area of 42,05 \Square \Kilo \Meter.
-Now if you consider a circular area of this size with the market
-place of Hasselt as the center point $M$ you can calculate its
-diameter with ${{1}\over{4}} \pi r^2$.
-\stopbuffer
+%\startbuffer
+%The Hasselt community covers an area of 42,05 \Square \Kilo \Meter.
+%Now if you consider a circular area of this size with the market
+%place of Hasselt as the center point $M$ you can calculate its
+%diameter with ${{1}\over{4}} \pi r^2$.
+%\stopbuffer
 
+\startbuffer
+Mìsto Hasselt pokrývá plochu 42,05 \Square \Kilo \Meter.
+Pokud budeme uva¾ovat kruhovou oblast této velikosti s 
+Hasseltským tr¾i¹tìm v geometrickém støedu $T$, mù¾eme 
+spoèítat prùmìr této oblasti pomocí vzorce ${{1}\over{4}} \pi d^2$.
+\stopbuffer
 \typebuffer
 
-This will become:
+%This will become:
+Bude vypadat po vysázení takto:
 
 \getbuffer
 
-The many \type{{}} (grouping) in ${{1}\over{4}} \pi r^2$ are
-essential for separating operations in the expression. If
-you omit the outer curly braces like this:
-\type{${1}\over{4} \pi r^2$}, you would get a non desired
-result: ${1}\over{4} \pi r^2$.
+%The many \type{{}} (grouping) in ${{1}\over{4}} \pi r^2$ are
+%essential for separating operations in the expression. If
+%you omit the outer curly braces like this:
+%\type{${1}\over{4} \pi r^2$}, you would get a non desired
+%result: ${1}\over{4} \pi r^2$.
 
-The letters and numbers are typeset in three different
-sizes: text size $a+b$, script size $\scriptstyle a+b$ and
-scriptscript size $\scriptscriptstyle a+b$. These can be
-influenced by the commands \type{\scriptstyle} and
-\type{\scriptscriptstyle}.
+Vìt¹í mno¾ství \type{{}} (slo¾ených závorek) ve výrazu
+${{1}\over{4}} \pi d^2$ je potøeba pro urèení priority
+jednotlivých operací. Pokud zapomenete na vnìj¹í závorky
+a zapí¹ete: \type{${1}\over{4} \pi d^2$}, dostanete ne¾ádoucí
+výsledek: ${1}\over{4} \pi d^2$.
 
-Symbols like $\int$ and $\sum$ will have a different form in
-text and display mode. If we type \type {$\sum_{n=1}^{m}$}
-or \type {$\int_{-\infty}^{+\infty}$} we will get
-{$\sum_{n=1}^{m}$} and {$\int_{-\infty}^{+\infty}$}. But
-when you type \type {$$\sum_{n=1}^{m}$$} \type
-{$$\int_{-\infty}^{+\infty}$$} to activate display mode you
-will get:
+%The letters and numbers are typeset in three different
+%sizes: text size $a+b$, script size $\scriptstyle a+b$ and
+%scriptscript size $\scriptscriptstyle a+b$. These can be
+%influenced by the commands \type{\scriptstyle} and
+%\type{\scriptscriptstyle}.
+
+Písmena a èíslice jsou sázena ve tøech velikostech:
+velikost textu $a+b$, velikost script: $\scriptstyle a+b$ a 
+velikost scriptscript $\scriptscriptstyle a+b$. Toto lze
+ovlivòovat pøíkazy \type{\scriptstyle} a \type{\scriptscriptstyle}.
+
+
+%Symbols like $\int$ and $\sum$ will have a different form in
+%text and display mode. If we type \type {$\sum_{n=1}^{m}$}
+%or \type {$\int_{-\infty}^{+\infty}$} we will get
+%{$\sum_{n=1}^{m}$} and {$\int_{-\infty}^{+\infty}$}. But
+%when you type \type {$$\sum_{n=1}^{m}$$} \type
+%{$$\int_{-\infty}^{+\infty}$$} to activate display mode you
+%will get:
+
+Symboly jako $\int$ a $\sum$ vypadají jinak v re¾imu textovém
+a jinak ve zobrazovacím. Pokud napí¹eme \type {$\sum_{n=1}^{m}$}
+nebo \type {$\int_{-\infty}^{+\infty}$}, dostaneme 
+{$\sum_{n=1}^{m}$} a {$\int_{-\infty}^{+\infty}$}. To samé
+ve zobrazovacím re¾imu: \type {$$\sum_{n=1}^{m}$$} 
+\type {$$\int_{-\infty}^{+\infty}$$} bude v¹ak vypadat takto:
 
 \startformula
 \sum_{n=1}^{m} \quad {\rm and} \quad \int_{-\infty}^{+\infty}
 \stopformula
 
-With the commands \type {\nolimits} and \type{\limits} you
-can influence the appearances of \type{\sum} and \type{\int}:
+%With the commands \type {\nolimits} and \type{\limits} you
+%can influence the appearances of \type{\sum} and \type{\int}:
+
+Pomocí pøíkazù \type {\nolimits} a \type{\limits} mù¾ete
+ovlivnit vzhled symbolù \type{\sum} a \type{\int}: 
 
 \startformula
 \sum_{n=1}^{m}\nolimits \quad {\rm and} \quad \int_{-\infty}^{+\infty}\limits
 \stopformula
 
-For typesetting fractions there is the command \type
-{\over}. In \CONTEXT\ you can use the alternative
-\type {\frac}. For ${\frac{a}{1+b}}+c$ we type for instance
-\type {${\frac{a}{1+b}}+c$}.
+%For typesetting fractions there is the command \type
+%{\over}. In \CONTEXT\ you can use the alternative
+%\type {\frac}. For ${\frac{a}{1+b}}+c$ we type for instance
+%\type {${\frac{a}{1+b}}+c$}.
 
-Other commands to put one thing above the other, are:
+Pro sazbu zlomkù mù¾ete pou¾ít pøíkaz \type{\over}.
+V \CONTEXT u mù¾ete pou¾ívat také alternativu
+\type {\frac}. Napøíklad pro vysázení ${\frac{a}{1+b}}+c$
+staèí zapsat: {${\frac{a}{1+b}}+c$}.
+
+%Other commands to put one thing above the other, are:
+Dal¹í pøíkazy pro umístìní rùzných èástí výrazu nad sebe:
 
 \startbuffer[atop]
 ${a} \atop {b}$
@@ -212,28 +247,49 @@ ${m} \brace {n-1}$
 \NC\NR
 \stoptabulate
 
-\TEX\ can enlarge delimiters like (~) and $\{~\}$
-automatically if the left and right delimiter is preceeded
-by the commands \type {\left} and \type {\right}
-respectively. If we type \type
-{$$1+\left(\frac{1}{1-x^{x-2}}\right)^3$$} we get:
+%\TEX\ can enlarge delimiters like (~) and $\{~\}$
+%automatically if the left and right delimiter is preceeded
+%by the commands \type {\left} and \type {\right}
+%respectively. If we type \type
+%{$$1+\left(\frac{1}{1-x^{x-2}}\right)^3$$} we get:
+
+\TEX\ mù¾e pøizpùsobit velikost závorek jako (~) a $\{~\}$
+automaticky, pokud levou závorku pøedchází pøíkaz \type {\left}
+a podobnì pravou \type {\right}. Napøíklad zápis 
+\type{$$1+\left(\frac{1}{1-x^{x-2}}\right)^3$$} bude vypadat:
 
 \startformula
 1+\left(\frac{1}{1-x^{x-2}}\right)^3
 \stopformula
 
-Sub and superscripts are invoked by \quote {\type{_}} and
-\quote {\type{^}}. They have effect on the next first
-character so grouping with $\{$~$\}$ is necessary in case of
-multi character sub and superscripts.
+%Sub and superscripts are invoked by \quote {\type{_}} and
+%\quote {\type{^}}. They have effect on the next first
+%character so grouping with $\{$~$\}$ is necessary in case of
+%multi character sub and superscripts.
 
-In certain situations the delimiters can be preceeded by
-\type{\bigl}, \type{\Bigl}, \type{\biggl} and \type{\Biggl}
-and their right counterparts. Even bigger delimiters can be
-produced by placing \type{\left} and \type{\right} in a
-\type{\vbox} construction. When we type a senseless
-expression like \type{$$\left(\vbox to
-16pt{}x^{2^{2^{2^{2}}}}\right)$$} we get:
+Sazby horního a dolního indexu dosáhneme pomocí \quote {\type{_}}
+a \quote {\type{^}}. Tyto znaèky mají vliv pouze na první 
+následující znak, tak¾e pro víceznaké indexy je nutné ohranièovat
+závorkama $\{$~$\}$.
+
+
+%In certain situations the delimiters can be preceeded by
+%\type{\bigl}, \type{\Bigl}, \type{\biggl} and \type{\Biggl}
+%and their right counterparts. Even bigger delimiters can be
+%produced by placing \type{\left} and \type{\right} in a
+%\type{\vbox} construction. When we type a senseless
+%expression like \type{$$\left(\vbox to
+%16pt{}x^{2^{2^{2^{2}}}}\right)$$} we get:
+
+V urèitých situacích mohou být závorky zvìt¹eny pomocí
+pøíkazù \type{\bigl}, \type{\Bigl}, \type{\biggl},
+\type{\Biggl} a jejich pravých ekvivalentù. Pokud to 
+nestaèí, tak je¹tì vìt¹ích závorek mù¾eme dosáhnout
+spoluprací pøíkazù \type{\left} a \type{\right} s konstrukcí
+\type{\vbox}. Více ne¾ popis to objasní pøíklad, by» ponìkud
+ménì èitelný: 
+\type{$$\left(\vbox to 16pt{}x^{2^{2^{2^{2}}}}\right)$$}
+
 
 \startformula
 \left(\vbox to 16pt{}x^{2^{2^{2^{2}}}}\right)
