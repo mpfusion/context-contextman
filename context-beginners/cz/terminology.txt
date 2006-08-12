@@ -7,3 +7,6 @@ local footnotes			= lokální poznámky
 setup				= nastaveni
 itemize                         = odrá¾ky
 columns in itemize              = odrá¾ky ve sloupcích
+units				= jednotky
+siunit				= jednotkasi
+set up area			= deklaraèní oblast
