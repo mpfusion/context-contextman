@@ -103,8 +103,9 @@ Nìkolik zvyklostí pro sazbu matematiky:
 \item  Horní a dolní indexy jsou umístìny automaticky.
        Napøíklad: $a^{b}_{c}$.
 
-\item Certain symbols have different appearances in the
-      inline and display mode.
+%\item Certain symbols have different appearances in the
+%      inline and display mode.
+\item Urèité symboly mají rùzný vzhled v~øádkovém a v~zobrazovacím módu.
 
 \stopitemize
 
@@ -112,7 +113,7 @@ Nìkolik zvyklostí pro sazbu matematiky:
 %mode in which math expressions can be defined by means of
 %plain \TEX||commands.
 
-Pøi sazbì matemtiky musíte pracovat v~tak zvaném matematickém
+Pøi sazbì matematiky musíte pracovat v~takzvaném matematickém
 re¾imu, ve kterém jsou výrazy definovány pomocí pøíkazù
 plain \TEX u.
 
@@ -393,14 +394,14 @@ A=\left|\matrix{x-\mu& 1     & 0     \cr
 
 \typebuffer[b,a,b] \startformula\getbuffer[a]\stopformula
 
-\startbuffer[a]
-A=\pmatrix{a_{11} & a_{12} & \ldots & a_{1n} \cr
-           a_{21} & a_{22} & \ldots & a_{2n} \cr
-           \vdots & \vdots & \ddots & \vdots \cr
-           a_{m1} & a_{m2} & \ldots & a_{mn} \cr}
-\stopbuffer
-
-\typebuffer[b,a,b] \startformula\getbuffer[a]\stopformula
+%\startbuffer[a]
+%A=\pmatrix{a_{11} & a_{12} & \ldots & a_{1n} \cr
+%           a_{21} & a_{22} & \ldots & a_{2n} \cr
+%           \vdots & \vdots & \ddots & \vdots \cr
+%           a_{m1} & a_{m2} & \ldots & a_{mn} \cr}
+%\stopbuffer
+%
+%\typebuffer[b,a,b] \startformula\getbuffer[a]\stopformula
 
 \startbuffer[a]
 A=\pmatrix{a_{11} & a_{12} & \ldots & a_{1n} \cr
@@ -694,8 +695,8 @@ povinné a slou¾í pro odkazy a také pro zapnutí a vypnutí
 %\type{\in{formula}[middle one]}.
 
 Nápis v~hranaté závorce \type{[prostredni formule]} slou¾í
-pro odvolání se na tuto formuli v~následujícím textu. Tato 
-odvolávka se provádí pøíkazem \type{\in{formula}[prostredni formule]}.
+pro odvolání se na tuto formuli v~následujícím textu. Tuto 
+odvolávku jsme provedli pøíkazem \type{\in{Formula}[prostredni formule]}.
 
 %If no numbering is required you type:
 Jestli¾e není vy¾adováno èíslování, zapí¹ete:
