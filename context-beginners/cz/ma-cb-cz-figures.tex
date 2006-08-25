@@ -6,11 +6,14 @@
 
 \environment ma-cb-env-cz
 
-\chapter[figures]{Figures}
+%\chapter[figures]{Figures}
+\chapter[obrazky]{Obrazce}
 
-\index{figure}
+%\index{figure}
+\index{obrazce}
 %\zieindex{picture}{figure}
-\index{floating blocks}
+%\index{floating blocks}
+\index{plovoucí text}
 
 \Command{\tex{placefigure}}
 \Command{\tex{startfiguretext}}
@@ -26,70 +29,130 @@
 Obrázky a fotografie mohou být vlo¾eny do va¹eho 
 dokumentu pomocí následujícího pøíkazu:
 
+%\startbuffer
+%\placefigure
+%   [][fig:church]
+%   {Stephanus Church.}
+%   {\externalfigure[ma-cb-24][width=.4\textwidth]}
+%\stopbuffer
+
+
 \startbuffer
 \placefigure
-   [][fig:church]
-   {Stephanus Church.}
+   [][obr:kostel]
+   {Kostel sv.~©tìpána}
    {\externalfigure[ma-cb-24][width=.4\textwidth]}
 \stopbuffer
 
 \typebuffer
 
-After processing this will come out as
-\in{figure}[fig:church] at the first available place.
+%After processing this will come out as
+%\in{figure}[fig:church] at the first available place.
+
+Po zpracování se na první dostupné místo vysází
+\in{obrázek}[obr:kostel]
 
 \getbuffer
 
-The command \type{\placefigure} handles numbering and
-vertical spacing before and after your figure. Furthermore
-this command initializes a float mechanism, which means that
-\CONTEXT\ looks whether there is enough space for your
-figure on the page. If not the figure will be placed at
-another location and the text carries on, while the figure
-floats in your document until the optimal location is found.
-You can influence this mechanism within the first bracket
-pair.
+%The command \type{\placefigure} handles numbering and
+%vertical spacing before and after your figure. Furthermore
+%this command initializes a float mechanism, which means that
+%\CONTEXT\ looks whether there is enough space for your
+%figure on the page. If not the figure will be placed at
+%another location and the text carries on, while the figure
+%floats in your document until the optimal location is found.
+%You can influence this mechanism within the first bracket
+%pair.
+
+Pøíkaz \type{\placefigure} zajistí èíslování a vertikální
+odsazení obrázku. Dále tento pøíkaz inicializuje jakýsi
+plovoucí mechanismus, co¾ znamená, ¾e se \CONTEXT\ podívá,
+zda je na dané stránce pro Vá¹ obrázek dostatek místa. Pokud
+není, bude obrázek umístìn na jiné vhodné místo. V takovém pøípadì
+bude text pokraèovat a obrázek bude proplouvat na¹ím dokumentem,
+dokud pro nìj nebude nalezeno optimální umístìní. Tento mechanismus
+mù¾ete ovlivòovat v oblasti ohranièené první dvojicí závorek.
 
 The command \type{\placefigure} is a predefined example of:
 
 \shortsetup{placeblock}
 
-The options are described in \in{table}[tab:placefigure].
+%The options are described in \in{table}[tab:placefigure].
+Zde pou¾itelné parametry jsou popsané v \in{tabulce}[tab:placefigure].
+
+%\placetable
+  %[here]
+  %[tab:placefigure]
+  %{Options in \type{\placefigure}.}
+%\starttable[|l|l|]
+%\HL
+%\NC \bf Option \NC \bf Meaning                             \NC\SR
+%\HL
+%\NC here       \NC put figure at this location if possible \NC\FR
+%\NC force      \NC force figure placement here             \NC\MR
+%\NC page       \NC put figure on its own page              \NC\MR
+%\NC top        \NC put the figure at the top of the page   \NC\MR
+%\NC bottom     \NC put the figure at the botom of the page \NC\MR
+%\NC left       \NC place figure at the left margin         \NC\MR
+%\NC right      \NC place figure at the right margin        \NC\MR
+%\NC margin     \NC place figure in the margin              \NC\LR
+%\HL
+%\stoptable
+
 
 \placetable
   [here]
   [tab:placefigure]
-  {Options in \type{\placefigure}.}
+  {Parametry v pøíkazu \type{\placefigure}.}
 \starttable[|l|l|]
 \HL
-\NC \bf Option \NC \bf Meaning                             \NC\SR
+\NC \bf Parametr \NC \bf Vysvìtlení                \NC\SR
 \HL
-\NC here       \NC put figure at this location if possible \NC\FR
-\NC force      \NC force figure placement here             \NC\MR
-\NC page       \NC put figure on its own page              \NC\MR
-\NC top        \NC put the figure at the top of the page   \NC\MR
-\NC bottom     \NC put the figure at the botom of the page \NC\MR
-\NC left       \NC place figure at the left margin         \NC\MR
-\NC right      \NC place figure at the right margin        \NC\MR
-\NC margin     \NC place figure in the margin              \NC\LR
+\NC here       \NC pokud je to mo¾né, umístit obrazec do této oblasti \NC\FR
+\NC force      \NC vynutit si umístìní obrázce zde         \NC\MR
+\NC page       \NC umístit obrazec na zvlá¹tní stránku     \NC\MR
+\NC top        \NC umístit obrazec na zvlá¹tní stránku     \NC\MR
+\NC bottom     \NC umístit obrazec na dolní okraj stránky  \NC\MR
+\NC left       \NC umístit obrazec do levého okraje        \NC\MR
+\NC right      \NC umístit obrazec do pravého okraje       \NC\MR
+\NC margin     \NC umístit obrazec na kraj                 \NC\LR
 \HL
 \stoptable
 
-The second bracket pair is used for cross-referencing. You can
-refer to this particular figure by typing:
+%The second bracket pair is used for cross-referencing. You can
+%refer to this particular figure by typing:
+
+Druhý pár závorek je urèen pro úèely odkazu. Na konkrétní obrazec
+se mù¾ete odkázat pøíkazem:
+
+%\starttyping
+%\in{figure}[fig:church]
+%\stoptyping
+
 
 \starttyping
-\in{figure}[fig:church]
+\in{obrazek}[obr:kostel]
 \stoptyping
 
-The first brace pair is used for the caption. You can type
-any text you want. If you want no caption and no number, you
-can type \type{{none}}. The figure labels are set up with
-\type{\setupcaptions} and the numbering is (re)set by
-\type{\setupnumbering} (see \in{paragraph}[floatingblocks]).
+%The first brace pair is used for the caption. You can type
+%any text you want. If you want no caption and no number, you
+%can type \type{{none}}. The figure labels are set up with
+%\type{\setupcaptions} and the numbering is (re)set by
+%\type{\setupnumbering} (see \in{paragraph}[floatingblocks]).
 
-The second brace pair is used for defining the figure and
-addressing the file names of external figures.
+První pár závorek tohoto pøíkazu je urèen pro název. Mù¾ete
+sem napsat libovolný text. Pokud si nepøejete ¾ádný název,
+ani èíslování, mù¾ete pou¾ít \type{{none}}. Název obrázku 
+je nastaven pomocí \type{\setupcaptions} a nastavení (pøípadnì
+vynulování) èíslování se nastavuje pøíkazem \type{\setupnumbering}
+(viz \in{paragraph}[floatingblocks]).
+
+
+%The second brace pair is used for defining the figure and
+%addressing the file names of external figures.
+
+Druhý pár závorek je pro urèení obrazce a názvù souborù 
+externích obrazcù.
 
 In the next example you see how
 \inframed[height=1em]{Hasselt} is defined within the last
