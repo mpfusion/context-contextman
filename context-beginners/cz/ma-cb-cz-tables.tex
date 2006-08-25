@@ -1,14 +1,18 @@
 % Translation:
+% 2006-07-21 Vít Zýka
 \startcomponent ma-cb-cz-tables
 
 \product ma-cb-cz
 
 \environment ma-cb-env-cz
 
-\chapter[tables]{Tables}
+%\chapter[tables]{Tables}
+\chapter[tables]{Tabulky}
 
-\index{tables}
-\index{floating blocks}
+%\index{tables}
+%\index{floating blocks}
+\index{tabulky}
+\index{plovoucí objekty}
 
 \Command{\tex{placetable}}
 \Command{\tex{setuptables}}
@@ -31,52 +35,86 @@
 \Command{\tex{TWO}}
 \Command{\tex{THREE}}
 
-{\em In general, a table consists of columns which may be
-independently left adjusted, centered, right adjusted, or
-aligned on decimal points. Headings may be placed over single
-columns or groups of columns. Table entries may contain
-equations or several rows of text. Horizontal and vertical
-lines may be drawn wholly or partially across the table.}
+%% {\em In general, a table consists of columns which may be
+%% independently left adjusted, centered, right adjusted, or
+%% aligned on decimal points. Headings may be placed over single
+%% columns or groups of columns. Table entries may contain
+%% equations or several rows of text. Horizontal and vertical
+%% lines may be drawn wholly or partially across the table.}
+{\em Tabulka se obecnì skládá ze sloupcù. Jejich obsah mù¾e být
+  zarovnán vlevo, vpravo, vycentrován èi zarovnán k~desetinné
+  èárce. Nadpisek mù¾e zaujímat jeden nebo více sloupcù. Buòky tabulky
+  mohou obsahovat rovnice nebo nekolik øádkù textu. Horizontální a
+  vertikální linky mohou vést pøes celou tabulku nebo jen pøes její èást.}
 
-This is what Michael J. Wichura wrote in the preface of the
-manual of \TABLE\ (\TABLE\ manual, 1988.). Michael Wichura
-is also the author of the \TABLE\ macros \CONTEXT\ is
-relying on when processing tables. A few \CONTEXT\ macros
-were added to take care of consistent line spacing and to
-make the interface a little less cryptic.\footnote{\CONTEXT\
-was developed for non||technical users in the \cap{WYSIWYG}
-era. Therefore a user friendly interface and easy file and
-command handling were needed, and cryptic commands,
-programming and logical reasoning had to be avoided.}
+%% This is what Michael J. Wichura wrote in the preface of the
+%% manual of \TABLE\ (\TABLE\ manual, 1988.). Michael Wichura
+%% is also the author of the \TABLE\ macros \CONTEXT\ is
+%% relying on when processing tables. A few \CONTEXT\ macros
+%% were added to take care of consistent line spacing and to
+%% make the interface a little less cryptic.\footnote{\CONTEXT\
+%% was developed for non||technical users in the \cap{WYSIWYG}
+%% era. Therefore a user friendly interface and easy file and
+%% command handling were needed, and cryptic commands,
+%% programming and logical reasoning had to be avoided.}
+Toto napsal J. Wichura v~pøedmluvì manuálu o~\TABLE\ (\TABLE\ manual,
+1988). Michael Wichura je také autorem sady maker \TABLE, kterou
+\CONTEXT\ pou¾ívá k~sazbì tabulek. \CONTEXT\ nabízí je¹tì jiné
+sady. V~tomto manuálu si nejprve popí¹eme \TABLE, pozdìji uká¾eme
+pou¾ití \quote{pøirozených tabulek} \type{\bTABLE}.
 
-For placing a table the command \type{\placetable} is used
-which is a predefined example of:
+Do~definic \TABLE\ bylo oproti originálu pøidáno nìkolik maker
+zaji¹»ujících konzistentnìj¹í øádkování a bylo
+zjednodu¹eno u¾ivatelské rozhraní.\footnote{\CONTEXT\ byl vyvinut pro
+  u¾ivatele (také) bez technického nadání v~éøe \cap{WYSIWIG}. Proto
+  bylo doplnìno pøívìtivé u¾ivatelské rozhraní se snadnou manipulací
+  se soubory a byly vypu¹tìny kryptické pøíkazy a programové i~logické
+  konstrukce.}
 
-\shortsetup{placeblock}
-
-For defining the table you use:
+%For placing a table the command \type{\placetable} is used
+%which is a predefined example of:
+%
+%\shortsetup{placeblock}
+%
+%For defining the table you use:
+Tabulku umístíme pøíkazem \type{\placetable}. Definujeme ji pomocí
 
 \shortsetup{starttable}
 
-The definition of a table could look something like this:
+%The definition of a table could look something like this:
+Definice tabulky mù¾e vypadat následovnì:
 
+%% \startbuffer
+%% \placetable[here][tab:ships]{Ships that moored at Hasselt.}
+%% \starttable[|c|c|]
+%% \HL
+%% \NC \bf Year \NC \bf Number of ships \NC\SR
+%% \HL
+%% \NC 1645     \NC 450                 \NC\FR
+%% \NC 1671     \NC 480                 \NC\MR
+%% \NC 1676     \NC 500                 \NC\MR
+%% \NC 1695     \NC 930                 \NC\LR
+%% \HL
+%% \stoptable
+%% \stopbuffer
 \startbuffer
-\placetable[here][tab:ships]{Ships that moored at Hasselt.}
+\placetable[here][tab:ships]{Lodì kotvící v~Hasseltu.}
 \starttable[|c|c|]
 \HL
-\NC \bf Year \NC \bf Number of ships \NC\SR
+\NC \bf Rok \NC \bf Poèet lodí \NC\SR
 \HL
-\NC 1645     \NC 450                 \NC\FR
-\NC 1671     \NC 480                 \NC\MR
-\NC 1676     \NC 500                 \NC\MR
-\NC 1695     \NC 930                 \NC\LR
+\NC 1645    \NC 450            \NC\FR
+\NC 1671    \NC 480            \NC\MR
+\NC 1676    \NC 500            \NC\MR
+\NC 1695    \NC 930            \NC\LR
 \HL
 \stoptable
 \stopbuffer
 
 \typebuffer
 
-This table is typeset as \in{table}[tab:ships].
+%This table is typeset as \in{table}[tab:ships].
+Tato tabulka je vysázena jako \in{tabulka}[tab:ships].
 
 \getbuffer
 
