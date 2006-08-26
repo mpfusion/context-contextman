@@ -1,40 +1,66 @@
 % Translation:
+% 2006-08-26 Petr Tesarik
 \startcomponent ma-cb-cz-structure
 
 \product ma-cb-cz
 
 \environment ma-cb-env-cz
 
-\chapter{Defining a document}
+%% \chapter{Defining a document}
+\chapter{Vymezení dokumentu}
 
-Every document is started with \type{\starttext} and closed
-with \type{\stoptext}. All textual input is placed between
-these two commands and \CONTEXT\ will only process that
-information.
+%% Every document is started with \type{\starttext} and closed
+%% with \type{\stoptext}. All textual input is placed between
+%% these two commands and \CONTEXT\ will only process that
+%% information.
+Ka¾dý dokument zaèíná povelem \type{\starttext} a je ukonèen
+povelem \type{\stoptext}. Ve¹kerý textový vstup je umístìn
+mezi tyto dva povely a jedinì zde jej \CONTEXT\ bude
+zpracovávat.
 
-Setup information is placed in the set up area just before
-\type{\starttext}.
+%% Setup information is placed in the set up area just before
+%% \type{\starttext}.
+Informace o~nastavení jsou umístìny v~oblasti tìsnì pøed
+povelem \type{\starttext}.
+
+%% \startbuffer
+%% \setupbodyfont[12pt]
+%% \starttext
+%% This is a one line document.
+%% \stoptext
+%% \stopbuffer
+
+%% \typebuffer
 
 \startbuffer
 \setupbodyfont[12pt]
 \starttext
-This is a one line document.
+Toto je jednoøádkový dokument.
 \stoptext
 \stopbuffer
 
 \typebuffer
 
-Within the \type{\starttext} $\cdots$ \type{\stoptext} a
-document can be divided into four main divisions:
+%% Within the \type{\starttext} $\cdots$ \type{\stoptext} a
+%% document can be divided into four main divisions:
+Uvnitø \type{\starttext} $\cdots$ \type{\stoptext} lze
+dokument rozdìlit na ètyøi hlavní úseky:
 
+%% \startitemize[n,packed]
+%% \item front matter
+%% \item body matter
+%% \item back matter
+%% \item appendices
+%% \stopitemize
 \startitemize[n,packed]
-\item front matter
-\item body matter
-\item back matter
-\item appendices
+\item úvodní èást (angl. front matter)
+\item hlavní èást (angl. body matter)
+\item závìreèná èást (angl. back matter)
+\item pøílohy (angl. appendices)
 \stopitemize
 
-The divisions are defined with:
+%% The divisions are defined with:
+Jednotlivé úseky se definují následovnì:
 
 \starttyping
 \startfrontmatter ... \stopfrontmatter
@@ -43,19 +69,29 @@ The divisions are defined with:
 \startappendices  ... \stopappendices
 \stoptyping
 
-In the front matter as well as back matter section the
-command \type{\chapter} produces an un-numbered header in
-the table of contents. This section is mostly used for the
-table of contents, the list of figures and tables, the
-preface, the acknowledgements etc. This section often
-has a roman page numbering.
+%% In the front matter as well as back matter section the
+%% command \type{\chapter} produces an un-numbered header in
+%% the table of contents. This section is mostly used for the
+%% table of contents, the list of figures and tables, the
+%% preface, the acknowledgements etc. This section often
+%% has a roman page numbering.
+V~úvodní a v~závìreèné èásti vytváøí povel \type{\chapter}
+neèíslovaná záhlaví v~obsahu. Tyto úseky se pou¾ívají
+nejèastìji pro obsah, seznam obrázkù a tabulek, pøedmluvu,
+podìkování apod. Strany jsou zde èasto èíslovány øímskými
+èíslicemi.
 
-The appendices section is used for (indeed) appendices.
-Headers may be typeset in a different way; for example,
-\type{\chapter} may be numbered alphabetically.
+%% The appendices section is used for (indeed) appendices.
+%% Headers may be typeset in a different way; for example,
+%% \type{\chapter} may be numbered alphabetically.
+Úsek pøíloh se pou¾ívá -- kdo by to byl øekl? -- pro pøílohy.
+Záhlaví zde mohou být sázena jiným zpùsobem, napø.
+\type{\chapter} mù¾e místo èísel pou¾ívat písmena abecedy.
 
-Section style can be set up with:
+%% Section style can be set up with:
+Styl sekcí lze nastavit pomocí:
 
+%% \shortsetup{setupsectionblock}
 \shortsetup{setupsectionblock}
 
 \stopcomponent

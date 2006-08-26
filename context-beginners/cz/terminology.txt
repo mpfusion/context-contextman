@@ -1,6 +1,9 @@
 Translation "ConteXt on excursion", terminology, vocabulary
 -----------------------------------------------------------
 
+back matter			= závìreèná èást
+body matter			= hlavní èást
+front matter			= úvodní èást
 layout				= formatovani
 logical name			= referenèní pojmenování
 local footnotes			= lokální poznámky
