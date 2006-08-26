@@ -1,15 +1,26 @@
 % Translation:
+% 2006-08-26 Petr Tesarik
 \startcomponent ma-cb-cz-tabulations
 
 \product ma-cb-cz
 
 \environment ma-cb-env-cz
 
-\chapter[tabulation]{Tabulation / Paragraph formatting}
+%% \chapter[tabulation]{Tabulation / Paragraph formatting}
+\chapter[tabulation]{Tabelace / formátování odstavce}
 
-\index{tabulation}
-\index{tables+running text}
-\index{columns}
+%% \index{tabulation}
+%% \index{tables+running text}
+%% \index{columns}
+%% \Command{\tex{starttabulate}}
+%% \Command{\tex{definetabulate}}
+%% \Command{\tex{setuptabulate}}
+%% \Command{\tex{NR}}
+%% \Command{\tex{NC}}
+%% \Command{\tex{startchemical}}
+\index{tabelace}
+\index{tabulky+running text}
+\index{sloupce}
 \Command{\tex{starttabulate}}
 \Command{\tex{definetabulate}}
 \Command{\tex{setuptabulate}}
@@ -17,120 +28,207 @@
 \Command{\tex{NC}}
 \Command{\tex{startchemical}}
 
-Sometimes you want to typeset paragraphs in a specific
-formatted way. This is done with:
+%% Sometimes you want to typeset paragraphs in a specific
+%% formatted way. This is done with:
+Nìkdy chcete vysázet odstavce zformátované urèitým pøesnì
+daným zpùsbem. Toho lze dosáhnout pomocí:
 
 \shortsetup{starttabulate}
 
-The tabulation mechanism is closely related to the
-table mechanism. You can use the tabulation mechanism
-in cases you want to type set complete paragraphs within a
-cell. The tabulation mechanism works fine at a page break.
+%% The tabulation mechanism is closely related to the
+%% table mechanism. You can use the tabulation mechanism
+%% in cases you want to type set complete paragraphs within a
+%% cell. The tabulation mechanism works fine at a page break.
+Technika tabelace je úzce svázána s~technikou tvorbou tabulek.
+Tabelaci lze vyu¾ít v~tìch pøípadech, kdy chcete do buòky
+tabulky vysázet kompletní odstavec. Tabelace funguje dobøe
+i pøi stránkovém zlomu.
 
+%% \startbuffer
+%% \starttabulate[|w(1.5cm)B|p(6.0cm)|p|]
+%% \NC 1252
+%%     \NC Hasselt obtains its city charter from bishop Hendrik
+%%         van Vianden.
+%%     \NC Hendrik van Vianden was pressed by other towns not
+%%         to agree with the charter. It took Hasselt a long
+%%         period of time to convince the Bishop. After
+%%         supporting the Bishop in a small war against the
+%%         Drents, the charter was released. \NC\NR
+%% \NC 1350
+%%     \NC Hasselt joins the Hanzepact to protect their
+%%         international trade.
+%%     \NC The Hanzepact was of great importance for merchants
+%%         in Hasselt. In those days trading goods were taxed
+%%         at every city, highway or rivercrossing. After
+%%         joining the Hanzepact duty free routes all over
+%%         Europe became available to Hasselt. However
+%%         important the Hanzepact was, Hasselt always stayed a
+%%         minor member of the pact. \NC\NR
+%% \stoptabulate
+%% \stopbuffer
 \startbuffer
 \starttabulate[|w(1.5cm)B|p(6.0cm)|p|]
 \NC 1252
-    \NC Hasselt obtains its city charter from bishop Hendrik
-        van Vianden.
-    \NC Hendrik van Vianden was pressed by other towns not
-        to agree with the charter. It took Hasselt a long
-        period of time to convince the Bishop. After
-        supporting the Bishop in a small war against the
-        Drents, the charter was released. \NC\NR
+    \NC Hasselt získává mìstská privilegia od biskupa Hendrika
+        van Viandena.
+    \NC Ostatní mìsta na Hendrika van Viandena naléhala,
+        aby tato privilegia neschvaloval. Hasseltu trvalo
+        dlouho, ne¾ biskupa pøesvìdèil. Poté, co biskupovi
+	poskytl pomoc v~konfliktu proti Drenthe, byla listina
+        vydána. \NC\NR
 \NC 1350
-    \NC Hasselt joins the Hanzepact to protect their
-        international trade.
-    \NC The Hanzepact was of great importance for merchants
-        in Hasselt. In those days trading goods were taxed
-        at every city, highway or rivercrossing. After
-        joining the Hanzepact duty free routes all over
-        Europe became available to Hasselt. However
-        important the Hanzepact was, Hasselt always stayed a
-        minor member of the pact. \NC\NR
+    \NC Hasselt se pøipojuje k~Hanse, aby tak ochránil svùj
+        mezinárodní obchod.
+    \NC Hansa mìla pro obchodníky v~Hasseltu veliký význam.
+        Ze zbo¾í se tehdy platilo clo v~ka¾dém mìstì,
+        na ka¾dé silnici nebo mostì. Poté, co se Hasselt
+        stal èlenem Hansy, byly mu k~dispozici nezpoplatnìné
+        cesty po celé Evropì. Pøes tento veliký význam Hansy
+        zùstal Hasselt v¾dy jejím ménì významným èlenem. \NC\NR
 \stoptabulate
 \stopbuffer
 
-A tabulate definition could look like this:
+%% A tabulate definition could look like this:
+Definice tabelace vypadá nìjak takto:
 
 \typebuffer
 
-In this case the first column is 1.5 \Centi \Meter\ wide and
-is type set bold (\type{B}). The second column has a width
-of 6 \Centi \Meter\ and is type set like a paragraph. The
-remaining horizontal space is used up by the last paragraph.
+%% In this case the first column is 1.5 \Centi \Meter\ wide and
+%% is type set bold (\type{B}). The second column has a width
+%% of 6 \Centi \Meter\ and is type set like a paragraph. The
+%% remaining horizontal space is used up by the last paragraph.
+V~tomto pøípadì má první sloupec ¹íøku 1,5\,\Centi \Meter\ a
+je vysázen tuèným øezem (\type{B}). Druhý sloupec má ¹íøku
+6 \Centi \Meter\ a je vysázen jako odstavec. Zbývající
+horizontální místo je vyu¾ito posledním odstavcem.
 
-The example is typeset like this:
+%% The example is typeset like this:
+Uvedený pøíklad se vysází takto:
 
 \getbuffer
 
-Like in the table mechanism a number of formatting commands
-and keys are used. A list of these commands and keys are
-shown in \in{table}[tab:tabularformattingcommands].
+%% Like in the table mechanism a number of formatting commands
+%% and keys are used. A list of these commands and keys are
+%% shown in \in{table}[tab:tabularformattingcommands].
+Stejnì jako v~tabulkách i zde je k~dispozici mnoho formátovacích
+povelù a parametrù. Jejich seznam je uveden
+v~\in{tabulce}[tab:tabularformattingcommands].
 
+%% \placetable[][tab:tabularformattingcommands]
+%%   {Tabular commands.}
+%% \starttable[|lT|l|lT|l|]
+%% \NC l                 \NC left align
+%% \NC I                 \NC \it italic
+%% \NC \FR
+%% \NC c                 \NC center
+%% \NC R                 \NC \sl roman
+%% \NC \MR
+%% \NC r                 \NC right align
+%% \NC S                 \NC \sl slanted
+%% \NC \MR
+%% \NC i\sl n            \NC spacing left
+%% \NC T                 \NC \tt teletype
+%% \NC \MR
+%% \NC j\sl n            \NC spacing right
+%% \NC m                 \NC in||line math
+%% \NC \MR
+%% \NC k\sl n            \NC spacing around
+%% \NC M                 \NC display  math
+%% \NC \MR
+%% \NC w({\sl d})        \NC 1 line,   fixed width
+%% \NC f\tex{command}    \NC font specification
+%% \NC \MR
+%% \NC p({\sl d})        \NC paragraph, fixed width
+%% \NC b\arg{..}         \NC place \type{..} before the entry
+%% \NC \MR
+%% \NC p                 \NC paragraph, maximum width
+%% \NC a\arg{..}         \NC place \type{..} after the entry
+%% \NC \MR
+%% \NC B                 \NC \bf boldface
+%% \NC h\tex{command}    \NC apply \tex{command} on the entry
+%% \NC \LR
+%% \stoptable
 \placetable[][tab:tabularformattingcommands]
-  {Tabular commands.}
+  {Povely pro tabelaci.}
 \starttable[|lT|l|lT|l|]
-\NC l                 \NC left align
-\NC I                 \NC \it italic
+\NC l                 \NC zarovnání vlevo
+\NC I~\NC \it italika
 \NC \FR
-\NC c                 \NC center
-\NC R                 \NC \sl roman
+\NC c                 \NC centrování
+\NC R                 \NC \rm antikva
 \NC \MR
-\NC r                 \NC right align
-\NC S                 \NC \sl slanted
+\NC r                 \NC zarovnání vpravo
+\NC S~\NC \sl sklonìné
 \NC \MR
-\NC i\sl n            \NC spacing left
-\NC T                 \NC \tt teletype
+\NC i\sl n            \NC odsazení vlevo
+\NC T                 \NC \tt psací stroj
 \NC \MR
-\NC j\sl n            \NC spacing right
-\NC m                 \NC in||line math
+\NC j\sl n            \NC odsazení vpravo
+\NC m                 \NC vnitøní matematický mód
 \NC \MR
 \NC k\sl n            \NC spacing around
-\NC M                 \NC display  math
+\NC M                 \NC display matematický mód
 \NC \MR
-\NC w({\sl d})        \NC 1 line,   fixed width
-\NC f\tex{command}    \NC font specification
+\NC w({\sl d})        \NC 1 øádka,   pevná ¹íøka
+\NC f\tex{command}    \NC urèení øezu písma
 \NC \MR
-\NC p({\sl d})        \NC paragraph, fixed width
-\NC b\arg{..}         \NC place \type{..} before the entry
+\NC p({\sl d})        \NC odstavec, pevná ¹íøka
+\NC b\arg{..}         \NC umístit \type{..} pøed polo¾ku
 \NC \MR
-\NC p                 \NC paragraph, maximum width
-\NC a\arg{..}         \NC place \type{..} after the entry
+\NC p                 \NC odstavec, maximální ¹íøka
+\NC a\arg{..}         \NC umístit \type{..} za polo¾ku
 \NC \MR
-\NC B                 \NC \bf boldface
-\NC h\tex{command}    \NC apply \tex{command} on the entry
+\NC B                 \NC \bf tuèný øez
+\NC h\tex{command}    \NC aplikovat na polo¾ku \tex{command}
 \NC \LR
 \stoptable
 
-Another example of paragraph formatting could look like this.
+%% Another example of paragraph formatting could look like this.
+Jiný pøíklad formátování odstavce by mohl vypadat takto.
 
+%% \startbuffer
+%% \definetabulate[ChemPar][|l|p|l|]
+
+%% \startChemPar
+%% \NC Limekilns
+%%     \NC Hasselt has its own limekilns. These were build in 1504
+%%         and produced quick lime up to 1956. Nowadays they are a
+%%         tourist attraction.
+%%     \NC \chemical{CaCO_3,~,GIVES,~,CaO,~,+,~,CO_2} \NC\NR
+%% \stopChemPar
+%% \stopbuffer
 \startbuffer
-\definetabulate[ChemPar][|l|p|l|]
+\definetabulate[ChemOdstavec][|l|p|l|]
 
-\startChemPar
-\NC Limekilns
-    \NC Hasselt has its own limekilns. These were build in 1504
-        and produced quick lime up to 1956. Nowadays they are a
-        tourist attraction.
+\startChemOdstavec
+\NC Vápenky
+    \NC Hasselt ma své vlastní vápenky, které byly vystavìny
+        v~roce 1504 a pálené vápno se v~nich vyrábìlo a¾ do
+        roku 1956. Dnes slou¾í jako turistická atrakce.
     \NC \chemical{CaCO_3,~,GIVES,~,CaO,~,+,~,CO_2} \NC\NR
-\stopChemPar
+\stopChemOdstavec
 \stopbuffer
 
 \typebuffer
 
-And it would come out like this:
+%% And it would come out like this:
+To by se vysázelo následovnì:
 
 \getbuffer
 
-The chemical module is explained in another manual, because
-not everybody is interested in chemical stuff.
+%% The chemical module is explained in another manual, because
+%% not everybody is interested in chemical stuff.
+Modul pro chemickou sazbu je vysvìtlen v~jiném manuálu, proto¾e
+ne ka¾dý se zajímá o~chemii.
 
-Here we also introduced the command to define the paragraph
-layout.
+%% Here we also introduced the command to define the paragraph
+%% layout.
+Také jsme zde uvedli povel pro definici rozvr¾ení odstavce.
 
 \shortsetup{definetabulate}
 
-and we also have:
+%% and we also have:
+a existuje také:
 
 \shortsetup{setuptabulate}
 
