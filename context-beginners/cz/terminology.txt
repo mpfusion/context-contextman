@@ -10,3 +10,4 @@ columns in itemize              = odrá¾ky ve sloupcích
 units				= jednotky
 siunit				= jednotkasi
 set up area			= deklaraèní oblast
+special character		= zvlá¹tní znak
