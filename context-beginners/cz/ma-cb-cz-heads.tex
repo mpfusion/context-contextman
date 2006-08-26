@@ -1,13 +1,16 @@
 % Translation:
+% 2006-08-26 Petr Tesarik
 \startcomponent ma-cb-cz-heads
 \project ma-cb
 \product ma-cb-cz
 
 \environment ma-cb-env-cz
 
-\chapter[headers]{Headers}
+%% \chapter[headers]{Headers}
+\chapter[headers]{Nadpisy}
 
-\index{headers}
+%% \index{headers}
+\index{nadpisy}
 
 \Command{\tex{chapter}}
 \Command{\tex{paragraph}}
@@ -18,14 +21,28 @@
 \Command{\tex{setuphead}}
 \Command{\tex{setupheads}}
 
-The structure of a document is determined by its headers.
-Headers (heads) are created with the commands shown in
-\in{table}[tab:headers]:
+%% The structure of a document is determined by its headers.
+%% Headers (heads) are created with the commands shown in
+%% \in{table}[tab:headers]:
+Struktura dokumentu je urèena nadpisy. Nadpisy (záhlaví) se
+vytváøejí pomocí povelù uvedených v \in{tabulce}[tab:nadpisy]:
 
-\placetable[here][tab:headers]{Headers.}
+%% \placetable[here][tab:headers]{Headers.}
+%% \starttable[|l|l|]
+%% \HL
+%% \NC \bf Numbered header   \NC \bf Un-numbered header   \NC\SR
+%% \HL
+%% \NC \type{\chapter}       \NC \type{\title}           \NC\FR
+%% \NC \type{\section}       \NC \type{\subject}         \NC\MR
+%% \NC \type{\subsection}    \NC \type{\subsubject}      \NC\MR
+%% \NC \type{\subsubsection} \NC \type{\subsubsubject}   \NC\MR
+%% \NC $\cdots$              \NC $\cdots$                \NC\LR
+%% \HL
+%% \stoptable
+\placetable[here][tab:nadpisy]{Nadpisy.}
 \starttable[|l|l|]
 \HL
-\NC \bf Numbered header   \NC \bf Un-numbered header   \NC\SR
+\NC \bf Èíslovaný nadpis  \NC \bf Neèíslovaný nadpis  \NC\SR
 \HL
 \NC \type{\chapter}       \NC \type{\title}           \NC\FR
 \NC \type{\section}       \NC \type{\subject}         \NC\MR
@@ -42,60 +59,103 @@ Headers (heads) are created with the commands shown in
 \shortsetup{subject}
 \shortsetup{subsubject}
 
-These commands will produce a header in a
-predefined fontsize and fonttype with some vertical
-spacing before and after the header.
+%% These commands will produce a header in a
+%% predefined fontsize and fonttype with some vertical
+%% spacing before and after the header.
+Tyto povely vytvoøí nadpis v pøedem dané velikosti a
+øezu písma a pøidají vertikální mezeru pøed a za nadpis.
 
-The heading commands can take several arguments, like in:
+%% The heading commands can take several arguments, like in:
+Povelùm pro nadpis je mo¾né zadat nìkolik parametrù, jako napø.:
 
+%% \starttyping
+%% \title[hasselt-by-night]{Hasselt by night}
+%% \stoptyping
+%%
+%% and
+%%
+%% \starttyping
+%% \title{Hasselt by night}
+%% \stoptyping
 \starttyping
-\title[hasselt-by-night]{Hasselt by night}
+\title[hasselt-v-noci]{Hasselt v noci}
 \stoptyping
 
-and
+a
 
 \starttyping
-\title{Hasselt by night}
+\title{Hasselt v noci}
 \stoptyping
 
-The bracket pair is optional and used for internal
-references. If you want to refer to this header you type for
-example \type{\at{page}[hasselt-by-night]}.
+%% The bracket pair is optional and used for internal
+%% references. If you want to refer to this header you type for
+%% example \type{\at{page}[hasselt-by-night]}.
+Hranaté závorky jsou nepovinné a pou¾ívají se pro odkazování
+uvnitø dokumentu. Pokud se chcete odkázat na tento nadpis,
+mù¾ete napsat napø. \type{\at{str.}[hasselt-v-noci]}.
 
-Of course these headers can be set to your own preferences
-and you can even define your own headers. This is done by
-the command \type{\setuphead} and \type{\definehead}.
+%% Of course these headers can be set to your own preferences
+%% and you can even define your own headers. This is done by
+%% the command \type{\setuphead} and \type{\definehead}.
+Tyto nadpisy lze samozøejmì pøizpùsobit va¹emu vkusu a dají
+se dokonce definovat vlastní nadpisy. To se dìlá povelem
+\type{\setuphead} a \type{\definehead}.
 
 \shortsetup{definehead}
 
 \shortsetup{setuphead}
 
+%% \startbuffer
+%% \definehead
+%%   [myheader]
+%%   [section]
+
+%% \setuphead
+%%   [myheader]
+%%   [numberstyle=bold,
+%%    textstyle=bold,
+%%    before=\hairline\blank,
+%%    after=\nowhitespace\hairline]
+
+%% \myheader[myhead]{Hasselt makes headlines}
+%% \stopbuffer
+
+%% \typebuffer
+
+%% A new header \type{\myheader} is defined and it inherits the
+%% properties of \type{\section}. It would look something
+%% like this:
+
+%% \getbuffer
+
 \startbuffer
 \definehead
-  [myheader]
+  [mujnadpis]
   [section]
 
 \setuphead
-  [myheader]
+  [mujnadpis]
   [numberstyle=bold,
    textstyle=bold,
    before=\hairline\blank,
    after=\nowhitespace\hairline]
 
-\myheader[myhead]{Hasselt makes headlines}
+\mujnadpis[nadpis]{Hasselt má velkou publicitu}
 \stopbuffer
 
 \typebuffer
 
-A new header \type{\myheader} is defined and it inherits the
-properties of \type{\section}. It would look something
-like this:
+Tím se definuje nový typ nadpisu \type{\mujnadpis}, který
+zdìdí vlastnosti \type{\section}. Vypadal by nìjak takto:
 
 \getbuffer
 
-There is one other command you should know now, and that is
-\type{\setupheads}. You can use this command to set up the
-numbering of the numbered headers. If you type:
+%% There is one other command you should know now, and that is
+%% \type{\setupheads}. You can use this command to set up the
+%% numbering of the numbered headers. If you type:
+Je¹tì o jednom povelu byste mìli vìdìt, a to \type{\setupheads}.
+Pou¾ívá se k nastavení èíslování pro èíslované nadpisy.
+Pokud napí¹ete:
 
 \startbuffer
 \setupheads
@@ -105,11 +165,15 @@ numbering of the numbered headers. If you type:
 
 \typebuffer
 
-all numbers will appear in the margin. Section 1.1 would
-look like 1--1.
+%% all numbers will appear in the margin. Section 1.1 would
+%% look like 1--1.
+pak se v¹echna èísla objeví na okraji. Sekce 1.1 by vypadala
+jako 1--1.
 
-Commands like \type{\setupheads} are typed in the
-set up area of your input file.
+%% Commands like \type{\setupheads} are typed in the
+%% set up area of your input file.
+Povely jako \type{\setupheads} se pí¹ou do deklaraèní oblasti
+vstupního souboru.
 
 \shortsetup{setupheads}
 
