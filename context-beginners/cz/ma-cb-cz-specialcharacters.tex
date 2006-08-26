@@ -1,31 +1,53 @@
 % Translation:
+% 2006-08-26 Petr Tesarik
 \startcomponent ma-cb-cz-specialcharacters
 
 \product ma-cb-cz
 
 \environment ma-cb-env-cz
 
-\chapter[special chars]{Special characters}
+%% \chapter[special chars]{Special characters}
+\chapter[special chars]{Zvlá¹tní znaky}
 
-\index{special characters}
+\index{zvlá¹tní znaky}
 
-You have seen that \CONTEXT\ commands are preceded by a
-\tex{} (backslash). This means that \tex{} has a
-special meaning to \CONTEXT. Aside from \tex{} there are
-other characters that need special attention when you want
-them to appear in verbatim mode or in text mode.
-\in{Table}[tab:specchars] gives an overview of these special
-characters and what you have to type to produce them.
+%% You have seen that \CONTEXT\ commands are preceded by a
+%% \tex{} (backslash). This means that \tex{} has a
+%% special meaning to \CONTEXT. Aside from \tex{} there are
+%% other characters that need special attention when you want
+%% them to appear in verbatim mode or in text mode.
+%% \in{Table}[tab:specchars] gives an overview of these special
+%% characters and what you have to type to produce them.
+U¾ jsme si ukázali, ¾e ka¾dý povel \CONTEXT{}u je uvozen znakem
+\tex{} (obrácené lomítko). To znamená, ¾e \tex{} má pro
+\CONTEXT\ zvlá¹tní význam. Kromì \tex{} existují je¹tì dal¹í
+znaky, které vy¾adují zvlá¹tní pozornost, pokud je chcete
+pou¾ít v~módu verbatim nebo v~textovém módu.
+\in{Tabulka}[tab:zvlznaky] uvádí pøehled tìchto zvlá¹tních
+znakù a povely potøebné k~jejich vysázení.
 
 \let\normalunderscore=\_
 \let\normaltilde     =\~
 
-\placetable[here,force][tab:specchars]
-  {Special characters (1).}
+%% \placetable[here,force][tab:specchars]
+%%   {Special characters (1).}
+%%   \starttable[|c|c|c|c|c|]
+%%   \HL
+%%   \NC \bf \LOW{Special character} \NC \use2 \bf Verbatim  \NC \use2 \bf Text \NC\FR
+%%   \NC                         \NC \bf Type \NC \bf To produce \NC \bf Type \NC \bf To produce \NC\LR
+%%   \HL
+%%   \NC \type{#} \NC \type{\type{#}} \NC \type{#} \VL \type{\#} \NC \# \NC\FR
+%%   \NC \type{$} \NC \type{\type{$}} \NC \type{$} \VL \type{\$} \NC \$ \NC\MR
+%%   \NC \type{&} \NC \type{\type{&}} \NC \type{&} \VL \type{\&} \NC \& \NC\MR
+%%   \NC \type{%} \NC \type{\type{%}} \NC \type{%} \VL \type{\%} \NC \% \NC\LR
+%%   \HL
+%%   \stoptable
+\placetable[here,force][tab:zvlznaky]
+  {Zvlá¹tní znaky (1).}
   \starttable[|c|c|c|c|c|]
   \HL
-  \NC \bf \LOW{Special character} \NC \use2 \bf Verbatim  \NC \use2 \bf Text \NC\FR
-  \NC                         \NC \bf Type \NC \bf To produce \NC \bf Type \NC \bf To produce \NC\LR
+  \NC \bf \LOW{Zvlá¹tní znak} \NC \use2 \bf Verbatim  \NC \use2 \bf Text \NC\FR
+  \NC                         \NC \bf Vstup \NC \bf Vysází se \NC \bf Vstup \NC \bf Vysází se \NC\LR
   \HL
   \NC \type{#} \NC \type{\type{#}} \NC \type{#} \VL \type{\#} \NC \# \NC\FR
   \NC \type{$} \NC \type{\type{$}} \NC \type{$} \VL \type{\$} \NC \$ \NC\MR
@@ -34,19 +56,39 @@ characters and what you have to type to produce them.
   \HL
   \stoptable
 
-Other special characters have a meaning in typesetting
-mathematical expressions and some can be used in
-math mode only (see \in{chapter}[formulas]).
+%% Other special characters have a meaning in typesetting
+%% mathematical expressions and some can be used in
+%% math mode only (see \in{chapter}[formulas]).
+Dal¹í znaky mají zvlá¹tní význam pøi sázení matematických
+výrazù a nìkteré lze pou¾ít jedinì v~matematickém
+módu (viz \in{kapitolu}[formulas]).
 
+%% \let\normalbar=|
+%% \placetable
+%%   [here,force]
+%%   [tab:special chars]
+%%   {Special characters (2).}
+%%   \starttable[|c|c|c|c|c|]
+%%   \HL
+%%   \NC \bf \LOW{Special character} \NC \use2 \bf Verbatim  \NC \use2 \bf Text \NC\FR
+%%   \NC                         \NC \bf Type \NC \bf To produce \NC \bf Type \NC \bf To produce \NC\LR
+%%   \HL
+%%   \NC \type{+} \NC \type{\type{+}} \NC \type{+} \VL \type{$+$} \NC $+$ \NC\FR
+%%   \NC \type{-} \NC \type{\type{-}} \NC \type{-} \VL \type{$-$} \NC $-$ \NC\MR
+%%   \NC \type{=} \NC \type{\type{=}} \NC \type{=} \VL \type{$=$} \NC $=$ \NC\MR
+%%   \NC \type{<} \NC \type{\type{<}} \NC \type{<} \VL \type{$<$} \NC $<$ \NC\MR
+%%   \NC \type{>} \NC \type{\type{>}} \NC \type{>} \VL \type{$>$} \NC $>$ \NC\LR
+%%   \HL
+%%   \stoptable
 \let\normalbar=|
 \placetable
   [here,force]
   [tab:special chars]
-  {Special characters (2).}
+  {Zvlá¹tní znaky (2).}
   \starttable[|c|c|c|c|c|]
   \HL
-  \NC \bf \LOW{Special character} \NC \use2 \bf Verbatim  \NC \use2 \bf Text \NC\FR
-  \NC                         \NC \bf Type \NC \bf To produce \NC \bf Type \NC \bf To produce \NC\LR
+  \NC \bf \LOW{Zvlá¹tní znak} \NC \use2 \bf Verbatim  \NC \use2 \bf Text \NC\FR
+  \NC                         \NC \bf Vstup \NC \bf Vysází se \NC \bf Vstup \NC \bf Vysází se \NC\LR
   \HL
   \NC \type{+} \NC \type{\type{+}} \NC \type{+} \VL \type{$+$} \NC $+$ \NC\FR
   \NC \type{-} \NC \type{\type{-}} \NC \type{-} \VL \type{$-$} \NC $-$ \NC\MR
