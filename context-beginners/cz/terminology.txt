@@ -1,16 +1,17 @@
 Translation "ConteXt on excursion", terminology, vocabulary
 -----------------------------------------------------------
 
-back matter			= závìreèná èást
-body matter			= hlavní èást
-front matter			= úvodní èást
+back matter			= z-Aávìreèná èást-B
+body matter			= hlavn-Aí èást-B
+front matter			= -Aúvodní èást-B
 layout				= formatovani
-logical name			= referenèní pojmenování
-local footnotes			= lokální poznámky
+logical name			= referen-Aèní pojmenování-B
+local footnotes			= lok-Aální poznámky-B
 setup				= nastaveni
-itemize                         = odrá¾ky
-columns in itemize              = odrá¾ky ve sloupcích
+itemize                         = odr-Aá¾ky-B
+columns in itemize              = odr-Aá¾ky ve sloupcích-B
 units				= jednotky
 siunit				= jednotkasi
-set up area			= deklaraèní oblast
-special character		= zvlá¹tní znak
+set up area			= deklara-Aèní oblast-B
+special character		= zvl-Aá¹tní znak-B
+double sided document		= oboustrann-Aý dokument-B

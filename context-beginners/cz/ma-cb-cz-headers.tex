@@ -1,14 +1,19 @@
 % Translation:
+% 2006-09-16 Martina Plachá
 \startcomponent ma-cb-cz-headers
 \project ma-cb
 \product ma-cb-cz
 
 \environment ma-cb-env-cz
 
-\chapter{Page headers and footers}
+%\chapter{Page headers and footers}
+\chapter{Záhlaví a zápatí}
 
-\index{page header}
-\index{pagefooter}
+%\index{page header}
+%\index{pagefooter}
+
+\index{záhlaví}
+\index{zápatí}
 
 \Command{\tex{setupfootertexts}}
 \Command{\tex{setupheadertexts}}
@@ -16,38 +21,72 @@
 \Command{\tex{setupfooter}}
 \Command{\tex{noheaderandfooterlines}}
 
-In some cases you want to give your document a page header
-and footer. The commands to do this are:
+%In some cases you want to give your document a page header
+%and footer. The commands to do this are:
+
+%\shortsetup{setupfootertexts}
+%\shortsetup{setupheadertexts}
+
+Nìkdy chceme dokument opatøit záhlavím a zápatím. Pøíkazy, kterými to
+mù¾eme provést, jsou tyto:
 
 \shortsetup{setupfootertexts}
 \shortsetup{setupheadertexts}
 
-The first bracket pair is used for the location of the
-footer or header (\type{text}, \type{edge} etc). Footer and
-header are placed within the second and third bracket pairs.
-In a double sided document a fourth and fifth bracket
-pair is used for footer and header on the left-hand side
-page and the right-hand side page. In most cases you can omit
-these last two bracket pairs.
+%The first bracket pair is used for the location of the
+%footer or header (\type{text}, \type{edge} etc). Footer and
+%header are placed within the second and third bracket pairs.
+%In a double sided document a fourth and fifth bracket
+%pair is used for footer and header on the left-hand side
+%page and the right-hand side page. In most cases you can omit
+%these last two bracket pairs.
+
+První pár závorek se pou¾ívá pro upøesnìní umístìní záhlaví nebo zápatí 
+(\type{text}, \type{margin}=marginálie, \type{edge}=vnìj¹í
+okraj). Zápatí a záhlaví jsou urèeny druhou a tøetí
+závorkou. V~oboustranných dokumentech dodáme ètvrtou a  
+pátou závorku pro nastavení záhlaví/zápatí levých a pravých
+stránek oddìlenì. Ve vìt¹inì pøípadù v¹ak mù¾eme tyto poslední dvì
+závorky vynechat.
+
+%\startbuffer
+%\setupfootertexts[Manual][section]
+%\stopbuffer
+%
+%\typebuffer
 
 \startbuffer
-\setupfootertexts[Manual][section]
+\setupfootertexts[Manuál][section]
 \stopbuffer
 
 \typebuffer
 
-In this case the text {\em Manual} will appear in the
-left-hand side corner and the title of the actual section on
-the right-hand side of the page. This footer will change with
-the beginning of a new section.
+%In this case the text {\em Manual} will appear in the
+%left-hand side corner and the title of the actual section on
+%the right-hand side of the page. This footer will change with
+%the beginning of a new section.
 
-You can set up the head- and footline with:
+V tomto pøípadì se text {\em Manuál} objeví v~levém dolním rohu
+stránky a jméno aktuální kapitoly bude vpravo.
+
+%You can set up the head- and footline with:
+%
+%\shortsetup{setupheader}
+%\shortsetup{setupfooter}
+
+Nastavit záhlaví a zápatí mù¾eme pomocí:
 
 \shortsetup{setupheader}
 \shortsetup{setupfooter}
 
-If you want to leave out the page header and footer you can
-type:
+%If you want to leave out the page header and footer you can
+%type:
+%
+%\starttyping
+%\noheaderandfooterlines
+%\stoptyping
+
+Pokud chceme vynechat záhlaví a zápatí, napí¹eme:
 
 \starttyping
 \noheaderandfooterlines
