@@ -1,34 +1,46 @@
 % Translation:
+% busaj
 \startcomponent ma-cb-cz-color
 \project ma-cb
 \product ma-cb-cz
 
 \environment ma-cb-env-cz
 
-\chapter{Color}
+%\chapter{Color}
+\chapter{Barva}
 
-\index{color}
+%\index{color}
+\index{barva}
 
 \Command{\tex{setupcolors}}
 \Command{\tex{color}}
 \Command{\tex{definecolor}}
 
-Text can be set in color.
+% Text can be set in color.
+Text mù¾e být sázen barevnì. 
 
 \shortsetup{setupcolors}
 
-The use of colors has to be
-activated by:
+%The use of colors has to be
+%activated by:
+Pou¾ívání barev se musí zapnout povelem:
 
 \starttyping
 \setupcolors[state=start]
 \stoptyping
 
-Now the basic colors are available (red, green and blue).
+% Now the basic colors are available (red, green and blue).
+Nyní máme k~dispozici základní barvy (èervenou -- red, zelenou -- green a modrou -- blue).
+
+%\startbuffer
+%\startcolor[red]
+%Hasselt is a very \color[green]{colorful} town.
+%\stopcolor
+%\stopbuffer
 
 \startbuffer
 \startcolor[red]
-Hasselt is a very \color[green]{colorful} town.
+Hasselt je velice \color[green]{barevné} mìsto.
 \stopcolor
 \stopbuffer
 
@@ -36,23 +48,39 @@ Hasselt is a very \color[green]{colorful} town.
 
 \getbuffer
 
-On a black and white printer you will see only grey shades.
-In an electronic document these colors will be as expected.
+% On a black and white printer you will see only grey shades.
+% In an electronic document these colors will be as expected.
+Pøi pou¾ití èernobílého tisku uvidíte jenom ¹edé odstíny. 
+V~elektronickém dokumentu budou tyto barvy odpovídat oèekávání.
 
-You can define your own colors with:
+% You can define your own colors with:
+Mù¾ete také definovat své vlastní barvy pøíkazem:
 
 \shortsetup{definecolor}
 
-For example:
+% For example:
+Napøíklad
+
+%\startbuffer
+%\definecolor[darkred]   [r=.5,g=.0,b=.0]
+%\definecolor[darkgreen] [r=.0,g=.5,b=.0]
+%\stopbuffer
 
 \startbuffer
-\definecolor[darkred]   [r=.5,g=.0,b=.0]
-\definecolor[darkgreen] [r=.0,g=.5,b=.0]
+\definecolor[temneruda]   [r=.5,g=.0,b=.0]
+\definecolor[tmavezelena] [r=.0,g=.5,b=.0]
 \stopbuffer
+
 
 \typebuffer
 
-Now the colors \type{darkred} and \type{darkgreen} are
-available.
+%Now the colors \type{darkred} and \type{darkgreen} are
+%available.
+
+\setupcolors[state=start]
+\definecolor[temneruda]   [r=.5,g=.0,b=.0]
+\definecolor[tmavezelena] [r=.0,g=.5,b=.0]
+
+Nyní jsou k~dispozici barvy \color[temneruda]{\type{temneruda}} a \color[tmavezelena]{\type{tmavezelena}}.
 
 \stopcomponent
