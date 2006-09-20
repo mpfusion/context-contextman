@@ -1,13 +1,16 @@
 % Translation:
+% busaj
 \startcomponent ma-cb-cz-registers
 
 \product ma-cb-cz
 
 \environment ma-cb-env-cz
 
-\chapter{Registers}
+%\chapter{Registers}
+\chapter{Rejstøíky}
 
-\index{register}
+%\index{register}
+\index{rejstøík}
 
 \Command{\tex{index}}
 \Command{\tex{placeindex}}
@@ -17,67 +20,103 @@
 \Command{\tex{completeregister}}
 \Command{\tex{setupregister}}
 
-It is possible to generate one or more registers. By default
-the command \type{\index} is available. If you want to add
-a word to the index you type:
+%It is possible to generate one or more registers. By default
+%the command \type{\index} is available. If you want to add
+%a word to the index you type:
+Je mo¾né vytvoøit jeden nebo více rejstøíkù. Implicitnì je k~dispozici
+pøíkaz \type{\index}. Jestli¾e chcete pøidat do rejstøíku slovo, napi¹te:
 
+%\starttyping
+%\index{town hall}
+%\stoptyping
 \starttyping
-\index{town hall}
+\index{mìstská hala}
 \stoptyping
 
-The word {\em town hall} will appear as an index entry. An
-index is sorted in alphabetical order by an auxilliary
-program. Sometimes the index word does not appear in normal alphabetic
-order. For example, entries such as symbols have to provide extra
-sorting information in order to produce a correct alphabetical
-list:
+%The word {\em town hall} will appear as an index entry. An
+%index is sorted in alphabetical order by an auxilliary
+%program. Sometimes the index word does not appear in normal alphabetic
+%order. For example, entries such as symbols have to provide extra
+%sorting information in order to produce a correct alphabetical
+%list:
+Výraz {\em mìstská hala} se objeví jako heslo rejstøíku. Rejstøík je
+seøazen podle abecedy pomocným programem. Slovo rejstøíku se nìkdy
+neobjeví v~bì¾ném abecedním poøadí. Napøíklad, polo¾ky jako symboly, 
+musí být doplnìny o~dal¹í tøídící informaci, aby mohl být vytvoøen
+správný abecední seznam:
 
+%\starttyping
+%\index[minus]{$-$}
+%\stoptyping
 \starttyping
-\index[minus]{$-$}
+\index[mínus]{$-$}
 \stoptyping
 
-Sometimes you have sub- or sub sub entries. These can be
-defined as follows:
+%Sometimes you have sub- or sub sub entries. These can be
+%defined as follows:
+Nìkdy máte pod- nebo podpodpolo¾ky. Tyto mù¾ou být definovány 
+následujícím zpùsobem:
 
+%\starttyping
+%\index{town hall+location}
+%\index{town hall+architecture}
+%\stoptyping
 \starttyping
-\index{town hall+location}
-\index{town hall+architecture}
+\index{mìstská hala+poloha}
+\index{mìstská hala+architektura}
 \stoptyping
 
-You can generate your indexlist with:
+%You can generate your indexlist with:
+Seznam rejstøíku vytvoøíte pøíkazem:
 
 \starttyping
 \placeindex
 \stoptyping
 
-or
+% or
+nebo
 
 \starttyping
 \completeindex
 \stoptyping
 
-The command \type{\index} is a predefined \CONTEXT\ command,
-but of course you can also define your own registers.
+%The command \type{\index} is a predefined \CONTEXT\ command,
+%but of course you can also define your own registers.
+Pøíkaz \type{\index} je pøeddefinovaný pøíkaz \CONTEXT{}u,
+ov¹em mù¾ete také definovat své vlastní rej\-støí\-ky.
 
 \shortsetup{defineregister}
 
-For example if you want to make a new register based on the
-streets in Hasselt you could type:
+%For example if you want to make a new register based on the
+%streets in Hasselt you could type:
+Napøíklad, jestli chcete vytvoøit nový rejstøík ulic Hasseltu,
+mù¾ete napsat:
 
+%\starttyping
+%\defineregister[street][streets]
+%\stoptyping
 \starttyping
-\defineregister[street][streets]
+\defineregister[ulice][ulice]
 \stoptyping
 
-Now a new register command \type{\street} is available. An
-new index entry could be \type{\street{Ridderstraat}}. To
-produce a list of entries you could now use:
+%Now a new register command \type{\street} is available. An
+%new index entry could be \type{\street{Ridderstraat}}. To
+%produce a list of entries you could now use:
+Nyní je k~dispozici nový pøíkaz rejstøíku \type{\ulice}. 
+Nové heslo rejstøíku tak mù¾e být \type{\ulice{Ridderstraat}}. 
+Samotný seznam teï vytvoøíte pou¾itím pøíkazù:
 
+%\starttyping
+%\placestreets
+%\completestreets
+%\stoptyping
 \starttyping
-\placestreets
-\completestreets
+\placeulice
+\completeulice
 \stoptyping
 
-You can alter the display of the registers with:
+% You can alter the display of the registers with:
+Zobrazení rejstøíkù mù¾ete mìnit pøíkazem:
 
 \shortsetup{setupregister}
 
