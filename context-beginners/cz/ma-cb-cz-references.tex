@@ -1,119 +1,191 @@
 % Translation:
+% busaj
 \startcomponent ma-cb-cz-references
 
 \product ma-cb-cz
 
 \environment ma-cb-env-cz
 
-\chapter{Refering to text elements}
+%\chapter{Refering to text elements}
+\chapter{Køí¾ové odkazy na textové prvky}
 
-\index{refering}
-\index{label}
+\index{odkazování}
+\index{logické jméno}
+%\index{refering}
+%\index{label}
+
 
 \Command{\tex{in}}
 \Command{\tex{at}}
 \Command{\tex{pagereference}}
 
-For referring to one location in a document from another you
-can use the command:
+%For referring to one location in a document from another you
+%can use the command:
+Na vytvoøení køí¾ového odkazu z~jednoho místa dokumentu na druhé mù¾ete pou¾ít pøíkaz:
 
 \shortsetup{in}
 
-The curly braces contain text, the brackets contain a
-logical label. If you have written a chapter header like
-this:
+%The curly braces contain text, the brackets contain a
+%logical label. If you have written a chapter header like
+%this:
+Slo¾ené závorky obsahují text, hranaté závorky obsahují logické jméno. Kdy¾ napí¹ete hlavièku kapitoly následujícím zpùsobem: 
+
+%\starttyping
+%\chapter[hotel]{Hotels in Hasselt}
+%\stoptyping
 
 \starttyping
-\chapter[hotel]{Hotels in Hasselt}
+\chapter[hotel]{Hotely v~Hasseltu}
 \stoptyping
 
-then you can refer to this chapter with:
+% then you can refer to this chapter with:
+tak se na tuto kapitolu mù¾ete odkázat povelem:
+
+%\starttyping
+%\in{chapter}[hotel]
+%\stoptyping
 
 \starttyping
-\in{chapter}[hotel]
+v~\in{kapitole}[hotel]
 \stoptyping
 
-After processing the chapter number is available and the
-reference could look something like: {\em chapter 23}.
-You can use \type{\in} for any references to text elements
-like chapters, sections, figures, tables, formulae
-etc.
 
-Another example:
+%After processing the chapter number is available and the
+%reference could look something like: {\em chapter 23}.
+%You can use \type{\in} for any references to text elements
+%like chapters, sections, figures, tables, formulae
+%etc.
+Po zpracování je k~dispozici èíslo kapitoly a odkaz mù¾e vypadat napøíklad:
+{\em v~kapitole 23}. Pøíkaz \type{\in} mù¾ete pou¾ít na libovolný odkaz na textový prvek, 
+napøíklad kapitolu, oddíl, obrázek, ta\-bul\-ku, vzorec, atd.
+
+% Another example:
+Dal¹í pøíklad:
+
+%\startbuffer
+% There are a number of things you can do in Hasselt:
+
+%\startitemize[n,packed]
+%\item swimming
+%\item sailing
+%\item[hiking] hiking
+%\item biking
+%\stopitemize
+
+% Activities like \in{activity}[hiking] described on \at{page}[hiking]
+% are very tiring.
+%\stopbuffer
 
 \startbuffer
-There are a number of things you can do in Hasselt:
+V~Hasseltu mù¾ete dìlat mno¾ství vìcí:
 
 \startitemize[n,packed]
-\item swimming
-\item sailing
-\item[hiking] hiking
-\item biking
+\item plavat;
+\item plachtit;
+\item[tramp] trampovat;
+\item jezdit na kole.
 \stopitemize
 
-Activities like \in{activity}[hiking] described on \at{page}[hiking]
-are very tiring.
+\in{Èinnost}[tramp] popsaná na \at{stranì}[tramp] je velmi namáhavá. 
 \stopbuffer
+
 
 \typebuffer
 
-This would look like this:
+% This would look like this:
+Toto bude vypadat takto:
 
 \getbuffer
 
-As you can see, it is also possible to  refer to pages. This is done with:
+% As you can see, it is also possible to  refer to pages. This is done with:
+Jak mù¾ete vidìt, je také mo¾né udìlat odkaz na stránku. To se dìlá pøíkazem: 
 
 \shortsetup{at}
 
-For example with:
+% For example with:
+Napøíklad:
+
+%\starttyping
+%\at{page}[hiking]
+%\stoptyping
 
 \starttyping
-\at{page}[hiking]
+na \at{stranì}[tramp]
 \stoptyping
 
-This command can be used in combination with:
+
+% This command can be used in combination with:
+Tento pøíkaz se mù¾e pou¾ít v~kombinaci s~povely:
 
 \shortsetup{pagereference}
 
-and
+% and
+a
 
 \shortsetup{textreference}
 
-If you want to refer to the chapter {\em Hotels in Hasselt}
-you could type:
+% If you want to refer to the chapter {\em Hotels in Hasselt}
+% you could type:
+Kdy¾ se chcete odkázat na kapitolu {\em Hotely v~Hasseltu} mù¾ete napsat:
+
+%\startbuffer
+%Look in \in{chapter}[hotel] on \at{page}[hotel] for a complete
+%overview of accomodations in \pagereference[accomodation]Hasselt.
+%\stopbuffer
 
 \startbuffer
-Look in \in{chapter}[hotel] on \at{page}[hotel] for a complete
-overview of accomodations in \pagereference[accomodation]Hasselt.
+V~\in{kapitole}[hotel] na \at{stranì}[hotel] naleznete úplný pøehled 
+mo¾ností ubytování v~\pagereference[bydleni]Hasseltu.
 \stopbuffer
 
 \typebuffer
 
-A chapter number and a page number will be generated when
-processing the input file. On another spot in the document
-you can refer to \type{accomodation} with
-\type{\at{page}[accomodation]}.
+%A chapter number and a page number will be generated when
+%processing the input file. On another spot in the document
+%you can refer to \type{accomodation} with
+%\type{\at{page}[accomodation]}.
+Pøi zpracování zdrojového souboru budou vygenerovány èíslo kapitoly
+a èíslo strany. Na jiném místì dokumentu se mù¾ete odkázat na
+\type{bydleni} pøíkazem \type{na \at{stranì}[bydleni]}.
 
-You can also define a set of labels separated by commas.
+% You can also define a set of labels separated by commas.
+Mù¾ete rovnì¾ definovat nìkolik návì¹tí oddìlených èárkama.
+
+%\startbuffer
+%\placefigure
+%  [here]
+%  [fig:canals,fig:boats]
+%  {A characteristic picture of Hasselt.}
+%  {\externalfigure[ma-cb-08][width=10cm]}
+%
+%There are many canals in Hasselt (see \in{figure}[fig:canals]).
+%.
+%.
+%.
+%Boats can be moored in the canals of Hasselt (see
+%\in{figure}[fig:boats]).
+%\stopbuffer
 
 \startbuffer
 \placefigure
   [here]
-  [fig:canals,fig:boats]
-  {A characteristic picture of Hasselt.}
+  [obr:kanaly,obr:cluny]
+  {Typický obrázek Hasseltu.}
   {\externalfigure[ma-cb-08][width=10cm]}
 
-There are many canals in Hasselt (see \in{figure}[fig:canals]).
+V~Hasseltu je mnoho kanálù (viz \in{obrázek}[obr:kanaly]).
 .
 .
 .
-Boats can be moored in the canals of Hasselt (see
-\in{figure}[fig:boats]).
+Èluny mù¾ou kotvit v~kanálech Hasseltu (viz
+\in{obrázek}[obr:cluny]).
 \stopbuffer
+
 
 \typebuffer
 
-This might look like this:
+%This might look like this:
+Mù¾e to vypadat takto:
 
 \getbuffer
 
