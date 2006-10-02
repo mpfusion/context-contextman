@@ -1,5 +1,8 @@
 \startenvironment ma-cb-style
 
+\def\GenericDir{../generic}
+\setupexternalfigures[directory={\GenericDir}]
+
 % The strange mix of english and dutch is due to the fact
 % that much of the core of \CONTEXT\ is still dutch.
 %
@@ -13,8 +16,6 @@
 \usemodule[units]
 \usemodule[chemic]
 \usemodule[chart]
-
-\setupexternalfigures[directory={../generic}]
 
 \unprotect
 
@@ -568,6 +569,8 @@
   \setuphead[\v!chapter][\c!page=\v!right]
 \stopsetups
 
+%\setuplabeltext [\csname s!\currentmainlanguage\endcsname] [\v!appendix=]
+
 \startsetups backmatter
   \setuphead[\v!chapter][\c!page=\v!right]
 \stopsetups
@@ -633,8 +636,16 @@
   [Command]
   [bagger=oeps,\c!indicator=\v!off]
 
-\def\Copyright{\component ma-cb-copyright.tex }
-\def\Colofon  {\component ma-cb-colophon.tex }
+\def\Copyright{%
+  \doiffileelse{ma-cb-\currentmainlanguage-copyright.tex }
+    {\component ma-cb-\currentmainlanguage-copyright.tex }
+    {\component \GenericDir/ma-cb-copyright.tex }
+}
+\def\Colofon  {%
+  \doiffileelse{ma-cb-\currentmainlanguage-colophon.tex }
+    {\component ma-cb-\currentmainlanguage-colophon.tex }
+    {\component \GenericDir/ma-cb-colophon.tex }
+}
 
 % Oh, how far more easy it would have been if we could put
 % this in the text directly. But consistency is needed.

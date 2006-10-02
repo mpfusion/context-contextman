@@ -31,5 +31,16 @@ cz-print:
 cz-bulletin:
 	cd cz
 	texmfstart texexec --pdf --mode=bulletin --result=ma-cb-cz-bulletin.pdf ma-cb-cz
-	mv mv ma-cb-cz-bulletin.pdf ../
+	mv ma-cb-cz-bulletin.pdf ../
+	cd ..
+
+clean:
+	cd cz
+	texmfstart texexec --purgeall
+	cd ..
+	cd en
+	texmfstart texexec --purgeall
+	cd ..
+	cd nl
+	texmfstart texexec --purgeall
 	cd ..
