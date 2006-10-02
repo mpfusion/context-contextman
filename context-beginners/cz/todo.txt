@@ -1,1 +1,2 @@
 - uvodni kapitola: instalace (minimal context distribution)
+- \quote spravne cesky

@@ -1,23 +1,30 @@
 % Translation:
+% 2006-10-02 Vít Zýka
 \startcomponent ma-cb-cz-pagebackgrounds
-
+\project ma-cb
 \product ma-cb-cz
 
 \environment ma-cb-env-cz
 
-\chapter{Page backgrounds}
+%\chapter{Page backgrounds}
+\chapter{Pozadí stránky}
 
-\index{page areas}
-\index{background+page areas}
+%\index{page areas}
+%\index{background+page areas}
+\index{plocha stránky}
+\index{pozadí+stránky}
 
 \Command{\tex{setupbackgrounds}}
 
-The page background can also be set, with:
+%The page background can also be set, with:
+Pozadí stránky mù¾e být nastaveno pomocí:
 
 \shortsetup{setupbackgrounds}
 
-The first two bracket pairs are used to define the page
-areas. The last bracket pair is used for set up.
+%% The first two bracket pairs are used to define the page
+%% areas. The last bracket pair is used for set up.
+První dvì hranaté závorky definují èást plochy stránky. Poslední
+závorka obsahuje parametry.
 
 \startbuffer
 \hbox
@@ -74,11 +81,14 @@ areas. The last bracket pair is used for set up.
 \placefigure
   [here]
   [fig:pageareas]
-  {The page areas defined in \type{\setupbackgrounds}.}
+%  {The page areas defined in \type{\setupbackgrounds}.}
+  {Plochy stránky pou¾itelné v~\type{\setupbackgrounds}.}
   {\tt\getbuffer}
 
-If you want to have backgrounds in the gray areas of the
-page layout of \in{figure}[fig:pageareas] you type:
+%% If you want to have backgrounds in the gray areas of the
+%% page layout of \in{figure}[fig:pageareas] you type:
+Pokud napø. chcete mít ¹edé pozadí jako na
+\in{obrázku}[fig:pageareas], napi¹te:
 
 \startbuffer
 \setupbackgrounds

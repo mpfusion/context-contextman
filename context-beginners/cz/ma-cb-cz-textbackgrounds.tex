@@ -1,44 +1,77 @@
 % Translation:
-\startcomponent ma-cb-cz-textbackgrounds
-
+% 2006-10-02 Vít Zýka
+\startcomponent ma-cb-cz-alignments
+\project ma-cb
 \product ma-cb-cz
-
 \environment ma-cb-env-cz
 
-\chapter{Background text}
+%\chapter{Background text}
+\chapter{Pozadí textu}
 
-\index{background+text}
+%\index{background+text}
+\index{pozadí+text}
 
-\Command{\tex{setupbackground}}
-\Command{\tex{startbackground}}
+%\Command{\tex{setupbackground}}
+%\Command{\tex{startbackground}}
+\Command{\tex{setuptextbackground}}
+\Command{\tex{starttextbackground}}
 
-To emphasize a section you can use backgrounds. A
-background is set with the command pair:
+%% To emphasize a section you can use backgrounds. A
+%% background is set with the command pair:
+Ke zvýraznìní kapitoly nebo nìkolika odstavcù mù¾eme pou¾ít
+{\it pozadí}. Takový text se vlo¾í do prostøedí
 
-\shortsetup{startbackground}
+%\shortsetup{startbackground}
+\shortsetup{starttextbackground}
 
-An example can illustrate the use:
+%An example can illustrate the use:
+Pou¾ití ilustruje tento pøíklad:
+
+%% \startbuffer
+%% \setupbackground[background=screen,corner=round]
+
+%% \startbackground
+%% Hasselt has produced a number of well known people. Only recently
+%% it turned out that Kilian van Rensselaer played a prominent role
+%% in the foundation of the State of New York.
+%% \stopbackground
+%% \stopbuffer
+
+%% \startbuffer
+%% \setupbackground[background=screen,corner=round]
+
+%% \startbackground
+%% V~Hasseltu vyrostlo nìkolik významných lidí. Teprve nedávno se
+%% ukázalo, ¾e Kilian van Rensselaer hrál významnou roli v~zalo¾ení státu
+%% New York.
+%% \stopbackground
+%% \stopbuffer
 
 \startbuffer
-\setupbackground[background=screen,corner=round]
-
-\startbackground
-Hasselt has produced a number of well known people. Only recently
-it turned out that Kilian van Rensselaer played a prominent role
-in the foundation of the State of New York.
-\stopbackground
+\setuptextbackground
+  [frame=off,location=paragraph,
+   leftoffset=.5\bodyfontsize,rightoffset=.5\bodyfontsize]
+\starttextbackground
+V~Hasseltu vyrostlo nìkolik významných lidí. Teprve nedávno se
+ukázalo, ¾e Kilian van Rensselaer hrál významnou roli v~zalo¾ení státu
+New York.
+\stoptextbackground
 \stopbuffer
 
 \typebuffer
 
-This would be displayed as:
+%This would be displayed as:
+Výsledkem je:
 
 \getbuffer
 
-Backgrounds can span multiple pages. With:
+%Backgrounds can span multiple pages. With:
+Pozadí mù¾e zabírat nìkolik stránek. Pomocí
 
-\shortsetup{setupbackground}
+%\shortsetup{setupbackground}
+\shortsetup{setuptextbackground}
 
-you can vary the display of the backgrounds.
+%you can vary the display of the backgrounds.
+lze ovlivnit jeho formátování.
 
 \stopcomponent

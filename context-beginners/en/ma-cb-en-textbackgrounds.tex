@@ -1,29 +1,45 @@
+% VZ: Vit Zyka 
+% 2006-10-02 background -> textbackground
+%
 \startcomponent ma-cb-en-textbackgrounds
-
+\project ma-cb
 \product ma-cb-en
+\environment ma-cb-env-en
 
 \chapter{Background text}
 
 \index{background+text}
 
-\Command{\tex{setupbackground}}
-\Command{\tex{startbackground}}
+%\Command{\tex{setupbackground}}
+%\Command{\tex{startbackground}}
+\Command{\tex{setuptextbackground}}
+\Command{\tex{starttextbackground}}
 
 To emphasize a section you can use backgrounds. A
 background is set with the command pair:
 
-\shortsetup{startbackground}
+%\shortsetup{startbackground}
+\shortsetup{starttextbackground}
 
 An example can illustrate the use:
 
-\startbuffer
-\setupbackground[background=screen,corner=round]
+%% \startbuffer
+%% \setupbackground[background=screen,corner=round]
 
-\startbackground
+%% \startbackground
+%% Hasselt has produced a number of well known people. Only recently
+%% it turned out that Kilian van Rensselaer played a prominent role
+%% in the foundation of the State of New York.
+%% \stopbackground
+\startbuffer
+\setuptextbackground[corner=round,frame=off,location=paragraph,
+  leftoffset=.5\bodyfontsize,rightoffset=.5\bodyfontsize]
+
+\starttextbackground
 Hasselt has produced a number of well known people. Only recently
 it turned out that Kilian van Rensselaer played a prominent role
 in the foundation of the State of New York.
-\stopbackground
+\stoptextbackground
 \stopbuffer
 
 \typebuffer
@@ -34,7 +50,8 @@ This would be displayed as:
 
 Backgrounds can span multiple pages. With:
 
-\shortsetup{setupbackground}
+%\shortsetup{setupbackground}
+\shortsetup{setuptextbackground}
 
 you can vary the display of the backgrounds.
 

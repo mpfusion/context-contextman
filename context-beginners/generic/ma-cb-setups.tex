@@ -9,7 +9,13 @@
 % \type{\ifnum} and \type{\ifdim} afterwards. Nevertheless,
 % we load the whole bunch now!
 
-\usemodule[set-11] \loadsetups
+%\usemodule[set-11] \loadsetups
+\usemodule[setup] \loadsetups
+
+% Additiona setup definitions
+\startXMLmapping[zero]
+  \processXMLfilegrouped{../generic/cont-en-extra.xml}
+\stopXMLmapping
 
 \unprotect
 
