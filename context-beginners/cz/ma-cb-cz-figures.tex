@@ -154,74 +154,147 @@ vynulování) èíslování se nastavuje pøíkazem \type{\setupnumbering}
 Druhý pár závorek je pro urèení obrazce a názvù souborù 
 externích obrazcù.
 
-In the next example you see how
-\inframed[height=1em]{Hasselt} is defined within the last
-brace pair to show you the function of \type{\placefigure{}{}}.
+%In the next example you see how
+%\inframed[height=1em]{Hasselt} is defined within the last
+%brace pair to show you the function of \type{\placefigure{}{}}.
+
+V následující pøíkladu vidíme, pou¾ití funkce \type{\placefigure{}{}}. V¹imnìte si obsahu druhé závorky, nutného pro vysázení  \inframed[height=1em]{Hasselt}.
+
+%\startbuffer
+%\placefigure
+%  {A framed Hasselt.}
+%  {\framed{\tfd Hasselt}}
+%\stopbuffer
 
 \startbuffer
 \placefigure
-  {A framed Hasselt.}
+  {Orámovaný Hasselt}
   {\framed{\tfd Hasselt}}
 \stopbuffer
 
 \typebuffer
 
-This will produce:
+%This will produce:
+
+Tento pøíklad vysází:
 
 \getbuffer
 
-However, your pictures are often created using programs like
-Corel Draw or Illustrator and photos are --- after scanning ---
-improved in packages like PhotoShop. Then the figures are
-available as files. \CONTEXT\ supports all types that are handled
-by the backend driver used. If you use \PDFTEX\ you can insert
-\type {JPG}, \type {PNG} and (pages from) \type {PDF} files as
-well as \METAPOST\ output (\type {MPS} files). Users normally can
-trust \CONTEXT\ to find the best possible file type.
+%However, your pictures are often created using programs like
+%Corel Draw or Illustrator and photos are --- after scanning ---
+%improved in packages like PhotoShop. Then the figures are
+%available as files. \CONTEXT\ supports all types that are handled
+%by the backend driver used. If you use \PDFTEX\ you can insert
+%\type {JPG}, \type {PNG} and (pages from) \type {PDF} files as
+%well as \METAPOST\ output (\type {MPS} files). Users normally can
+%trust \CONTEXT\ to find the best possible file type.
 
-In \in{figure}[fig:canals] you see a photo and a graphic
-combined into one figure.
+Obrázky pro Vá¹ dokument vytvoøíte èasto pomocí programu jako Corel Draw
+nebo Illustrator. Fotky - po oskenování - se obvykle upraví prostøedkem jako je napøíklad PhotoShop. Po této práci, máte své obrázky ve formì souborù. 
+ \CONTEXT\ podporuje v¹echny typy tìchto souborù, se kterými umí nakládat ovladaè v pozadí  \CONTEXT u. Pokud pou¾íváte \PDFTEX\ ,mù¾ete vkládat \type {JPG}, \type {PNG} a jednotlivé stránky ze souborù \type {PDF}, stejnì tak jako 
+výstup \METAPOST u, (soubory typu \type {MPS}). U¾ivatelé mohou bì¾nì dùvìøovat
+\CONTEXT u, ¾e nalezne nejlep¹í mon¾ný typ souboru.
+
+%In \in{figure}[fig:canals] you see a photo and a graphic
+%combined into one figure.
+
+V \in{figure}[fig:canals] vidíte fotografii a grafiku kombinovanou do
+jednoho obrazce.
+
+%\startbuffer
+%\placefigure
+%  [here,force]
+%  [fig:canal]
+%  {The Hasselt Canals.}
+%  {\startcombination[2*1]
+%     {\externalfigure[ma-cb-03][width=.4\textwidth]}
+%         {a bitmap picture}
+     %{\externalfigure[gracht][width=.4\textwidth]}
+%     {\externalfigure[ma-cb-00][width=.4\textwidth]}
+%         {a vector graphic}
+%   \stopcombination}
+%\stopbuffer
+
 
 \startbuffer
 \placefigure
   [here,force]
   [fig:canal]
-  {The Hasselt Canals.}
+  {Hasseltské kanály.}
   {\startcombination[2*1]
      {\externalfigure[ma-cb-03][width=.4\textwidth]}
-         {a bitmap picture}
+         {oskenovaný obrázek}
      %{\externalfigure[gracht][width=.4\textwidth]}
      {\externalfigure[ma-cb-00][width=.4\textwidth]}
-         {a vector graphic}
+         {vektorová grafika}
    \stopcombination}
 \stopbuffer
 
+
 \getbuffer
 
-You can produce this figure by typing something like:
+%You can produce this figure by typing something like:
+
+Tento obrazec mù¾ete vysázet pomocí kódu podobného tomuto:
 
 \typebuffer
 
-In this figure two pictures are combined with:
+%In this figure two pictures are combined with:
+
+V tomto obrazci jsou dva obrázky kombinovány pomocí:
 
 \shortsetup{startcombination}
 
-The \type{\startcombination} $\cdots$
-\type{\stopcombination} pair is used for combining two
-pictures in one figure. You can type the number of pictures
-within the bracket pair. If you want to display one picture
-below the other you would have typed \type{[1*2]}. You can
-imagine what happens when you combine 6~pictures as
-\type{[3*2]} (\type{[rows*columns]}).
+%The \type{\startcombination} $\cdots$
+%\type{\stopcombination} pair is used for combining two
+%pictures in one figure. You can type the number of pictures
+%within the bracket pair. If you want to display one picture
+%below the other you would have typed \type{[1*2]}. You can
+%imagine what happens when you combine 6~pictures as
+%\type{[3*2]} (\type{[rows*columns]}).
 
-The examples shown above are enough for creating illustrated
-documents. Sometimes however you want a more integrated
-layout of the picture and the text. For that purpose
-you can use:
+Dvojice pøíkazù \type{\startcombination} $\cdots$ \type{\stopcombination}
+je u¾ívána pro kombinaci dvou obrázkù do jednoho obrazce.
+Pomocí hranaté závorky mù¾ete ovlivnit vysázení vìt¹ího 
+mno¾ství obrázkù. Jeden obrázek pod druhým se vysází pomocí 
+\type{[1*2]}. Mù¾ete si pøedstavit, co se stane, kdy¾ zkombinujete
+6 obrázkù pomocí \type{[3*2]} (\type{[øádky*sloupce]}).
+
+%The examples shown above are enough for creating illustrated
+%documents. Sometimes however you want a more integrated
+%layout of the picture and the text. For that purpose
+%you can use:
+
+Uvedené pøíklady jsou dostaèující pro vytváøení 
+ilustrovaných documentù. Nicménì nìkdy je potøeba 
+více ovlivnit uspoøádání obrázku a textu. Pro tento 
+úèel mù¾ete pou¾ít:
 
 \shortsetup{startframedtext}
 
-Figure and table texts are already predefined:
+%Figure and table texts are already predefined:
+
+%netusim co je tu preddeklarovano :(
+Kombinace obrázku a textu:
+
+%\startbuffer
+%\startfiguretext
+%  [left]
+%  [fig:citizens]
+%  {none}
+%  {\externalfigure[ma-cb-18][width=.5\makeupwidth]}
+%   Hasselt has always had a varying number of citizens due to
+%   economic events. For example the Dedemsvaart was dug around
+%   1810. This canal runs through Hasselt and therefore trade
+%   flourished. This led to a population growth of almost 40\%
+%   within 10~years. Nowadays the Dedemsvaart has no commercial
+%   value anymore and the canals have become a tourist
+%   attraction. But reminders of these prosperous times can be
+%   found everywhere.
+%\stopfiguretext
+%\stopbuffer
+
+
 
 \startbuffer
 \startfiguretext
@@ -229,20 +302,23 @@ Figure and table texts are already predefined:
   [fig:citizens]
   {none}
   {\externalfigure[ma-cb-18][width=.5\makeupwidth]}
-   Hasselt has always had a varying number of citizens due to
-   economic events. For example the Dedemsvaart was dug around
-   1810. This canal runs through Hasselt and therefore trade
-   flourished. This led to a population growth of almost 40\%
-   within 10~years. Nowadays the Dedemsvaart has no commercial
-   value anymore and the canals have become a tourist
-   attraction. But reminders of these prosperous times can be
-   found everywhere.
+  Hasselt mìl v¾dy promìnný poèet obyvatelstva, závislý
+  na ekonomických událostech. Napøíklad Dedemsvaart byl
+  kopán kolem roku 1810. Tento kanál vedl pøímo skrz 
+  Hasselt a proto obchod vzkvétal. 
+  To vedlo k rùstu populace o témìø 40\% bìhem 10~let.
+  V souèasnosti ji¾ Dedemsvaart nemá tento význam
+  a kanály se staly turistickou atrakcí. Ale upomínky
+  na døívìj¹í èasy prosperujícího obchodu, mohou být 
+  vidìt v¹ude.
 \stopfiguretext
 \stopbuffer
 
+
 \typebuffer
 
-is shown in the figure below.
+%is shown in the figure below.
+po vysázení uvidíme:
 
 \start
 \setuptolerance[verytolerant]
@@ -251,14 +327,26 @@ is shown in the figure below.
 
 \shortsetup{externalfigure}
 
-The last curly brace pair encloses the command
-\type{\externalfigure}. This command gives you the freedom
-to do anything you want with a figure.
-\type{\externalfigure} has two bracket pairs. The first is
-used for the exact file name without extension, the second
-for file formats and dimensions. It is not difficult to
-guess what happens if you type:\footnote{See
-\at{page}[marginpicture]}.
+%The last curly brace pair encloses the command
+%\type{\externalfigure}. This command gives you the freedom
+%to do anything you want with a figure.
+%\type{\externalfigure} has two bracket pairs. The first is
+%used for the exact file name without extension, the second
+%for file formats and dimensions. It is not difficult to
+%guess what happens if you type:\footnote{See
+%\at{page}[marginpicture]}.
+
+Poslední, oplývající více parametry, hranatá závorka 
+uzavírá pøíkaz \type{\externalfigure}. Tento pøíkaz
+Vám dává svobodu vysázet obrázek jakýmkoliv zpùsobem 
+si budete pøát. 
+\type{\externalfigure} obsahuje dva páry hranatých
+závorek. První se u¾ívá pro pøesný název souboru bez
+koncovky, druhý pro formát souboru a rozmìry.
+Není obtí¾né si pøedstavit co zpùsobí vysázení 
+zdrojového textu: \footnote{viz. \at{page}[marginpicture]}.
+
+
 
 \startbuffer[marginpicture]
 \inmargin
@@ -269,16 +357,22 @@ guess what happens if you type:\footnote{See
 
 \typebuffer[marginpicture]
 
-You can set up the layout of figures with:
+%You can set up the layout of figures with:
+Umístìní a rozmìry obrázku mù¾ete ovlivòovat pomocí:
 
 \shortsetup{setupfloats}
 
-You can set up the numbering and the labels with:
+%You can set up the numbering and the labels with:
+Také mù¾ete nastavit èíslování obrázkù a jejich komentáø:
 
 \shortsetup{setupcaptions}
 
-These commands are typed in the set up area of your input
-file and have a global effect on all floating blocks.
+%These commands are typed in the set up area of your input
+%file and have a global effect on all floating blocks.
+
+Následující pøíkazy patøí do oblasti celkového nastavení 
+va¹eho vstupního souboru a mají tedy vliv na v¹echny
+plovoucí bloky.
 
 \startbuffer
 \setupfloats
