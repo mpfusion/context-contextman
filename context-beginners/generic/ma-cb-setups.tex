@@ -9,8 +9,14 @@
 % \type{\ifnum} and \type{\ifdim} afterwards. Nevertheless,
 % we load the whole bunch now!
 
-%\usemodule[set-11] \loadsetups
-\usemodule[setup] \loadsetups
+\doiffileelse{t-setup.tex}
+  {\usemodule[setup]}      % third party t-setup.tex
+  {\usemodule[set-11]}
+
+\pushmacro\checkdefined
+\def\checkdefined#1#2#3{}  % do not check macro redefinition (warnings
+\loadsetups                % slow down processing dramaticaly)
+\popmacro\checkdefined
 
 % Additiona setup definitions
 \startXMLmapping[zero]

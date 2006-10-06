@@ -182,6 +182,7 @@
 \setuphead
   [\v!chapter]
   [\c!command=\HeadCommand,
+   \v!appendix\c!label=none,
    \c!page=,
    \c!before=\vskip36pt plus 6pt minus 6pt,
    \c!after=\vskip24pt]
@@ -624,6 +625,7 @@
    \bgroup
    \component ma-cb-\currentmainlanguage-commandlist
    \blank[2*\v!big]
+   \switchtobodyfont[7pt]
    \setupsetup[\c!reference=2]
    \placesetup
    \egroup}

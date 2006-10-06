@@ -1,16 +1,21 @@
+% interface=english language=cz modes=screen,bound
 % Translations 
-% busaj = par slov :)
-% interface=english language=uk modes=screen,bound
-\startproduct ma-cb-cz
-\project ../generic/ma-cb
+%   busaj = par slov :)
+%   VZ: index sorting, translators, ...
 
-\mainlanguage[cz]
+\mainlanguage[cz]     % must be here! (index)
 \language[cz]
 \enableregime[latin2]
 
+\maxnofMPgraphics = 12000
+
+% .tuo loading...
+\startproduct ma-cb-cz
+\project ../generic/ma-cb
+
 \setvariables
   [document]
-  [translator={Ján Bu¹a, Jiøí Hrbek, Petr Tesaøík, Vít Zýka}]
+  [translator={Ján Bu¹a, Jiøí Hrbek, Martina Plachá, Petr Tesaøík, Vít Zýka}]
 
 \TitlePage
   {Exkurze \ConTeXt em\\
@@ -22,9 +27,9 @@
 
 \startfrontmatter
 
-%    \TableOfContents{Table Of Contents}
+%   \TableOfContents{Table Of Contents}
     \TableOfContents{Obsah}
-%    \Introduction   {Introduction}
+%   \Introduction   {Introduction}
     \Introduction   {Úvod}
 
     \component ma-cb-cz-introduction
@@ -34,6 +39,7 @@
 \startbodymatter
 
     \component ma-cb-cz-document
+%\iffalse
     \component ma-cb-cz-gettingstarted
     \component ma-cb-cz-specialcharacters
     \component ma-cb-cz-structure
@@ -75,18 +81,16 @@
     \component ma-cb-cz-processingfiles
     \component ma-cb-cz-runtimefiles
     \component ma-cb-cz-mathcharacters
-
+%\fi
 \stopbodymatter
-
-\setuplabeltext[cz][appendix=]
 
 \startappendices
 
-%    \CommandList {Command definitions}
+%   \CommandList {Command definitions}
     \CommandList {Definice pøíkazù}
-%    \CommandIndex{Command Index}
+%   \CommandIndex{Command Index}
     \CommandIndex{Rejstøík pøíkazù}
-%    \NormalIndex {Subject Index}
+%   \NormalIndex {Subject Index}
     \NormalIndex {Rejstøík}
 
 \stopappendices
