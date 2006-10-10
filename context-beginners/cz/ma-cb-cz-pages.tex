@@ -1,87 +1,128 @@
 % Translation:
+% busaj
 \startcomponent ma-cb-cz-pages
 
 \product ma-cb-cz
 
 \environment ma-cb-env-cz
 
-\chapter{Page breaking and page numbering}
+%\chapter{Page breaking and page numbering}
+\chapter{Zalamování a èíslování stránek}
 
-\index{page breaking}
-\index{page numbering}
+%\index{page breaking}
+%\index{page numbering}
+\index{zalamování stránek}
+\index{èíslování stránek}
 
 \Command{\tex{page}}
 \Command{\tex{setuppagenumbering}}
 \Command{\tex{startpostponing}}
 
-A page can be enforced or blocked by:
+%A page can be enforced or blocked by:
+Zalomení stránky mù¾e být vynuceno nebo zablokováno pøíkazem:
 
 \shortsetup{page}
 
-The options can be stated within the brackets. The options
-and their meaning are presented in \in{table}[tab:page
+%The options can be stated within the brackets. The options
+%and their meaning are presented in \in{table}[tab:page
+%options]
+Volby se zadávají uvnitø hranatých závorek. Volby a jejich smysl jsou uvedeny \in{v~tabulce}[tab:page
 options]
+
+%\placetable
+%  []
+%  [tab:page options]
+%  {Page options.}
+%\starttable[|l|l|]
+%\HL
+%\NC \bf Option \NC \bf Meaning \NC\SR
+%\HL
+%\NC \type{yes}           \NC enforce a page \NC\FR
+%\NC \type{makeup}        \NC enforce a page without filling \NC\MR
+%\NC \type{no}            \NC no page \NC\MR
+%\NC \type{preference}    \NC prefer a new page here \NC\MR
+%\NC \type{bigpreference} \NC great preference for a new page here \NC\MR
+%\NC \type{left}          \NC next page is a left handside page \NC\MR
+%\NC \type{right}         \NC next page is a right handside page \NC\MR
+%\NC \type{disable}       \NC following commands have no effect \NC\MR
+%\NC \type{reset}         \NC following commands do have effect \NC\MR
+%\NC \type{empty}         \NC insert an empty page \NC\MR
+%\NC \type{last}          \NC add pages till even number is reached \NC\MR
+%\NC \type{quadruple}     \NC add pages till a multiple of four
+%  is reached  \NC\LR
+%\HL
+%\stoptable
 
 \placetable
   []
   [tab:page options]
-  {Page options.}
+  {Volby pøíkazu \texttt{page}.}
 \starttable[|l|l|]
 \HL
-\NC \bf Option \NC \bf Meaning \NC\SR
+\NC \bf Volba \NC \bf Význam \NC\SR
 \HL
-\NC \type{yes}           \NC enforce a page \NC\FR
-\NC \type{makeup}        \NC enforce a page without filling \NC\MR
-\NC \type{no}            \NC no page \NC\MR
-\NC \type{preference}    \NC prefer a new page here \NC\MR
-\NC \type{bigpreference} \NC great preference for a new page here \NC\MR
-\NC \type{left}          \NC next page is a left handside page \NC\MR
-\NC \type{right}         \NC next page is a right handside page \NC\MR
-\NC \type{disable}       \NC following commands have no effect \NC\MR
-\NC \type{reset}         \NC following commands do have effect \NC\MR
-\NC \type{empty}         \NC insert an empty page \NC\MR
-\NC \type{last}          \NC add pages till even number is reached \NC\MR
-\NC \type{quadruple}     \NC add pages till a multiple of four
-  is reached  \NC\LR
+\NC \type{yes}           \NC zaèátek nové stránky \NC\FR
+\NC \type{makeup}        \NC zaèátek nové stránky bez zaplnìní \NC\MR
+\NC \type{no}            \NC ¾ádná stránka \NC\MR
+\NC \type{preference}    \NC na tomto místì upøednostòujeme novou stránku \NC\MR
+\NC \type{bigpreference} \NC nová stránka má na tomto místì vysokou prioritu \NC\MR
+\NC \type{left}          \NC následující stránka je levá (sudá) \NC\MR
+\NC \type{right}         \NC následující stránka je pravá (lichá) \NC\MR
+\NC \type{disable}       \NC následující pøíkazy nemají úèinek \NC\MR
+\NC \type{reset}         \NC následující pøíkazy se provedou \NC\MR
+\NC \type{empty}         \NC vlo¾ení prázdné stránky \NC\MR
+\NC \type{last}          \NC vkládání stránek a¾ do dosa¾ení sudého èísla strany \NC\MR
+\NC \type{quadruple}     \NC vkládání stránek a¾ do dosa¾ení násobku ètyø  \NC\LR
 \HL
 \stoptable
 
-Page numbering happens automatically but you can enforce
-a page number with:
+
+%Page numbering happens automatically but you can enforce
+%a page number with:
+Èíslování stránek je automatické, ale mù¾ete zadat èíslo stránky pøíkazem:
 
 \starttyping
 \page[25]
 \stoptyping
 
-Sometimes it is better to state a relative page number like
-\type{[+2]} or \type{[-2]}.
+%Sometimes it is better to state a relative page number like
+%\type{[+2]} or \type{[-2]}.
+Nìkdy je lep¹í zadat relativní èíslo strany, napøíklad
+\type{[+2]} nebo \type{[-2]}.
 
-The position of the page numbers on a page depend on your own
-preferences and if it concerns a one sided or double sided
-document. Page numbering can be set up with:
+%The position of the page numbers on a page depend on your own
+%preferences and if it concerns a one sided or double sided
+%document. Page numbering can be set up with:
+Umístìní èísla stránek na stranì závisí na Va¹ich zálíbách a na typu dokumentu (jednostranný nebo dvojstranný). 
+Èíslování stránek se nastavuje pøíkazem:
 
 \shortsetup{setuppagenumbering}
 
-The preferences are placed within the brackets.
+%The preferences are placed within the brackets.
+Volby se umís»ují do hranatých závorek.
 
-Tables or figures may take up a lot of space. The placing of
-these text elements can be postponed till the next page break.
-This is done with:
+%Tables or figures may take up a lot of space. The placing of
+%these text elements can be postponed till the next page break.
+%This is done with:
+Seznam obrázkù mù¾e zabírat mnoho místa. Umístìní tìchto prvkù mù¾e být odlo¾eno a¾ do nejbli¾¹ího zalomení stránky.
+To se dìlá pøíkazem:
 
 \shortsetup{startpostponing}
 
 \startbuffer
 \startpostponing
 \placefigure
-  {A postponed figure.}
+  {Odlo¾ený obrázek.}
   {\externalfigure[ma-cb-16][width=\textwidth]}
 \stoppostponing
 \stopbuffer
 
 \typebuffer
 
-The figure will be placed at the top of next page and will
-cause minimal disruption of the running text.
+%The figure will be placed at the top of next page and will
+%cause minimal disruption of the running text.
+Obrázek bude umístìn ve vrchní èásti následující strany 
+aby zpùsobil co nejmen¹í naru¹ení prùbì¾ného textu.
 
 \getbuffer
 
