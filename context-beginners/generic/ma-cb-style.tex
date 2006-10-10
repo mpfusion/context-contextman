@@ -182,7 +182,7 @@
 \setuphead
   [\v!chapter]
   [\c!command=\HeadCommand,
-   \v!appendix\c!label=none,
+%   \v!appendix\c!label=none,
    \c!page=,
    \c!before=\vskip36pt plus 6pt minus 6pt,
    \c!after=\vskip24pt]
@@ -625,9 +625,11 @@
    \bgroup
    \component ma-cb-\currentmainlanguage-commandlist
    \blank[2*\v!big]
-   \switchtobodyfont[7pt]
-   \setupsetup[\c!reference=2]
-   \placesetup
+   \startcolumns[\c!n=2,\c!distance=36pt,\c!rule=\KolommenLijn]
+     \switchtobodyfont[7pt]
+     \setupsetup[\c!reference=2]
+     \placesetup
+   \stopcolumns
    \egroup}
 
 \defineregister

@@ -1,3 +1,4 @@
+% 2006-10-10 Vit Zyka: new interactionmenu syntax
 \startcomponent ma-cb-en-interactivity
 
 \product ma-cb-en
@@ -191,6 +192,32 @@ up the menu.
 
 A typical menu definition might look like this:
 
+%% \startbuffer
+%% \setupcolors
+%%   [state=start]
+
+%% \setupinteraction
+%%   [state=start,
+%%    menu=on]
+
+%% \defineinteractionmenu
+%%   [mymenu]
+%%   [right]
+%%   [state=start,
+%%    align=middle,
+%%    background=screen,
+%%    frame=on,
+%%    width=\marginwidth,
+%%    style=smallbold,
+%%    color=]
+
+%% \setupinteractionmenu
+%%   [mymenu]
+%%   [{Content[content]},
+%%    {Index[index]},
+%%    {\vfill},
+%%    {Stop[ExitViewer]}]
+%% \stopbuffer
 \startbuffer
 \setupcolors
   [state=start]
@@ -210,12 +237,14 @@ A typical menu definition might look like this:
    style=smallbold,
    color=]
 
-\setupinteractionmenu
-  [mymenu]
-  [{Content[content]},
-   {Index[index]},
-   {\vfill},
-   {Stop[ExitViewer]}]
+\startinteractionmenu[mymenu]
+  \but [content] Content \\
+  \but [index] Index \\
+  \vfill \\
+  \but [ExitViewer] Exit viewer \\
+\stopinteractionmenu
+
+\setupheadertexts[{\interactionmenu[mymenu]}]
 \stopbuffer
 
 \typebuffer
@@ -238,6 +267,7 @@ these actions is obvious.
 
 Menus are set up with:
 
-\shortsetup{setupinteractionmenu}
+%\shortsetup{setupinteractionmenu}
+\shortsetup{startinteractionmenu}
 
 \stopcomponent
