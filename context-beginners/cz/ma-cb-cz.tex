@@ -3,15 +3,18 @@
 %   busaj = par slov :)
 %   VZ: index sorting, translators, ...
 
-\mainlanguage[cz]     % must be here! (index)
-\language[cz]
-\enableregime[latin2]
+% must be here! (index):
+\environment ma-cb-env-cz
+%\mainlanguage[cz]
+%\language[cz]
+%\enableregime[latin2]
 
 \maxnofMPgraphics = 10000
 
 % .tuo loading...
 \startproduct ma-cb-cz
-\project ../generic/ma-cb
+%\project ../generic/ma-cb
+\project ma-cb
 
 \setvariables
   [document]
@@ -41,6 +44,7 @@
 %\iffalse
     \component ma-cb-cz-document
     \component ma-cb-cz-gettingstarted
+%\iffalse
     \component ma-cb-cz-specialcharacters
     \component ma-cb-cz-structure
     \component ma-cb-cz-heads

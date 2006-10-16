@@ -1,39 +1,62 @@
 % Translation:
+% 2006-10-14 VZ
 \startcomponent ma-cb-cz-whatever
 \project ma-cb
 \product ma-cb-cz
-
 \environment ma-cb-env-cz
 
-\chapter[]{Miscellaneous}
+%% \chapter{Miscellaneous}
+\chapter{Nezaøazené}
 
-\section{A titlepage}
+% ====================================================================
+%% \section{A titlepage}
+\section{Titulní strana}
 
-\index{titlepage}
+%% \index{titlepage}
+\index{titulní strana}
 
 \Command{\tex{startstandardmakeup}}
 \Command{\tex{definemakeup}}
 \Command{\tex{setupmakeup}}
 
-In the first example of this manual on \at{page}[inputfile]
-we used the command:
+%% In the first example of this manual on \at{page}[inputfile]
+%% we used the command:
+V~prvním pøíkladu tohoto manuálu na \at{stranì}[inputfile] jsme
+pou¾ili pøíkazu
 
 \shortsetup{start<<name>>makeup}
+%% \shortsetup{startstandardmakeup}
 
-This command can be used to define titlepages. Such a
-command is needed since title pages often have a different
-layout than that of the bodytext. With the command pair
-\type{\start ... \stopstandardmakeup} you can make up a page
-within the default page dimensions.
+%% This command can be used to define titlepages. Such a
+%% command is needed since title pages often have a different
+%% layout than that of the bodytext. With the command pair
+%% \type{\start ... \stopstandardmakeup} you can make up a page
+%% within the default page dimensions.
+Tento pøíkaz mù¾e být pou¾it k~definování {\em titulních stran},
+proto¾e mívají jinak velké stránkové zrcadlo ne¾ hlavní textová èást
+dokumentu. Pomocí dvojice \type{\start ... \stopstandardmakeup} mù¾eme
+navrhnout vzhled strany v~rámci standardního rozmìru papíru. 
 
-A simple titlepage may look like this:
+%% A simple titlepage may look like this:
+Jednoduchá titulní strana mù¾e vypadat takto:
 
+%% \startbuffer
+%% \startstandardmakeup
+%% \blank
+%% \rightaligned{\tfd Hasselt in the 21st century}
+%% \blank
+%% \rightaligned{\tfb The future}
+%% \vfill
+%% \rightaligned{\tfa C. van Marle}
+%% \rightaligned{Hasselt, 2001}
+%% \stopstandardmakeup
+%% \stopbuffer
 \startbuffer
 \startstandardmakeup
 \blank
-\rightaligned{\tfd Hasselt in the 21st century}
+\rightaligned{\tfd Hasselt v~21.\,století}
 \blank
-\rightaligned{\tfb The future}
+\rightaligned{\tfb Budoucnost}
 \vfill
 \rightaligned{\tfa C. van Marle}
 \rightaligned{Hasselt, 2001}
@@ -42,15 +65,37 @@ A simple titlepage may look like this:
 
 \typebuffer
 
-In a doublesided document you have to go through some
-additional actions to typeset the back of the titlepage.
+%% In a doublesided document you have to go through some
+%% additional actions to typeset the back of the titlepage.
+V~oboustránkovém dokumentu musíme vykonat nìkteré dal¹í akce,
+abychom vysázeli zadní stranu titulního listu.
 
+%% \startbuffer
+%% \startstandardmakeup[doublesided=no]
+%% \blank
+%% \rightaligned{\tfd Hasselt in the 21st century}
+%% \blank
+%% \rightaligned{\tfb The future}
+%% \vfill
+%% \rightaligned{\tfa C. van Marle}
+%% \rightaligned{Hasselt, 2001}
+%% \stopstandardmakeup
+%% \startstandardmakeup[page=no]
+%% \vfill
+%% \copyright 2001
+
+%% This book is dedicated to the people living in Hasselt. We
+%% want to thank photographer J. Jonker for manipulating the
+%% photos in this book in such a way that readers can get a
+%% clear picture of Hasselt's future look.
+%% \stopstandardmakeup
+%% \stopbuffer
 \startbuffer
 \startstandardmakeup[doublesided=no]
 \blank
-\rightaligned{\tfd Hasselt in the 21st century}
+\rightaligned{\tfd Hasselt v~21.\,století}
 \blank
-\rightaligned{\tfb The future}
+\rightaligned{\tfb Budoucnost}
 \vfill
 \rightaligned{\tfa C. van Marle}
 \rightaligned{Hasselt, 2001}
@@ -59,26 +104,30 @@ additional actions to typeset the back of the titlepage.
 \vfill
 \copyright 2001
 
-This book is dedicated to the people living in Hasselt. We
-want to thank photographer J. Jonker for manipulating the
-photos in this book in such a way that readers can get a
-clear picture of Hasselt's future look.
+Tato kniha je vìnována lidem ¾ijícím v~Hasseltu. Chceme podìkovat
+fotografovi J. Jonkerovi za zfal¹ování fotografií do této knihy tak,
+¾e ètenáø získá jasnou pøedstavu o~budoucí podobì Hasseltu.
 \stopstandardmakeup
 \stopbuffer
 
 \typebuffer
 
-Your own make ups can be made and set up with:
+%% Your own make ups can be made and set up with:
+Ná¹e vlastní titulní strana mù¾e být vytvoøena pomocí
 
 \shortsetup{definemakeup}
 
-and
+%% and
+a
 
 \shortsetup{setupmakeup}
 
-\section[floatingblocks]{Floating blocks}
+% ====================================================================
+%% \section[floatingblocks]{Floating blocks}
+\section[floatingblocks]{Plovoucí objekty}
 
-\index{floating blocks}
+%% \index{floating blocks}
+\index{plovoucí objekty}
 
 \Command{\tex{definefloat}}
 \Command{\tex{setupfloat}}
@@ -86,58 +135,93 @@ and
 \Command{\tex{setupcaptions}}
 \Command{\tex{placeintermezzo}}
 
-A block in \CONTEXT\ is a text element, for example a table
-or a figure that you can process in a special way. You have
-already seen the use of \type{\placefigure} and
-\type{\placetable}. These are both examples of floating
-blocks. The floating mechanism is described in
-\in{chapter}[figures] and \in[tables].
+%% A block in \CONTEXT\ is a text element, for example a table
+%% or a figure that you can process in a special way. You have
+%% already seen the use of \type{\placefigure} and
+%% \type{\placetable}. These are both examples of floating
+%% blocks. The floating mechanism is described in
+%% \in{chapter}[figures] and \in[tables].
+Plovoucím objektem (floating block) je v~\CONTEXT{}u nazýván textový
+element, napø. tabulka èi obrázek, který zpracováváme speciálním
+zpùsobem. Ji¾ jsme vidìli pou¾ití \type{\placefigure} a
+\type{\placetable}. Oba jsou pøíkladem plovoucích objektù popsaných
+v~\in{kapitolách}[figures] a~\in[tables].
 
-You can define these kind of blocks yourself with:
+%% You can define these kind of blocks yourself with:
+Svùj vlastní plovoucí objekt si mù¾eme definovat pomocí
 
 \shortsetup{definefloat}
 
-The bracket pairs are used for the name in singular and
-plural form. For example:
+%% The bracket pairs are used for the name in singular and
+%% plural form. For example:
+Slo¾ené závorky jsou pou¾ity pro jméno objektu v~singulárním
+a~plurálním tvaru. Napøíklad:
 
+%% \starttyping
+%% \definefloat[intermezzo][intermezzi]
+%% \stoptyping
 \starttyping
-\definefloat[intermezzo][intermezzi]
+\definefloat[vsuvka][vsuvky]
 \stoptyping
 
-Now the following commands are available:
+%% Now the following commands are available:
+Nyní jsou k~dispozici následující pøíkazy:
 
+%% \starttyping
+%% \placeintermezzo[][]{}{}
+%% \startintermezzotext ... \stopintermezzotext
+%% \placelistofintermezzi
+%% \completelistofintermezzi
+%% \stoptyping
 \starttyping
-\placeintermezzo[][]{}{}
-\startintermezzotext ... \stopintermezzotext
-\placelistofintermezzi
-\completelistofintermezzi
+\placevsuvka[][]{}{}
+\startvsuvkatext ... \stopvsuvkatext
+\placelistofvsuvky
+\completelistofvsuvky
 \stoptyping
 
-The newly defined floating block can be set up with:
+%% The newly defined floating block can be set up with:
+Novì definovaný plovoucí objekt mù¾e být nastaven pomocí
 
 \shortsetup{setupfloat}
 
-You can set up the layout of floating blocks with:
+%% You can set up the layout of floating blocks with:
+Dále mù¾eme nastavit formátování plovoucích objektù pomocí pøíkazu
 
 \shortsetup{setupfloats}
 
-You can set up the numbering and the labels with:
+%% You can set up the numbering and the labels with:
+Èíslování a popisek objektu lze nastavit pomocí
 
 \shortsetup{setupcaption}
 
-These commands are typed in the set up area of your input
-file and will have a global effect on all floating blocks.
+%% These commands are typed in the set up area of your input
+%% file and will have a global effect on all floating blocks.
+Tyto pøíkazy pou¾íváme v~úvodní èásti vstupního souboru a mají
+globální vliv na v¹echny plovoucí objekty.
 
+%% \startbuffer
+%% \setupfloats[location=middle]
+%% \setupcaption[location=bottom,headstyle=boldslanted]
+
+%% \placeintermezzo{An intermezzo.}
+%% \startframedtext
+%% At the beginning of this century there was a tramline from Zwolle to
+%% Blokzijl via Hasselt. Other means of transport became more important
+%% and just before the second world war the tramline was stopped.
+%% Nowadays such a tramline would have been very profitable.
+%% \stopframedtext
+%% \stopbuffer
 \startbuffer
 \setupfloats[location=middle]
 \setupcaption[location=bottom,headstyle=boldslanted]
 
-\placeintermezzo{An intermezzo.}
+\placeintermezzo{Ukázka vsuvky.}
 \startframedtext
-At the beginning of this century there was a tramline from Zwolle to
-Blokzijl via Hasselt. Other means of transport became more important
-and just before the second world war the tramline was stopped.
-Nowadays such a tramline would have been very profitable.
+Na zaèátku tohoto stolení existovala tavmvajová linka z~Zwolle do
+Blokzijl pøes Hasselt. Pozdìji nabývaly na významu jiné dopravní
+prostøedky a~tramvajová tra» byla pøed druhou svìtovou válkou
+zru¹ena. Nyní by mohla opìt být taková tramvajová linka zisková.
 \stopframedtext
 \stopbuffer
 
@@ -147,6 +231,7 @@ Nowadays such a tramline would have been very profitable.
 \getbuffer
 \stop
 
+% ====================================================================
 \section[textblocks]{Text blocks}
 
 \index{text blocks}
@@ -228,6 +313,7 @@ The Dutch text blocks are stored in the file \type
 {store-d.tex} and the text fragments can be called upon by
 their logical names.
 
+% ====================================================================
 \section{Storing text for later use}
 
 \index{storing text}
@@ -263,6 +349,7 @@ Buffers are set up with:
 
 \shortsetup{setupbuffer}
 
+% ====================================================================
 \section{Hiding text}
 
 \index{hiding text}
@@ -275,6 +362,7 @@ Text can be hidden with:
 
 The text in between will not be processed.
 
+% ====================================================================
 \section{Lines}
 
 \index{lines}
@@ -354,6 +442,7 @@ This will become:
 These commands are used in questionaires. Text that is
 struck out or underlined will not be hyphenated.
 
+% ====================================================================
 \section{Super- and subscript in text}
 
 \index{subscript}
@@ -375,6 +464,7 @@ This ugly text was made with \type{\low{}}, \type{\high{}}
 and \type{\lohi{}{}}. The text was placed between the curly
 braces.
 
+% ====================================================================
 \section{Date}
 
 \index{date}
@@ -387,6 +477,7 @@ You can introduce the system date in your text with:
 \currentdate
 \stoptyping
 
+% ====================================================================
 \section{Positioning}
 
 \index{positioning}
@@ -433,6 +524,7 @@ like this.
 
 \getbuffer
 
+% ====================================================================
 \section{Rotating text, figures and tables}
 
 \index{rotating}
@@ -484,6 +576,7 @@ We can set up rotating with:
 
 \shortsetup{setuprotate}
 
+% ====================================================================
 \section{Carriage return}
 
 \index{carriage return}
@@ -532,6 +625,7 @@ In a few commands new lines are generated by \type{\\}. For
 example if you type \type{\inmargin{in the\\margin}} then
 the text will be divided over two lines.
 
+% ====================================================================
 \section{Hyphenation}
 
 \index{hyphenation}
@@ -592,6 +686,7 @@ your input file:
 
 \typebuffer
 
+% ====================================================================
 \section{Comment in input file}
 
 \index{comment}
@@ -622,6 +717,7 @@ When you delete the \type{%} before \type{\input}
 the three files will be processed. The comment describing the
 contents of the files will not be processed.
 
+% ====================================================================
 \section{Input of another {\tt tex} file}
 
 \index{input other \TEX--files}

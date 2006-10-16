@@ -258,7 +258,8 @@
         \vskip0pt plus \realpageno cm
         \edef\StatusAchtergrond
           {StatusAchtergrond%
-           \ifodd\realpageno R\else\ifdubbelzijdig L\else R\fi\fi}%
+%           \ifodd\realpageno R\else\ifdubbelzijdig L\else R\fi\fi}%
+           \ifodd\realpageno R\else\ifdoublesided L\else R\fi\fi}%
         \framed
           [\c!background=\StatusAchtergrond,
            \c!width=36pt,
