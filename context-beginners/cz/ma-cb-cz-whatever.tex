@@ -232,140 +232,211 @@ zru¹ena. Nyní by mohla opìt být taková tramvajová linka zisková.
 \stop
 
 % ====================================================================
-\section[textblocks]{Text blocks}
+%% \section[textblocks]{Text blocks}
+\section[textblocks]{Blok textu}
 
-\index{text blocks}
+%% \index{text blocks}
+\index{blok textu}
+\index{textový blok}
 
 \Command{\tex{defineblock}}
 \Command{\tex{useblocks}}
 \Command{\tex{hideblocks}}
 \Command{\tex{setupblock}}
 
-Another type of block is a text block. A text block for
-example is one or more paragraphs you want to use several times.
+%% Another type of block is a text block. A text block for
+%% example is one or more paragraphs you want to use several times.
+Jinou èástí textu je {\em blok textu}. Pøíkladem bloku textu je jeden
+nebo více odstavcù, které chceme pou¾ít nìkolikrát.
 
-You have to define a text block with:
+%% You have to define a text block with:
+Blok textu musíme definovat pomocí
 
 \shortsetup{defineblock}
 
-You give the name of text blocks between brackets;
-you can also type a list of names if you separate them by
-commas. For example you can define:
+%% You give the name of text blocks between brackets;
+%% you can also type a list of names if you separate them by
+%% commas. For example you can define:
+Mezi hranaté závorky vlo¾íme jeho referenèní jméno. Také mù¾eme
+najednou definovat nìkolik blokù textu, pokud mezi jednotlivé jména
+napí¹eme èárku.
 
+%% \starttyping
+%% \defineblock[dutch]
+%% \stoptyping
 \starttyping
-\defineblock[dutch]
+\defineblock[holandstina]
 \stoptyping
 
-After defining the text block the following command is
-available:
+%% After defining the text block the following command is
+%% available:
+Po zadefinování je k~dispozici následující pár pøíkazù:
 
+%% \starttyping
+%% \begindutch ... \enddutch
+%% \stoptyping
 \starttyping
-\begindutch ... \enddutch
+\beginholandstina ... \endholandstina
 \stoptyping
 
-Text blocks are manipulated with:
+%% Text blocks are manipulated with:
+S~blokem mù¾eme pracovat pomocí pøíkazù
 
 \shortsetup{hideblocks}
 \shortsetup{useblocks}
 \shortsetup{keepblocks}
 \shortsetup{selectblocks}
 
-An example shows the possibilities of text blocks.
+%% An example shows the possibilities of text blocks.
+Zde je pøíklad pou¾ití bloku textu:
 
+%% \startbuffer
+%% \defineblock[dutch,english]
+
+%% \hideblocks[dutch,english]
+
+%% \beginenglish[dedemsvaart-e]
+%% After 1810 the Dedemsvaart brought some prosperity to Hasselt. All
+%% ships went through the canals of Hasselt and the shops on both
+%% sides of the canals prospered.
+%% \endenglish
+
+%% \begindutch[dedemsvaart-d]
+%% Sinds 1810 veroorzaakte de Dedemsvaart enige welvaart in Hasselt.
+%% Alle schepen voeren door de grachten en de winkels aan weerszijden
+%% van de gracht floreerden.
+%% \enddutch
+
+%% \useblocks[english][dedemsvaart-e]
+%% \stopbuffer
 \startbuffer
-\defineblock[dutch,english]
+\defineblock[holandstina,cestina]
 
-\hideblocks[dutch,english]
+\hideblocks[holandstina,cestina]
 
-\beginenglish[dedemsvaart-e]
-After 1810 the Dedemsvaart brought some prosperity to Hasselt. All
-ships went through the canals of Hasselt and the shops on both
-sides of the canals prospered.
-\endenglish
+\begincestina[blok-c]
+Po roce 1810 pøinesl Dedemsvaart Hesseltu prosperitu. V¹echny lodì
+proplouvaly kanálem v~Hasseltu a obchody na obou stranách kanálu
+bohatly.
+\endcestina
 
-\begindutch[dedemsvaart-d]
+\beginholandstina[blok-h]
 Sinds 1810 veroorzaakte de Dedemsvaart enige welvaart in Hasselt.
 Alle schepen voeren door de grachten en de winkels aan weerszijden
 van de gracht floreerden.
-\enddutch
+\endholandstina
 
-\useblocks[english][dedemsvaart-e]
+\useblocks[castina][blok-c]
 \stopbuffer
 
 \typebuffer
 
-This will result in:
+%% This will result in:
+Výsledkem bude:
 
 \getbuffer
 
-If you continue defining these blocks you could make
-a bilingual manual. For that purpose it is also possible to
-store the text blocks in an external file. This would look
-something like this:
+%% If you continue defining these blocks you could make
+%% a bilingual manual. For that purpose it is also possible to
+%% store the text blocks in an external file. This would look
+%% something like this:
+Jestli¾e budeme pokraèovat v~takovémto pou¾ívání bloku textu, mù¾eme
+vytvoøit dvoujazyèný manuál. Pro tyto úèely je také mo¾no ulo¾it bloky
+textu do externích souborù:
 
+%% \startbuffer
+%% \setupblock[dutch][file=store-d]
+%% \stopbuffer
 \startbuffer
-\setupblock[dutch][file=store-d]
+\setupblock[holandstina][file=store-h]
 \stopbuffer
 
 \typebuffer
 
-The Dutch text blocks are stored in the file \type
-{store-d.tex} and the text fragments can be called upon by
-their logical names.
+%% The Dutch text blocks are stored in the file \type
+%% {store-d.tex} and the text fragments can be called upon by
+%% their logical names.
+Holandský blok textu je ulo¾en do souboru \type{store-h.tex}
+a~fragmenty textu mohou být vyvolány jejich referenèními jmény.
 
 % ====================================================================
-\section{Storing text for later use}
+%% \section{Storing text for later use}
+\section{Ulo¾ení textu pro pozdìj¹í pou¾ití}
 
-\index{storing text}
+%% \index{storing text}
+\index{ulo¾ení textu}
+\index{text!ulo¾ení}
 
 \Command{\tex{startbuffer}}
 \Command{\tex{getbuffer}}
 \Command{\tex{typebuffer}}
 \Command{\tex{setupbuffer}}
 
-You can store information temporarily for future use in your
-document with:
+%% You can store information temporarily for future use in your
+%% document with:
+Doèasnì mù¾eme ulo¾it informace pro budoucí pou¾ití v~dokumentu pomocí
 
 \shortsetup{startbuffer}
 
-For example:
+%% For example:
+Napøíklad:
 
+%% \starttyping
+%% \startbuffer[visit]
+%% If you want to see what Hasselt has in store you should come and
+%% visit it some time. If you take this manual with you, you will
+%% recognise some locations.
+%% \stopbuffer
+
+%% \getbuffer[visit]
+%% \stoptyping
 \starttyping
-\startbuffer[visit]
-If you want to see what Hasselt has in store you should come and
-visit it some time. If you take this manual with you, you will
-recognise some locations.
+\startbuffer[navsteva]
+Jestli¾e chcete vidìt, co má Hasselt v~obchodech, mìli byste jej nìkdy
+nav¹tívit. Jestli si s~sebou vemete tento manuál, poznáte nìkterá místa.
 \stopbuffer
 
-\getbuffer[visit]
+\getbuffer[navsteva]
 \stoptyping
 
-With \type{\getbuffer[visit]} you recall the stored text.
-The logical name is optional. With \type{\typebuffer[visit]}
-you get back the typeset version of the content of the
-buffer.
+%% With \type{\getbuffer[visit]} you recall the stored text.
+%% The logical name is optional. With \type{\typebuffer[visit]}
+%% you get back the typeset version of the content of the
+%% buffer.
+Pøíkazem \type{\getbuffer[navsteva]} vyvoláte ulo¾ený text. Referenèní
+jméno mù¾eme vynechat, \CONTEXT{} pak pracuje s~interním
+jménem. Pøetisk ulo¾ené informace získáme pomocí \type{\typebuffer[navsteva]}.
 
-Buffers are set up with:
+%% Buffers are set up with:
+Nastavení se provádí pøíkazem
 
 \shortsetup{setupbuffer}
 
 % ====================================================================
-\section{Hiding text}
+%% \section{Hiding text}
+\section{Skrytý text}
 
-\index{hiding text}
+%% \index{hiding text}
+\index{skrytý text}
+\index{text!skrytý}
+\index{komentáø kódu}
 
 \Command{\tex{starthiding}}
 
-Text can be hidden with:
+%% Text can be hidden with:
+Text mù¾e být skryt pomocí
 
 \shortsetup{starthiding}
 
-The text in between will not be processed.
+%% The text in between will not be processed.
+Vlo¾ený text nebude zpracováván.
 
 % ====================================================================
-\section{Lines}
+%% \section{Lines}
+\section{Linky}
 
-\index{lines}
+%% \index{lines}
+\index{linky}
 
 \Command{\tex{hairline}}
 \Command{\tex{starttextrule}}
@@ -373,29 +444,45 @@ The text in between will not be processed.
 \Command{\tex{thinrules}}
 \Command{\tex{setupthinrules}}
 
-There are many comands to draw lines. For a single line you
-type:
+%% There are many comands to draw lines. For a single line you
+%% type:
+Máme k~dispozici mnoho pøíkazù na kreslení linek. Jednu linku vysázíme
+pomocí
 
 \shortsetup{hairline}
 
-or:
+%% or:
+nebo
 
 \shortsetup{thinrule}
 
-For more lines you type:
+%% For more lines you type:
+Více linek najednou pak pomocí
 
 \shortsetup{thinrules}
 
-Text in combination with lines is also possible:
+%% Text in combination with lines is also possible:
+Je mo¾ná také kombinace textu a linek:
 
+%% \startbuffer
+%% \starttextrule{Hasselt -- Amsterdam}
+%% If you draw a straight line from Hasselt to Amsterdam you would have
+%% to cover a distance of almost 145 \Kilo \Meter.
+%% \stoptextrule
+
+%% If you draw two straight lines from Hasselt to Amsterdam you would
+%% have to cover a distance of almost 290 \Kilo \Meter.
+
+%% Amsterdam \thinrules[n=3] Hasselt
+%% \stopbuffer
 \startbuffer
 \starttextrule{Hasselt -- Amsterdam}
-If you draw a straight line from Hasselt to Amsterdam you would have
-to cover a distance of almost 145 \Kilo \Meter.
+Kdybychom nakreslili spojnici Hasseltu s~Amsterdamem, pro¹li bychom
+vzdálenost témìø 145 \Kilo \Meter.
 \stoptextrule
 
-If you draw two straight lines from Hasselt to Amsterdam you would
-have to cover a distance of almost 290 \Kilo \Meter.
+Kdybychom nakreslili dvì spojnice Hasseltu s~Amsterdamem, pro¹li bychom
+vzdálenost témìø 290 \Kilo \Meter.
 
 Amsterdam \thinrules[n=3] Hasselt
 \stopbuffer
@@ -404,102 +491,166 @@ Amsterdam \thinrules[n=3] Hasselt
 
 \typebuffer
 
-You always have to be careful in drawing lines. Empty lines
-around \type{\thinrules} must not be forgotten and the
-vertical spacing is always a point of concern.
+%% You always have to be careful in drawing lines. Empty lines
+%% around \type{\thinrules} must not be forgotten and the
+%% vertical spacing is always a point of concern.
+Pøi kreslení linek musíme být v¾dy opatrní. Prázdné øádky okolo
+\type{\thinrules} nesmí být opomenuty a~vertiální odsazení je v¾dy
+bodem pozornosti. 
 
-You can set up line spacing with:
+%% You can set up line spacing with:
+Vertikální odsazení mù¾eme nastavit pomocí
 
 \shortsetup{setupthinrules}
 
-There are a few complementary commands that might be very
-useful.
+%% There are a few complementary commands that might be very
+%% useful.
+Je¹tì máme k~dispozici nìkolik doplòkových pøíkazù, které mohou být
+velice u¾iteèné:
 
 \shortsetup{setupfillinrules}
 \shortsetup{setupfillinlines}
 
-These commands are introduced in the examples below:
+%% These commands are introduced in the examples below:
+Uveïme je v~následujícím pøíkladu:
 
+%% \startbuffer
+%% \setupfillinrules[width=2cm]
+%% \setupfillinlines[width=3cm]
+
+%% \fillinrules[n=1]{\bf name}
+%% \fillinrules[n=3]{\bf adress}
+
+%% \fillinline{Can you please state the \underbar{number} of houses
+%%             in Hasselt.} \par
+
+%% Strike out \overstrikes{Hasselt in this text}\periods[18]
+%% \stopbuffer
 \startbuffer
 \setupfillinrules[width=2cm]
 \setupfillinlines[width=3cm]
 
-\fillinrules[n=1]{\bf name}
-\fillinrules[n=3]{\bf adress}
+\fillinrules[n=1]{\bf jméno}
+\fillinrules[n=3]{\bf adresa}
 
-\fillinline{Can you please state the \underbar{number} of houses
-            in Hasselt.} \par
+\fillinline{Uveïte prosím \underbar{poèet} domù v~Hasseltu.} \par
 
-Strike out \overstrikes{Hasselt in this text}\periods[18]
+Pøe¹krtni  \overstrikes{Hasselt} v~tomto textu\periods[18]
 \stopbuffer
 
 \typebuffer
 
-This will become:
+%% This will become:
+Výsledkem bude:
 
 \getbuffer
 
-These commands are used in questionaires. Text that is
-struck out or underlined will not be hyphenated.
+%% These commands are used in questionaires. Text that is
+%% struck out or underlined will not be hyphenated.
+Tyto pøíkazy bývají pou¾ívány v~dotaznících. Podrhnutý nebo
+pøe¹krtnutý text nebude rozdìlen na konci øádky.
 
 % ====================================================================
-\section{Super- and subscript in text}
+%% \section{Super- and subscript in text}
+\section{Horní a dolní index v~textu}
 
-\index{subscript}
-\index{superscript}
+%% \index{subscript}
+%% \index{superscript}
+\index{index!horní}
+\index{index!dolní}
+\index{horní index}
+\index{dolní index}
 
 \Command{\tex{low}}
 \Command{\tex{high}}
 \Command{\tex{lohi}}
 
+%% \startbuffer
+%% It is very easy to put \high{superscript} and \low{subscript} in your
+%% text. What would you call this version \lohi{subscript}{superscript}?
+%% It looks strange!
+%% \stopbuffer
 \startbuffer
 It is very easy to put \high{superscript} and \low{subscript} in your
 text. What would you call this version \lohi{subscript}{superscript}?
 It looks strange!
+Vlo¾it \high{horní index} a \low{dolní index} do dokumentu je
+jednoduché. A~co øíkáte tomuto \lohi{dolní index}{horní index}?
+To vypadá podivnì!
 \stopbuffer
 
 \getbuffer
 
-This ugly text was made with \type{\low{}}, \type{\high{}}
-and \type{\lohi{}{}}. The text was placed between the curly
-braces.
+%% This ugly text was made with \type{\low{}}, \type{\high{}}
+%% and \type{\lohi{}{}}. The text was placed between the curly
+%% braces.
+Tento o¹klivý text byl vysázen pomocí \type{\low{}}, \type{\high{}}
+a~\type{\lohi{}{}}. Index je vkládán do slo¾ených závorek.
 
 % ====================================================================
-\section{Date}
+%% \section{Date}
+\section{Datum}
 
-\index{date}
+%% \index{date}
+\index{datum}
 
 \Command{\tex{currentdate}}
 
-You can introduce the system date in your text with:
+%% You can introduce the system date in your text with:
+Systémové datum vlo¾íme do textu pomocí
 
 \starttyping
 \currentdate
 \stoptyping
 
 % ====================================================================
-\section{Positioning}
+%% \section{Positioning}
+\section{Umístìní do pøedepsané polohy}
 
-\index{positioning}
+%% \index{positioning}
+\index{umístìní do pøedepsané polohy}
+\index{polohování}
 
 \Command{\tex{position}}
 \Command{\tex{setupositioning}}
 
-Sometimes you feel the need to position text on a page or
-within a text element. You can position text with:
+%% Sometimes you feel the need to position text on a page or
+%% within a text element. You can position text with:
+Obèas cítíme potøebu umístit text na konkrétní místo uvnitø strany èi
+jiného textového elementu. Udìláme to pomocí
 
 \shortsetup{position}
 
-The parenthesis enclose the $x,y$ coordinates, the curly
-braces enclose the text you want to position.
+%% The parenthesis enclose the $x,y$ coordinates, the curly
+%% braces enclose the text you want to position.
+Kulaté závorky urèují $x,y$ souøadnice, slo¾ené závorky ohranièují
+text, který má být umístìn.
 
-You can set up the $x,y$ axes with:
+%% You can set up the $x,y$ axes with:
+Souøadnice nastavíme pomocí
 
 \shortsetup{setuppositioning}
 
-You can use units and scaling factors. An example will
-illustrate \type{\position}.
+%% You can use units and scaling factors. An example will
+%% illustrate \type{\position}.
+Zvolit mù¾eme jednotky a~mìøítko. Zde je ilustrující pøíklad:
 
+%% \startbuffer
+%% \def\dicefive%
+%%   {\framed
+%%      [width=42pt,height=42pt,offset=0pt]
+%%      {\setuppositioning
+%%         [unit=pt,factor=12,xoffset=-11pt,yoffset=-8pt]%
+%%       \startpositioning
+%%         \position(1,1){$\bullet$}%
+%%         \position(1,3){$\bullet$}%
+%%         \position(2,2){$\bullet$}%
+%%         \position(3,1){$\bullet$}%
+%%         \position(3,3){$\bullet$}%
+%%       \stoppositioning}}
+%%
+%% \placefigure{This is five.}{\dicefive}
+%% \stopbuffer
 \startbuffer
 \def\dicefive%
   {\framed
@@ -514,82 +665,114 @@ illustrate \type{\position}.
         \position(3,3){$\bullet$}%
       \stoppositioning}}
 
-\placefigure{This is five.}{\dicefive}
+\placefigure{Toto je pìt.}{\dicefive}
 \stopbuffer
 
 \typebuffer
 
-This is a rather complex example but it would look something
-like this.
+%% This is a rather complex example but it would look something
+%% like this.
+Výsledkem tohoto relativnì slo¾itého pøíkladu je toto:
 
 \getbuffer
 
 % ====================================================================
-\section{Rotating text, figures and tables}
+%% \section{Rotating text, figures and tables}
+\section{Otoèení textu, obrázkù a tabulek}
 
-\index{rotating}
+%% \index{rotating}
+\index{otoèení}
+\index{rotace}
 
 \Command{\tex{rotate}}
 
-In a number of cases you would like to rotate text or
-figures. You can rotate text and objects with:
+%% In a number of cases you would like to rotate text or
+%% figures. You can rotate text and objects with:
+V~mnoha pøípadech chceme otoèit text nebo obrázek. Provedeme to pomocí
 
 \shortsetup{rotate}
 
-The first bracket pair is optional. Within that bracket pair
-you specify the rotation: \type{rotation=90}. The curly
-braces contain the text or object you want to rotate.
+%% The first bracket pair is optional. Within that bracket pair
+%% you specify the rotation: \type{rotation=90}. The curly
+%% braces contain the text or object you want to rotate.
+Hranaté závorky jsou volitelné. Uvnitø nich specifikujeme
+úhel natoèení: \type{rotation=90}. Slo¾ene závorky vymezují text èi
+objekt, který chceme otoèit.
 
+%% \startbuffer
+%% Hasselt got its municipal rights in 1252. From that time on it had
+%% the \rotate[rotation=90]{right} to use its own seal on official
+%% documents. This seal showed Holy Stephanus known as one of the first
+%% Christian martyrs, and was the \rotate[rotation=270]{patron} of
+%% Hasselt. After the Reformation the seal was redesigned and Stephanus
+%% lost his `holiness' and was from that time on depicted without his
+%% aureole.
+%% \stopbuffer
 \startbuffer
-Hasselt got its municipal rights in 1252. From that time on it had
-the \rotate[rotation=90]{right} to use its own seal on official
-documents. This seal showed Holy Stephanus known as one of the first
-Christian martyrs, and was the \rotate[rotation=270]{patron} of
-Hasselt. After the Reformation the seal was redesigned and Stephanus
-lost his `holiness' and was from that time on depicted without his
-aureole.
+Mìstská práva dostal Hasselt v~roce 1252. Od té doby mìl
+\rotate[rotation=90]{právo} pou¾ívat vlastní peèe» na oficiálních
+dokumentech. Tato peèe» zobrazuje svatého ©tìpána, jednoho z~prvních
+køes»anským muèedníkù. Byl \rotate[rotation=270]{patronem}
+Hasseltu. Po reformaci byla peèe» pozmìnìna, svatý ©tìpán ztratil svou
+svátost a byl zobrazován bez svatozáøe.
 \stopbuffer
 
 \typebuffer
 
-This results in a very ugly paragraph:
+%% This results in a very ugly paragraph:
+Výsledkem je velice o¹klivý odstavec:
 
 \getbuffer
 
-You can rotate a figure just as easily:
+%% You can rotate a figure just as easily:
+Stejnì jednodu¹e mù¾eme otoèit i~obrázek.
 
+%% \startbuffer
+%% \placefigure
+%%   [][fig:rotation]
+%%   {The 180 \Degrees\ rotated fishing port (de Vispoort).}
+%%   \rotate[rotation=180]{\externalfigure[ma-cb-15][width=10cm]}
+%% \stopbuffer
 \startbuffer
 \placefigure
   [][fig:rotation]
-  {The 180 \Degrees\ rotated fishing port (de Vispoort).}
+  {Rotace rybáøského pøístavu (de Vispoort) o~180 \Degrees.}
   \rotate[rotation=180]{\externalfigure[ma-cb-15][width=10cm]}
 \stopbuffer
 
 \typebuffer
 
-You can see in \in{figure}[fig:rotation] that it is not
-always clear what you get when you rotate.
+%% You can see in \in{figure}[fig:rotation] that it is not
+%% always clear what you get when you rotate.
+Na\in{obrázku}[fig:rotation] mù¾ete vidìt, ¾e není v¾dy úplnì zøejmé,
+co dostanete.
 
 \getbuffer
 
-We can set up rotating with:
+%% We can set up rotating with:
+Otoèení nastavíme pomocí:
 
 \shortsetup{setuprotate}
 
 % ====================================================================
-\section{Carriage return}
+%% \section{Carriage return}
+\section{Ukonèení øádku}
 
-\index{carriage return}
+%% \index{carriage return}
+\index{ukonèení øádku}
 
 \Command{\tex{crlf}}
 \Command{\tex{startlines}}
 
-A new line can be enforced with:
+%% A new line can be enforced with:
+Nový øádek mù¾e být vynucen pøíkazem
 
 \shortsetup{crlf}
 
-When a number of lines should be followed by {\em carriage
-return and line feed} you can use:
+%% When a number of lines should be followed by {\em carriage
+%% return and line feed} you can use:
+Pokud chceme, aby konce øádkù kopírovaly ukonèení ve vstupním souboru,
+napí¹eme:
 
 \shortsetup{startlines}
 
@@ -601,8 +784,23 @@ return and line feed} you can use:
 \stoplines
 \stoptyping
 
+%% \startbuffer
+%% On a wooden panel in the town hall of Hasselt you can read:
+%%
+%% \startlines
+%% Heimelijcken haet
+%% eigen baet
+%% jongen raet
+%% Door diese drie wilt verstaen
+%% is het Roomsche Rijck vergaen.
+%% \stoplines
+%%
+%% This little rhyme contains a warning for the magistrates of
+%% Hasselt: don't allow personal benefits or feelings to
+%% influence your wisdom in decision making.
+%% \stopbuffer
 \startbuffer
-On a wooden panel in the town hall of Hasselt you can read:
+Na døevìném panelu radnice mìsta Hasselt mù¾eme èíst:
 
 \startlines
 Heimelijcken haet
@@ -612,136 +810,251 @@ Door diese drie wilt verstaen
 is het Roomsche Rijck vergaen.
 \stoplines
 
-This little rhyme contains a warning for the magistrates of
-Hasselt: don't allow personal benefits or feelings to
-influence your wisdom in decision making.
+Tato malá básnièka obsahuje varování pro radní Hasseltu: nepøijímej
+osobní zisk nebo sympatie ovlivòující tvou mysl a rozhodování.
 \stopbuffer
 
 \typebuffer
 
 \getbuffer
 
-In a few commands new lines are generated by \type{\\}. For
-example if you type \type{\inmargin{in the\\margin}} then
-the text will be divided over two lines.
+%% In a few commands new lines are generated by \type{\\}. For
+%% example if you type \type{\inmargin{in the\\margin}} then
+%% the text will be divided over two lines.
+V~nìkolika pøíkazech jsou konce øádkù oznaèeny \type{\\}. Napøíklad
+kdy¾ napí¹eme
+\goodbreak\type{\inmargin{uvnitø\\marginálie}}, pak se text zlomí
+do dvou øádkù.
 
 % ====================================================================
-\section{Hyphenation}
+%% \section{Hyphenation}
+\section{Dìlìní slov}
 
-\index{hyphenation}
-\index{language}
+%% \index{hyphenation}
+%% \index{language}
+\index{dìlìní slov}
+\index{jazyk}
 
 \Command{\tex{mainlanguage}}
 \Command{\tex{language}}
-\Command{\tex{nl}}
-\Command{\tex{en}}
-\Command{\tex{fr}}
-\Command{\tex{sp}}
+%% \Command{\tex{nl}}
+%% \Command{\tex{en}}
+%% \Command{\tex{fr}}
+%% \Command{\tex{sp}}
+%% \Command{\tex{de}}
+\Command{\tex{af}}
+\Command{\tex{ca}}
+\Command{\tex{cn}}
+\Command{\tex{cz}}
+\Command{\tex{da}}
 \Command{\tex{de}}
+\Command{\tex{en}}
+\Command{\tex{es}}
+\Command{\tex{fi}}
+\Command{\tex{fr}}
+\Command{\tex{gr}}
+\Command{\tex{it}}
+\Command{\tex{hu}}
+\Command{\tex{hr}}
+\Command{\tex{ja}}
+\Command{\tex{nl}}
+\Command{\tex{no}}
+\Command{\tex{pl}}
+\Command{\tex{pt}}
+\Command{\tex{ro}}
+\Command{\tex{ru}}
+\Command{\tex{sk}}
+\Command{\tex{sl}}
+\Command{\tex{sv}}
+\Command{\tex{tr}}
+\Command{\tex{ua}}
+\Command{\tex{uk}}
+\Command{\tex{us}}
+\Command{\tex{vn}}
 
-When writing multi-lingual texts you have to be aware of
-the fact that hyphenation may differ from one language to
-another.
+%% When writing multi-lingual texts you have to be aware of
+%% the fact that hyphenation may differ from one language to
+%% another.
+Pokud pøipravujeme vícejazyèný text, musíme si být vìdomi faktu, ¾e
+dìlení slov se li¹í jazyk od jazyku.
 
-To activate a language you type:
+%% To activate a language you type:
+Hlavní jazyk aktivujeme pomocí
 
 \shortsetup{mainlanguage}
 
-Between the brackets you fill in \type{nl}, \type{fr},
-\type{en}, \type{de} and \type{sp}.
+%% Between the brackets you fill in \type{nl}, \type{fr},
+%% \type{en}, \type{de} and \type{sp}.
+Mezi závorky mù¾eme vlo¾it
+\type{af} (afrikán¹tina),
+\type{ca} (katalán¹tina),
+\type{cn} (èín¹tina),
+\type{cz} (èe¹tina),
+\type{da} (dán¹tina),
+\type{de} (nìmèina),
+\type{en} (angliètina),
+\type{es} (¹panìl¹tina),
+\type{fi} (fin¹tina),
+\type{fr} (francou¹tina),
+\type{gr} (øeètina),
+\type{it} (ital¹tina),
+\type{hu} (maïar¹tina),
+\type{hr} (srbochorvaètina),
+\type{ja} (japon¹tina),
+\type{nl} (holand¹tina),
+\type{no} (nor¹tina),
+\type{pl} (pol¹tina),
+\type{pt} (portugal¹tina),
+\type{ro} (rumun¹tina),
+\type{ru} (ru¹tina),
+\type{sk} (sloven¹tina),
+\type{sl} (slovin¹tina),
+\type{sv} (¹véd¹tina),
+\type{tr} (tureètina),
+\type{ua} (ukrajin¹tina),
+\type{uk} (britská angliètina),
+\type{us} (americká angliètina) a
+\type{vn} (vietnam¹tina).
 
-To change from one language to another you can use the
-shorthand versions:
+%% To change from one language to another you can use the
+%% shorthand versions:
+Ke zmìnì jednoho jazyka na jiný pou¾ijeme krat¹í variantu:
 
+%% \starttyping
+%% \language[nl]  \language[en]  \language[de]
+%% \language[fr]  \language[sp]
+%% \stoptyping
 \starttyping
-\language[nl]  \language[en]  \language[de]
-\language[fr]  \language[sp]
+\language[en]
 \stoptyping
 
-or
+%% or
+nebo
 
+%% \starttyping
+%% \nl  \en  \de  \fr  \sp
+%% \stoptyping
 \starttyping
-\nl  \en  \de  \fr  \sp
+\en
 \stoptyping
 
-An example:
+%% An example:
+Napøíklad:
 
+%% \startbuffer
+%% If you want to know more about Hasselt, the best book to read is
+%% probably {\nl \em Uit de geschiedenis van Hasselt} by
+%% F.~Peereboom.
+%% \stopbuffer
 \startbuffer
-If you want to know more about Hasselt, the best book to read is
-probably {\nl \em Uit de geschiedenis van Hasselt} by
-F.~Peereboom.
+Pokud chceme vìdìt více o~Hasseltu, nejlep¹í kniha ke ètení je
+pravdìpodobnì {\nl \em Uit de geschiedenis van Hasselt} od F.~Peerebooma.
 \stopbuffer
 
 \typebuffer
 
 \getbuffer
 
-If a word is wrongly hyphenated you can define points of
-hyphenation yourself. This is done in the set up area of
-your input file:
+%% If a word is wrongly hyphenated you can define points of
+%% hyphenation yourself. This is done in the set up area of
+%% your input file:
+Pokud je slovo rozdìleno ¹patnì, mù¾eme si definovat místo rozdìlení
+sami. Udìláme to v~úvodní èásti dolumentu takto:
 
+%% \startbuffer
+%% \hyphenation{his-to-ry}
+%% \stopbuffer
 \startbuffer
-\hyphenation{his-to-ry}
+\hyphenation{his-to-rie}
 \stopbuffer
 
 \typebuffer
 
 % ====================================================================
-\section{Comment in input file}
+%% \section{Comment in input file}
+\section{Komentáø ve zdrojovém souboru}
 
-\index{comment}
-\index[percent]{\% in input file}
+%% \index{comment}
+%% \index[percent]{\% in input file}
+\index{komentáø}
+\index[procento]{\% ve vstupním souboru}
 
-All text between \type{\starttext} and \type{\stoptext}
-will be processed while running \CONTEXT. Sometimes however
-you may have text fragments you don't want to be processed or
-you want to comment on your \CONTEXT\ commands.
+%% All text between \type{\starttext} and \type{\stoptext}
+%% will be processed while running \CONTEXT. Sometimes however
+%% you may have text fragments you don't want to be processed or
+%% you want to comment on your \CONTEXT\ commands.
+Ve¹kerý text mezi \type{\starttext} a~\type{\stoptext} bude zpracován
+bìhem bìhu \CONTEXT{}u. Nìkdy v¹ak máme fragment textu, který
+nechceme, aby byl zpracován, nebo chceme okomentovat na¹e pøíkazy
+\CONTEXT{}u.
 
-If you preceed your text with the percentage sign \type{%}
-it will not be processed.
+%% If you preceed your text with the percentage sign \type{%}
+%% it will not be processed.
+Pokud pøedøadíme na¹emu textu znak procenta \type{%}, nebude zpracován.
 
+%% \startbuffer
+%% % In very big documents you can use the command input for
+%% % different files.
+%% %
+%% % For example:
+%% %
+%% % \input hass01.tex  % chapter 1 on Hasselt
+%% % \input hass02.tex  % chapter 2 on Hasselt
+%% % \input hass03.tex  % chapter 3 on Hasselt
+%% \stopbuffer
 \startbuffer
-% In very big documents you can use the command input for
-% different files.
+% Ve velmi velkém dokumentu mù¾eme zdrojový text vlo¾it
+% z~externích souborù. 
 %
-% For example:
+% Napøíklad:
 %
-% \input hass01.tex  % chapter 1 on Hasselt
-% \input hass02.tex  % chapter 2 on Hasselt
-% \input hass03.tex  % chapter 3 on Hasselt
+% \input hass01.tex  % kapitola 1 o Hasseltu
+% \input hass02.tex  % kapitola 2 o Hasseltu
+% \input hass03.tex  % kapitola 3 o Hasseltu
 \stopbuffer
 
 \typebuffer
 
-When you delete the \type{%} before \type{\input}
-the three files will be processed. The comment describing the
-contents of the files will not be processed.
+%% When you delete the \type{%} before \type{\input}
+%% the three files will be processed. The comment describing the
+%% contents of the files will not be processed.
+Pokud sma¾eme \type{%} pøed pøíkazem \type{\input}, v¹echny tøi
+soubory budou zpracovány. Komentáø popisující obsah souborù zpracován
+nebude.
 
 % ====================================================================
-\section{Input of another {\tt tex} file}
+%% \section{Input of another {\tt tex} file}
+\section{Vstup jiného zdrojového {\tt tex} souboru}
 
-\index{input other \TEX--files}
+%% \index{input other \TEX--files}
+\index{vstup jiného \TEX--souboru}
 
 \Command{\tex{input}}
 
-In a number of situations you may want to insert other
-\TEX\ files in your input file. For example, sometimes it is more
-efficient to specify \CONTEXT\ sources in more than one file
-in order to be able to partially process your files.
+%% In a number of situations you may want to insert other
+%% \TEX\ files in your input file. For example, sometimes it is more
+%% efficient to specify \CONTEXT\ sources in more than one file
+%% in order to be able to partially process your files.
+V~mnoha situacích chceme vlo¾it jiný \TEX\ soubor do na¹eho zdrojového
+souboru. Napøíklad je nìkdy efektivnìj¹í rozdìlit kód \CONTEXT{}u do
+více souborù, aby mohly být zpracovány samostatnì.
 
-Another file (with the name \type{another.tex}) can be
-inserted by:
+%% Another file (with the name \type{another.tex}) can be
+%% inserted by:
+Soubor se jménem \type{another.tex} mù¾e být vlo¾en pomocí:
 
 \starttyping
 \input another.tex
 \stoptyping
 
-The extension is optional so this will work too:
+%% The extension is optional so this will work too:
+Pøípona \type{tex} je nepovinná, tak¾e bude fungovat~i
 
 \starttyping
 \input another
 \stoptyping
 
-The command \type{\input} is a \TEX\ command.
+%% The command \type{\input} is a \TEX\ command.
+Pøíkaz \type{\input} je primitivum \TEX{}u.
 
 \stopcomponent
