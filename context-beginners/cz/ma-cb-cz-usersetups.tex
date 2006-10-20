@@ -1,34 +1,48 @@
 % Translation:
+% busaj
 \startcomponent ma-cb-cz-usersetups
 \project ma-cb
 \product ma-cb-cz
 \environment ma-cb-env-cz
 
-\chapter{User specifications}
+%\chapter{User specifications}
+\chapter{Specifikace u¾ivatele}
 
+%\index{\tt cont-sys.tex}
 \index{\tt cont-sys.tex}
 
-When \CONTEXT\ is run a number of predefined parameters is
-loaded. These parameters are set up in the file
-\type{cont-sys.tex}. Users can define their own preferences
-(housestyle) in this file. Be aware of the fact that
-\CONTEXT\ has to be able to find this file. The
-\type{readme} file that goes with the distribution tells
-some more about site specific setups. The most important
-addition to this file probbably concerns the output:
+%When \CONTEXT\ is run a number of predefined parameters is
+%loaded. These parameters are set up in the file
+%\type{cont-sys.tex}. Users can define their own preferences
+%(housestyle) in this file. Be aware of the fact that
+%\CONTEXT\ has to be able to find this file. The
+%\type{readme} file that goes with the distribution tells
+%some more about site specific setups. The most important
+%addition to this file probbably concerns the output:
+Bìhem provozu \CONTEXT{}u se nastavuje mno¾ství implicitních
+parametrù. Tyto parametry jsou zadefinovány v~souboru
+\type{cont-sys.tex}. U¾ivatelé mù¾ou v~tomto souboru 
+definovat své vlastní (domácí) priority. Buïte si vìdomi toho,
+¾e \CONTEXT\ musí být schopen najít tento soubor. Soubor 
+\type{readme}, který je souèástí distribuce, informuje více o~konkrétních
+nastaveních. Nejdùle¾itej¹í doplnìk tohoto souboru se pravdìpodobnì týká
+výstupu:
 
 \starttyping
 \setupoutput[pdftex]
 \stoptyping
 
-tells \CONTEXT\ to produce \PDF\ output instead of \DVI,
-while
+%tells \CONTEXT\ to produce \PDF\ output instead of \DVI,
+%while
+sdìlí \CONTEXT{}u vytvoøit výstup \PDF\ namísto \DVI,
+zatímco
 
 \starttyping
 \setupoutput[dvipsone,dviwindo]
 \stoptyping
 
-sets things up for those programs. By default \DVIPS\ output
-is set up.
+%sets things up for those programs. By default \DVIPS\ output
+%is set up.
+nastaví vìci pro tyto programy. Pøedvolený je \DVIPS{} výstup.
 
 \stopcomponent
