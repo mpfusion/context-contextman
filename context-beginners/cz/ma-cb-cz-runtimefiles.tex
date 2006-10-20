@@ -1,38 +1,66 @@
 % Translation:
+% busaj 
 \startcomponent ma-cb-cz-runtimefiles
 \project ma-cb
 \product ma-cb-cz
 \environment ma-cb-env-cz
 
-\chapter{Auxilliary files}
+%\chapter{Auxilliary files}
+\chapter{Pomocní soubory}
 
-\index[tui]{{\tt tui}--file}
-\index[tuo]{{\tt tuo}--file}
-\index[tub]{{\tt tub}--file}
-\index[tuf]{{\tt tuf}--file}
-\index{auxilliary files}
+%\index[tui]{{\tt tui}--file}
+%\index[tuo]{{\tt tuo}--file}
+%\index[tub]{{\tt tub}--file}
+%\index[tuf]{{\tt tuf}--file}
+%\index{auxilliary files}
+\index[tui]{{\tt tui}-soubor}
+\index[tuo]{{\tt tuo}-soubor}
+\index[tub]{{\tt tub}-soubor}
+\index[tuf]{{\tt tuf}-soubor}
+\index{pomocní soubory}
 
-\CONTEXT\ will produce a number of auxilliary files during
-processing. If your input file is called \type{myfile.tex} the
-following files may appear on your working directory.
+%\CONTEXT\ will produce a number of auxilliary files during
+%processing. If your input file is called \type{myfile.tex} the
+%following files may appear on your working directory.
+V~prùbìhu zpracování vytváøí \CONTEXT\ mno¾ství pomocních souborù. Kdy¾ je název vstupního souboru \type{mujsoubor.tex}, ve Va¹em pracovném adresáøi se objeví následující soubory.
+
+%\starttable[|l|l|l|]
+%\HL
+%\NC \bf File        \NC \bf Content        \NC \bf State          \NC\SR
+%\HL
+%\NC \tt myfile.tex  \NC text               \NC do not remove      \NC\SR
+%\HL
+%\NC \tt myfile.tui  \NC input information  \NC can be removed     \NC\FR
+%\NC \tt myfile.tuo  \NC output information \NC do not remove      \NC\MR
+%\NC \tt myfile.tub  \NC block information  \NC do not remove      \NC\MR
+%\NC \tt myfile.tmp  \NC buffer information \NC can be removed     \NC\LR
+%\HL
+%\NC \tt texutil.tuf \NC figure information     \NC generate if needed \NC\FR
+%\NC \tt mpgraph.mp  \NC \METAPOST\ information \NC can be removed     \NC\LR
+%\HL
+%\NC \tt myfile.dvi  \NC typeset text       \NC can be removed     \NC\FR
+%\NC \tt myfile.ps   \NC printable text     \NC can be removed     \NC\MR
+%\NC \tt myfile.pdf  \NC printable text     \NC can be removed     \NC\LR
+%\HL
+%\stoptable
 
 \starttable[|l|l|l|]
 \HL
-\NC \bf File        \NC \bf Content        \NC \bf State          \NC\SR
+\NC \bf Soubor        \NC \bf Obsah      \NC \bf Stav          \NC\SR
 \HL
-\NC \tt myfile.tex  \NC text               \NC do not remove      \NC\SR
+\NC \tt mujsoubor.tex  \NC vstupní text  \NC neodstraòujte    \NC\SR
 \HL
-\NC \tt myfile.tui  \NC input information  \NC can be removed     \NC\FR
-\NC \tt myfile.tuo  \NC output information \NC do not remove      \NC\MR
-\NC \tt myfile.tub  \NC block information  \NC do not remove      \NC\MR
-\NC \tt myfile.tmp  \NC buffer information \NC can be removed     \NC\LR
+\NC \tt mujsoubor.tui  \NC vstupní informace  \NC mù¾e být odstranìn \NC\FR
+\NC \tt mujsoubor.tuo  \NC výstupní informace \NC neodstraòujte      \NC\MR
+\NC \tt mujsoubor.tub  \NC informace o~blocích \NC neodstraòujte      \NC\MR
+\NC \tt mujsoubor.tmp  \NC doèasné informace  \NC mù¾e být odstranìn  \NC\LR
 \HL
-\NC \tt texutil.tuf \NC figure information     \NC generate if needed \NC\FR
-\NC \tt mpgraph.mp  \NC \METAPOST\ information \NC can be removed     \NC\LR
+\NC \tt texutil.tuf \NC informace o obrázcích \NC vytvoøte v~pøípadì potøeby \NC\FR
+\NC \tt mpgraph.mp  \NC informace \METAPOST{}u  \NC mù¾e být odstranìn \NC\LR
 \HL
-\NC \tt myfile.dvi  \NC typeset text       \NC can be removed     \NC\FR
-\NC \tt myfile.ps   \NC printable text     \NC can be removed     \NC\MR
-\NC \tt myfile.pdf  \NC printable text     \NC can be removed     \NC\LR
+\NC \tt mujsoubor.dvi  \NC vysázený text  \NC mù¾e být odstranìn  \NC\FR
+\NC \tt mujsoubor.ps   \NC text k~tisku   \NC mù¾e být odstranìn  \NC\MR
+\NC \tt mujsoubor.pdf  \NC text k~tisku   \NC mù¾e být odstranìn  \NC\LR
 \HL
 \stoptable
 
