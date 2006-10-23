@@ -1,39 +1,70 @@
 % Translation:
+% busaj
 \startcomponent ma-cb-cz-composedcharacters
 \project ma-cb
 \product ma-cb-cz
 \environment ma-cb-env-cz
 
-\chapter{Composite characters}
+%\chapter{Composite characters}
+\chapter{Slo¾ené znaky}
 
-\section{Introduction}
+%\section{Introduction}
+\section{Úvod}
 
-In \in{chapter}[special chars] you have already seen that
-you have to type more than one token to obtain special
-characters like \# \$ \% \& \_ $\{$ and $\}$. Accented
-characters or foreign symbols have to be composed to produce
-the right typesetted character.
+%In \in{chapter}[special chars] you have already seen that
+%you have to type more than one token to obtain special
+%characters like \# \$ \% \& \_ $\{$ and $\}$. Accented
+%characters or foreign symbols have to be composed to produce
+%the right typesetted character.
+V~\in{kapitole}[special chars] jste ji¾ vidìli, ¾e na získání speciálních znakù, jakými jsou
+\# \$ \% \& \_ $\{$ a $\}$, musíte napsat více ne¾ jeden symbol. Akcentovaná písmena nebo 
+cizokrajní symboly musí být slo¾eny z~více znakù, aby byl vytvoøen správnì vysázený znak.
 
-It is not within the scope of this manual to go into
-accented characters in math mode. See the {\TEX Book by
-Donald E. Knuth} on that subject.
+%It is not within the scope of this manual to go into
+%accented characters in math mode. See the {\TEX Book by
+%Donald E. Knuth} on that subject.
+Za rámec této pøíruèky vychází problematika akcentovaných písmen v~matematickém re¾imu.
+Informace o~této problematice najdete v~\TEX Booku Donalda E. Knutha.
 
-\section{Accents}
+%\section{Accents}
+\section{Akcenty}
 
-\index{accents}
+%\index{accents}
+\index{akcenty}
 
-Accented characters have to be composed in \CONTEXT.
-\in{Table}[tab:accents] shows you how to do this. The
-character {\em u} is just an example here.
+%Accented characters have to be composed in \CONTEXT.
+%\in{Table}[tab:accents] shows you how to do this. The
+%character {\em u} is just an example here.
+Akcentovaná písmena musí být v~\CONTEXT{}u slo¾ena z~písmen a diakritických znamének.
+\in{Tabulka}[tab:accents] ukazuje jak se to udìlá. Písmeno {\em u} je na tomto místì jenom jako pøíklad.
+
+%\let\MySign=\=
+%\placetable
+%  [here,force]
+%  [tab:accents]
+%  {Accents.}
+%\starttable[|c|c|c|c|]
+%\HL
+%\NC \bf You type \NC \bf You get \VL \bf You type  \NC \bf You get \NC\SR
+%\HL
+%\NC \type{\`{u}} \NC \`{u}       \VL \type{\u{u}}  \NC \u{u}       \NC\FR
+%\NC \type{\'{u}} \NC \'{u}       \VL \type{\v{u}}  \NC \v{u}       \NC\MR
+%\NC \type{\^{u}} \NC \^{u}       \VL \type{\H{u}}  \NC \H{u}       \NC\MR
+%\NC \type{\"{u}} \NC \"{u}       \VL \type{\b{u}}  \NC \b{u}       \NC\MR
+%\NC \type{\~{u}} \NC \~{u}       \VL \type{\c{u}}  \NC \c{u}       \NC\MR
+%\NC \type{\={u}} \NC \MySign{u}  \VL \type{\d{u}}  \NC \d{u}       \NC\MR
+%\NC \type{\.{u}} \NC \.{u}       \VL               \NC             \NC\LR
+%\HL
+%\stoptable
 
 \let\MySign=\=
 \placetable
   [here,force]
   [tab:accents]
-  {Accents.}
+  {Akcenty}
 \starttable[|c|c|c|c|]
 \HL
-\NC \bf You type \NC \bf You get \VL \bf You type  \NC \bf You get \NC\SR
+\NC \bf Napi¹te \NC \bf Dostanete \VL \bf Napi¹te  \NC \bf Dostanete \NC\SR
 \HL
 \NC \type{\`{u}} \NC \`{u}       \VL \type{\u{u}}  \NC \u{u}       \NC\FR
 \NC \type{\'{u}} \NC \'{u}       \VL \type{\v{u}}  \NC \v{u}       \NC\MR
@@ -45,31 +76,55 @@ character {\em u} is just an example here.
 \HL
 \stoptable
 
-You don't want \`{i} or \'{j} so for an
-accented {\em i} and {\em j} you compose the characters as
-follows:
+
+%You don't want \`{i} or \'{j} so for an
+%accented {\em i} and {\em j} you compose the characters as
+%follows:
+Asi nebudete chtít získat písmena \`{i} nebo \'{j} (s~teèkou). Pro akcentovaná písmena
+ {\em i} a {\em j} vytvoøte slo¾ené znaky následujícím zpùsobem:
 
 \type{\"{\i}} ~~~ \"{\i} \crlf
 \type{\^{\j}} ~~~ \^{\j}
 
-\section{Foreign symbols}
+%\section{Foreign symbols}
+\section{Cizokrajní symboly}
 
-\index{foreign symbols}
+%\index{foreign symbols}
+\index{cizokrajní symboly}
 
-The composition of characters that appear in foreign
-languages is shown in \in{table}[tab:foreign symbols].
+%The composition of characters that appear in foreign
+%languages is shown in \in{table}[tab:foreign symbols].
+Kompozice písmen a znakù, které se vyskytují v~cizokrajních jazycích je uvedena v~\in{tabulce}[tab:foreign symbols].
 
 %
 % be ware of the spanish questionmark and exclamation
 %
 
+%\placetable
+%  [here,force]
+%  [tab:foreign symbols]
+%  {Foreign characters.}
+%\starttable[|c|c|c|c|]
+%\HL
+%\NC \bf You type \NC \bf You get \VL \bf You type     \NC \bf You get \NC\SR
+%\HL
+%\NC \type{\oe}   \NC \oe         \VL \type{\O}        \NC \O          \NC\FR
+%\NC \type{\OE}   \NC \OE         \VL \type{\l}        \NC \l          \NC\MR
+%\NC \type{\ae}   \NC \ae         \VL \type{\L}        \NC \L          \NC\MR
+%\NC \type{\AE}   \NC \AE         \VL \type{\SS}       \NC \SS         \NC\MR
+%\NC \type{\aa}   \NC \aa         \VL \type{?}\type{`} \NC ?`          \NC\MR
+%\NC \type{\AA}   \NC \AA         \VL \type{!}\type{`} \NC !`          \NC\MR
+%\NC \type{\o}    \NC \o          \VL                  \NC             \NC\LR
+%\HL
+%\stoptable
+
 \placetable
   [here,force]
   [tab:foreign symbols]
-  {Foreign characters.}
+  {Cizokrajní písmena a znaky}
 \starttable[|c|c|c|c|]
 \HL
-\NC \bf You type \NC \bf You get \VL \bf You type     \NC \bf You get \NC\SR
+\NC \bf Napi¹te \NC \bf Dostanete \VL \bf Napi¹te     \NC \bf Dostanete \NC\SR
 \HL
 \NC \type{\oe}   \NC \oe         \VL \type{\O}        \NC \O          \NC\FR
 \NC \type{\OE}   \NC \OE         \VL \type{\l}        \NC \l          \NC\MR
