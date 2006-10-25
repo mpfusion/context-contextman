@@ -15,6 +15,7 @@
 %% \index{titlepage}
 \index{titulní strana}
 
+\Command{\tex{startnamemakeup}}
 \Command{\tex{startstandardmakeup}}
 \Command{\tex{definemakeup}}
 \Command{\tex{setupmakeup}}
@@ -24,8 +25,8 @@
 V~prvním pøíkladu tohoto manuálu na \at{stranì}[inputfile] jsme
 pou¾ili pøíkazu
 
-\shortsetup{start<<name>>makeup}
-%% \shortsetup{startstandardmakeup}
+\shortsetup{startnamemakeup}
+%\shortsetup{start<<name>>makeup} % does not work
 
 %% This command can be used to define titlepages. Such a
 %% command is needed since title pages often have a different
@@ -33,9 +34,9 @@ pou¾ili pøíkazu
 %% \type{\start ... \stopstandardmakeup} you can make up a page
 %% within the default page dimensions.
 Tento pøíkaz mù¾e být pou¾it k~definování {\em titulních stran},
-proto¾e mívají jinak velké stránkové zrcadlo ne¾ hlavní textová èást
-dokumentu. Pomocí dvojice \type{\start ... \stopstandardmakeup} mù¾eme
-navrhnout vzhled strany v~rámci standardního rozmìru papíru. 
+proto¾e mívají jinak velká stránková zrcadla ne¾ hlavní textová èást
+dokumentu. Èasto k~návrhu vzhledu takové vyjímeèné strany vyu¾íváme
+pøeddefinované dvojice \type{\start ... \stopstandardmakeup}.
 
 %% A simple titlepage may look like this:
 Jednoduchá titulní strana mù¾e vypadat takto:
@@ -68,7 +69,8 @@ Jednoduchá titulní strana mù¾e vypadat takto:
 %% In a doublesided document you have to go through some
 %% additional actions to typeset the back of the titlepage.
 V~oboustránkovém dokumentu musíme vykonat nìkteré dal¹í akce,
-abychom vysázeli zadní stranu titulního listu.
+abychom vysázeli zadní stranu titulního listu. Pøede¹lý pøíklad
+v~takovém pøípadì zmìníme na:
 
 %% \startbuffer
 %% \startstandardmakeup[doublesided=no]
@@ -113,7 +115,7 @@ fotografovi J. Jonkerovi za zfal¹ování fotografií do této knihy tak,
 \typebuffer
 
 %% Your own make ups can be made and set up with:
-Ná¹e vlastní titulní strana mù¾e být vytvoøena pomocí
+Ná¹e vlastní titulní strana mù¾e být navr¾ena pomocí pøíkazù
 
 \shortsetup{definemakeup}
 
@@ -132,6 +134,7 @@ a
 \Command{\tex{definefloat}}
 \Command{\tex{setupfloat}}
 \Command{\tex{setupfloats}}
+\Command{\tex{setupcaption}}
 \Command{\tex{setupcaptions}}
 \Command{\tex{placeintermezzo}}
 
@@ -143,8 +146,8 @@ a
 %% \in{chapter}[figures] and \in[tables].
 Plovoucím objektem (floating block) je v~\CONTEXT{}u nazýván textový
 element, napø. tabulka èi obrázek, který zpracováváme speciálním
-zpùsobem. Ji¾ jsme vidìli pou¾ití \type{\placefigure} a
-\type{\placetable}. Oba jsou pøíkladem plovoucích objektù popsaných
+zpùsobem. Ji¾ jsme vidìli pou¾ití \type{\placefigure}
+a~\type{\placetable}. Oba jsou pøíkladem plovoucích objektù popsaných
 v~\in{kapitolách}[figures] a~\in[tables].
 
 %% You can define these kind of blocks yourself with:
@@ -186,7 +189,7 @@ Novì definovaný plovoucí objekt mù¾e být nastaven pomocí
 \shortsetup{setupfloat}
 
 %% You can set up the layout of floating blocks with:
-Dále mù¾eme nastavit formátování plovoucích objektù pomocí pøíkazu
+Dále mù¾eme nastavit formátování v¹ech plovoucích objektù pomocí pøíkazu
 
 \shortsetup{setupfloats}
 
@@ -195,10 +198,16 @@ Dále mù¾eme nastavit formátování plovoucích objektù pomocí pøíkazu
 
 \shortsetup{setupcaption}
 
+a
+
+\shortsetup{setupcaptions}
+
 %% These commands are typed in the set up area of your input
 %% file and will have a global effect on all floating blocks.
-Tyto pøíkazy pou¾íváme v~úvodní èásti vstupního souboru a mají
-globální vliv na v¹echny plovoucí objekty.
+Tyto pøíkazy pou¾íváme v~úvodní èásti vstupního
+souboru. \type{\setupfloats} a \type{\setupcaptions} mají
+globální vliv na v¹echny plovoucí objekty. Následuje kompletní ukázka
+nového plovoucího objektu.
 
 %% \startbuffer
 %% \setupfloats[location=middle]
@@ -215,8 +224,9 @@ globální vliv na v¹echny plovoucí objekty.
 \startbuffer
 \setupfloats[location=middle]
 \setupcaption[location=bottom,headstyle=boldslanted]
+\definefloat[vsuvka][vsuvky]
 
-\placeintermezzo{Ukázka vsuvky.}
+\placevsuvka{Ukázka vsuvky.}
 \startframedtext
 Na zaèátku tohoto stolení existovala tavmvajová linka z~Zwolle do
 Blokzijl pøes Hasselt. Pozdìji nabývaly na významu jiné dopravní
@@ -246,8 +256,8 @@ zru¹ena. Nyní by mohla opìt být taková tramvajová linka zisková.
 
 %% Another type of block is a text block. A text block for
 %% example is one or more paragraphs you want to use several times.
-Jinou èástí textu je {\em blok textu}. Pøíkladem bloku textu je jeden
-nebo více odstavcù, které chceme pou¾ít nìkolikrát.
+Jiným stavebním kamenem dokumentu je {\em blok textu}. Pøíkladem bloku
+textu je jeden nebo více odstavcù, které chceme pou¾ít nìkolikrát.
 
 %% You have to define a text block with:
 Blok textu musíme definovat pomocí
@@ -257,9 +267,7 @@ Blok textu musíme definovat pomocí
 %% You give the name of text blocks between brackets;
 %% you can also type a list of names if you separate them by
 %% commas. For example you can define:
-Mezi hranaté závorky vlo¾íme jeho referenèní jméno. Také mù¾eme
-najednou definovat nìkolik blokù textu, pokud mezi jednotlivé jména
-napí¹eme èárku.
+Mezi hranaté závorky vlo¾íme jeho referenèní jméno.
 
 %% \starttyping
 %% \defineblock[dutch]
@@ -268,9 +276,12 @@ napí¹eme èárku.
 \defineblock[holandstina]
 \stoptyping
 
+Také mù¾eme najednou definovat nìkolik blokù textu, pokud mezi
+jednotlivé jména napí¹eme èárku.
+
 %% After defining the text block the following command is
 %% available:
-Po zadefinování je k~dispozici následující pár pøíkazù:
+Po zadefinování máme k~dispozici následující dvojici
 
 %% \starttyping
 %% \begindutch ... \enddutch
@@ -288,7 +299,7 @@ S~blokem mù¾eme pracovat pomocí pøíkazù
 \shortsetup{selectblocks}
 
 %% An example shows the possibilities of text blocks.
-Zde je pøíklad pou¾ití bloku textu:
+Zde je pøíklad jejich pou¾ití:
 
 %% \startbuffer
 %% \defineblock[dutch,english]
@@ -314,19 +325,19 @@ Zde je pøíklad pou¾ití bloku textu:
 
 \hideblocks[holandstina,cestina]
 
-\begincestina[blok-c]
+\begincestina[blok-a]
 Po roce 1810 pøinesl Dedemsvaart Hesseltu prosperitu. V¹echny lodì
 proplouvaly kanálem v~Hasseltu a obchody na obou stranách kanálu
 bohatly.
 \endcestina
 
-\beginholandstina[blok-h]
+\beginholandstina[blok-a]
 Sinds 1810 veroorzaakte de Dedemsvaart enige welvaart in Hasselt.
 Alle schepen voeren door de grachten en de winkels aan weerszijden
 van de gracht floreerden.
 \endholandstina
 
-\useblocks[castina][blok-c]
+\useblocks[cestina][blok-a]
 \stopbuffer
 
 \typebuffer
@@ -341,7 +352,7 @@ Výsledkem bude:
 %% store the text blocks in an external file. This would look
 %% something like this:
 Jestli¾e budeme pokraèovat v~takovémto pou¾ívání bloku textu, mù¾eme
-vytvoøit dvoujazyèný manuál. Pro tyto úèely je také mo¾no ulo¾it bloky
+vytvoøit dvojjazyèný manuál. Pro tyto úèely je také mo¾no ulo¾it bloky
 textu do externích souborù:
 
 %% \startbuffer
@@ -443,6 +454,9 @@ Vlo¾ený text nebude zpracováván.
 \Command{\tex{thinrule}}
 \Command{\tex{thinrules}}
 \Command{\tex{setupthinrules}}
+\Command{\tex{underbar}}
+\Command{\tex{overstrikes}}
+\Command{\tex{periods}}
 
 %% There are many comands to draw lines. For a single line you
 %% type:
@@ -462,7 +476,7 @@ Více linek najednou pak pomocí
 \shortsetup{thinrules}
 
 %% Text in combination with lines is also possible:
-Je mo¾ná také kombinace textu a linek:
+Mo¾ná je také kombinace textu a linek:
 
 %% \startbuffer
 %% \starttextrule{Hasselt -- Amsterdam}
@@ -505,14 +519,14 @@ Vertikální odsazení mù¾eme nastavit pomocí
 
 %% There are a few complementary commands that might be very
 %% useful.
-Je¹tì máme k~dispozici nìkolik doplòkových pøíkazù, které mohou být
+Dále máme k~dispozici nìkolik doplòkových pøíkazù, které mohou být
 velice u¾iteèné:
 
 \shortsetup{setupfillinrules}
 \shortsetup{setupfillinlines}
 
 %% These commands are introduced in the examples below:
-Uveïme je v~následujícím pøíkladu:
+Uvedeme je v~následujícím pøíkladu:
 
 %% \startbuffer
 %% \setupfillinrules[width=2cm]
@@ -547,8 +561,8 @@ Výsledkem bude:
 
 %% These commands are used in questionaires. Text that is
 %% struck out or underlined will not be hyphenated.
-Tyto pøíkazy bývají pou¾ívány v~dotaznících. Podrhnutý nebo
-pøe¹krtnutý text nebude rozdìlen na konci øádky.
+Tyto pøíkazy bývají pou¾ívány v~dotaznících. Omezením je, ¾e podrhnutý
+nebo pøe¹krtnutý text nebude na konci øádky rozdìlen.
 
 % ====================================================================
 %% \section{Super- and subscript in text}
@@ -571,12 +585,9 @@ pøe¹krtnutý text nebude rozdìlen na konci øádky.
 %% It looks strange!
 %% \stopbuffer
 \startbuffer
-It is very easy to put \high{superscript} and \low{subscript} in your
-text. What would you call this version \lohi{subscript}{superscript}?
-It looks strange!
 Vlo¾it \high{horní index} a \low{dolní index} do dokumentu je
 jednoduché. A~co øíkáte tomuto \lohi{dolní index}{horní index}?
-To vypadá podivnì!
+To vypadá podivnì, co?!
 \stopbuffer
 
 \getbuffer
@@ -696,8 +707,8 @@ V~mnoha pøípadech chceme otoèit text nebo obrázek. Provedeme to pomocí
 %% you specify the rotation: \type{rotation=90}. The curly
 %% braces contain the text or object you want to rotate.
 Hranaté závorky jsou volitelné. Uvnitø nich specifikujeme
-úhel natoèení: \type{rotation=90}. Slo¾ene závorky vymezují text èi
-objekt, který chceme otoèit.
+úhel natoèení: \type{rotation=90}. Slo¾ené závorky vymezují text èi
+objekt, který chceme otoèit. Pøíklad:
 
 %% \startbuffer
 %% Hasselt got its municipal rights in 1252. From that time on it had
@@ -725,7 +736,7 @@ Výsledkem je velice o¹klivý odstavec:
 \getbuffer
 
 %% You can rotate a figure just as easily:
-Stejnì jednodu¹e mù¾eme otoèit i~obrázek.
+Stejnì jednodu¹e mù¾eme otoèit i~obrázek:
 
 %% \startbuffer
 %% \placefigure
@@ -736,7 +747,7 @@ Stejnì jednodu¹e mù¾eme otoèit i~obrázek.
 \startbuffer
 \placefigure
   [][fig:rotation]
-  {Rotace rybáøského pøístavu (de Vispoort) o~180 \Degrees.}
+  {Otoèený rybáøský pøístav (de Vispoort) o~180 \Degrees.}
   \rotate[rotation=180]{\externalfigure[ma-cb-15][width=10cm]}
 \stopbuffer
 
@@ -744,8 +755,8 @@ Stejnì jednodu¹e mù¾eme otoèit i~obrázek.
 
 %% You can see in \in{figure}[fig:rotation] that it is not
 %% always clear what you get when you rotate.
-Na\in{obrázku}[fig:rotation] mù¾ete vidìt, ¾e není v¾dy úplnì zøejmé,
-co dostanete.
+Na\in{obrázku}[fig:rotation] mù¾eme vidìt, ¾e není v¾dy úplnì zøejmé,
+na co se díváme, kdy¾ obrázek otoèíme.
 
 \getbuffer
 
@@ -776,13 +787,13 @@ napí¹eme:
 
 \shortsetup{startlines}
 
-\starttyping
-\startlines
-.
-.
-.
-\stoplines
-\stoptyping
+%% \starttyping
+%% \startlines
+%% .
+%% .
+%% .
+%% \stoplines
+%% \stoptyping
 
 %% \startbuffer
 %% On a wooden panel in the town hall of Hasselt you can read:
@@ -823,8 +834,8 @@ osobní zisk nebo sympatie ovlivòující tvou mysl a rozhodování.
 %% the text will be divided over two lines.
 V~nìkolika pøíkazech jsou konce øádkù oznaèeny \type{\\}. Napøíklad
 kdy¾ napí¹eme
-\goodbreak\type{\inmargin{uvnitø\\marginálie}}, pak se text zlomí
-do dvou øádkù.
+\goodbreak\type{\inmargin{uvnitø\\marginálie}}, pak se text
+v~marginálním sloupci zlomí do dvou øádkù.
 
 % ====================================================================
 %% \section{Hyphenation}
@@ -918,7 +929,7 @@ Mezi závorky mù¾eme vlo¾it
 
 %% To change from one language to another you can use the
 %% shorthand versions:
-Ke zmìnì jednoho jazyka na jiný pou¾ijeme krat¹í variantu:
+K~doèasné zmìnì jednoho jazyka na jiný pou¾ijeme krat¹í variantu:
 
 %% \starttyping
 %% \language[nl]  \language[en]  \language[de]
@@ -958,7 +969,7 @@ pravdìpodobnì {\nl \em Uit de geschiedenis van Hasselt} od F.~Peerebooma.
 %% If a word is wrongly hyphenated you can define points of
 %% hyphenation yourself. This is done in the set up area of
 %% your input file:
-Pokud je slovo rozdìleno ¹patnì, mù¾eme si definovat místo rozdìlení
+Pokud je slovo rozdìleno ¹patnì, mù¾eme si dodefinovat místo rozdìlení
 sami. Udìláme to v~úvodní èásti dolumentu takto:
 
 %% \startbuffer
@@ -1027,7 +1038,7 @@ nebude.
 \section{Vstup jiného zdrojového {\tt tex} souboru}
 
 %% \index{input other \TEX--files}
-\index{vstup jiného \TEX--souboru}
+\index{vstup jiného souboru}
 
 \Command{\tex{input}}
 
@@ -1036,22 +1047,22 @@ nebude.
 %% efficient to specify \CONTEXT\ sources in more than one file
 %% in order to be able to partially process your files.
 V~mnoha situacích chceme vlo¾it jiný \TEX\ soubor do na¹eho zdrojového
-souboru. Napøíklad je nìkdy efektivnìj¹í rozdìlit kód \CONTEXT{}u do
+souboru. Napøíklad je nìkdy efektivnìj¹í rozdìlit text psaný v~\CONTEXT{}u do
 více souborù, aby mohly být zpracovány samostatnì.
 
 %% Another file (with the name \type{another.tex}) can be
 %% inserted by:
-Soubor se jménem \type{another.tex} mù¾e být vlo¾en pomocí:
+Soubor se jménem \type{jiny.tex} mù¾e být vlo¾en pomocí:
 
 \starttyping
-\input another.tex
+\input jiny.tex
 \stoptyping
 
 %% The extension is optional so this will work too:
 Pøípona \type{tex} je nepovinná, tak¾e bude fungovat~i
 
 \starttyping
-\input another
+\input jiny
 \stoptyping
 
 %% The command \type{\input} is a \TEX\ command.

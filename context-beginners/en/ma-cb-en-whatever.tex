@@ -15,7 +15,8 @@
 In the first example of this manual on \at{page}[inputfile]
 we used the command:
 
-\shortsetup{start<<name>>makeup}
+\shortsetup{startnamemakeup}
+%\shortsetup{start<<name>>makeup} % does not work
 
 This command can be used to define titlepages. Such a
 command is needed since title pages often have a different
@@ -281,6 +282,9 @@ The text in between will not be processed.
 \Command{\tex{thinrule}}
 \Command{\tex{thinrules}}
 \Command{\tex{setupthinrules}}
+\Command{\tex{underbar}}    % VZ
+\Command{\tex{overstrikes}} % VZ
+\Command{\tex{periods}}     % VZ
 
 There are many comands to draw lines. For a single line you
 type:
@@ -541,6 +545,8 @@ the text will be divided over two lines.
 \Command{\tex{fr}}
 \Command{\tex{sp}}
 \Command{\tex{de}}
+
+%%% !!! update new languages
 
 When writing multi-lingual texts you have to be aware of
 the fact that hyphenation may differ from one language to

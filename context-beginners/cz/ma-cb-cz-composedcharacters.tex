@@ -8,6 +8,8 @@
 %\chapter{Composite characters}
 \chapter{Slo¾ené znaky}
 
+\index{slo¾ené znaky}
+
 %\section{Introduction}
 \section{Úvod}
 
@@ -16,9 +18,11 @@
 %characters like \# \$ \% \& \_ $\{$ and $\}$. Accented
 %characters or foreign symbols have to be composed to produce
 %the right typesetted character.
-V~\in{kapitole}[special chars] jste ji¾ vidìli, ¾e na získání speciálních znakù, jakými jsou
-\# \$ \% \& \_ $\{$ a $\}$, musíte napsat více ne¾ jeden symbol. Akcentovaná písmena nebo 
-cizokrajní symboly musí být slo¾eny z~více znakù, aby byl vytvoøen správnì vysázený znak.
+V~\in{kapitole}[special chars] jste ji¾ vidìli, ¾e na získání
+speciálních znakù, jakými jsou \# \$ \% \& \_ $\{$ a $\}$, musíme
+napsat více ne¾ jeden symbol. Akcentovaná písmena nebo cizokrajné
+symboly musí být slo¾eny z~více znakù, aby byl vytvoøen správnì
+vysázený znak.
 
 %It is not within the scope of this manual to go into
 %accented characters in math mode. See the {\TEX Book by
@@ -35,8 +39,11 @@ Informace o~této problematice najdete v~\TEX Booku Donalda E. Knutha.
 %Accented characters have to be composed in \CONTEXT.
 %\in{Table}[tab:accents] shows you how to do this. The
 %character {\em u} is just an example here.
-Akcentovaná písmena musí být v~\CONTEXT{}u slo¾ena z~písmen a diakritických znamének.
-\in{Tabulka}[tab:accents] ukazuje jak se to udìlá. Písmeno {\em u} je na tomto místì jenom jako pøíklad.
+Kromì pøímého vstupu znakù s~diakritikou pomocí vhodného kódování (viz
+\at[kapitolu]{sec:encodings}), mù¾eme v~\CONTEXT{}u akcentovaná písmena
+slo¾it z~jednoduchých znakù a~diakritických
+znamének. \in{Tabulka}[tab:accents] ukazuje, jak kompozit
+vytvoøíme. Písmeno {\em u} je uvedeno jenom jako pøíklad.
 
 %\let\MySign=\=
 %\placetable
@@ -64,7 +71,7 @@ Akcentovaná písmena musí být v~\CONTEXT{}u slo¾ena z~písmen a diakritických znam
   {Akcenty}
 \starttable[|c|c|c|c|]
 \HL
-\NC \bf Napi¹te \NC \bf Dostanete \VL \bf Napi¹te  \NC \bf Dostanete \NC\SR
+\NC \bf Napí¹eme \NC \bf Dostaneme \VL \bf Napí¹eme  \NC \bf Dostaneme \NC\SR
 \HL
 \NC \type{\`{u}} \NC \`{u}       \VL \type{\u{u}}  \NC \u{u}       \NC\FR
 \NC \type{\'{u}} \NC \'{u}       \VL \type{\v{u}}  \NC \v{u}       \NC\MR
@@ -80,21 +87,31 @@ Akcentovaná písmena musí být v~\CONTEXT{}u slo¾ena z~písmen a diakritických znam
 %You don't want \`{i} or \'{j} so for an
 %accented {\em i} and {\em j} you compose the characters as
 %follows:
-Asi nebudete chtít získat písmena \`{i} nebo \'{j} (s~teèkou). Pro akcentovaná písmena
- {\em i} a {\em j} vytvoøte slo¾ené znaky následujícím zpùsobem:
+Asi nebudeme chtít získat písmena \`{i} nebo \'{j} (s~teèkami). Pro
+akcentovaná písmena {\em i} a {\em j} vytvoøíme slo¾ené znaky
+následujícím zpùsobem:
 
-\type{\"{\i}} ~~~ \"{\i} \crlf
+%% \type{\"{\i}} ~~~ \"{\i} %\crlf
+%% \type{\^{\j}} ~~~ \^{\j}
+
+\type{\"{\i}} ~~~ \"{\i}
+\bgroup
+\usetypescript[modern][ec]%
+\setupbodyfont[modern,10pt]%
 \type{\^{\j}} ~~~ \^{\j}
+\egroup
+\hskip1em (bezteèkové j nemusí být k~dispozici ve v¹ech písmech)
 
 %\section{Foreign symbols}
-\section{Cizokrajní symboly}
+\section{Cizokrajné symboly}
 
 %\index{foreign symbols}
-\index{cizokrajní symboly}
+\index{cizokrajné symboly}
 
 %The composition of characters that appear in foreign
 %languages is shown in \in{table}[tab:foreign symbols].
-Kompozice písmen a znakù, které se vyskytují v~cizokrajních jazycích je uvedena v~\in{tabulce}[tab:foreign symbols].
+Kompozice písmen a znakù, které se vyskytují v~cizích jazycích je
+uvedena v~\in{tabulce}[tab:foreign symbols].
 
 %
 % be ware of the spanish questionmark and exclamation
@@ -121,10 +138,10 @@ Kompozice písmen a znakù, které se vyskytují v~cizokrajních jazycích je uvedena 
 \placetable
   [here,force]
   [tab:foreign symbols]
-  {Cizokrajní písmena a znaky}
+  {Cizokrajná písmena a~znaky}
 \starttable[|c|c|c|c|]
 \HL
-\NC \bf Napi¹te \NC \bf Dostanete \VL \bf Napi¹te     \NC \bf Dostanete \NC\SR
+\NC \bf Napí¹eme \NC \bf Dostaneme \VL \bf Napí¹eme     \NC \bf Dostaneme \NC\SR
 \HL
 \NC \type{\oe}   \NC \oe         \VL \type{\O}        \NC \O          \NC\FR
 \NC \type{\OE}   \NC \OE         \VL \type{\l}        \NC \l          \NC\MR
