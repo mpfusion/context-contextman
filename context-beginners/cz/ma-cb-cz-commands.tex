@@ -1,94 +1,150 @@
 % Translation:
+% VZ 2006-10-31
 \startcomponent ma-cb-cz-commands
 \project ma-cb
 \product ma-cb-cz
 \environment ma-cb-env-cz
 
-\chapter{Defining commands / macros}
+% \chapter{Defining commands / macros}
+\chapter{Definování pøíkazù / maker}
 
-\CONTEXT\ is a set of macros based on \TEX. \TEX\ is a
-programming language as well as a typographical system. This
-means that you can do the programming yourself if you need
-that kind of flexability.
+% \CONTEXT\ is a set of macros based on \TEX. \TEX\ is a
+% programming language as well as a typographical system. This
+% means that you can do the programming yourself if you need
+% that kind of flexability.
+\CONTEXT{} je sada maker zalo¾ená na \TEX u. \TEX{} je programovací
+jazyk a zároveò typografický systém. To znamená, ¾e si mù¾eme sami
+naprogramovat urèité vlastnosti, pokud potøebujeme takovou
+flexibilitu.
 
-You can define a new command with:
+% You can define a new command with:
+Nový pøíkaz mù¾eme zadefinovat pomocí
 
 \shortsetup{define}
 
-The next example will explain its meaning.
+% The next example will explain its meaning.
+Následující pøíklad objasní jeho pou¾ití.
 
-You may have a well illustrated document and you are tired of
-typing:
+% You may have a well illustrated document and you are tired of
+% typing:
+Mù¾eme mít bohatì ilustrovaný dokument a pokud jsme ji¾ unavení psaním
 
+% \startbuffer
+% \placefigure
+%   [here,force]
+%   [fig:logical name]
+%   {Caption.}
+%   {\externalfigure[filename][width=5cm]}
+% \stopbuffer
 \startbuffer
 \placefigure
   [here,force]
-  [fig:logical name]
-  {Caption.}
-  {\externalfigure[filename][width=5cm]}
+  [fig:logické jméno]
+  {Popisek.}
+  {\externalfigure[soubor][width=5cm]}
 \stopbuffer
 
 \typebuffer
 
-You could define your own command with a few variables like:
+% You could define your own command with a few variables like:
+mù¾eme si definovat vlastní pøíkaz s~nìkolika promìnnými:
 
+% \startitemize[packed]
+% \item logical name
+% \item caption
+% \item file name
+% \stopitemize
 \startitemize[packed]
-\item logical name
-\item caption
-\item file name
+\item logické jméno
+\item popisek
+\item soubor
 \stopitemize
 
-Your command definition and call could look something like
-this:
+% Your command definition and call could look something like
+% this:
+Na¹e definice pøíkazu a jeho volání mù¾e vypadat takto:
 
+% \startbuffer
+% \define[3]\myputfigure
+%   {\placefigure
+%      [here,force][fig:#1]
+%      {#2}{\externalfigure[#3][width=5cm]}}
+
+% \myputfigure{lion}{The Dutch lion is a sentry.}{ma-cb-13}
+% \stopbuffer
 \startbuffer
-\define[3]\myputfigure
+\define[3]\mujobrazek
   {\placefigure
      [here,force][fig:#1]
      {#2}{\externalfigure[#3][width=5cm]}}
 
-\myputfigure{lion}{The Dutch lion is a sentry.}{ma-cb-13}
+\mujobrazek{lev}{Holandský lev na strá¾i.}{ma-cb-13}
 \stopbuffer
 
 \typebuffer
 
-Between brackets \type{[3]} indicates that you want to use
-three variables \type{#1}, \type{#2} and \type{#3}. In the
-command call \type{\myputfigure} you have to input these
-variables between curly braces. The result would be:
+% Between brackets \type{[3]} indicates that you want to use
+% three variables \type{#1}, \type{#2} and \type{#3}. In the
+% command call \type{\myputfigure} you have to input these
+% variables between curly braces. The result would be:
+V~hranatých závorkách \type{[3]} stanovujeme, ¾e chceme tøi promìnné
+\type{#1}, \type{#2} a~\type{#3}. Pøi volání pøíkazu
+\type{\mujobrazek} musíme vlo¾it tyto tøi promìnné hodnoty mezi
+slo¾ené závorky. Výsledkem bude:
 
 \getbuffer
 
-Very sophisticated commands can be programmed but this is
-left to your own inventiveness.
+% Very sophisticated commands can be programmed but this is
+% left to your own inventiveness.
+Programování sofistikovanìj¹ích pøíkazù je ponecháno na ètenáøi.
 
-In addition to defining commands you can also define
-\type{\start} $\cdots$ \type{\stop} command pairs.
+% In addition to defining commands you can also define
+% \type{\start} $\cdots$ \type{\stop} command pairs.
+Kromì definování pøíkazù mù¾eme také navíc definovat dvojici
+\type{\start} $\cdots$ \type{\stop}.
 
 \shortsetup{definestartstop}
 
-For example:
+% For example:
+Napøíklad:
 
+% \startbuffer
+% \definestartstop
+%    [stars]
+%    [commands={\inleft{\hbox to \leftmarginwidth
+%                     {\leaders\hbox{$\star$}\hfill}}},
+%     before=\blank,
+%     after=\blank]
+%
+% \startstars
+% {\em Hasselter Juffers} are sweet cookies but the name is no
+% coincidence. On July 21 in 1233 the {\em Zwartewaterklooster}
+% (Blackwater Monastery) was founded. The monastery was meant
+% for unmarried girls and women belonging to the nobility of
+% Hasselt. These girls and women were called {\em juffers}.
+% \stopstars
+% \stopbuffer
 \startbuffer
 \definestartstop
-   [stars]
+   [hvezdicky]
    [commands={\inleft{\hbox to \leftmarginwidth
-                    {\leaders\hbox{$\star$}\hfill}}},
+                 {\leaders\hbox{$\star$}\hfill}}},
     before=\blank,
     after=\blank]
 
-\startstars
-{\em Hasselter Juffers} are sweet cookies but the name is no
-coincidence. On July 21 in 1233 the {\em Zwartewaterklooster}
-(Blackwater Monastery) was founded. The monastery was meant
-for unmarried girls and women belonging to the nobility of
-Hasselt. These girls and women were called {\em juffers}.
-\stopstars
+\starthvezdicky
+{\em Hasselter Juffers} jsou sladké koláèky, ale jejich název není
+høíèka náhody. V~èervenci roku 1233 byl zalo¾en klá¹ter {\em
+Zwartewaterklooster} (Èerná voda). Klá¹ter byl zamý¹len pro neprovdané
+dívky a ¾eny patøící k~¹lechtì Hasseltu. Tyto dívky a ¾eny byly
+nazývány {\em juffers}.
+\stophvezdicky
 \stopbuffer
 
 \typebuffer
 
-This will result in:
+% This will result in:
+Výsledkem bude:
 
 \getbuffer
 
