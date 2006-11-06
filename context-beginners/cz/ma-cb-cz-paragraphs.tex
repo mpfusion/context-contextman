@@ -1,73 +1,131 @@
 % Translation:
+% jaih
 \startcomponent ma-cb-cz-paragraphs
 \project ma-cb
 \product ma-cb-cz
 \environment ma-cb-env-cz
 
-\chapter{Paragraph spacing}
+%\chapter{Paragraph spacing}
+\chapter{Odsazení odstavcù}
 
-\section{Introduction}
+%\section{Introduction}
+\section{Úvod}
 
-\index{paragraph}
+%\index{paragraph}
+\index{odstavec}
 
 \Command{\tex{par}}
 \Command{\tex{paragraph}}
 
-In \TEX\ and \CONTEXT\ the most important unit of text is the
-paragraph. You can start a new paragraph by:
+%In \TEX\ and \CONTEXT\ the most important unit of text is the
+%paragraph. You can start a new paragraph by:
+V \TEX u a \CONTEXT u je nejdùle¾itìj¹í jednotkou textu
+odstavec. Nový odstavec mù¾ete zaèít pomocí:
+
+%\startitemize[packed]
+%\item an empty line
+%\item the \TEX\ command \type{\par}
+%\stopitemize
 
 \startitemize[packed]
-\item an empty line
-\item the \TEX\ command \type{\par}
+\item prázdným øádkem
+\item pøíkazem \type{\par}
 \stopitemize
 
-In your \ASCII\ input file you should use empty lines as
-paragraph separators. This will lead to a clearly structured
-and well organized file and will prevent mistakes.
 
-In situations where a command has to be closed explicitly you
-should use \type{\par}.
+%In your \ASCII\ input file you should use empty lines as
+%paragraph separators. This will lead to a clearly structured
+%and well organized file and will prevent mistakes.
+
+Ve svém vstupním \ASCII\ souboru je vhodné vyu¾ívat prázdné
+øádky jako oddìlovaèe odstavcù. Dostaneme tak pøehlednìj¹í
+ a lépe organizovanou strukturu textu, ve které se snadnìji 
+odhalují pøípadné chyby.
+
+
+%In situations where a command has to be closed explicitly you
+%should use \type{\par}.
+
+Pokud si pøejeme ukonèit odstavec výslovnì pøíkazem, pou¾ijeme
+\type{\par}. 
+
+%\startbuffer
+%During one of the wars Hasselt lay under siege. After some
+%time the city was famine stricken, everything edible was
+%eaten. Except for one cow. The cow was kept alive and
+%treated very well. \par
+%Once a day the citizens of Hasselt took the cow for a walk
+%on the ramparts. The besiegers saw the well fed cow and
+%became very discouraged. They broke up their camps and
+%Hasselt was saved. \par
+%In the Hoogstraat in Hasselt there is a stone tablet with a
+%representation of the cow that commemorates the siege and
+%the wisdom of the citizens of Hasselt.
+%\stopbuffer
 
 \startbuffer
-During one of the wars Hasselt lay under siege. After some
-time the city was famine stricken, everything edible was
-eaten. Except for one cow. The cow was kept alive and
-treated very well. \par
-Once a day the citizens of Hasselt took the cow for a walk
-on the ramparts. The besiegers saw the well fed cow and
-became very discouraged. They broke up their camps and
-Hasselt was saved. \par
-In the Hoogstraat in Hasselt there is a stone tablet with a
-representation of the cow that commemorates the siege and
-the wisdom of the citizens of Hasselt.
+Bìhem jedné z válek byl Hasselt v oble¾ení. Po nìjakém èase
+dolehl na mìsto hladomor a v¹e co se dalo sníst,
+bylo snìdeno, kromì jedné krávy. Ta byla ponechána na 
+¾ivu a navíc s ní bylo velice slu¹nì zacházeno. \par
+Jednou dennì vyvedli obyvatelé Hasseltu tuto krávu 
+na procházku po hradbách. Kdykoliv obléhatelé vidìli
+dobøe ¾ivenou krávu, propadli malomyslnosti. Nakonec 
+ukonèili obléhání a Hasselt byl zachránìn.\par
+Na památku tohoto oble¾ení a moudrosti obyvatel
+Hasseltu se zde dnes nachází  kamenná deska s vyobrazením
+krávy.
 \stopbuffer
 
 \typebuffer
 
-This could also be typed without \type{\par}s and a few empty
-lines.
+%This could also be typed without \type{\par}s and a few empty
+%lines.
+
+Místo pøíkazù  \type{\par} bychom mohli také pou¾ít nìkolik
+prázdných øádkù: 
+
+%\startbuffer
+%During one of the wars Hasselt lay under siege. After some
+%time the city was famine stricken, everything edible was
+%eaten. Except for one cow. The cow was kept alive and
+%treated very well.
+%
+%Once a day the citizens of Hasselt took the cow for a walk
+%on the ramparts. The besiegers saw the well fed cow and
+%became very discouraged. They broke up their camps and
+%Hasselt was saved.
+%
+%In the Hoogstraat in Hasselt there is a stone tablet with a
+%representation of the cow that commemorates the siege and
+%the wisdom of the citizens of Hasselt.
+%\stopbuffer
+
+
 
 \startbuffer
-During one of the wars Hasselt lay under siege. After some
-time the city was famine stricken, everything edible was
-eaten. Except for one cow. The cow was kept alive and
-treated very well.
+Bìhem jedné z válek byl Hasselt v oble¾ení. Po nìjakém èase
+dolehl na mìsto hladomor a v¹e co se dalo sníst,
+bylo snìdeno, kromì jedné krávy. Ta byla ponechána na 
+¾ivu a navíc s ní bylo velice slu¹nì zacházeno. 
 
-Once a day the citizens of Hasselt took the cow for a walk
-on the ramparts. The besiegers saw the well fed cow and
-became very discouraged. They broke up their camps and
-Hasselt was saved.
+Jednou dennì vyvedli obyvatelé Hasseltu tuto krávu 
+na procházku po hradbách. Kdykoliv obléhatelé vidìli
+dobøe ¾ivenou krávu, propadli malomyslnosti. Nakonec 
+ukonèili obléhání a Hasselt byl zachránìn.
 
-In the Hoogstraat in Hasselt there is a stone tablet with a
-representation of the cow that commemorates the siege and
-the wisdom of the citizens of Hasselt.
+Na památku tohoto oble¾ení a moudrosti obyvatel
+Hasseltu se zde dnes nachází  kamenná deska s vyobrazením
+krávy.
 \stopbuffer
+
 
 \typebuffer
 
-\section{Inter paragraph spacing}
+%\section{Inter paragraph spacing}
+\section{Mezera mezi odstavci}
 
-\index{inter paragraph spacing}
+\index{mezera mezi odstavci}
 
 \Command{\tex{setupwhitespace}}
 \Command{\tex{nowhitespace}}
@@ -78,22 +136,31 @@ the wisdom of the citizens of Hasselt.
 \Command{\tex{startpacked}}
 \Command{\tex{startunpacked}}
 
-The vertical spacing between paragraphs can be specified by:
+%The vertical spacing between paragraphs can be specified by:
+Velikost mezery mezi odstavci lze nastavit pomocí:
 
 \shortsetup{setupwhitespace}
 
-This document is produced with \type{\setupwhitespace[medium]}.
+%This document is produced with \type{\setupwhitespace[medium]}.
+Tento dokument je vysázen s nastavením \type{\setupwhitespace[medium]}.
 
-When inter paragraph spacing is specified there are two
-commands available that are seldom needed:
+%When inter paragraph spacing is specified there are two
+%commands available that are seldom needed:
+
+Jakmile takto jednou nastavíme velikost meziodstavcové mezery,
+ máme k dispozici dva pøíkazy, které jsou nicménì jen 
+zøídka potøeba:
 
 \starttyping
 \nowhitespace
 \whitespace
 \stoptyping
 
-When a paragraph consists of a horizontal line or a framed
-text like this:
+%When a paragraph consists of a horizontal line or a framed
+%text like this:
+
+Pokud odstavec obsahuje vodorovné linky, nebo orámovaný
+text, jako napøíklad:
 
 \startbuffer
 \framed{Ridderstraat 27, 8061GH Hasselt}
@@ -101,12 +168,17 @@ text like this:
 
 \getbuffer
 
-Sometimes spacing is suboptimal. For that purpose you could
-carry out a correction with:
+%Sometimes spacing is suboptimal. For that purpose you could
+%carry out a correction with:
+
+...se stává, ¾e rozestup není optimální. V takovém pøípadì 
+lze provést korekci pomocí:
+
 
 \shortsetup{startlinecorrection}
 
-So if you would type:
+%So if you would type:
+Tak¾e pokud napí¹ete:
 
 \startbuffer
 \startlinecorrection
@@ -116,113 +188,186 @@ So if you would type:
 
 \typebuffer
 
-you will get a better output. Only use these commands if
-really needed!
+%you will get a better output. Only use these commands if
+%really needed!
+
+dostanete lep¹í výstup, ale pou¾ívejte tyto pøíkazy jen
+pokud jsou opravdu nezbytné!
 
 \getbuffer
 
-Another command to deal with vertical spacing is:
+%Another command to deal with vertical spacing is:
+Dal¹í pøíkaz pro ovládání mezery mezi odstavci je:
 
 \shortsetup{blank}
 
-The bracket pair is optional and within the bracket pair you
-can type the amount of spacing. Keywords like \type{small},
-\type{medium} and \type{big} are related to the fontsize.
+%The bracket pair is optional and within the bracket pair you
+%can type the amount of spacing. Keywords like \type{small},
+%\type{medium} and \type{big} are related to the fontsize.
+
+Hranaté závorky za pøíkazem nejsou povinné, pomocí nich 
+v¹ak mù¾eme ovládat velikost mezery mezi odstavci.
+Klíèová slova jako \type{small}, \type{medium} a 
+\type{big} nastavují mezeru relativnì, tedy odvozenou 
+od velikosti daného fontu.
+
+%\startbuffer
+%In official writings Hasselt always has the affix Ov. This is an
+%abbrevation for the province of {\em Overijssel}.
+%\blank[2*big]
+%The funny thing is that there is no other Hasselt in the Netherlands.
+%So it is redundant.
+%\blank
+%The affix is a leftover from the times that the Netherlands and
+%Belgium were one country under the reign of King Philip II of Spain.
+%\blank[2*big]
+%Hasselt in Belgium lies in the province of Limburg. One wonders if
+%the Belgian people write Hasselt (Li) on their letters.
+%\stopbuffer
 
 \startbuffer
-In official writings Hasselt always has the affix Ov. This is an
-abbrevation for the province of {\em Overijssel}.
+Oficiální název Hasselt má v¾dy pøíponu Ov, co¾ je zkratka
+provincie {\em Overijssel}.
 \blank[2*big]
-The funny thing is that there is no other Hasselt in the Netherlands.
-So it is redundant.
+Úsmìvné na tom je, ¾e v Holandsku je Hasselt pouze jeden 
+a tato pøípona je tedy nadbyteèná.
 \blank
-The affix is a leftover from the times that the Netherlands and
-Belgium were one country under the reign of King Philip II of Spain.
+Tato pøípona je pozùstatkem z dob, kdy Holandsko a Belgie
+byly jednou zemí, pod vládou ¹panìlského krále Filipa II.
 \blank[2*big]
-Hasselt in Belgium lies in the province of Limburg. One wonders if
-the Belgian people write Hasselt (Li) on their letters.
+Hasselt v Belgii le¾í v provincii Limburg, ale Belgièané 
+na své dopisy Hasselt (Li) zøejmì nepí¹í.
 \stopbuffer
+
 
 \typebuffer
 
-The command \type{\blank} without the bracket pair is the
-default space.
+%The command \type{\blank} without the bracket pair is the
+%default space.
 
-The example would become:
+Pøíkaz \type{\blank} bez hranatých závorek pøedstavuje
+obvyklou mezeru.
+
+%The example would become:
+Ná¹ pøíklad by vypadal:
 
 \getbuffer
 
-The default spacing can be set up with:
+%The default spacing can be set up with:
+
+Velikost obvyklé mezery lze ovládat pomocí: 
 
 \shortsetup{setupblank}
 
-If you want to surpress vertical spacing you can use:
+%If you want to surpress vertical spacing you can use:
+Pokud chcete potlaèit tuto meziodstavcovou mezeru,
+mù¾ete pou¾ít:
 
 \shortsetup{startpacked}
 
-In this manual the whitespace is set at \type{medium}. In
-the next situation this set up is ignored and the lines are
-packed.
+%In this manual the whitespace is set at \type{medium}. In
+%the next situation this set up is ignored and the lines are
+%packed.
+
+V tomto dokumentu je mezera nastavena na \type{medium} ale na
+následujících øádcích je tato mezera potlaèena a øádky jsou
+tedy semknuty k sobì.
+
+%\startbuffer
+%\startpacked
+%Hasselt (Ov) lies in Overijssel.
+%
+%Hasselt (Li) lies in Limburg.
+%
+%Watch out: we talk about Limburg in Belgium. There is
+%also a Dutch Limburg.
+%\stoppacked
+%\stopbuffer
 
 \startbuffer
 \startpacked
-Hasselt (Ov) lies in Overijssel.
+Hasselt (Ov) le¾í v provincii Overijssel.
 
-Hasselt (Li) lies in Limburg.
+Hasselt (Li) le¾í v provincii Limburg.
 
-Watch out: we talk about Limburg in Belgium. There is
-also a Dutch Limburg.
+Pozor: mluvíme o Limburgu v Belgii. Existuje také
+Limburg v Holandsku.
 \stoppacked
 \stopbuffer
 
 \typebuffer
 
-This will become:
+%This will become:
+Vysázeno bude:
 
 \getbuffer
 
-It is not hard to imagine why there is also:
+%It is not hard to imagine why there is also:
+Není tì¾ké si pøedstavit, k èemu slou¾í:
 
 \shortsetup{startunpacked}
 
-You can force vertical space with \type{\godown}. The
-distance is specified within the brackets.
+%You can force vertical space with \type{\godown}. The
+%distance is specified within the brackets.
+
+Vertikální mezeru si lze také vynutit pomocí
+pøíkazu \type{\godown}. Její velikost je nastavena
+v závorkách.
 
 \shortsetup{godown}
 
-\section{Indentation}
+%\section{Indentation}
+\section{Odsazení}
 
-\index{indentation}
-\index{paragraph+indentation}
+
+%\index{indentation}
+\index{odsazení}
+%\index{paragraph+indentation}
+\index{odstavec+odsazení}
 
 \Command{\tex{indenting}}
 \Command{\tex{noindenting}}
 \Command{\tex{setupindenting}}
 
-You can set up the amount of the indentation with:
+%You can set up the amount of the indentation with:
+Velikost odsazení mù¾eme nastavít pomocí:
 
 \shortsetup{setupindenting}
 
-A reasonable indentation is achieved by:
+%A reasonable indentation is achieved by:
+Rozumn0 odsazení je dosa¾eno pomocí:
 
 \starttyping
 \setupindenting[medium]
 \stoptyping
 
-This will lead to indented paragraphs. By default,
-indentation after white space (as issued by \type {\blank})
-is suppressed.
+%This will lead to indented paragraphs. By default,
+%indentation after white space (as issued by \type {\blank})
+%is suppressed.
 
-You can locally influence the indentation state by using
+Takto budou odstavce odsazeny, jen po mezeøe je v základním
+nastavení odsazení potlaèeno. (mezera je vysázena pøíkazem
+\type {\blank})
+
+
+%You can locally influence the indentation state by using
+Lokálnì na urèitém místì mù¾ete odsazování ovládat pomocí:
 
 \shortsetup{indenting}
 
-When for instance you say \type {never}, from that moment
-on indentation will be surpressed. Saying \type {none},
-only influences the next paragraph.
+%When for instance you say \type {never}, from that moment
+%on indentation will be surpressed. Saying \type {none},
+%only influences the next paragraph.
 
-If you choose to use indentations, and at a certain place you
-explicitly {\em do not} want to indent, you can also say:
+Kdy¾ napøíklad pou¾ijete \type {never}, od toho okam¾iku
+budou v¹echna odsazení potlaèena. Pøíkazem \type {none},
+bude ovlivnìn pouze následující odstavec.
+
+%If you choose to use indentations, and at a certain place you
+%explicitly {\em do not} want to indent, you can also say:
+
+Pokud pou¾íváte odsazování a na urèitém místì si odsazení
+{\em ne}pøejete, mù¾ete také pou¾ít:
 
 \starttyping
 \noindenting
