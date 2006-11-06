@@ -1,5 +1,4 @@
 - uvodni kapitola: instalace (minimal context distribution)
-- \quote spravne cesky
 - slovnicek en<->cz interface
 - aktualni nastaveni parametru (in \shortsetup)
 - ceske hlasky v \shortsetup
