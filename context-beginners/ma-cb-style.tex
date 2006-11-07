@@ -660,6 +660,16 @@
 % Info sources
 \definedescription[infosource][location=top,headstyle=bold,width=fit]
 
+\def\redospecialfrom[#1::#2]%
+  {\ifundefined{\v!file:::#1}%
+     \tttf[#1]%
+   \else
+     \doifmodeelse{screen}
+       {\def\doexternaldocument##1##2##3{\goto{##3}[#1::#2]}}%
+       {\def\doexternaldocument##1##2##3{\hyphenatedurl{##1}}}%
+     \csname\v!file:::#1\endcsname
+   \fi}
+
 \protect
 
 \stopenvironment
