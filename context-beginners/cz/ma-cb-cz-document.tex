@@ -1,5 +1,5 @@
-% Translation: 
-% pøelo¾il busaj
+% Translation: busaj
+% Check: 2006-11-09 zyka
 \startcomponent ma-cb-cz-document
 \project ma-cb
 \product ma-cb-cz
@@ -15,9 +15,9 @@
 %some structure and contains a title page, a few chapters,
 %sections and sub sections. Of course there is a table of
 %contents and an index.
-Pøedpokládejme, ¾e chcete vytvoøit jednoduchý dokument. A» 
+Pøedpokládejme, ¾e chceme vytvoøit jednoduchý dokument. Nech»
 má nìjakou strukturu a obsahuje titulní stranu, nìkolik kapitol,
-oddílù a pododdílù. Pøirozenì má také obsah a rejstøík.
+sekcí a podsekcí. Pøirozenì má také obsah a~rejstøík.
 
 
 %\CONTEXT\ can create such a document automatically if you
@@ -101,21 +101,21 @@ Vstupní soubor \pagereference[inputfile] mù¾e vypadat následovnì:
 
 \chapter{První kapitola}
 
-\section[prvnioddil]{První oddíl}
+\section[prvnisekce]{První sekce}
 
 ... vá¹ text ...
 
-\section{Druhý oddíl}
+\section{Druhá sekce}
 
-\subsection{První pododdíl}
+\subsection{První podsekce}
 
 ... vá¹ text\index{dal¹í prvek rejstøíku} ...
 
-\subsection{Druhý pododdíl}
+\subsection{Druhá podsekce}
 
 ... vá¹ text ...
 
-\section{Tøetí pododdíl}
+\section{Tøetí podsekce}
 
 ... vá¹ text ...
 
@@ -140,10 +140,10 @@ Vstupní soubor \pagereference[inputfile] mù¾e vypadat následovnì:
 %input. Most texteditors or wordprocessors can export your
 %file as plain \ASCII.
 \CONTEXT\ oèekává obyèejný vstupní soubor v~kódování \ASCII. 
-Pøirozenì, mù¾ete pou¾ít libovolný textový editor nebo procesor, 
-ale nesmíte zapomenout, ¾e \CONTEXT\ doká¾e naèíst jenom \ASCII\ vstup. 
+Pøirozenì, mù¾eme pou¾ít libovolný textový editor nebo procesor, 
+ale nesmíme zapomenout, ¾e \CONTEXT\ doká¾e naèíst jenom \ASCII\ vstup. 
 Vìt¹ina editorù nebo textových procesorù doká¾e exportovat
-vá¹ soubor do obyèejného tvaru \ASCII.
+vá¹ soubor do obyèejného formátu \ASCII.
 
 %The input file should contain the text you want to be
 %processed by \CONTEXT\ and the \CONTEXT\ commands. A
@@ -152,12 +152,12 @@ vá¹ soubor do obyèejného tvaru \ASCII.
 %your text. The area before \type{\starttext} is called the
 %set up area and is used for defining new commands and setting up
 %the layout of your document.
-Vstupní soubor by mìl obsahovat text, který chcete zpracovat 
+Vstupní soubor by mìl obsahovat text, který chceme zpracovat 
 programem \CONTEXT\ a pøíkazy \CONTEXT{}u. Pøíkaz
 \CONTEXT{}u zaèíná znakem~\tex{}. Pøíkazem \type{\starttext} 
-oznaèíte zaèátek vá¹ho textu. Oblast pøed pøíkazem \type{\starttext} se nazývá
+oznaèíme zaèátek na¹eho textu. Oblast pøed pøíkazem \type{\starttext} se nazývá
 deklaraèní oblast a pou¾ívá se na definování nových pøíkazù a nastavení vzhledu
-vá¹ho dokumentu.
+na¹eho dokumentu.
 
 %A command is usually followed by a left and right bracket
 %pair \type{[]} and/or a left and right brace \type{{}}. In
@@ -166,11 +166,11 @@ vá¹ho dokumentu.
 %few actions concerning design, typography and structure.
 %These actions may be:
 Pøíkaz je obyèejnì následován dvojicí levých a pravých hranatých závorek
- \type{[]} a/nebo levou a~pravou svorkou \type{{}}. V~pøíkaze 
+ \type{[]} a/nebo levou a~pravou slo¾enou závorkou \type{{}}. V~pøíkaze 
  \type{\chapter[poslednikapitola]{Poslední kapitola}} povel 
 \type{\chapter} donutí napøíklad \CONTEXT\ vykonat nìkolik èinností týkajících se 
 úpravy, typografie a~struktury.
-Tyto èinnosti mù¾ou být:
+Tìmito èinnosti mohou být:
 
 %\startitemize[n,packed]
 %\item start a new page
@@ -195,34 +195,34 @@ Tyto èinnosti mù¾ou být:
 Tyto èinnosti budou vykonány s~argumentem zadaným mezi 
 levou a~pravou svorkou: {\em Poslední kapitola}.
 
-Dosud jsme se nezmínili o parametru \type{[poslednikapitola]} 
-mezi hranatými závorkami. Je to návì¹tí s~logickým jménem, 
-které je mo¾né pou¾ít na odkaz na tuto odpovídající kapitolu. 
+Dosud jsme se nezmínili o~parametru \type{[poslednikapitola]} 
+mezi hranatými závorkami. Je to návì¹tí s~referenèním jménem, 
+které je mo¾né pou¾ít na odkaz na odpovídající kapitolu. 
 To se mù¾e vykonat dal¹ími pøíkazy \CONTEXT{}u:
 v~\type{\in{kapitole}[poslednikapitola]} se vysází èíslo kapitoly, zatímco 
-\type{\about[poslednikapitola]} vrátí název.
+\type{\about[poslednikapitola]} vrátí její název.
 
 %So now the list of actions can be extended with:
-Tedy seznam èinností mù¾e být roz¹íøen~o:
+Seznam èinností mù¾e být roz¹íøen~o:
 
 %\startitemize[continue]
 %\item let label \type{lastchapter} be chapter number
 %      and title (and store these for later use)
 %\stopitemize
 \startitemize[continue]
-\item logické jméno \type{poslednikapitola} a» reprezentuje 
-èíslo a název kapitoly (a ulo¾í se pro pozdìj¹í pou¾ití).
+\item referenèní jméno \type{poslednikapitola} a» reprezentuje 
+èíslo a název kapitoly (a~ulo¾í se pro pozdìj¹í pou¾ití).
 \stopitemize
 
 %Other actions concerning running heads, number resetting and
 %interactivity are disregarded at this moment.
-Dal¹í èinnosti týkající se stávajících hlavièek, znovunastavení 
-èísel a vzájemného pùsobení teï nebereme na vìdomí.
+Dal¹ím èinnostem týkajících se hlavièek, nastavení 
+èitaèù nebo interaktivním vlastnostem se nyní nebereme vìnovat.
 
 %If you have \CONTEXT\ process this example file, you would
 %obtain a very simple document with a few numbered chapters
 %and section headers.
-Kdy¾ necháte \CONTEXT\ zpracovat tento vzorový soubor, získáte 
+Kdy¾ necháme \CONTEXT\ zpracovat tento vzorový soubor, získáme 
 velmi jednoduchý dokument s~nìkolika oèíslovanými kapitolami a 
 s~hlavièkami oddílù.
 
@@ -238,17 +238,19 @@ s~hlavièkami oddílù.
 %\CONTEXT\ from the command line. This \PERL\ script also
 %takes care of the multiple passes.  \TEXEXEC\ is part of the
 %standard \CONTEXT\ distribution.
-Bìhem zpracování souboru se \CONTEXT\ stará o~mno¾ství vìcí. 
-Jednou z~tìchto vìcí je napøíklad èíslování stránek.
-Av¹ak k~vytvoøení obsahu potøebuje \CONTEXT\ èísla stránek, která
-jsou zatím pro \CONTEXT\ neznámá v~prùbìhu prvního bìhu. 
-Proto musíte zpracovat soubor dvakrát (dvojprùbìhový úkol). 
+Bìhem zpracování souboru se \CONTEXT\ stará o~mnoho vìcí. 
+Jednou z~nich je napøíklad èíslování stránek.
+Av¹ak k~vytvoøení obsahu potøebuje \CONTEXT\ znát èísla stránek, která
+jsou zatím, v~prùbìhu prvního bìhu, pro \CONTEXT\ neznámá. 
+Proto musíme zpracovat soubor dvakrát (dvojprùchodová úloha). 
 \CONTEXT\ vytvoøí nìkolik pomocných souborù k~ulo¾ení informací
-tohoto druhu. Tyto by mìli být zpracovány pøíkazem
-\TEXUTIL. V~nìkterých pøípadech musíte vstup\-ní soubor
-zpracovat tøikrát (trojprùbìhový úkol). Je mo¾né pou¾ít pøíkaz 
-\TEXEXEC\ na spu¹tìní \CONTEXT{}u z~pøíkazové øádky. Tento skript \PERL{}u 
-se také postará o~vícenásobné prùbìhy. \TEXEXEC\ tvoøí èást 
+tohoto druhu. Tyto zpracová program
+\TEXUTIL. V~nìkterých pøípadech musíme vstup\-ní soubor
+zpracovat tøikrát (trojprùchodová úloha). Je mo¾né pou¾ít pøíkaz 
+\TEXEXEC\ na spu¹tìní \CONTEXT{}u z~pøíkazové øádky. Tento skript,
+% VZ new
+døíve napsaný v~\PERL{}u dnes v~\RUBY{},
+se také postará o~vícenásobné prùchody. \TEXEXEC\ tvoøí èást 
 standardní distribuce \CONTEXT{}u.
 
 \stopcomponent

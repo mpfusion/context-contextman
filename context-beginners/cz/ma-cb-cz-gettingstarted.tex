@@ -1,5 +1,5 @@
-% Translation:
-% busaj
+% Translation: busaj
+% Checking: 2006-11-09 zyka
 \startcomponent ma-cb-cz-gettingstarted
 \project ma-cb
 \product ma-cb-cz
@@ -17,7 +17,8 @@
 
 %If you want to process a \CONTEXT\ input file, you might
 %type at the command line prompt:
-Jestli¾e chcete zpracovat vstupní soubor \CONTEXT{}u, mù¾ete na pøíkazové øádce napsat:
+Jestli¾e chceme zpracovat vstupní soubor \CONTEXT{}u, mù¾eme na
+pøíkazové øádce napsat:
 
 %\starttyping
 %context filename
@@ -30,9 +31,9 @@ context jmenosouboru
 %on the system you're using. Ask your system administrator
 %the command you use to start \CONTEXT. If your filename is
 %\type{myfile.tex} this can be:
-Dostupnost dávkového pøíkazu \type{context} závisí na systému, který u¾íváte. 
-Zeptejte sa svého správce systému na pøíkaz, kterým se spou¹tí \CONTEXT. 
-Kdy¾ je název va¹eho souboru \type{mujsoubor.tex}, mù¾e to být:
+Dostupnost dávkového pøíkazu \type{context} závisí na systému, který u¾íváme. 
+Zeptejme se svého správce systému na pøíkaz, kterým se spou¹tí \CONTEXT. 
+Kdy¾ je název na¹eho souboru \type{mujsoubor.tex}, mù¾e to být:
 
 %\starttyping
 %context myfile
@@ -42,13 +43,13 @@ context mujsoubor
 \stoptyping
 
 %or when \TEXEXEC\ is properly installed:
-\noindent nebo kdy¾ je øádnì nainstalován \TEXEXEC:
+\noindent nebo kdy¾ je øádnì nainstalován \TEXMFSTART{} a~\TEXEXEC:
 
 %\starttyping
 %texexec --pdf myfile
 %\stoptyping
 \starttyping
-texexec --pdf mujsoubor
+texmfstart texexec --pdf mujsoubor
 \stoptyping
 
 %the extension \type{.tex} is not needed.
@@ -58,8 +59,8 @@ texexec --pdf mujsoubor
 %will show processing information on your screen. If
 %processing is succesful the command line prompt will return
 %and \CONTEXT\ will produce a \type{dvi} or \type{pdf} file.
-Po stlaèení klávesy \Enter\ se zaène zpracování. \CONTEXT\
-zobrazí na va¹í obrazovce informaci o~prùbìhu zpracování. 
+Po stlaèení klávesy \Enter\ zaène zpracovávání. \CONTEXT\
+zobrazí na na¹í obrazovce informaci o~prùbìhu zpracování. 
 Kdy¾ bylo zpracování úspì¹né, znovu se objeví výzva v~pøíkazové
 øádce a \CONTEXT\ vytvoøí \type{dvi} nebo \type{pdf} soubor.
 
@@ -69,11 +70,11 @@ Kdy¾ bylo zpracování úspì¹né, znovu se objeví výzva v~pøíkazové
 %you it has just processed an error. It will give you some
 %basic information on the type of error and the line number
 %where the error becomes effective.
-Jestli¾e zpracování úspì¹né není --- napøíklad proto¾e jste napsali
+Jestli¾e zpracování úspì¹né není -- napøíklad proto¾e jsme napsali
 \type{\stptext} namísto \type{\stoptext} ---
-\CONTEXT\ na va¹í obrazovce vypí¹e znak \type{ ? } a~oznámí vám, ¾e právì 
-narazil na chybu. Poskytne vám nìjakou základní informaci o~druhu chyby a~poøadovém 
-èíslu øádku, na kterém se chyba vyskytla.
+\CONTEXT\ na va¹í obrazovce vypí¹e znak \type{ ? } a~oznámí vám, ¾e
+právì narazil na chybu. Poskytne vám nìjakou základní informaci
+o~druhu chyby a~poøadovém èíslu øádku, na kterém se chyba vyskytla.
 
 %At the instant of \type{ ? } you can type:
 V~okam¾iku, kdy se objeví znak \type{ ? } mù¾ete napsat:
@@ -88,26 +89,27 @@ V~okam¾iku, kdy se objeví znak \type{ ? } mù¾ete napsat:
 \starttabulate[|||]
 \NC \type{H} \NC pro pomocnou informaci o~chybì; \NC\NR
 \NC \type{I} \NC pro vlo¾ení opraveného pøíkazu \CONTEXT{}u; \NC\NR
-\NC \type{Q} \NC pro ukonèení a~pøechod na dávkový re¾im; \NC\NR
-\NC \type{X} \NC pro ukonèení be¾ícího re¾imu; \NC\NR
+\NC \type{Q} \NC pro ignorování chyb bez výpisu; \NC\NR
+\NC \type{R} \NC pro ignorování chyb s~výpisem; \NC\NR
+\NC \type{X} \NC pro ukonèení bìhu; \NC\NR
 \NC \Enter   \NC pro ignorování chyby. \NC\NR
 \stoptabulate
 
 %Most of the time you will type \Enter\ and processing will
 %continue. Then you can edit the input file and fix the error.
-Nejèastìji stlaèíte klávesu \Enter\ a~zpracování bude pokraèovat. 
-Pak mù¾ete editovat vstupní soubor a~odstranit chybu.
+Nejèastìji stlaèíme klávesu \Enter\ a~zpracování bude pokraèovat. 
+Pak mù¾eme editovat vstupní soubor a~odstranit chybu.
 
 %Some errors will produce a~\type{ * } on your screen and
 %processing will stop. This error is due to a fatal error in
 %your input file. You can't ignore this error and the only
 %option you have is to type \type{\stop} or {\sc Ctrl}~Z. The
 %program will be halted and you can fix the error.
-Nìkteré chyby zpùsobí výpis znaku \type{ * } na va¹í obrazovce
-a~zpracování se zastaví. To je dùsledek záva¾né chyby ve va¹em
-vstupním souboru. Tuto chybu nemù¾ete ignorovat a~jedinou 
+Nìkteré chyby zpùsobí výpis znaku \type{ * } na na¹í obrazovce
+pøi souèasném zastavení zpracování. To je dùsledek záva¾né chyby v~na¹em
+vstupním souboru. Tuto chybu nemù¾eme ignorovat a~jedinou 
 mo¾ností je napsat \type{\stop} nebo {\sc Ctrl}~Z. Program se zastaví
-a~chybu mù¾ete odstranit.
+a~chybu mù¾eme odstranit.
 
 %During the processing of your input file \CONTEXT\ will also
 %inform you of what it is doing with your document. For
@@ -118,14 +120,14 @@ a~chybu mù¾ete odstranit.
 %\type{log} file that can be used for reviewing warnings and
 %errors and the respective line numbers where they occur in
 %your file.
-Bìhem zpracování va¹eho vstupního souboru vás bude \CONTEXT\ 
-také informovat o~tom, co se provádí s~va¹im dokumentem. 
+Bìhem zpracování va¹eho vstupního souboru nvás bude \CONTEXT\ 
+také informovat o~tom, co se provádí s~na¹im dokumentem. 
 Napøíklad zobrazí èísla stránek a~informaci o~jednotlivých
 krocích postupu. Mimoto ohlásí varování. Tyto jsou typografického  
-charakteru a~oznámí vám neúspì¹né zalomení øádku. 
+charakteru a~oznámí nám neúspì¹né zalomení øádku. 
 V¹echna informace o~zpracování se ukládá do \type{log} souboru,
 který je mo¾né pou¾ít na pøezkoumání varování a~chyb a~na urèení
-odpovídajícich øádkù va¹eho souboru, na kterých se chyby vyskytly.
+odpovídajících øádkù na¹eho souboru, na kterých se chyby vyskytly.
 
 %When processing is succesful \CONTEXT\ produces a new file,
 %with the extension \type{.dvi} or \type{.pdf} so the files
@@ -136,13 +138,13 @@ odpovídajícich øádkù va¹eho souboru, na kterých se chyby vyskytly.
 %for printing or viewing. The abbreviation \PDF\ stands for
 %Portable Document Format. This is a platform independent
 %format for printing and viewing.
-Pøi úspì¹ném zpracování \CONTEXT\ vytvoøí nový soubor s~extenzí 
+Pøi úspì¹ném zpracování \CONTEXT\ vytvoøí nový soubor s~pøíponou 
 \type{.dvi} nebo \type{.pdf}, tedy bude vytvoøen soubor
 \type{mujsoubor.dvi} nebo \type{mujsoubor.pdf}. Zkratka 
- \type{dvi} znamená Device Indepent (nezávislý na zaøízení). 
- To znamená, ¾e soubor mù¾e být zpracován vhodným ovladaèem
+\type{dvi} znamená Device Indepent (nezávislý na zaøízení). 
+To znamená, ¾e soubor mù¾e být zpracován vhodným ovladaèem
 PostScriptové (\PS) tiskárny na soubor vhodný k~tisku nebo k~prohlí¾ení. 
 Zkratka \PDF\ znamená Portable Document Format (pøenosný formát dokumentu). 
-Je to formát pro tisk a prohlí¾ení, nezávislý na platformì.
+Je to formát pro tisk a prohlí¾ení, nezávislý na operaèním systému.
 
 \stopcomponent
