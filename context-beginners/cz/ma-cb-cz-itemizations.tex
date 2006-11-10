@@ -1,13 +1,17 @@
-%token  Translation:
-%pøelo¾il: jaih
+% Translation: jaih
+% Checking: 2006-11-10 zyka
 \startcomponent ma-cb-cz-itemizations
 \project ma-cb
 \product ma-cb-cz
 \environment ma-cb-env-cz
 
+%\chapter[itemize]{Itemize}
 \chapter[itemize]{Odrá¾ky a~výèty}
 
+%\index{itemize}
+%\index{columns in itemize}
 \index{odrá¾ky}
+\index{výèty}
 \index{odrá¾ky ve sloupcích}
 
 \Command{\tex{startitemize}}
@@ -16,11 +20,10 @@
 \Command{\tex{item}}
 \Command{\tex{head}}
 
-
 %One way of structuring your information is by way of
 %enumeration or summing up items. The itemize command looks
 %like this:
-Jedním ze zpùsobù, jak rozèlenit vá¹ text,
+Jedním ze zpùsobù, jak rozèlenit ná¹ text,
 je vyjmenování, nebo shrnutí jednotlivých polo¾ek.
 Syntaxe pøíkazu pro tento úèel vypadá takto:
 
@@ -51,12 +54,12 @@ Pøíklad:
 %of vertical spacing after the item separator. The example
 %would produce:
 
-Uvnitø  \type{\startitemize} $\cdots$ \type{\stopitemize}
-zaènìte ka¾dou novou polo¾ku pøíkazem \type{\item} a~za
-\type{\item} nezapomeòte na mezeru. V na¹em pøíkladu parametr \type{R}
+Uvnitø \type{\startitemize} $\cdots$ \type{\stopitemize}
+zaènìme ka¾dou novou polo¾ku pøíkazem \type{\item} a~za
+\type{\item} nezapomeòme na mezeru. V~na¹em pøíkladu parametr \type{R}
 specifikuje øímské èíslování a~\type{packed} minimální mezeru mezi øádky.
-Parametr \type{broad} zajistí rozumnou vertikální mezeru mezi znaèkou a~textem.
-Ná¹ pøíklad by vypadal:
+Parametr \type{broad} zajistí rozumnou horizontální mezeru mezi
+znaèkou a~textem. Ná¹ pøíklad by vypadal:
 
 \getbuffer
 
@@ -96,7 +99,6 @@ je obsa¾ena informace o~symbolu odrá¾ky a~lokální nastavení promìnných.
 Mù¾ete také nadefinovat své vlastní znaèky odrá¾ek pomocí pøíkazu
 \type{\definesymbol}. Vyzkou¹ejte napøíklad
 
-
 %\item Hasselt was built on a riverdune.
 %\item Hasselt lies at the crossing of two rivers.
 
@@ -120,7 +122,6 @@ Dostanete pak tento výstup:
 %of \type{\item}.
 Nìkdy je potøeba mít jednotlivé polo¾ky neèíslované.
 V takovém pøípadì pou¾ijte  místo \type{\item} pøíkaz \type{\head}.
-
 
 %Hasselt lies in the province of Overijssel and there are a number of
 %customs that are typical of this province.
@@ -150,51 +151,36 @@ V takovém pøípadì pou¾ijte  místo \type{\item} pøíkaz \type{\head}.
 %      or Sarah. The custom is to give these people a {\em speculaas}
 %      Abraham or a Sarah. Speculaas is a kind of hard spiced biscuit.
 
-
-
-
-
 \startbuffer
 Hasselt le¾í v~provincii Overijssel, pro kterou je typické
 mno¾ství rùzných zvyklostí.
 
 \startitemize
 
-
 \head kraamschudden \hfill (vítání novorozenìte)
-
-
 
       Po narození dítìte, sousedé nav¹tíví novopeèené rodièe.
       Zatímco ¾eny pøichází dítì obdivovat, mu¾i (pokud jde o~chlapce)
-      hodnotí  ostatní aspekty. Je zvykem ¾e sebou pøiná¹í 
-      {\em krentenwegge}, co¾ je asi 1 \Meter\ dlouhý
+      mu po¾ehnají ostatní aspekty. Je zvykem, ¾e sebou pøiná¹í 
+      {\em krentenwegge}, co¾ je asi 1~\Meter\ dlouhý
       hrozinkový chléb. Nedílnou souèástí oslav narození 
       je samozøejmì tradièní alkoholický nápoj.
 
-
-
 \head nabuurschap (naberschop) \hfill (spoleèenství)
-
-
 
       Malé komunity bývaly velmi závislé na vzájemné pomoci
       pøíslu¹ných èlenù. Tito èlenové {\em nabuurschap}ù si pomáhali
       v~èasích ¾ní, pohøbù a~vùbec pøi v¹ech tì¾kostech, 
       které na komunitu doléhaly.
 
-
-
 \head Abraham \& Sarah  \hfill (stáøí)
-
 
       Kdy¾ lidé v~Hasseltu dosáhnou padesáti let, øíká se o~nich, ¾e
       se vídají s~Abrahamem a~Sárou. Je zvykem dát jim
       tzv. {\em speculaas}, co¾ je zvlá¹tní druh 
       silnì koøenìných sucharù. 
-
-
 \stopitemize
+
 \stopbuffer
 
 \typebuffer
@@ -206,7 +192,7 @@ mno¾ství rùzných zvyklostí.
 Zpùsob jakým se pøíkaz \type{\head} vysází, mù¾e být 
 ovlivnìno pomocí \type{\setupitemize}. V pøípadì zlomu stránky,
 se \type{\head} objeví v¾dy na nové stránce. (Pøíkaz \type {\Meter}
- bude vysvìtlen v~kapitole \in{chapter} [units].)
+ bude vysvìtlen v~\in{kapitole}[units].)
 
 %The example of old customs will look like this:
 Pøíklad o~starých zvycích vypadá takto:
@@ -215,12 +201,12 @@ Pøíklad o~starých zvycích vypadá takto:
 
 %The set up parameters of itemize are described in
 Parametry pro nastavení zpùsobu zobrazení polo¾ek jsou uvedeny
-v~\in{table}[tab:tablesetup].
+v~\in{tabulce}[tab:tablesetup].
 
 \placetable
   [here,force]
   [tab:tablesetup]
-  {Parametry pro \type{\startitemize}}
+  {Parametry pro \type{\startitemize}.}
 \starttable[|l|l|]
 \HL
 %\NC \bf Set up \NC \bf Meaning                                      \NC\SR
@@ -239,26 +225,24 @@ v~\in{table}[tab:tablesetup].
 %\NC continue   \NC continue numbering or lettering                  \NC\LR
 \NC standard   \NC standardní (globalní) nastavení                  \NC\FR
 \NC packed     \NC bez vertikální mezery mezi polo¾kami             \NC\MR
-\NC serried    \NC ¾ádná horiz.mezera mezi znaèkou a~textem         \NC\MR
+\NC serried    \NC ¾ádná horizontální mezera mezi znaèkou a~textem  \NC\MR
 \NC joinedup   \NC ¾ádné odsazení pøed a~po bloku polo¾ek           \NC\MR
 \NC broad      \NC horizontální mezera mezi znaèkou a~textem        \NC\MR
 \NC inmargin   \NC umístit znaèku polo¾ek do okraje                 \NC\MR
 \NC atmargin   \NC umístit znaèku polo¾ek k~okraji                  \NC\MR
 \NC stopper    \NC umístí ukonèení znaèky (implicitnì '.')          \NC\MR
-\NC columns    \NC rozmísti polo¾ky do sloupcù                      \NC\MR
-\NC intro      \NC brání stránkovému zlomu mezi odrá¾kami a~jejich uvozujícím odstavcem    \NC\MR
-\NC continue   \NC pokraèování v~èíslování                          \NC\LR
+\NC columns    \NC rozmístí polo¾ky do sloupcù                      \NC\MR
+\NC intro      \NC brání stránkovému zlomu mezi odrá¾kami a~jejich uvozujícím odstavcem \NC\MR
+\NC continue   \NC pokraèování v~pøedchozím èíslování               \NC\LR
 \HL
 \stoptable
-
 
 %You can use the set up parameters in \type{\startitemize},
 %but for reasons of consistency you can make them valid for
 %the complete document with \type{\setupitemize}.
-Zpùsob zobrazení polo¾ek je sice mo¾né mìnit pomocí \type{\startitemize},
+Zpùsob zobrazení polo¾ek je sice mo¾né mìnit i~u~ka¾dého \type{\startitemize},
 ale z~dùvodu jednotného vzhledu je vhodné vyu¾ít jednotného nastavení
 pro celý dokument, prostøednictvím \type{\setupitemize}.
-
 
 %The parameter \type{columns} is used in conjunction with
 %a number. If you type this:
@@ -332,8 +316,9 @@ To lze provést pomocí...
 
 %The parameter \type{broad} enlarges the horizontal space
 %between item separator and itemtext.
-Parameter \type{broad} zvìt¹uje horizontální mezeru
-mezi znaèkou polo¾ky a~jejím textem.
+%% VZ: It is already mentioned at beginning of this chapter.
+%Parameter \type{broad} zvìt¹uje horizontální mezeru
+%mezi znaèkou polo¾ky a~jejím textem.
 
 \shortsetup{setupitemize}
 
@@ -356,17 +341,8 @@ napí¹ete:
 %      If the real estate has no tenant the owner pays both components.
 %\item dog licence fee
 
-
 %      The owner of one or more dogs pays a fee. When a dog has died
 %      or been sold the owner has to inform city hall.
-
-
-
-
-
-
-
-
 
 \startbuffer
 V Nizozemí mohou jednotlivá mìsta urèovat vý¹ku celé øady daní, tak¾e 
@@ -376,25 +352,18 @@ pøesahují i~50\,\%.
 \setupitemize[2][width=5em]
 \startitemize[n]
 
-
-
 \item Danì za bydlení.
 
-
       Danì za bydlení jsou rozdìleny na dvì èásti:
-
-
 
       \startitemize[a,packed]
       \item daò z~vlastnictví nemovitosti,
       \item nájem.
       \stopitemize
 
-
       Pokud nemovitost nemá nájemníka, platí vlastník objetku obì èásti.
 
-
-\item poplatek za psa
+\item Poplatek za psa.
 
       Vlastník jednoho nebo více psù platí poplatek. Pokud pes zemøe,
       nebo je prodán, je vlastník povinen nahlásit to na radnici.

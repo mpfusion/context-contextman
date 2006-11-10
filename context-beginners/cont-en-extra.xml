@@ -379,4 +379,148 @@ Todo:
   </cd:arguments>
 </cd:command>
 
+<cd:command name="setupitemize" file="core-itm.tex">
+  <cd:sequence>
+    <cd:string value="setupitemize"/>
+  </cd:sequence>
+  <cd:arguments>
+    <cd:keywords optional="yes">
+      <cd:constant type="cd:number"/>
+      <cd:constant type="each"/>
+    </cd:keywords>
+    <cd:keywords optional="yes" list="yes">
+      <cd:constant type="standard" default="yes"/>
+      <cd:constant type="broad"/>
+      <cd:constant type="serried"/>
+      <cd:constant type="packed"/>
+      <cd:constant type="unpacked"/>
+      <cd:constant type="stopper"/>
+      <cd:constant type="joinedup"/>
+      <cd:constant type="atmargin"/>
+      <cd:constant type="inmargin"/>
+      <cd:constant type="autointro"/>
+      <cd:constant type="loose"/>
+      <cd:constant type="repeat"/>
+      <cd:constant type="cd:section"/>
+      <cd:constant type="paragraph"/>
+      <cd:constant type="intext"/>
+      <cd:constant type="random"/>
+    </cd:keywords>
+    <cd:assignments optional="yes" list="yes">
+      <cd:parameter name="margin">
+        <cd:constant type="no"/>
+        <cd:constant type="standard"/>
+        <cd:constant type="cd:dimension"/>
+      </cd:parameter>
+      <cd:parameter name="leftmargin">
+        <cd:constant type="no"/>
+        <cd:constant type="standard"/>
+        <cd:constant type="cd:dimension"/>
+      </cd:parameter>
+      <cd:parameter name="rightmargin">
+        <cd:constant type="no"/>
+        <cd:constant type="standard"/>
+        <cd:constant type="cd:dimension"/>
+      </cd:parameter>
+      <cd:parameter name="width">
+        <cd:constant type="cd:dimension"/>
+      </cd:parameter>
+      <cd:parameter name="distance">
+        <cd:constant type="cd:dimension"/>
+      </cd:parameter>
+      <cd:parameter name="factor">
+        <cd:constant type="cd:number"/>
+      </cd:parameter>
+      <cd:parameter name="items">
+        <cd:constant type="cd:number"/>
+      </cd:parameter>
+      <cd:parameter name="start">
+        <cd:constant type="cd:number"/>
+      </cd:parameter>
+      <cd:parameter name="before">
+        <cd:constant type="cd:command"/>
+      </cd:parameter>
+      <cd:parameter name="inbetween">
+        <cd:constant type="cd:command"/>
+      </cd:parameter>
+      <cd:parameter name="after">
+        <cd:constant type="cd:command"/>
+      </cd:parameter>
+      <cd:parameter name="left">
+        <cd:constant type="cd:text"/>
+      </cd:parameter>
+      <cd:parameter name="right">
+        <cd:constant type="cd:text"/>
+      </cd:parameter>
+      <cd:parameter name="beforehead">
+        <cd:constant type="cd:command"/>
+      </cd:parameter>
+      <cd:parameter name="afterhead">
+        <cd:constant type="cd:command"/>
+      </cd:parameter>
+      <cd:parameter name="headstyle">
+        <cd:resolve name="style"/>
+      </cd:parameter>
+      <cd:parameter name="marstyle">
+        <cd:resolve name="style"/>
+      </cd:parameter>
+      <cd:parameter name="symstyle">
+        <cd:resolve name="style"/>
+      </cd:parameter>
+      <cd:parameter name="stopper">
+        <cd:constant type="cd:text"/>
+      </cd:parameter>
+      <cd:parameter name="n">
+        <cd:constant type="cd:number"/>
+      </cd:parameter>
+      <cd:parameter name="symbol">
+        <cd:constant type="cd:number"/>
+      </cd:parameter>
+      <cd:parameter name="align">
+        <cd:resolve name="align"/>
+      </cd:parameter>
+      <cd:parameter name="indentnext">
+        <cd:resolve name="indentnext"/>
+      </cd:parameter>
+    </cd:assignments>
+  </cd:arguments>
+</cd:command>
+
+<cd:command name="itemize" type="environment" generated="yes">
+  <cd:sequence>
+    <cd:variable value="itemize"/>
+  </cd:sequence>
+  <cd:arguments>
+    <cd:keywords optional="yes" list="yes">
+      <cd:constant type="a"/>
+      <cd:constant type="A"/>
+      <cd:constant type="KA"/>
+      <cd:constant type="n"/>
+      <cd:constant type="N"/>
+      <cd:constant type="m"/>
+      <cd:constant type="r"/>
+      <cd:constant type="R"/>
+      <cd:constant type="KR"/>
+      <cd:constant type="cd:number"/>
+      <cd:constant type="continue"/>
+      <cd:constant type="standard" default="yes"/>
+      <cd:constant type="broad"/>
+      <cd:constant type="serried"/>
+      <cd:constant type="packed"/>
+      <cd:constant type="stopper"/>
+      <cd:constant type="joinedup"/>
+      <cd:constant type="atmargin"/>
+      <cd:constant type="inmargin"/>
+      <cd:constant type="intro"/>
+      <cd:constant type="columns"/>
+      <cd:constant type="text"/>
+      <cd:constant type="paragraph"/>
+      <cd:constant type="repeat"/>
+    </cd:keywords>
+    <cd:assignments optional="yes" list="yes">
+      <cd:inherit name="setupitemize"/>
+    </cd:assignments>
+  </cd:arguments>
+</cd:command>
+
 </cd:interface>
