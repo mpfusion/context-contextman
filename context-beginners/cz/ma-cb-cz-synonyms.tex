@@ -1,12 +1,15 @@
 % Translation:
+% busaj
 \startcomponent ma-cb-cz-synonyms
 \project ma-cb
 \product ma-cb-cz
 \environment ma-cb-env-cz
 
-\chapter[synonyms]{Synonyms}
+%\chapter[synonyms]{Synonyms}
+\chapter[synonyma]{Synonyma}
 
-\index{synonyms}
+%\index{synonyms}
+\index{synonyma}
 
 \Command{\tex{definesynonyms}}
 \Command{\tex{setupsynonyms}}
@@ -17,78 +20,103 @@
 \Command{\tex{placelistofabbreviations}}
 \Command{\tex{completelistofabbreviations}}
 
-In many documents people want to use specific words consistently
-throughout the document. To enforce consistency the command
-below is available.
+%In many documents people want to use specific words consistently
+%throughout the document. To enforce consistency the command
+%below is available.
+V~mnoha pøípadech chtìjí autoøi pou¾ívat urèitá slova zhodnì v~celém dokumentu. 
+K~dosa¾ení jednotnosti je k~dispozici následující pøíkaz.
 
 \shortsetup{definesynonyms}
 
-The first bracket pair contains the singular form of the synonym,
-and the second contains the plural form. The third bracket pair
-contains a command.
+%The first bracket pair contains the singular form of the synonym,
+%and the second contains the plural form. The third bracket pair
+%contains a command.
+První dvojice hranatých závorek obsahuje singulární tvar synonyma a druhá dvojice obsahuje plurální formu. 
+Tøetí dvojice hranatých závorek obsahuje povel.
 
-For example the command \type{\abbreviation} is defined by:
+%For example the command \type{\abbreviation} is defined by:
+Napøíklad povel \type{\abbreviation} je definován následovnì:
 
 \starttyping
 \definesynonyms[abbreviation][abbreviations][\infull]
 \setupsynonyms[style=cap]
 \stoptyping
 
-Now the command \type{\abbreviation} is available and can be
-used to state your abbreviations:
+%Now the command \type{\abbreviation} is available and can be
+%used to state your abbreviations:
+Nyní je k~dispozici pøíkaz \type{\abbreviation} a mù¾e být pou¾it na definování va¹ich zkratek:
 
+%\starttyping
+%\abbreviation{ANWB}{Dutch Automobile Association}
+%\abbreviation{VVV}{Bureau of Tourist Information}
+%\abbreviation{NS}{Dutch Railways}
+%\stoptyping
 \starttyping
-\abbreviation{ANWB}{Dutch Automobile Association}
-\abbreviation{VVV}{Bureau of Tourist Information}
-\abbreviation{NS}{Dutch Railways}
+\abbreviation{ANWB}{Holandská automobilová asociace}
+\abbreviation{VVV}{Úøad turistických informací}
+\abbreviation{NS}{Holandské dráhy}
 \stoptyping
 
-\abbreviation{VVV}{Bureau of Tourist Information}
+%\abbreviation{VVV}{Bureau of Tourist Information}
+\abbreviation{VVV}{Úøad turistických informací}
 
-If you would type:
+%If you would type:
+Jestli¾e napí¹ete:
 
+%\startbuffer
+%The Dutch \VVV\ (\infull{VVV}) can provide you with the tourist
+%information on Hasselt.
+%\stopbuffer
 \startbuffer
-The Dutch \VVV\ (\infull{VVV}) can provide you with the tourist
-information on Hasselt.
+Holandský \VVV\ (\infull{VVV}) vám mù¾e poskytnout turistické
+informace o~Hasseltu.
 \stopbuffer
 
 \typebuffer
 
-You would obtain something like this:
+%You would obtain something like this:
+Dostanete nìco jako:
 
 \getbuffer
 
-The list of synonyms or abbreviations is best defined in
-the set up area of your input file for maintenance purposes.
-You can also store this kind of information in an
-external file, and load the file (e.g. \type{abbrev.tex}) with:
+%The list of synonyms or abbreviations is best defined in
+%the set up area of your input file for maintenance purposes.
+%You can also store this kind of information in an
+%external file, and load the file (e.g. \type{abbrev.tex}) with:
+Seznam synonym a zkratek je nejlep¹í definovat v~deklaraèní oblasti va¹eho vstupního souboru z~dùvodu jeho jednoduché údr¾by.
+Tento typ informace mù¾ete také ulo¾it do externího souboru a tento naèíst (napø. \type{abbrev.tex}) pøíkazem:
 
 \starttyping
 \input abbrev.tex
 \stoptyping
 
-If you want to put a list of the abbreviations used in your
-document you can type:
+%If you want to put a list of the abbreviations used in your
+%document you can type:
+Kdy¾ chcete do va¹eho dokumentu umístit seznam zkratek, mù¾ete napsat:
 
 \starttyping
 \placelistofabbreviations
 \stoptyping
 
-or
+%or
+nebo
 
 \starttyping
 \completelistofabbreviations
 \stoptyping
 
-A complete and sorted list with abbreviations and their
-meaning is produced.
+%A complete and sorted list with abbreviations and their
+%meaning is produced.
+Vytvoøí se tak úplný abecednì uspoøádaný seznam zkratek a jejich významù.
 
-The typesetting of synonynms can be influenced with:
+%The typesetting of synonynms can be influenced with:
+Sazba synonym se dá ovlivnit pøíkazem:
 
 \starttyping
 \setupsynonyms
 \stoptyping
 
-Look at \in{chapter}[units] for another application of synonyms.
+%Look at \in{chapter}[units] for another application of synonyms.
+Dal¹í aplikace synonym naleznete v~\in{kapitole}[units].
 
 \stopcomponent
