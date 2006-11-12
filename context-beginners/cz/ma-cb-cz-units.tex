@@ -1,5 +1,5 @@
-% Translation:
-% pøelo¾il: jaih
+% Translation: pøelo¾il: jaih
+% Checking: 2006-11-10 zyka
 \startcomponent ma-cb-cz-units
 \project ma-cb
 \product ma-cb-cz
@@ -12,31 +12,28 @@
 \index{jednotky}
 %\index[siunit]{\cap{SI}--unit}
 \index[jednotkasi]{\cap{SI}--jednotka}
+\index{procento}
+\index{promile}
 
-%\Command{\tex{unit}}
-\Command{\tex{jednotka}}
-%\Command{\tex{permille}}
-\Command{\tex{promile}}
-%\Command{\tex{percent}}
-\Command{\tex{procento}}
+\Command{\tex{unit}}
+\Command{\tex{permille}}
+\Command{\tex{percent}}
 
 %To force yourself to use dimensions and units consistently
 %throughout the document you can make your own list with
 %units. These are specified in the set up area of your
 %input file.
-
-Abyste se pøimìli u¾ívat jednotnì v celém svém dokumentu
-míry a jednotky, mù¾ete vytvoøit vlastní seznam tìchto 
-jednotek a umístit ho do deklaraèní oblasti (pøed pøíkaz
-\type{\starttext}) va¹eho vstupního textu.
+Abychom se pøimìli u¾ívat míry a~jednotky jednotnì v~celém dokumentu,
+mù¾eme vytvoøit vlastní seznam tìchto jednotek a~umístit ho do
+deklaraèní oblasti (pøed pøíkaz \type{\starttext}) na¹eho vstupního
+textu.
 
 %In \CONTEXT\ there is an external module available that
 %contains almost all \SI||units. When this module is loaded
 %with \type{\usemodule[units]} you can call units with:
-
-\CONTEXT\ je dostupný vnìj¹í modul, který obsahuje témìø 
-v¹echny \SI||jednotky. Pokud se na tento modul odvoláte
-pøíkazem \type{\usemodule[units]}, mù¾ete pak u¾ívat jednotky
+V~\CONTEXT{}u je dostupný vnìj¹í modul, který obsahuje témìø 
+v¹echny \SI||jednotky. Pokud se na tento modul odvoláme
+pøíkazem \type{\usemodule[units]}, mù¾eme pak u¾ívat jednotky
 následujícím zpùsobem:
 
 \startbuffer
@@ -57,13 +54,12 @@ následujícím zpùsobem:
 %because a number typeset at the end of a line and the unit
 %at the beginning of the next one, is far from perfect.
 %These examples come out as:
-
-Trochu více psaní je vyvá¾eno zaruèením jednotného 
-pøístupu v u¾ívání jednotek. Pøíkaz \type{\unit} také
-zaruèuje, ¾e od sebe nebudou oddìleny hodnota a její jednotka.
-Pokud se toti¾ hodnota nachází na konci øádku a následující 
-øádek zaèíná mìrnou jednotkou, nemá to pøíli¹ blízko k
-dokonalosti. Ná¹ pøedchozí pøíklad se vysází takto:
+Trocha více psaní je vyvá¾ena zárukou jednotného 
+pøístupu v~u¾ívání jednotek. Pøíkaz \type{\unit} také
+zaruèuje, ¾e od sebe nebudou oddìleny hodnota a~její jednotka.
+Pokud se toti¾ hodnota nachází na konci øádku a~následující 
+øádek zaèíná mìrnou jednotkou, není to pøíli¹ dokonalé. Ná¹ pøedchozí
+pøíklad se vysází takto:
 
 \startnarrower
 \startlines
@@ -72,7 +68,7 @@ dokonalosti. Ná¹ pøedchozí pøíklad se vysází takto:
 \stopnarrower
 
 %You can define your own units with:
-Mù¾ete také nadefinovat své vlastní jednotky:
+Mù¾eme také nadefinovat své vlastní jednotky:
 
 \starttyping
 \unit[Ounce]{oz}{}
@@ -82,7 +78,7 @@ Mù¾ete také nadefinovat své vlastní jednotky:
 
 %Later on in the document you can type \type{15.6 \Ounce}
 %that will be displayed as 15.6 \Ounce.
-Pozdìji ve svém dokumentu mù¾ete napsat \type{15.6 \Ounce}
+Pozdìji ve svém dokumentu mù¾eme napsat \type{15.6 \Ounce},
 co¾ bude vysázeno jako 15.6 \Ounce.
 
 %In order to write \percent\  and \permille\ in a consistent

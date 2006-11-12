@@ -17,3 +17,7 @@ special character		= zvl-Aá-B¹tn-Aí znak-B
 double sided document		= oboustrann-Aý dokument-B
 chapter, section, subsection    = kapitola, sekce, podsekce
 utility                         = 
+math mode                       = matematický mód (Ol¹ák TBN)
+display mode                    = display matematický mód (Ol¹ák TBN)
+text mode                       = vnitøní matematický mód  (Ol¹ák TBN)
+formulae                        = rovnice
