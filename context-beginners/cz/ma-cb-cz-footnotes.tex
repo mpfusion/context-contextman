@@ -1,5 +1,5 @@
-% Translation:
-% 2006-07-13 Martina Plachá
+% Translation: 2006-07-13 Martina Plachá
+% Checking:    2006-11-09 zyka
 \startcomponent ma-cb-cz-footnotes
 \project ma-cb
 \product ma-cb-cz
@@ -16,7 +16,7 @@
 
 % If you want to annotate your text you can use
 % \type{\footnote}. The command looks like this:
-Pokud chcete opatøit text poznámkou, mù¾ete pou¾ít
+Pokud chceme opatøit text poznámkou, mù¾eme pou¾ít
 \type{\footnote}. Pøíkaz vypadá takto: 
 
 \shortsetup{footnote}
@@ -24,17 +24,17 @@ Pokud chcete opatøit text poznámkou, mù¾ete pou¾ít
 %The bracket pair is optional and contains a logical name.
 %The curly braces contain the text you want to display at
 %the foot of the page.
-Párové hranaté závorky, obsahující referenèní pojmenování poznámky pod
+Párové hranaté závorky, obsahující referenèní jméno poznámky pod
 èarou, nejsou povinné. Slo¾ené závorky obsahují text, který chcete
 zobrazit po èarou.
 
 %The same footnote number can be called with its logical name.
-Èíslo poznámky pod èarou mù¾eme získat napsáním referenèního pojmenování.
+Èíslo poznámky pod èarou mù¾eme získat napsáním referenèního jména do
 
 \shortsetup{note}
 
 %If you have typed this text:
-Pokud napí¹ete text:
+Pokud napí¹eme text
 
 % \startbuffer
 % The Hanse was a late medieval commercial alliance of towns in the
@@ -51,11 +51,11 @@ Pokud napí¹ete text:
 \startbuffer
 Hanza byla pozdnì støedovìká obchodní aliance mìst v oblasti
 Severního a Baltského moøe. Tento spolek byl sestaven na podporu a
-ochranu obchodování svých èlenù.\footnote[war]{Teno systém byl také
+ochranu obchodování svých èlenù.\footnote[war]{Tento systém byl také
   zdrojem závisti a strachu mezi ostatními mìsty a 
   zapøíèinil mnohé váleèné støety.}
 V~období hanzovního systému zde panoval èilý obchodní ruch s ve¹kerým
-zbo¾ím jako døevo, vlna, kovy, látky, sùl, víno a pivo.\note[war]
+zbo¾ím jako døevo, vlna, kovy, látky, sùl, víno a~pivo.\note[war]
 Fungující obchod zpùsobil enormní rùst prosperity a blahobytu
 v~hanzovních mìstech.\footnote{Hasselt je jedním z tìchto mìst.}
 \stopbuffer
@@ -63,7 +63,7 @@ v~hanzovních mìstech.\footnote{Hasselt je jedním z tìchto mìst.}
 \typebuffer
 
 %It would look like this:
-Bude vypadat takto:
+pak bude vypadat takto:
 
 \getbuffer
 
@@ -71,8 +71,7 @@ Bude vypadat takto:
 %\type{\setupfootnotes} enables you to influence the display
 %of footnotes:
 Èíslování poznámek se provádí automaticky. Pøíkaz
-\type{\setupfootnotes} vám umo¾ní ovlivnit vzhled poznámky.
-
+\type{\setupfootnotes} nám umo¾ní ovlivnit vzhled poznámky.
 
 \shortsetup{setupfootnotes}
 
@@ -82,7 +81,8 @@ Bude vypadat takto:
 
 %\shortsetup{placefootnotes}
 Poznámky mohou být umístìny ve spodní èásti stránky, ale také jinde,
-napø. na konci kapitoly. To provádíme pøíkazem:
+napø. na konci kapitoly. To provádíme nastavením \type{location=none}
+a~uvedením \type{\placefootnotes} na konci kapitoly.
 
 \shortsetup{placefootnotes}
 
@@ -90,8 +90,9 @@ napø. na konci kapitoly. To provádíme pøíkazem:
 %speak of local footnotes. The commands are:
 
 %\shortsetup{startlocalfootnotes}
-Poznámka se také mù¾e pøiøadit k tabulce. V takovém pøípadì hovoøíme o
-lokálních poz\-nám\-kách. Pro tento úèel existují následující pøíkazy:
+Poznámka se také mù¾e pøiøadit k tabulce. V takovém pøípadì hovoøíme
+o~lokálních poz\-nám\-kách. Pro tento úèel existují následující
+pøíkazy:
 
 \shortsetup{startlocalfootnotes}
 

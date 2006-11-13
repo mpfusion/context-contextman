@@ -1,12 +1,12 @@
-% Translation:
-% jaih
+% Translation: jaih
+% Checking:    2006-11-13 zyka
 \startcomponent ma-cb-cz-margintexts
 \project ma-cb
 \product ma-cb-cz
 \environment ma-cb-env-cz
 
 %\chapter{Margin texts}
-\chapter{Text v~okraji}
+\chapter{Marginálie}
 
 %\index{margin text}
 \index{marginálie}
@@ -15,10 +15,11 @@
 \Command{\tex{inleft}}
 \Command{\tex{inright}}
 \Command{\tex{margintitle}}
+\Command{\tex{setupmargin}}
 
 %It is very easy to put text in the margin. You just use
-Je velmi snadné vlo¾it text do okraje. Staèí pou¾ít
-\type{\inmargin}.
+Je velmi snadné vlo¾it text do {\em marginálie\/} (okraj
+stránky). Staèí pou¾ít \type{\inmargin}.
 
 \shortsetup{inmargin}
 
@@ -32,13 +33,11 @@ Pøipomeòme si jeden z~pøedcházejících pøíkladù:
 %can imagine that it looks quite nice in some documents. But
 %be careful. The margin is rather small so the figure could
 %become very marginal.
-
-Tato ukázka vysází obrázek do \pagereference
-[marginpicture]\getbuffer [marginpicture] okraje. Jistì si
-umíte pøedstavit, ¾e v~nìkterých dokumentech mù¾e tento efekt
-pùsobit velice dobøe, ale buïte opatrní. Okraje jsou vìt¹inou 
-velmi malé a~obrázky by tomu mìli odpovídat.
-
+Tato ukázka vysází obrázek do
+\pagereference[marginpicture]\getbuffer [marginpicture] okraje. Jistì
+si umíme pøedstavit, ¾e v~nìkterých dokumentech mù¾e tento efekt
+pùsobit velice dobøe, ale buïme opatrní. Okraje jsou vìt¹inou 
+velmi úzké a~obrázky tak budou vskutku okrajové!
 
 %A few other examples are shown in the text below.
 Nìkolik dal¹ích pøíkladù je ukázáno v~následujícím textu.
@@ -60,18 +59,16 @@ Nìkolik dal¹ích pøíkladù je ukázáno v~následujícím textu.
 
 \startbuffer
 "Ridderstraat" (Rytíøská ulice) je název velmi vypovídající.
-Ve~14.~a~15.století zde bydleli ¹lechtici a~prominentní obyvatelé.
+Ve~14. a~15.století zde bydleli ¹lechtici a~prominentní obyvatelé.
 Nìkteré z~jejich velkých domù byly pozdìji zmìnìny na domovy
 pro chudé \inright{poorhouse} a~na starobince.
 
 A¾ do roku \inleft[low]{\tfc 1940}1940 se zde nacházela synagoga.
-Asi 40 ¾ídù se zde scházelo ke slaví své ¹abatu. Bìhem války
+Asi 40 ¾idù se zde scházelo ke slavení svého ¹abatu. Bìhem války
 byli v¹ichni ¾idé deportováni do Westborku a~pak do koncentraèních
 táborù v~Nìmecku a~Polsku. ®ádná z~¾idovských rodin se ji¾ 
 nevrátila a~synagoga byla zboøena v~roce 1958.
 \stopbuffer
-
-
 
 \typebuffer
 
@@ -80,9 +77,8 @@ nevrátila a~synagoga byla zboøena v~roce 1958.
 %document \type{\inmargin} puts the margin text in the correct
 %margin. The \type{\\} is used for line breaking. The example
 %above would look like this:
-
 Pøíkazy \type{\inmargin}, \type{\inleft} a~\type{\inright} 
-mají v¹echny stejnou funkci. V~dokumentu ti¹tìném oboustrannì
+mají v¹echny stejnou funkci. V~oboustrannì ti¹tìném dokumentu
 bude pøíkaz \type{\inmargin} sázet v¾dy do správného okraje.
 Dvojité lomítko \type{\\} zpùsobí zalomení øádky. Pøedchozí
 pøíklad by tedy vypadal takto:
@@ -90,10 +86,8 @@ pøíklad by tedy vypadal takto:
 \getbuffer
 
 %You can set up the margin text with:
-Nastavit text v~okraji lze pomocí:
+Nastavit text v~okraji lze pomocí \type{\setupinmargin}.
 
-\starttyping
-\setupinmargin
-\stoptyping
+\shortsetup{setupinmargin}
 
 \stopcomponent
