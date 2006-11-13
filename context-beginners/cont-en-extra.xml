@@ -523,4 +523,24 @@ Todo:
   </cd:arguments>
 </cd:command>
 
+<cd:command name="framedtext" type="environment" generated="yes">
+  <cd:sequence>
+    <cd:variable value="framedtext"/>
+  </cd:sequence>
+  <cd:arguments>
+    <cd:keywords optional="yes">
+      <cd:constant type="left"/>
+      <cd:constant type="right"/>
+      <cd:constant type="middle"/>
+      <cd:constant type="none"/>
+    </cd:keywords>
+    <cd:assignments optional="yes" list="yes">
+      <cd:inherit name="setupframedtexts"/>
+    </cd:assignments>
+    <!-- new -->
+    <cd:content/>
+    <cd:content/>
+  </cd:arguments>
+</cd:command>
+
 </cd:interface>

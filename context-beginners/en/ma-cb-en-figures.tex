@@ -5,7 +5,9 @@
 \chapter[figures]{Figures}
 
 \index{figure}
+% VZ (2006-11-13)
 %\zieindex{picture}{figure}
+\seeindex{picture}{figure}
 \index{floating blocks}
 
 \Command{\tex{placefigure}}
@@ -45,6 +47,8 @@ pair.
 
 The command \type{\placefigure} is a predefined example of:
 
+% VZ (2006-11-13)
+%\shortsetup{placeblock}
 \shortsetup{placeblock}
 
 The options are described in \in{table}[tab:placefigure].
@@ -112,15 +116,16 @@ trust \CONTEXT\ to find the best possible file type.
 In \in{figure}[fig:canals] you see a photo and a graphic
 combined into one figure.
 
+% VZ [fig:canals] (2006-11-13)
+     %{\externalfigure[gracht][width=.4\textwidth]}
 \startbuffer
 \placefigure
   [here,force]
-  [fig:canal]
+  [fig:canals]
   {The Hasselt Canals.}
   {\startcombination[2*1]
      {\externalfigure[ma-cb-03][width=.4\textwidth]}
          {a bitmap picture}
-     %{\externalfigure[gracht][width=.4\textwidth]}
      {\externalfigure[ma-cb-00][width=.4\textwidth]}
          {a vector graphic}
    \stopcombination}

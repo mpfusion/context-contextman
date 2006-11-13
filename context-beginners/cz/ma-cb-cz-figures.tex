@@ -1,18 +1,18 @@
-% Translation:
-% Prelozil jaih
+% Translation: jaih
+% Checking: 2006-11-10 zyka
 \startcomponent ma-cb-cz-figures
 \project ma-cb
 \product ma-cb-cz
 \environment ma-cb-env-cz
 
 %\chapter[figures]{Figures}
-\chapter[obrazky]{Obrazce}
+\chapter[figures]{Obrázky}
 
 %\index{figure}
-\index{obrazce}
-%\zieindex{picture}{figure}
+\index{obrázek}
+%\seeindex{picture}{figure}
 %\index{floating blocks}
-\index{plovoucí text}
+\index{plovoucí objekt}
 
 \Command{\tex{placefigure}}
 \Command{\tex{startfiguretext}}
@@ -24,8 +24,7 @@
 
 %Photographs and pictures can be inserted in your document
 %with the following command:
-
-Obrázky a fotografie mohou být vlo¾eny do va¹eho 
+Obrázky a~fotografie mohou být vlo¾eny do na¹eho 
 dokumentu pomocí následujícího pøíkazu:
 
 %\startbuffer
@@ -34,8 +33,6 @@ dokumentu pomocí následujícího pøíkazu:
 %   {Stephanus Church.}
 %   {\externalfigure[ma-cb-24][width=.4\textwidth]}
 %\stopbuffer
-
-
 \startbuffer
 \placefigure
    [][obr:kostel]
@@ -62,22 +59,22 @@ Po zpracování se na první dostupné místo vysází
 %floats in your document until the optimal location is found.
 %You can influence this mechanism within the first bracket
 %pair.
-
-Pøíkaz \type{\placefigure} zajistí èíslování a vertikální
-odsazení obrázku. Dále tento pøíkaz inicializuje jakýsi
-plovoucí mechanismus, co¾ znamená, ¾e se \CONTEXT\ podívá,
-zda je na dané stránce pro Vá¹ obrázek dostatek místa. Pokud
-není, bude obrázek umístìn na jiné vhodné místo. V takovém pøípadì
-bude text pokraèovat a obrázek bude proplouvat na¹ím dokumentem,
+Pøíkaz \type{\placefigure} se postará o~èíslování a~vertikální
+odsazení obrázku. Dále tento pøíkaz inicializuje mechanismus
+umístìní plovoucích objektù, co¾ znamená, ¾e se \CONTEXT\ podívá,
+zda je na dané stránce pro ná¹ obrázek dostatek místa. Pokud
+není, bude obrázek umístìn na jiné vhodné místo. V~takovém pøípadì
+bude text pokraèovat a~obrázek bude proplouvat na¹ím dokumentem,
 dokud pro nìj nebude nalezeno optimální umístìní. Tento mechanismus
-mù¾ete ovlivòovat v oblasti ohranièené první dvojicí závorek.
+mù¾eme ovlivòit parametrem v~první dvojicí závorek.
 
-The command \type{\placefigure} is a predefined example of:
+%The command \type{\placefigure} is a predefined example of:
+Pøíkaz \type{\placefigure} je pøeddefinovanou instancí:
 
-\shortsetup{placeblock}
+\shortsetup{placefloat}
 
 %The options are described in \in{table}[tab:placefigure].
-Zde pou¾itelné parametry jsou popsané v \in{tabulce}[tab:placefigure].
+Zde pou¾itelné parametry jsou popsané v~\in{tabulce}[tab:placefigure].
 
 %\placetable
   %[here]
@@ -107,30 +104,27 @@ Zde pou¾itelné parametry jsou popsané v \in{tabulce}[tab:placefigure].
 \HL
 \NC \bf Parametr \NC \bf Vysvìtlení                \NC\SR
 \HL
-\NC here       \NC pokud je to mo¾né, umístit obrazec do této oblasti \NC\FR
-\NC force      \NC vynutit si umístìní obrázce zde         \NC\MR
-\NC page       \NC umístit obrazec na zvlá¹tní stránku     \NC\MR
-\NC top        \NC umístit obrazec na zvlá¹tní stránku     \NC\MR
-\NC bottom     \NC umístit obrazec na dolní okraj stránky  \NC\MR
-\NC left       \NC umístit obrazec do levého okraje        \NC\MR
-\NC right      \NC umístit obrazec do pravého okraje       \NC\MR
-\NC margin     \NC umístit obrazec na kraj                 \NC\LR
+\NC here       \NC pokud je to mo¾né, umísti obrázek na toto místo \NC\FR
+\NC force      \NC vynu» umístìní obrázku na tomto místì           \NC\MR
+\NC page       \NC umísti obrázek na zvlá¹tní stránku     \NC\MR
+\NC top        \NC umísti obrázek na horní okraj stránky  \NC\MR
+\NC bottom     \NC umísti obrázek na dolní okraj stránky  \NC\MR
+\NC left       \NC umísti obrázek do levého okraje        \NC\MR
+\NC right      \NC umísti obrázek do pravého okraje       \NC\MR
+\NC margin     \NC umísti obrázek do marginálie           \NC\LR
 \HL
 \stoptable
 
 %The second bracket pair is used for cross-referencing. You can
 %refer to this particular figure by typing:
-
-Druhý pár závorek je urèen pro úèely odkazu. Na konkrétní obrazec
-se mù¾ete odkázat pøíkazem:
+Druhý pár hranatých závorek je urèen pro referenèní jméno odkazu. Na
+konkrétní obrázek se mù¾ete odkázat pøíkazem:
 
 %\starttyping
 %\in{figure}[fig:church]
 %\stoptyping
-
-
 \starttyping
-\in{obrazek}[obr:kostel]
+\in{obrázek}[obr:kostel]
 \stoptyping
 
 %The first brace pair is used for the caption. You can type
@@ -138,33 +132,31 @@ se mù¾ete odkázat pøíkazem:
 %can type \type{{none}}. The figure labels are set up with
 %\type{\setupcaptions} and the numbering is (re)set by
 %\type{\setupnumbering} (see \in{paragraph}[floatingblocks]).
-
-První pár závorek tohoto pøíkazu je urèen pro název. Mù¾ete
-sem napsat libovolný text. Pokud si nepøejete ¾ádný název,
-ani èíslování, mù¾ete pou¾ít \type{{none}}. Název obrázku 
-je nastaven pomocí \type{\setupcaptions} a nastavení (pøípadnì
-vynulování) èíslování se nastavuje pøíkazem \type{\setupnumbering}
-(viz \in{paragraph}[floatingblocks]).
-
+První pár slo¾ených závorek tohoto pøíkazu obsahuje popisek
+obrázku. Mù¾eme tam napsat libovolný text. Pokud si nepøejeme ¾ádný
+popisek, ani èíslování, mù¾eme pou¾ít \type{{none}}. Popisek 
+je formátován pomocí \type{\setupcaptions} a~nastavení (pøípadnì
+vynulování) èíslování se øídí pøíkazem \type{\setupnumbering}
+(viz \in{sekce}[floatingblocks]).
 
 %The second brace pair is used for defining the figure and
 %addressing the file names of external figures.
-
-Druhý pár závorek je pro urèení obrazce a názvù souborù 
-externích obrazcù.
+Druhý pár závorek je pro vlo¾ení vlastního obrázku. Nejèastìji zde
+uvádíme pøíkaz pro vlo¾ení externího souboru \type{\externalfigure},
+viz ní¾e.
 
 %In the next example you see how
 %\inframed[height=1em]{Hasselt} is defined within the last
 %brace pair to show you the function of \type{\placefigure{}{}}.
-
-V následující pøíkladu vidíme, pou¾ití funkce \type{\placefigure{}{}}. V¹imnìte si obsahu druhé závorky, nutného pro vysázení  \inframed[height=1em]{Hasselt}.
+V~následujícím pøíkladu vidíme pou¾ití funkce
+\type{\placefigure{}{}}. V¹imnìme si obsahu druhé závorky, nutné pro
+vysázení \inframed[height=1em]{Hasselt}.
 
 %\startbuffer
 %\placefigure
 %  {A framed Hasselt.}
 %  {\framed{\tfd Hasselt}}
 %\stopbuffer
-
 \startbuffer
 \placefigure
   {Orámovaný Hasselt}
@@ -174,7 +166,6 @@ V následující pøíkladu vidíme, pou¾ití funkce \type{\placefigure{}{}}. V¹imnìte 
 \typebuffer
 
 %This will produce:
-
 Tento pøíklad vysází:
 
 \getbuffer
@@ -187,23 +178,25 @@ Tento pøíklad vysází:
 %\type {JPG}, \type {PNG} and (pages from) \type {PDF} files as
 %well as \METAPOST\ output (\type {MPS} files). Users normally can
 %trust \CONTEXT\ to find the best possible file type.
-
-Obrázky pro Vá¹ dokument vytvoøíte èasto pomocí programu jako Corel Draw
-nebo Illustrator. Fotky - po oskenování - se obvykle upraví prostøedkem jako je napøíklad PhotoShop. Po této práci, máte své obrázky ve formì souborù. 
- \CONTEXT\ podporuje v¹echny typy tìchto souborù, se kterými umí nakládat ovladaè v pozadí  \CONTEXT u. Pokud pou¾íváte \PDFTEX\ ,mù¾ete vkládat \type {JPG}, \type {PNG} a jednotlivé stránky ze souborù \type {PDF}, stejnì tak jako 
-výstup \METAPOST u, (soubory typu \type {MPS}). U¾ivatelé mohou bì¾nì dùvìøovat
-\CONTEXT u, ¾e nalezne nejlep¹í mon¾ný typ souboru.
+Obrázky pro ná¹ dokument èasto vytváøíme pomocí programù jako Corel Draw
+nebo Illustrator. Fotky -- po oskenování -- se obvykle upraví
+v~\GIMP{}u nebo PhotoShopu. Po této práci, máme své obrázky ve formì
+souborù. \CONTEXT\ podporuje v¹echny formáty souborù, se kterými
+umí nakládat ovladaè v~pozadí \CONTEXT u. Pokud pou¾íváme \PDFTEX,
+mù¾eme vkládat \type{JPG}, \type{PNG} a~jednotlivé stránky ze 
+souborù \type{PDF}, stejnì tak jako výstup \METAPOST{}u, (soubory typu
+\type{MPS}). U¾ivatelé mohou bì¾nì dùvìøovat \CONTEXT{}u, ¾e nalezne
+nejlep¹í mo¾ný formát souboru.
 
 %In \in{figure}[fig:canals] you see a photo and a graphic
 %combined into one figure.
-
-V \in{figure}[fig:canals] vidíte fotografii a grafiku kombinovanou do
-jednoho obrazce.
+Na \in{obrázku}[fig:canals] vidíme fotografii a vektorovou grafiku
+kombinovanou do jednoho obrázku.
 
 %\startbuffer
 %\placefigure
 %  [here,force]
-%  [fig:canal]
+%  [fig:canals]
 %  {The Hasselt Canals.}
 %  {\startcombination[2*1]
 %     {\externalfigure[ma-cb-03][width=.4\textwidth]}
@@ -213,34 +206,28 @@ jednoho obrazce.
 %         {a vector graphic}
 %   \stopcombination}
 %\stopbuffer
-
-
 \startbuffer
 \placefigure
   [here,force]
-  [fig:canal]
+  [fig:canals]
   {Hasseltské kanály.}
   {\startcombination[2*1]
      {\externalfigure[ma-cb-03][width=.4\textwidth]}
          {oskenovaný obrázek}
-     %{\externalfigure[gracht][width=.4\textwidth]}
      {\externalfigure[ma-cb-00][width=.4\textwidth]}
          {vektorová grafika}
    \stopcombination}
 \stopbuffer
 
-
 \getbuffer
 
 %You can produce this figure by typing something like:
-
-Tento obrazec mù¾ete vysázet pomocí kódu podobného tomuto:
+Tento obrázek mù¾eme vysázet pomocí kódu podobného tomuto:
 
 \typebuffer
 
 %In this figure two pictures are combined with:
-
-V tomto obrazci jsou dva obrázky kombinovány pomocí:
+V~tomto jednom plovoucím objektu jsou dva obrázky kombinovány pomocí:
 
 \shortsetup{startcombination}
 
@@ -251,30 +238,28 @@ V tomto obrazci jsou dva obrázky kombinovány pomocí:
 %below the other you would have typed \type{[1*2]}. You can
 %imagine what happens when you combine 6~pictures as
 %\type{[3*2]} (\type{[rows*columns]}).
-
 Dvojice pøíkazù \type{\startcombination} $\cdots$ \type{\stopcombination}
-je u¾ívána pro kombinaci dvou obrázkù do jednoho obrazce.
-Pomocí hranaté závorky mù¾ete ovlivnit vysázení vìt¹ího 
+je u¾ívána pro kombinaci dvou obrázkù do jednoho plovoucího
+objektu. Pomocí hranatých závorek mù¾eme ovlivnit vysázení vìt¹ího 
 mno¾ství obrázkù. Jeden obrázek pod druhým se vysází pomocí 
-\type{[1*2]}. Mù¾ete si pøedstavit, co se stane, kdy¾ zkombinujete
-6 obrázkù pomocí \type{[3*2]} (\type{[øádky*sloupce]}).
+\type{[1*2]}. Mù¾eme si pøedstavit, co se stane, kdy¾ zkombinujeme
+6~obrázkù pomocí \type{[3*2]} (\type{[øádky*sloupce]}).
 
 %The examples shown above are enough for creating illustrated
 %documents. Sometimes however you want a more integrated
 %layout of the picture and the text. For that purpose
 %you can use:
-
 Uvedené pøíklady jsou dostaèující pro vytváøení 
 ilustrovaných documentù. Nicménì nìkdy je potøeba 
-více ovlivnit uspoøádání obrázku a textu. Pro tento 
+více ovlivnit uspoøádání obrázku a~textu. Pro tento 
 úèel mù¾ete pou¾ít:
 
 \shortsetup{startframedtext}
 
 %Figure and table texts are already predefined:
-
-%netusim co je tu preddeklarovano :(
-Kombinace obrázku a textu:
+Místo slova framed mù¾eme pou¾ít døíve definovaný rámovaný
+objekt. Obrázek (figure) a~tabulka (table) jsou ji¾ pøeddefinované,
+jak je vidìt z~následujícího pøíkladu kombinujícího obrázek s~textem.
 
 %\startbuffer
 %\startfiguretext
@@ -292,9 +277,6 @@ Kombinace obrázku a textu:
 %   found everywhere.
 %\stopfiguretext
 %\stopbuffer
-
-
-
 \startbuffer
 \startfiguretext
   [left]
@@ -302,50 +284,48 @@ Kombinace obrázku a textu:
   {none}
   {\externalfigure[ma-cb-18][width=.5\makeupwidth]}
   Hasselt mìl v¾dy promìnný poèet obyvatelstva, závislý
-  na ekonomických událostech. Napøíklad Dedemsvaart byl
-  kopán kolem roku 1810. Tento kanál vedl pøímo skrz 
-  Hasselt a proto obchod vzkvétal. 
-  To vedlo k rùstu populace o témìø 40\% bìhem 10~let.
-  V souèasnosti ji¾ Dedemsvaart nemá tento význam
-  a kanály se staly turistickou atrakcí. Ale upomínky
-  na døívìj¹í èasy prosperujícího obchodu, mohou být 
-  vidìt v¹ude.
+  na ekonomických podmínkách. Pøíkladem mù¾e být kopání
+  kanálu Dedemsvaart kolem roku 1810. Proto¾e vedl pøímo
+  skrz Hasselt, obchod vzkvétal. 
+  To vedlo k rùstu populace o~témìø 40\,\% bìhem 10~let.
+  V~souèasnosti ji¾ Dedemsvaart nemá obchodní význam;
+  zdej¹í kanály se staly turistickou atrakcí. Ale
+  upomínky na døívìj¹í èasy prosperujícího obchodu,
+  mohou být vidìt v¹ude.
 \stopfiguretext
 \stopbuffer
-
 
 \typebuffer
 
 %is shown in the figure below.
-po vysázení uvidíme:
+Po vysázení uvidíme:
 
 \start
 \setuptolerance[verytolerant]
 \getbuffer
 \stop
 
+%% \shortsetup{externalfigure}
+
+%% %The last curly brace pair encloses the command
+%% %\type{\externalfigure}. This command gives you the freedom
+%% %to do anything you want with a figure.
+%% %\type{\externalfigure} has two bracket pairs. The first is
+%% %used for the exact file name without extension, the second
+%% %for file formats and dimensions. It is not difficult to
+%% %guess what happens if you type:\footnote{See
+%% %\at{page}[marginpicture]}.
+Poslední pár slo¾ených závorek vìt¹inou obsahuje pøíkaz
+\type{\externalfigure}.
+
 \shortsetup{externalfigure}
 
-%The last curly brace pair encloses the command
-%\type{\externalfigure}. This command gives you the freedom
-%to do anything you want with a figure.
-%\type{\externalfigure} has two bracket pairs. The first is
-%used for the exact file name without extension, the second
-%for file formats and dimensions. It is not difficult to
-%guess what happens if you type:\footnote{See
-%\at{page}[marginpicture]}.
-
-Poslední, oplývající více parametry, hranatá závorka 
-uzavírá pøíkaz \type{\externalfigure}. Tento pøíkaz
-Vám dává svobodu vysázet obrázek jakýmkoliv zpùsobem 
-si budete pøát. 
-\type{\externalfigure} obsahuje dva páry hranatých
+Tento pøíkaz nám dává svobodu vysázet obrázek jakýmkoliv zpùsobem 
+si budeme pøát. \type{\externalfigure} obsahuje dva páry hranatých
 závorek. První se u¾ívá pro pøesný název souboru bez
-koncovky, druhý pro formát souboru a rozmìry.
+pøípony, druhý pro po¾adované rozmìry a~ev. formát souboru.
 Není obtí¾né si pøedstavit co zpùsobí vysázení 
-zdrojového textu: \footnote{viz. \at{page}[marginpicture]}.
-
-
+zdrojového textu:\footnote{Viz \at{stranu}[marginpicture].}
 
 \startbuffer[marginpicture]
 \inmargin
@@ -357,22 +337,31 @@ zdrojového textu: \footnote{viz. \at{page}[marginpicture]}.
 \typebuffer[marginpicture]
 
 %You can set up the layout of figures with:
-Umístìní a rozmìry obrázku mù¾ete ovlivòovat pomocí:
+Umístìní a rozmìry obrázku mù¾eme ovlivòit pomocí:
 
 \shortsetup{setupfloats}
 
 %You can set up the numbering and the labels with:
-Také mù¾ete nastavit èíslování obrázkù a jejich komentáø:
+Také mù¾eme nastavit èíslování obrázkù a~jejich popisek:
 
 \shortsetup{setupcaptions}
 
 %These commands are typed in the set up area of your input
 %file and have a global effect on all floating blocks.
+Následující pøíkazy patøí do deklaraèní oblasti na¹eho vstupního
+souboru a mají tedy vliv na v¹echny plovoucí objekty.
 
-Následující pøíkazy patøí do oblasti celkového nastavení 
-va¹eho vstupního souboru a mají tedy vliv na v¹echny
-plovoucí bloky.
+%% \startbuffer
+%% \setupfloats
+%%   [location=right]
+%% \setupcaptions
+%%   [location=top,
+%%    style=boldslanted]
 
+%% \placefigure
+%%   {A characteristic view on Hasselt.}
+%%   {\externalfigure[ma-cb-12][width=8cm]}
+%% \stopbuffer
 \startbuffer
 \setupfloats
   [location=right]
@@ -381,12 +370,12 @@ plovoucí bloky.
    style=boldslanted]
 
 \placefigure
-  {A characteristic view on Hasselt.}
+  {Typický obrázek Hasseltu.}
   {\externalfigure[ma-cb-12][width=8cm]}
 \stopbuffer
 
 \typebuffer
 
-{\getbuffer}
+{\getbuffer}%
 
 \stopcomponent
