@@ -1,5 +1,5 @@
-% Translation:
-% 2006-07-21 Vít Zýka
+% Translation: 2006-07-21 Vít Zýka
+% Checking:    2006-11-13 zyka
 \startcomponent ma-cb-cz-tables
 \project ma-cb
 \product ma-cb-cz
@@ -63,12 +63,12 @@ sady. Velmi zajímavé jsou \quote{pøirozené tabulky}
 \type{\bTABLE}. Umo¾òují podobnou syntaxi jako \HTML{} tabulky
 s~velkou variabilitou sdru¾ování bunìk a bohatými grafickými
 mo¾nostmi. Øádkování je v¹ak ménì pøirozené. Viz
-\from{manuál}[manual:nattab] a \from{magazín}[myway:nattab]. Pozn. pøekl.}
+manuál \from[manual:nattab] a~magazín \from[myway:nattab]. Pozn. pøekl.}
 
 Do~definic \TABLE\ bylo oproti originálu pøidáno nìkolik maker
 zaji¹»ujících konzistentnìj¹í øádkování a bylo
-zjednodu¹eno u¾ivatelské rozhraní.\footnote{\CONTEXT\ byl vyvinut pro
-  u¾ivatele (také) bez technického nadání v~éøe \cap{WYSIWIG}. Proto
+zjednodu¹eno u¾ivatelské rozhraní.\footnote{\CONTEXT\ byl vyvinut
+  (také) pro u¾ivatele bez technického nadání v~éøe \cap{WYSIWIG}. Proto
   bylo doplnìno pøívìtivé u¾ivatelské rozhraní se snadnou manipulací
   se soubory a byly vypu¹tìny kryptické pøíkazy a programové i~logické
   konstrukce.}
@@ -120,155 +120,356 @@ Tato tabulka je vysázena jako \in{tabulka}[tab:ships].
 
 \getbuffer
 
-The first command \type{\placetable} has the same function
-as \type{\placefigure}. It takes care of spacing before and
-after the table and numbering. Furthermore the floating
-mechanism is initialized so the table will be placed at the
-most optimal location of the page.
+%% The first command \type{\placetable} has the same function
+%% as \type{\placefigure}. It takes care of spacing before and
+%% after the table and numbering. Furthermore the floating
+%% mechanism is initialized so the table will be placed at the
+%% most optimal location of the page.
+První pøíkaz \type{\placetable} má stejnou funkci jako
+\type{\placefigure}. Postará se o~vertikální odsazení tabulky
+a~o~její èíslo. Dále je uveden v~èinnost mechanismus umístìní
+plovoucího objektu k~nalezení optimální polohy na stránce.
 
-The table entries are placed between the \type{\starttable}
-$\cdots$ \type{\stoptable} pair. Between the bracket pair
-your can specify the table format with the column separators
-\type{|} and the format keys (see
-\in{table}[tab:formatkeys]).
+%% The table entries are placed between the \type{\starttable}
+%% $\cdots$ \type{\stoptable} pair. Between the bracket pair
+%% your can specify the table format with the column separators
+%% \type{|} and the format keys (see
+%% \in{table}[tab:formatkeys]).
+Údaje tabulky jsou zadávány uvnitø dvojice \type{\starttable} $\cdots$
+\type{\stoptable}. Do hranatých závorek vkládáme formátovací znaèky
+tabulky, viz \in{tabulku}[tab:formatkeys].
 
+%% \placetable
+%%   []
+%%   [tab:formatkeys]
+%%   {Table format keys.}
+%% \starttable[|l|l|]
+%% \HL
+%% \NC \bf Key     \NC \bf Meaning                                 \NC\SR
+%% \HL
+%% \NC \type{|}    \NC column separator                            \NC\FR
+%% \NC \type{c}    \NC center                                      \NC\MR
+%% \NC \type{l}    \NC flush left                                  \NC\MR
+%% \NC \type{r}    \NC flush right                                 \NC\MR
+%% \NC \type{s<n>} \NC set intercolumn space at value $n = 0, 1,2$ \NC\MR
+%% \NC \type{w<>}  \NC set minimum column width at specified value \NC\LR
+%% \HL
+%% \stoptable
 \placetable
   []
   [tab:formatkeys]
-  {Table format keys.}
+  {Formátovací znaèky tabulky.}
 \starttable[|l|l|]
 \HL
-\NC \bf Key     \NC \bf Meaning                                 \NC\SR
+\NC \bf Znaèka       \NC \bf Význam                                  \NC\SR
 \HL
-\NC \type{|}    \NC column separator                            \NC\FR
-\NC \type{c}    \NC center                                      \NC\MR
-\NC \type{l}    \NC flush left                                  \NC\MR
-\NC \type{r}    \NC flush right                                 \NC\MR
-\NC \type{s<n>} \NC set intercolumn space at value $n = 0, 1,2$ \NC\MR
-\NC \type{w<>}  \NC set minimum column width at specified value \NC\LR
+\NC \type{|}         \NC oddìlovaè sloupcù                           \NC\FR
+\NC \type{c}         \NC sloupec se zarovnáním na støed              \NC\MR
+\NC \type{l}         \NC sloupec se zarovnáním vlevo                 \NC\MR
+\NC \type{r}         \NC sloupec se zarovnáním vpravo                \NC\MR
+\NC \type{s<n>}      \NC mezisloupcová mezera o~hodnotì $n = 0, 1,2$ \NC\MR
+\NC \type{w<rozmìr>} \NC minimální ¹íøka sloupce o~dané hodnotì      \NC\LR
 \HL
 \stoptable
 
-In addition to the format keys there are format commands.
-\in{Table}[tab:formatcommands] shows a few of the essential
-commands.
+%% In addition to the format keys there are format commands.
+%% \in{Table}[tab:formatcommands] shows a few of the essential
+%% commands.
+Jak jsme ji¾ vidìli, existují kromì formátovacích znaèek je¹tì
+formátovací pøíkazy. Vkládají se pøímo do jednotlivých bunìk. Ty
+základní ukazuje \in{tabulka}[tab:formatcommands].
 
+%% \placetable
+%%   [here]
+%%   [tab:formatcommands]
+%%   {\CONTEXT\ table format commands.}
+%% {\setuptables[bodyfont=small]
+%% \starttable[s1|l|l|l|]
+%% \HL
+%% \NC \bf Command       \NC
+%%     \NC \bf Meaning                                \NC\SR
+%% \HL
+%% \NC \type{\NR}        \NC next row
+%%     \NC make row with no vertical space adjustment \NC\FR
+%% \NC \type{\FR}        \NC first row
+%%     \NC make row, adjust upper spacing             \NC\MR
+%% \NC \type{\LR}        \NC last row
+%%     \NC make row, adjust lower spacing             \NC\MR
+%% \NC \type{\MR}        \NC mid row
+%%     \NC make row, adjust upper and lower spacing   \NC\MR
+%% \NC \type{\SR}        \NC separate row
+%%     \NC make row, adjust upper and lower spacing   \NC\MR
+%% \NC \type{\VL}        \NC vertical line
+%%     \NC draw a vertical line, go to next column    \NC\MR
+%% \NC \type{\NC}        \NC next column
+%%     \NC go to next column                          \NC\MR
+%% \NC \type{\HL}        \NC horizontal line
+%%     \NC draw a horizontal line                     \NC\MR
+%% \NC \type{\DL}        \NC division line$^\star$
+%%     \NC draw a division line over the next column  \NC\MR
+%% \NC \type{\DL[n]}     \NC division line$^\star$
+%%     \NC draw a division line over $n$ columns      \NC\MR
+%% \NC \type{\DC}        \NC division column$^\star$
+%%     \NC draw a space over the next column          \NC\MR
+%% \NC \type{\DR} \NC division row$^\star$
+%%     \NC make row, adjust upper and lower spacing   \NC\MR
+%% \NC \type{\LOW{text}} \NC ---
+%%     \NC lower {\em text}                           \NC\MR
+%% \NC \type{\TWO}, \type{\THREE} etc.  \NC ---
+%%     \NC use the space of the next {\em two}, {\em three} columns \NC\LR
+%% \HL
+%% \NC \use3 \JustLeft{$^\star$ \type{\DL, \DC} and \type{\DR}
+%%     are used in combination.}                      \NC\FR
+%% \stoptable}
 \placetable
   [here]
   [tab:formatcommands]
-  {Table format commands.}
-\starttable[|l|l|]
+  {Formátovací pøíkazy tabulky.}
+{\setuptables[bodyfont=small]
+\starttable[s1|l|l|l|l|]
 \HL
-\NC \bf Command               \NC \bf Meaning                            \NC\SR
+\NC \bf Pøíkaz       \NC 
+    \NC \bf Význam                                \NC\SR
 \HL
-\NC \type{\JustLeft}          \NC flush left and suppress column format  \NC\FR
-\NC \type{\JustRight}         \NC flush right and suppress column format \NC\MR
-\NC \type{\JustCenter}        \NC center and suppress column format      \NC\MR
-\NC \type{\SetTableToWidth{}} \NC specify exact table width              \NC\MR
-\NC \type{\use{n}}            \NC use the space of the next $n$ columns  \NC\LR
+\NC \type{\NR}        \NC dal¹í øádka
+    \NC udìlìj øádku bez vertikálního vyrovnání    \NC\FR
+\NC \type{\FR}        \NC první øádka
+    \NC udìlìj øádku s~horním vyrovnáním           \NC\MR
+\NC \type{\LR}        \NC poslední øádka
+    \NC udìlej øádku s~dolním vyrovnáním           \NC\MR
+\NC \type{\MR}        \NC prostøední øádka
+    \NC udìlej øádku s~horním i~dolním vyrovnáním  \NC\MR
+\NC \type{\SR}        \NC oddìlovací øádka
+    \NC udìlej øádku s~horním i~dolním vyrovnáním  \NC\MR
+\NC \type{\VL}        \NC svislá linka
+    \NC nakresli svislou linku a~jdi na dal¹í sloupec \NC\MR
+\NC \type{\NC}        \NC dal¹í sloupec
+    \NC jsi na dal¹í sloupec                       \NC\MR
+\NC \type{\HL}        \NC vodorovná linka
+    \NC nakresli vodorovnou linku                  \NC\MR
+\NC \type{\DL}        \NC oddìlovací linka$^\star$
+    \NC nakresli linku pøes následující sloupec    \NC\MR
+\NC \type{\DL[n]}     \NC oddìlovací linka$^\star$
+    \NC nakresli odìlovací linku pøes $n$ sloupcù  \NC\MR
+\NC \type{\DC}        \NC oddìlovací linka$^\star$
+    \NC udìlej mezeru pøes následující sloupec   \NC\MR
+\NC \type{\DR}        \NC oddìlovací øádka$^\star$
+    \NC udìlej øádku s~horním i~dolním vyrovnáním  \NC\MR
+\NC \type{\LOW{text}} \NC ---
+    \NC napi¹ {\em text\/} ní¾e                    \NC\MR
+\NC \type{\TWO}, \type{\THREE} etc. \NC ---
+    \NC udìlej mezeru pøes {\em dva}, {\em tøi}, \dots sloupce \NC\LR
 \HL
-\stoptable
+\NC \use3 \JustLeft{$^\star$ \type{\DL, \DC} a \type{\DR}
+    se doplòují.}                      \NC\FR
+\stoptable}
 
-In the examples you have seen so far a number of
-\CONTEXT\ formatting commands were used. These commands are
-somewhat longer than the original and less cryptic but they
-also handle a lot of table typography. In
-\in{table}[tab:contextformatcommands] an overview of these
-commands is given.
+%% In the examples you have seen so far a number of
+%% \CONTEXT\ formatting commands were used. These commands are
+%% somewhat longer than the original and less cryptic but they
+%% also handle a lot of table typography. In
+%% \in{table}[tab:contextformatcommands] an overview of these
+%% commands is given.
+V~dal¹ích pøíkladech uvidíme formátovacích pøíkazy \CONTEXT{}u.
+Jejich jména jsou del¹í a ménì kryptická a øídí dal¹í formátovací
+funkce tabulek. V~\in{tabulce}[tab:contextformatcommands] je jejich
+pøehled.
 
+%% \placetable
+%%   [here]
+%%   [tab:contextformatcommands]
+%%   {\CONTEXT\ table format commands.}
+%% \starttable[|l|l|]
+%% \HL
+%% \NC \bf Command               \NC \bf Meaning                            \NC\SR
+%% \HL
+%% \NC \type{\JustLeft}          \NC flush left and suppress column format  \NC\FR
+%% \NC \type{\JustRight}         \NC flush right and suppress column format \NC\MR
+%% \NC \type{\JustCenter}        \NC center and suppress column format      \NC\MR
+%% \NC \type{\SetTableToWidth{}} \NC specify exact table width              \NC\MR
+%% \NC \type{\use{n}}            \NC use the space of the next $n$ columns  \NC\LR
+%% \HL
+%% \stoptable
 \placetable
   [here]
   [tab:contextformatcommands]
-  {\CONTEXT\ table format commands.}
-{\setuptables[bodyfont=small]
-\starttable[s1|l|l|l|]
+  {\CONTEXT{}ové formátovací pøíkazy tabulky.}
+\starttable[|l|l|]
 \HL
-\NC \bf Command       \NC
-    \NC \bf Meaning                                \NC\SR
+\NC \bf Pøíkaz                \NC \bf Význam                                    \NC\SR
 \HL
-\NC \type{\NR}        \NC next row
-    \NC make row with no vertical space adjustment \NC\FR
-\NC \type{\FR}        \NC first row
-    \NC make row, adjust upper spacing             \NC\MR
-\NC \type{\LR}        \NC last row
-    \NC make row, adjust lower spacing             \NC\MR
-\NC \type{\MR}        \NC mid row
-    \NC make row, adjust upper and lower spacing   \NC\MR
-\NC \type{\SR}        \NC separate row
-    \NC make row, adjust upper and lower spacing   \NC\MR
-\NC \type{\VL}        \NC vertical line
-    \NC draw a vertical line, go to next column    \NC\MR
-\NC \type{\NC}        \NC next column
-    \NC go to next column                          \NC\MR
-\NC \type{\HL}        \NC horizontal line
-    \NC draw a horizontal line                     \NC\MR
-\NC \type{\DL}        \NC division line$^\star$
-    \NC draw a division line over the next column  \NC\MR
-\NC \type{\DL[n]}     \NC division line$^\star$
-    \NC draw a division line over $n$ columns      \NC\MR
-\NC \type{\DC}        \NC division column$^\star$
-    \NC draw a space over the next column          \NC\MR
-\NC \type{\DR} \NC division row$^\star$
-    \NC make row, adjust upper and lower spacing   \NC\MR
-\NC \type{\LOW{text}} \NC ---
-    \NC lower {\em text}                           \NC\MR
-\NC \type{\TWO}, \type{\THREE} etc.  \NC ---
-    \NC use the space of the next {\em two}, {\em three} columns \NC\LR
+\NC \type{\JustLeft}          \NC zarovnej vlevo a ignoruj formátování sloupce  \NC\FR
+\NC \type{\JustRight}         \NC zarovnej vpravo a ignoruj formátování sloupce \NC\MR
+\NC \type{\JustCenter}        \NC vycentruj a ignoruj formátování sloupce       \NC\MR
+\NC \type{\SetTableToWidth{}} \NC nastav pevnou ¹íøku tabulky                   \NC\MR
+\NC \type{\use{n}}            \NC pøeskoè pøí¹tích $n$ sloupcù                  \NC\LR
 \HL
-\NC \use3 \JustLeft{$^\star$ \type{\DL, \DC} and \type{\DR}
-    are used in combination.}                      \NC\FR
-\stoptable}
+\stoptable
 
-The tables below are shown with their sources. You can
-always read the \TABLE\ manual by M.J. Wichura for more
-sophisticated examples.
+%% The tables below are shown with their sources. You can
+%% always read the \TABLE\ manual by M.J. Wichura for more
+%% sophisticated examples.
+Tabulky ukázané dále jsou uvedené s~jejich zdrojovými texty. Pro
+slo¾itìj¹í ukázky si lze také pøeèíst \TABLE\ manuál M.\,J.~Wichury.
 
+%% \startbuffer
+%% \placetable
+%%   [here,force]
+%%   [tab:effects of commands]
+%%   {Effect of formatting commands.}
+%%   {\startcombination[2*1]
+%%      {\starttable[|c|c|]
+%%       \HL
+%%       \VL \bf Year \VL \bf Citizens \VL\SR
+%%       \HL
+%%       \VL 1675     \VL  ~428        \VL\FR
+%%       \VL 1795     \VL  1124        \VL\MR
+%%       \VL 1880     \VL  2405        \VL\MR
+%%       \VL 1995     \VL  7408        \VL\LR
+%%       \HL
+%%       \stoptable}{standard}
+%%      {\starttable[|c|c|]
+%%       \HL
+%%       \VL \bf Year \VL \bf Citizens \VL\NR
+%%       \HL
+%%       \VL 1675     \VL  ~428        \VL\NR
+%%       \VL 1795     \VL  1124        \VL\NR
+%%       \VL 1880     \VL  2405        \VL\NR
+%%       \VL 1995     \VL  7408        \VL\NR
+%%       \HL
+%%       \stoptable}{only \type{\NR}}
+%%    \stopcombination}
+%% \stopbuffer
 \startbuffer
 \placetable
   [here,force]
   [tab:effects of commands]
-  {Effect of formatting commands.}
+  {Vliv formátovacích pøíkazù.}
   {\startcombination[2*1]
      {\starttable[|c|c|]
       \HL
-      \VL \bf Year \VL \bf Citizens \VL\SR
+      \VL \bf Rok \VL \bf Poèet obyvatel \VL\SR
       \HL
       \VL 1675     \VL  ~428        \VL\FR
       \VL 1795     \VL  1124        \VL\MR
       \VL 1880     \VL  2405        \VL\MR
       \VL 1995     \VL  7408        \VL\LR
       \HL
-      \stoptable}{standard}
+      \stoptable}{standardní}
      {\starttable[|c|c|]
       \HL
-      \VL \bf Year \VL \bf Citizens \VL\NR
+      \VL \bf Rok \VL \bf Poèet obyvatel \VL\NR
       \HL
       \VL 1675     \VL  ~428        \VL\NR
       \VL 1795     \VL  1124        \VL\NR
       \VL 1880     \VL  2405        \VL\NR
       \VL 1995     \VL  7408        \VL\NR
       \HL
-      \stoptable}{only \type{\NR}}
+      \stoptable}{pouze \type{\NR}}
    \stopcombination}
 \stopbuffer
 
 \typebuffer
 
-In the example above the first table \type{\SR}, \type{\FR},
-\type{\MR} and \type{\LR} are used. These commands take care
-of line spacing within a table. As you can see below
-the command \type{\NR} only starts a new row.
+%% In the example above the first table \type{\SR}, \type{\FR},
+%% \type{\MR} and \type{\LR} are used. These commands take care
+%% of line spacing within a table. As you can see below
+%% the command \type{\NR} only starts a new row.
+Ve vý¹e uvedeném pøíkladu jsou v~první tabulce pou¾ity \type{\SR}, \type{\FR},
+\type{\MR} and \type{\LR}. Tyto pøíkazy se starají o~vkládání mezer
+uvnitø tabulky. Jak je vidìt, pøíkaz \type{\NR} pouze zaèíná novou øádku.
 
 \getbuffer
 
-In the example below column interspacing with the \type{s0}
-and \type{s1} keys is shown.
+%% In the example below column interspacing with the \type{s0}
+%% and \type{s1} keys is shown.
+V~dal¹ím pøíkladì je ukázáno vyrovnání sloupcù pomocí znaèek \type{s0}
+a~\type{s1}.
+
+%% \startbuffer[one]
+%% \starttable[|c|c|]
+%% \HL
+%% \VL \bf Year \VL \bf Citizens \VL\SR
+%% \HL
+%% \VL 1675 \VL  ~428 \VL\FR
+%% \VL 1795 \VL  1124 \VL\MR
+%% \VL 1880 \VL  2405 \VL\MR
+%% \VL 1995 \VL  7408 \VL\LR
+%% \HL
+%% \stoptable
+%% \stopbuffer
+
+%% \startbuffer[two]
+%% \starttable[s0 | c | c |]
+%% \HL
+%% \VL \bf Year \VL \bf Citizens \VL\SR
+%% \HL
+%% \VL 1675 \VL  ~428 \VL\FR
+%% \VL 1795 \VL  1124 \VL\MR
+%% \VL 1880 \VL  2405 \VL\MR
+%% \VL 1995 \VL  7408 \VL\LR
+%% \HL
+%% \stoptable
+%% \stopbuffer
+
+%% \startbuffer[three]
+%% \starttable[| s0 c | c |]
+%% \HL
+%% \VL \bf Year \VL \bf Citizens \VL\SR
+%% \HL
+%% \VL 1675 \VL  ~428 \VL\FR
+%% \VL 1795 \VL  1124 \VL\MR
+%% \VL 1880 \VL  2405 \VL\MR
+%% \VL 1995 \VL  7408 \VL\LR
+%% \HL
+%% \stoptable
+%% \stopbuffer
+
+%% \startbuffer[four]
+%% \starttable[| c | s0 c |]
+%% \HL
+%% \VL \bf Year \VL \bf Citizens \VL\SR
+%% \HL
+%% \VL 1675 \VL  ~428 \VL\FR
+%% \VL 1795 \VL  1124 \VL\MR
+%% \VL 1880 \VL  2405 \VL\MR
+%% \VL 1995 \VL  7408 \VL\LR
+%% \HL
+%% \stoptable
+%% \stopbuffer
+
+%% \startbuffer[five]
+%% \starttable[s1 | c | c |]
+%% \HL
+%% \VL \bf Year \VL \bf Citizens \VL\SR
+%% \HL
+%% \VL 1675 \VL  ~428 \VL\FR
+%% \VL 1795 \VL  1124 \VL\MR
+%% \VL 1880 \VL  2405 \VL\MR
+%% \VL 1995 \VL  7408 \VL\LR
+%% \HL
+%% \stoptable
+%% \stopbuffer
+
+%% \placetable
+%%   [here,force]
+%%   [tab:example formatcommands]
+%%   {Effect of formatting commands.}
+%%   {\startcombination[3*2]
+%%     {\getbuffer[one]}   {standard}
+%%     {\getbuffer[two]}   {\type{s0}}
+%%     {\getbuffer[three]} {\type{s0} in column~1}
+%%     {\getbuffer[four]}  {\type{s0} in column~2}
+%%     {\getbuffer[five]}  {\type{s1}}
+%%     {}                  {}
+%%   \stopcombination}
+%% \stopbuffer
 
 \startbuffer
 \startbuffer[one]
 \starttable[|c|c|]
 \HL
-\VL \bf Year \VL \bf Citizens \VL\SR
+\VL \bf Rok \VL \bf Obyvatelé \VL\SR
 \HL
 \VL 1675 \VL  ~428 \VL\FR
 \VL 1795 \VL  1124 \VL\MR
@@ -281,7 +482,7 @@ and \type{s1} keys is shown.
 \startbuffer[two]
 \starttable[s0 | c | c |]
 \HL
-\VL \bf Year \VL \bf Citizens \VL\SR
+\VL \bf Rok \VL \bf Obyvatelé \VL\SR
 \HL
 \VL 1675 \VL  ~428 \VL\FR
 \VL 1795 \VL  1124 \VL\MR
@@ -294,7 +495,7 @@ and \type{s1} keys is shown.
 \startbuffer[three]
 \starttable[| s0 c | c |]
 \HL
-\VL \bf Year \VL \bf Citizens \VL\SR
+\VL \bf Rok \VL \bf Obyvatelé \VL\SR
 \HL
 \VL 1675 \VL  ~428 \VL\FR
 \VL 1795 \VL  1124 \VL\MR
@@ -307,7 +508,7 @@ and \type{s1} keys is shown.
 \startbuffer[four]
 \starttable[| c | s0 c |]
 \HL
-\VL \bf Year \VL \bf Citizens \VL\SR
+\VL \bf Rok \VL \bf Obyvatelé \VL\SR
 \HL
 \VL 1675 \VL  ~428 \VL\FR
 \VL 1795 \VL  1124 \VL\MR
@@ -320,7 +521,7 @@ and \type{s1} keys is shown.
 \startbuffer[five]
 \starttable[s1 | c | c |]
 \HL
-\VL \bf Year \VL \bf Citizens \VL\SR
+\VL \bf Rok \VL \bf Obyvatelé \VL\SR
 \HL
 \VL 1675 \VL  ~428 \VL\FR
 \VL 1795 \VL  1124 \VL\MR
@@ -332,13 +533,13 @@ and \type{s1} keys is shown.
 
 \placetable
   [here,force]
-  [tab:example formatcommands]
-  {Effect of formatting commands.}
+  [tab:example-format-commands]
+  {Vliv formátovacích znaèek.}
   {\startcombination[3*2]
-    {\getbuffer[one]}   {standard}
+    {\getbuffer[one]}   {standardní}
     {\getbuffer[two]}   {\type{s0}}
-    {\getbuffer[three]} {\type{s0} in column~1}
-    {\getbuffer[four]}  {\type{s0} in column~2}
+    {\getbuffer[three]} {\type{s0} ve sloupci~1}
+    {\getbuffer[four]}  {\type{s0} ve sloupci~2}
     {\getbuffer[five]}  {\type{s1}}
     {}                  {}
   \stopcombination}
@@ -346,20 +547,38 @@ and \type{s1} keys is shown.
 
 \typebuffer
 
-After processing these tables come out as
-\in{table}[tab:example formatcommands]. The default table
-has a column interspacing of\type{s2}.
+%% After processing these tables come out as
+%% \in{table}[tab:example formatcommands]. The default table
+%% has a column interspacing of \type{s2}.
+Po zpracování tìchto pøíkladù dostaneme
+\in{tabulku}[tab:example-format-commands]. Implicitní tabulka má
+mezerování sloupcù pomocí znaèek \type{s2}.
 
 \getbuffer
 
-Columns are often separated with a vertical line $|$ and
-rows by a horizontal line.
+%% Columns are often separated with a vertical line $|$ and
+%% rows by a horizontal line.
+Sloupce bývají obèas oddìleny svislými $|$ a~øádky vodorovnými
+linkami.
 
+%% \startbuffer
+%% \placetable
+%%   [here,force]
+%%   [tab:divisions]
+%%   {Effect of options.}
+%% \starttable[|c|c|c|]
+%% \NC Steenwijk  \NC Zwartsluis \NC Hasselt    \NC\SR
+%% \DC            \DL            \DC               \DR
+%% \NC Zwartsluis \VL Hasselt    \VL Steenwijk  \NC\SR
+%% \DC            \DL            \DC               \DR
+%% \NC Hasselt    \NC Steenwijk  \NC Zwartsluis \NC\SR
+%% \stoptable
+%% \stopbuffer
 \startbuffer
 \placetable
   [here,force]
   [tab:divisions]
-  {Effect of options.}
+  {Vyvolání dojmu volby.}
 \starttable[|c|c|c|]
 \NC Steenwijk  \NC Zwartsluis \NC Hasselt    \NC\SR
 \DC            \DL            \DC               \DR
@@ -373,19 +592,41 @@ rows by a horizontal line.
 
 \getbuffer
 
-A more sensible example is given in the
-\in{table}[tab:example contextcommands].
+%% A more sensible example is given in the
+%% \in{table}[tab:example contextcommands].
+Praktiètìj¹í pøíklad je v~\in{tabulce}[tab:example contextcommands].
 
+%% \startbuffer
+%% \placetable
+%%   [here,force]
+%%   [tab:example contextcommands]
+%%   {Effect of \CONTEXT\ formatting commands.}
+%% \starttable[|l|c|c|c|c|]
+%% \HL
+%% \VL \FIVE \JustCenter{City council elections in 1994}    \VL\SR
+%% \HL
+%% \VL \LOW{Party} \VL \THREE{Districts}   \VL \LOW{Total} \VL\SR
+%% \DC             \DL[3]                  \DC                \DR
+%% \VL             \VL 1   \VL 2   \VL 3   \VL             \VL\SR
+%% \HL
+%% \VL PvdA        \VL 351 \VL 433 \VL 459 \VL 1243        \VL\FR
+%% \VL CDA         \VL 346 \VL 350 \VL 285 \VL ~981        \VL\MR
+%% \VL VVD         \VL 140 \VL 113 \VL 132 \VL ~385        \VL\MR
+%% \VL HKV/RPF/SGP \VL 348 \VL 261 \VL 158 \VL ~767        \VL\MR
+%% \VL GPV         \VL 117 \VL 192 \VL 291 \VL ~600        \VL\LR
+%% \HL
+%% \stoptable
+%% \stopbuffer
 \startbuffer
 \placetable
   [here,force]
   [tab:example contextcommands]
-  {Effect of \CONTEXT\ formatting commands.}
+  {Vliv formátovacích pøíkazù \CONTEXT{}u.}
 \starttable[|l|c|c|c|c|]
 \HL
-\VL \FIVE \JustCenter{City council elections in 1994}    \VL\SR
+\VL \FIVE \JustCenter{Magistrátní volby v~roce 1994}    \VL\SR
 \HL
-\VL \LOW{Party} \VL \THREE{Districts}   \VL \LOW{Total} \VL\SR
+\VL \LOW{Strana} \VL \THREE{Okrsky}   \VL \LOW{Celkem}  \VL\SR
 \DC             \DL[3]                  \DC                \DR
 \VL             \VL 1   \VL 2   \VL 3   \VL             \VL\SR
 \HL
@@ -400,34 +641,103 @@ A more sensible example is given in the
 
 \typebuffer
 
-In the last column a \type{~} is used to simulate a four
-digit number. The \type{~} has the width of a digit.
+%% In the last column a \type{~} is used to simulate a four
+%% digit number. The \type{~} has the width of a digit.
+V~posledním sloupci je znak \type{~} pou¾it k~simulaci ètyøciferného
+èísla. Znak \type{~} má ¹íøku cifry. 
 
 \getbuffer
 
-Sometimes your tables get too big and you want to adjust, for
-example, the body font or the vertical and/or horizontal spacing
-around vertical and horizontal lines. This is done by:
+%% Sometimes your tables get too big and you want to adjust, for
+%% example, the body font or the vertical and/or horizontal spacing
+%% around vertical and horizontal lines. This is done by:
+Nìkdy je na¹e tabulka pøíli¹ veliká. Abychom ji vysadili s~textem,
+mù¾eme jí, napøíklad, zmen¹it pou¾ité písmo. Pomocí pøíkazu
 
 \shortsetup{setuptables}
 
+to udìláme to takto:
+
+%% \startbuffer
+%% \placetable
+%%   [here,force]
+%%   [tab:setuptable]
+%%   {Use of \type{\setuptables}.}
+%% {\startcombination[1*3]
+%% {\setuptables[bodyfont=10pt]
+%% \starttable[|c|c|c|c|c|c|]
+%% \HL
+%% \VL \use6 \JustCenter{Decline of wealth in
+%%                       Dutch florine (Dfl)} \VL\SR
+%% \HL
+%% \VL Year \VL 1.000--2.000
+%%          \VL 2.000--3.000
+%%          \VL 3.000--5.000
+%%          \VL 5.000--10.000
+%%          \VL   over 10.000 \VL\SR
+%% \HL
+%% \VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
+%% \VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
+%% \VL 1750 \VL 12 \VL 3 \VL 2  \VL 2  \VL -- \VL\MR
+%% \VL 1808 \VL ~9 \VL 2 \VL -- \VL -- \VL -- \VL\LR
+%% \HL
+%% \stoptable}{\tt bodyfont=10pt}
+%% {\setuptables[bodyfont=8pt]
+%% \starttable[|c|c|c|c|c|c|]
+%% \HL
+%% \VL \use6 \JustCenter{Decline of wealth in
+%%                       Dutch florine (Dfl)} \VL\SR
+%% \HL
+%% \VL Year \VL 1.000--2.000
+%%          \VL 2.000--3.000
+%%          \VL 3.000--5.000
+%%          \VL 5.000--10.000
+%%          \VL   over 10.000 \VL\SR
+%% \HL
+%% \VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
+%% \VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
+%% \VL 1750 \VL 12 \VL 3 \VL 2  \VL 2  \VL -- \VL\MR
+%% \VL 1808 \VL ~9 \VL 2 \VL -- \VL -- \VL -- \VL\LR
+%% \HL
+%% \stoptable}{\tt bodyfont=8pt}
+%% {\setuptables[bodyfont=6pt,distance=small]
+%% \starttable[|c|c|c|c|c|c|]
+%% \HL
+%% \VL \use6 \JustCenter{Decline of wealth in
+%%                       Dutch florine (Dfl)} \VL\SR
+%% \HL
+%% \VL Year \VL 1.000--2.000
+%%          \VL 2.000--3.000
+%%          \VL 3.000--5.000
+%%          \VL 5.000--10.000
+%%          \VL   over 10.000 \VL\SR
+%% \HL
+%% \VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
+%% \VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
+%% \VL 1750 \VL 12 \VL 3 \VL 2  \VL 2  \VL -- \VL\MR
+%% \VL 1808 \VL ~9 \VL 2 \VL -- \VL -- \VL -- \VL\LR
+%% \HL
+%% \stoptable}{\tt bodyfont=6pt,distance=small}
+%% \stopcombination}
+%% \stopbuffer
 \startbuffer
 \placetable
   [here,force]
   [tab:setuptable]
-  {Use of \type{\setuptables}.}
+  {Pou¾ití \type{\setuptables}.}
 {\startcombination[1*3]
 {\setuptables[bodyfont=10pt]
 \starttable[|c|c|c|c|c|c|]
 \HL
-\VL \use6 \JustCenter{Decline of wealth in
-                      Dutch florine (Dfl)} \VL\SR
+\VL \use6
+    \JustCenter{Pokles bohatství v~holandských forinech (Dfl)}
+    \VL\SR
 \HL
 \VL Year \VL 1.000--2.000
          \VL 2.000--3.000
          \VL 3.000--5.000
          \VL 5.000--10.000
-         \VL   over 10.000 \VL\SR
+         \VL   pøes 10.000 \VL\SR
 \HL
 \VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
 \VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
@@ -438,8 +748,9 @@ around vertical and horizontal lines. This is done by:
 {\setuptables[bodyfont=8pt]
 \starttable[|c|c|c|c|c|c|]
 \HL
-\VL \use6 \JustCenter{Decline of wealth in
-                      Dutch florine (Dfl)} \VL\SR
+\VL \use6
+    \JustCenter{Pokles bohatství v~holandských forinech (Dfl)}
+    \VL\SR
 \HL
 \VL Year \VL 1.000--2.000
          \VL 2.000--3.000
@@ -456,14 +767,15 @@ around vertical and horizontal lines. This is done by:
 {\setuptables[bodyfont=6pt,distance=small]
 \starttable[|c|c|c|c|c|c|]
 \HL
-\VL \use6 \JustCenter{Decline of wealth in
-                      Dutch florine (Dfl)} \VL\SR
+\VL \use6
+    \JustCenter{Pokles bohatství v~holandských forinech (Dfl)}
+    \VL\SR
 \HL
 \VL Year \VL 1.000--2.000
          \VL 2.000--3.000
          \VL 3.000--5.000
          \VL 5.000--10.000
-         \VL   over 10.000 \VL\SR
+         \VL   pøes 10.000 \VL\SR
 \HL
 \VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
 \VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
@@ -478,39 +790,62 @@ around vertical and horizontal lines. This is done by:
 
 \getbuffer
 
-You can also set up the layout of tables with:
+%% You can also set up the layout of tables with:
+Nastavit umístìní tabulek mù¾eme také pomocí ji¾ známého
 
 \shortsetup{setupfloats}
 
-You can set up the numbering and the labels with:
+%% You can set up the numbering and the labels with:
+Èíslování a popisky nastavíme pøíkazem
 
 \shortsetup{setupcaptions}
 
-These  commands are typed in the set up area of your
-input file and have a global effect on all floating blocks.
+%% These  commands are typed in the set up area of your
+%% input file and have a global effect on all floating blocks.
+Tyto pøíkazy pou¾íváme v~deklaraèní oblasti na¹eho vstupního souboru
+a~mají globální platnost.
 
+%% \startbuffer
+%% \setupfloats[location=left]
+%% \setupcaption[style=boldslanted]
+
+%% \placetable[here][tab:opening hours]{Library opening hours.}
+%% \starttable[|l|c|c|]
+%% \HL
+%% \VL \bf Day   \VL \use2 \bf Opening hours           \VL\SR
+%% \HL
+%% \VL Monday    \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\FR
+%% \VL Tuesday   \VL                \VL                \VL\MR
+%% \VL Wednesday \VL 10.00 -- 12.00 \VL 14.00 -- 17.30 \VL\MR
+%% \VL Thursday  \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\MR
+%% \VL Friday    \VL 14.00 -- 17.30 \VL                \VL\MR
+%% \VL Saturday  \VL 10.00 -- 12.30 \VL                \VL\LR
+%% \HL
+%% \stoptable
+%% \stopbuffer
 \startbuffer
 \setupfloats[location=left]
 \setupcaption[style=boldslanted]
 
-\placetable[here][tab:opening hours]{Library opening hours.}
+\placetable[here][tab:opening hours]{Otevírací hodiny knihovny.}
 \starttable[|l|c|c|]
 \HL
-\VL \bf Day   \VL \use2 \bf Opening hours           \VL\SR
+\VL \bf Den   \VL \use2 \bf Otevírací hodiny        \VL\SR
 \HL
-\VL Monday    \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\FR
-\VL Tuesday   \VL                \VL                \VL\MR
-\VL Wednesday \VL 10.00 -- 12.00 \VL 14.00 -- 17.30 \VL\MR
-\VL Thursday  \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\MR
-\VL Friday    \VL 14.00 -- 17.30 \VL                \VL\MR
-\VL Saturday  \VL 10.00 -- 12.30 \VL                \VL\LR
+\VL pondìlí   \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\FR
+\VL úterý     \VL                \VL                \VL\MR
+\VL støeda    \VL 10.00 -- 12.00 \VL 14.00 -- 17.30 \VL\MR
+\VL ètvrtek   \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\MR
+\VL pátek     \VL 14.00 -- 17.30 \VL                \VL\MR
+\VL sobota    \VL 10.00 -- 12.30 \VL                \VL\LR
 \HL
 \stoptable
 \stopbuffer
 
 \typebuffer
 
-The result is displayed in \in{table}[tab:opening hours].
+%% The result is displayed in \in{table}[tab:opening hours].
+Výsledek zobrazuje \in{tabulka}[tab:opening hours].
 
 \start
 \getbuffer

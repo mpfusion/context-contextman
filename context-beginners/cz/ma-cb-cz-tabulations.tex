@@ -1,5 +1,6 @@
 % Translation:
 % 2006-08-26 Petr Tesarik
+% Checking: 2006-11-09 zyka
 \startcomponent ma-cb-cz-tabulations
 \project ma-cb
 \product ma-cb-cz
@@ -11,15 +12,10 @@
 %% \index{tabulation}
 %% \index{tables+running text}
 %% \index{columns}
-%% \Command{\tex{starttabulate}}
-%% \Command{\tex{definetabulate}}
-%% \Command{\tex{setuptabulate}}
-%% \Command{\tex{NR}}
-%% \Command{\tex{NC}}
-%% \Command{\tex{startchemical}}
 \index{tabelace}
 \index{tabulky+running text}
 \index{sloupce}
+
 \Command{\tex{starttabulate}}
 \Command{\tex{definetabulate}}
 \Command{\tex{setuptabulate}}
@@ -29,7 +25,7 @@
 
 %% Sometimes you want to typeset paragraphs in a specific
 %% formatted way. This is done with:
-Nìkdy chcete vysázet odstavce zformátované urèitým pøesnì
+Nìkdy chceme vysázet odstavce zformátované urèitým pøesnì
 daným zpùsbem. Toho lze dosáhnout pomocí:
 
 \shortsetup{starttabulate}
@@ -66,7 +62,7 @@ i pøi stránkovém zlomu.
 %% \stoptabulate
 %% \stopbuffer
 \startbuffer
-\starttabulate[|w(1.5cm)B|p(6.0cm)|p|]
+\starttabulate[|w(1cm)B|p(.4\textwidth)|p|]
 \NC 1252
     \NC Hasselt získává mìstská privilegia od biskupa Hendrika
         van Viandena.
@@ -96,9 +92,9 @@ Definice tabelace vypadá nìjak takto:
 %% is type set bold (\type{B}). The second column has a width
 %% of 6 \Centi \Meter\ and is type set like a paragraph. The
 %% remaining horizontal space is used up by the last paragraph.
-V~tomto pøípadì má první sloupec ¹íøku 1,5\,\Centi \Meter\ a
+V~tomto pøípadì má první sloupec ¹íøku 1 \Centi \Meter\ a
 je vysázen tuèným øezem (\type{B}). Druhý sloupec má ¹íøku
-6 \Centi \Meter\ a je vysázen jako odstavec. Zbývající
+40\,\% ¹íøky odstavce a~je vysázen jako odstavec. Zbývající
 horizontální místo je vyu¾ito posledním odstavcem.
 
 %% The example is typeset like this:
@@ -183,7 +179,7 @@ v~\in{tabulce}[tab:tabularformattingcommands].
 \stoptable
 
 %% Another example of paragraph formatting could look like this.
-Jiný pøíklad formátování odstavce by mohl vypadat takto.
+Jiný pøíklad formátování odstavce by mohl vypadat takto:
 
 %% \startbuffer
 %% \definetabulate[ChemPar][|l|p|l|]
@@ -211,7 +207,7 @@ Jiný pøíklad formátování odstavce by mohl vypadat takto.
 \typebuffer
 
 %% And it would come out like this:
-To by se vysázelo následovnì:
+Vysází se to následovnì:
 
 \getbuffer
 
@@ -222,7 +218,8 @@ ne ka¾dý se zajímá o~chemii.
 
 %% Here we also introduced the command to define the paragraph
 %% layout.
-Také jsme zde uvedli povel pro definici rozvr¾ení odstavce.
+Také jsme zde uvedli povel pro definici tabelaèního schematu
+\type{ChemOdstavec}
 
 \shortsetup{definetabulate}
 

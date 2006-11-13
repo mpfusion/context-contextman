@@ -543,4 +543,19 @@ Todo:
   </cd:arguments>
 </cd:command>
 
+<cd:command name="tabulate" type="environment" generated="yes">
+  <cd:sequence>
+    <cd:variable value="tabulate"/>
+  </cd:sequence>
+  <cd:arguments>
+    <cd:keywords optional="yes">
+      <cd:constant type="cd:text"/>
+    </cd:keywords>
+    <!-- change! -->
+    <cd:keywords>
+      <cd:constant type="cd:text"/>
+    </cd:keywords>
+  </cd:arguments>
+</cd:command>
+
 </cd:interface>
