@@ -1,5 +1,5 @@
-% Translation:
-% busaj
+% Translation: busaj
+% Checking:    2006-11-13 zyka
 \startcomponent ma-cb-cz-pages
 \project ma-cb
 \product ma-cb-cz
@@ -25,8 +25,8 @@ Zalomení stránky mù¾e být vynuceno nebo zablokováno pøíkazem:
 %The options can be stated within the brackets. The options
 %and their meaning are presented in \in{table}[tab:page
 %options]
-Volby se zadávají uvnitø hranatých závorek. Volby a jejich smysl jsou uvedeny \in{v~tabulce}[tab:page
-options]
+Volby se zadávají uvnitø hranatých závorek. Volby a jejich smysl jsou
+uvedeny v~\in{tabulce}[tab:page options].
 
 %\placetable
 %  []
@@ -61,8 +61,8 @@ options]
 \NC \bf Volba \NC \bf Význam \NC\SR
 \HL
 \NC \type{yes}           \NC zaèátek nové stránky \NC\FR
-\NC \type{makeup}        \NC zaèátek nové stránky bez zaplnìní \NC\MR
-\NC \type{no}            \NC ¾ádná stránka \NC\MR
+\NC \type{makeup}        \NC zaèátek nové stránky bez plovoucích objektù\NC\MR
+\NC \type{no}            \NC potlaèení stránkového zlomu \NC\MR
 \NC \type{preference}    \NC na tomto místì upøednostòujeme novou stránku \NC\MR
 \NC \type{bigpreference} \NC nová stránka má na tomto místì vysokou prioritu \NC\MR
 \NC \type{left}          \NC následující stránka je levá (sudá) \NC\MR
@@ -77,7 +77,8 @@ options]
 
 %Page numbering happens automatically but you can enforce
 %a page number with:
-Èíslování stránek je automatické, ale mù¾ete zadat èíslo stránky pøíkazem:
+Èíslování stránek je automatické, ale mù¾eme nastavit èíslo stránky
+pøíkazem:
 
 \starttyping
 \page[25]
@@ -85,14 +86,15 @@ options]
 
 %Sometimes it is better to state a relative page number like
 %\type{[+2]} or \type{[-2]}.
-Nìkdy je lep¹í zadat relativní èíslo strany, napøíklad
+Nìkdy je lep¹í zadat èíslo strany relativnì, napøíklad
 \type{[+2]} nebo \type{[-2]}.
 
 %The position of the page numbers on a page depend on your own
 %preferences and if it concerns a one sided or double sided
 %document. Page numbering can be set up with:
-Umístìní èísla stránek na stranì závisí na Va¹ich zálíbách a na typu dokumentu (jednostranný nebo dvojstranný). 
-Èíslování stránek se nastavuje pøíkazem:
+Umístìní èísla stránek na stranì závisí na na¹ich zálíbách a na typu
+dokumentu (jednostranný nebo dvojstranný). Èíslování stránek se
+nastavuje pøíkazem:
 
 \shortsetup{setuppagenumbering}
 
@@ -102,8 +104,9 @@ Volby se umís»ují do hranatých závorek.
 %Tables or figures may take up a lot of space. The placing of
 %these text elements can be postponed till the next page break.
 %This is done with:
-Seznam obrázkù mù¾e zabírat mnoho místa. Umístìní tìchto prvkù mù¾e být odlo¾eno a¾ do nejbli¾¹ího zalomení stránky.
-To se dìlá pøíkazem:
+Nìkdy mù¾e být výhodné odlo¾it nìjaký materiál a¾ na zaèátek dal¹í
+strany, tedy po provedení nejbli¾¹ího stránkového zlomu.
+To se provede pøíkazem:
 
 \shortsetup{startpostponing}
 
