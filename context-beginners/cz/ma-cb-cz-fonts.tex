@@ -397,9 +397,66 @@ Nastavení re¾imu verbatim mù¾eme provádìt pomocí:
 %\section{Encodings}
 \section[sec:encodings]{Kódování znakù}
 
-%This section is stil to be filled.
-\startcolor[red]
-  Tato sekce se teprve vyrábí.
-\stopcolor
+\index{kódování+vstupní}
+\index{kódování+fontu}
+\index{kódování+dìlìní slov}
+\index{typescript}
+
+\Command{\tex{usetypescript}}
+\Command{\tex{setupbodyfont}}
+\Command{\tex{enableregime}}
+\Command{\tex{showpatterns}}
+
+Ka¾dý font je pøipraven v~jednom nebo více kódování. Pøi zavedení
+fontu pomocí fontových definièních tabulek, tzv. {\tt typescriptù} je
+nutné toto kódování specifikovat. Pro nejèastìji v~Evropì pou¾ívané
+kódování \type{ec} vypadá naètení Computer Modern písma takto:
+ 
+\startbuffer
+\usetypescript[modern][ec]
+\setupbodyfont[modern,10pt,rm]
+\stopbuffer
+\typebuffer
+
+Typ kódování fontu volíme podle toho, v~jakém kódování máme vzory
+dìlení slov v~pou¾itém jazyce. Toto kódování se dovíme zapsáním
+\type{\showpatterns}, viz \in{tabulka}[tab:showpatterns].
+
+\placetable[here][tab:showpatterns]
+  {Výpis pøíkazu \type{\showpatterns}.}
+  {\showpatterns}
+
+Pøípravu fontu se správným kódováním i~s~pøedgenerováním typescriptù
+lze svìøin prográmku \type{texfont}.
+
+Pokud ná¹ editor pracuje v~jiném kódování, ne¾ je kód fontu, pak je
+nutné text pøekódovat. \CONTEXT{} se o~to postará, pokud v~hranaté
+závorce pøíkazu
+
+\shortsetup{enableregime}
+
+uvedeme vstupní kódování na¹eho dokumentu.
+%% Nejèastìj¹ími vstupními kódováními jsou
+%% \startitemize[columns,three]
+%%   \item \type{Latin1 (iso-8859-1)}
+%%   \item \type{Latin5 (iso-8859-5)}
+%%   \item \type{iso-8859-7}
+%%   \item \type{viscii}
+
+%%   \item \type{Latin2 (iso-8859-2)}
+%%   \item \type{cp1251}
+%%   \item \type{cp1253}
+%%   \item \type{mac}
+
+%%   \item \type{cp1250}
+%%   \item \type{cyr}
+%%   \item \type{grk}
+%%   \item \type{UTF8}
+%% \stopitemize
+
+%% %This section is stil to be filled.
+%% \startcolor[red]
+%%   Tato sekce se teprve vyrábí.
+%% \stopcolor
 
 \stopcomponent

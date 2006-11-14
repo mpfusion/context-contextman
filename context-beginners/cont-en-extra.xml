@@ -711,4 +711,38 @@ Todo:
   </cd:arguments>
 </cd:command>
 
+<cd:define name="regime">
+    <cd:constant type="Latin1"/>
+    <cd:constant type="Latin2"/>
+    <cd:constant type="Latin7"/>
+    <cd:constant type="Latin15"/>
+    <cd:constant type="iso-8859-1"/>
+    <cd:constant type="iso-8859-2"/>
+    <cd:constant type="iso-8859-7"/>
+    <cd:constant type="iso-8859-15"/>
+    <cd:constant type="cp1250"/>
+    <cd:constant type="cp1251"/>
+    <cd:constant type="cp1252"/>
+    <cd:constant type="cp1253"/>
+    <cd:constant type="cp1254"/>
+    <cd:constant type="cp1257"/>
+    <cd:constant type="viscii"/>
+    <cd:constant type="cyr"/>
+    <cd:constant type="grk"/>
+    <cd:constant type="mac"/>
+    <cd:constant type="utf8"/>
+    <cd:constant type="unicode"/>
+</cd:define>
+
+<cd:command name="enableregime" file="regi-ini.tex">
+  <cd:sequence>
+    <cd:string value="enableregime"/>
+  </cd:sequence>
+  <cd:arguments>
+    <cd:keywords>
+      <cd:resolve name="regime"/>
+    </cd:keywords>
+  </cd:arguments>
+</cd:command>
+
 </cd:interface>
