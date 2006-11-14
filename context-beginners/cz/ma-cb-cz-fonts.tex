@@ -1,40 +1,40 @@
-% Translation:
-% jaih
+% Translation: jaih
+% Checking:    2006-11-14 zyka
 \startcomponent ma-cb-cz-fonts
 \project ma-cb
 \product ma-cb-cz
 \environment ma-cb-env-cz
 
 %\chapter{Fonts and font switches}
-\chapter{Fonty a pøepínaèe fontù}
+\chapter{Písmo a pøepínaèe fontù}
 
 %\section{Introduction}
 \section{Úvod}
 
-\index{Computer Modern Roman}
+%\index{Computer Modern Roman}
+\index{Computer Modern}
 \index{Lucida Bright}
 \index{AMS}
 %\index{\cap{PS}--fonts}
 \index{\cap{PS}--fonty}
+\index{font}
+\seeindex{písmo}{font}
 
 %The default font in \CONTEXT\ is the {\em Computer Modern
 %Roman} (\type{cmr}). You can also use Lucida Bright
 %(\type{lbr}) as a full alternative and symbols of the {\em
 %American Mathematical Society} (\type{ams}). Standard
 %PostScript fonts (\type{pos}) are also available.
-
-Implicitní font v \CONTEXT u je {\em Computer Modern
-Roman} (\type{cmr}). Mù¾ete také pou¾ít font 
-Lucida Bright (\type{lbr}) a symboly 
-{\em American Mathematical Society} (\type{ams}).
-Dostupné jsou i PostScriptové fonty (\type{pos}).
-
+Implicitní font v~\CONTEXT{}u je {\em Computer Modern Roman}
+(\type{cmr}). Mù¾ete také pou¾ít font Lucida Bright (\type{lbr})
+a~symboly {\em American Mathematical Society} (\type{ams}).
+Dostupné jsou PostScriptové fonty (\type{pos}) a~mnohé dal¹í.
 
 %\section{Fontstyle and size}
-\section{Styly fontù a jejich velikost}
+\section{Øezy písma a jejich velikost}
 
 %\index{font+style}
-\index{font+styl}
+\index{font+øez}
 %\index{font+size}
 \index{font+velikost}
 
@@ -43,8 +43,7 @@ Dostupné jsou i PostScriptové fonty (\type{pos}).
 
 %You select the font family, style and size for a document
 %with:
-
-Druh, styl a velikost fontu pro celý dokument vyberete
+Rodinu, øez a~velikost fontu pro celý dokument vybereme
 pomocí:
 
 \shortsetup{setupbodyfont}
@@ -52,15 +51,14 @@ pomocí:
 %If you typed \type{\setupbodyfont[sansserif,9pt]}
 %{\switchtobodyfont[ss,9pt] in the setup area of the input
 %file your text would look something like this.}
-
-Pokud pou¾ijete \type{\setupbodyfont[sansserif,9pt]}
-{\switchtobodyfont[ss,9pt] v úvodní deklaraèní oblasti
-va¹eho vstupního souboru, vá¹ text by mìl vypadat asi takto.}
+Pokud pou¾ijeme \type{\setupbodyfont[cmr,sansserif,9pt]}
+{\switchtobodyfont[cmr,ss,9pt] v~úvodní deklaraèní oblasti
+va¹eho vstupního souboru, vá¹ text by mìl vypadat asi takto.}%
 
 %For changes in mid-document and on section level you
 %should use:
 
-Pro zmìnu uprostøed dokumentu, nebo na úrovni sekce, byste
+Pro zmìnu uprostøed dokumentu, nebo na úrovni sekce, bysme
 mìli pou¾ít:
 
 \shortsetup{switchtobodyfont}
@@ -88,10 +86,10 @@ mìli pou¾ít:
 %% \stopnarrower
 %% \stopbuffer
 \startbuffer
-10.\,listopadu (jeden den pøed dnem svatého Martina) chodí omladina mìsta
-Hasselt dùm od domu a zpívá zvlá¹tní píseò, urèenou pro tuto pøíle¾itost.
-Svùj zpìv doprovází nástrojem {\em foekepot}. Neodejdou, dokud
-jim nedáte nìjaké peníze, nebo sladkosti. Píseñ zní asi takto:
+10.\,listopadu (jeden den pøed dnem svatého Martina) chodí omladina
+mìsta Hasselt dùm od domu a zpívá zvlá¹tní píseò, urèenou pro tuto
+pøíle¾itost. Svùj zpìv doprovází nástrojem {\em foekepot}. Neodejdou,
+dokud jim nedáte nìjaké peníze, nebo sladkosti. Píseñ zní asi takto:
 
 \startnarrower
 \switchtobodyfont[small]
@@ -117,9 +115,9 @@ Geef mij een centje dan ga'k voorbij.
 %fontswitch. The function of \type{\startlines} and
 %\type{\stoplines} in this example is obvious.
 Poznamenejme je¹tì, ¾e \type{\startnarrower} $\cdots$
-\type{\stopnarrower} se také u¾ívá jako zaèátek a konec
-pøepínaèe fontu. Funkce \type{\startlines} a \type{\stoplines} 
-v tomto pøíkladu je zøejmá.
+\type{\stopnarrower} se také u¾ívá jako zaèátek a~konec
+pøepínaèe fontu. Funkce \type{\startlines} a~\type{\stoplines} 
+v~tomto pøíkladu je zøejmá.
 
 \start
 \getbuffer
@@ -127,7 +125,8 @@ v tomto pøíkladu je zøejmá.
 
 %If you want an overview of the available font family you can
 %type:
-Pokud chcete pøehled dostupných druhù fontu, zkuste vysázet:
+Pokud chceme získat pøehled dostupných druhù fontu zvolené rodiny,
+zkusme vysázet:
 
 \startbuffer
 \showbodyfont[cmr]
@@ -138,14 +137,14 @@ Pokud chcete pøehled dostupných druhù fontu, zkuste vysázet:
 \getbuffer
 
 %\section{Style and size switch in commands}
-\section{Pøepínaèe stylu a velikosti v pøíkazech}
+\section{Pøepínaèe øezu a velikosti v~parametrech pøíkazù}
 
 %In a number of commands one of the parameters is
 %\type{character} to indicate the desired typestyle. For
 %example:
-
 %netusim, co je mineno tim "character" :(
-V mnoha pøíkazech jeden z parametrù indikuje po¾adovaný
+% VZ: me too
+V mnoha pøíkazech jeden z~parametrù indikuje po¾adovaný
 styl sazby. Napøíklad:
 
 \startbuffer
@@ -158,9 +157,9 @@ styl sazby. Napøíklad:
 %a command \type{\tfd}. But instead of a command you could
 %use the predefined options that are related to the actual
 %typeface:
-V tomto pøípadì je velikost znakù pro kapitoly indikována
-pøíkazem \type{\tfd}. Místo takovéhoto pøíkazu bychom ale mìli
-pou¾ívat pøeddefinované volby, které se vztahují  k aktuálnímu
+V~tomto pøípadì je velikost písma nadpisu kapitol nastavena na
+\type{\tfd}. Místo takovéhoto pøíkazu bychom ale mìli
+pou¾ívat pøeddefinované volby, které se vztahují k~aktuálnímu
 druhu fontu:
 
 \startbuffer
@@ -172,7 +171,7 @@ capital cap
 \typebuffer
 
 %\section{Local font style and size}
-\section{Lokální styl fontu a jeho velikost}
+\section{Lokální øez písma a jeho velikost}
 
 \Command{\tex{rm}}
 \Command{\tex{ss}}
@@ -187,32 +186,31 @@ capital cap
 %In the running text (local) you can change the {\em
 %typestyle} into roman, sans serif and teletype with
 %\type{\rm}, \type{\ss} and \type{\tt}.
-V prùbìhu textu mù¾ete mìnit {\em druh písma} na 
-roman, sansserif a teletype pomocí pøíkazù 
-\type{\rm}, \type{\ss} a \type{\tt}.
+V~bì¾ném textu mù¾eme mìnit {\em styl písma} na 
+roman, bezpatkové a~neproporcionální (strojopisné) pomocí pøíkazù
+\type{\rm}, \type{\ss} a~\type{\tt}.
 
 %You can change the {\em typeface} like italic and boldface
 %with \type{\sl} and \type{\bf}.
-{\em Øez písma}, jako kurzíva nebo tuèné, mù¾ete mìnit  
-pomocí \type{\sl} a \type{\bf}.
+{\em Øez písma}, jako kurzíva, sklonìné nebo tuèné, mù¾eme mìnit  
+pomocí \type{\it}, \type{\sl} a~\type{\bf}.
 
 %The {\em typesize} is available from 4pt to 12pt and is
 %changed with \type{\switchtobodyfont}.
-{\em Velikost písma} lze mìnit v rozmezí od 4pt do 12pt
-a nastavuje se pomocí \type{\switchtobodyfont}.
+{\em Velikost písma} lze mìnit v~rozmezí od 4pt do 12pt
+a~nastavuje se pomocí \type{\switchtobodyfont}.
 
 %The actual style is indicated with \type{\tf}. If you want
 %to change into a somewhat greater size you can type
 %\type{\tfa}, \type{\tfb}, \type{\tfc} and \type{\tfd}. An
 %addition of \type{a}, \type{b}, \type{c} and \type{d} to
 %\type{\sl}, \type{\it} and \type{\bf} is also allowed.
-Aktuální styl je v pøíkazu pøedstaven pomocí \type{\tf}.
-Pokud chcete zvìt¹it velikost písma, pou¾ijte 
-\type{\tfa}, \type{\tfb}, \type{\tfc} a \type{\tfd}. 
-Pøíponu \type{a}, \type{b}, \type{c} a \type{d} lze
-pøidávat také k pøíkazùm \type{\sl}, \type{\it} 
-nebo \type{\bf}
-
+Aktuální styl je v~pøíkazu pøednastaven pomocí \type{\tf}.
+Pokud chceme zvìt¹it velikost písma, pou¾ijeme 
+\type{\tfa}, \type{\tfb}, \type{\tfc} a~\type{\tfd}. 
+Pøíponu \type{a}, \type{b}, \type{c} a~\type{d} lze
+pøidávat také k~pøíkazùm \type{\it}, \type{\sl}
+nebo \type{\bf}.
 
 %\startbuffer
 %{\tfc Mintage}
@@ -226,7 +224,7 @@ nebo \type{\bf}
 \startbuffer
 {\tfc Ra¾ení penìz}
 
-V období od {\tt 1404} do {\tt 1585} vlastnil Hasselt 
+V období od roku {\tt 1404} do {\tt 1585} vlastnil Hasselt 
 {\sl právo ra¾ení mincí}. Proti této výsadì Hasseltu
 ostatní mìsta protestovala, ale 
 {\switchtobodyfont[7pt] biskup z Utrechtu} tyto protesty
@@ -251,7 +249,7 @@ je ovlivnìna pøepínaèem stylu nebo velikosti.
 \Command{\tex{definebodyfont}}
 
 %For special purposes you can define your own fontsize.
-Ve zvlá¹tních pøípadech mù¾ete definovat svou vlastní
+Ve zvlá¹tních pøípadech mù¾eme definovat svou vlastní
 velikost fontu.
 
 \shortsetup{definebodyfont}
@@ -271,38 +269,49 @@ Tato definice by mìla vypadat asi takto:
 Nyní pøíkaz \type{\tfe} vysází velikostí 36 nápis:
 {\hbox{\getbuffer}}
 
-
 %\section{Small caps}
 \section{Kapitálky}
 
 %\index{small caps}
 \index{kapitálky}
 
-\Command{\tex{kap}}
+%\Command{\tex{kap}}
+\Command{\tex{cap}}
 
 %Abbreviations like \PDF\ (\infull{PDF}) are printed in
 %pseudo small caps. A small capital is somewhat smaller than
 %the capital of the actual typeface. Pseudo small caps are
 %produced with:
 Zkratky jako \PDF\ (\infull{PDF}) jsou ti¹tìny pomocí 
-malých kapitálek. Malé kapitálky jsou o nìco men¹í,
-ne¾ poèáteèní písmena vìt v aktuálním fontu 
-a mohou být vysázeny pomocí:
+malých kapitálek. Malé kapitálky jsou o~nìco men¹í,
+ne¾ poèáteèní písmena vìt v~aktuálním fontu 
+a~mohou být vysázeny pomocí:
 
-\shortsetup{kap}
+%\shortsetup{kap}
+\shortsetup{cap}
 
 %If you compare \type{PDF}, \type{\kap{PDF}} and \type{\sc pdf}:
-Pokud porovnáme \type{PDF}, \type{\kap{PDF}} a \type{\sc pdf}:
+Pokud porovnáme \type{PDF}, \type{\cap{PDF}} a~\type{\sc pdf}
 
-\midaligned{PDF, \kap{PDF} a {\sc pdf}}
+\bgroup
+\cbox{
+  \hfil
+  PDF, \cap{PDF} a~{\sc pdf}%
+  \hfil
+  \switchtobodyfont[cmr]%
+  PDF, \cap{PDF} a~{\sc pdf} \rlap{(Computer Modern Roman)}%
+  \hfil
+}%
+\egroup
 
 %you can see the difference. The command \type{\sc} shows the
 %real small caps. The reason for using pseudo small caps
 %instead of real small caps is just a matter of taste.
-
+% VZ (2006-11-14)
 mù¾eme vidìt zøetelnì rozdíl. Pøíkaz \type{\sc} vytváøí
-kapitálky nejmen¹í a jeho pou¾ití místo pøíkazu \type{\kap}
-je jen otázkou vkusu.
+skuteèné kapitálky (musí existovat jako samostatný font), zatímco
+pseudokapitálky \type{\cap} jsou vytvoøeny geometrickou deformací
+verzálek.
 
 \section{Zvýraznìní}
 
@@ -313,14 +322,14 @@ je jen otázkou vkusu.
 
 %To emphasize words consistently throughout your document
 %you use:
-Pro jednotné zvýraznìní slov v dokumentu pou¾íváme pøíkaz:
+Pro jednotné zvýraznìní slov v~dokumentu pou¾íváme pøíkaz:
 
 \starttyping
 \em
 \stoptyping
 
 %Empasized words appear in a slanted style.
-Zvýraznìná slovat se vysází stylem slant.
+Zvýraznìná slovat se implicitnì vysází sklonìným stylem.
 
 %\startbuffer
 %If you walk through Hasselt you should {\bf \em watch out} for
@@ -331,12 +340,12 @@ Zvýraznìná slovat se vysází stylem slant.
 %from tripping over them.
 %\stopbuffer
 \startbuffer
-Pøi procházce Hasseltem byste mìli {\bf \em dávat pozor}
-na {\em Amsterodany}. Slovem {\em Amsterodany} {\bf \em nejsou}
+Pøi procházce Hasseltem bysme mìli {\bf \em dávat pozor}
+na {\em Amsterodamy}. Slovem {\em Amsterodamy} {\bf \em nejsou}
 mínìni obyvatelé Amsterodamu, ale malé kamenné pilíøe,
 oddìlující chodník od silnice. Jsou urèeny na ochranu chodcù 
-pøed projí¾dìjícími auty, ale ve skuteènosti
-je spí¹e zraòují, kdy¾ o nì bolestivì brkají.
+pøed projí¾dìjícími auty. Ve skuteènosti je v¹ak spí¹e ohro¾ují,
+proto¾e o~nì èasto zakopávají.
 \stopbuffer
 
 \typebuffer
@@ -348,7 +357,7 @@ je spí¹e zraòují, kdy¾ o nì bolestivì brkají.
 Pokud nìco dvakrát zdùrazníme, vysází se to opìt nezdùraznìnì.
 
 %\section{Teletype / verbatim}
-\section{Dálnopis alias re¾im verbatim}
+\section{Strojopis alias re¾im verbatim}
 
 \index{type}
 \index{verbatim}
@@ -360,33 +369,30 @@ Pokud nìco dvakrát zdùrazníme, vysází se to opìt nezdùraznìnì.
 
 %If you want to display typed text and want to keep your
 %line breaking exactly as it is you use:
-Pokud si pøejete zobrazit text pøesnì jak jste ho uvedli
-do vstupního souboru, s ukonèením øádek pøesnì tam, 
-kde jste pou¾ili ENTER, pou¾ijte:
+Pokud si pøejeme zobrazit text pøesnì tak, jak jsme ho uvedli
+do vstupního souboru, s~ukonèením øádek pøesnì tam, 
+kde jste pou¾ili ENTER, pou¾ijeme:
 
 \shortsetup{starttyping}
 
 %In the text you can use:
-V textu mù¾ete pou¾ít:
+V~textu mù¾eme pou¾ít:
 
 \shortsetup{type}
 
 %The curly braces enclose the text you want in teletype.
 %You have to be careful with \type{\type} because the
 %line breaking mechanism does not work anymore.
-Slo¾ené závorky ohranièují zmínìný text, který
-sestavujte opatrnì, proto¾e zde ji¾ 
-nefunguje bì¾ný mechanismus zalamování øádkù.
-
+Slo¾ené závorky ohranièují strojopisný text. Sestavujme jej opatrnì,
+proto¾e v~nìm ji¾ nefunguje bì¾ný mechanismus zalamování øádkù.
 
 %You can set up the `typing' with:
-Nastavení re¾imu verbatim mù¾ete provádìt
-pomocí:
+Nastavení re¾imu verbatim mù¾eme provádìt pomocí:
 
 \shortsetup{setuptyping}
 \shortsetup{setuptype}
 
-\page
+%\page
 
 %\section{Encodings}
 \section[sec:encodings]{Kódování znakù}

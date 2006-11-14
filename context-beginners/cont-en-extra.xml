@@ -617,4 +617,98 @@ Todo:
   </cd:arguments>
 </cd:command>
 
+<cd:command name="setupinteraction" file="core-nav.tex">
+  <cd:sequence>
+    <cd:string value="setupinteraction"/>
+  </cd:sequence>
+  <cd:arguments>
+    <cd:assignments interactive="exclusive" list="yes">
+      <cd:parameter name="state">
+        <cd:constant type="start"/>
+        <!-- change! -->
+        <cd:constant type="stop" default="yes"/>
+      </cd:parameter>
+      <cd:parameter name="menu">
+        <cd:constant type="on"/>
+        <cd:constant type="off"/>
+      </cd:parameter>
+      <cd:parameter name="page">
+        <cd:constant type="yes"/>
+        <cd:constant type="no"/>
+      </cd:parameter>
+      <cd:parameter name="click">
+        <cd:constant type="yes"/>
+        <cd:constant type="no"/>
+      </cd:parameter>
+      <cd:parameter name="split">
+        <cd:constant type="yes"/>
+        <cd:constant type="no"/>
+      </cd:parameter>
+      <cd:parameter name="display">
+        <cd:constant type="new"/>
+      </cd:parameter>
+      <cd:parameter name="openaction">
+        <cd:constant type="cd:reference"/>
+      </cd:parameter>
+      <cd:parameter name="closeaction">
+        <cd:constant type="cd:reference"/>
+      </cd:parameter>
+      <cd:parameter name="openpageaction">
+        <cd:constant type="cd:reference"/>
+      </cd:parameter>
+      <cd:parameter name="closepageaction">
+        <cd:constant type="cd:reference"/>
+      </cd:parameter>
+      <cd:parameter name="calculate">
+        <cd:constant type="cd:name"/>
+      </cd:parameter>
+      <cd:parameter name="strut">
+        <cd:constant type="yes"/>
+        <cd:constant type="no"/>
+      </cd:parameter>
+      <cd:parameter name="width">
+        <cd:constant type="cd:dimension"/>
+      </cd:parameter>
+      <cd:parameter name="height">
+        <cd:constant type="cd:dimension"/>
+      </cd:parameter>
+      <cd:parameter name="depth">
+        <cd:constant type="cd:dimension"/>
+      </cd:parameter>
+      <cd:parameter name="style">
+        <cd:resolve name="style"/>
+      </cd:parameter>
+      <cd:parameter name="color">
+        <cd:constant type="cd:name"/>
+      </cd:parameter>
+      <cd:parameter name="contrastcolor">
+        <cd:constant type="cd:name"/>
+      </cd:parameter>
+      <cd:parameter name="symbolset">
+        <cd:constant type="cd:name"/>
+      </cd:parameter>
+      <cd:parameter name="title">
+        <cd:constant type="cd:text"/>
+      </cd:parameter>
+      <cd:parameter name="subtitle">
+        <cd:constant type="cd:text"/>
+      </cd:parameter>
+      <cd:parameter name="author">
+        <cd:constant type="cd:text"/>
+      </cd:parameter>
+      <cd:parameter name="date">
+        <cd:constant type="cd:text"/>
+      </cd:parameter>
+      <cd:parameter name="keyword">
+        <cd:constant type="cd:text"/>
+      </cd:parameter>
+      <!-- maybe this will move elsewhere -->
+      <cd:parameter name="fieldlayer">
+        <cd:constant type="auto"/>
+        <cd:constant type="cd:name"/>
+      </cd:parameter>
+    </cd:assignments>
+  </cd:arguments>
+</cd:command>
+
 </cd:interface>

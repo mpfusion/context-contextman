@@ -1,5 +1,5 @@
-% Translation:
-% 2006-10-09 VZ
+% Translation: 2006-10-09 VZ
+% Checking:    2006-11-14 zyka
 \startcomponent ma-cb-cz-interactivity
 \project ma-cb
 \product ma-cb-cz
@@ -27,9 +27,10 @@ obrazovky poèítaèe.
 %% jump to the indicated areas. For example if you consult a
 %% register you can click on a (active) page number and you will
 %% jump to the corresponding page.
-Interaktivní dokument po kliknutí my¹í na urèitou jeho plochu, zobrazí
-jinou plochu, která byla odkazována. Pøíkladem mù¾e být klik na èíslo strány
-polo¾ky rejstøíku a následné zobrazení odpovídající strany dokumentu.
+Po kliknutí my¹í na urèitou plochu interaktivního dokumentu, se nám
+zobrazí jeho jiná èást. Ta, která byla odkazována. Pøíkladem mù¾e být
+klik na èíslo strány v~rejstøíku a~následné zobrazení odpovídající
+strany dokumentu.
 
 %% Interaction relates to:
 Interakce se týkají:
@@ -42,13 +43,13 @@ Interakce se týkají:
 %% \item active titles, page numbers, and chapter numbers in
 %%       external references to other interactive documents
 %% \item active menus as navigation tools
-\item aktivních èísel kapitol v~obsahu,
-\item aktivních èísel stran v~rejstøíku,
+\item aktivních èísel kapitol v~obsahu;
+\item aktivních èísel stran v~rejstøíku;
 \item aktivních èísel stran, èísel kapitol a èísel obrázkù ve
-  vnitøních odkazech na strany, kapitoly, obrázky ap.,
+  vnitøních odkazech na strany, kapitoly, obrázky ap.;
 \item aktivních názvù, èísel stran a èísel kapitol v~externích
-  referencích na jiné interaktivní dokumenty,
-\item aktivní menu v~navigaèních panelech stran.
+  referencích na jiné interaktivní dokumenty;
+\item aktivní menu v~navigaèních panelech.
 \stopitemize
 
 %% Interactivity depends on the program you use to view the
@@ -58,10 +59,11 @@ Interakce se týkají:
 %% obvious that you will then use \READER, \EXCHANGE, or
 %% \GHOSTVIEW\ for viewing.
 Interaktivivní chování do jisté míry závisí na programu, ve kterém
-dokument prohlí¾íme. Pøedpokládejme, ¾e pou¾ijeme \PDFTEX\ pro
-generování \PDF\ dokumentu pøímo nebo pou¾ijeme \DISTILLER\ pro
-pøevedení \POSTSCRIPT ového souboru na soubor \PDF. Je zøejmé, ¾e pak
-pro zobrazení pou¾ijeme \READER, \EXCHANGE\ nebo \GHOSTVIEW.
+dokument prohlí¾íme. Pokud pøedpokládáme, ¾e pou¾ijeme \PDFTEX{} pro
+pøímé generování \PDF{} dokumentu nebo pou¾ijeme \DISTILLER{} pro
+pøevedení \POSTSCRIPT{}ového souboru na soubor \PDF, je pak zøejmé, ¾e
+pro zobrazení pou¾ijeme \PDF{} prohlí¾eè, napøíklad \READER,
+\EXCHANGE{} nebo \GHOSTVIEW.
 
 %% \CONTEXT\ is a very powerful system for producing electronic
 %% or interactive \PDF\ documents. However only a few standard
@@ -75,8 +77,9 @@ interaktivních \PDF\ dokumentù. Av¹ak pouze nìkolik standardních
 vlastností je popsáno v~této kapitole. Proto¾e autoøi tohoto manuálu
 chtìjí v¹echny manuály vìnované \CONTEXT u elektronicky zpøístupnit
 vèetnì zdrojových textù, je zpìtné in¾enýrství jedna z~mo¾ností, jak
-se dùvìrnì obeznámit s~mo¾nostmi \CONTEXT u.\footnote{Pozn. pøekl.:
-  Interaktivitì je vìnován manuál {\em Widgets uncovered}.}
+se dùvìrnì obeznámit s~jeho mo¾nostmi.\footnote{Pozn. pøekl.:
+  Interaktivitì je vìnován manuál \from[manual:widgets], viz
+  \in{pøílohu}[sec:info].}
 
 %% \section{Interactive mode}
 \section{Interaktivní mód}
@@ -114,10 +117,9 @@ slova budou zobrazeny zelenì.
 %% Therefore it is advisable to de-activate the interactive mode
 %% as long as your document is under construction.
 Interaktivní dokumenty jsou podstatnì vìt¹í (v~MB) ne¾ jejich papíroví
-bratranci, proto¾e hyperlinky spotøebují spoustu kódové
-informace. Také si v¹imnìnte, ¾e zpracování dokumentu probíhá
-pomaleji. Proto je výhodné deaktivovat interaktivní mód bìhem
-pøípravných fází tvorby dokumentu.
+bratranci, proto¾e hyperlinky spotøebují spoustu kódu. Také si
+v¹imnìnme, ¾e zpracování dokumentu probíhá pomaleji. Proto je výhodné
+deaktivovat interaktivní mód bìhem pøípravných fází tvorby dokumentu.
 
 %% \section{Interaction within a document}
 \section{Interaktivita v~rámci jednoho dokumentu}
@@ -138,24 +140,24 @@ pøípravných fází tvorby dokumentu.
 %% differently in the interactive mode. This gives the user a
 %% larger clickable area.
 Ji¾ døíve jsme vidìli, jak vytvoøit odkaz pomocí \type{\in} a
-\type{\at}. Mo¾ná jste se divili, proè jsme psali
+\type{\at}. Mo¾ná jsme se divili, proè pí¹eme
 \type{\in{kapitola}[chap:uvod]}. Zaprvé se tak zamezí, aby slovo
-{\em kapitola} a korespondující èíslo bylo rozdìleno øádkovým
-zlomem. A~zadruhé bude jak slovo {\em kapitola} i~její èíslo sázeno
+{\em kapitola} a~korespondující èíslo bylo rozdìleno øádkovým
+zlomem. A~zadruhé bude jak slovo {\em kapitola}, tak i~její èíslo sázeno
 v~interaktivním módu aktivnì. Díky tomu získá ètenáø vìt¹í klikatelnou
 oblast.
 
 %% In interactive mode there is one other command that has
 %% little meaning in the paper variant.
-V~interaktivním módu máme k~dispozici jeden dal¹í pøíkaz, který má
+V~interaktivním módu máme k~dispozici jeden pøíkaz, který má
 zanedbatelný význam v~papírové variantì dokumentu. Je jím
 
 \shortsetup{goto}
 
 %% The curly braces contain text, the brackets contain a
 %% reference (logical name, location).
-Slo¾ené závorky obsahují text, hranaté odkaz (logické jmého nebo
-umístìní).
+Slo¾ené závorky obsahují uvozující nebo ukonèující text reference,
+hranaté odkaz (referenèní jmého nebo pokyn).
 
 %% \startbuffer
 %% In \goto{Hasselt}[fig:cityplan] all streets are build in a
@@ -193,7 +195,7 @@ registrovat vnìj¹í dokument. Dìlá se to pomocí
 %% document, the second pair the file name of the other document
 %% and the third pair is used for the title of the document.
 První hranaté závorky musí obsahovat logické jméno dokumentu, druhý pár
-závorek obsahuje jméno souboru a poslední závorky obklopují titulek
+závorek obsahuje jméno souboru a poslední závorky obklopují pojmenování
 vnìj¹ího dokumentu.
 
 %% For refering to these other documents you can use:
@@ -282,8 +284,8 @@ dokumenty. Vý¹e uvedené odkazy mají následující význam:
 
 %% As you can see the \type{::} separates the (logical) file name
 %% and the destination in that file.
-Jak jste mohli vidìt, \type{::} oddìluje (logické) jméno souboru
-a~jméno doskoku v~tomto dokumentu.
+Jak jsme mohli vidìt, \type{::} oddìluje (logické) jméno souboru
+a~referenèní jméno doskoku v~tomto dokumentu.
 
 %% \section{Menus}
 \section{Menu}
@@ -297,7 +299,7 @@ Definovat mù¾eme také navigaèní panel pomocí
 %% be used to recall the menu. The second pair contains the
 %% location on the screen. The third pair is used for setting
 %% up the menu.
-První pár závorek definuje logické jméno, které mù¾e pozdìji být
+První pár závorek definuje referenèní jméno, které mù¾e pozdìji být
 pou¾ito pro vyvolání menu. Druhé závorky urèují polohu na
 obrazovce. Tøetí nastavují menu.
 
@@ -393,7 +395,7 @@ mù¾eme pou¾ít jsou \type{PrintDocument} (tiskni),
 (skok na pøedchozí zobrazení). 
 
 %% Menus are set up with:
-Menu jsou nastavovány pomocí
+Menu jsou nastavována pomocí
 
 \shortsetup{startinteractionmenu}
 
