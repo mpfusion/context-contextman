@@ -1,5 +1,5 @@
-% Translation:
-% busaj
+% Translation: busaj
+% Checking:    2006-11-14 zyka
 \startcomponent ma-cb-cz-synonyms
 \project ma-cb
 \product ma-cb-cz
@@ -23,19 +23,20 @@
 %In many documents people want to use specific words consistently
 %throughout the document. To enforce consistency the command
 %below is available.
-V~mnoha pøípadech chtìjí autoøi pou¾ívat urèitá slova zhodnì v~celém dokumentu. 
-K~dosa¾ení jednotnosti je k~dispozici následující pøíkaz.
+V~mnoha pøípadech chtìjí autoøi pou¾ívat urèitá slova stejnì v~celém
+dokumentu. K~dosa¾ení jednotnosti je k~dispozici následující pøíkaz:
 
 \shortsetup{definesynonyms}
 
 %The first bracket pair contains the singular form of the synonym,
 %and the second contains the plural form. The third bracket pair
 %contains a command.
-První dvojice hranatých závorek obsahuje singulární tvar synonyma a druhá dvojice obsahuje plurální formu. 
-Tøetí dvojice hranatých závorek obsahuje povel.
+První dvojice hranatých závorek obsahuje singulární tvar synonyma a
+druhá dvojice obsahuje plurální formu. Tøetí dvojice hranatých závorek
+obsahuje povel.
 
 %For example the command \type{\abbreviation} is defined by:
-Napøíklad povel \type{\abbreviation} je definován následovnì:
+Napøíklad povel \type{\abbreviation} (zkratka) je definován následovnì:
 
 \starttyping
 \definesynonyms[abbreviation][abbreviations][\infull]
@@ -44,7 +45,8 @@ Napøíklad povel \type{\abbreviation} je definován následovnì:
 
 %Now the command \type{\abbreviation} is available and can be
 %used to state your abbreviations:
-Nyní je k~dispozici pøíkaz \type{\abbreviation} a mù¾e být pou¾it na definování va¹ich zkratek:
+Nyní je k~dispozici pøíkaz \type{\abbreviation} a mù¾e být pou¾it na
+definování na¹ich zkratek:
 
 %\starttyping
 %\abbreviation{ANWB}{Dutch Automobile Association}
@@ -61,21 +63,21 @@ Nyní je k~dispozici pøíkaz \type{\abbreviation} a mù¾e být pou¾it na definování 
 \abbreviation{VVV}{Úøad turistických informací}
 
 %If you would type:
-Jestli¾e napí¹ete:
+Jestli¾e napí¹eme:
 
 %\startbuffer
 %The Dutch \VVV\ (\infull{VVV}) can provide you with the tourist
 %information on Hasselt.
 %\stopbuffer
 \startbuffer
-Holandský \VVV\ (\infull{VVV}) vám mù¾e poskytnout turistické
+Holandský \VVV\ (\infull{VVV}) nám mù¾e poskytnout turistické
 informace o~Hasseltu.
 \stopbuffer
 
 \typebuffer
 
 %You would obtain something like this:
-Dostanete nìco jako:
+Dostaneme nìco jako:
 
 \getbuffer
 
@@ -83,8 +85,10 @@ Dostanete nìco jako:
 %the set up area of your input file for maintenance purposes.
 %You can also store this kind of information in an
 %external file, and load the file (e.g. \type{abbrev.tex}) with:
-Seznam synonym a zkratek je nejlep¹í definovat v~deklaraèní oblasti va¹eho vstupního souboru z~dùvodu jeho jednoduché údr¾by.
-Tento typ informace mù¾ete také ulo¾it do externího souboru a tento naèíst (napø. \type{abbrev.tex}) pøíkazem:
+Seznam synonym a zkratek je nejlep¹í definovat v~deklaraèní oblasti
+na¹eho vstupního souboru z~dùvodu jeho jednoduché údr¾by. 
+Tento typ informace mù¾eme také ulo¾it do externího souboru
+(napø. \type{abbrev.tex}) a~tento naèíst pøíkazem:
 
 \starttyping
 \input abbrev.tex
@@ -110,13 +114,11 @@ nebo
 Vytvoøí se tak úplný abecednì uspoøádaný seznam zkratek a jejich významù.
 
 %The typesetting of synonynms can be influenced with:
-Sazba synonym se dá ovlivnit pøíkazem:
+Sazba synonym se dá ovlivnit pøíkazem \type{\setupsynonyms}.
 
-\starttyping
-\setupsynonyms
-\stoptyping
+\shortsetup{setupsynonyms}
 
 %Look at \in{chapter}[units] for another application of synonyms.
-Dal¹í aplikace synonym naleznete v~\in{kapitole}[units].
+Dal¹í aplikace synonym je popsána v~\in{kapitole}[units].
 
 \stopcomponent

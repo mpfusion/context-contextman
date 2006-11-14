@@ -558,4 +558,63 @@ Todo:
   </cd:arguments>
 </cd:command>
 
+<cd:command name="setupcolors" file="colo-ini.tex">
+  <cd:sequence>
+    <cd:string value="setupcolors"/>
+  </cd:sequence>
+  <cd:arguments>
+    <cd:assignments list="yes">
+      <cd:parameter name="state">
+        <cd:constant type="start"/>
+        <!-- change! -->
+        <cd:constant type="stop" default="yes"/>
+        <cd:constant type="global"/>
+        <cd:constant type="local"/>
+      </cd:parameter>
+      <cd:parameter name="conversion">
+        <cd:constant type="yes"/>
+        <cd:constant type="no"/>
+        <cd:constant type="always"/>
+      </cd:parameter>
+      <cd:parameter name="reduction">
+        <cd:constant type="yes"/>
+        <cd:constant type="no"/>
+      </cd:parameter>
+      <cd:parameter name="rgb">
+        <cd:constant type="yes"/>
+        <cd:constant type="no"/>
+      </cd:parameter>
+      <cd:parameter name="cmyk">
+        <cd:constant type="yes"/>
+        <cd:constant type="no"/>
+      </cd:parameter>
+      <cd:parameter name="mpcmyk">
+        <cd:constant type="yes"/>
+        <cd:constant type="no"/>
+      </cd:parameter>
+      <cd:parameter name="mpspot">
+        <cd:constant type="yes"/>
+        <cd:constant type="no"/>
+      </cd:parameter>
+      <cd:parameter name="textcolor">
+        <cd:constant type="cd:name"/>
+      </cd:parameter>
+      <cd:parameter name="split">
+        <cd:constant type="c"/>
+        <cd:constant type="m"/>
+        <cd:constant type="y"/>
+        <cd:constant type="k"/>
+        <cd:constant type="p"/>
+        <cd:constant type="s"/>
+        <cd:constant type="no"/>
+        <cd:constant type="cd:name"/>
+      </cd:parameter>
+      <cd:parameter name="criterium">
+        <cd:constant type="all"/>
+        <cd:constant type="none"/>
+      </cd:parameter>
+    </cd:assignments>
+  </cd:arguments>
+</cd:command>
+
 </cd:interface>

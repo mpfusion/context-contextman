@@ -1,5 +1,5 @@
-% Translation:
-% busaj
+% Translation: busaj
+% Checking:    2006-11-14 zyka
 \startcomponent ma-cb-cz-registers
 \project ma-cb
 \product ma-cb-cz
@@ -22,8 +22,9 @@
 %It is possible to generate one or more registers. By default
 %the command \type{\index} is available. If you want to add
 %a word to the index you type:
-Je mo¾né vytvoøit jeden nebo více rejstøíkù. Implicitnì je k~dispozici
-pøíkaz \type{\index}. Jestli¾e chcete pøidat do rejstøíku slovo, napi¹te:
+V~\CONTEXT{}u je mo¾né vytvoøit jeden nebo více rejstøíkù. Implicitnì
+je k~dispozici pøíkaz \type{\index}. Jestli¾e chceme pøidat do
+rejstøíku slovo, napí¹eme napøíklad: 
 
 %\starttyping
 %\index{town hall}
@@ -39,10 +40,9 @@ pøíkaz \type{\index}. Jestli¾e chcete pøidat do rejstøíku slovo, napi¹te:
 %sorting information in order to produce a correct alphabetical
 %list:
 Vıraz {\em mìstská hala} se objeví jako heslo rejstøíku. Rejstøík je
-seøazen podle abecedy pomocnım programem. Slovo rejstøíku se nìkdy
-neobjeví v~bì¾ném abecedním poøadí. Napøíklad, polo¾ky jako symboly, 
-musí bıt doplnìny o~dal¹í tøídící informaci, aby mohl bıt vytvoøen
-správnı abecední seznam:
+seøazen podle abecedy pomocnım programem. Pokud je nìkteré heslo
+tøeba zatøídit mimo bì¾né abecední poøadí, napøíklad v~pøípadì symbolu,
+musí bıt doplnìno o~dal¹í tøídící informaci:
 
 %\starttyping
 %\index[minus]{$-$}
@@ -53,8 +53,7 @@ správnı abecední seznam:
 
 %Sometimes you have sub- or sub sub entries. These can be
 %defined as follows:
-Nìkdy máte pod- nebo podpodpolo¾ky. Tyto mù¾ou bıt definovány 
-následujícím zpùsobem:
+Nìkdy máme pod- nebo podpodhesla. Tyto se zadávají následujícím zpùsobem:
 
 %\starttyping
 %\index{town hall+location}
@@ -66,7 +65,7 @@ následujícím zpùsobem:
 \stoptyping
 
 %You can generate your indexlist with:
-Seznam rejstøíku vytvoøíte pøíkazem:
+Rejstøík vygenerujeme pøíkazem
 
 \starttyping
 \placeindex
@@ -81,15 +80,15 @@ nebo
 
 %The command \type{\index} is a predefined \CONTEXT\ command,
 %but of course you can also define your own registers.
-Pøíkaz \type{\index} je pøeddefinovanı pøíkaz \CONTEXT{}u,
-ov¹em mù¾ete také definovat své vlastní rej\-støí\-ky.
+Pøíkaz \type{\index} je pøeddefinovanı pøíkaz \CONTEXT{}u;
+mù¾ete v¹ak také definovat své vlastní rej\-støí\-ky:
 
 \shortsetup{defineregister}
 
 %For example if you want to make a new register based on the
 %streets in Hasselt you could type:
-Napøíklad, jestli chcete vytvoøit novı rejstøík ulic Hasseltu,
-mù¾ete napsat:
+Napøíklad, jestli chceme vytvoøit novı rejstøík ulic Hasseltu,
+mù¾eme napsat:
 
 %\starttyping
 %\defineregister[street][streets]
@@ -103,7 +102,7 @@ mù¾ete napsat:
 %produce a list of entries you could now use:
 Nyní je k~dispozici novı pøíkaz rejstøíku \type{\ulice}. 
 Nové heslo rejstøíku tak mù¾e bıt \type{\ulice{Ridderstraat}}. 
-Samotnı seznam teï vytvoøíte pou¾itím pøíkazù:
+Samotnı {\em seznam ulic\/} nyní vytvoøíme pou¾itím pøíkazù:
 
 %\starttyping
 %\placestreets
@@ -115,7 +114,7 @@ Samotnı seznam teï vytvoøíte pou¾itím pøíkazù:
 \stoptyping
 
 % You can alter the display of the registers with:
-Zobrazení rejstøíkù mù¾ete mìnit pøíkazem:
+Zobrazení rejstøíkù mù¾eme mìnit pøíkazem:
 
 \shortsetup{setupregister}
 
