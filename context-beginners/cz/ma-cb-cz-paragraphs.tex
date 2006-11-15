@@ -1,5 +1,5 @@
-% Translation:
-% jaih
+% Translation: jaih
+% Checking:    2006-11-15 zyka
 \startcomponent ma-cb-cz-paragraphs
 \project ma-cb
 \product ma-cb-cz
@@ -19,33 +19,28 @@
 
 %In \TEX\ and \CONTEXT\ the most important unit of text is the
 %paragraph. You can start a new paragraph by:
-V~\TEX u a~\CONTEXT u je nejdùle¾itìj¹í jednotkou textu
-odstavec. Nový odstavec mù¾ete zaèít pomocí:
+V~\TEX{}u a~\CONTEXT{}u je nejdùle¾itìj¹í jednotkou textu
+odstavec. Nový odstavec mù¾eme zaèít
 
 %\startitemize[packed]
 %\item an empty line
 %\item the \TEX\ command \type{\par}
 %\stopitemize
-
 \startitemize[packed]
-\item prázdným øádkem
-\item pøíkazem \type{\par}
+\item prázdným øádkem,
+\item pøíkazem \type{\par}.
 \stopitemize
-
 
 %In your \ASCII\ input file you should use empty lines as
 %paragraph separators. This will lead to a clearly structured
 %and well organized file and will prevent mistakes.
-
 Ve svém vstupním \ASCII\ souboru je vhodné vyu¾ívat prázdné
 øádky jako oddìlovaèe odstavcù. Dostaneme tak pøehlednìj¹í
- a~lépe organizovanou strukturu textu, ve které se snadnìji 
-odhalují pøípadné chyby.
-
+a~lépe strukturovaný text, ve které se snadnìji odhalují pøípadné
+chyby.
 
 %In situations where a command has to be closed explicitly you
 %should use \type{\par}.
-
 Pokud si pøejeme ukonèit odstavec výslovnì pøíkazem, pou¾ijeme
 \type{\par}. 
 
@@ -64,8 +59,8 @@ Pokud si pøejeme ukonèit odstavec výslovnì pøíkazem, pou¾ijeme
 %\stopbuffer
 
 \startbuffer
-Bìhem jedné z~válek byl Hasselt v~oble¾ení. Po nìjakém èase
-dolehl na mìsto hladomor a~v¹e co se dalo sníst,
+Bìhem jedné z~válek byl Hasselt v~oble¾ení. Po nìjakém
+èase dolehl na mìsto hladomor a~v¹e co se dalo sníst,
 bylo snìdeno, kromì jedné krávy. Ta byla ponechána na 
 ¾ivu a~navíc s~ní bylo velice slu¹nì zacházeno. \par
 Jednou dennì vyvedli obyvatelé Hasseltu tuto krávu 
@@ -73,15 +68,14 @@ na procházku po hradbách. Kdykoliv obléhatelé vidìli
 dobøe ¾ivenou krávu, propadli malomyslnosti. Nakonec 
 ukonèili obléhání a~Hasselt byl zachránìn.\par
 Na památku tohoto oble¾ení a~moudrosti obyvatel
-Hasseltu se zde dnes nachází  kamenná deska s~vyobrazením
-krávy.
+Hasseltu se zde dnes nachází kamenná deska
+s~vyobrazením krávy.
 \stopbuffer
 
 \typebuffer
 
 %This could also be typed without \type{\par}s and a few empty
 %lines.
-
 Místo pøíkazù  \type{\par} bychom mohli také pou¾ít nìkolik
 prázdných øádkù: 
 
@@ -101,11 +95,9 @@ prázdných øádkù:
 %the wisdom of the citizens of Hasselt.
 %\stopbuffer
 
-
-
 \startbuffer
-Bìhem jedné z~válek byl Hasselt v~oble¾ení. Po nìjakém èase
-dolehl na mìsto hladomor a~v¹e co se dalo sníst,
+Bìhem jedné z~válek byl Hasselt v~oble¾ení. Po nìjakém
+èase dolehl na mìsto hladomor a~v¹e co se dalo sníst,
 bylo snìdeno, kromì jedné krávy. Ta byla ponechána na 
 ¾ivu a~navíc s~ní bylo velice slu¹nì zacházeno. 
 
@@ -115,22 +107,21 @@ dobøe ¾ivenou krávu, propadli malomyslnosti. Nakonec
 ukonèili obléhání a~Hasselt byl zachránìn.
 
 Na památku tohoto oble¾ení a~moudrosti obyvatel
-Hasseltu se zde dnes nachází  kamenná deska s~vyobrazením
-krávy.
+Hasseltu se zde dnes nachází  kamenná deska
+s~vyobrazením krávy.
 \stopbuffer
-
 
 \typebuffer
 
 %\section{Inter paragraph spacing}
 \section{Mezera mezi odstavci}
 
-\index{mezera mezi odstavci}
+\index{mezera+meziodstavcová}
 
 \Command{\tex{setupwhitespace}}
 \Command{\tex{nowhitespace}}
 \Command{\tex{whitespace}}
-\Command{\tex{setuplinecorrection}}
+\Command{\tex{startlinecorrection}}
 \Command{\tex{blank}}
 \Command{\tex{setupblank}}
 \Command{\tex{startpacked}}
@@ -146,7 +137,6 @@ Tento dokument je vysázen s~nastavením \type{\setupwhitespace[medium]}.
 
 %When inter paragraph spacing is specified there are two
 %commands available that are seldom needed:
-
 Jakmile takto jednou nastavíme velikost meziodstavcové mezery,
  máme k~dispozici dva pøíkazy, které jsou nicménì jen 
 zøídka potøeba:
@@ -158,9 +148,8 @@ zøídka potøeba:
 
 %When a paragraph consists of a horizontal line or a framed
 %text like this:
-
 Pokud odstavec obsahuje vodorovné linky, nebo orámovaný
-text, jako napøíklad:
+text, jako napøíklad
 
 \startbuffer
 \framed{Ridderstraat 27, 8061GH Hasselt}
@@ -171,14 +160,13 @@ text, jako napøíklad:
 %Sometimes spacing is suboptimal. For that purpose you could
 %carry out a correction with:
 
-...se stává, ¾e rozestup není optimální. V~takovém pøípadì 
+pak se stává, ¾e rozestup není optimální. V~takovém pøípadì 
 lze provést korekci pomocí:
-
 
 \shortsetup{startlinecorrection}
 
 %So if you would type:
-Tak¾e pokud napí¹ete:
+Tak¾e pokud napí¹eme:
 
 \startbuffer
 \startlinecorrection
@@ -190,8 +178,7 @@ Tak¾e pokud napí¹ete:
 
 %you will get a better output. Only use these commands if
 %really needed!
-
-dostanete lep¹í výstup, ale pou¾ívejte tyto pøíkazy jen
+dostaneme lep¹í výstup. Pou¾ívejme ale tyto pøíkazy jen
 pokud jsou opravdu nezbytné!
 
 \getbuffer
@@ -204,12 +191,10 @@ Dal¹í pøíkaz pro ovládání mezery mezi odstavci je:
 %The bracket pair is optional and within the bracket pair you
 %can type the amount of spacing. Keywords like \type{small},
 %\type{medium} and \type{big} are related to the fontsize.
-
 Hranaté závorky za pøíkazem nejsou povinné, pomocí nich 
 v¹ak mù¾eme ovládat velikost mezery mezi odstavci.
-Klíèová slova jako \type{small}, \type{medium} a~
-\type{big} nastavují mezeru relativnì, tedy odvozenou 
-od velikosti daného fontu.
+Klíèová slova jako \type{small}, \type{medium} a~\type{big} nastavují
+mezeru relativnì, odvozenou od velikosti daného fontu.
 
 %\startbuffer
 %In official writings Hasselt always has the affix Ov. This is an
@@ -233,18 +218,16 @@ provincie {\em Overijssel}.
 a~tato pøípona je tedy nadbyteèná.
 \blank
 Tato pøípona je pozùstatkem z~dob, kdy Holandsko a~Belgie
-byly jednou zemí, pod vládou ¹panìlského krále Filipa II.
+byly jednou zemí pod vládou ¹panìlského krále Filipa II.
 \blank[2*big]
 Hasselt v~Belgii le¾í v~provincii Limburg, ale Belgièané 
 na své dopisy Hasselt (Li) zøejmì nepí¹í.
 \stopbuffer
 
-
 \typebuffer
 
 %The command \type{\blank} without the bracket pair is the
 %default space.
-
 Pøíkaz \type{\blank} bez hranatých závorek pøedstavuje
 obvyklou mezeru.
 
@@ -254,21 +237,19 @@ Ná¹ pøíklad by vypadal:
 \getbuffer
 
 %The default spacing can be set up with:
-
 Velikost obvyklé mezery lze ovládat pomocí: 
 
 \shortsetup{setupblank}
 
 %If you want to surpress vertical spacing you can use:
-Pokud chcete potlaèit tuto meziodstavcovou mezeru,
-mù¾ete pou¾ít:
+Pokud chceme potlaèit tuto meziodstavcovou mezeru,
+mù¾eme pou¾ít:
 
 \shortsetup{startpacked}
 
 %In this manual the whitespace is set at \type{medium}. In
 %the next situation this set up is ignored and the lines are
 %packed.
-
 V~tomto dokumentu je mezera nastavena na \type{medium} ale na
 následujících øádcích je tato mezera potlaèena a~øádky jsou
 tedy semknuty k~sobì.
@@ -309,7 +290,6 @@ Není tì¾ké si pøedstavit, k~èemu slou¾í:
 
 %You can force vertical space with \type{\godown}. The
 %distance is specified within the brackets.
-
 Vertikální mezeru si lze také vynutit pomocí
 pøíkazu \type{\godown}. Její velikost je nastavena
 v~závorkách.
@@ -318,7 +298,6 @@ v~závorkách.
 
 %\section{Indentation}
 \section{Odsazení}
-
 
 %\index{indentation}
 \index{odsazení}
@@ -330,12 +309,12 @@ v~závorkách.
 \Command{\tex{setupindenting}}
 
 %You can set up the amount of the indentation with:
-Velikost odsazení mù¾eme nastavít pomocí:
+Velikost odsazení nastavíme pomocí:
 
 \shortsetup{setupindenting}
 
 %A reasonable indentation is achieved by:
-Rozumn0 odsazení je dosa¾eno pomocí:
+Rozumné odsazení je dosa¾eno pomocí:
 
 \starttyping
 \setupindenting[medium]
@@ -344,30 +323,25 @@ Rozumn0 odsazení je dosa¾eno pomocí:
 %This will lead to indented paragraphs. By default,
 %indentation after white space (as issued by \type {\blank})
 %is suppressed.
-
-Takto budou odstavce odsazeny, jen po mezeøe je v~základním
-nastavení odsazení potlaèeno. (mezera je vysázena pøíkazem
-\type {\blank})
-
+Tímto budou odstavce odsazeny. Jen po mezeøe (vysázené pøíkazem
+\type{\blank}) je v~základním nastavení odsazení potlaèeno. 
 
 %You can locally influence the indentation state by using
-Lokálnì na urèitém místì mù¾ete odsazování ovládat pomocí:
+Lokálnì na urèitém místì mù¾eme odsazování ovládat pomocí:
 
 \shortsetup{indenting}
 
 %When for instance you say \type {never}, from that moment
 %on indentation will be surpressed. Saying \type {none},
 %only influences the next paragraph.
-
-Kdy¾ napøíklad pou¾ijete \type {never}, od toho okam¾iku
-budou v¹echna odsazení potlaèena. Pøíkazem \type {none},
+Kdy¾ napøíklad pou¾ijeme \type{never}, od toho okam¾iku
+budou v¹echna odsazení potlaèena. Pøíkazem \type{none},
 bude ovlivnìn pouze následující odstavec.
 
 %If you choose to use indentations, and at a certain place you
 %explicitly {\em do not} want to indent, you can also say:
-
-Pokud pou¾íváte odsazování a~na urèitém místì si odsazení
-{\em ne}pøejete, mù¾ete také pou¾ít:
+Pokud pou¾íváme odsazování a~na urèitém místì si odsazení
+{\em ne}pøejeme, mù¾eme také pou¾ít:
 
 \starttyping
 \noindenting
