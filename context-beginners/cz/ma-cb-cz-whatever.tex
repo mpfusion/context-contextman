@@ -1,5 +1,5 @@
-% Translation:
-% 2006-10-14 VZ
+% Translation: 2006-10-14 VZ
+% Checking:    2006-11-15 zyka
 \startcomponent ma-cb-cz-whatever
 \project ma-cb
 \product ma-cb-cz
@@ -68,7 +68,7 @@ Jednoduchá titulní strana mù¾e vypadat takto:
 
 %% In a doublesided document you have to go through some
 %% additional actions to typeset the back of the titlepage.
-V~oboustránkovém dokumentu musíme vykonat nìkteré dal¹í akce,
+V~oboustranném dokumentu musíme vykonat nìkteré dal¹í akce,
 abychom vysázeli zadní stranu titulního listu. Pøede¹lý pøíklad
 v~takovém pøípadì zmìníme na:
 
@@ -107,7 +107,7 @@ v~takovém pøípadì zmìníme na:
 \copyright 2001
 
 Tato kniha je vìnována lidem ¾ijícím v~Hasseltu. Chceme podìkovat
-fotografovi J. Jonkerovi za zfal¹ování fotografií do této knihy tak,
+fotografovi J.~Jonkerovi za zfal¹ování fotografií do této knihy tak,
 ¾e ètenáø získá jasnou pøedstavu o~budoucí podobì Hasseltu.
 \stopstandardmakeup
 \stopbuffer
@@ -145,7 +145,7 @@ a
 %% blocks. The floating mechanism is described in
 %% \in{chapter}[figures] and \in[tables].
 Plovoucím objektem (floating block) je v~\CONTEXT{}u nazýván textový
-element, napø. tabulka èi obrázek, který zpracováváme speciálním
+element, napø. tabulka èi obrázek, který je zpracován speciálním
 zpùsobem. Ji¾ jsme vidìli pou¾ití \type{\placefigure}
 a~\type{\placetable}. Oba jsou pøíkladem plovoucích objektù popsaných
 v~\in{kapitolách}[figures] a~\in[tables].
@@ -228,7 +228,7 @@ nového plovoucího objektu.
 
 \placevsuvka{Ukázka vsuvky.}
 \startframedtext
-Na zaèátku tohoto stolení existovala tavmvajová linka z~Zwolle do
+Na zaèátku tohoto stolení existovala tramvajová linka z~Zwolle do
 Blokzijl pøes Hasselt. Pozdìji nabývaly na významu jiné dopravní
 prostøedky a~tramvajová tra» byla pøed druhou svìtovou válkou
 zru¹ena. Nyní by mohla opìt být taková tramvajová linka zisková.
@@ -326,9 +326,9 @@ Zde je pøíklad jejich pou¾ití:
 \hideblocks[holandstina,cestina]
 
 \begincestina[blok-a]
-Po roce 1810 pøinesl Dedemsvaart Hesseltu prosperitu. V¹echny lodì
-proplouvaly kanálem v~Hasseltu a obchody na obou stranách kanálu
-bohatly.
+Po roce 1810 pøinesl kanál Dedemsvaart Hesseltu prosperitu.
+V¹echny lodì proplouvaly kanálem v~Hasseltu a obchody na obou
+stranách kanálu bohatly.
 \endcestina
 
 \beginholandstina[blok-a]
@@ -403,8 +403,8 @@ Napøíklad:
 %% \stoptyping
 \starttyping
 \startbuffer[navsteva]
-Jestli¾e chcete vidìt, co má Hasselt v~obchodech, mìli byste jej nìkdy
-nav¹tívit. Jestli si s~sebou vemete tento manuál, poznáte nìkterá místa.
+Jestli¾e chceme vidìt, co má Hasselt v~obchodech, mìli bysme jej nìkdy
+nav¹tívit. Jestli si s~sebou vememe tento manuál, poznáme nìkterá místa.
 \stopbuffer
 
 \getbuffer[navsteva]
@@ -457,6 +457,8 @@ Vlo¾ený text nebude zpracováván.
 \Command{\tex{underbar}}
 \Command{\tex{overstrikes}}
 \Command{\tex{periods}}
+\Command{\tex{setupfillinrules}}
+\Command{\tex{setupfillinlines}}
 
 %% There are many comands to draw lines. For a single line you
 %% type:
@@ -471,7 +473,7 @@ nebo
 \shortsetup{thinrule}
 
 %% For more lines you type:
-Více linek najednou pak pomocí
+Více linek najednou nakreslíme pomocí
 
 \shortsetup{thinrules}
 
@@ -509,8 +511,8 @@ Amsterdam \thinrules[n=3] Hasselt
 %% around \type{\thinrules} must not be forgotten and the
 %% vertical spacing is always a point of concern.
 Pøi kreslení linek musíme být v¾dy opatrní. Prázdné øádky okolo
-\type{\thinrules} nesmí být opomenuty a~vertiální odsazení je v¾dy
-bodem pozornosti. 
+\type{\thinrules} nesmí být opomenuty a~výsledné vertiální odsazení by
+mìlo být v¾dy bodem na¹í pozornosti. 
 
 %% You can set up line spacing with:
 Vertikální odsazení mù¾eme nastavit pomocí
@@ -561,7 +563,7 @@ Výsledkem bude:
 
 %% These commands are used in questionaires. Text that is
 %% struck out or underlined will not be hyphenated.
-Tyto pøíkazy bývají pou¾ívány v~dotaznících. Omezením je, ¾e podrhnutý
+Tyto pøíkazy bývají pou¾ívány v~dotaznících. Omezením je, ¾e podtrhnutý
 nebo pøe¹krtnutý text nebude na konci øádky rozdìlen.
 
 % ====================================================================
@@ -755,7 +757,7 @@ Stejnì jednodu¹e mù¾eme otoèit i~obrázek:
 
 %% You can see in \in{figure}[fig:rotation] that it is not
 %% always clear what you get when you rotate.
-Na\in{obrázku}[fig:rotation] mù¾eme vidìt, ¾e není v¾dy úplnì zøejmé,
+Na \in{obrázku}[fig:rotation] mù¾eme vidìt, ¾e není v¾dy úplnì zøejmé,
 na co se díváme, kdy¾ obrázek otoèíme.
 
 \getbuffer
@@ -767,22 +769,24 @@ Otoèení nastavíme pomocí:
 
 % ====================================================================
 %% \section{Carriage return}
-\section{Ukonèení øádku}
+\section{Ukonèení øádky}
 
 %% \index{carriage return}
 \index{ukonèení øádku}
 
 \Command{\tex{crlf}}
 \Command{\tex{startlines}}
+\Command{\tex{inmargin}}
+\Command{\tex{}\tex{}}
 
 %% A new line can be enforced with:
-Nový øádek mù¾e být vynucen pøíkazem
+Nová øádka mù¾e být vynucena pøíkazem
 
 \shortsetup{crlf}
 
 %% When a number of lines should be followed by {\em carriage
 %% return and line feed} you can use:
-Pokud chceme, aby konce øádkù kopírovaly ukonèení ve vstupním souboru,
+Pokud chceme, aby konce øádek kopírovaly ukonèení ve vstupním souboru,
 napí¹eme:
 
 \shortsetup{startlines}
@@ -821,8 +825,8 @@ Door diese drie wilt verstaen
 is het Roomsche Rijck vergaen.
 \stoplines
 
-Tato malá básnièka obsahuje varování pro radní Hasseltu: nepøijímej
-osobní zisk nebo sympatie ovlivòující tvou mysl a rozhodování.
+Tato malá básnièka obsahuje varování pro radní Hasseltu: {\it nepøijímej
+osobní zisk nebo sympatie ovlivòující tvou mysl a rozhodování.}
 \stopbuffer
 
 \typebuffer

@@ -1,28 +1,31 @@
-% Translation:
-% busaj
+% Translation: busaj
+% Checking:    2006-11-15 zyka
 \startcomponent ma-cb-cz-setupcommands
 \project ma-cb
 \product ma-cb-cz
 \environment ma-cb-env-cz
 
-%\chapter{Setup commands}
-\chapter{Nastavovací pøíkazy}
+%\chapter[sec:setupcommands]{Setup commands}
+\chapter[sec:setupcommands]{Nastavovací pøíkazy}
 
 %\index{set up}
 %\index{layout}
 \index{nastavení}
 \index{formátování}
 
+\Command{\tex{setupparagraphs}}
+
 %Global commands are placed in the setup area of your input
 %file, before \type{\starttext}. In \in{appendix}[comdefs]
 %there is a complete overview of the available commands and
 %their parameters.
-Globální pøíkazy se umís»ují v~deklaraèní oblasti va¹eho vstupního souboru, pøed povelem \type{\starttext}. 
-V~\in{pøíloze}[comdefs] je uveden úplný pøehled dostupných pøíkazù a jejich parametrù.
+Globální pøíkazy se umis»ují v~deklaraèní oblasti vstupního
+souboru, pøed povelem \type{\starttext}. V~\in{pøíloze}[comdefs] je
+uveden pøehled dostupných pøíkazù a~jejich parametrù.
 
 %The set up commands all have the same structure. They look
 %something like:
-Nastavovací pøíkazy mají stejnou strukturu. Vypadají tøeba jako:
+Nastavovací pøíkazy mají stejnou strukturu. Vypadají tøeba takto:
 
 \startbuffer
 \setup{setupparagraphs}
@@ -34,8 +37,10 @@ Nastavovací pøíkazy mají stejnou strukturu. Vypadají tøeba jako:
 %number of bracket pairs. Bracket pairs may be optional and
 %in that case the \type{[]} are typeset slanted {\tt \sl []}.
 %In the definition the bracket pairs may contain:
-Deklaraèní povely se více nebo ménì skládají z~logického jména a urèitého poètu dvojic hranatých závorek. 
-Tyto mù¾ou být nepovinné, v~tom pøípadì jsou závorky \type{[]} vysázeny sklonìným øezem {\tt \sl []}.
+Deklaraèní povely se více nebo ménì skládají z~logického jména
+a~urèitého poètu dvojic hranatých závorek. Tyto mù¾ou být nepovinné,
+v~tom pøípadì je pod nimi napsáno slovo
+\unprotected\expandafter\type\expandafter{\c!setup!internal!{optional}}. 
 Dvojice hranatých závorek mù¾ou v~definici obsahovat:
 
 \starttyping
@@ -48,19 +53,27 @@ Dvojice hranatých závorek mù¾ou v~definici obsahovat:
 %be set in the first and second bracket pair respectively.
 %The parameters and their possible values are placed in the
 %third bracket pair.
-Èárky naznaèují, ¾e mù¾e být pøilo¾en seznam parametrù. 
+Èárky naznaèují, ¾e mù¾e být vlo¾en seznam parametrù. 
 V~seznamu voleb, který následuje za definicí, oznaèují
-\type{.1.} a \type{.2.} mo¾né volby, které mù¾ou být nastaveny uvnitø první resp. druhé dvojice hranatých závorek.
-Parametry a jejich pøípadné hodnoty se umís»ují uvnitø tøetí dvojice hranatých závorek.
+\type{.1.} a~\type{.2.} mo¾né volby, které mohou být nastaveny uvnitø
+první resp. druhé dvojice hranatých závorek. Parametry a~jejich
+pøípadné hodnoty se v~tomto pøíkladì umís»ují uvnitø tøetí dvojice
+hranatých závorek.
 
 %The default options and parameter values are underlined.
 %Furthermore you will notice that some values are typeset in
 %a slanted way: {\sl section}, {\sl name}, {\sl dimension},
 %{\sl number}, {\sl command} and {\sl text}. This indicates
 %that you can set the value yourself.
-Pøedem nastavené volby a hodnoty parametrù jsou podtr¾eny.
-Navíc si mù¾ete v¹imnout, ¾e nìkteré hodnoty jsou vysázeny sklonìným øezem písma: {\sl section}, {\sl name}, {\sl dimension},
-{\sl number}, {\sl command} and {\sl text}. Toto naznaèuje, ¾e tyto hodnoty mù¾ete nastavit vy.
+Implicitní volby a~hodnoty parametrù jsou podtr¾eny.
+Navíc si mù¾eme v¹imnout, ¾e nìkteré hodnoty jsou vysázeny
+%sklonìným øezem písma: {\sl section}, {\sl name}, {\sl dimension}, 
+%{\sl number}, {\sl command} and {\sl text}.
+verzálkami: {\small\tt\uppercase{section}}, {\small\tt\uppercase{name}},
+  {\small\tt\uppercase{dimension}}, {\small\tt\uppercase{number}},
+  {\small\tt\uppercase{command}}, and {\small\tt\uppercase{text}}.
+Toto naznaèuje, ¾e nejde o~konstantní hodnoty, ale o~hodnoty urèitého
+typu:
 
 %\starttabulate[|S||]
 %\NC section   \NC a section name like chapter, section, subsection etc. \NC\NR
@@ -72,13 +85,13 @@ Navíc si mù¾ete v¹imnout, ¾e nìkteré hodnoty jsou vysázeny sklonìným øezem písma
 %\NC text      \NC text \NC\NR
 %\stoptabulate
 \starttabulate[|S||]
-\NC section   \NC název oddílu, napøíklad chapter, section, subsection atd. \NC\NR
-\NC name      \NC identifikátor (logické jméno) \NC\NR
-\NC dimension \NC rozmìr v~jednotkách \type{cm}, \type{pt},
-                  \type{em}, \type{ex}, \type{sp} nebo \type{in} \NC\NR
-\NC number    \NC celé èíslo \NC\NR
-\NC command   \NC pøíkaz \NC\NR
-\NC text      \NC text \NC\NR
+\NC {\small\tt\uppercase{section}}   \NC název oddílu, napøíklad chapter, section, subsection atd.; \NC\NR
+\NC {\small\tt\uppercase{name}}      \NC identifikátor (logické jméno); \NC\NR
+\NC {\small\tt\uppercase{dimension}} \NC rozmìr v~jednotkách \type{cm}, \type{pt},
+                  \type{em}, \type{ex}, \type{sp} nebo \type{in}; \NC\NR
+\NC {\small\tt\uppercase{number}}    \NC celé èíslo; \NC\NR
+\NC {\small\tt\uppercase{command}}   \NC pøíkaz s~daným poètem parametrù; \NC\NR
+\NC {\small\tt\uppercase{text}}      \NC text. \NC\NR
 \stoptabulate
 
 \stopcomponent
