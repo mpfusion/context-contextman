@@ -10,6 +10,7 @@
 \Command{\tex{setuplayout}}
 \Command{\tex{adaptlayout}}
 \Command{\tex{showlayout}}
+\Command{\tex{showframe}}   % VZ 2006-11-15
 \Command{\tex{showsetups}}
 \Command{\tex{showmakeup}}
 \Command{\tex{startlocal}}
@@ -182,12 +183,12 @@ page layout.
 \stoptabletail
 
 \starttables[|l|l|]
-\NC topdistance         \NC \type{\topheight}           \NC\FR
+\NC topdistance         \NC \type{\topdistance}         \NC\FR % VZ 2006-11-15
 \NC topheight           \NC \type{\topheight}           \NC\MR
 \NC headerdistance      \NC \type{\headerdistance}      \NC\MR
 \NC headerheight        \NC \type{\headerheight}        \NC\MR
 \NC topspace            \NC \type{\topspace}            \NC\MR
-\NC headlevel           \NC \type{\headerlevel}         \NC\MR
+\NC headlevel           \NC \type{\headlevel}           \NC\MR % VZ 2006-11-15
 \NC backspace           \NC \type{\backspace}           \NC\MR
 \NC margindistance      \NC \type{\margindistance}      \NC\MR
 \NC marginwidth         \NC \type{\marginwidth}         \NC\MR

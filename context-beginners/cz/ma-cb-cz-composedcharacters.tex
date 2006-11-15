@@ -1,5 +1,5 @@
-% Translation:
-% busaj
+% Translation: busaj
+% Checking:    2006-11-14 zyka
 \startcomponent ma-cb-cz-composedcharacters
 \project ma-cb
 \product ma-cb-cz
@@ -27,8 +27,9 @@ vysázený znak.
 %It is not within the scope of this manual to go into
 %accented characters in math mode. See the {\TEX Book by
 %Donald E. Knuth} on that subject.
-Za rámec této pøíruèky vychází problematika akcentovaných písmen v~matematickém re¾imu.
-Informace o~této problematice najdete v~\TEX Booku Donalda E. Knutha.
+Nad rámec této pøíruèky vychází problematika akcentovaných písmen
+v~matematickém re¾imu. Informace o~této problematice najdete
+v~\TEX{}Booku Donalda E.~Knutha.
 
 %\section{Accents}
 \section{Akcenty}
@@ -40,7 +41,7 @@ Informace o~této problematice najdete v~\TEX Booku Donalda E. Knutha.
 %\in{Table}[tab:accents] shows you how to do this. The
 %character {\em u} is just an example here.
 Kromì pøímého vstupu znakù s~diakritikou pomocí vhodného kódování (viz
-\at[kapitolu]{sec:encodings}), mù¾eme v~\CONTEXT{}u akcentovaná písmena
+\in{kapitolu}[sec:encodings]), mù¾eme v~\CONTEXT{}u akcentovaná písmena
 slo¾it z~jednoduchých znakù a~diakritických
 znamének. \in{Tabulka}[tab:accents] ukazuje, jak kompozit
 vytvoøíme. Písmeno {\em u} je uvedeno jenom jako pøíklad.
@@ -77,17 +78,17 @@ vytvoøíme. Písmeno {\em u} je uvedeno jenom jako pøíklad.
 \NC \type{\'{u}} \NC \'{u}       \VL \type{\v{u}}  \NC \v{u}       \NC\MR
 \NC \type{\^{u}} \NC \^{u}       \VL \type{\H{u}}  \NC \H{u}       \NC\MR
 \NC \type{\"{u}} \NC \"{u}       \VL \type{\b{u}}  \NC \b{u}       \NC\MR
-\NC \type{\~{u}} \NC \~{u}       \VL \type{\c{u}}  \NC \c{u}       \NC\MR
-\NC \type{\={u}} \NC \MySign{u}  \VL \type{\d{u}}  \NC \d{u}       \NC\MR
-\NC \type{\.{u}} \NC \.{u}       \VL               \NC             \NC\LR
+\NC \type{\~{u}} \NC \~{u}       \VL \type{\d{u}}  \NC \d{u}       \NC\MR
+\NC \type{\={u}} \NC \MySign{u}  \VL \type{\c{u}}  \NC \c{u}       \NC\MR
+\NC \type{\.{u}} \NC \.{u}       \VL \type{\k{u}}  \NC \k{u}       \NC\LR
+\NC \type{\r{u}} \NC \r{u}       \VL               \NC             \NC\LR
 \HL
 \stoptable
-
 
 %You don't want \`{i} or \'{j} so for an
 %accented {\em i} and {\em j} you compose the characters as
 %follows:
-Asi nebudeme chtít získat písmena \`{i} nebo \'{j} (s~teèkami). Pro
+Asi nechceme psát písmena \`{i} nebo \'{j} (s~teèkami). Pro
 akcentovaná písmena {\em i} a {\em j} vytvoøíme slo¾ené znaky
 následujícím zpùsobem:
 
@@ -106,7 +107,12 @@ následujícím zpùsobem:
 \section{Cizokrajné symboly}
 
 %\index{foreign symbols}
-\index{cizokrajné symboly}
+\index{symboly}
+\index{euro}
+
+\Command{\tex{texteuro}}
+\Command{\tex{usesymbols}}
+\Command{\tex{showsymbolset}}
 
 %The composition of characters that appear in foreign
 %languages is shown in \in{table}[tab:foreign symbols].
@@ -149,8 +155,19 @@ uvedena v~\in{tabulce}[tab:foreign symbols].
 \NC \type{\AE}   \NC \AE         \VL \type{\SS}       \NC \SS         \NC\MR
 \NC \type{\aa}   \NC \aa         \VL \type{?}\type{`} \NC ?`          \NC\MR
 \NC \type{\AA}   \NC \AA         \VL \type{!}\type{`} \NC !`          \NC\MR
-\NC \type{\o}    \NC \o          \VL                  \NC             \NC\LR
+\NC \type{\o}    \NC \o          \VL \type{\texteuro} \NC \texteuro   \NC\LR
 \HL
 \stoptable
+
+Mnoho dal¹ích symbolù je definováno v~externích mno¾inách. Zavádìjí se
+pøíkazem
+
+\shortsetup{usesymbols}
+
+V~hranatých závorkách je trojpísmenný název mno¾iny, napø. \type{eur},
+\type{nav}, \type{mvs}, \type{jmn}, \type{uni}. Seznam znakù dané
+mno¾iny se zobrazí pøíkazem
+
+\shortsetup{showsymbolset}
 
 \stopcomponent

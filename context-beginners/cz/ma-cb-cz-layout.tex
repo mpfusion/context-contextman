@@ -1,5 +1,5 @@
-% Translation:
-% busaj
+% Translation: busaj
+% Checking:    2006-11-15 zyka
 \startcomponent ma-cb-cz-layout
 \project ma-cb
 \environment ma-cb-env-cz
@@ -12,10 +12,12 @@
 %\index{page design}
 \index{formátování}
 \index{úprava stránky}
+\index{stránkové zrcadlo}
 
 \Command{\tex{setuplayout}}
 \Command{\tex{adaptlayout}}
 \Command{\tex{showlayout}}
+\Command{\tex{showframe}}
 \Command{\tex{showsetups}}
 \Command{\tex{showmakeup}}
 \Command{\tex{startlocal}}
@@ -26,20 +28,21 @@ Formát stránky je definován pøíkazem:
 \shortsetup{setuplayout}
 
 %This command is typed in the set up area of your input file.
-Tento povel se pí¹e v~deklaraèní oblasti va¹eho vstupního souboru.
+Tento povel se pí¹e v~deklaraèní oblasti na¹eho vstupního souboru.
 
 %You have to familiarize yourself with the parameters that
 %describe your page layout. A page is divided in a number of
 %areas such as the text, margin, head, foot etc. The size of
 %these areas can be set with \type{\setuplayout}.
-Mìly by jste se obeznámit s~parametry, které popisují vá¹ formát stránek. 
+Mìli bychom se obeznámit s~parametry, které popisují formát stránek
+(stránkové zrcadlo). 
 Stránka je rozdìlena na nìkolik oblastí jako napøíklad text, hlavièka, pata atd. 
 Velikosti tìchto èástí se dají nastavit pøíkazem \type{\setuplayout}.
 
 %The different areas in the page layout are shown in
 %\in{figure}[fig:pagelayout].
 Rùzné oblasti ve formátu stránky jsou popsány na
-\in{obrázku}[fig:pagelayout].
+\in{obrázku}[fig:pagelayout]. Okraj je také nazýván marginálií.
 
 %\placefigure
 %  [here]
@@ -92,24 +95,24 @@ Rùzné oblasti ve formátu stránky jsou popsány na
   [fig:pagelayout]
   {Formát stránky.}
   {\hbox{\framed[width=1.5cm,frame=off]{}
-   \framed[width=2cm,frame=off]{\tt levý}
+   \framed[width=2cm,frame=off]{\tt levá}
    \framed[width=2.5cm,frame=off]{\tt levý}
-   \framed[width=3cm,frame=off]{\tt text}
+   \framed[width=3cm,frame=off]{}
    \framed[width=2.5cm,frame=off]{\tt pravý}
-   \framed[width=2cm,frame=off]{\tt pravý}}
+   \framed[width=2cm,frame=off]{\tt pravá}}
    \hbox{\framed[width=1.5cm,frame=off]{}
-   \framed[width=2cm,frame=off]{\tt roh}
+   \framed[width=2cm,frame=off]{\tt hrana}
    \framed[width=2.5cm,frame=off]{\tt okraj}
    \framed[width=3cm,frame=off]{\tt text}
    \framed[width=2.5cm,frame=off]{\tt okraj}
-   \framed[width=2cm,frame=off]{\tt roh}}
-   \hbox{\framed[width=1.5cm,frame=off]{\tt záhlaví}
+   \framed[width=2cm,frame=off]{\tt hrana}}
+   \hbox{\framed[width=1.5cm,frame=off]{\tt vr¹ek}
    \framed[width=2cm]{}
    \framed[width=2.5cm]{}
    \framed[width=3cm]{}
    \framed[width=2.5cm]{}
    \framed[width=2cm]{}}
-   \hbox{\framed[width=1.5cm,frame=off]{\tt hlavièka}
+   \hbox{\framed[width=1.5cm,frame=off]{\tt záhlaví}
    \framed[width=2cm]{}
    \framed[width=2.5cm]{}
    \framed[width=3cm]{}
@@ -121,13 +124,13 @@ Rùzné oblasti ve formátu stránky jsou popsány na
    \framed[width=3cm,height=3cm]{}
    \framed[width=2.5cm,height=3cm]{}
    \framed[width=2cm,height=3cm]{}}
-   \hbox{\framed[width=1.5cm,frame=off]{\tt pata}
+   \hbox{\framed[width=1.5cm,frame=off]{\tt úpatí}
    \framed[width=2cm]{}
    \framed[width=2.5cm]{}
    \framed[width=3cm]{}
    \framed[width=2.5cm]{}
    \framed[width=2cm]{}}
-   \hbox{\framed[width=1.5cm,frame=off]{\tt úpatí}
+   \hbox{\framed[width=1.5cm,frame=off]{\tt spodek}
    \framed[width=2cm]{}
    \framed[width=2.5cm]{}
    \framed[width=3cm]{}
@@ -137,9 +140,9 @@ Rùzné oblasti ve formátu stránky jsou popsány na
 %If you want to look at your page layout you can type the
 %command \type{\showframe} and process one page or the whole
 %file. The areas are shown in a number of frames.
-Kdy¾ chcete vidìt vá¹ formát stránek, mù¾ete napsat pøíkaz \type{\showframe} a
-zpracovat jednu stranu nebo celý soubor. Oblasti jsou vyznaèeny jako nìkolik
-rámeèkù.
+Pokud chceme vidìt formát stránkového zrcadla, mù¾eme napsat pøíkaz
+\type{\showframe} a~zpracovat jednu stranu nebo celý soubor. Oblasti
+jsou pak na stránce vyznaèeny nìkolika barevnými rámeèky.
 
 %The command \type{\showsetups} shows the values of the
 %parameters. A combination of both commands is
@@ -154,8 +157,8 @@ Pøíkaz \type{\showsetups} uká¾e hodnoty parametrù. Kombinací obou pøíkazù je pov
 %parameters are explained in \in{table}[tab:fewparameters].
 Hodnoty formátovacích parametrù jsou dostupné jako pøíkazy 
 (viz \in{tabulku}[tab:parameters]).
-Toto vám umo¾ní pøesnìji definovat rozmìry sloupcù, obrázkù 
-a tabulek. Nìkteré z~tìchto parametrù 
+To nám umo¾òuje pøesnìji definovat rozmìry sloupcù, obrázkù 
+a~tabulek. Nìkteré z~tìchto parametrù 
 jsou vysvìtleny v~\in{tabulce}[tab:fewparameters].
 
 %\placetable
@@ -178,12 +181,12 @@ jsou vysvìtleny v~\in{tabulce}[tab:fewparameters].
   {Nìkolik parametrù ve formì pøíkazù.}
 \starttable[|l|l|]
 \HL
-\NC \bf Pøíkazy         \NC \bf Význam               \NC\SR
+\NC \bf Pøíkazy         \NC \bf Význam             \NC\SR
 \HL
-\NC \type{\makeupwidth}  \NC ¹íøka zrcadla sazby  \NC\FR
-\NC \type{\makeupheight} \NC vý¹ka zrcadla sazby  \NC\MR
-\NC \type{\textwidth}    \NC ¹íøka textové oblasti    \NC\MR
-\NC \type{\textheight}   \NC vý¹ka textové oblasti   \NC\LR
+\NC \type{\makeupwidth}  \NC ¹íøka zrcadla sazby   \NC\FR
+\NC \type{\makeupheight} \NC vý¹ka zrcadla sazby   \NC\MR
+\NC \type{\textwidth}    \NC ¹íøka textové oblasti \NC\MR
+\NC \type{\textheight}   \NC vý¹ka textové oblasti \NC\LR
 \HL
 \stoptable
 
@@ -191,8 +194,8 @@ jsou vysvìtleny v~\in{tabulce}[tab:fewparameters].
 %a figure you can do it relative to the \type{\makeupwidth}
 %or \type{\makeupheight}. Changes in page width or page height
 %will alter columns and figures proportionally.
-Jestli¾e chcete definovat ¹íøku sloupce nebo vý¹ku obrázku
-mù¾ete to udìlat relativnì k~hodnotám \type{\makeupwidth}
+Jestli¾e chceme definovat ¹íøku sloupce nebo vý¹ku obrázku,
+mù¾eme to udìlat relativnì k~hodnotám \type{\makeupwidth}
 nebo \type{\makeupheight}. Zmìny nastavení ¹íøky nebo vý¹ky stránky
 pak proporcionálnì zmìní rozmìry sloupce nebo obrázku.
 
@@ -220,7 +223,7 @@ Po zpracování dostaneme:
 
 %The other distances and measures are shown in
 %\in{table}[tab:parameters].
-Ostatní vzdálenosti a rozmìry jsou uvedeny 
+Ostatní vzdálenosti a~rozmìry jsou uvedeny 
 v~\in{tabulce}[tab:parameters].
 
 %The command \type{\setuplayout} is defined in the set up
@@ -230,11 +233,11 @@ v~\in{tabulce}[tab:parameters].
 %throughout the document. Nevertheless you might want to make
 %slight changes in the page design for a number of pages.
 Pøíkaz \type{\setuplayout} je definován v~deklaraèní oblasti 
-va¹eho vstupního souboru, pøed povelem \type{\starttext}. 
-To znamená, ¾e hodnoty parametrù jsou globální a platné
+na¹eho vstupního souboru, pøed povelem \type{\starttext}. 
+To znamená, ¾e hodnoty parametrù jsou globální a~platné
 pro celý dokument. 
-Nicménì pro nìkteré stránky mù¾ete chtít vykonat  
-drobné zmìny rozvr¾ení stránky.
+Nicménì pokud pro nìkteré stránky chceme vykonat  
+drobné zmìny rozvr¾ení stránky, pou¾ijeme
 
 \startbuffer
 \adaptlayout[21,38][height=+.5cm]
@@ -244,7 +247,8 @@ drobné zmìny rozvr¾ení stránky.
 
 %In this case page 21 and 38 have a height of .5~cm + default
 %height.
-V~tomto pøípadì budou mít strany 21 a 38 vý¹ku rovnou 0,5~cm + pøedvolená vý¹ka stránky.
+V~tomto pøípadì budou mít strany 21 a 38 vý¹ku rovnou 0,5~cm +
+vý¹ka stránky.
 
 %For local changes in the page layout you can use:
 Na lokální zmìny formátu stránky mù¾ete pou¾ít pøíkaz:
@@ -270,18 +274,15 @@ Napøíklad:
 %\stopbuffer
 
 \startbuffer
-
 \start
-
 \startlocal
   \setuplayout[height=+.5cm]
 \stoplocal
 
-Hasselt má úplnì jiné uspoøádání jako vìt¹na jiných mìst kvùli 
-svým opevnìním a hradním pøíkopùm.
+Hasselt má úplnì jiné uspoøádání ne¾ vìt¹ina mìst kvùli 
+svým opevnìním a~hradním pøíkopùm.
 
 \stop
-
 \stopbuffer
 
 \typebuffer
@@ -305,7 +306,7 @@ V¾dycky je lep¹í pozmìnit text ne¾li mìnit formát stránky.
 %\stoptabletail
 %
 %\starttables[|l|l|]
-%\NC topdistance         \NC \type{\topheight}           \NC\FR
+%\NC topdistance         \NC \type{\topdistance}         \NC\FR
 %\NC topheight           \NC \type{\topheight}           \NC\MR
 %\NC headerdistance      \NC \type{\headerdistance}      \NC\MR
 %\NC headerheight        \NC \type{\headerheight}        \NC\MR
@@ -344,7 +345,7 @@ V¾dycky je lep¹í pozmìnit text ne¾li mìnit formát stránky.
 
 \starttablehead
 \HL
-\NC \bf Parametr       \NC \bf Pøíkaz       \NC\SR
+\NC \bf Parametr         \NC \bf Pøíkaz                  \NC\SR
 \HL
 \stoptablehead
 
@@ -353,31 +354,31 @@ V¾dycky je lep¹í pozmìnit text ne¾li mìnit formát stránky.
 \stoptabletail
 
 \starttables[|l|l|]
-\NC vzdálenost záhlaví   \NC \type{\topheight}           \NC\FR
-\NC vý¹ka záhlaví        \NC \type{\topheight}           \NC\MR
-\NC vzdálenost hlavièky  \NC \type{\headerdistance}      \NC\MR
-\NC vý¹ka hlavièky       \NC \type{\headerheight}        \NC\MR
-\NC horní mezera         \NC \type{\topspace}            \NC\MR
-\NC úroveò hlavièky      \NC \type{\headerlevel}         \NC\MR
-\NC backspace            \NC \type{\backspace}           \NC\MR
-\NC vzdálenost okraje    \NC \type{\margindistance}      \NC\MR
-\NC ¹íøka okraje         \NC \type{\marginwidth}         \NC\MR
-\NC ¹íøka levého okraje  \NC \type{\leftmarginwidth}     \NC\MR
-\NC ¹íøka pravého okraje \NC \type{\rightmarginwidth}    \NC\MR
-\NC vzdálenost rohu      \NC \type{\edgedistance}        \NC\MR
-\NC ¹íøka rohu           \NC \type{\edgewidth}           \NC\MR
-\NC ¹íøka levého rohu    \NC \type{\leftedgewidth}       \NC\MR
-\NC ¹íøka pravého rohu   \NC \type{\rightedgewidth}      \NC\MR
-\NC vý¹ka papíru         \NC \type{\paperheight}         \NC\MR
-\NC ¹íøka papíru         \NC \type{\paperwidth}          \NC\MR
-\NC vý¹ka zrcadla        \NC \type{\makeupheight}        \NC\MR
-\NC ¹íøka zrcadla        \NC \type{\makeupwidth}         \NC\MR
-\NC vý¹ka textu          \NC \type{\textheight}          \NC\MR
-\NC ¹íøka textu          \NC \type{\textwidth}           \NC\MR
-\NC vzdálenost paty      \NC \type{\footerdistance}      \NC\MR
-\NC vý¹ka paty           \NC \type{\footerheight}        \NC\MR
-\NC vzdálenost úpatí     \NC \type{\bottomdistance}      \NC\MR
-\NC vý¹ka úpatí          \NC \type{\bottomheight}        \NC\LR
+\NC vzdálenost vr¹ku         \NC \type{\topdistance}         \NC\FR
+\NC vý¹ka vr¹ku              \NC \type{\topheight}           \NC\MR
+\NC vzdálenost záhlaví       \NC \type{\headerdistance}      \NC\MR
+\NC vý¹ka záhlaví            \NC \type{\headerheight}        \NC\MR
+\NC horní mezera             \NC \type{\topspace}            \NC\MR
+\NC úroveò hlavièky          \NC \type{\headlevel}           \NC\MR
+\NC vnitøní okraj            \NC \type{\backspace}           \NC\MR
+\NC vzdálenost marginálií    \NC \type{\margindistance}      \NC\MR
+\NC ¹íøka ka¾dé z~marginálií \NC \type{\marginwidth}         \NC\MR
+\NC ¹íøka levé marginálie    \NC \type{\leftmarginwidth}     \NC\MR
+\NC ¹íøka pravé marginálie   \NC \type{\rightmarginwidth}    \NC\MR
+\NC vzdálenost hran          \NC \type{\edgedistance}        \NC\MR
+\NC ¹íøka ka¾dé z~hran       \NC \type{\edgewidth}           \NC\MR
+\NC ¹íøka levé hrany         \NC \type{\leftedgewidth}       \NC\MR
+\NC ¹íøka pravé hrany        \NC \type{\rightedgewidth}      \NC\MR
+\NC vý¹ka papíru             \NC \type{\paperheight}         \NC\MR
+\NC ¹íøka papíru             \NC \type{\paperwidth}          \NC\MR
+\NC vý¹ka zrcadla            \NC \type{\makeupheight}        \NC\MR
+\NC ¹íøka zrcadla            \NC \type{\makeupwidth}         \NC\MR
+\NC vý¹ka textu              \NC \type{\textheight}          \NC\MR
+\NC ¹íøka textu              \NC \type{\textwidth}           \NC\MR
+\NC vzdálenost úpatí         \NC \type{\footerdistance}      \NC\MR
+\NC vý¹ka úpatí              \NC \type{\footerheight}        \NC\MR
+\NC vzdálenost spodku        \NC \type{\bottomdistance}      \NC\MR
+\NC vý¹ka spodku             \NC \type{\bottomheight}        \NC\LR
 \stoptables
 
 \stopbuffer
