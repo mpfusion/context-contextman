@@ -1,4 +1,5 @@
 % Translation: busaj
+% Checking:    2006-11-16 zyka
 \startcomponent ma-cb-cz-processingfiles
 \project ma-cb
 \product ma-cb-cz
@@ -23,73 +24,106 @@
 Bìhem zpracování zapisuje \CONTEXT\ informace do souboru 
 \type{mujsoubor.tui}. Tyto informace se vyu¾ívají v~následujícím prùchodu. 
 Èást tìchto informací je zpracována programem
-\TEXUTIL. Informace o~registrích a seznamech se zapisuje do souboru
+\TEXUTIL. Informace o~registrech a~seznamech se jím pøevede do souboru
 \type{mujsoubor.tuo}. \CONTEXT\ filtruje informace z~tohoto souboru 
- a vyu¾ívá je (v~pøípadì potøeby).
+a~(v~pøípadì potøeby) je vyu¾ívá.
 
+Program \TEXUTIL{} umí dal¹í u¾iteèné èinnosti. Obecný zápis pro
+pou¾ití tohoto programu je:\footnote{Nìkteré funkce v~dobì pøekladu
+  tohoto manuálu mohl pøevzít program \type{ctxtools}.}
 %\starttyping
 %texutil --references filename
 %\stoptyping
 \starttyping
-texutil --specifikace jmeno_souboru
+texmfstart texutil --specifikace jmeno_souboru
 \stoptyping
 
 %When \CONTEXT\ cannot find a figure, you can generate a
 %figure auxilliary file by saying:
-Kdy¾ \CONTEXT\ nemù¾e najít obrázek, mù¾ete vytvoøit pomocný soubor
-pro obrázky zadáním:
+Velikosti v¹ech vektorových i~bitmapových obrázkù (boundingbox)
+v~zadaném adresáøi vypí¹eme do souboru \type{texutil.tuf} zadáním:
 
-%\starttyping
-%texutil --figures *.*
-%\stoptyping
 \starttyping
-texutil --figures *.*
+texmfstart texutil --figures *.*
 \stoptyping
 
 %or whatever specification suits.
-nebo jakoukoliv vhodnou specifikací.
 
 %When one wants to convert \EPS\ illustrations to \PDF\ ones,
 %there is:
-Kdy¾ potøebujete konvertovat \EPS-ilustrace do formátu \PDF,
-mù¾ete zadat:
+Pokud potøebujeme konvertovat \EPS-ilustrace do formátu \PDF,
+mù¾eme zadat:
 
 %\starttyping
 %texutil --figures --epspage --epspdf
 %\stoptyping
 \starttyping
-texutil --figures --epspage --epspdf
+texmfstart texutil --figures --epspage --epspdf
+\stoptyping
+
+Doèasné soubory (\type{.tui}, \type{.tuo}, \type{*-mpgraph.*}, ap.)
+sma¾eme
+
+\starttyping
+texmfstart texutil --purge
+\stoptyping
+
+nebo novìj¹í
+
+\starttyping
+texmfstart ctxtools --purgefiles
+\stoptyping
+
+a~v¹echny generované soubory v~aktuálním adresáøi sma¾eme pomocí
+
+\starttyping
+texmfstart texutil --purgeall
+\stoptyping
+
+nebo
+
+\starttyping
+texmfstart ctxtools --purgefiles --all
+\stoptyping
+
+Informace o~pøeteèených nebo podteèených boxech a~neznámých
+referencích odfiltrujeme ze záznamového souboru o~bìhu \CONTEXT{}u
+(\type{.log}) pøíkazem
+
+\starttyping
+texmfstart texutil --logfile soubor.log
 \stoptyping
 
 %One can use \TEXEXEC\ to run \CONTEXT:
-Na spu¹tìní \CONTEXT{}u mù¾ete pou¾ít povel \TEXEXEC:
+Na spu¹tìní \CONTEXT{}u pou¾íváme povel \TEXEXEC:
 
 %\starttyping
 %texexec filename
 %\stoptyping
 \starttyping
-texexec jmeno_souboru
+texmfstart texexec jmeno_souboru
 \stoptyping
 
 %\CONTEXT\ runs as many times as needed to get the references
 %straight. One can also specify specific needs on the command
 %line. For instance if pdf output is desired you type:
-\CONTEXT\ se spou¹tí tolik krát, kolik je potøebné na získání správných odkazù. 
-Zvlá¹tní po¾adavky mù¾ete zadat také v~pøíkazové øádce. 
-Napøíklad, kdy¾ je po¾adován výstup ve formátu pdf, napi¹te:
+Tento program se postará, aby se \CONTEXT{} spustil tolikrát, kolikrát
+je potøebné na získání správných odkazù. Zvlá¹tní po¾adavky mù¾eme
+zadat také pøímo v~pøíkazové øádce. Napøíklad, kdy¾ je po¾adován
+výstup ve formátu pdf, napí¹eme:
 
 %\starttyping
 %texexec --pdf filename
 %\stoptyping
 \starttyping
-texexec --pdf jmeno_souboru
+texmfstart texexec --pdf jmeno_souboru
 \stoptyping
 
 %When in doubt, say \type{--help} and you get all the
 %information needed to proceed. A \TEXEXEC\ manual is
 %available.
-Kdy¾ jste na pochybách, napi¹te \type{--help} a získáte v¹echny informace 
-potøebné k~pokraèování. K~dispozici je dokumentace \TEXEXEC{}u.
+Kdy¾ jsme na pochybách, mù¾eme se na parametry programù dotázat
+pøepínaèem \type{-}\type{-help}. K~dispozici je také dokumentace
+\from[manual:utl-texexec] a~\from[manual:utl-texutil].
 
 \stopcomponent
-

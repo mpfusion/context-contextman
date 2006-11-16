@@ -22,3 +22,4 @@ display mode                    = display matematický mód (Ol¹ák TBN)
 text mode                       = vnitøní matematický mód  (Ol¹ák TBN)
 formulae                        = rovnice
 setup commands                  = nastavovací pøíkazy (?)
+log file                        = záznamový soubor (o bìhu)

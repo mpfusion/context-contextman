@@ -1,37 +1,45 @@
-% Translation:
-% busaj
+% Translation: busaj
+% Checking:    2006-11-16 zyka
 \startcomponent ma-cb-cz-modules
 \project ma-cb
 \product ma-cb-cz
 \environment ma-cb-env-cz
 
 %\chapter{Using modules}
-\chapter{Pou¾ití modulù}
+\chapter{Externí moduly}
 
 %\index{module+chemic}
-%\index{module+unit}
+%\index{module+units}
 %\index{module+chart}
 %\index{module+pictex}
 %\index{chemical structures}
 %\index{flowcharts}
 %\index{units}
+\index{modul+bib}
 \index{modul+chemic}
 \index{modul+units}  % v originale asi chybne len "unit"
-\index{modul+chart}
 \index{modul+pictex}
+\index{modul+chart}
+\index{modul+steps}
+\index{modul+narrowtt}
+\index{modul+amsl}
+\index{modul+nath}
+\index{modul+streams}
+\index{modul+gnuplot}
+\index{modul+lilypond}
 \index{chemické struktury}
 \index{vývojové diagramy}
 \index{jednotky}
-
 
 \Command{\tex{usemodule}}
 
 %For reasons of efficiency the author decided to implement
 %some functionality of \CONTEXT\ by means of external
 %modules. At this moment you can load the following modules:
-Z~dùvodu efektivnosti se autor rozhodl realizovat nìkteré funkce \CONTEXT{}u prostøednictvím vnìj¹ích 
-modulù. V~tomto stadiu mù¾ete pou¾ít (zavést) následující moduly:
-
+Z~dùvodu efektivnosti se autor rozhodl realizovat nìkteré funkce
+\CONTEXT{}u prostøednictvím vnìj¹ích modulù. Mù¾eme
+napøíklad zavést následující moduly:\footnote{Více viz seznam modulù
+  na \from[www:wiki-modules].} 
 
 %\startitemize[packed]
 %\item \type{chemic} for typesetting chemical structures
@@ -41,15 +49,25 @@ modulù. V~tomto stadiu mù¾ete pou¾ít (zavést) následující moduly:
 %\item \type{chart} for drawing flowcharts and organograms
 %\stopitemize
 \startitemize[packed]
-\item \type{chemic} na sazbu chemických struktur
-\item \type{units} na pou¾ití jednotek \cap{SI}
-\item \type{pictex} na kreslení obrázkù (pou¾ívá se spoleènì s~modulem \type{chemic})
-\item \type{chart} na náèrt vývojových diagramù a organizaèních schémat
+\item \type{bib} sazba bibliografických referencí pomocí programu \BIBTEX;
+\item \type{chemic} sazba chemických struktur;
+\item \type{units} pou¾ití jednotek \cap{SI};
+\item \type{pictex} kreslení obrázkù (pou¾ívá se spoleènì s~modulem \type{chemic});
+\item \type{chart} náèrt vývojových diagramù a organizaèních schémat;
+\item \type{steps} náètr stavových diagramù;
+\item \type{narrowtt} pou¾ití u¾¹ího strojopisu Computer Modern pro
+  verbatim prostøedí;
+\item \type{amsl} implementace \AMSMATH{} pøíkazù;
+\item \type{nath} pøirozená sazba matematiky, obsahuje modul \type{amsl};
+\item \type{streams} synchronizace nìkolika vstupních textù
+  (dvojjazyèná sazba);
+\item \type{gnuplot} pøímý zápis \GNUPLOT{} grafù;
+\item \type{lilypond} sazba notových osnov pomocí programu \LILYPOND.
 \stopitemize
 
 %Loading is done in the set up area of your input file and done
 %by means of:
-Pøipojení se provádí v~deklaraèní oblasti va¹eho vstupního souboru a vykoná se pøíkazem:
+Zavedení se provede v~deklaraèní oblasti pøíkazem:
 
 \shortsetup{usemodule}
 
@@ -59,11 +77,12 @@ Pøipojení se provádí v~deklaraèní oblasti va¹eho vstupního souboru a vykoná se p
 %explanations. These modules are described in two separate
 %manuals.
 Ji¾ jsme uvedli mno¾ství pøíkladù pou¾ití modulu
-\type{units}. Ní¾e bez dal¹ího vysvìtlení uvádíme dva pøíklady pou¾ití modulù \type{chemic} a \type{chart}. 
-Tyto moduly jsou popsány ve dvou samostatných pøiruèkách.
+\type{units}. Ní¾e bez dal¹ího vysvìtlení uvádíme dva pøíklady pou¾ití
+modulù \type{chemic} a~\type{chart}. Tyto moduly jsou popsány ve dvou
+samostatných pøíruèkách (\from[manual:chemic], \from[manual:charts]). 
 
 %Chemical structures may look very impressive.
-Chemické struktury mohou vypadat velice pùsobivì.
+Chemické struktury mohou vypadat velice pùsobivì:
 
 %\startbuffer
 %\placeformula[-]
@@ -99,13 +118,17 @@ Chemické struktury mohou vypadat velice pùsobivì.
 %defined with only two or three commands, it takes some
 %practice to get the right results. This is how the input
 %looks:
-Pøi kreslení chemických struktur tohoto typu se \CONTEXT{} spoléhá na \METAPOST. Tøeba¾e jsou tyto chemické struktury definovány jenom pomocí dvou nebo tøí pøíkazù, na získání správných výsledkù je potøebná jistá praxe. Vstup mù¾e vypadat takhle:
+Pøi kreslení chemických struktur tohoto typu se \CONTEXT{} spoléhá na
+\METAPOST. Tøeba¾e jsou tyto chemické struktury definovány jenom
+pomocí dvou nebo tøí pøíkazù, na získání správných výsledkù je
+potøebná jistá praxe. Vstup mù¾e vypadat takto:
 
 \typebuffer
 
 %While using the module \type{chart} a definition of an
 %organogram may look like this:
-Definice organizaèního schématu mù¾e pøi pou¾ití modulu \type{chart} vypadat následovnì:
+Modul \type{chart} si pøedstavíme ukázkou definice organizaèního
+schématu. Mù¾e vypadat následovnì:
 
 \setupFLOWcharts
   [breedte=11\bodyfontsize,
