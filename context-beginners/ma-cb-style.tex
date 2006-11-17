@@ -658,7 +658,12 @@
 % this in the text directly. But consistency is needed.
 
 % Info sources
-\definedescription[infosource][location=top,headstyle=bold,width=fit]
+\definedescription[infosource]
+  [location=hanging,align=left,width=broad,margin=2em,headstyle=bold,
+   command=\infosourcehead]
+\def\infosourcehead#1{#1\crlf}
+
+\def\Fr#1{\bgroup\rm\tf(\from[#1])\egroup}
 
 \def\redospecialfrom[#1::#2]%
   {\ifundefined{\v!file:::#1}%

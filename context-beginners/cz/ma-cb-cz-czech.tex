@@ -1,19 +1,24 @@
-% Translation:
-% 2006-10-02 Vít Zýka
+% Translation: 2006-10-02 Vít Zýka
+% Checking:    2006-11-16 zyka
 \startcomponent ma-cb-cz-czech
 \project ma-cb
 \product ma-cb-cz
 \environment ma-cb-env-cz
 
-\chapter{Sazba èeských/slovenských textù}
+\chapter[sec:czech]{Sazba èeských/slovenských textù}
 
 \index{èe¹tina}
 \index{sloven¹tina}
+\index{minimální dokument}
 
-%\Command{\tex{}}
+\Command{\tex{showpatterns}}
+\Command{\tex{mainlanguage}}
+\Command{\tex{enableregime}}
+\Command{\tex{starttext}}
+\Command{\tex{stoptext}}
 
 \section{Minimální èeský/slovenský dokument}
-Pro sazbu èeských/slovenských textù nám staèí základní formát
+Pro sazbu èeských nebo slovenských textù nám staèí základní formát
 \type{cont-en}\footnote{Alternativou je lokalizovaný
   formát \type{cont-cz} s~poèe¹tìnými názvy u¾ivatelských
   pøíkazù. Tuto lokalizaci \ConTeXt u vytvoøil Tomá¹ Hudec v~rámci své
@@ -24,9 +29,8 @@ Pro sazbu èeských/slovenských textù nám staèí základní formát
   \type{cont-en}. Toto anglické rozhraní popisuje i~tento
   manuál.}.
 Ten ji¾ obsahuje vzory dìlení pro èe¹tinu/sloven¹tinu v~nále¾itých
-kódováních, o~èem¾ se se lze pøesvìdèit pøíkazem
-\type{\showpatterns}:
-\showpatterns
+kódováních, o~èem¾ se lze pøesvìdèit pøíkazem
+\type{\showpatterns}, viz \in{tabulku}[tab:showpatterns].
 
 Formát \type{cont-en} se v¹emi vzory dìlení vygenerujeme pøíkazem
 \startbuffer
@@ -34,17 +38,18 @@ texmfstart texexec --make --all
 \stopbuffer
 \typebuffer
 
-V~samotném dokumentu musíme nastavit èe¹tinu/sloven¹tinu jako hlavní jazyk:
-\type{\mainlanguage[cz]} / \type{\mainlanguage[sk]} a zvolit námi
-pou¾ívané vstupní kódování. Minimální èeský dokument \type{min-cz.tex}
-v~kódování \type{ISO-8859-2} pak bude vypadat takto:
+V~samotném dokumentu musíme nastavit èe¹tinu nebo sloven¹tinu jako
+hlavní jazyk: \type{\mainlanguage[cz]} / \type{\mainlanguage[sk]}
+a~zvolit námi pou¾ívané vstupní kódování. Minimální èeský dokument
+\type{min-cz.tex} v~kódování \type{ISO-8859-2} pak bude vypadat takto:
+
 \startbuffer
 \mainlanguage[cz]
 \enableregime[latin2]
 
 \starttext
-  Nìjaký èeský text, tøeba o~tìch pøíli¹ ¾lu»ouèkých koních co pìli
-  ïábelské ódy.
+  Nìjaký èeský text, tøeba o~tìch pøíli¹ ¾lu»ouèkých koních
+  co pìli ïábelské ódy.
 \stoptext
 \stopbuffer
 \typebuffer
@@ -58,6 +63,23 @@ texmfstart texexec --pdf --autopdf min-cz
 \typebuffer
 
 \section{Písma}
+
+\index{Latin Modern}
+\index{Times}
+\index{Helvetica}
+\index{Courier}
+\index{kódování+fontu}
+\index{kódování+dìlìní slov}
+\index{typescript}
+\index{font+Latin Modern}
+\index{font+Times}
+\index{font+Helvetica}
+\index{font+Courier}
+
+\Command{\tex{usetypescript}}
+\Command{\tex{setupbodyfont}}
+\Command{\tex{useencoding}}
+
 \CONTEXT{} implicitnì pou¾ívá písmo Latin Modern v~kódování
 \type{ec}.\footnote{Pokud bychom potøebovali \CSfont{}y, mu¾eme vyu¾ít
   zakomentovaný kód souboru \type{type-old.tex}.}
@@ -69,24 +91,25 @@ Toto kódování obsahuje v¹echny znaky potøebné pro sazbu
 \stopbuffer
 \typebuffer
 
-Pokud chceme tisknout kombinací Times New Roman -- Helvetica --
-Curier, nastavíme
 \startbuffer
 \usetypescript [postscript] [ec]
 \setupbodyfont [postscript,10pt,rm]
-Times New Roman -- \ss Helvetica -- \tt Courier.
+Times New Roman -- \ss Helvetica -- \tt Courier%
 \stopbuffer
-\typebuffer
-
+Pokud chceme tisknout kombinací
 \start
 \getbuffer
 \stop
+, nastavíme
+\typebuffer
+
 Mno¾ství dal¹ích písem je definováno v~souborech \type{type-enc.tex}
-a~\type{type-bye.tex}.
+a~\type{type-buy.tex}.
 
 Pro nìkterá písma ze ©tormovy písmolijny je té¾ vytvoøená podpora, viz
-\from[modul:storm] s~katalogem \from[modul:storm-catalog]. Pomocí ní je pak
-napøíklad u¾ití písma Lido jednoduché:
+adresu \from[modul:storm] s~katalogem
+\from[modul:storm-catalog]. Pomocí ní je pak napøíklad u¾ití písma
+Lido jednoduché:
 \startbuffer
 \enableregime[latin2]
 \useencoding[st2]                % or st1 for ec encoding
@@ -99,6 +122,12 @@ napøíklad u¾ití písma Lido jednoduché:
 \typebuffer
 
 \section{Kódování}
+
+\index{kódování+vstupní}
+\seeindex{re¾im}{kódování vstupní}
+
+\Command{\tex{enableregime}}
+
 Ná¹ vstupní text vytváøíme v~urèitém kódování, nejèastìji
 v~\type{ISO-8859-2} (Latin~2), \type{CP1250} (Windows), èi
 \type{UTF-8}. Proto¾e tyto tøi kódování se vìt¹inou li¹í od kódování fontu
@@ -111,6 +140,22 @@ kódování \type{\enableregime[Latin2]}, \type{\enableregime[cp1250]}
 nebo \type{\enableregime[utf8]}.
 
 \section{Uvozovky, pomlèky a spol}
+
+\index{uvozovky+jednoduché}
+\index{uvozovky+dvojité}
+\index{uvozovky}
+\index{spojovník}
+\index{pomlèka}
+
+\Command{\tex{quotation}}
+\Command{\tex{quote}}
+\Command{\tex{frenchspacing}}
+\bgroup
+\catcode`\|=12
+\Command{|-|}
+\Command{|<|}
+\egroup
+
 Text \quotation{v~uvozovkách} a \quote{jednoduchých uvozovkách} se
 napí¹e pomocí \type{\quotation{...}}
 a~\type{\quote{...}}. Pomlèka|<|ta se napí¹e pomocí \type{|<|}
@@ -119,14 +164,23 @@ opakování na konci øádky. Francouská mezera za teèkou
 \type{\frenchspacing} je v~\ConTeXt u implicitní.
 
 \section{Datum}
+
+\index{datum}
+\index{mìsíce}
+\index{den v~týdnu}
+
+\Command{\tex{currentdate}}
+\Command{\tex{month}}
+\Command{\tex{weekday}}
+
 Máme-li hlavní jazyk \type{cz}, pak pøíkazem \type{\currentdate}
 vysázíme \currentdate. Pokud lokálnì pøepneme do jiného jazyka
 \startbuffer
 \start
-  \language[en]
+  \language[en]%
   \currentdate
   \ nebo
-  \language[sk]
+  \language[sk]%
   \currentdate
 \stop
 \stopbuffer
@@ -135,7 +189,13 @@ dostaneme \getbuffer. Z~èíselné informace získáme název mìsíce
 \type{\month{2}} (\month{2}) a~název dne poèínaje nedìlí
 \type{\weekday{5}} (\weekday{5}).
 
-\section{Názvy}
+\section{Popisky a názvy}
+
+\index{názvy}
+\index{popisky}
+
+\Command{\tex{setupheadtext}}
+
 Nastavením hlavního jazyka dostaneme patøièné názvy pro
 {\em obrázky}, {\em tabulky}, {\em pøílohy} ap., viz soubor
 \type{lang-sla.tex}. Zmìnit název lze 
@@ -146,11 +206,14 @@ pomocí \type{\setupheadtext}, napø.
 \typebuffer
 
 \section{Øazení}
+
+\index{øazení}
+
 \CONTEXT\ obsahuje interní øadící a èásteènì konfigurovatelný
 algoritmus (soubor \type{sort-lan.tex})\footnote{Slovenská sekce
   pravidel v~tomto souboru zatím není napsaná.}. Vychází se z~normy
-ÈSN 97~6030 z~roku 1994, ale Zatím nejde o~její plnou implementaci; hlavní
-rozdílnost je v~poøadí èíslic, znaku apostrofu a spojovníku. Øazení
+ÈSN 97~6030 z~roku 1994, ale zatím nejde o~její plnou implementaci; hlavní
+rozdílnost je v~poøadí èíslic, znaku apostrofu a~spojovníku. Øazení
 vyu¾ívají rejstøíky (\type{index}) a~øazené seznamy (\type{sorting}).
 
 \stopcomponent

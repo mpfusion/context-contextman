@@ -1,2 +1,3 @@
 @Echo OFF
-texmfstart texexec --pdf --mode=print --result=../ma-cb-cz-print.pdf ma-cb-cz
+texmfstart texexec --pdf --mode=print ma-cb-cz
+cp ma-cb-cz.pdf ma-cb-cz-print.pdf
