@@ -418,6 +418,7 @@
    \getparameters[\??stp][#1]
    \def<<##1>>{##1}% VZ: seems does not operate! (\shortsetup{start<<name>>makeup})
    \edef\ascii{#2}%
+%   \pagereference[pgref:stp:\ascii]% VZ new
    \enableXML
    \doifelseXMLelement{stp:\ascii}
      {\expanded{\flushXMLelement{stp:\ascii}}%
@@ -493,13 +494,16 @@
              {\@@stptext}
              {\ttsl}%
          \doifelseXMLop{type}{environment}
-           {\tex{\e!start}}{\tex{}}\ignorespaces
-           \doiftextelse
-             {\@@stptext}
-             {\@@stptext}
-             {\ignorespaces\XMLflush{cd:sequence}}\ignorespaces
+           {\tex{\e!start}}
+           {\tex{}}%
+         \ignorespaces
+         \doiftextelse
+           {\@@stptext}
+           {\@@stptext}
+           {\ignorespaces\XMLflush{cd:sequence}}%
+         \ignorespaces
        \egroup
-%       \doifelseXMLempty{cd:arguments}% VZ: Why???
+%       \doifelseXMLempty{cd:arguments}% VZ: Why??? it spoils \startA...\stopA
 %         {}
          {\bgroup
             \setbox0=\hbox{\XMLflush{cd:arguments}}%
@@ -508,14 +512,24 @@
             \ignorespaces\XMLflush{cd:arguments}%
             \doif{\XMLpar{cd:command}{type}{}}{environment}
               {\hskip.5em\unknown\hskip.5em
-%                 \doifnothing    % VZ
-%                   {\@@stptext}
-%                   {\ttsl}
+               \doifXMLop{generated}{yes} % VZ
+                 \doifnothing             % VZ
+                   {\@@stptext}
+                   {\ttsl}
                {\tex{\e!stop}}\ignorespaces
                \doiftextelse
                  {\@@stptext}
                  {\@@stptext}
                  {\ignorespaces\XMLflush{cd:sequence}}}%
+%            % VZ new
+%            \hfill
+%              \def\tmp{%
+%                \doiftextelse{\@@stptext}%
+%                  {\@@stptext}%
+%                  {\ignorespaces\XMLflush{cd:sequence}}%
+%                }%
+%              \at[pgref:stp:\tmp]%
+%            % VZ new end
             \endgraf
           \egroup
          %\bgroup
@@ -776,6 +790,9 @@
 
 %D Auxiliary.
 
+\setuplabeltext[en][optional=optional]            % VZ ??? language or
+\setuplabeltext[cz][optional=voliteln\eacute{}]   %        interface
+
 \unexpanded\def\showSETUP#1#2%
   {\bgroup
    \doglobal\increment\currentSETUPargument
@@ -793,6 +810,7 @@
       \lower2ex\hbox
         \bgroup
           \txx\doifXMLop{optional}{yes}{\c!setup!internal!{optional}}%
+%          \txx\doifXMLop{optional}{yes}{\labeltext{optional}}% VZ ???
         \egroup
       \hss}%
    \ht2\ht\strutbox
