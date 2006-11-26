@@ -1,0 +1,45 @@
+\startenvironment ma-cb-bulletin
+
+% This setups sets typesetting environment for the Bulletin
+% of Czechchoslovac TeX User Group:
+%   paper A5
+
+\unprotect
+
+\setuppapersize[A5][A5]
+
+\setuplayout
+  [
+   \c!location=\v!middle,
+   \c!width=fit,
+   \c!height=fit,
+%   \c!location=\v!singlesided,
+   \c!location=\v!doublesided,
+   \c!width=fit,\c!backspace=10.2mm,\c!cutspace=15.1mm,
+   \c!margin=0pt,\c!margindistance=0pt,
+   \c!height=fit,\c!topspace=11mm,\c!bottomspace=7mm,
+   \c!header=0pt,\c!headerdistance=0pt,\c!footer=12pt,\c!footerdistance=9mm,
+  ]
+
+\setupbodyfont[palatino,9pt]
+
+% --- narrow typing
+%\usemodule[narrowtt]
+\definetypeface
+  [narrowtt] [tt]
+  [mono] [modern-cond] [default] [encoding=\defaultencoding]
+
+%\setuptyping[style=\narrowtt]
+%\setuptype  [style=\narrowtt]
+\setuptyping[style={\switchtobodyfont[8pt]\tt}]
+\setuptype  [style={\switchtobodyfont[8pt]\tt}]
+
+% --- chapter
+\setuphead
+  [\v!chapter]
+  [\c!before=\vskip24pt plus 4pt minus 4pt,
+   \c!after=\vskip16pt]
+
+\protect
+
+\stopenvironment
