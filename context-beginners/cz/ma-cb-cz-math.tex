@@ -25,9 +25,9 @@
 %toto není rozsáhlá kapitola týkající se sazby matematiky, jak
 %mo¾ná oèekáváte. Pokud potøebujete v~ \TEX u sázet vzorce,
 \TEX\ je {\em pøedev¹ím} program pro sazbu matematiky. Pøesto
-tato kapitola týkající se sazby matematiky, není, jak
-mo¾ná oèekáváte, rozsáhlá. Pokud potøebujete v~\TEX u sázet vzorce,
-doporuèejeme vám ke studiu:\footnote{V~tomto
+tato kapitola týkající se sazby matematiky není rozsáhlá, jak
+byste mo¾ná oèekávali. Pokud potøebujete v~\TEX u sázet vzorce,
+doporuèujeme vám ke studiu:\footnote{V~tomto
 manuálu se pøi sazbì matematiky opíráme o~kní¾ku
 {\em \TEX niques}, kterou napsal Arthur Samuel.}
 
@@ -53,18 +53,19 @@ Mahajana, viz \in{pøílohu}[sec:info].
 %\index {math mode}
 %\index {display mode}
 %\index {text mode}
-\index {matematický re¾im}
-\index {zobrazovací re¾im}
-\index {textový re¾im}
+\index {matematický mód}
+\index {display mód}
+\index {textový mód}
 
 %Normally different conventions are applied for typesetting
 %normal text and math text. These conventions are \quote{known}
 %by \TEX\ and applied accordingly when generating a document.
 %We can rely on \TEX\ for delivering high quality math output.
-V~bì¾ných situacích se zvyklosti pro sazbu bì¾ného a matematického
-textu li¹í. \TEX\ tyto zvyklosti \quote{zná} a~bìhem vytváøení dokumentu
-je pøesnì aplikuje. Pøi po¾adavcích na vysokou kvalitu sazby matematického
-výstupu se mù¾eme na \TEX\ spolehnout.
+Zvyklosti pro sazbu bì¾ného a matematického
+textu se obvykle li¹í.
+\TEX\ tyto zvyklosti \quote{zná} a~bìhem vytváøení dokumentu
+je pøesnì aplikuje. Pokud je po¾adována vysoká kvalita matematické sazby,
+mù¾eme se na \TEX\ plnì spolehnout.
 
 %A number of conventions for math are:
 Nìkolik zvyklostí pro sazbu matematiky:
@@ -81,7 +82,7 @@ Nìkolik zvyklostí pro sazbu matematiky:
       a~matematické znaèky ($\leq$, $\geq$, $\in$).
 
 %\item Spacing will differ from normal spacing.
-\item Délky mezer jsou také jiné, ne¾ v~bì¾ném textu.
+\item Délky mezer jsou také jiné ne¾ v~bì¾ném textu.
 
 %\item Math expression have a different alignment than that of
 %      the running text.
@@ -95,8 +96,8 @@ Nìkolik zvyklostí pro sazbu matematiky:
 
 %\item Certain symbols have different appearances in the
 %      inline and display mode.
-\item Urèité symboly mají rùzný vzhled jsou-li uvedeny v~odstavci èi
-  na samostatném øádku.
+\item Urèité symboly mají rùzný vzhled podle toho, zda jsou uvedeny
+  ve vnitøním nebo v~display matematickém módu.
 
 \stopitemize
 
@@ -112,8 +113,9 @@ plain \TEX u.
 %\type{$}, while display mode is activated by \type{$$} and
 %\type{$$}.
 Matematický mód má dvì alternativy: vnitøní matematický mód
-a~display matematický mód. Vnitøní matematický mód je aktivován pomocí
-\type{$} a~\type{$}, zatímco display oznaèen pomocí \type{$$} a~\type{$$}.
+a~display matematický mód. Vnitøní matematický mód je ohranièen znaky
+\type{$} a~\type{$}, zatímco display mód je aktivován pomocí
+\type{$$} a~\type{$$}.
 
 %\startbuffer
 %The Hasselt community covers an area of 42,05 \Square \Kilo \Meter.
@@ -124,7 +126,7 @@ a~display matematický mód. Vnitøní matematický mód je aktivován pomocí
 \startbuffer
 Mìsto Hasselt pokrývá plochu 42,05 \Square \Kilo \Meter.
 Pokud budeme uva¾ovat kruhovou oblast této velikosti
-s~Hasseltským tr¾i¹tìm v~geometrickém støedu $T$, mù¾eme 
+s~hasseltským tr¾i¹tìm v~geometrickém støedu $T$, mù¾eme 
 spoèítat prùmìr této oblasti pomocí vzorce ${{1}\over{4}} \pi d^2$.
 \stopbuffer
 \typebuffer
@@ -152,8 +154,9 @@ výsledek: ${1}\over{4} \pi d^2$.
 %\type{\scriptscriptstyle}.
 Písmena a èíslice jsou sázena ve tøech velikostech (stylech):
 velikost textu $a+b$, velikost indexu (script): $\scriptstyle a+b$
-a~velikost indexu indexu (scriptscript) $\scriptscriptstyle a+b$. Toto
-lze ovlivòovat pøíkazy \type{\scriptstyle} a \type{\scriptscriptstyle}.
+a~velikost indexu v~indexu (scriptscript) $\scriptscriptstyle a+b$.
+Velikost lze ovlivnit pøíkazy
+\type{\scriptstyle} a \type{\scriptscriptstyle}.
 
 %Symbols like $\int$ and $\sum$ will have a different form in
 %text and display mode. If we type \type {$\sum_{n=1}^{m}$}
@@ -167,10 +170,10 @@ v~display matematickém módu. Pokud napí¹eme \type {$\sum_{n=1}^{m}$}
 nebo \type {$\int_{-\infty}^{+\infty}$}, dostaneme 
 {$\sum_{n=1}^{m}$} a {$\int_{-\infty}^{+\infty}$}. To samé
 v~display módu: \type {$$\sum_{n=1}^{m}$$} a
-\type {$$\int_{-\infty}^{+\infty}$$} bude v¹ak vypadat takto:
+\type {$$\int_{-\infty}^{+\infty}$$} v¹ak bude vypadat takto:
 
 \startformula
-\sum_{n=1}^{m} \quad {\rm and} \quad \int_{-\infty}^{+\infty}
+\sum_{n=1}^{m} \quad {\rm a} \quad \int_{-\infty}^{+\infty}
 \stopformula
 
 %With the commands \type {\nolimits} and \type{\limits} you
@@ -179,7 +182,7 @@ Pomocí pøíkazù \type {\nolimits} a~\type{\limits} mù¾eme
 ovlivnit vzhled symbolù \type{\sum} a~\type{\int}: 
 
 \startformula
-\sum_{n=1}^{m}\nolimits \quad {\rm and} \quad \int_{-\infty}^{+\infty}\limits
+\sum_{n=1}^{m}\nolimits \quad {\rm a} \quad \int_{-\infty}^{+\infty}\limits
 \stopformula
 
 %For typesetting fractions there is the command \type
@@ -250,7 +253,7 @@ a podobnì pravou \type {\right}. Napøíklad zápis
 %multi character sub and superscripts.
 Sazby horního a dolního indexu dosáhneme pomocí \quote {\type{_}}
 a \quote {\type{^}}. Tyto znaèky mají vliv pouze na první 
-následující znak, tak¾e pro víceznakové indexy je nutné ohranièovat
+následující znak, tak¾e víceznakové indexy je nutné ohranièovat
 slo¾enýma závorkama $\{$~$\}$.
 
 %In certain situations the delimiters can be preceeded by
@@ -262,7 +265,7 @@ slo¾enýma závorkama $\{$~$\}$.
 %16pt{}x^{2^{2^{2^{2}}}}\right)$$} we get:
 V~urèitých situacích mohou být závorky zvìt¹eny pomocí
 pøíkazù \type{\bigl}, \type{\Bigl}, \type{\biggl},
-\type{\Biggl} a jejich pravých ekvivalentù. Pokud to 
+\type{\Biggl} a jejich pravostranných ekvivalentù. Pokud to 
 nestaèí, tak je¹tì vìt¹ích závorek mù¾eme dosáhnout
 spoluprací pøíkazù \type{\left} a \type{\right} s~konstrukcí
 \type{\vbox}. Více ne¾ popis to objasní pøíklad, by» ponìkud
@@ -329,7 +332,7 @@ a_0 + {\frac{a}{a_1 + 1/a_2}}
 %\type{\displaystyle}. If we would type \type {$$a_0 +
 %{\frac{a}{a_1 + \frac{1}{\strut \displaystyle a_2}}}$$} we
 %will get:
-Dále bychom mìli pou¾ívat pøíkaz 
+Mimoto lze pou¾ít pøíkaz 
 \type{\displaystyle}. Pokud zapí¹eme \type {$$a_0 +
 {\frac{a}{a_1 + \frac{1}{\strut \displaystyle a_2}}}$$}
 , tak dostaneme:
@@ -401,11 +404,11 @@ A=\pmatrix{a_{11} & a_{12} & \ldots & a_{1n} \cr
 %So in \CONTEXT\ we have to type \type{$$x^3+{\tf lower\
 %order\ terms}$$} to get:
 Pokud chceme vysázet v~matematickém výrazu bì¾ný text,
-musíme vzít na vìdomí dvì vìci. První je skuteènost, ¾e
-v~matematickém módu se nevysází bì¾ným zpùsobem mezera 
-a je nutné si to vynutit pomocí \type{ \ } (zpìtného lomítka).
-Druhou vìcí je nutnost zmìnit font, proto¾e bì¾ný text
-by se nemìl vysázet v~$matematicke\ kurzive$, ale aktuálním
+musíme uvá¾it dvì vìci. Za prvé, mezera se
+v~matematickém módu se nevysází bì¾ným zpùsobem 
+a je tøeba ji vynutit pomocí \type{ \ } (obráceného lomítka).
+Za druhé, je nutné zmìnit font, proto¾e bì¾ný text
+by se nemìl sázet $matematickou\ kurzivou$, ale aktuálním
 fontem.
 
 %% \startformula
@@ -418,9 +421,8 @@ x^3+\hbox{termy ni¾¹ích øádù}
 %The math functions like $\sin$ and $\tan$ that have to be
 %typeset in the actual font are predefined functions in
 %\TEX:
-Matematické funkce jako $\sin$ a $\tan$, které musí být
-vysázeny aktuálním fontem, jsou v~\TEX u pøeddefinované
-funkce:
+Matematické funkce jako $\sin$ a $\tan$, které se musí
+vysázet aktuálním fontem, jsou v~\TEX u pøeddefinované:
 
 \starttabulate[|l|l|l|l|l|l|l|l|]
 \NC \type{\arccos} \NC \type{\cos} \NC \type{\csc} \NC \type{\exp} \NC \type{\ker} \NC \type{\limsup} \NC \type{\min} \NC \type{\sinh} \NC\NR
@@ -473,7 +475,7 @@ vysází se:
 %Sometimes alignment at more than one location is wanted.
 %Watch the second line in the next example and see how it is
 %defined:
-Nìkdy je potøeba zarovnávat dle více rùzných míst.
+Nìkdy je potøeba zarovnávat podle více rùzných míst.
 Jak lze tento po¾adavek uskuteènit, je vidìt na druhém
 øádku následujícího pøíkladu:
 
@@ -527,8 +529,8 @@ velkého písmene \quote{M}.
 %The use of the command \type{\prime} speaks for itself. For
 %example if would want $y_1^\prime+y_2^{\prime\prime}$ you
 %should type \type{$y_1^\prime+y_2^{\prime\prime}$}.
-U¾ití pøíkazu \type{\prime} \footnote{Pozn. pøekl.: \quote{prime}
-je anglický výraz pro èárku v~indexu.} hovoøí sama za sebe. 
+U¾ití pøíkazu \type{\prime} \footnote{\quote{prime}
+je anglický výraz pro èárku v~indexu. Pozn. pøekl.} hovoøí sama za sebe. 
 Pokud bychom napøíklad chtìli vysázet $y_1^\prime+y_2^{\prime\prime}$, 
 mìli bychom zapsat \type{$y_1^\prime+y_2^{\prime\prime}$}.
 
@@ -543,7 +545,7 @@ zápisu \type{$\root 3 \of {x^2+y^2}$}.
 %With \type{$\sqrt{\mathstrut a}+\sqrt{\mathstrut d}+\sqrt{\mathstrut y}$}
 %we will get $\sqrt{\mathstrut a}+\sqrt{\mathstrut d}+\sqrt{\mathstrut y}$
 %in stead of $\sqrt{a}+\sqrt{d}+\sqrt{y}$.
-Na konci této sekce si uka¾eme pou¾ití pøíkazu
+Na konci této sekce si uká¾eme pou¾ití pøíkazu
 \type{\mathstrut}, kterým mù¾eme dosáhnout vyrovnání 
 velikostí, napøíklad symbolù odmocnin.
 Pomocí \type{$\sqrt{\mathstrut a}+\sqrt{\mathstrut d}+\sqrt{\mathstrut y}$}
@@ -560,14 +562,14 @@ pøíkazu \type{\mathstrut} bychom dostali $\sqrt{a}+\sqrt{d}+\sqrt{y}$.
 \section{Umístìní matematických formulí}
 
 %\index{formula}
-\index{formule}
+\index{vzorce}
 
 \Command{\tex{placeformula}}
 \Command{\tex{startformula}}
 \Command{\tex{setupformulae}}
 
 %You can typeset numbered formulaes with:
-Jednotlivé matematické formule mù¾eme èíslovat pomocí:
+Jednotlivé matematické vzorce mù¾eme èíslovat pomocí:
 
 \shortsetup{placeformula}
 \shortsetup{startformula}
@@ -596,7 +598,7 @@ Dva pøíklady:
 %if you type:
 \CONTEXT ové pøíkazy \type {\startformula} $\cdots$
 \type{\stopformula} nahrazují poèáteèní a koncové \type{$$}.
-Tak¾e kdy¾ napí¹eme:
+Kdy¾ toti¾ napí¹eme:
 
 \startbuffer
 $$
@@ -609,8 +611,8 @@ $$
 %you will get an expression that is {\em displayed} in the
 %middle of a page, but that is not as well aligned as the
 %previous examples.
-dostaneme výraz, který je {\em zobrazen} ve støedu stránky,
-ale není zarovnán jako v~pøedcházejícím pøíkladì.
+dostaneme výraz, který je sice {\em zobrazen} ve støedu stránky,
+ale není tak dobøe zarovnán jako v~pøedcházejících pøíkladech.
 
 \getbuffer
 
@@ -618,8 +620,8 @@ ale není zarovnán jako v~pøedcházejícím pøíkladì.
 %formulae and the numbering of the formula. The bracket pair
 %is optional and is used for cross-references and to switch
 %numbering on and off.
-Pøíkaz \type{\placeformula} zajistí mezeru okolo matematické 
-formule a~také její oznaèení èíslem. Hranaté závorky nejsou 
+Pøíkaz \type{\placeformula} zajistí mezeru okolo matematického 
+vzorce a~také její oznaèení èíslem. Hranaté závorky nejsou 
 povinné a~slou¾í pro uvedení referenèního jména pro odkazy, a~také pro
 zapnutí a~vypnutí èíslování.
 
@@ -678,10 +680,10 @@ Jestli¾e nevy¾adujeme èíslování, zapí¹eme:
 V~tomto manuálu je èíslování nastaveno
 pøíkazem \type{\setupnumbering[way=bychapter]}. To znamená,
 ¾e pøed èíslem rovnice je uvedeno èíslo kapitoly a v~ka¾dé
-dal¹í kapitole je èíslování opìt vynulováno. Z~dùvodu 
+dal¹í kapitole je èíslování opìt vynulováno. Pro zachování
 jednotnosti jsou tabulky, obrázky apod. èíslovány stejným 
 zpùsobem. Proto se \type{\setupnumbering} pou¾ívá v~deklaraèní 
-oblasti na¹eho vstupního souboru.
+oblasti vstupního souboru.
 
 %Formulae can be set up with:
 Rovnice mohou být nastaveny pomocí pøíkazu:

@@ -41,9 +41,9 @@
 %% equations or several rows of text. Horizontal and vertical
 %% lines may be drawn wholly or partially across the table.}
 {\em Tabulka se obecnì skládá ze sloupcù. Jejich obsah mù¾e být
-  zarovnán vlevo, vpravo, vycentrován èi zarovnán k~desetinné
-  èárce. Nadpisek mù¾e zaujímat jeden nebo více sloupcù. Buòky tabulky
-  mohou obsahovat rovnice nebo nekolik øádkù textu. Horizontální a
+  zarovnán vlevo, vpravo, na støed èi k~desetinné èárce.
+  Záhlaví mù¾e zaujímat jeden nebo více sloupcù. Buòky tabulky
+  mohou obsahovat rovnice nebo nìkolik øádkù textu. Horizontální a
   vertikální linky mohou vést pøes celou tabulku nebo jen pøes její èást.}
 
 %% This is what Michael J. Wichura wrote in the preface of the
@@ -127,17 +127,17 @@ Tato tabulka je vysázena jako \in{tabulka}[tab:ships].
 %% most optimal location of the page.
 První pøíkaz \type{\placetable} má stejnou funkci jako
 \type{\placefigure}. Postará se o~vertikální odsazení tabulky
-a~o~její èíslo. Dále je uveden v~èinnost mechanismus umístìní
-plovoucího objektu k~nalezení optimální polohy na stránce.
+a~o~její èíslo. Dále spustí mechanismus umístìní plovoucího
+objektu a ten nalezne optimální polohu tabulky na stránce.
 
 %% The table entries are placed between the \type{\starttable}
 %% $\cdots$ \type{\stoptable} pair. Between the bracket pair
 %% your can specify the table format with the column separators
 %% \type{|} and the format keys (see
 %% \in{table}[tab:formatkeys]).
-Údaje tabulky jsou zadávány uvnitø dvojice \type{\starttable} $\cdots$
-\type{\stoptable}. Do hranatých závorek vkládáme formátovací znaèky
-tabulky, viz \in{tabulku}[tab:formatkeys].
+Polo¾ky tabulky se zadávají dovnitø dvojice \type{\starttable} $\cdots$
+\type{\stoptable}. Do hranatých závorek vkládáme znaèky pro
+formátování tabulky, viz \in{tabulku}[tab:formatkeys].
 
 %% \placetable
 %%   []
@@ -158,7 +158,7 @@ tabulky, viz \in{tabulku}[tab:formatkeys].
 \placetable
   []
   [tab:formatkeys]
-  {Formátovací znaèky tabulky.}
+  {Znaèky pro formátování tabulky.}
 \starttable[|l|l|]
 \HL
 \NC \bf Znaèka       \NC \bf Význam                                  \NC\SR
@@ -224,7 +224,7 @@ základní ukazuje \in{tabulka}[tab:formatcommands].
 \placetable
   [here]
   [tab:formatcommands]
-  {Formátovací pøíkazy tabulky.}
+  {Pøíkazy pro formátování tabulky.}
 {\setuptables[bodyfont=small]
 \starttable[s1|l|l|l|l|]
 \HL
@@ -260,8 +260,8 @@ základní ukazuje \in{tabulka}[tab:formatcommands].
 \NC \type{\TWO}, \type{\THREE} etc. \NC ---
     \NC udìlej mezeru pøes {\em dva}, {\em tøi}, \dots sloupce \NC\LR
 \HL
-\NC \use3 \JustLeft{$^\star$ \type{\DL, \DC} a \type{\DR}
-    se doplòují.}                      \NC\FR
+\NC \use3 \JustLeft{Pøíkazy $^\star$ \type{\DL, \DC} a \type{\DR}
+    lze kombinovat.}                      \NC\FR
 \stoptable}
 
 %% In the examples you have seen so far a number of
@@ -270,7 +270,7 @@ základní ukazuje \in{tabulka}[tab:formatcommands].
 %% also handle a lot of table typography. In
 %% \in{table}[tab:contextformatcommands] an overview of these
 %% commands is given.
-V~dal¹ích pøíkladech uvidíme formátovacích pøíkazy \CONTEXT{}u.
+V~dal¹ích pøíkladech uvidíme formátovací pøíkazy \CONTEXT{}u.
 Jejich jména jsou del¹í a ménì kryptická a øídí dal¹í formátovací
 funkce tabulek. V~\in{tabulce}[tab:contextformatcommands] je jejich
 pøehled.
@@ -309,7 +309,7 @@ pøehled.
 %% The tables below are shown with their sources. You can
 %% always read the \TABLE\ manual by M.J. Wichura for more
 %% sophisticated examples.
-Tabulky ukázané dále jsou uvedené s~jejich zdrojovými texty. Pro
+Tabulky ukázané dále jsou uvedené se zdrojovými texty. Pro
 slo¾itìj¹í ukázky si lze také pøeèíst \TABLE\ manuál M.\,J.~Wichury.
 
 %% \startbuffer
@@ -376,7 +376,7 @@ slo¾itìj¹í ukázky si lze také pøeèíst \TABLE\ manuál M.\,J.~Wichury.
 %% of line spacing within a table. As you can see below
 %% the command \type{\NR} only starts a new row.
 Ve vý¹e uvedeném pøíkladu jsou v~první tabulce pou¾ity \type{\SR}, \type{\FR},
-\type{\MR} and \type{\LR}. Tyto pøíkazy se starají o~vkládání mezer
+\type{\MR} a \type{\LR}. Tyto pøíkazy se starají o~vkládání mezer
 uvnitø tabulky. Jak je vidìt, pøíkaz \type{\NR} pouze zaèíná novou øádku.
 
 \getbuffer
@@ -469,7 +469,7 @@ a~\type{s1}.
 \startbuffer[one]
 \starttable[|c|c|]
 \HL
-\VL \bf Rok \VL \bf Obyvatelé \VL\SR
+\VL \bf Rok \VL \bf Obyvatel \VL\SR
 \HL
 \VL 1675 \VL  ~428 \VL\FR
 \VL 1795 \VL  1124 \VL\MR
@@ -482,7 +482,7 @@ a~\type{s1}.
 \startbuffer[two]
 \starttable[s0 | c | c |]
 \HL
-\VL \bf Rok \VL \bf Obyvatelé \VL\SR
+\VL \bf Rok \VL \bf Obyvatel \VL\SR
 \HL
 \VL 1675 \VL  ~428 \VL\FR
 \VL 1795 \VL  1124 \VL\MR
@@ -495,7 +495,7 @@ a~\type{s1}.
 \startbuffer[three]
 \starttable[| s0 c | c |]
 \HL
-\VL \bf Rok \VL \bf Obyvatelé \VL\SR
+\VL \bf Rok \VL \bf Obyvatel \VL\SR
 \HL
 \VL 1675 \VL  ~428 \VL\FR
 \VL 1795 \VL  1124 \VL\MR
@@ -508,7 +508,7 @@ a~\type{s1}.
 \startbuffer[four]
 \starttable[| c | s0 c |]
 \HL
-\VL \bf Rok \VL \bf Obyvatelé \VL\SR
+\VL \bf Rok \VL \bf Obyvatel \VL\SR
 \HL
 \VL 1675 \VL  ~428 \VL\FR
 \VL 1795 \VL  1124 \VL\MR
@@ -521,7 +521,7 @@ a~\type{s1}.
 \startbuffer[five]
 \starttable[s1 | c | c |]
 \HL
-\VL \bf Rok \VL \bf Obyvatelé \VL\SR
+\VL \bf Rok \VL \bf Obyvatel \VL\SR
 \HL
 \VL 1675 \VL  ~428 \VL\FR
 \VL 1795 \VL  1124 \VL\MR
@@ -558,8 +558,8 @@ mezerování sloupcù pomocí znaèek \type{s2}.
 
 %% Columns are often separated with a vertical line $|$ and
 %% rows by a horizontal line.
-Sloupce bývají obèas oddìleny svislými $|$ a~øádky vodorovnými
-linkami.
+Sloupce bývají obèas oddìleny svislými linkami $|$ a~øádky
+vodorovnými.
 
 %% \startbuffer
 %% \placetable
@@ -624,7 +624,7 @@ Praktiètìj¹í pøíklad je v~\in{tabulce}[tab:example contextcommands].
   {Vliv formátovacích pøíkazù \CONTEXT{}u.}
 \starttable[|l|c|c|c|c|]
 \HL
-\VL \FIVE \JustCenter{Magistrátní volby v~roce 1994}    \VL\SR
+\VL \FIVE \JustCenter{Volby do mìstské rady v~roce 1994}    \VL\SR
 \HL
 \VL \LOW{Strana} \VL \THREE{Okrsky}   \VL \LOW{Celkem}  \VL\SR
 \DC             \DL[3]                  \DC                \DR
@@ -651,12 +651,12 @@ V~posledním sloupci je znak \type{~} pou¾it k~simulaci ètyøciferného
 %% Sometimes your tables get too big and you want to adjust, for
 %% example, the body font or the vertical and/or horizontal spacing
 %% around vertical and horizontal lines. This is done by:
-Nìkdy je na¹e tabulka pøíli¹ veliká. Abychom ji vysadili s~textem,
-mù¾eme jí, napøíklad, zmen¹it pou¾ité písmo. Pomocí pøíkazu
+Nìkdy se nám tabulka pøíli¹ rozroste. Abychom ji vysadili s~textem,
+mù¾eme napøíklad zmen¹it pou¾ité písmo. Pomocí pøíkazu
 
 \shortsetup{setuptables}
 
-to udìláme to takto:
+to udìláme takto:
 
 %% \startbuffer
 %% \placetable
@@ -730,7 +730,7 @@ to udìláme to takto:
 \starttable[|c|c|c|c|c|c|]
 \HL
 \VL \use6
-    \JustCenter{Pokles bohatství v~holandských forinech (Dfl)}
+    \JustCenter{Pokles bohatství v~holandských guldenech (Dfl)}
     \VL\SR
 \HL
 \VL Year \VL 1.000--2.000
@@ -749,7 +749,7 @@ to udìláme to takto:
 \starttable[|c|c|c|c|c|c|]
 \HL
 \VL \use6
-    \JustCenter{Pokles bohatství v~holandských forinech (Dfl)}
+    \JustCenter{Pokles bohatství v~holandských guldenech (Dfl)}
     \VL\SR
 \HL
 \VL Year \VL 1.000--2.000
@@ -768,7 +768,7 @@ to udìláme to takto:
 \starttable[|c|c|c|c|c|c|]
 \HL
 \VL \use6
-    \JustCenter{Pokles bohatství v~holandských forinech (Dfl)}
+    \JustCenter{Pokles bohatství v~holandských guldenech (Dfl)}
     \VL\SR
 \HL
 \VL Year \VL 1.000--2.000

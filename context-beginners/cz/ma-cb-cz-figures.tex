@@ -24,8 +24,7 @@
 
 %Photographs and pictures can be inserted in your document
 %with the following command:
-Obrázky a~fotografie mohou být vlo¾eny do na¹eho 
-dokumentu pomocí následujícího pøíkazu:
+Obrázky a~fotografie vlo¾íme do dokumentu následujícím pøíkazem:
 
 %\startbuffer
 %\placefigure
@@ -107,10 +106,10 @@ Zde pou¾itelné parametry jsou popsané v~\in{tabulce}[tab:placefigure].
 \NC here       \NC pokud je to mo¾né, umísti obrázek na toto místo \NC\FR
 \NC force      \NC vynu» umístìní obrázku na tomto místì           \NC\MR
 \NC page       \NC umísti obrázek na zvlá¹tní stránku     \NC\MR
-\NC top        \NC umísti obrázek na horní okraj stránky  \NC\MR
-\NC bottom     \NC umísti obrázek na dolní okraj stránky  \NC\MR
-\NC left       \NC umísti obrázek do levého okraje        \NC\MR
-\NC right      \NC umísti obrázek do pravého okraje       \NC\MR
+\NC top        \NC umísti obrázek k~hornímu okraji stránky \NC\MR
+\NC bottom     \NC umísti obrázek k~dolnímu okraji stránky \NC\MR
+\NC left       \NC umísti obrázek k~levému okraji         \NC\MR
+\NC right      \NC umísti obrázek k~pravému okraji        \NC\MR
 \NC margin     \NC umísti obrázek do marginálie           \NC\LR
 \HL
 \stoptable
@@ -178,14 +177,14 @@ Tento pøíklad vysází:
 %\type {JPG}, \type {PNG} and (pages from) \type {PDF} files as
 %well as \METAPOST\ output (\type {MPS} files). Users normally can
 %trust \CONTEXT\ to find the best possible file type.
-Obrázky pro ná¹ dokument èasto vytváøíme pomocí programù jako Corel Draw
+Obrázky nicménì èasto vytváøíme v~programech jako Corel Draw
 nebo Illustrator. Fotky -- po oskenování -- se obvykle upraví
-v~\GIMP{}u nebo PhotoShopu. Po této práci, máme své obrázky ve formì
+v~\GIMP{}u nebo PhotoShopu. Po této práci máme obrázky ve formì
 souborù. \CONTEXT\ podporuje v¹echny formáty souborù, se kterými
 umí nakládat ovladaè v~pozadí \CONTEXT u. Pokud pou¾íváme \PDFTEX,
 mù¾eme vkládat \type{JPG}, \type{PNG} a~jednotlivé stránky ze 
-souborù \type{PDF}, stejnì tak jako výstup \METAPOST{}u, (soubory typu
-\type{MPS}). U¾ivatelé mohou bì¾nì dùvìøovat \CONTEXT{}u, ¾e nalezne
+souborù \type{PDF} jako¾ i výstup \METAPOST{}u, (soubory typu
+\type{MPS}). U¾ivatelé obvykle mohou \CONTEXT{}u dùvìøovat, ¾e nalezne
 nejlep¹í mo¾ný formát souboru.
 
 %In \in{figure}[fig:canals] you see a photo and a graphic
@@ -250,7 +249,7 @@ mno¾ství obrázkù. Jeden obrázek pod druhým se vysází pomocí
 %layout of the picture and the text. For that purpose
 %you can use:
 Uvedené pøíklady jsou dostaèující pro vytváøení 
-ilustrovaných documentù. Nicménì nìkdy je potøeba 
+ilustrovaných dokumentù. Nicménì nìkdy je potøeba 
 více ovlivnit uspoøádání obrázku a~textu. Pro tento 
 úèel mù¾ete pou¾ít:
 
@@ -283,7 +282,7 @@ jak je vidìt z~následujícího pøíkladu kombinujícího obrázek s~textem.
   [fig:citizens]
   {none}
   {\externalfigure[ma-cb-18][width=.5\makeupwidth]}
-  Hasselt mìl v¾dy promìnný poèet obyvatelstva, závislý
+  Poèet obyvatel Hasseltu se odjak¾iva mìnil v~závislosti
   na ekonomických podmínkách. Pøíkladem mù¾e být kopání
   kanálu Dedemsvaart kolem roku 1810. Proto¾e vedl pøímo
   skrz Hasselt, obchod vzkvétal. 
@@ -337,18 +336,18 @@ zdrojového textu:\footnote{Viz \at{stranu}[marginpicture].}
 \typebuffer[marginpicture]
 
 %You can set up the layout of figures with:
-Umístìní a rozmìry obrázku mù¾eme ovlivòit pomocí:
+Umístìní a rozmìry obrázku mù¾eme ovlivnit pomocí:
 
 \shortsetup{setupfloats}
 
 %You can set up the numbering and the labels with:
-Také mù¾eme nastavit èíslování obrázkù a~jejich popisek:
+Mù¾eme také nastavit èíslování obrázkù a~jejich popisek:
 
 \shortsetup{setupcaptions}
 
 %These commands are typed in the set up area of your input
 %file and have a global effect on all floating blocks.
-Následující pøíkazy patøí do deklaraèní oblasti na¹eho vstupního
+Následující pøíkazy patøí do deklaraèní oblasti vstupního
 souboru a mají tedy vliv na v¹echny plovoucí objekty.
 
 %% \startbuffer
