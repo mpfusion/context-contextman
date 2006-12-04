@@ -41,7 +41,7 @@ generuje automaticky napsáním:
 
 Jaký obsah se vytvoøí, zále¾í na umístìní tohoto pøíkazu
 v~dokumentu. Na zaèátku dokumentu se vygeneruje seznam {\em v¹ech\/}
-kapitol, sekcí atd. Ale umístìním na zaèátku jednotlivých kapitol
+kapitol, sekcí atd. Ale umístìním na zaèátku jednotlivých kapitol, tj.:
 
 %\startbuffer
 %\chapter{Hasselt in Summer}
@@ -84,7 +84,7 @@ seznam pomocí:
 %This command and \type{\definelist} allows you to define
 %your own lists necessary for structuring your documents.
 Tento pøíkaz spolu s~\type{\definelist} nám dovolí nadefinovat vlastní
-seznam, potøebný ke strukturalizaci celého dokumentu.
+seznam, potøebný ke strukturování celého dokumentu.
 
 %The use of this command and its related commands is
 %illustrated for the table of contents.
@@ -159,7 +159,7 @@ pøidá nadpis \quote{Obsah}.
 %The layout of lists can be varied with the parameter
 %\type{alternative}.
 
-Vzhled seznamu je nastavitelný parametrem
+Vzhled seznamu lze nastavit parametrem
 \type{alternative}.
 
 %\placetable
@@ -197,7 +197,7 @@ Vzhled seznamu je nastavitelný parametrem
 \stoptable
 
 %Lists are set up with:
-Seznamy jsou nastaveny pomocí:
+Seznamy se nastavují pomocí:
 
 \shortsetup{setuplist}
 \shortsetup{setupcombinedlist}
@@ -232,7 +232,7 @@ Od této chvíle se bude formátování obsahu li¹it od jeho standardního
 nastavení.
 
 %Lists Are Called Up And Placed With:
-Seznamy jsou vyvolávány a~umís»ovány pomocí:
+Seznamy se vyvolávají a~umís»ují pomocí:
 
 \shortsetup{placelist}
 
@@ -254,9 +254,9 @@ nebo
 % option when you have a well structured document that has sub
 % sub sub sub sub sections and you don't want those in the
 % table of contents.
-a zobrazeny budou pouze kapitoly a sekce. To se mù¾e hodit,
+a zobrazí se pouze kapitoly a sekce. To se mù¾e hodit,
 pokud máme slo¾itý a~strukturovaný obsah, který má spoustu pod pod
-a~pod odstavcù, které nechceme v~celkovém obsahu.
+a~pod odstavcù, které v~celkovém obsahu nechceme vypisovat.
 
 % A long list or a long table of contents will use up more
 % than one page. To be able to force page breaking you can
@@ -278,8 +278,9 @@ Zalomení stránky se objeví po sekci 2.2 a 8.5 a~podsekci 12.3.3.
 % \shortsetup{writetolist}
 % \shortsetup{writebetweenlist}
 
-V~nìkterých pøípadech chceme napsat vlastní text v~automaticky
-generovaném seznamu. Toho dosáhneme pomocí:
+V~nìkterých pøípadech chceme v~automaticky
+generovaném seznamu napsat vlastní text.
+Toho dosáhneme pomocí:
 
 \shortsetup{writetolist}
 \shortsetup{writebetweenlist}

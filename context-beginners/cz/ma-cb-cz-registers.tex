@@ -23,14 +23,14 @@
 %the command \type{\index} is available. If you want to add
 %a word to the index you type:
 V~\CONTEXT{}u je mo¾né vytvoøit jeden nebo více rejstøíkù. Implicitnì
-je k~dispozici pøíkaz \type{\index}. Jestli¾e chceme pøidat do
-rejstøíku slovo, napí¹eme napøíklad: 
+je k~dispozici pøíkaz \type{\index}. Jestli¾e chceme do
+rejstøíku pøidat nìjaké slovo, napí¹eme napøíklad: 
 
 %\starttyping
 %\index{town hall}
 %\stoptyping
 \starttyping
-\index{mìstská hala}
+\index{radnice}
 \stoptyping
 
 %The word {\em town hall} will appear as an index entry. An
@@ -39,8 +39,8 @@ rejstøíku slovo, napí¹eme napøíklad:
 %order. For example, entries such as symbols have to provide extra
 %sorting information in order to produce a correct alphabetical
 %list:
-Vıraz {\em mìstská hala} se objeví jako heslo rejstøíku. Rejstøík je
-seøazen podle abecedy pomocnım programem. Pokud je nìkteré heslo
+Vıraz {\em radnice} se objeví jako heslo rejstøíku. Rejstøík je
+pomocnım programem seøazen podle abecedy. Pokud je nìkteré heslo
 tøeba zatøídit mimo bì¾né abecední poøadí, napøíklad v~pøípadì symbolu,
 musí bıt doplnìno o~dal¹í tøídící informaci:
 
@@ -53,15 +53,15 @@ musí bıt doplnìno o~dal¹í tøídící informaci:
 
 %Sometimes you have sub- or sub sub entries. These can be
 %defined as follows:
-Nìkdy máme pod- nebo podpodhesla. Tyto se zadávají následujícím zpùsobem:
+Nìkdy máme pod- nebo podpodhesla. Ty se zadávají následujícím zpùsobem:
 
 %\starttyping
 %\index{town hall+location}
 %\index{town hall+architecture}
 %\stoptyping
 \starttyping
-\index{mìstská hala+poloha}
-\index{mìstská hala+architektura}
+\index{radnice+poloha}
+\index{radnice+architektura}
 \stoptyping
 
 %You can generate your indexlist with:
@@ -80,14 +80,14 @@ nebo
 
 %The command \type{\index} is a predefined \CONTEXT\ command,
 %but of course you can also define your own registers.
-Pøíkaz \type{\index} je pøeddefinovanı pøíkaz \CONTEXT{}u;
-mù¾ete v¹ak také definovat své vlastní rej\-støí\-ky:
+Pøíkaz \type{\index} je v~\CONTEXT{}u pøeddefinovanı, ale
+samozøejmì mù¾eme také definovat své vlastní rej\-støí\-ky:
 
 \shortsetup{defineregister}
 
 %For example if you want to make a new register based on the
 %streets in Hasselt you could type:
-Napøíklad, jestli chceme vytvoøit novı rejstøík ulic Hasseltu,
+Chceme-li napøíklad vytvoøit rejstøík ulic v~Hasseltu,
 mù¾eme napsat:
 
 %\starttyping
@@ -100,8 +100,8 @@ mù¾eme napsat:
 %Now a new register command \type{\street} is available. An
 %new index entry could be \type{\street{Ridderstraat}}. To
 %produce a list of entries you could now use:
-Nyní je k~dispozici novı pøíkaz rejstøíku \type{\ulice}. 
-Nové heslo rejstøíku tak mù¾e bıt \type{\ulice{Ridderstraat}}. 
+Nyní je k~dispozici novı pøíkaz pro tvorbu rejstøíku \type{\ulice}. 
+Heslem tohoto nového rejstøíku mù¾e bıt tøeba \type{\ulice{Ridderstraat}}. 
 Samotnı {\em seznam ulic\/} nyní vytvoøíme pou¾itím pøíkazù:
 
 %\starttyping
@@ -114,7 +114,7 @@ Samotnı {\em seznam ulic\/} nyní vytvoøíme pou¾itím pøíkazù:
 \stoptyping
 
 % You can alter the display of the registers with:
-Zobrazení rejstøíkù mù¾eme mìnit pøíkazem:
+Vzhled rejstøíkù mù¾eme mìnit pøíkazem:
 
 \shortsetup{setupregister}
 

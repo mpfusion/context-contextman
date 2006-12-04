@@ -20,7 +20,7 @@
 
 %% Nowadays documents can be made electronically available for
 %% consulting on a computer and displaying on a computer screen.
-Dne¹ní dokumenty mohou být k~dispozici elektronicky prostøednictvím
+Dokumenty dnes mohou být zpøístupòovány elektronicky prostøednictvím
 obrazovky poèítaèe.
 
 %% Interaction means that you can click on active areas and
@@ -28,9 +28,9 @@ obrazovky poèítaèe.
 %% register you can click on a (active) page number and you will
 %% jump to the corresponding page.
 Po kliknutí my¹í na urèitou plochu interaktivního dokumentu, se nám
-zobrazí jeho jiná èást. Ta, která byla odkazována. Pøíkladem mù¾e být
-klik na èíslo strány v~rejstøíku a~následné zobrazení odpovídající
-strany dokumentu.
+zobrazí jeho jiná èást -- ta, která byla odkazována. Pøíkladem mù¾e být
+kliknutí na èíslo strany v~rejstøíku a~následné zobrazení odpovídající
+stránky dokumentu.
 
 %% Interaction relates to:
 Interakce se týkají:
@@ -58,7 +58,7 @@ Interakce se týkají:
 %% to convert a \POSTSCRIPT\ file into a \PDF\ one. It is
 %% obvious that you will then use \READER, \EXCHANGE, or
 %% \GHOSTVIEW\ for viewing.
-Interaktivivní chování do jisté míry závisí na programu, ve kterém
+Interaktivní chování do jisté míry závisí na programu, kterým
 dokument prohlí¾íme. Pokud pøedpokládáme, ¾e pou¾ijeme \PDFTEX{} pro
 pøímé generování \PDF{} dokumentu nebo pou¾ijeme \DISTILLER{} pro
 pøevedení \POSTSCRIPT{}ového souboru na soubor \PDF, je pak zøejmé, ¾e
@@ -72,12 +72,12 @@ pro zobrazení pou¾ijeme \PDF{} prohlí¾eè, napøíklad \READER,
 %% manuals electronically (sources included) available, reverse
 %% engineering is one of the options to become more acquainted
 %% with the possibilities of \CONTEXT.
-\CONTEXT\ je velmi silný systém pro generování elektronických nebo
-interaktivních \PDF\ dokumentù. Av¹ak pouze nìkolik standardních
-vlastností je popsáno v~této kapitole. Proto¾e autoøi tohoto manuálu
-chtìjí v¹echny manuály vìnované \CONTEXT u elektronicky zpøístupnit
-vèetnì zdrojových textù, je zpìtné in¾enýrství jedna z~mo¾ností, jak
-se dùvìrnì obeznámit s~jeho mo¾nostmi.\footnote{Pozn. pøekl.:
+\CONTEXT\ je velmi mocný nástroj pro generování elektronických nebo
+interaktivních dokumentù \PDF. V~této kapitole je nicménì popsáno
+jenom pár standardních vlastností. Proto¾e autoøi tohoto manuálu
+chtìjí v¹echny manuály vìnované \CONTEXT u zpøístupnit elektronicky
+vèetnì zdrojových textù, je jednou z~mo¾ností, jak se dùvìrnì obeznámit
+se schopnostmi \CONTEXT{}u, zpìtné in¾enýrství.\footnote{Pozn. pøekl.:
   Interaktivitì je vìnován manuál \from[manual:widgets], viz
   \in{pøílohu}[sec:info].}
 
@@ -95,7 +95,7 @@ Interaktivní mód se aktivuje pomocí:
 \shortsetup{setupinteraction}
 
 %% For example:
-Napøíklad
+Napøíklad:
 
 \startbuffer
 \setupinteraction
@@ -108,8 +108,8 @@ Napøíklad
 
 %% The hyper links are now generated automatically and the
 %% active words are displayed in bold green.
-zpùsobí, ¾e hyperlinky zaènou být generovány automaticky a aktivní
-slova budou zobrazeny zelenì.
+zpùsobí, ¾e se zaènou automaticky generovat hyperlinky a aktivní
+slova se zobrazí zelenì.
 
 %% The interactive document is considerably bigger (in MB's)
 %% than its paper cousin because hyperlinks consume space. You
@@ -117,9 +117,9 @@ slova budou zobrazeny zelenì.
 %% Therefore it is advisable to de-activate the interactive mode
 %% as long as your document is under construction.
 Interaktivní dokumenty jsou podstatnì vìt¹í (v~MB) ne¾ jejich papíroví
-bratranci, proto¾e hyperlinky spotøebují spoustu kódu. Také si
-v¹imnìnme, ¾e zpracování dokumentu probíhá pomaleji. Proto je výhodné
-deaktivovat interaktivní mód bìhem pøípravných fází tvorby dokumentu.
+bratranci, proto¾e hyperlinky zabírají nìjaké místo. Také si
+v¹imnìme, ¾e zpracování dokumentu probíhá pomaleji. Proto je výhodné
+interaktivní mód bìhem pøípravných fází tvorby dokumentu deaktivovat.
 
 %% \section{Interaction within a document}
 \section{Interaktivita v~rámci jednoho dokumentu}
@@ -140,7 +140,7 @@ deaktivovat interaktivní mód bìhem pøípravných fází tvorby dokumentu.
 %% differently in the interactive mode. This gives the user a
 %% larger clickable area.
 Ji¾ døíve jsme vidìli, jak vytvoøit odkaz pomocí \type{\in} a
-\type{\at}. Mo¾ná jsme se divili, proè pí¹eme
+\type{\at}. Mo¾ná jste se divili, proè pí¹eme
 \type{\in{kapitola}[chap:uvod]}. Zaprvé se tak zamezí, aby slovo
 {\em kapitola} a~korespondující èíslo bylo rozdìleno øádkovým
 zlomem. A~zadruhé bude jak slovo {\em kapitola}, tak i~její èíslo sázeno
@@ -149,15 +149,15 @@ oblast.
 
 %% In interactive mode there is one other command that has
 %% little meaning in the paper variant.
-V~interaktivním módu máme k~dispozici jeden pøíkaz, který má
-zanedbatelný význam v~papírové variantì dokumentu. Je jím
+V~interaktivním módu máme k~dispozici jeden pøíkaz, který
+v~papírové variantì dokumentu nemá pøíli¹ význam. Je jím
 
 \shortsetup{goto}
 
 %% The curly braces contain text, the brackets contain a
 %% reference (logical name, location).
 Slo¾ené závorky obsahují uvozující nebo ukonèující text reference,
-hranaté odkaz (referenèní jmého nebo pokyn).
+hranaté odkaz (referenèní jméno nebo pokyn).
 
 %% \startbuffer
 %% In \goto{Hasselt}[fig:cityplan] all streets are build in a
@@ -171,7 +171,7 @@ V~\goto{Hasseltu}[fig:cityplan] jsou v¹echny ulice vybudovány do kruhu.
 
 %% In the interactive document {\em Hasselt} will be green and
 %% active. You will jump to a map of Hasselt.
-V~interaktivním dokumentu slovo {\em Hasseltu} bude zelené a
+V~interaktivním dokumentu bude slovo {\em Hasseltu} zelené a
 aktivní. Skoèíte jím na obrázek s~mapkou Hasseltu.
 
 %% \section{Interaction between documents}
@@ -186,7 +186,7 @@ aktivní. Skoèíte jím na obrázek s~mapkou Hasseltu.
 %% It is possible to link one document to another. First you
 %% have to state that you want to refer to another document.
 %% This is done by:
-Je mo¾né odkazovat z~jednoho dokumentu na jiný. Nejdøíve musíte
+Je mo¾né odkazovat z~jednoho dokumentu na jiný. Nejdøíve musíme
 registrovat vnìj¹í dokument. Dìlá se to pomocí
 
 \shortsetup{useexternaldocument}
@@ -210,7 +210,7 @@ Pro odkazování takto registrovaného dokumentu pou¾ijeme
 Závorky obsahují logické jméno dokumentu.
 
 %% Look at the example below.
-Podívejme se na pøíklady ní¾e:
+Podívejme se na následující pøíklad:
 
 %% \startbuffer
 %% \useexternaldocument[hia][hasbook][Hasselt in August]
@@ -372,11 +372,11 @@ Typická definice menu vypadá takto:
 %% predefined destinations are \type{FirstPage},
 %% \type{LastPage}, \type{NextPage} and
 %% \type{PreviousPage}.
-Tato definice vyrobí menu na pravé stranì ka¾dé strany. Tlaèítka menu
+Tato definice vytvoøí na pravé stranì ka¾dé strany menu. Tlaèítka menu
 budou obsahovat texty {\em Obsah}, {\em Rejstøík} a {\em Konec}
-s~po øadì odpovídajícími funkcemi: skok na obsah, skok na rejstøík
-a~zavøi prohlí¾eè. Návì¹tí na obvyklé doskoky jakými jsou
-napø. \type{content} a~\type{index} jsou pøeddefinovány, pokud obsah
+s~odpovídajícími funkcemi, po øadì: skok na obsah, skok na rejstøík
+a~ukonèení prohlí¾eèe. Návì¹tí na obvyklé doskoky, jakými jsou
+napø. \type{content} a~\type{index}, jsou pøeddefinovány, pokud obsah
 a~rejstøík vlo¾íme pomocí \type{\completecontent} a~\type{\completeindex}. Jiné
 pøeddefinované funkce jsou \type{FirstPage} (první strana),
 \type{LastPage} (poslední strana), \type{NextPage} (dal¹í strana)
@@ -388,14 +388,14 @@ a~\type{PreviousPage} (pøedchozí strana). O~vlo¾ení menu se stará
 %% actions you can use are \type{PrintDocument},
 %% \type{SearchDocument} and \type{PreviousJump}. The meaning of
 %% these actions is obvious.
-Akce typu \type{ExitViewer} (zavøi prohlí¾eè) je nezbytná, aby ná¹
+Akce typu \type{ExitViewer} (ukonèi prohlí¾eè) je nezbytná, aby ná¹
 elektronický dokument byl samoobsa¾ný. Jiné pøeddefinované akce, které
 mù¾eme pou¾ít jsou \type{PrintDocument} (tiskni),
 \type{SearchDocument} (prohledej dokument) a~\type{PreviousJump}
 (skok na pøedchozí zobrazení). 
 
 %% Menus are set up with:
-Menu jsou nastavována pomocí
+Menu jsou nastavována pomocí:
 
 \shortsetup{startinteractionmenu}
 

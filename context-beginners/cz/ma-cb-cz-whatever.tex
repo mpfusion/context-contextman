@@ -23,7 +23,7 @@
 %% In the first example of this manual on \at{page}[inputfile]
 %% we used the command:
 V~prvním pøíkladu tohoto manuálu na \at{stranì}[inputfile] jsme
-pou¾ili pøíkazu
+pou¾ili pøíkaz
 
 \shortsetup{startnamemakeup}
 %\shortsetup{start<<name>>makeup} % does not work
@@ -35,7 +35,7 @@ pou¾ili pøíkazu
 %% within the default page dimensions.
 Tento pøíkaz mù¾e být pou¾it k~definování {\em titulních stran},
 proto¾e mívají jinak velká stránková zrcadla ne¾ hlavní textová èást
-dokumentu. Èasto k~návrhu vzhledu takové vyjímeèné strany vyu¾íváme
+dokumentu. Èasto k~návrhu vzhledu takové výjimeèné strany vyu¾íváme
 pøeddefinované dvojice \type{\start ... \stopstandardmakeup}.
 
 %% A simple titlepage may look like this:
@@ -115,7 +115,7 @@ fotografovi J.~Jonkerovi za zfal¹ování fotografií do této knihy tak,
 \typebuffer
 
 %% Your own make ups can be made and set up with:
-Ná¹e vlastní titulní strana mù¾e být navr¾ena pomocí pøíkazù
+Na¹e vlastní titulní strana mù¾e být navr¾ena pomocí pøíkazù
 
 \shortsetup{definemakeup}
 
@@ -144,7 +144,7 @@ a
 %% \type{\placetable}. These are both examples of floating
 %% blocks. The floating mechanism is described in
 %% \in{chapter}[figures] and \in[tables].
-Plovoucím objektem (floating block) je v~\CONTEXT{}u nazýván textový
+Plovoucím objektem (floating block) se v~\CONTEXT{}u nazývá textový
 element, napø. tabulka èi obrázek, který je zpracován speciálním
 zpùsobem. Ji¾ jsme vidìli pou¾ití \type{\placefigure}
 a~\type{\placetable}. Oba jsou pøíkladem plovoucích objektù popsaných
@@ -157,8 +157,8 @@ Svùj vlastní plovoucí objekt si mù¾eme definovat pomocí
 
 %% The bracket pairs are used for the name in singular and
 %% plural form. For example:
-Slo¾ené závorky jsou pou¾ity pro jméno objektu v~singulárním
-a~plurálním tvaru. Napøíklad:
+Slo¾ené závorky se pou¾ívají pro jméno objektu v~jednotném
+a~mno¾ném èísle. Napøíklad:
 
 %% \starttyping
 %% \definefloat[intermezzo][intermezzi]
@@ -228,10 +228,10 @@ nového plovoucího objektu.
 
 \placevsuvka{Ukázka vsuvky.}
 \startframedtext
-Na zaèátku tohoto stolení existovala tramvajová linka z~Zwolle do
+Na zaèátku tohoto století existovala tramvajová linka z~Zwolle do
 Blokzijl pøes Hasselt. Pozdìji nabývaly na významu jiné dopravní
 prostøedky a~tramvajová tra» byla pøed druhou svìtovou válkou
-zru¹ena. Nyní by mohla opìt být taková tramvajová linka zisková.
+zru¹ena. Nyní by taková tramvajová linka mo¾ná byla zase zisková.
 \stopframedtext
 \stopbuffer
 
@@ -277,11 +277,11 @@ Mezi hranaté závorky vlo¾íme jeho referenèní jméno.
 \stoptyping
 
 Také mù¾eme najednou definovat nìkolik blokù textu, pokud mezi
-jednotlivé jména napí¹eme èárku.
+jednotlivá jména napí¹eme èárku.
 
 %% After defining the text block the following command is
 %% available:
-Po zadefinování máme k~dispozici následující dvojici
+Po zadefinování máme k~dispozici následující dvojici:
 
 %% \starttyping
 %% \begindutch ... \enddutch
@@ -403,8 +403,9 @@ Napøíklad:
 %% \stoptyping
 \starttyping
 \startbuffer[navsteva]
-Jestli¾e chceme vidìt, co má Hasselt v~obchodech, mìli bysme jej nìkdy
-nav¹tívit. Jestli si s~sebou vememe tento manuál, poznáme nìkterá místa.
+Chcete-li vidìt, co vám Hasselt mù¾e nabídnout, mìli byste jej
+nìkdy nav¹tívit. Jestli¾e si s~sebou vezmete tento manuál,
+nìkterá místa poznáte.
 \stopbuffer
 
 \getbuffer[navsteva]
@@ -414,7 +415,7 @@ nav¹tívit. Jestli si s~sebou vememe tento manuál, poznáme nìkterá místa.
 %% The logical name is optional. With \type{\typebuffer[visit]}
 %% you get back the typeset version of the content of the
 %% buffer.
-Pøíkazem \type{\getbuffer[navsteva]} vyvoláte ulo¾ený text. Referenèní
+Pøíkazem \type{\getbuffer[navsteva]} se vyvolá ulo¾ený text. Referenèní
 jméno mù¾eme vynechat, \CONTEXT{} pak pracuje s~interním
 jménem. Pøetisk ulo¾ené informace získáme pomocí \type{\typebuffer[navsteva]}.
 
@@ -511,8 +512,8 @@ Amsterdam \thinrules[n=3] Hasselt
 %% around \type{\thinrules} must not be forgotten and the
 %% vertical spacing is always a point of concern.
 Pøi kreslení linek musíme být v¾dy opatrní. Prázdné øádky okolo
-\type{\thinrules} nesmí být opomenuty a~výsledné vertiální odsazení by
-mìlo být v¾dy bodem na¹í pozornosti. 
+\type{\thinrules} nesmí být opomenuty a~výsledné vertikální odsazení by
+mìlo být v¾dy pøedmìtem na¹í pozornosti. 
 
 %% You can set up line spacing with:
 Vertikální odsazení mù¾eme nastavit pomocí
@@ -551,7 +552,7 @@ Uvedeme je v~následujícím pøíkladu:
 
 \fillinline{Uveïte prosím \underbar{poèet} domù v~Hasseltu.} \par
 
-Pøe¹krtni  \overstrikes{Hasselt} v~tomto textu\periods[18]
+V~tomto textu pøe¹krtnìte \overstrikes{Hasselt}\periods[18]
 \stopbuffer
 
 \typebuffer
@@ -563,7 +564,7 @@ Výsledkem bude:
 
 %% These commands are used in questionaires. Text that is
 %% struck out or underlined will not be hyphenated.
-Tyto pøíkazy bývají pou¾ívány v~dotaznících. Omezením je, ¾e podtrhnutý
+Tyto pøíkazy bývají pou¾ívány v~dotaznících. Omezením je, ¾e podtr¾ený
 nebo pøe¹krtnutý text nebude na konci øádky rozdìlen.
 
 % ====================================================================
@@ -588,7 +589,7 @@ nebo pøe¹krtnutý text nebude na konci øádky rozdìlen.
 %% \stopbuffer
 \startbuffer
 Vlo¾it \high{horní index} a \low{dolní index} do dokumentu je
-jednoduché. A~co øíkáte tomuto \lohi{dolní index}{horní index}?
+jednoduché. A~co øíkáte tomuto: \lohi{dolní index}{horní index}?
 To vypadá podivnì, co?!
 \stopbuffer
 
@@ -629,14 +630,14 @@ Systémové datum vlo¾íme do textu pomocí
 
 %% Sometimes you feel the need to position text on a page or
 %% within a text element. You can position text with:
-Obèas cítíme potøebu umístit text na konkrétní místo uvnitø strany èi
+Obèas máme potøebu umístit text na konkrétní místo uvnitø strany èi
 jiného textového elementu. Udìláme to pomocí
 
 \shortsetup{position}
 
 %% The parenthesis enclose the $x,y$ coordinates, the curly
 %% braces enclose the text you want to position.
-Kulaté závorky urèují $x,y$ souøadnice, slo¾ené závorky ohranièují
+Kulaté závorky urèují souøadnice $x,y$, slo¾ené závorky ohranièují
 text, který má být umístìn.
 
 %% You can set up the $x,y$ axes with:
@@ -646,7 +647,7 @@ Souøadnice nastavíme pomocí
 
 %% You can use units and scaling factors. An example will
 %% illustrate \type{\position}.
-Zvolit mù¾eme jednotky a~mìøítko. Zde je ilustrující pøíklad:
+Zvolit mù¾eme jednotky a~mìøítko. Zde je ilustraèní pøíklad:
 
 %% \startbuffer
 %% \def\dicefive%
@@ -722,12 +723,12 @@ objekt, který chceme otoèit. Pøíklad:
 %% aureole.
 %% \stopbuffer
 \startbuffer
-Mìstská práva dostal Hasselt v~roce 1252. Od té doby mìl
+V~roce 1252 Hasselt získal mìstská práva. Od té doby mìl
 \rotate[rotation=90]{právo} pou¾ívat vlastní peèe» na oficiálních
 dokumentech. Tato peèe» zobrazuje svatého ©tìpána, jednoho z~prvních
 køes»anským muèedníkù. Byl \rotate[rotation=270]{patronem}
 Hasseltu. Po reformaci byla peèe» pozmìnìna, svatý ©tìpán ztratil svou
-svátost a byl zobrazován bez svatozáøe.
+svatost a byl zobrazován bez svatozáøe.
 \stopbuffer
 
 \typebuffer
@@ -749,7 +750,7 @@ Stejnì jednodu¹e mù¾eme otoèit i~obrázek:
 \startbuffer
 \placefigure
   [][fig:rotation]
-  {Otoèený rybáøský pøístav (de Vispoort) o~180 \Degrees.}
+  {Rybáøský pøístav (de Vispoort) otoèený o~180 \Degrees.}
   \rotate[rotation=180]{\externalfigure[ma-cb-15][width=10cm]}
 \stopbuffer
 
@@ -757,7 +758,7 @@ Stejnì jednodu¹e mù¾eme otoèit i~obrázek:
 
 %% You can see in \in{figure}[fig:rotation] that it is not
 %% always clear what you get when you rotate.
-Na \in{obrázku}[fig:rotation] mù¾eme vidìt, ¾e není v¾dy úplnì zøejmé,
+Na \in{obrázku}[fig:rotation] vidíte, ¾e není v¾dy úplnì zøejmé,
 na co se díváme, kdy¾ obrázek otoèíme.
 
 \getbuffer
@@ -815,7 +816,7 @@ napí¹eme:
 %% influence your wisdom in decision making.
 %% \stopbuffer
 \startbuffer
-Na døevìném panelu radnice mìsta Hasselt mù¾eme èíst:
+Na radnici mìsta Hasselt je døevìná deska, kde se mù¾eme doèíst:
 
 \startlines
 Heimelijcken haet
@@ -825,8 +826,8 @@ Door diese drie wilt verstaen
 is het Roomsche Rijck vergaen.
 \stoplines
 
-Tato malá básnièka obsahuje varování pro radní Hasseltu: {\it nepøijímej
-osobní zisk nebo sympatie ovlivòující tvou mysl a rozhodování.}
+Tato malá básnièka obsahuje varování pro radní Hasseltu: {\it Nedovol,
+aby osobní prospìch nebo pocity ovlivòovaly tvùj rozum pøi rozhodování.}
 \stopbuffer
 
 \typebuffer
@@ -836,7 +837,7 @@ osobní zisk nebo sympatie ovlivòující tvou mysl a rozhodování.}
 %% In a few commands new lines are generated by \type{\\}. For
 %% example if you type \type{\inmargin{in the\\margin}} then
 %% the text will be divided over two lines.
-V~nìkolika pøíkazech jsou konce øádkù oznaèeny \type{\\}. Napøíklad
+V~nìkolika pøíkazech se konce øádkù oznaèují \type{\\}. Napøíklad
 kdy¾ napí¹eme
 \goodbreak\type{\inmargin{uvnitø\\marginálie}}, pak se text
 v~marginálním sloupci zlomí do dvou øádkù.
@@ -891,7 +892,7 @@ v~marginálním sloupci zlomí do dvou øádkù.
 %% the fact that hyphenation may differ from one language to
 %% another.
 Pokud pøipravujeme vícejazyèný text, musíme si být vìdomi faktu, ¾e
-dìlení slov se li¹í jazyk od jazyku.
+dìlení slov se jazyk od jazyku li¹í.
 
 %% To activate a language you type:
 Hlavní jazyk aktivujeme pomocí
@@ -962,8 +963,9 @@ Napøíklad:
 %% F.~Peereboom.
 %% \stopbuffer
 \startbuffer
-Pokud chceme vìdìt více o~Hasseltu, nejlep¹í kniha ke ètení je
-pravdìpodobnì {\nl \em Uit de geschiedenis van Hasselt} od F.~Peerebooma.
+Pokud se chcete dozvìdìt více o~Hasseltu, asi nejlep¹í knihou,
+kterou si mù¾ete pøeèí¹t, je {\nl \em Uit de geschiedenis van
+Hasselt} od F.~Peerebooma.
 \stopbuffer
 
 \typebuffer
@@ -973,7 +975,7 @@ pravdìpodobnì {\nl \em Uit de geschiedenis van Hasselt} od F.~Peerebooma.
 %% If a word is wrongly hyphenated you can define points of
 %% hyphenation yourself. This is done in the set up area of
 %% your input file:
-Pokud je slovo rozdìleno ¹patnì, mù¾eme si dodefinovat místo rozdìlení
+Pokud je slovo rozdìleno nesprávnì, mù¾eme si dodefinovat místo rozdìlení
 sami. Udìláme to v~úvodní èásti dolumentu takto:
 
 %% \startbuffer
@@ -998,9 +1000,9 @@ sami. Udìláme to v~úvodní èásti dolumentu takto:
 %% will be processed while running \CONTEXT. Sometimes however
 %% you may have text fragments you don't want to be processed or
 %% you want to comment on your \CONTEXT\ commands.
-Ve¹kerý text mezi \type{\starttext} a~\type{\stoptext} bude zpracován
-bìhem bìhu \CONTEXT{}u. Nìkdy v¹ak máme fragment textu, který
-nechceme, aby byl zpracován, nebo chceme okomentovat na¹e pøíkazy
+Ve¹kerý text mezi \type{\starttext} a~\type{\stoptext} bude
+\CONTEXT{}em zpracován. Nìkdy se v¹ak vyskytne fragment textu,
+který zpracovávat nechceme, nebo chceme okomentovat pøíkazy
 \CONTEXT{}u.
 
 %% If you preceed your text with the percentage sign \type{%}
@@ -1033,7 +1035,7 @@ Pokud pøedøadíme na¹emu textu znak procenta \type{%}, nebude zpracován.
 %% When you delete the \type{%} before \type{\input}
 %% the three files will be processed. The comment describing the
 %% contents of the files will not be processed.
-Pokud sma¾eme \type{%} pøed pøíkazem \type{\input}, v¹echny tøi
+Pokud pøed ka¾dým pøíkazem \type{\input} sma¾eme znak \type{%},
 soubory budou zpracovány. Komentáø popisující obsah souborù zpracován
 nebude.
 
@@ -1050,8 +1052,8 @@ nebude.
 %% \TEX\ files in your input file. For example, sometimes it is more
 %% efficient to specify \CONTEXT\ sources in more than one file
 %% in order to be able to partially process your files.
-V~mnoha situacích chceme vlo¾it jiný \TEX\ soubor do na¹eho zdrojového
-souboru. Napøíklad je nìkdy efektivnìj¹í rozdìlit text psaný v~\CONTEXT{}u do
+V~mnoha situacích chceme do svého zdrojového souboru vlo¾it jiný soubor
+\TEX. Nìkdy je napøíklad efektivnìj¹í rozdìlit text psaný v~\CONTEXT{}u do
 více souborù, aby mohly být zpracovány samostatnì.
 
 %% Another file (with the name \type{another.tex}) can be

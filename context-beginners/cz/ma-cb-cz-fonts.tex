@@ -53,12 +53,12 @@ pomocí:
 %file your text would look something like this.}
 Pokud pou¾ijeme \type{\setupbodyfont[cmr,sansserif,9pt]}
 {\switchtobodyfont[cmr,ss,9pt] v~úvodní deklaraèní oblasti
-va¹eho vstupního souboru, vá¹ text by mìl vypadat asi takto.}%
+vstupního souboru, text by mìl vypadat asi takto.}%
 
 %For changes in mid-document and on section level you
 %should use:
 
-Pro zmìnu uprostøed dokumentu, nebo na úrovni sekce, bysme
+Pro zmìnu uprostøed dokumentu, nebo na úrovni sekce, bychom
 mìli pou¾ít:
 
 \shortsetup{switchtobodyfont}
@@ -87,9 +87,9 @@ mìli pou¾ít:
 %% \stopbuffer
 \startbuffer
 10.\,listopadu (jeden den pøed dnem svatého Martina) chodí omladina
-mìsta Hasselt dùm od domu a zpívá zvlá¹tní píseò, urèenou pro tuto
-pøíle¾itost. Svùj zpìv doprovází nástrojem {\em foekepot}. Neodejdou,
-dokud jim nedáte nìjaké peníze, nebo sladkosti. Píseñ zní asi takto:
+mìsta Hasselt dùm od domu a zpívá zvlá¹tní píseò urèenou jen pro tuto
+pøíle¾itost. Svùj zpìv doprovází na nástroj {\em foekepot}. Neodejdou,
+dokud jim nedáte nìjaké peníze, nebo sladkosti. Píseò zní asi takto:
 
 \startnarrower
 \switchtobodyfont[small]
@@ -116,7 +116,7 @@ Geef mij een centje dan ga'k voorbij.
 %\type{\stoplines} in this example is obvious.
 Poznamenejme je¹tì, ¾e \type{\startnarrower} $\cdots$
 \type{\stopnarrower} se také u¾ívá jako zaèátek a~konec
-pøepínaèe fontu. Funkce \type{\startlines} a~\type{\stoplines} 
+pøepnutí fontu. Funkce \type{\startlines} a~\type{\stoplines} 
 v~tomto pøíkladu je zøejmá.
 
 \start
@@ -231,7 +231,7 @@ nebo \type{\bf}.
 %\stopbuffer
 
 \startbuffer
-{\tfc Ra¾ení penìz}
+{\tfc Ra¾ba mincí}
 
 V období od roku {\tt 1404} do {\tt 1585} vlastnil Hasselt 
 {\sl právo ra¾ení mincí}. Proti této výsadì Hasseltu
@@ -275,7 +275,7 @@ Tato definice by mìla vypadat asi takto:
 \typebuffer
 
 %Now \type{\tfe} will produce 36pt characters saying:
-Nyní pøíkaz \type{\tfe} vysází velikostí 36 nápis:
+Nyní pøíkaz \type{\tfe} vysází velikostí 36pt nápis:
 {\hbox{\getbuffer}}
 
 %\section{Small caps}
@@ -338,7 +338,7 @@ Pro jednotné zvýraznìní slov v~dokumentu pou¾íváme pøíkaz:
 \stoptyping
 
 %Empasized words appear in a slanted style.
-Zvýraznìná slovat se implicitnì vysází sklonìným stylem.
+Zvýraznìná slova se implicitnì vysází sklonìným stylem.
 
 %\startbuffer
 %If you walk through Hasselt you should {\bf \em watch out} for
@@ -349,12 +349,12 @@ Zvýraznìná slovat se implicitnì vysází sklonìným stylem.
 %from tripping over them.
 %\stopbuffer
 \startbuffer
-Pøi procházce Hasseltem bysme mìli {\bf \em dávat pozor}
+Pøi procházce Hasseltem bychom mìli {\bf \em dávat pozor}
 na {\em Amsterodamy}. Slovem {\em Amsterodamy} {\bf \em nejsou}
 mínìni obyvatelé Amsterodamu, ale malé kamenné pilíøe,
-oddìlující chodník od silnice. Jsou urèeny na ochranu chodcù 
-pøed projí¾dìjícími auty. Ve skuteènosti je v¹ak spí¹e ohro¾ují,
-proto¾e o~nì èasto zakopávají.
+oddìlující chodník od silnice. Jsou zamý¹leny jako ochrana chodcù 
+pøed projí¾dìjícími auty, ale ve skuteènosti se lidé èastìji
+zraní, kdy¾ o~nì zakopnou.
 \stopbuffer
 
 \typebuffer
@@ -417,10 +417,10 @@ Nastavení re¾imu verbatim mù¾eme provádìt pomocí:
 \Command{\tex{enableregime}}
 \Command{\tex{showpatterns}}
 
-Ka¾dý font je pøipraven v~jednom nebo více kódování. Pøi zavedení
-fontu pomocí fontových definièních tabulek, tzv. {\tt typescriptù} je
-nutné toto kódování specifikovat. Pro nejèastìji v~Evropì pou¾ívané
-kódování \type{ec} vypadá naètení Computer Modern písma takto:
+Ka¾dý font je pøipraven v~jednom nebo více kódováních. Pøi zavedení
+fontu pomocí fontových definièních tabulek, tzv. {\tt typescriptù}, je
+nutné toto kódování specifikovat. Pro kódování \type{ec}, pou¾ívané v~Evropì
+nejèastìji, vypadá naètení písma Computer Modern takto:
  
 \startbuffer
 \usetypescript[modern][ec]
@@ -437,15 +437,14 @@ dìlení slov v~pou¾itém jazyce. Toto kódování se dovíme zapsáním
   {\showpatterns}
 
 Pøípravu fontu se správným kódováním i~s~pøedgenerováním typescriptù
-lze svìøin prográmku \type{texfont}.
+lze svìøit prográmku \type{texfont}.
 
 Pokud ná¹ editor pracuje v~jiném kódování, ne¾ je kód fontu, pak je
-nutné text pøekódovat. \CONTEXT{} se o~to postará, pokud v~hranaté
-závorce pøíkazu
+nutné text pøekódovat. O~to se postará \CONTEXT, pokud vstupní kódování
+na¹eho dokumentu uvedeme v~hranaté závorce pøíkazu:
 
 \shortsetup{enableregime}
 
-uvedeme vstupní kódování na¹eho dokumentu.
 %% Nejèastìj¹ími vstupními kódováními jsou
 %% \startitemize[columns,three]
 %%   \item \type{Latin1 (iso-8859-1)}

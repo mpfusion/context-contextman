@@ -29,8 +29,8 @@ pou¾ijeme pøíkaz:
 %The curly braces contain text, the brackets contain a
 %logical label. If you have written a chapter header like
 %this:
-Slo¾ené závorky mohou obsahovat text, který chceme, aby pøedcházel
-nebo následoval odkaz. To je výhodné pro zvìt¹ení klikatelné oblasti
+Slo¾ené závorky mohou obsahovat text, který má být vysázen pøed
+nebo za odkazem. To je výhodné pro zvìt¹ení klikatelné oblasti
 v~interaktivních dokumentech. Hranaté závorky pak nesou referenèní
 jméno. Kdy¾ napí¹eme název kapitoly následujícím zpùsobem
 
@@ -56,10 +56,10 @@ v~\in{kapitole}[hotel]
 %You can use \type{\in} for any references to text elements
 %like chapters, sections, figures, tables, formulae
 %etc.
-Po zpracování dostaneme èíslo kapitoly a~odkaz vypadá napøíklad takto
+Po zpracování dostaneme èíslo kapitoly a~odkaz vypadá napøíklad takto:
 {\em v~kapitole 23}. Pøíkaz \type{\in} mù¾eme pou¾ít s~referenèním
-jménem libovolného textového prveku, napøíklad kapitoly, sekce,
-obrázeku, ta\-bul\-ky, vzorece, atd. 
+jménem libovolného textového prvku, napøíklad kapitoly, sekce,
+obrázku, ta\-bul\-ky, vzorce, apod. 
 
 % Another example:
 Dal¹í pøíklad:
@@ -79,12 +79,12 @@ Dal¹í pøíklad:
 %\stopbuffer
 
 \startbuffer
-V~Hasseltu mù¾eme dìlat mno¾ství vìcí:
+V~Hasseltu mù¾eme dìlat spoustu vìcí:
 
 \startitemize[n,packed]
-\item plavat;
-\item plachtit;
-\item[tramp] trampovat;
+\item plavat,
+\item plachtit,
+\item[tramp] trampovat,
 \item jezdit na kole.
 \stopitemize
 
@@ -94,7 +94,7 @@ V~Hasseltu mù¾eme dìlat mno¾ství vìcí:
 \typebuffer
 
 % This would look like this:
-Toto bude vypadat takto:
+Bude to vypadat takto:
 
 \getbuffer
 
@@ -116,7 +116,7 @@ pøíkazem:
 %\stoptyping
 
 % This command can be used in combination with:
-Tento pøíkaz se mù¾e pou¾ít v~kombinaci s~povely:
+Tento pøíkaz lze kombinovat s~povely:
 
 \shortsetup{pagereference}
 
@@ -127,7 +127,7 @@ a
 
 % If you want to refer to the chapter {\em Hotels in Hasselt}
 % you could type:
-Kdy¾ se chceme odkázat na kapitolu {\em Hotely v~Hasseltu} mù¾eme napsat:
+Kdy¾ se chceme odkázat na kapitolu {\em Hotely v~Hasseltu}, mù¾eme napsat:
 
 %\startbuffer
 %Look in \in{chapter}[hotel] on \at{page}[hotel] for a complete
@@ -145,12 +145,12 @@ mo¾ností ubytování v~\pagereference[bydleni]Hasseltu.
 %processing the input file. On another spot in the document
 %you can refer to \type{accomodation} with
 %\type{\at{page}[accomodation]}.
-Pøi zpracování zdrojového souboru budou vygenerovány èíslo kapitoly
+Pøi zpracování zdrojového souboru bude vygenerováno èíslo kapitoly
 a èíslo strany. Na jiném místì dokumentu se mù¾eme odkázat na
-\type{bydleni} pøíkazem \type{na \at{stranì}[bydleni]}.
+\type{bydleni} takto: \type{na \at{stranì}[bydleni]}.
 
 % You can also define a set of labels separated by commas.
-Mù¾eme rovnì¾ definovat nìkolik návì¹tí oddìlených èárkama.
+Mù¾eme rovnì¾ definovat nìkolik návì¹tí oddìlených èárkami.
 
 %\startbuffer
 %\placefigure
@@ -178,14 +178,14 @@ V~Hasseltu je mnoho kanálù (viz \in{obrázek}[obr:kanaly]).
 .
 .
 .
-Èluny mohou kotvit v~kanálech Hasseltu
+V~hasseltských kanálech mohou kotvit èluny
 (viz \in{obrázek}[obr:cluny]).
 \stopbuffer
 
 \typebuffer
 
 %This might look like this:
-Výsledek mù¾e to vypadat takto:
+Výsledek mù¾e vypadat následovnì:
 
 \getbuffer
 

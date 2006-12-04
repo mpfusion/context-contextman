@@ -36,7 +36,7 @@ Formát stránky je definován pøíkazem:
 \shortsetup{setuplayout}
 
 %This command is typed in the set up area of your input file.
-Tento povel se pí¹e v~deklaraèní oblasti na¹eho vstupního souboru.
+Tento povel se pí¹e do deklaraèní oblasti vstupního souboru.
 
 %You have to familiarize yourself with the parameters that
 %describe your page layout. A page is divided in a number of
@@ -44,7 +44,8 @@ Tento povel se pí¹e v~deklaraèní oblasti na¹eho vstupního souboru.
 %these areas can be set with \type{\setuplayout}.
 Mìli bychom se obeznámit s~parametry, které popisují formát stránek
 (stránkové zrcadlo). 
-Stránka je rozdìlena na nìkolik oblastí jako napøíklad text, hlavièka, pata atd. 
+Stránka je rozdìlena na nìkolik oblastí jako napøíklad
+text, záhlaví, úpatí atd. 
 Velikosti tìchto èástí se dají nastavit pøíkazem \type{\setuplayout}.
 
 %The different areas in the page layout are shown in
@@ -103,24 +104,24 @@ Rùzné oblasti ve formátu stránky jsou popsány na
   [fig:pagelayout]
   {Formát stránky.}
   {\hbox{\framed[width=1.5cm,frame=off]{}
-   \framed[width=2cm,frame=off]{\tt levá}
-   \framed[width=2.5cm,frame=off]{\tt levý}
+   \framed[width=2cm,frame=off]{\tt left}
+   \framed[width=2.5cm,frame=off]{\tt left}
    \framed[width=3cm,frame=off]{}
-   \framed[width=2.5cm,frame=off]{\tt pravý}
-   \framed[width=2cm,frame=off]{\tt pravá}}
+   \framed[width=2.5cm,frame=off]{\tt right}
+   \framed[width=2cm,frame=off]{\tt right}}
    \hbox{\framed[width=1.5cm,frame=off]{}
-   \framed[width=2cm,frame=off]{\tt hrana}
-   \framed[width=2.5cm,frame=off]{\tt okraj}
+   \framed[width=2cm,frame=off]{\tt edge}
+   \framed[width=2.5cm,frame=off]{\tt margin}
    \framed[width=3cm,frame=off]{\tt text}
-   \framed[width=2.5cm,frame=off]{\tt okraj}
-   \framed[width=2cm,frame=off]{\tt hrana}}
-   \hbox{\framed[width=1.5cm,frame=off]{\tt vr¹ek}
+   \framed[width=2.5cm,frame=off]{\tt margin}
+   \framed[width=2cm,frame=off]{\tt edge}}
+   \hbox{\framed[width=1.5cm,frame=off]{\tt top}
    \framed[width=2cm]{}
    \framed[width=2.5cm]{}
    \framed[width=3cm]{}
    \framed[width=2.5cm]{}
    \framed[width=2cm]{}}
-   \hbox{\framed[width=1.5cm,frame=off]{\tt záhlaví}
+   \hbox{\framed[width=1.5cm,frame=off]{\tt header}
    \framed[width=2cm]{}
    \framed[width=2.5cm]{}
    \framed[width=3cm]{}
@@ -132,13 +133,13 @@ Rùzné oblasti ve formátu stránky jsou popsány na
    \framed[width=3cm,height=3cm]{}
    \framed[width=2.5cm,height=3cm]{}
    \framed[width=2cm,height=3cm]{}}
-   \hbox{\framed[width=1.5cm,frame=off]{\tt úpatí}
+   \hbox{\framed[width=1.5cm,frame=off]{\tt footer}
    \framed[width=2cm]{}
    \framed[width=2.5cm]{}
    \framed[width=3cm]{}
    \framed[width=2.5cm]{}
    \framed[width=2cm]{}}
-   \hbox{\framed[width=1.5cm,frame=off]{\tt spodek}
+   \hbox{\framed[width=1.5cm,frame=off]{\tt bottom}
    \framed[width=2cm]{}
    \framed[width=2.5cm]{}
    \framed[width=3cm]{}
@@ -241,7 +242,7 @@ v~\in{tabulce}[tab:parameters].
 %throughout the document. Nevertheless you might want to make
 %slight changes in the page design for a number of pages.
 Pøíkaz \type{\setuplayout} je definován v~deklaraèní oblasti 
-na¹eho vstupního souboru, pøed povelem \type{\starttext}. 
+vstupního souboru, pøed povelem \type{\starttext}. 
 To znamená, ¾e hodnoty parametrù jsou globální a~platné
 pro celý dokument. 
 Nicménì pokud pro nìkteré stránky chceme vykonat  
