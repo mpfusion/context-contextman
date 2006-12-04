@@ -10,7 +10,10 @@
 % We finish the current page and go to the next right page.
 % The intermediate pages are as empty as can be.
 
-\page[\v!yes,\v!blank,\v!right]
+%\page[\v!yes,\v!blank,\v!right]
+\doifmodeelse{bulletin}
+  {\page[\v!yes]}
+  {\page[\v!yes,\v!blank,\v!right]}
 
 % Next we build the colofon page.
 

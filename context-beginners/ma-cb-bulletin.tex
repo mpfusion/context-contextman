@@ -16,29 +16,136 @@
 %   \c!location=\v!singlesided,
    \c!location=\v!doublesided,
    \c!width=fit,\c!backspace=10.2mm,\c!cutspace=15.1mm,
-   \c!margin=0pt,\c!margindistance=0pt,
+%   \c!margin=0pt,\c!margindistance=0pt,
+   \c!margin=1.25cm,\c!margindistance=.25cm,
    \c!height=fit,\c!topspace=11mm,\c!bottomspace=7mm,
    \c!header=0pt,\c!headerdistance=0pt,\c!footer=12pt,\c!footerdistance=9mm,
   ]
 
 \setupbodyfont[palatino,9pt]
 
+\setupsectionblock
+  [\v!frontmatter]
+  [\c!page=no,doublesided=no]
+
+\setupsectionblock
+  [\v!bodymatter]
+  [\c!page=no]
+
+\setupsectionblock
+  [\v!appendix]
+  [\c!page=no]
+
+\setupsectionblock
+  [\v!backmatter]
+  [\c!page=no]
+
+\startsetups introduction
+  \setuphead[\v!chapter][\c!page=no]
+  \setuphead[\v!title][\c!page=no]
+\stopsetups
+
+\startsetups bodymatter
+  \setuphead[\v!chapter][\c!page=]
+\stopsetups
+
+\startsetups appendix
+  \setuphead[\v!chapter][\c!page=yes]
+\stopsetups
+
+\setuphead
+  [\v!title]
+  [\c!page=yes]
+
+\setupmakeup[standard][page=no,doublesided=no]
+
 % --- narrow typing
 %\usemodule[narrowtt]
-\definetypeface
-  [narrowtt] [tt]
-  [mono] [modern-cond] [default] [encoding=\defaultencoding]
+%\definetypeface
+%  [narrowtt] [tt]
+%  [mono] [modern-cond] [default] [encoding=\defaultencoding]
 
 %\setuptyping[style=\narrowtt]
 %\setuptype  [style=\narrowtt]
 \setuptyping[style={\switchtobodyfont[8pt]\tt}]
 \setuptype  [style={\switchtobodyfont[8pt]\tt}]
 
+% --- numbering
+\setuppagenumbering[\c!alternative=\v!doublesided]
+
 % --- chapter
 \setuphead
   [\v!chapter]
   [\c!before=\vskip24pt plus 4pt minus 4pt,
    \c!after=\vskip16pt]
+
+\def\TitlePage#1#2#3%
+  {\setupbackgrounds
+     [\v!rightpage]
+     [\c!background=geintje]
+   \setuptexttexts
+     [\TitleButton]
+     []
+   \startmakeup
+     [\v!standard]
+     [\c!doublesided=\v!no,
+      \c!page=\v!no,
+      \c!headerstate=\v!none,
+      \c!footerstate=\v!none]
+   \hbox to \hsize
+     {\hss
+      \definedfont[SansBold at 36pt]% \setfont lsb at 40pt    % change this into something available
+      \framed
+        [\c!background=TitelAchtergrond,
+         \c!width=\v!fit,
+         \c!height=\v!fit,
+         \c!align=\v!middle,
+         \c!frame=\v!off,
+         \c!offset=40pt]
+        {#1}}
+   \vfill
+   \hbox to \hsize
+     {\definedfont[SansBold at 12pt]% \setfont lsb at 14pt    % change this into something available
+      \framed
+        [\c!background=AuteurAchtergrond,
+         \c!frame=\v!off,
+         \c!width=\v!fit,
+         \c!height=\v!fit,
+         \c!align=\v!middle,
+         \c!offset=20pt]
+        {#2}
+      \hss}
+   \hbox to \hsize
+     {\hss
+      \definedfont[SansBold at 18pt]% \setfont lsb at 20pt    % change this into something available
+      \framed
+        [\c!background=AuteurAchtergrond,
+         \c!frame=\v!off,
+         \c!width=\v!fit,
+         \c!height=\v!fit,
+         \c!align=\v!middle,
+         \c!offset=35pt]
+        {#3\\PRAGMA ADE}}
+   \stopmakeup
+   %\setuplayout[\c!marking=\v!off]
+   \setuptexttexts
+   \setupbackgrounds
+     [\v!rightpage]
+     [\c!background=]
+   \doifmode{screen}
+     {\setupbackgrounds
+        [\v!page]
+        [\c!background=\v!screen,
+         \c!backgroundscreen=.95]
+      \setupbackgrounds
+        [\v!text][\v!text]
+        [\c!backgroundoffset=.25cm,
+         \c!depth=.125cm,
+         \c!background=\v!color,
+         \c!backgroundcolor=white]}}
+
+% --- colors
+\setupcolors[state=stop]
 
 \protect
 

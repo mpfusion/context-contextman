@@ -6,7 +6,10 @@
 
 \unprotect
 
-\page[\v!right]
+%\page[\v!right]
+\doifmodeelse{bulletin}
+  {}
+  {\page[\v!right]}
 
 \startmakeup
   [\v!standard]
