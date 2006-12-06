@@ -99,52 +99,71 @@ Rùzné oblasti ve formátu stránky jsou popsány na
 %   \framed[width=3cm]{}
 %   \framed[width=2.5cm]{}
 %   \framed[width=2cm]{}}}
+
+\doifmodeelse{bulletin}
+  {
+    \def\WColI  {1.0}
+    \def\WColII {1.5}
+    \def\WColIII{2.0}
+    \def\WColIV {2.5}
+    \def\WColV  {2.0}
+    \def\WColVI {1.5}
+  }
+  {
+    \def\WColI  {1.5}
+    \def\WColII {2.0}
+    \def\WColIII{2.5}
+    \def\WColIV {3.0}
+    \def\WColV  {2.5}
+    \def\WColVI {2.0}
+  }
+
 \placefigure
   [here]
   [fig:pagelayout]
   {Formát stránky.}
-  {\hbox{\framed[width=1.5cm,frame=off]{}
-   \framed[width=2cm,frame=off]{\tt left}
-   \framed[width=2.5cm,frame=off]{\tt left}
-   \framed[width=3cm,frame=off]{}
-   \framed[width=2.5cm,frame=off]{\tt right}
-   \framed[width=2cm,frame=off]{\tt right}}
-   \hbox{\framed[width=1.5cm,frame=off]{}
-   \framed[width=2cm,frame=off]{\tt edge}
-   \framed[width=2.5cm,frame=off]{\tt margin}
-   \framed[width=3cm,frame=off]{\tt text}
-   \framed[width=2.5cm,frame=off]{\tt margin}
-   \framed[width=2cm,frame=off]{\tt edge}}
-   \hbox{\framed[width=1.5cm,frame=off]{\tt top}
-   \framed[width=2cm]{}
-   \framed[width=2.5cm]{}
-   \framed[width=3cm]{}
-   \framed[width=2.5cm]{}
-   \framed[width=2cm]{}}
-   \hbox{\framed[width=1.5cm,frame=off]{\tt header}
-   \framed[width=2cm]{}
-   \framed[width=2.5cm]{}
-   \framed[width=3cm]{}
-   \framed[width=2.5cm]{}
-   \framed[width=2cm]{}}
-   \hbox{\framed[width=1.5cm,frame=off,height=3cm]{\tt text}
-   \framed[width=2cm,height=3cm]{}
-   \framed[width=2.5cm,height=3cm]{}
-   \framed[width=3cm,height=3cm]{}
-   \framed[width=2.5cm,height=3cm]{}
-   \framed[width=2cm,height=3cm]{}}
-   \hbox{\framed[width=1.5cm,frame=off]{\tt footer}
-   \framed[width=2cm]{}
-   \framed[width=2.5cm]{}
-   \framed[width=3cm]{}
-   \framed[width=2.5cm]{}
-   \framed[width=2cm]{}}
-   \hbox{\framed[width=1.5cm,frame=off]{\tt bottom}
-   \framed[width=2cm]{}
-   \framed[width=2.5cm]{}
-   \framed[width=3cm]{}
-   \framed[width=2.5cm]{}
-   \framed[width=2cm]{}}}
+  {\hbox{\framed[width=\WColI cm,frame=off]{}
+   \framed[width=\WColII cm,frame=off]{\tt left}
+   \framed[width=\WColIII cm,frame=off]{\tt left}
+   \framed[width=\WColIV cm,frame=off]{}
+   \framed[width=\WColV cm,frame=off]{\tt right}
+   \framed[width=\WColVI cm,frame=off]{\tt right}}
+   \hbox{\framed[width=\WColI cm,frame=off]{}
+   \framed[width=\WColII cm,frame=off]{\tt edge}
+   \framed[width=\WColIII cm,frame=off]{\tt margin}
+   \framed[width=\WColIV cm,frame=off]{\tt text}
+   \framed[width=\WColV cm,frame=off]{\tt margin}
+   \framed[width=\WColVI cm,frame=off]{\tt edge}}
+   \hbox{\framed[width=\WColI cm,frame=off]{\tt top}
+   \framed[width=\WColII cm]{}
+   \framed[width=\WColIII cm]{}
+   \framed[width=\WColIV cm]{}
+   \framed[width=\WColV cm]{}
+   \framed[width=\WColVI cm]{}}
+   \hbox{\framed[width=\WColI cm,frame=off]{\tt header}
+   \framed[width=\WColII cm]{}
+   \framed[width=\WColIII cm]{}
+   \framed[width=\WColIV cm]{}
+   \framed[width=\WColV cm]{}
+   \framed[width=\WColVI cm]{}}
+   \hbox{\framed[width=\WColI cm,frame=off,height=3cm]{\tt text}
+   \framed[width=\WColII cm,height=3cm]{}
+   \framed[width=\WColIII cm,height=3cm]{}
+   \framed[width=\WColIV cm,height=3cm]{}
+   \framed[width=\WColV cm,height=3cm]{}
+   \framed[width=\WColVI cm,height=3cm]{}}
+   \hbox{\framed[width=\WColI cm,frame=off]{\tt footer}
+   \framed[width=\WColII cm]{}
+   \framed[width=\WColIII cm]{}
+   \framed[width=\WColIV cm]{}
+   \framed[width=\WColV cm]{}
+   \framed[width=\WColVI cm]{}}
+   \hbox{\framed[width=\WColI cm,frame=off]{\tt bottom}
+   \framed[width=\WColII cm]{}
+   \framed[width=\WColIII cm]{}
+   \framed[width=\WColIV cm]{}
+   \framed[width=\WColV cm]{}
+   \framed[width=\WColVI cm]{}}}
 
 %If you want to look at your page layout you can type the
 %command \type{\showframe} and process one page or the whole

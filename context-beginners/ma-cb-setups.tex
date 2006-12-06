@@ -23,6 +23,22 @@
   \processXMLfilegrouped{../cont-en-extra.xml}
 \stopXMLmapping
 
+%% VZ 2006-12-06 for better index breaking
+\startXMLmapping[zero]
+%  \startmode[bulletin]
+    \startXMLdata
+      <cd:command name="setupheada">
+        <cd:sequence>
+          <cd:string value="setupheada"/>
+        </cd:sequence>
+      </cd:command>
+    \stopXMLdata
+%  \stopmode
+\stopXMLmapping
+
+\secretsetup{setupheada}
+
+% ---
 \unprotect
 
 \setupsetup

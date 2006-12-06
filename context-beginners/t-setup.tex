@@ -17,6 +17,9 @@
 %
 % \getinterfacecomponent{constant|variable|string}{tag}
 
+% 2006-08 Wolfgang Schuster's adaptation of set-11.tex
+% 2006-11 Vit Zyka adaptation
+
 \usemodule[set-02]
 
 \unprotect
@@ -426,6 +429,29 @@
      }
      {\doifelseXMLelement{stp:\ascii:1}
         {\expanded{\flushXMLelement{stp:\ascii:1}}%
+         \setbox\scratchbox\hbox{\csname stp:y:\ascii:1\endcsname}% VZ
+        }
+        {\convertargument#2\to\ascii
+         \em unknown setup \quote{\ascii}}}
+   \egroup}
+
+%% VZ 2006-12-04: for putting to index but without printing here
+\gdef\secretsetup%
+  {\dosingleempty\dosecretsetup}
+
+\gdef\dosecretsetup[#1]#2%
+  {\bgroup
+   \getparameters[\??stp][#1]
+   \def<<##1>>{##1}% VZ: seems does not operate! (\shortsetup{start<<name>>makeup})
+   \edef\ascii{#2}%
+%   \pagereference[pgref:stp:\ascii]% VZ new
+   \enableXML
+   \doifelseXMLelement{stp:\ascii}
+     {%
+      \setbox\scratchbox\hbox{\csname stp:y:\ascii\endcsname}% VZ (for index generation)
+     }
+     {\doifelseXMLelement{stp:\ascii:1}
+        {%
          \setbox\scratchbox\hbox{\csname stp:y:\ascii:1\endcsname}% VZ
         }
         {\convertargument#2\to\ascii

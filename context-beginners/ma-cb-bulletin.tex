@@ -19,7 +19,8 @@
 %   \c!margin=0pt,\c!margindistance=0pt,
    \c!margin=1.25cm,\c!margindistance=.25cm,
    \c!height=fit,\c!topspace=11mm,\c!bottomspace=7mm,
-   \c!header=0pt,\c!headerdistance=0pt,\c!footer=12pt,\c!footerdistance=9mm,
+%   \c!header=0pt,\c!headerdistance=0pt,\c!footer=12pt,\c!footerdistance=9mm,
+   \c!header=0pt,\c!headerdistance=0pt,\c!footer=20pt,\c!footerdistance=18.5pt,
   ]
 
 \setupbodyfont[palatino,9pt]
@@ -144,8 +145,51 @@
          \c!background=\v!color,
          \c!backgroundcolor=white]}}
 
+\def\HeadCommand#1#2%
+  {\alignedline{\v!outer}{\v!left}
+     {\framed
+        [\c!background=KopAchtergrond,
+         \c!width=\v!fit,
+         \c!height=\v!fit,
+         \c!frame=\v!off,
+         \c!strut=\v!no,
+         \c!offset=20pt,
+         \c!align=\v!middle]
+        {\doifmode{*sectionnumber}
+           {#1\kern.5em% strut niet geset, zou wel moeten
+            \hbox{\color[headrule]{\vrule\!!width1pt\!!height1.5\ht\strutbox\!!depth1.25\dp\strutbox}}%
+            \kern.5em}%
+         #2}}}
+
+
+\unexpanded\def\PlaatschapterStatus
+  {\determineheadnumber[\v!chapter]%
+   \ifnum\currentheadnumber>0
+     \vbox to \makeupheight
+       {\scratchcounter=\lastpage
+        \advance\scratchcounter by -\realpageno
+        \vskip1.5cm
+        \vskip0pt plus \realpageno cm
+        \edef\StatusAchtergrond
+          {StatusAchtergrond%
+%           \ifodd\realpageno R\else\ifdubbelzijdig L\else R\fi\fi}%
+           \ifodd\realpageno R\else\ifdoublesided L\else R\fi\fi}%
+        \framed
+          [\c!background=\StatusAchtergrond,
+           \c!width=30pt,
+           \c!height=60pt,
+           \c!frame=\v!off]
+          {\lower.5\dp\strutbox\hbox
+             {\bfb\getmarking[\v!chapter\v!number]}}
+        \vskip0pt plus \scratchcounter cm
+        \vskip1.5cm}
+   \fi}
+
 % --- colors
 \setupcolors[state=stop]
+
+% --- misc
+\def\Fr#1{\bgroup\rm\tfx(\from[#1])\egroup}
 
 \protect
 

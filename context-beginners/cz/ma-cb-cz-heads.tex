@@ -101,9 +101,15 @@ Tyto nadpisy lze samozøejmì pøizpùsobit na¹emu vkusu a dají
 se dokonce definovat vlastní nadpisy. To se dìlá povelem
 \type{\setuphead} a \type{\definehead}.
 
-\shortsetup{setuphead}
-
+\doifmodeelse{bulletin} % !!! Typo
+{
 \shortsetup{definehead}
+\shortsetup{setuphead}
+}
+{
+\shortsetup{setuphead}
+\shortsetup{definehead}
+}
 
 %% \startbuffer
 %% \definehead

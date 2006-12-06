@@ -9,12 +9,27 @@
 
 % .tuo loading...
 \startproduct ma-cb-cz
-%\project ../generic/ma-cb
 \project ma-cb
 
 \setvariables
   [document]
   [translator={Vít Zýka, Ján Bu¹a, Jiøí Hrbek, Martina Plachá a Petr Tesaøík}]
+
+\setupinteraction[
+  title=Exkurze do ConTeXtu,
+  author=Ton Otten a Hans Hagen,
+  subtitle={cesky preklad "ConTeXt on Excursion"},
+  keyword={TeX, ConTeXt, Hasselt}]
+
+\startmode[bulletin]
+  \setupinteraction[
+    subtitle={cesky preklad "ConTeXt on Excursion"; verze pro zpravodaj CSTUG}]
+\stopmode
+
+\startmode[screen]
+  \setupinteraction[
+    subtitle={cesky preklad "ConTeXt on Excursion"; verze pro obrazovku}]
+\stopmode
 
 \TitlePage
   {Exkurze do \ConTeXt u}
@@ -24,7 +39,7 @@
 \Copyright
 
 \startfrontmatter
-
+    \doifmode{bulletin}{\setnumber[page]{59}}
 %   \TableOfContents{Table Of Contents}
     \TableOfContents{Obsah}
 %   \Introduction   {Introduction}
