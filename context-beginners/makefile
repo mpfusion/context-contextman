@@ -1,46 +1,47 @@
-en: en-screen
+# Translations of ConTeXt on Excursion
+# 2007 Vit Zyka
+#
+# Usage examples:
+#   make en-print
+#   make nl
+#   make clean
 
-nl: nl-screen
+LANG_EN = en
+LANG_NL = nl
+LANG_CZ = cz
 
-cz: cz-screen cz-print cz-bulletin
+LANGS = $(LANG_EN) $(LANG_NL) $(LANG_CZ)
 
-en-screen:
-	cd en
-	texmfstart texexec --pdf --mode=screen --result=ma-cb-en-screen.pdf ma-cb-en
-	mv ma-cb-en-screen.pdf ../
-	cd ..
+SCREEN = screen
+PRINT  = print
 
-nl-screen:
-	cd nl
-	texmfstart texexec --pdf --mode=screen --result=ma-cb-nl-screen.pdf ma-cb-nl
-	mv ma-cb-nl-screen.pdf ../
-	cd ..
+EN = $(LANG_EN)-$(SCREEN) $(LANG_EN)-$(PRINT)
 
-cz-screen:
-	cd cz
-	texmfstart texexec --pdf --mode=screen --result=ma-cb-cz-screen.pdf ma-cb-cz
-	mv ma-cb-cz-screen.pdf ../
-	cd ..
+NL = $(LANG_NL)-$(SCREEN) $(LANG_NL)-$(PRINT)
 
-cz-print:
-	cd cz
-	texmfstart texexec --pdf --mode=print --result=ma-cb-cz-print.pdf ma-cb-cz
-	mv ma-cb-cz-print.pdf ../
-	cd ..
+CZ = $(LANG_CZ)-$(SCREEN) $(LANG_CZ)-$(PRINT) $(LANG_CZ)-bulletin
 
-cz-bulletin:
-	cd cz
-	texmfstart texexec --pdf --mode=bulletin --result=ma-cb-cz-bulletin.pdf ma-cb-cz
-	mv ma-cb-cz-bulletin.pdf ../
-	cd ..
+ALL = $(EN) $(NL) $(CZ)
+
+all: $(ALL)
+en: $(EN)
+nl: $(NL)
+cz: $(CZ)
+
+.PHONY: $(ALL) clean
+
+CURR_LANG = $(strip $(foreach L,$(LANGS),$(if $(findstring $(L)-,$@),$(L))))
+CURR_MODE = $(subst $(CURR_LANG)-,,$@)
+
+CONTEXT = texmfstart texexec --pdf 
+CLEAN   = texmfstart texexec --purgeall
+
+$(ALL):
+	$(info ===== Language=$(CURR_LANG)   Mode=$(CURR_MODE) =====)
+	cd $(CURR_LANG); \
+$(CONTEXT) --mode=$(CURR_MODE) --result=ma-cb-$(CURR_LANG)-$(CURR_MODE).pdf ma-cb-$(CURR_LANG); \
+cp -f ma-cb-$(CURR_LANG)-$(CURR_MODE).pdf .. ; \
+cd ..
 
 clean:
-	cd cz
-	texmfstart texexec --purgeall
-	cd ..
-	cd en
-	texmfstart texexec --purgeall
-	cd ..
-	cd nl
-	texmfstart texexec --purgeall
-	cd ..
+	$(foreach L,$(LANGS),$(shell cd $(L);$(CLEAN);cd ..))
