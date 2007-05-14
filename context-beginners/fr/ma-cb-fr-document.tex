@@ -1,0 +1,146 @@
+\startcomponent ma-cb-fr-document
+
+\product ma-cb-fr
+
+\chapter{Comment fabriquer un document}
+
+\index{fichier d'entrée}
+
+Considérons que vous vouliez créer un document simple. Il respecte une
+certaine structure et contient une page de titre, quelques chapitres,
+sections et sous-sections. Évidemment, il y a une table des matières
+et un index.
+
+\CONTEXT\ peut créer ce genre de document automatiquement si vous
+utilisez l'entrée adéquate sous forme de fichier. Donc, dans un
+premier temps, vous devez créer un fichier d'entrée. Un fichier
+d'entrée consiste en un nom et une extension. Vous pouvez choisir le
+nom que vous voulez mais l'extension doit être \type{tex}. Si vous
+créez un fichier avec pour nom \type{monfichier.tex}, vous n'aurez
+aucune difficultés à exécuter \CONTEXT.
+
+Un fichier d'entrée pourrait ressembler à ce qui suit:
+
+\startbuffer
+\starttext
+
+\startstandardmakeup
+  \midaligned{Comment fabriquer un document.}
+  \midaligned{par}
+  \midaligned{l'auteur}
+\stopstandardmakeup
+
+\completecontent
+
+\chapter{Introduction}
+
+... votre texte\index{une entree d index} ...
+
+\chapter{Chapitre premier}
+
+\section[premieresection]{La première section}
+
+... votre texte ...
+
+\section{La deuxième section}
+
+\subsection{La première sous-section}
+
+... votre texte\index{une autre entree d index} ...
+
+\subsection{La seconde sous-section}
+
+... votre texte ...
+
+\section{La troisième section}
+
+... votre texte ...
+
+\chapter{Un autre chapitre}
+
+... votre texte ...
+
+\chapter[dernierchapitre]{Le dernier chapitre}
+
+... votre texte ...
+
+\completeindex
+
+\stoptext
+\stopbuffer
+
+{\switchtobodyfont[9pt]\typebuffer}
+
+\CONTEXT\ attend un fichier d'entrée purement \ASCII. Vous pouvez tout
+à fait utiliser n'importe quel éditeur de texte ou traitement de texte
+de votre choix, néanmoins n'oubliez pas que \CONTEXT\ peut uniquement
+lire une entrée au format \ASCII. La plupart des éditeurs ou
+traitements de texte sont capables d'exporter votre fichier au format
+\ASCII.
+
+Le fichier d'entrée devrait contenir le texte que vous souhaitez que
+\CONTEXT\ traite ainsi que des commandes \CONTEXT. Une commande
+\CONTEXT\ débute par un antislash~\tex{}. Par l'utilisation de la
+commande \type{\starttext}, vous indiquez le début de votre texte. La
+zone précédant \type{\starttext} est appelée zone de réglage et est
+utilisée pour la définition de nouvelles commandes et pour le réglage
+de l'apparence de votre document. 
+
+Une commande est généralement suivie par un couple de crochet gauche
+et droit \type{[]} et/ou par des accolades gauche et droite
+\type{{}}. Par exemple, dans \type{\chapter[dernierchapitre]{Le
+    dernier chapitre}} la commande \type{\chapter} demande à \CONTEXT\
+d'exécuter quelques actions de conception, de typographie et de
+structure.
+Ces actions sont:
+
+\startitemize[n,packed]
+\item démarre une nouvelle page,
+\item incrémente le numéro de chapitre,
+\item place le numéro de chapitre devant le titre,
+\item réserve de l'espacement vertical,
+\item utilise une police de grande taille,
+\item insére le titre du chapitre (et le numéro de page) dans la table
+  des matières.
+\stopitemize
+
+Ces actions seront appliquées à l'argument donné entre accolades: {\em
+Le dernier chapitre}.
+
+L'utilité de l'argument \type{[dernierchapitre]} entre crochets n'a
+pas encore été évoqué. Il correspond à une étiquette avec une
+dénomination logique pouvant être utilisée pour se réferrer
+spécifiquement à ce chapitre. Cela peut être fait à l'aide de quelques
+autres commandes \CONTEXT : \type{\in{chapter}[dernierchapitre]} qui
+retourne le numéro du chapitre, tandis que
+\type{\about[dernierchapitre]} retourne le titre.
+
+Ainsi, on peut ajouter à la liste des actions:
+
+\startitemize[continue]
+\item associe l'étiquette \type{dernierchapitre} avec le numéro et le
+  titre du chapitre (et stocke ces valeurs pour un usage postérieur).
+\stopitemize
+
+D'autres actions concernant les entêtes, la ré-initialisation de la
+numérotation et l'interactivité ne sont pas prises en compte pour le
+moment. 
+
+Si vous compilez ce fichier d'exemple avec \CONTEXT, vous devez obtenir
+un document très simple avec quelques chapitre numérotés et des titres
+de section.
+
+Durant le traitement du fichier, \CONTEXT\ s'occupe de beaucoup de
+choses. Une de ces choses est, par exemple, la numérotation des
+pages. Dans le but d'établir une table des matières, \CONTEXT\ a
+besoin de connaître la numérotation des pages qui reste pour l'instant
+inconnue. Vous devez donc compiler ce fichier deux fois (deux
+passes). \CONTEXT\ produira quelques fichiers auxiliaires pour stocker
+ce genre d'informations. Ils ont besoin d'être traités par
+\TEXUTIL. Dans certains cas, vous aurez même besoin de compiler le
+fichier trois fois (trois passes). On peut utiliser \TEXEXEC\ pour
+exécuter \CONTEXT\ à partir de la ligne de commande. Ce script \PERL\
+gère les passes multiples. \TEXEXEC\ fait partie de la distribution
+standard de \CONTEXT.
+
+\stopcomponent

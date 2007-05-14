@@ -10,8 +10,9 @@ LANG_EN = en
 LANG_NL = nl
 LANG_CZ = cz
 LANG_ZH = zh
+LANG_FR = fr
 
-LANGS = $(LANG_EN) $(LANG_NL) $(LANG_CZ) $(LANG_ZH)
+LANGS = $(LANG_EN) $(LANG_NL) $(LANG_CZ) $(LANG_ZH) $(LANG_FR)
 
 SCREEN = screen
 PRINT  = print
@@ -24,13 +25,16 @@ CZ = $(LANG_CZ)-$(SCREEN) $(LANG_CZ)-$(PRINT) $(LANG_CZ)-bulletin
 
 ZH = $(LANG_ZH)-$(SCREEN) $(LANG_ZH)-$(PRINT)
 
-ALL = $(EN) $(NL) $(CZ) $(ZH)
+FR = $(LANG_FR)-$(SCREEN) $(LANG_FR)-$(PRINT)
+
+ALL = $(EN) $(NL) $(CZ) $(ZH) $(FR)
 
 all: $(ALL)
 en: $(EN)
 nl: $(NL)
 cz: $(CZ)
 zh: $(ZH)
+fr: $(FR)
 
 .PHONY: $(ALL) clean
 

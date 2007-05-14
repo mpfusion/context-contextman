@@ -1,0 +1,90 @@
+\startcomponent ma-cb-fr-gettingstarted
+
+\product ma-cb-fr
+
+\chapter{Comment compiler un fichier}
+
+\index{fichier d'entrée+compilation}
+\index[fichierdvi]{fichier--\type{dvi}}
+\index[fichierpdf]{fichier--\type{pdf}}
+
+Si vous voulez compilé un fichier \CONTEXT\, vous devez taper à
+l'invite de commande:
+
+\starttyping
+context nomfichier
+\stoptyping
+
+La disponibilité de la commande batch \type{context} dépend du système
+sur lequel vous travaillez. Demandez à votre administrateur système
+quelle commande utiliser pour lancer \CONTEXT. Si votre fichier
+s'apelle \type{monfichier.tex} cela peut être:
+
+\starttyping
+context monfichier
+\stoptyping
+
+ou lorsque \TEXEXEC\ est correctement installé:
+
+\starttyping
+texexec --pdf monfichier
+\stoptyping
+
+l'extension \type{.tex} n'est pas nécessaire.
+
+Après avoir pressé \Enter\, la compilation démarre. \CONTEXT\ affiche
+alors sur l'écran les informations relatives au traitement du fichier.
+Si la compilation est fructueuse, l'invite de commande retourne à son
+état initial et \CONTEXT\ a généré soit un fichier \type{dvi} ou un
+fichier \type{pdf}.
+
+Si l'un ou l'autre des traitements échoue --- par exemple si vous avez
+saisi \type{\stptext} au lieu de \type{\stoptext}--- \CONTEXT\
+retourne une invite \type{ ? } sur votre terminal et vous informe que
+la compilation a rencontré une erreur. Un certain nombre
+d'informations vous sont alors communiqué sur le type d'erreur
+rencontrée ainsi que le numéro de ligne où l'erreur est localisée.
+
+Vous pouvez tapé à l'invite \type{ ? }:
+
+\starttabulate[|||]
+\NC \type{H} \NC pour obtenir des informations sur l'erreur rencontrée \NC\NR
+\NC \type{I} \NC pour insérer la commande \CONTEXT\ correcte \NC\NR
+\NC \type{Q} \NC pour quitter et revenir à l'invite batch \NC\NR
+\NC \type{X} \NC pour sortir du mode d'exécution courant \NC\NR
+\NC \Enter   \NC pour ignorer l'erreur \NC\NR
+\stoptabulate
+
+La plupart du temps, vous pouvez ignorer l'erreur en tapant \Enter\ et
+la compilation continue. Vous pouvez alors éditer le fichier d'entrée
+et corriger l'erreur.
+
+Certaines erreurs conduisent à une invite \type{ * } et les
+traitements sont interrompus. L'erreur à l'origine de ce comportement
+est une erreur fatale au sein de votre fichier d'entrée. Vous ne
+pouvez pas ignorer une erreur de ce type et la seule option s'offrant
+à vous est de taper \type{\stop} ou {\sc Ctrl}~Z. Le programme est
+interrompu et vous pouvez corriger l'erreur.
+
+Pendant la compilation de votre fichier d'entrée \CONTEXT\ vous
+informe également de ce qu'il fait de votre document. Par
+exemple, il affiche la numérotation des pages ainsi que des
+informations sur les différentes étapes de traitement.
+Il renvoie de plus des mises en garde. Elles sont d'ordre
+typographique et vous informe lorsqu'un passage à la ligne échoue.
+Toutes les informations concernant la compilation sont stockées dans
+un fichier \type{.log} qui peut être utilisé par la suite pour
+consulter les mises en garde et les erreurs ainsi que les numéros de
+ligne dont sont issues ces erreurs.
+
+Lorsque la compilation se passe bien, \CONTEXT\ génère un nouveau
+fichier avec l'extension \type{.dvi} ou \type{.pdf}, dans notre cas
+cela sera \type{monfichier.dvi} ou \type{monfichier.pdf}.
+L'abréviation \type{dvi} signifie Device Independant. Cela implique que
+le fichier peut être traité par un pilote d'impression PostScript
+(\PS) pour rendre le fichier utilisable pour l'affichage ou
+l'impression. L'abréviation \PDF\ signifie Portable Document
+Format. C'est un format d'impression ou d'affichage independant de la
+plateforme utilisée.
+
+\stopcomponent

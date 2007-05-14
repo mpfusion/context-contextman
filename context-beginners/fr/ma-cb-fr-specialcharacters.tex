@@ -1,0 +1,57 @@
+\startcomponent ma-cb-fr-specialcharacters
+
+\product ma-cb-fr
+
+\chapter[caracteres speciaux]{Caractères spéciaux}
+
+\index{caractères spéciaux}
+
+Vous avez remarqué que les commandes \CONTEXT\ étaient précédées par
+un \tex{} (antislash). \tex{} à donc une signification spéciale pour
+\CONTEXT. À part \tex{}, il existe d'autres caractères qui nécessite
+une attention particulière si vous souhaitez qu'ils apparaissent en
+mode verbatim ou en mode texte. Le \in{tableau}[tab:specchars]
+présente une vue d'ensemble de ces caractères ainsi que ce que vous
+aurez à taper pour les utiliser dans vos documents.
+
+\let\normalunderscore=\_
+\let\normaltilde     =\~
+
+\placetable[here,force][tab:specchars]
+  {Caractères spéciaux (1).}
+  \starttable[|c|c|c|c|c|]
+  \HL
+  \NC \bf \LOW{Carartères spéciaux} \NC \use2 \bf Verbatim  \NC \use2 \bf Texte \NC\FR
+  \NC                         \NC \bf Saisie \NC \bf Rendu \NC \bf Saisie \NC \bf Rendu \NC\LR
+  \HL
+  \NC \type{#} \NC \type{\type{#}} \NC \type{#} \VL \type{\#} \NC \# \NC\FR
+  \NC \type{$} \NC \type{\type{$}} \NC \type{$} \VL \type{\$} \NC \$ \NC\MR
+  \NC \type{&} \NC \type{\type{&}} \NC \type{&} \VL \type{\&} \NC \& \NC\MR
+  \NC \type{%} \NC \type{\type{%}} \NC \type{%} \VL \type{\%} \NC \% \NC\LR
+  \HL
+  \stoptable
+
+D'autres caractères spéciaux possèdent une signification spéciale lors
+de la composition d'expressions mathématiques et certains d'entre eux
+ne peuvent être utilisés que dans le mode math
+(cf. \in{chapitre}[formulas]). 
+
+\let\normalbar=|
+\placetable
+  [here,force]
+  [tab:special chars]
+  {Caractères spéciaux (2).}
+  \starttable[|c|c|c|c|c|]
+  \HL
+  \NC \bf \LOW{Caractères spéciaux} \NC \use2 \bf Verbatim  \NC \use2 \bf Texte \NC\FR
+  \NC                         \NC \bf Saisie \NC \bf Rendu \NC \bf Saisie \NC \bf Rendu \NC\LR
+  \HL
+  \NC \type{+} \NC \type{\type{+}} \NC \type{+} \VL \type{$+$} \NC $+$ \NC\FR
+  \NC \type{-} \NC \type{\type{-}} \NC \type{-} \VL \type{$-$} \NC $-$ \NC\MR
+  \NC \type{=} \NC \type{\type{=}} \NC \type{=} \VL \type{$=$} \NC $=$ \NC\MR
+  \NC \type{<} \NC \type{\type{<}} \NC \type{<} \VL \type{$<$} \NC $<$ \NC\MR
+  \NC \type{>} \NC \type{\type{>}} \NC \type{>} \VL \type{$>$} \NC $>$ \NC\LR
+  \HL
+  \stoptable
+
+\stopcomponent

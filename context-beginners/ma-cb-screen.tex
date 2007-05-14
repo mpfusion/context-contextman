@@ -145,6 +145,23 @@
 
 \stopmode
 
+\startmode[**fr]
+
+  \setupinteractionmenu
+    [\v!right]
+    [  {[table des mati\egrave res]contents},
+          {index[subind]},
+       {commandes[comind]},
+    {d\eacute finitions[comdefs]},
+        {colophon[colofon]},
+            {\vfill},
+           {quitter[\v!CloseDocument]},
+     {\ZoekEnZoek{recherche}},
+        {retour[\v!PreviousJump]},
+        {\HeenEnWeer}]
+
+\stopmode
+
 % This not that \TEX nical definition deals with the two sets
 % of buttons. Someday I'll make a general macro for this.
 

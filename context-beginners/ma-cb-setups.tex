@@ -10,8 +10,11 @@
 % we load the whole bunch now!
 
 \doiffileelse{t-setup.tex}
-  {\usemodule[setup]}      % third party t-setup.tex
-  {\usemodule[set-11]}
+  {\message{Using t-setup}
+    \usemodule[setup]}      % third party t-setup.tex
+  % \input t-setup.tex
+  {\message{Using set-11}
+    \usemodule[set-11]}
 
 \pushmacro\checkdefined
 \def\checkdefined#1#2#3{}  % do not check macro redefinition (warnings

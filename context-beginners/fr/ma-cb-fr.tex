@@ -1,0 +1,91 @@
+% interface=english language=uk modes=screen,bound
+
+\mainlanguage[fr]
+
+\startproduct ma-cb-fr
+
+%\project ../generic/ma-cb
+\project ma-cb
+
+\TitlePage
+  {\ConTeXt\\une excursion}
+  {Version\\française} %
+  {Ton Otten \& Hans Hagen}
+
+\Copyright
+
+\startfrontmatter
+
+    \TableOfContents{Table des matières}
+    \Introduction   {Introduction}
+
+    \component ma-cb-fr-introduction
+
+\stopfrontmatter
+
+\startbodymatter
+
+    \component ma-cb-fr-document
+    \component ma-cb-fr-gettingstarted
+    \component ma-cb-fr-specialcharacters
+    \component ma-cb-fr-structure
+%     \component ma-cb-fr-heads
+%     \component ma-cb-fr-itemizations
+%     \component ma-cb-fr-math
+%     \component ma-cb-fr-units
+%     \component ma-cb-fr-figures
+%     \component ma-cb-fr-tables
+%     \component ma-cb-fr-tabulations
+%     \component ma-cb-fr-columns
+%     \component ma-cb-fr-footnotes
+%     \component ma-cb-fr-descriptions
+%     \component ma-cb-fr-enumerations
+%     \component ma-cb-fr-frames
+%     \component ma-cb-fr-framedtexts
+%     \component ma-cb-fr-margintexts
+%     \component ma-cb-fr-pages
+%     \component ma-cb-fr-headers
+%     \component ma-cb-fr-tablesofcontent
+%     \component ma-cb-fr-registers
+%     \component ma-cb-fr-synonyms
+%     \component ma-cb-fr-references
+%     \component ma-cb-fr-color
+%     \component ma-cb-fr-textbackgrounds
+%     \component ma-cb-fr-pagebackgrounds
+%     \component ma-cb-fr-alignments
+%     \component ma-cb-fr-interactivity
+%     \component ma-cb-fr-fonts
+%     \component ma-cb-fr-composedcharacters
+%     \component ma-cb-fr-layout
+%     \component ma-cb-fr-paragraphs
+%     \component ma-cb-fr-setupcommands
+%     \component ma-cb-fr-commands
+%     \component ma-cb-fr-whatever
+%     \component ma-cb-fr-modules
+%     \component ma-cb-fr-metapost
+%     \component ma-cb-fr-usersetups
+%     \component ma-cb-fr-processingfiles
+%     \component ma-cb-fr-runtimefiles
+%     \component ma-cb-fr-mathcharacters
+
+\stopbodymatter
+
+\startappendices
+
+    \CommandList {Définitions des commandes}
+    \CommandIndex{Index des commandes}
+    \NormalIndex {Index des concepts} % Subject index
+
+\stopappendices
+
+\Colofon
+
+\startmode[bound]
+
+    \StartBackPage
+        \component ma-cb-fr-backpage
+    \StopBackPage
+
+\stopmode
+
+\stopproduct

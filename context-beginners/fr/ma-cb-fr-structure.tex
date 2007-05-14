@@ -1,0 +1,58 @@
+\startcomponent ma-cb-fr-structure
+
+\product ma-cb-fr
+
+\chapter{Définir un document}
+
+Chaque document débute par \type{\starttext} et finit par
+\type{\stoptext}. Toute la saisie de texte est placée entre ces deux
+commandes et \CONTEXT\ traitera uniquement cet information.
+
+Les informations relatives aux réglages sont placées juste avant
+\type{\starttext}.
+
+\startbuffer
+\setupbodyfont[12pt]
+\starttext
+Ceci est un document à ligne unique
+\stoptext
+\stopbuffer
+
+\typebuffer
+
+À l'intérieur du bloc \type{\starttext} $\cdots$ \type{\stoptext}, un
+document est susceptible d'être divisé en quatre parties principales:
+
+\startitemize[n,packed]
+\item la préface ({\em front matter}),
+\item le corps du doment ({\em body matter}),
+\item l'épilogue ({\em back matter}),
+\item les annexes.
+\stopitemize
+
+Les différentes parties sont définies par l'intermédiaire de:
+
+\starttyping
+\startfrontmatter ... \stopfrontmatter
+\startbodymatter  ... \stopbodymatter
+\startbackmatter  ... \stopbackmatter
+\startappendices  ... \stopappendices
+\stoptyping
+
+Au sein de la préface autant que de l'épilogue, la commande
+\type{\chapter} produit un titre non numéroté apparaissant dans la
+table des matières. Ce type de section est plus particulièrement
+utilisé pour les tables des matières , des figures ou des tableaux, la
+préface, les remerciements {\em etc.} Ce type de section dispose
+souvent d'une numérotation romaine des pages.
+
+La section d'annexe est évidemment utilisé pour les annexes. Les
+titres peuvent être composé de différentes manières : par exemple,
+les commandes de type \type{\chapter} peuvent utiliser une
+numérotation alphabétique.
+
+Le style des sections peut être réglé par :
+
+\shortsetup{setupsectionblock}
+
+\stopcomponent
