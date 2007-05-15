@@ -73,21 +73,21 @@ this:
 {\switchtobodyfont[9pt]\typebuffer}
 
 \CONTEXT\ expects a plain \ASCII\ input file. Of course you
-can use any texteditor or wordprocessor you want, but you
+can use any text|-|editor or word|-|processor you want, but you
 should not forget that \CONTEXT\ can only read \ASCII\
-input. Most texteditors or wordprocessors can export your
+input. Most text|-|editors or word|-|processors can export your
 file as plain \ASCII.
 
 The input file should contain the text you want to be
 processed by \CONTEXT\ and the \CONTEXT\ commands. A
-\CONTEXT\ command begins with a backslash~\tex{}. With
+\CONTEXT\ command begins with a backslash~\type{\}. With
 the command \type{\starttext} you indicate the beginning of
 your text. The area before \type{\starttext} is called the
 set up area and is used for defining new commands and setting up
 the layout of your document.
 
 A command is usually followed by a left and right bracket
-pair \type{[]} and/or a left and right brace \type{{}}. In
+pair \type{[]} and|/|or a left and right brace \type{{}}. In
 \type{\chapter[lastchapter]{The Last Chapter}} the command
 \type{\chapter} for example tells \CONTEXT\ to perform a
 few actions concerning design, typography and structure.
@@ -108,7 +108,7 @@ Chapter}.
 
 The \type{[lastchapter]} between brackets has not been
 mentioned yet. This is a label with a logical name that can
-be used for refering to that specific chapter. This can be
+be used for referring to that specific chapter. This can be
 done with yet some other \CONTEXT\ commands:
 \type{\in{chapter}[lastchapter]} that typesets the chapter
 number, while \type{\about[lastchapter]} returns the title.
@@ -132,12 +132,12 @@ things. One of these things is for example page numbering.
 But in order to make a table of contents \CONTEXT\ needs
 page numbers that are not yet known to \CONTEXT\ at the
 first run. So you have to process this file twice (a two
-pass job). \CONTEXT\ will produce a few auxilliary files to
-store this kind of information. These are to be processed by
-\TEXUTIL. In some instances you have to proces an input file
-thrice (a three pass job). One can use \TEXEXEC\ to run
-\CONTEXT\ from the command line. This \PERL\ script also
-takes care of the multiple passes.  \TEXEXEC\ is part of the
+pass job). \CONTEXT\ will produce a few auxiliary files to
+store this kind of information. In some instances you have
+to process an input file thrice (a three pass job). One can
+use \TEXEXEC\ to run \CONTEXT\ from the command line. This
+\RUBY\ script also takes care of the multiple passes and
+processing of auxiliary files. \TEXEXEC\ is part of the
 standard \CONTEXT\ distribution.
 
 \stopcomponent
