@@ -1,0 +1,59 @@
+\startcomponent ma-cb-zh-units
+
+\product ma-cb-zh
+
+\chapter[units]{單位}
+
+\index[danwei]{單位}
+\index[siguojibiaozhundanwei]{\cap{SI} 國際標準單位}
+
+\Command{\tex{unit}}
+\Command{\tex{permille}}
+\Command{\tex{percent}}
+
+爲了強制全文使用統一的單位，你可以列一份單位清單。
+你可以在輸入文件的設置區定義好這些單位。
+
+\CONTEXT\ 有個專門模塊包含了幾乎所有的\SI||國際單位，你可以
+通過\type{\usemodule[units]} 來加載這個模塊，然後就可以調用
+其中的單位，比如：
+
+\startbuffer
+\Meter \Per \Square \Meter
+\Cubic \Meter \Per \Sec
+\Square \Milli \Meter \Per \Inch
+\Centi \Liter \Per \Sec
+\Meter \Inverse \Sec
+\Newton \Per \Square \Inch
+\Newton \Times \Meter \Per \Square \Sec
+\stopbuffer
+
+\typebuffer
+
+看上去要輸入的字符還真不少，不過這樣的確可以確保全文單位的統一。
+\type{\unit} 命令還可以防止數值與單位在換行処分開，因爲一行結束
+的地方放上數值，然後下一行開頭放上它的單位太不完美了。上面的例子
+效果如下：
+
+\startnarrower
+\startlines
+\getbuffer
+\stoplines
+\stopnarrower
+
+你可以仿照下面例子來定義自己的單位：
+
+\starttyping
+\unit[Ounce]{oz}{}
+\stoptyping
+
+\unit[Ounce]{oz}{}
+
+在其後的文檔中，你就可以通過輸入\type{15.6 \Ounce} 來得到15.6 \Ounce。
+
+下面兩條特殊命令可以使\percent\ 與\permille\ 也以統一的形式排版出來：
+
+\type{\percent} \crlf
+\type{\permille}
+
+\stopcomponent

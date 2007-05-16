@@ -1,0 +1,123 @@
+\startcomponent ma-cb-zh-document
+
+\product ma-cb-zh
+
+\chapter{如何創建文檔}
+
+\index[shuruwenjian]{輸入文件}
+
+假設你要創建一個簡單的文檔。它會有結構，有標題頁、幾個章、節和小節。
+當然還有目錄和索引。
+
+如果你能提供一個恰當的輸入文件，\CONTEXT\ 就可以自動創建這樣一個文檔。
+所以，你首先必須創建一個輸入文件。輸入文件由文件名和擴展名組成。
+你可以隨意取個文件名，不過擴展名一定要是\type{tex}。如果你創建
+了一個名為\type{myfile.tex} 的文件，你將發現運行\CONTEXT\ 毫無
+困難。
+
+\pagereference[inputfile]輸入文件的形式如下：
+
+\startbuffer
+\starttext
+
+\startstandardmakeup
+  \midaligned{如何製作一份文檔。}
+  \midaligned{作者}
+  \midaligned{無名氏}
+\stopstandardmakeup
+
+\completecontent
+
+\chapter{導言}
+
+……這兒輸入你的文本\index{索引條目}……
+
+\chapter{某一章}
+
+\section[firstsection]{第一節}
+
+……這兒輸入你的文本……
+
+\section{第二節}
+
+\subsection{第一小節}
+
+……這兒輸入你的文本\index{另一個索引條目}……
+
+\subsection{第二小節}
+
+……這兒輸入你的文本……
+
+\section{第三節}
+
+……這兒輸入你的文本……
+
+\chapter{又一章}
+
+……這兒輸入你的文本……
+
+\chapter[lastchapter]{最後一章}
+
+……這兒輸入你的文本……
+
+\completeindex
+
+\stoptext
+\stopbuffer
+
+{\switchtobodyfont[9pt]\typebuffer}
+
+\CONTEXT\ 讀入的輸入文件是無格式的\ASCII\ 文件。當然，你可以
+用任何文本編輯器或者文字處理器來編輯，但是你必須要牢記，\CONTEXT\
+衹認識\ASCII。大多數的文本編輯器或文字處理器都能夠導出無格式
+的\ASCII\ 文件。
+
+輸入文件應該包含你想讓\CONTEXT\ 和\CONTEXT\ 命令處理的文本
+內容。\CONTEXT\ 命令是以反斜杠\tex{} 開頭的。\type{\starttext} 命令
+表示正文開始了。在\type{\starttext} 之前的部分稱做設置區，
+用來定義新命令和設置文檔的樣式。
+
+命令後通常會跟有方括號對\type{[]} 或花括號對\type{{}}，
+或兼而有之。如{\processingverbatimtrue\type{\chapter[lastchapter]{最後一章}}}
+這條命令中，\type{\chapter} 就告訴\CONTEXT\ 執行一些關於綱要、樣式以及結構
+的操作。比如：
+
+\startitemize[n,packed]
+\item 換至新頁面
+\item 章序號加一
+\item 將章序號放至章標題前面
+\item 留出些許豎直空隙
+\item 切換至大號字體
+\item 將章標題（及頁碼）放入目錄
+\stopitemize
+
+這一系列操作將作用於花括號之間的參數：{\em 最後一章}。
+
+在方括號中的\type{[lastchapter]} 尚未提及。這是一個標簽，
+可以用來引用指定的章。我們可以用些其他的\CONTEXT\ 命令來調用：
+比如{\processingverbatimtrue\type{\in{第}{章}[lastchapter]}}
+就可以顯示該章的序號，而\type{\about[lastchapter]} 可以獲得該
+章的標題。
+
+於是，上面的操作列表就有所擴充：
+
+\startitemize[continue]
+\item 將標簽\type{lastchapter} 設為章的序號和標題（並存儲起來
+      以備日後使用）
+\stopitemize
+
+實際上還有些關於題頭、重置計數器和交互性沒有現在就談及。
+
+如果你讓\CONTEXT\ 處理這個示例文件的話，你就可以得到一份很簡單的
+文檔，其中有些標號的章節標題。
+
+\CONTEXT\ 在處理該文件時顧及許多細節。例如其中之一就是頁碼
+編號。不過\CONTEXT\ 首次運行的時候，它並不知道生成的目錄中
+需要的頁碼是多少。因此你需要再度處理該文件。\CONTEXT\ 會生
+成一些輔助文件來存儲此類信息。這些操作由\TEXUTIL\ 處理。
+某些情況下，你必須三度編譯該輸入文件。你可以在命令行下用\TEXEXEC\
+來運行\CONTEXT。這是個\PERL\ 腳本，它能夠知曉
+需要編譯多少次才能獲得最終結果。\TEXEXEC\ 是標準\CONTEXT\
+套件的一部分。
+
+\stopcomponent

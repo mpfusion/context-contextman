@@ -1,0 +1,73 @@
+\startcomponent ma-cb-zh-gettingstarted
+
+\product ma-cb-zh
+
+\chapter{如何編譯輸入文件}
+
+\index[shuruwenjian]{輸入文件+編譯}
+\index[dvifile]{\type{dvi}--文件}
+\index[pdffile]{\type{pdf}--文件}
+
+如果你希望變異 \CONTEXT\ 輸入文件，就應該在命令行提示符
+後面輸入：
+
+\starttyping
+context filename
+\stoptyping
+
+這條批處理命令\type{context} 是否存在取決於你使用的系統。
+你可以咨詢系統管理員用哪條命令來啓動\CONTEXT。如果你的文
+件名是\type{myfile.tex}，你可以輸入：
+
+\starttyping
+context myfile
+\stoptyping
+
+如果正確安裝了\TEXEXEC\ 的話，你還可以用：
+
+\starttyping
+texexec --pdf myfile
+\stoptyping
+
+擴展名\type{.tex} 不是必須要輸入的。
+
+敲擊\Enter\ 鍵後，編譯就開始了。\CONTEXT\ 會在你顯示器上
+顯示整個編譯過程。如果成功編譯的話，我們就會返回到命令提
+示符，\CONTEXT\ 將生成\type{dvi} 文件或者\type{pdf} 文件。
+
+如果編譯出錯了---比如你在輸入文件中輸入的是\type{\stptext}
+而不是\type{\stoptext}---\CONTEXT\ 就會在終端給出一個\type{ ? }
+提示符，然後告訴你編譯過程發生了錯誤。它會提供一些關於出錯
+類型和錯誤發生所在哪一行的信息。
+
+在\type{ ? } 之下，你可以輸入：
+
+\starttabulate[|||]
+\NC \type{H} \NC 得到你錯誤的幫助信息 \NC\NR
+\NC \type{I} \NC 插入正確的\CONTEXT\ 命令 \NC\NR
+\NC \type{Q} \NC 放棄處理並進入批處理模式 \NC\NR
+\NC \type{X} \NC 退出運行模式 \NC\NR
+\NC \Enter   \NC 跳過本次錯誤 \NC\NR
+\stoptabulate
+
+大多數情況下，你可以輸入\Enter\ 讓編譯繼續下去。然後你再編輯
+輸入文件以糾正錯誤。
+
+有些錯誤會在你屏幕上生成一個\type{ * } 符號，然後停止編譯。那是
+由於你的輸入文件中有個重大的錯誤。你無法跳過這個錯誤，你衹能
+選擇輸入\type{\stop} 或者{\sc Ctrl}~Z。然後程序就終止了，你才能
+修正這個錯誤。
+
+在編譯你的輸入文件時，\CONTEXT\ 也會告訴你它正在對你的文檔進行
+什麼操作。例如，它會顯示頁碼和編譯步驟的信息。此外，它還會給出
+警告。這些警告依照排版的順序，在斷行失敗的時候給出提示。編譯過
+程的全部信息都存儲在\type{log} 文件中，利用它可以察看警告和錯誤
+以及它們在你文件的哪一行出現的。
+
+編譯順利結束後，\CONTEXT\ 便生成一個新文件，擴展名為\type{.dvi}
+或\type{.pdf}，即生成了\type{myfile.dvi} 或\type{myfile.pdf}。
+\type{dvi} 是Device Indepent 的縮寫，表示這個文件被相配的PostScript
+(\PS) 打印機驅動處理後可以用於打印或預覽。\PDF\ 是Portable
+Document Format 的縮寫，它是種打印與預覽跟操作平臺無關的格式。
+
+\stopcomponent

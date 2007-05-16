@@ -1,0 +1,53 @@
+\startcomponent ma-cb-zh-specialcharacters
+
+\product ma-cb-zh
+
+\chapter[special chars]{特殊字符}
+
+\index[teshuzifu]{特殊字符}
+
+你可能已經發現了\CONTEXT\ 命令都是以\tex{}（反斜杠）開頭的，
+說明\tex{} 對\CONTEXT\ 來說有特殊含義。除了\tex{} 之外，還
+有一些其他字符，當它們出現在逐字模式或者文本模式中時，應當
+引起你的重視。\in{表}[tab:specchars] 總括了這些特殊字符以
+及告訴你如何輸入才能排出這些字符。
+
+\let\normalunderscore=\_
+\let\normaltilde     =\~
+
+\placetable[here,force][tab:specchars]
+  {特殊字符(1)。}
+  \starttable[|c|c|c|c|c|]
+  \HL
+  \NC \bf \LOW{特殊字符} \NC \use2 \bf 逐字  \NC \use2 \bf 正文 \NC\FR
+  \NC                         \NC \bf 輸入 \NC \bf 輸出 \NC \bf 輸入 \NC \bf 輸出 \NC\LR
+  \HL
+  \NC \type{#} \NC \type{\type{#}} \NC \type{#} \VL \type{\#} \NC \# \NC\FR
+  \NC \type{$} \NC \type{\type{$}} \NC \type{$} \VL \type{\$} \NC \$ \NC\MR
+  \NC \type{&} \NC \type{\type{&}} \NC \type{&} \VL \type{\&} \NC \& \NC\MR
+  \NC \type{%} \NC \type{\type{%}} \NC \type{%} \VL \type{\%} \NC \% \NC\LR
+  \HL
+  \stoptable
+
+其他特殊字符在排版數學表達式時也有意義，有些甚至衹能用於數學
+模式（{\processingverbatimtrue 見\in{第}{~章}[formulas]}）。
+
+\let\normalbar=|
+\placetable
+  [here,force]
+  [tab:special chars]
+  {特殊字符(2)。}
+  \starttable[|c|c|c|c|c|]
+  \HL
+  \NC \bf \LOW{特殊字符} \NC \use2 \bf 逐字  \NC \use2 \bf 正文 \NC\FR
+  \NC                         \NC \bf 輸入 \NC \bf 輸出 \NC \bf 輸入 \NC \bf 輸出 \NC\LR
+  \HL
+  \NC \type{+} \NC \type{\type{+}} \NC \type{+} \VL \type{$+$} \NC $+$ \NC\FR
+  \NC \type{-} \NC \type{\type{-}} \NC \type{-} \VL \type{$-$} \NC $-$ \NC\MR
+  \NC \type{=} \NC \type{\type{=}} \NC \type{=} \VL \type{$=$} \NC $=$ \NC\MR
+  \NC \type{<} \NC \type{\type{<}} \NC \type{<} \VL \type{$<$} \NC $<$ \NC\MR
+  \NC \type{>} \NC \type{\type{>}} \NC \type{>} \VL \type{$>$} \NC $>$ \NC\LR
+  \HL
+  \stoptable
+
+\stopcomponent

@@ -1,0 +1,208 @@
+\startcomponent ma-cb-zh-figures
+
+\product ma-cb-zh
+
+\chapter[figures]{插圖}
+
+\index[chatu]{插圖}
+\seeindex[zhaopian]{照片}{插圖}
+\index[fudongkuai]{浮動塊}
+
+\Command{\tex{placefigure}}
+\Command{\tex{startfiguretext}}
+\Command{\tex{setupfigures}}
+\Command{\tex{startcombination}}
+\Command{\tex{setupfloats}}
+\Command{\tex{setupcaptions}}
+\Command{\tex{externalfigure}}
+
+你可以通過下面命令來插入照片或者圖片：
+
+\startbuffer
+\placefigure
+   [][fig:church]
+   {Stephanus 教堂。}
+   {\externalfigure[ma-cb-24][width=.4\textwidth]}
+\stopbuffer
+
+\typebuffer
+
+編譯之後，\in{圖}[fig:church] 就會出現在首個可放置的地方。
+
+\getbuffer
+
+\type{\placefigure} 命令用來處理自動編號以及插圖上下的間距。
+此外，這條命令預置了一個浮動環境，即\CONTEXT\ 會在當前頁面上
+尋找是否有地方可以放得下這張圖片。如果找不到，這張圖片就會先
+擱置起來等放到下一個地方，然後繼續處理後續文本，這張圖片就會
+在你文檔中來回浮動，直至找到一個最佳位置安放。你可以在這條命令
+之後的第一個方括號內改變浮動方式。
+
+\type{\placefigure} 其實是下面命令的一個預先定義好的特例：
+
+\shortsetup{placeblock}
+
+\in{表}[tab:placefigure] 列出了它的選項說明。
+
+\placetable
+  [here]
+  [tab:placefigure]
+  {\type{\placefigure} 命令的選項說明。}
+\starttable[|l|l|]
+\HL
+\NC \bf 選項 \NC \bf 表示                             \NC\SR
+\HL
+\NC here       \NC 可能的話，盡量將圖片放在當前位置     \NC\FR
+\NC force      \NC 強制將圖片放置於當前位置            \NC\MR
+\NC page       \NC 將圖片獨立放到一個頁面              \NC\MR
+\NC top        \NC 將圖片放到頁面的頂部                \NC\MR
+\NC bottom     \NC 將圖片放到頁面的底部                \NC\MR
+\NC left       \NC 將圖片放到左側空白邊內              \NC\MR
+\NC right      \NC 將圖片放到右側空白邊內              \NC\MR
+\NC margin     \NC 將圖片放到頁面空白邊內              \NC\LR
+\HL
+\stoptable
+
+第二對方括號用來放置交叉引用的標簽。你可以通過輸入下列命令來引用
+這幅圖片：
+
+\starttyping
+\in{figure}[fig:church]
+\stoptyping
+
+第一對花括號是用來放置圖片標題用的，隨便輸什麼都可以。如果你不想要
+標題也不想要自動編號，可以輸入\type{{none}}。圖片的標題可以用\type{\setupcaptions}
+命令來設置，而自動編號可以用\type{\setupnumbering} 命令來設置或重設
+（{\processingverbatimtrue 見\in{段落}[floatingblocks]}）。
+
+第二對花括號用來定義圖片，指定外部圖片的路徑。
+
+下面一個例子中，我們將展示如何在\type{\placefigure{}{}}
+命令的最後那個花括號中定義\inframed[height=1em]{\processingverbatimtrue 中國}。
+
+\startbuffer
+\placefigure
+  {帶框的中國。}
+  {\framed{\tfd 中國}}
+\stopbuffer
+
+\typebuffer
+
+結果顯示：
+
+{\processingverbatimtrue
+\getbuffer
+}
+
+然而，你要插入的圖片很多情況下都是由像Corel Draw 或者Illustrator
+程序生成的，或者是由PhotoShop 的濾鏡加工的掃描照片。因此需要插入
+的圖片都是文件。\CONTEXT\ 支持所有後端驅動支持的文件格式。如果你
+用\PDFTEX\ 的話，它支持\type{JPG} 文件、\type{PNG} 文件、\type {PDF}
+文件和\METAPOST\ 輸出文件（\type{MPS} 文件）。用戶一般可以讓\CONTEXT\
+自動蒐尋最可能的文件類型。
+
+你可以發現，{\processingverbatimtrue 在\in{圖}[fig:canals]} 中，
+一張照片與一幅矢量圖合併為一張圖片了。
+
+\startbuffer
+\placefigure
+  [here,force]
+  [fig:canals]
+  {哈塞爾特運河。}
+  {\startcombination[2*1]
+     {\externalfigure[ma-cb-03][width=.4\textwidth]}
+         {一張點陣照片}
+     {\externalfigure[ma-cb-00][width=.4\textwidth]}
+         {一幅矢量圖片}
+   \stopcombination}
+\stopbuffer
+
+\getbuffer
+
+這張圖片可以由下列命令來實現：
+
+\typebuffer
+
+這張圖片中，兩副圖用以下命令合併起來了：
+
+\shortsetup{startcombination}
+
+\type{\startcombination} $\cdots$ \type{\stopcombination}
+環境用來將兩幅圖片合成一幅。你也可以在方括號內輸入圖片的數量。
+如果你想以上下的形式合併兩張圖片，可以輸入\type{[1*2]}。你可以想象
+得出如果用\type{[3*2]}（{\processingverbatimtrue\type{[行數*列數]}}）
+合併六幅圖片後的樣子。
+
+上面的那幾個例子足以創建使用插圖的文檔了。有時候，你會想讓你的文檔中
+的文本與圖片排列更緊湊，那麼，你還可以用：
+
+\shortsetup{startframedtext}
+
+圖片與表格的文本混排環境是預先定義好的：
+
+\startbuffer
+\startfiguretext
+  [left]
+  [fig:citizens]
+  {none}
+  {\externalfigure[ma-cb-18][width=.5\makeupwidth]}
+   由於經濟事態，哈塞爾特的市民數量經常變動。例如岱迪斯瓦爾特運河大約在一
+   八一零年挖掘，這條運河貫穿哈塞爾特市，因此貿易繁忙。這導致了在最近的十
+   年中，整個城市的人口增長了將近百分之四十。現在，岱迪瓦爾特運河已經沒有
+   任何商業價值了，整條運河成了旅遊勝地。不過還是可見曾經繁盛的跡象。
+\stopfiguretext
+\stopbuffer
+
+\typebuffer
+
+顯示結果在下面的圖旁邊。
+
+\start
+\setuptolerance[verytolerant]
+\getbuffer
+\stop
+
+\shortsetup{externalfigure}
+
+最後一對花括弧中放入的命令\type{\externalfigure} 可以讓你隨意
+處理圖片。\type{\externalfigure} 有兩對方括號參數，第一對方括號
+用來輸入不帶擴展名的文件名，第二對用來指定文件的格式以及尺寸大小。
+如果你輸入下面命令，那結果如何應該不難想象：\footnote{{\processingverbatimtrue
+見\at{第}{~頁}[marginpicture]}}
+
+\startbuffer[marginpicture]
+\inmargin
+  {\externalfigure
+     [ma-cb-23]
+     [width=\marginwidth]}
+\stopbuffer
+
+\typebuffer[marginpicture]
+
+你可以用下面命令來設置插圖的樣式：
+
+\shortsetup{setupfloats}
+
+用下面命令可以設置自動編號和標題格式：
+
+\shortsetup{setupcaptions}
+
+這些命令可以放在輸入文件的設置區，它們對所有浮動塊都有效應。
+
+\startbuffer
+\setupfloats
+  [location=right]
+\setupcaptions
+  [location=top,
+   style=boldslanted]
+
+\placefigure
+  {哈塞爾特市的特徵景觀。}
+  {\externalfigure[ma-cb-12][width=8cm]}
+\stopbuffer
+
+\typebuffer
+
+{\getbuffer}
+
+\stopcomponent

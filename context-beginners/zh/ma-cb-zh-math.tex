@@ -1,0 +1,459 @@
+\startcomponent ma-cb-zh-math
+
+\product ma-cb-zh
+
+\chapter[formulas]{排版數學公式}
+
+\section{前言}
+
+\index[shuxuegongshi]{數學公式}
+
+\TEX\ {\em 就是}用來排版數學公式的程序。不過這一章並非你所
+期待那樣大量地講述排版數學公式。我建議你多看些內容深點的
+關於\TEX\ 的公式排版方面的書籍。例如：\footnote{本前言涉及
+僅限於Arthur Samuel 的小冊子：{\em \TEX niques}。}
+
+\startitemize[packed]
+\item D.E. Knuth 撰寫的{\em The \TeX Book}
+\item S. Levy 與R. Seroul 撰寫的{\em The Beginners Book of \TeX}
+\stopitemize
+
+此外，\CONTEXT\ 的數學模塊以及其相伴的手冊將會及時發佈。
+
+\section{數學排版}
+
+\index[shuxuemoshi]{數學模式}
+\index[duligongshimoshi]{獨立公式模式}
+\index[xingwenshuxuemoshi]{行文數學模式}
+
+通常，排版普通文本與排版數學公式的慣例是不同的。\TEX“理解”這些慣例，
+並能夠在生成文檔時加以區分處理。我們完全可以依賴\TEX\
+來為我們創造高質量的數學公式結果。
+
+數學公式的排版有很多慣例：
+
+\startitemize[n,packed]
+
+\item 數學公式中的字母以$math\ italic$ 字體排版（注意，不要與
+      普通文本中的{\it italic} 字體混淆了）。
+
+\item 使用如希臘字母（$\alpha$，$\chi$）和數學符號（$\leq$，
+      $\geq$，$\in$）這樣的符號。
+
+\item 字母之間的間距跟普通正文中的間距不同。
+
+\item 調整數學表達式的方式與調整連續不斷正文的方式不同。
+
+\item 上標、下標會自動調整為小號字體，比如$a^{b}_{c}$。
+
+\item 某些符號在行文數學模式與獨立公式模式中顯示效果不同。
+
+\stopitemize
+
+排版數學公式時，你要進入一個叫做數學模式的模式下，在這個
+模式中，我們可以依靠plain \TEX||命令來定義數學表達式。
+
+數學模式有兩种情況：行文數學模式和獨立公式模式。行文數學模式
+由\type{$} 和\type{$} 激活，而獨立公式模式由\type{$$} 和\type{$$}
+激活。
+
+\startbuffer
+哈塞爾特佔地42,05 \Square \Kilo \Meter，如果你把這塊面積看作是一個圓，
+而哈塞爾特市場為其圓心$M$ 的話，你可以用公式${{1}\over{4}} \pi r^2$ 算
+得這個圓的直徑。
+\stopbuffer
+
+\typebuffer
+
+結果顯示為：
+
+\getbuffer
+
+在${{1}\over{4}} \pi r^2$ 中的很多個\type{{}}（分組）是分割該
+表達式的運算符的要點。如果你省略了最外面的花括號：\type{${1}\over{4} \pi r^2$}，
+你得到的結果${1}\over{4} \pi r^2$ 將不是你預期的。
+
+字母與數字是以三種不同大小排版的：正文字體大小$a+b$，標注字體
+大小$\scriptstyle a+b$ 與小標註字體大小$\scriptscriptstyle a+b$。
+可以由\type{\scriptstyle} 命令與\type{\scriptscriptstyle} 命令
+來改變。
+
+形如$\int$ 和$\sum$ 這樣的符號在行文與獨立數學模式中顯示的形式
+是不同的。比如我們輸入\type {$\sum_{n=1}^{m}$}
+或\type {$\int_{-\infty}^{+\infty}$}，我們將得到{$\sum_{n=1}^{m}$}
+與{$\int_{-\infty}^{+\infty}$}。如果我們輸入\type {$$\sum_{n=1}^{m}$$}
+與\type {$$\int_{-\infty}^{+\infty}$$} 來激活獨立公式模式，
+我們會得到：
+
+\startformula
+\sum_{n=1}^{m} \quad {\mbox{與}} \quad \int_{-\infty}^{+\infty}
+\stopformula
+
+你也可以用\type {\nolimits} 與\type{\limits} 這兩條命令來改變\type{\sum}
+與\type{\int}的顯示形式：
+
+\startformula
+\sum_{n=1}^{m}\nolimits \quad {\mbox{與}} \quad \int_{-\infty}^{+\infty}\limits
+\stopformula
+
+排版分數可以用\type{\over} 命令。在\CONTEXT\ 中，還有一條
+命令可供使用：\type {\frac}。比如${\frac{a}{1+b}}+c$ 可以
+由\type {${\frac{a}{1+b}}+c$} 來得到。
+
+其他將兩部分曡放起來的命令有：
+
+\startbuffer[atop]
+${a} \atop {b}$
+\stopbuffer
+\startbuffer[choose]
+${n+1} \choose {k}$
+\stopbuffer
+\startbuffer[brack]
+${m} \brack {n}$
+\stopbuffer
+\startbuffer[brace]
+${m} \brace {n-1}$
+\stopbuffer
+
+\starttabulate[|l|l|l|l|]
+\NC \type {\atop}
+\NC \typebuffer[atop]
+\NC \mathstrut\getbuffer[atop]
+\NC
+\NC\NR
+\NC \type {\choose}
+\NC \typebuffer[choose]
+\NC
+\NC \mathstrut\getbuffer[choose]
+\NC\NR
+\NC \type {\brack}
+\NC \typebuffer[brack]
+\NC \mathstrut\getbuffer[brack]
+\NC
+\NC\NR
+\NC \type {\brace}
+\NC \typebuffer[brace]
+\NC
+\NC \mathstrut\getbuffer[brace]
+\NC\NR
+\stoptabulate
+
+如果我們在(~) 和$\{~\}$ 這種定界符前面分別插入\type{\left}
+和\type{\right} 命令的話，\TEX\ 能夠將它們自動放大至合適尺寸。
+比如我們輸入\type{$$1+\left(\frac{1}{1-x^{x-2}}\right)^3$$}
+就會得到：
+
+\startformula
+1+\left(\frac{1}{1-x^{x-2}}\right)^3
+\stopformula
+
+下標跟上標是通過輸入\quote{\type{_}} 和\quote{\type{^}} 調用的。
+它們衹對緊跟的下一個字符有效果，如果上標或者下標中包含多個字符的話，
+就需要以$\{$~$\}$ 將它們組合起來。
+
+你還可以在定界符前插入\type{\bigl}，\type{\Bigl}，\type{\biggl}，\type{\Biggl}
+以及右邊它們對應的命令，這樣可以使用確定大小的定界符。更大的定界符
+可以通過構造一個\type{\vbox}，然後插入\type{\left} 和\type{\right}。
+當我們輸入這樣一個表達式：\type{$$\left(\vbox to
+16pt{}x^{2^{2^{2^{2}}}}\right)$$}，就可以得到：
+
+\startformula
+\left(\vbox to 16pt{}x^{2^{2^{2^{2}}}}\right)
+\stopformula
+
+下列定界符在獨立公式模式下會自動縮放：
+
+\starttabulate[|l|l|l|l|l|l|l|l|]
+\NC \type{\lfloor}      \NC $\lfloor$
+\NC \type{\langle}      \NC $\langle$
+\NC \type{\vert}        \NC $\vert$
+\NC \type{\downarrow}   \NC $\downarrow$
+\NC\NR
+\NC \type{\rfloor}      \NC $\rfloor$
+\NC \type{\rangle}      \NC $\rangle$
+\NC \type{\Vert}        \NC $\Vert$
+\NC \type{\Downarrow}   \NC $\Downarrow$
+\NC\NR
+\NC \type{\lceil}       \NC $\lceil$
+\NC \type{/}            \NC $/$
+\NC \type{\uparrow}     \NC $\uparrow$
+\NC \type{\updownarrow} \NC $\updownarrow$
+\NC\NR
+\NC \type{\rceil}       \NC $\rceil$
+\NC \type{\backslash}   \NC $\backslash$
+\NC \type{\Uparrow}     \NC $\Uparrow$
+\NC \type{\Updownarrow} \NC $\Updownarrow$
+\NC\NR
+\stoptabulate
+
+獨立公式模式下，我們應該衹排版一個分數，其它的都要換成\type{a/b}
+形式。下列公式：
+
+\startformula
+a_0 + {\frac{a}{a_1 + \frac{1}{a_2}}}
+\stopformula
+
+是由\type{$$a_0+{\frac{a}{a_1+\frac{1}{a_2}}}$$} 得到的，
+不過有一種更佳的方式是輸入\type{$$a_0 + {\frac{a}{a_1 + 1/a_2}}$$}
+來得到：
+
+\startformula
+a_0 + {\frac{a}{a_1 + 1/a_2}}
+\stopformula
+
+此外，我們還可以用\type{\displaystyle} 命令。如果我們輸入：\type {$$a_0 +
+{\frac{a}{a_1 + \frac{1} {\strut \displaystyle a_2}}}$$}，
+就能得到：
+
+\startformula
+a_0 + {\frac{a}{a_1 + \frac{1}{\displaystyle a_2}}}
+\stopformula
+
+下面我們來演示一下\type{\matrix}，\type{\pmatrix}，\type{\ldots}，\type{\cdots}
+與\type{\cases} 這幾條命令，不過並不會在這兒作更多說明。
+
+\startbuffer[b]
+$$
+\stopbuffer
+
+\startbuffer[a]
+A=\left(\matrix{x-\lambda & 1         & 0         \cr
+                0         & x-\lambda & 1         \cr
+                0         & 0         & x-\lambda \cr}\right)
+\stopbuffer
+
+\typebuffer[b,a,b] \startformula\getbuffer[a]\stopformula
+
+\startbuffer[a]
+A=\left|\matrix{x-\mu& 1     & 0     \cr
+                0    & x-\mu & 1     \cr
+                0    & 0     & x-\mu \cr}\right|
+\stopbuffer
+
+\typebuffer[b,a,b] \startformula\getbuffer[a]\stopformula
+
+\startbuffer[a]
+A=\pmatrix{a_{11} & a_{12} & \ldots & a_{1n} \cr
+           a_{21} & a_{22} & \ldots & a_{2n} \cr
+           \vdots & \vdots & \ddots & \vdots \cr
+           a_{m1} & a_{m2} & \ldots & a_{mn} \cr}
+\stopbuffer
+
+\typebuffer[b,a,b] \startformula\getbuffer[a]\stopformula
+
+\startbuffer[a]
+A=\pmatrix{a_{11} & a_{12} & \ldots & a_{1n} \cr
+           a_{21} & a_{22} & \ldots & a_{2n} \cr
+           \vdots & \vdots & \ddots & \vdots \cr
+           a_{m1} & a_{m2} & \ldots & a_{mn} \cr}
+\stopbuffer
+
+\typebuffer[b,a,b] \startformula\getbuffer[a]\stopformula
+
+\startbuffer[a]
+|x|=\cases{ x, & \mbox{當} $x\geq0$; \cr
+           -x, & \mbox{其它情況}     \cr}
+\stopbuffer
+
+\typebuffer[b,a,b]  \startformula\getbuffer[a]\stopformula
+
+如果在數學表達式中要插入普通文本的話，有以下幾點需要考慮到。
+首先，數學模式中空格是不會排版的，所以我們必須在空格之前添
+加\type{ \ }（反斜杠）來強行插入。其次，我們還要切換字體，
+因爲不能用$math\ italic$ 字體來顯示文本內容，而要用實際
+正文字體。因此，我們可以在\CONTEXT\ 中輸入\type{$$x^3+{\tf lower\
+order\ terms}$$} 來得到：
+
+\startformula
+x^3+{\tf lower\ order\ terms}
+\stopformula
+
+像$\sin$ 或$\tan$ 這樣的函數，排版時所用的字體在\TEX\ 中
+已經預定義過了：
+
+\starttabulate[|l|l|l|l|l|l|l|l|]
+\NC \type{\arccos} \NC \type{\cos} \NC \type{\csc} \NC \type{\exp} \NC \type{\ker} \NC \type{\limsup} \NC \type{\min} \NC \type{\sinh} \NC\NR
+\NC \type{\arcsin} \NC \type{\cosh} \NC \type{\deg} \NC \type{\gcd} \NC \type{\lg} \NC \type{\ln} \NC \type{\Pr} \NC \type{\sup} \NC\NR
+\NC \type{\arctan} \NC \type{\cot} \NC \type{\det} \NC \type{\hom} \NC \type{\lim} \NC \type{\log} \NC \type{\sec} \NC \type{\tan} \NC\NR
+\NC \type{\arg} \NC \type{\coth} \NC \type{\dim} \NC \type{\inf} \NC \type{\liminf} \NC \type{\max} \NC \type{\sin} \NC \type{\tanh} \NC\NR
+\stoptabulate
+
+如我們這樣輸入三角函數\type {$$\sin2\theta=2\sin\theta\cos\theta$$}
+或者極限函數\type {$$\lim_{x \to 0} {\frac{\sin x}{x}}=1$$}，就能得到：
+
+\startformula
+\sin 2\theta=2\sin\theta\cos\theta
+\quad {\tf or} \quad
+\lim_{x\to0}{\frac{\sin x}{x}}=1
+\stopformula
+
+數學表達式中的對齊需要引起特別的注意。有時在多行表達式中，我們
+想在“$=$”処對齊，就可以通過\type{\eqalign} 命令實現。比如我們輸入：
+
+\startbuffer
+$$\eqalign{
+      ax^2+bx+c &= 0                                \cr
+      x         &= \frac{-b \pm \sqrt{b^2-4ac}}{2a} \cr}$$
+\stopbuffer
+
+\typebuffer
+
+就能得到：
+
+\startformula
+\eqalign{
+      ax^2+bx+c &= 0                                \cr
+      x         &= \frac{-b \pm \sqrt{b^2-4ac}}{2a} \cr}
+\stopformula
+
+有時我們希望在多処地方都對齊。請觀察下面例子中的第二行公式，
+並注意它的定義：
+
+\startbuffer
+$$\eqalign{
+      ax+bx+\cdots+yx+zx &         = x(a +b+ \cdots \cr
+                         &\phantom{= x(a~}+y+z)     \cr
+                         &         = y              \cr}$$
+\stopbuffer
+
+\typebuffer
+
+結果為：
+
+\startformula
+\eqalign{
+      ax+bx+\cdots+yx+zx &         = x(a +b+ \cdots \cr
+                         &\phantom{= x(a~}+y+z)     \cr
+                         &         = y              \cr}
+\stopformula
+
+類似於\type{\phantom} 命令，還有\type{\hphantom} 命令與\type{\vphantom}
+命令，前者的高度和深度為零，後者的寬度為零。
+
+你可以完全依靠\TEX\ 自己調整數學表達式中的間隔。不過，某些情況下
+你可能想更改間隔。用下面的命令即可實現：
+
+\starttabulate[|l|r|]
+\NC \type{\!} \NC $-\frac{1}{6}$\type{\quad} \NC\NR
+\NC \type{\,} \NC $\frac{1}{6}$\type{\quad}  \NC\NR
+\NC \type{\>} \NC $\frac{2}{9}$\type{\quad}  \NC\NR
+\NC \type{\;} \NC $\frac{5}{18}$\type{\quad} \NC\NR
+\stoptabulate
+
+這些“間隔”與\type {\quad} 有確定的比例關係，而一個\type {\quad}
+就是當前字體下，一個大寫字母“M”的寬度。
+
+\type{\prime} 命令用來排版區別同一變量不同的值符號。
+比如$y_1^\prime+y_2^{\prime\prime}$ 對應的代碼
+是\type{$y_1^\prime+y_2^{\prime\prime}$}。
+
+表達式$\root 3 \of {x^2+y^2}$ 由\type{$\root 3 \of {x^2+y^2}$}
+生成。
+
+本節的最後，我們來講講\type{\mathstrut} 命令，我們可以
+用這條命令保持形式統一，比如可以用在開根符號中。我們可以
+輸入\type{$\sqrt{\mathstrut a}+\sqrt{\mathstrut d}+\sqrt{\mathstrut y}$}
+來得到$\sqrt{\mathstrut a}+\sqrt{\mathstrut d}+\sqrt{\mathstrut y}$，
+而不會像$\sqrt{a}+\sqrt{d}+\sqrt{y}$ 這樣參差不齊。
+
+\in{附錄}[overviews] 列出了全部數學命令。
+
+\section{放置公式}
+
+\index[gongshi]{公式}
+
+\Command{\tex{placeformula}}
+\Command{\tex{startformula}}
+\Command{\tex{setupformulae}}
+
+我們可以用下面命令來排版自動編號的公式：
+
+\shortsetup{placeformula}
+\shortsetup{startformula}
+
+擧兩個例子：
+
+\startbuffer
+\placeformula[formula:aformula]
+\startformula
+   y=x^2
+\stopformula
+
+\placeformula
+\startformula
+  \int_0^1 x^2 dx
+\stopformula
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+\type {\startformula} $\cdots$ \type{\stopformula} 命令取代了
+公式開頭和結束的\type{$$}。因此，如果你輸入：
+
+\startbuffer
+$$
+\int_0^1 x^2 dx
+$$
+\stopbuffer
+
+\typebuffer
+
+排版出來結果是一個{\em 顯示}在頁面中間的表達式，不過那可不像上一個
+例子那樣排列整齊。
+
+\getbuffer
+
+\type{\placeformula} 命令用來處理公式周圍的間隔與公式的編號。方括號
+中的內容是可選的，用來作爲交叉引用的標簽，或者打開關閉自動編號。
+
+\startbuffer
+\placeformula[first one]
+\startformula
+  y=x^2
+\stopformula
+
+\placeformula[middle one]
+\startformula
+  y=x^3
+\stopformula
+
+\placeformula[last one]
+\startformula
+  y=x^4
+\stopformula
+\stopbuffer
+
+\getbuffer
+
+\in{公式}[middle one] 是由下面命令排版的：
+
+\startbuffer
+\placeformula[middle one]
+  \startformula
+     y=x^3
+  \stopformula
+\stopbuffer
+
+\typebuffer
+
+\type{[middle one]} 這個標簽可以讓我們引用這個公式，只需
+輸入{\processingverbatimtrue\type{\in{公式}[middle one]}}
+即可實現對該公式的引用。
+
+如果你不打算對該公式自動編號，可以輸入：
+
+\type{\placeformula[-]}
+
+公式的編號是通過\type{\setupnumbering} 命令來設置的。本手冊中
+的編號設置為\type{\setupnumbering[way=bychapter]}，表示章編號
+後跟公式編號，且如果開始新一章，公式編號即被清零。為了全文的統一，
+表格、圖片等的編號也是如此設置的。因此，你可以在輸入文件的設置區
+使用\type{\setupnumbering} 命令。
+
+公式可以由下面命令來設置：
+
+\shortsetup{setupformulae}
+
+\stopcomponent

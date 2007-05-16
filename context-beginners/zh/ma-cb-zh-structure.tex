@@ -1,0 +1,50 @@
+\startcomponent ma-cb-zh-structure
+
+\product ma-cb-zh
+
+\chapter{劃分文檔}
+
+每篇文檔都是由\type{\starttext} 開始，至\type{\stoptext} 結束。
+所有文本都放在這兩條命令之間，\CONTEXT\ 衹會處理這些中間的内容。
+
+設置部分放在\type{\starttext} 之前的設置區。
+
+\starttyping
+\setupbodyfont[12pt]
+\starttext
+本文衹有一行。
+\stoptext
+\stoptyping
+
+
+在\type{\starttext} $\cdots$ \type{\stoptext} 之間的文檔可以分
+為四個主要區域：
+
+\startitemize[n,packed]
+\item 前頁
+\item 主體
+\item 後附
+\item 附錄
+\stopitemize
+
+這四大部分可以用下列命令劃分：
+
+\starttyping
+\startfrontmatter ... \stopfrontmatter
+\startbodymatter  ... \stopbodymatter
+\startbackmatter  ... \stopbackmatter
+\startappendices  ... \stopappendices
+\stoptyping
+
+與後附部分相同，前頁部分的\type{\chapter} 命令衹在目錄中生成一個沒有
+編號的標題，這一部分主要用來生成目錄、圖片與表格的清單、緒言、致
+謝等。這部分的頁碼通常用羅馬數字標記。
+
+附錄部分是用來放置附錄（這是當然）的，它的標題可能會用不同的方式排
+版，比如\type{\chapter} 生成的標題的編號用字母表示。
+
+這些部分的樣式可以用下面命令來設置：
+
+\shortsetup{setupsectionblock}
+
+\stopcomponent

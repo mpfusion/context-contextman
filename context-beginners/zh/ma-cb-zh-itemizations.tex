@@ -1,0 +1,329 @@
+\startcomponent ma-cb-zh-itemizations
+
+\product ma-cb-zh
+
+\chapter[itemize]{羅列項目}
+
+\index[luoliexiangmu]{羅列項目}
+\index[xiangmuliebiao]{項目列表}
+
+\Command{\tex{startitemize}}
+\Command{\tex{setupitemize}}
+\Command{\tex{definesymbol}}
+\Command{\tex{item}}
+\Command{\tex{head}}
+
+安排信息的途徑之一就是挨個列舉或者概述各項信息。列表
+命令形如：
+
+\shortsetup{startitemize}
+
+例如：
+
+\startbuffer
+\startitemize[R,packed,broad]
+\item 無道人之短，無說己之長，施人慎勿念，受施慎勿忘；
+\item 俗譽不足慕，唯仁為紀綱，隱身而後動，謗議庸何傷；
+\item 無使名過實，守愚聖所臧，柔弱生之徒，老氏誡剛強；
+\item 在涅貴不緇，曖曖內含光，硜硜鄙夫介，悠悠故難量；
+\item 慎言節飲食，知足勝不祥，行之苟有恆，久久自芬芳。
+\stopitemize
+\stopbuffer
+
+\typebuffer
+
+在\type{\startitemize} $\cdots$ \type{\stopitemize} 環境
+中，可以以\type{\item} 新增一條項目。在\type{\item} 後面
+的空格不能省略。在上述的例子中，\type{R} 指定了項目列表
+一大寫羅馬數字編號，\type{packed} 使行間距盡可能小。而\type{broad}
+參數會調整項目符後的水平間距。上述代碼得到的結果為：
+
+\getbuffer
+
+羅列項目需要兩個步驟，因此你必須要將你的輸入文件編譯兩次
+才能得到最佳效果。方括號中可以放置項目符號樣式和其他局部
+設置。
+
+\placetable
+  [here]
+  [tab:itemsetup]
+  {項目列表中的符號。}
+\starttable[|l|l|]
+\HL
+\NC \bf 參數 \NC \bf 符號   \NC\SR
+\HL
+\NC 1            \NC $\bullet$            \NC\FR
+\NC 2            \NC $-$                  \NC\MR
+\NC 3            \NC $\star$              \NC\MR
+\NC $\vdots$     \NC $\vdots$             \NC\MR
+\NC n            \NC 1 2 3 4 $\cdots$     \NC\MR
+\NC a            \NC a b c d $\cdots$     \NC\MR
+\NC A            \NC A B C D $\cdots$     \NC\MR
+\NC r            \NC i ii iii iv $\cdots$ \NC\MR
+\NC R            \NC I II III IV $\cdots$ \NC\LR
+\HL
+\stoptable
+
+你也可以通過\type{\definesymbol} 命令自己定義鍾意的列表
+符號。例如你輸入下列命令：
+
+\startbuffer
+\definesymbol[5][$\clubsuit$]
+
+\startitemize[5,packed]
+\item 四十年來家國，三千裡地山河。鳳閣龍樓連霄漢，玉樹瓊枝作煙蘿。幾曾識干戈。
+\item 一旦歸為臣虜，沉腰潘鬢消磨。最是倉皇辭廟日，教坊猶奏離別歌。垂淚對宮娥。
+\stopitemize
+\stopbuffer
+
+\typebuffer
+
+結果為：
+
+\getbuffer
+
+有些情況下，你需要在列表項目中放置標題。那就應該將\type{\item}
+命令換作\type{\head} 命令。
+
+\startbuffer
+《九歌》者，屈原之所作也。昔楚國南郢之邑，沅、湘之間，其俗信鬼而好祠。其祠，
+必作歌樂鼓舞以樂諸神。屈原放逐，竄伏其域，懷憂苦毒，愁思沸鬱。出見俗人祭祀之
+禮，歌舞之樂，其詞鄙陋。因為作《九歌》之曲，上陳事神之敬，下見己之冤結，託之
+以風諫。故其文意不同，章句雜錯，而廣異義焉。
+
+\startitemize
+
+\head 東皇太一
+
+      吉日兮辰良，穆將愉兮上皇。撫長劍兮玉珥，璆鏘鳴兮琳琅。瑤席兮玉瑱，盍將
+      把兮瓊芳。蕙肴蒸兮蘭藉，奠桂酒兮椒漿。揚枹兮拊鼓，疏緩節兮安歌，陳竽瑟
+      兮浩倡。靈偃蹇兮姣服，芳菲菲兮滿堂。五音紛兮繁會，君欣欣兮樂康。
+
+\head 雲中君
+
+      浴蘭湯兮沐芳，華采衣兮若英。靈連蜷兮既留，爛昭昭兮未央。蹇將憺兮壽宮，
+      與日月兮齊光。龍駕兮帝服，聊翱遊兮周章。靈皇皇兮既降，猋遠舉兮雲中。覽
+      冀州兮有餘，橫四海兮焉窮。思夫君兮太息，極勞心兮忡忡。
+
+\head 湘君
+
+      君不行兮夷猶，蹇誰留兮中洲？美要眇兮宜修，沛吾乘兮桂舟。令沅湘兮無波，
+      使江水兮安流！望夫君兮未來，吹參差兮誰思！駕飛龍兮北征，邅吾道兮洞庭。
+      薜荔柏兮蕙綢，蓀橈兮蘭旌。望涔陽兮極浦，橫大江兮揚靈。揚靈兮未極，女嬋
+      媛兮為余太息。橫流涕兮潺湲，隱思君兮陫側。桂櫂兮蘭枻，斲冰兮積雪。采薜
+      荔兮水中，搴芙蓉兮木末。心不同兮媒勞，恩不甚兮輕絕。石瀨兮淺淺，飛龍兮
+      翩翩。交不忠兮怨長，期不信兮告余以不閒。朝騁騖兮江皋，夕弭節兮北渚。鳥
+      次兮屋上，水周兮堂下。捐余玦兮江中，遺余佩兮醴浦。采芳洲兮杜若，將以遺
+      兮下女。時不可兮再得，聊逍遙兮容與。
+
+\head 湘夫人
+
+      帝子降兮北渚，目眇眇兮愁予。嫋嫋兮秋風，洞庭波兮木葉下。登白薠兮騁望，
+      與佳期兮夕張。鳥萃兮蘋中，罾何為兮木上。沅有茞兮醴有蘭，思公子兮未敢言。
+      荒忽兮遠望，觀流水兮潺湲。麋何食兮庭中？蛟何為兮水裔？朝馳余馬兮江皋，
+      夕濟兮西澨。聞佳人兮召予，將騰駕兮偕逝。築室兮水中，葺之兮荷蓋。蓀壁兮
+      紫壇，播芳椒兮成堂。桂棟兮蘭橑，辛夷楣兮葯房。罔薜荔兮為帷，擗蕙櫋兮既
+      張。白玉兮為鎮，疏石蘭兮為芳。芷葺兮荷屋，繚之兮杜衡。合百草兮實庭，建
+      芳馨兮廡門。九嶷繽兮並迎，靈之來兮如雲。捐余袂兮江中，遺余褋兮醴浦。搴
+      汀洲兮杜若，將以遺兮遠者。時不可兮驟得，聊逍遙兮容與。
+
+\head 大司命
+
+      廣開兮天門，紛吾乘兮玄雲。令飄風兮先驅，使涷雨兮灑塵。君迴翔兮以下，踰
+      空桑兮從女。紛總總兮九州，何壽夭兮在予！高飛兮安翔，乘清氣兮御陰陽。吾
+      與君兮齋速，導帝之兮九坑。靈衣兮被被，玉佩兮陸離。壹陰兮壹陽，眾莫知兮
+      余所為。折疏麻兮瑤華，將以遺兮離居。老冉冉兮既極，不寖近兮愈疏。乘龍兮
+      轔轔，高駝兮沖天。結桂枝兮延佇，羌愈思兮愁人。愁人兮柰何，願若今兮無虧。
+      固人命兮有當，孰離合兮可為？
+
+\head 少司命
+
+      秋蘭兮麋蕪，羅生兮堂下。綠葉兮素枝，芳菲菲兮襲予。夫人自有兮美子，蓀何
+      以兮愁苦！秋蘭兮青青，綠葉兮紫莖。滿堂兮美人，忽獨與余兮目成。入不言兮
+      出不辭，乘回風兮載雲旗。悲莫悲兮生別離，樂莫樂兮新相知。荷衣兮蕙帶，儵
+      而來兮忽而逝。夕宿兮帝郊，君誰須兮雲之際？與女遊兮九河，衝風至兮水揚波。
+      與女沐兮咸池，晞女髮兮陽之阿。望美人兮未來，臨風怳兮浩歌。孔蓋兮翠旍，
+      登九天兮撫彗星。竦長劍兮擁幼艾，蓀獨宜兮為民正。
+
+\head 東君
+
+      暾將出兮東方，照吾檻兮扶桑。撫余馬兮安驅，夜皎皎兮既明。駕龍輈兮乘雷，
+      載雲旗兮委蛇。長太息兮將上，心低佪兮顧懷。羌聲色兮娛人，觀者憺兮忘歸。
+      緪瑟兮交鼓，簫鍾兮瑤虡，鳴箎兮吹竽，思靈保兮賢姱。翾飛兮翠曾，展詩兮會
+      舞。應律兮合節，靈之來兮蔽日。青雲衣兮白霓裳，舉長矢兮射天狼。操余弧兮
+      反淪降，援北斗兮酌桂漿。撰余轡兮高駝翔，杳冥冥兮以東行。
+
+\head 河伯
+
+      與女遊兮九河，衝風起兮橫波。乘水車兮荷蓋，駕兩龍兮驂螭。登崑崙兮四望，
+      心飛揚兮浩蕩。日將暮兮悵忘歸，惟極浦兮寤懷。魚鱗屋兮龍堂，紫貝闕兮朱宮。
+      靈何為兮水中，乘白黿兮逐文魚。與女遊兮河之渚，流澌紛兮將來下。子交手兮
+      東行，送美人兮南浦。波滔滔兮來迎，魚鱗鱗兮媵予。
+
+\head 山鬼
+
+      若有人兮山之阿，被薜荔兮帶女羅。既含睇兮又宜笑，子慕予兮善窈窕。乘赤豹
+      兮從文狸，辛夷車兮結桂旗。被石蘭兮帶杜衡，折芳馨兮遺所思：「余處幽篁兮
+      終不見天，路險難兮獨後來。」表獨立兮山之上，雲容容兮而在下。杳冥冥兮羌
+      晝晦，東風飄兮神靈雨。留靈脩兮憺忘歸，歲既晏兮孰華予。采三秀兮於山間，
+      石磊磊兮葛蔓蔓。怨公子兮悵忘歸，君思我兮不得閒。山中人兮芳杜若，飲石泉
+      兮蔭松柏。君思我兮然疑作。雷填填兮雨冥冥，猿啾啾兮又夜鳴。風颯颯兮木蕭
+      蕭，思公子兮徒離憂。
+
+\head 國殤
+
+      操吳戈兮被犀甲，車錯轂兮短兵接。旌蔽日兮敵若雲，矢交墜兮士爭先。
+      凌余陣兮躐余行，左驂殪兮右刃傷。霾兩輪兮縶四馬，援玉枹兮擊鳴鼓。
+      天時墜兮威靈怒，嚴殺盡兮棄原野。出不入兮往不反，平原忽兮路超遠。
+      帶長劍兮挾秦弓，首身離兮心不懲。誠既勇兮又以武，終剛強兮不可凌。
+      身既死兮神以靈，子魂魄兮為鬼雄。
+
+\head 禮魂
+
+      成禮兮會鼓，傳芭兮代舞，姱女倡兮容與。春蘭兮秋菊，長無絕兮終古。
+
+\stopitemize
+\stopbuffer
+
+\typebuffer
+
+\type{\head} 命令可以用\type{\setupitemize} 來設置。萬一
+出現分頁的情況，\type{\head} 就會出現在新頁面上。
+
+上述的例子顯示結果如下：
+
+\getbuffer
+
+\in{表}[tab:tablesetup] 詳細說明了設置項目列表的參數。
+
+\placetable
+  [here,force]
+  [tab:tablesetup]
+  {項目列表設置參數。}
+\starttable[|l|l|]
+\HL
+\NC \bf 設置 \NC \bf 表示                           \NC\SR
+\HL
+\NC standard   \NC 標準（全局）設置                 \NC\FR
+\NC packed     \NC 項目之間不插入豎直間隙           \NC\MR
+\NC serried    \NC 項目符號與文本之間不插入水平間隙 \NC\MR
+\NC joinedup   \NC 整個列表環境前後不插入豎直間隙   \NC\MR
+\NC broad      \NC 項目符號與文本之間插入水平間隙   \NC\MR
+\NC inmargin   \NC 項目符號放入頁邊空白內           \NC\MR
+\NC atmargin   \NC 項目符號放入頁邊空白邊           \NC\MR
+\NC stopper    \NC 項目符號後插入句點               \NC\MR
+\NC columns    \NC 將項目分在多欄內                 \NC\MR
+\NC intro      \NC 禁止在緒言後分頁                 \NC\MR
+\NC continue   \NC 項目的編號從上一次計數処繼續     \NC\LR
+\HL
+\stoptable
+
+你可以在\type{\startitemize} 中設置參數，不過，為了全文的一致性，
+你可以在\type{\setupitemize} 中統一設置。
+
+\type{columns} 參數一般和數字一起使用。如果你輸入：
+
+\startbuffer
+\startitemize[n,columns,four]
+\item 趙錢孫李
+.
+.
+.
+\item 奚范彭郎
+\stopitemize
+\stopbuffer
+
+\typebuffer
+
+就會顯示：
+
+\startbuffer
+\startitemize[n,columns,four]
+\item 趙錢孫李
+\item 周吳鄭王
+\item 馮陳褚衛
+\item 蔣沈韓楊
+\item 朱秦尤許
+\item 何呂施張
+\item 孔曹嚴華
+\item 金魏陶姜
+\item 戚謝鄒喻
+\item 柏水竇章
+\item 雲蘇潘葛
+\item 奚范彭郎
+\stopitemize
+\stopbuffer
+
+\getbuffer
+
+某些情況下，你會想要在項目列表之後插入一小段文字，然後再繼續
+上一次列表的編號。這時，你可以輸入%
+\type{\startitemize[continue,columns,three,broad]}，
+這樣就會繼續上一次的編號，而將項目分放在三欄內。
+
+\startbuffer
+\startitemize[continue, columns, three, broad]
+\item 魯韋昌馬
+\item 苗鳳花方
+\item 俞任袁柳
+\item 酆鮑史唐
+\item 費廉岑薛
+\item 雷賀倪湯
+\item 滕殷羅畢
+\item 郝鄔安常
+\item 樂于時傅
+\item 皮卞齊康
+\item 伍余元卜
+\item 顧孟平黃
+\item 和穆蕭尹
+\item 姚邵湛汪
+\item 祁毛禹狄
+\item 米貝明臧
+\stopitemize
+\stopbuffer
+
+\getbuffer
+
+\type{broad} 參數會在項目符號與文本之間插入更大的水平間隙。
+
+\shortsetup{setupitemize}
+
+項目列表中的列表會自動以正確形式排版出來。比如：
+
+\startbuffer
+在荷蘭，城市可以決定一系列的稅收制度。因此，每個城鎮之間的日常開銷都是不一樣
+的。超過百分之五十的稅收都是互不相同的，例如：
+
+\setupitemize[2][width=5em]
+\startitemize[n]
+
+\item 房地產所有權稅
+
+      房地產所有權稅分為兩部分：
+
+      \startitemize[a,packed]
+      \item 所有者稅
+      \item 承租者稅
+      \stopitemize
+
+      如果房地產沒有出租，則這兩部分稅收均由房地產所有者支付。
+
+\item 狗証費用
+
+      飼養狗的主人需要支付費用。當狗死亡或者轉賣後，狗主人必須通知市政厛。
+
+\stopitemize
+\stopbuffer
+
+\typebuffer
+
+這樣，\type{\setupitemize[2][width=5em]} 命令設置好了第二級
+項目列表中項目符號與文本之間的水平距離。
+
+結果顯示：
+
+\start
+\getbuffer
+\stop
+
+\stopcomponent

@@ -1,0 +1,108 @@
+\startcomponent ma-cb-zh-heads
+
+\product ma-cb-zh
+
+\chapter[headers]{標題}
+
+\index[biaoti]{標題}
+
+\Command{\tex{chapter}}
+\Command{\tex{paragraph}}
+\Command{\tex{subparagraph}}
+\Command{\tex{title}}
+\Command{\tex{subject}}
+\Command{\tex{subsubject}}
+\Command{\tex{setuphead}}
+\Command{\tex{setupheads}}
+
+文檔的結構由它的標題決定，標題{\processingverbatimtrue 由\in{表}[tab:headers]} 所示
+的命令創建：
+
+\placetable[here][tab:headers]{標題。}
+\starttable[|l|l|]
+\HL
+\NC \bf 編號的標題   \NC \bf 不編號的標題   \NC\SR
+\HL
+\NC \type{\chapter}       \NC \type{\title}           \NC\FR
+\NC \type{\section}       \NC \type{\subject}         \NC\MR
+\NC \type{\subsection}    \NC \type{\subsubject}      \NC\MR
+\NC \type{\subsubsection} \NC \type{\subsubsubject}   \NC\MR
+\NC $\cdots$              \NC $\cdots$                \NC\LR
+\HL
+\stoptable
+
+\shortsetup{chapter}
+\shortsetup{section}
+\shortsetup{subsection}
+\shortsetup{title}
+\shortsetup{subject}
+\shortsetup{subsubject}
+
+這些命令將會生成定義好字體大小、字體樣式和上下間距的標題。
+
+生成標題的命令有好幾個參數，比如：
+
+\starttyping
+\title[hasselt-by-night]{哈塞爾特之夜}
+\stoptyping
+
+或者
+
+\starttyping
+\title{哈塞爾特之夜}
+\stoptyping
+
+上面例子中那對方括號中的參數是可選的，用來作為內部引用的標簽。
+例如想要引用這個標題的話，可以輸入\type{\at{page}[hasselt-by-night]}
+這樣的命令。
+
+當然，這些標題命令可以自己選擇參數，甚至可以定義自己的標題
+命令。\type{\setuphead} 和\type{\definehead} 這兩條命令就是
+用來自定義標題用的。
+
+\shortsetup{definehead}
+
+\shortsetup{setuphead}
+
+
+\startbuffer
+\definehead
+  [myheader]
+  [section]
+
+\setuphead
+  [myheader]
+  [numberstyle=bold,
+   textstyle=bold,
+   before=\hairline\blank,
+   after=\nowhitespace\hairline]
+
+\myheader[myhead]{Hasselt makes headlines}
+\stopbuffer
+
+\typebuffer
+
+這樣就定義了一條\type{\myheader} 命令，它繼承了\type{\section}
+命令的屬性。它的效果如下：
+
+\getbuffer
+
+還有條命令你也應該知道，即\type{\setupheads}。這條命令可以用來
+設置編號標題的編號方式。如果你輸入：
+
+\startbuffer
+\setupheads
+  [alternative=inmargin,
+   separator=--]
+\stopbuffer
+
+%\typebuffer
+
+所有的編號都會顯示在頁邊空白処。第1.1 節會顯示為1--1。
+
+像\type{\setupheads} 這樣的命令一般都放在你輸入文件的
+設置區。
+
+\shortsetup{setupheads}
+
+\stopcomponent
