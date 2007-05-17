@@ -1,0 +1,52 @@
+﻿\startcomponent ma-cb-zh-color
+
+\product ma-cb-zh
+
+\chapter{顔色}
+
+\index{顔色}
+
+\Command{\tex{setupcolors}}
+\Command{\tex{color}}
+\Command{\tex{definecolor}}
+
+我們可以設置文本的顔色。
+
+\shortsetup{setupcolors}
+
+要使用顔色，首先要通過以下語句激活：
+
+\starttyping
+\setupcolors[state=start]
+\stoptyping
+
+至此，我們就可以調用一些基本的顔色了（比如紅、綠和藍）。
+
+\startbuffer
+\startcolor[red]
+哈塞爾特是個\color[green]{多姿多彩}的城市。
+\stopcolor
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+如果用黑白打印機打印出來，你只能看到灰色的痕跡。在電子文檔中，就能看到預期的顔色。
+
+你可以用下面命令來定義你自己的顔色：
+
+\shortsetup{definecolor}
+
+例如：
+
+\startbuffer
+\definecolor[darkred]   [r=.5,g=.0,b=.0]
+\definecolor[darkgreen] [r=.0,g=.5,b=.0]
+\stopbuffer
+
+\typebuffer
+
+這樣，我們就可以調用\type{darkred} 和\type{darkgreen} 了。
+
+\stopcomponent

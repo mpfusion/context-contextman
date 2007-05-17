@@ -1,0 +1,114 @@
+%# -*- coding: utf-8 -*-
+
+%D \module
+%D   [       file=p-cwTeX,
+%D        version=2007.01.12,
+%D          title=\CONTEXT\ User Macros,
+%D       subtitle=User Chinese Fonts,
+%D         author=Zhichu Chen,
+%D           date=\currentdate,
+%D      copyright=Zhichu Chen]
+%C
+%C This module is only a copy of s-chi-00.tex,
+%C I just use cwTeX fonts as default fonts.
+
+\input font-cwTeX.tex % faster than \setupbodyfont[chi]
+
+\input lang-chi.tex
+
+\startencoding[cjk-uni]
+  \definecommand cnleftsentence            {\uchar{32}{20}\uchar{32}{20}}
+  \definecommand cnrightsentence           {\uchar{32}{20}\uchar{32}{20}}
+  \definecommand cnleftsubsentence         {\uchar{32}{20}\uchar{32}{20}}
+  \definecommand cnrightsubsentence        {\uchar{32}{20}\uchar{32}{20}}
+  \definecommand cnupperleftsinglequote    {\uchar{32}{24}}
+  \definecommand cnupperrightsinglequote   {\uchar{32}{25}}
+  \definecommand cnupperleftdoublequote    {\uchar{32}{28}}
+  \definecommand cnupperrightdoublequote   {\uchar{32}{29}}
+  \definecommand cnupperleftsinglequote-v  {\uchar{48}{12}}
+  \definecommand cnupperrightsinglequote-v {\uchar{48}{13}}
+  \definecommand cnupperleftdoublequote-v  {\uchar{48}{14}}
+  \definecommand cnupperrightdoublequote-v {\uchar{48}{15}}
+  \definecommand cnencodedcontents         {\uchar{118}{238}\uchar{147}{4}} %目錄
+  \definecommand cnencodedtables           {\uchar{136}{104}\uchar{104}{60}} %表格
+  \definecommand cnencodedfigures          {\uchar{87}{22}\uchar{95}{98}} %圖形
+  \definecommand cnencodedindex            {\uchar{125}{34}\uchar{95}{21}} %索引
+  \definecommand cnencodedabbreviations    {\uchar{126}{46}\uchar{117}{101}\uchar{138}{158}} %縮略語
+  \definecommand cnencodedlogos            {\uchar{95}{189}\uchar{106}{25}} %徽標
+  \definecommand cnencodedunits            {\uchar{138}{8}\uchar{145}{207}\uchar{85}{174}\uchar{79}{77}} %計量單位
+  \definecommand cnencodedtable            {\uchar{136}{104}} %表
+  \definecommand cnencodedfigure           {\uchar{87}{22}} %圖
+  \definecommand cnencodedintro            {\uchar{123}{44}} %第
+  \definecommand cnencodedpart             {\uchar{144}{232}\uchar{82}{6}} %部分
+  \definecommand cnencodedchapter          {\uchar{122}{224}} %章 %{\uchar{86}{222}} %回
+  \definecommand cnencodedsection          {\uchar{123}{192}} %節
+  \definecommand cnencodedjanuary          {\uchar{78}{0}\uchar{103}{8}} %一月
+  \definecommand cnencodedfebrary          {\uchar{78}{140}\uchar{103}{8}}
+  \definecommand cnencodedmarch            {\uchar{78}{9}\uchar{103}{8}}
+  \definecommand cnencodedapril            {\uchar{86}{219}\uchar{103}{8}}
+  \definecommand cnencodedmay              {\uchar{78}{148}\uchar{103}{8}}
+  \definecommand cnencodedjune             {\uchar{81}{109}\uchar{103}{8}}
+  \definecommand cnencodedjuly             {\uchar{78}{3}\uchar{103}{8}}
+  \definecommand cnencodedaugust           {\uchar{81}{107}\uchar{103}{8}}
+  \definecommand cnencodedseptember        {\uchar{78}{93}\uchar{103}{8}}
+  \definecommand cnencodedoctober          {\uchar{83}{65}\uchar{103}{8}}
+  \definecommand cnencodednovember         {\uchar{83}{65}\uchar{78}{0}\uchar{103}{8}}
+  \definecommand cnencodeddecember         {\uchar{83}{65}\uchar{78}{140}\uchar{103}{8}}
+  \definecommand cnencodedsunday           {\uchar{102}{31}\uchar{103}{31}\uchar{101}{229}} %星期日
+  \definecommand cnencodedmonday           {\uchar{102}{31}\uchar{103}{31}\uchar{78}{0}}
+  \definecommand cnencodedtuesday          {\uchar{102}{31}\uchar{103}{31}\uchar{78}{140}}
+  \definecommand cnencodedwednesday        {\uchar{102}{31}\uchar{103}{31}\uchar{78}{9}}
+  \definecommand cnencodedthursday         {\uchar{102}{31}\uchar{103}{31}\uchar{86}{219}}
+  \definecommand cnencodedfriday           {\uchar{102}{31}\uchar{103}{31}\uchar{78}{148}}
+  \definecommand cnencodedsaturday         {\uchar{102}{31}\uchar{103}{31}\uchar{81}{109}}
+  % RG & XJF
+  \definecommand cnencodedgraphics         {\uchar{87}{22}} %圖
+  \definecommand cnencodedintermezzo       {\uchar{99}{210}\uchar{102}{242}}
+  \definecommand cnencodedillustration     {\uchar{99}{210}\uchar{87}{22}} %插圖
+  \definecommand cnencodedappendix         {\uchar{150}{68}\uchar{147}{4}} %附錄
+  \definecommand cnencodedline             {\uchar{136}{76}} %行
+  % Tobias Burnus & XJF
+  \definecommand cnyear                    {\uchar{94}{116}} %年
+  \definecommand cnmonth                   {\uchar{103}{8}} %月
+  \definecommand cnday                     {\uchar{101}{229}} %日
+\stopencoding
+
+\mainlanguage [cn]
+
+\unprotect
+
+\setuplabeltext [\s!cn]       [\v!see=\uchar{137}{139}]
+
+\setupsection [\s!section-1] [\c!headconversion=\s!chinese]
+\setupsection [\s!section-2] [\c!headconversion=\s!chinese]
+\setupsection [\s!section-3] [\c!headconversion=\s!chinese]
+\setupsection [\s!section-2] [\v!appendix\c!conversion=]
+
+\setuphead [\v!chapter]    [\c!distance=1.25em]
+\setuphead [\v!section]    [\c!distance=1.25em]
+\setuphead [\v!subsection] [\c!distance=1.00em]
+
+\setuplist [\v!chapter] [\c!headlabel=\v!yes,\c!headconversion=\v!yes,\c!width=5em]
+\setuplist [\v!section] [\c!headlabel=\v!yes,\c!headconversion=\v!yes,\c!width=5em]
+
+\setupmarking [\v!chapter\v!number] [\c!headlabel=\v!yes,\c!headconversion=\v!yes]
+\setupmarking [\v!section\v!number] [\c!headlabel=\v!yes,\c!headconversion=\v!yes]
+
+
+%\setuplabeltext [cn]          [\v!subsection={\symbol[S]\kern.25em}]
+%\setuplabeltext [cn]       [\v!subsubsection={\symbol[S]\kern.25em}]
+%\setuplabeltext [cn]    [\v!subsubsubsection={\symbol[S]\kern.25em}]
+%\setuplabeltext [cn] [\v!subsubsubsubsection={\symbol[S]\kern.25em}]
+
+
+%\definereferenceformat [intable]   [\c!label=\v!table]
+%\definereferenceformat [infigure]  [\c!label=\v!figure]
+%\definereferenceformat [inchapter] [\c!label=\v!chapter]
+%\definereferenceformat [insection] [\c!label=\v!section]
+
+% important
+
+\setuptyping[\c!tab=\v!no]
+
+
+\protect \endinput

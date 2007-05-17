@@ -1,0 +1,97 @@
+\startcomponent ma-cb-zh-commands
+
+\product ma-cb-zh
+
+\chapter{定義命令與宏}
+
+\CONTEXT\ 是基於\TEX\ 的一組宏。\TEX\
+既是個印刷排版系統，也是種編程語言。這就意味著如果你需要這種靈活性的話，
+你可以自己編寫程序。
+
+你可以通過下面的命令來定義一條新命令：
+
+\shortsetup{define}
+
+下面的示範將會說明如何使用這條命令。
+
+也許你有份佈滿圖片的文檔，而你實在懶得輸入：
+
+\startbuffer
+\placefigure
+  [here,force]
+  [fig:logical name]
+  {標題。}
+  {\externalfigure[filename][width=5cm]}
+\stopbuffer
+
+\typebuffer
+
+你可以用幾個參數來定義一條你自己的命令，比如：
+
+\startitemize[packed]
+\item 標簽名
+\item 標題
+\item 文件名
+\stopitemize
+
+你可以這樣定義與調用你的命令：
+
+\startbuffer
+\define[3]\myputfigure
+  {\placefigure
+     [here,force][fig:#1]
+     {#2}{\externalfigure[#3][width=5cm]}}
+
+\myputfigure{lion}{這頭荷蘭獅是名守衛。}{ma-cb-13}
+\stopbuffer
+
+\typebuffer
+
+方括號中間的數 \type{[3]} 表示你將使用三個參數：\type{#1}, \type{#2} 和 \type{#3}。
+在調用\type{\myputfigure} 時你必須將這三個參數輸入到花括弧中。結果如下：
+
+\getbuffer
+
+這樣，你可以利用自己的創造力編寫出非常複雜的命令。
+
+除了定義命令，你還可以定義\type{\start} $\cdots$ \type{\stop} 命令組。
+
+\shortsetup{definestartstop}
+
+例如：
+
+\startbuffer
+\definestartstop
+   [stars]
+   [commands={\inleft{\hbox to \leftmarginwidth
+                    {\leaders\hbox{$\star$}\hfill}}},
+    before=\blank,
+    after=\blank]
+
+\startstars
+{\em 洛陽}處天下之中，挾{\em 殽}、{\em 黽}之阻，當{\em 秦}、
+{\em 隴}之襟喉，而{\em 趙}、{\em 魏}之走集，蓋四方必爭之地
+也。天下常無事則已，有事則{\em 洛陽}必先受兵。予故嘗曰：
+「{\em 洛陽}之盛衰，天下治亂之候也。」
+
+方{\em 唐貞觀}、{\em 開元}之間，公卿貴戚開館列第於東都者，
+號千有餘邸。及其亂離，繼以五季之酷，其池塘竹樹，兵車蹂蹴，
+廢而為丘墟；高亭大榭，煙火焚燎，化而為灰燼，與{\em 唐}共滅
+而俱亡者，無餘處矣。予故嘗曰：「園囿之興廢，{\em 洛陽}盛衰
+之候也。」
+
+且天下之治亂，候於{\em 洛陽}之盛衰而知；{\em 洛陽}之盛衰，
+候於園囿之興廢而得。則《名園記》之作，予豈徒然哉？
+
+嗚呼！公卿大夫方進於朝，放乎一己之私以自為，而忘天下之治忽，
+欲退享此，得乎？{\em 唐}之末路是矣！
+\stopstars
+\stopbuffer
+
+\typebuffer
+
+結果如下：
+
+\getbuffer
+
+\stopcomponent

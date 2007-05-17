@@ -1,0 +1,51 @@
+﻿\startcomponent ma-cb-zh-alignments
+
+\product ma-cb-zh
+
+\chapter{對齊元素}
+
+\index{對齊}
+
+\Command{\tex{setupalign}}
+\Command{\tex{setup tolerance}}
+\Command{\tex{rightaligned}}
+\Command{\tex{leftlines}}
+\Command{\tex{midaligned}}
+
+水平和豎直方向的對齊可以用下列命令來設置：
+
+\shortsetup{setupalign}
+
+單一的行可以用下列命令來對齊：
+
+\starttyping
+\rightaligned{}
+\leftaligned{}
+\midaligned{}
+\stoptyping
+
+\startbuffer
+\leftaligned  {苟余心其端直兮，雖僻遠之何傷。}
+\midaligned   {吾不能變心而從俗兮，固將愁苦而終窮。}
+\rightaligned {余將董道而不豫兮，固將重昏而終身！}
+\stopbuffer
+
+\typebuffer
+
+編譯之後的結果如下：
+
+\getbuffer
+
+段落的對齊通過以下命令實現：
+
+\shortsetup{startalignment}
+
+對於對齊，你可以指定容許量以及方向（豎直方向或者水平方向）。通常容許量是%
+\type{verystrict}。而對於縱欄，你可以指定為 \type{verytolerant}。
+本文檔的容許量為：
+
+\starttyping
+\setuptolerance[horizontal,verystrict]
+\stoptyping
+
+\stopcomponent
