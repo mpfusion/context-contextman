@@ -1,0 +1,454 @@
+\startcomponent ma-cb-zh-tables
+
+\product ma-cb-zh
+
+\chapter[tables]{表格}
+
+\index[biaoge]{表格}
+\index[fudongkuai]{浮動塊}
+
+\Command{\tex{placetable}}
+\Command{\tex{setuptables}}
+\Command{\tex{starttable}}
+\Command{\tex{startcombination}}
+\Command{\tex{setupfloats}}
+\Command{\tex{setupcaptions}}
+\Command{\tex{NR}}
+\Command{\tex{FR}}
+\Command{\tex{LR}}
+\Command{\tex{MR}}
+\Command{\tex{SR}}
+\Command{\tex{VL}}
+\Command{\tex{NC}}
+\Command{\tex{HL}}
+\Command{\tex{DL}}
+\Command{\tex{DC}}
+\Command{\tex{DR}}
+\Command{\tex{LOW}}
+\Command{\tex{TWO}}
+\Command{\tex{THREE}}
+
+{\em 一般來說，表格會包含很多列，有些左對齊，有些居中對齊，有些右對齊，
+還有些根據小數點對齊。表頭有時候放在一列的最上面，有時候會橫跨好多列。
+表格中的條目有時包含數學公式，有時又是好幾行文本。有時候又會有水平、垂直
+的表格線貫穿整個表格，有時這些表格線衹佔其中部分行或者列。}
+
+以上是Michael J. Wichura 寫在他關於\TABLE\ 的一本手冊的緒言中（\TABLE\
+手冊，1988）。Michael Wichura 還是\CONTEXT\ 處理表格時所倚的\TABLE\
+宏的作者。我們在其中添加了一些\CONTEXT\ 宏，使得全文的行間距相一致，
+並簡化命令接口，讓它們看上去不像天書。\footnote{\CONTEXT\ 是為\cap{WYSIWYG}
+領域的非技術人員開發的。因此，我們需要友好的接口和簡潔的文件和命令處理
+機制，並且避免使用詭異的命令、程序編制以及邏輯論證。}
+
+插入一個表格可以使用\type{\placetable} 命令，它也是下面命令的一個
+預定義的例子：
+
+\shortsetup{placeblock}
+
+我們可以用下面命令來開始一個表格：
+
+\shortsetup{starttable}
+
+插入表格的代碼一般會是如下形式的：
+
+\startbuffer
+\placetable[here][tab:ships]{停泊在哈塞爾特市的船隻。}
+\starttable[|c|c|]
+\HL
+\NC \bf 年代  \NC \bf 船泊數量         \NC\SR
+\HL
+\NC 1645     \NC 450                 \NC\FR
+\NC 1671     \NC 480                 \NC\MR
+\NC 1676     \NC 500                 \NC\MR
+\NC 1695     \NC 930                 \NC\LR
+\HL
+\stoptable
+\stopbuffer
+
+\typebuffer
+
+這段代碼就會排版成{\processingverbatimtrue 爲\in{表}[tab:ships]}。
+
+\getbuffer
+
+第一條命令\type{\placetable} 與\type{\placefigure} 命令的功能
+是一樣的。它用來處理表格上下的間距以及自動對表格進行編號。除此之外，
+它還預置了一個浮動塊，使得這張表格可以安置在頁面最佳処。
+
+表格內容放在\type{\starttable} $\cdots$ \type{\stoptable} 環境
+中。你可以在方括號中指定表格的格式，以\type{|} 分隔每列，列的樣式
+的參數{\processingverbatimtrue 見\in{表}[tab:formatkeys]}。
+
+\placetable
+  []
+  [tab:formatkeys]
+  {表格樣式參數。}
+\starttable[|l|l|]
+\HL
+\NC \bf 參數     \NC \bf 表示                                 \NC\SR
+\HL
+\NC \type{|}    \NC 列分隔符                               \NC\FR
+\NC \type{c}    \NC 居中對齊                               \NC\MR
+\NC \type{l}    \NC 左對齊                                 \NC\MR
+\NC \type{r}    \NC 右對齊                                 \NC\MR
+\NC \type{s<n>} \NC 設置列間的空白，$n$ 取值為$n = 0, 1,2$  \NC\MR
+\NC \type{w<>}  \NC 指定最小的列寬                          \NC\LR
+\HL
+\stoptable
+
+除了格式參數，還有一些其他的格式命令。in{表}[tab:formatcommands]
+列出了一些基本命令。
+
+\placetable
+  [here]
+  [tab:formatcommands]
+  {表格格式命令。}
+\starttable[|l|l|]
+\HL
+\NC \bf 命令               \NC \bf 表示                            \NC\SR
+\HL
+\NC \type{\JustLeft}          \NC 忽視列格式參數而強行左對齊  \NC\FR
+\NC \type{\JustRight}         \NC 忽視列格式參數而強行右對齊 \NC\MR
+\NC \type{\JustCenter}        \NC 忽視列格式參數而強行居中對齊      \NC\MR
+\NC \type{\SetTableToWidth{}} \NC 指定表格寬度                     \NC\MR
+\NC \type{\use{n}}            \NC 佔用之後的$n$ 列                 \NC\LR
+\HL
+\stoptable
+
+上面的例子中，已經展示使用了很多\CONTEXT\ 格式命令。這些命令比起
+原來的命令是有點長，也易于理解，不過它們還會調整很多表格排版。
+我們{\processingverbatimtrue 在\in{表}[tab:contextformatcommands]}
+中給出這些命令的總括。
+
+\placetable
+  [here]
+  [tab:contextformatcommands]
+  {\CONTEXT\ 表格的格式命令。}
+{\setuptables[bodyfont=small]
+\starttable[s1|l|l|l|]
+\HL
+\NC \bf 命令       \NC
+    \NC \bf 表示                                \NC\SR
+\HL
+\NC \type{\NR}        \NC 下一行
+    \NC 不調整任何豎直間隔而排版一行表格 \NC\FR
+\NC \type{\FR}        \NC 第一行
+    \NC 排版一行表格，同時調整該行之前的間距             \NC\MR
+\NC \type{\LR}        \NC 末一行
+    \NC 排版一行表格，同時調整該行之後的間距             \NC\MR
+\NC \type{\MR}        \NC 中間行
+    \NC 排版一行表格，同時調整該行前後的間距   \NC\MR
+\NC \type{\SR}        \NC 獨立行
+    \NC 排版一行表格，同時調整該行前後的間距   \NC\MR
+\NC \type{\VL}        \NC 豎直表格線
+    \NC 作一條豎直表格線，然後跳至下一列       \NC\MR
+\NC \type{\NC}        \NC 下一列
+    \NC 跳至下一列                            \NC\MR
+\NC \type{\HL}        \NC 水平表格線
+    \NC 作一條水平表格線                     \NC\MR
+\NC \type{\DL}        \NC 分界線$^\star$
+    \NC 在下一列作一條分界線  \NC\MR
+\NC \type{\DL[n]}     \NC 分界線$^\star$
+    \NC 在下$n$ 列作一條分界線      \NC\MR
+\NC \type{\DC}        \NC 分界列$^\star$
+    \NC draw a space over the next column          \NC\MR
+\NC \type{\DR} \NC 分界行$^\star$
+    \NC 排版一空行，同時調整該行前後的間距   \NC\MR
+\NC {\processingverbatimtrue \type{\LOW{內容}}} \NC ---
+    \NC 將{\em 內容}基線下移                           \NC\MR
+\NC \type{\TWO}、\type{\THREE} 等  \NC ---
+    \NC 佔據{\em 兩列}或者{\em 三列} \NC\LR
+\HL
+\NC \use3 \JustLeft{$^\star$ \type{\DL, \DC} 與\type{\DR}
+    用於表格的合併。}                      \NC\FR
+\stoptable}
+
+下面擧幾個表格的例子和相應的源代碼。你還可以通過閲讀M.J. Wichura
+的\TABLE\ 手冊瞭解更複雜的例子。
+
+\startbuffer
+\placetable
+  [here,force]
+  [tab:effects of commands]
+  {格式命令效果測試。}
+  {\startcombination[2*1]
+     {\starttable[|c|c|]
+      \HL
+      \VL \bf  年代 \VL \bf 市民數量  \VL\SR
+      \HL
+      \VL 1675     \VL  ~428        \VL\FR
+      \VL 1795     \VL  1124        \VL\MR
+      \VL 1880     \VL  2405        \VL\MR
+      \VL 1995     \VL  7408        \VL\LR
+      \HL
+      \stoptable}{標準}
+     {\starttable[|c|c|]
+      \HL
+      \VL \bf 年代  \VL \bf 市民數量  \VL\NR
+      \HL
+      \VL 1675     \VL  ~428        \VL\NR
+      \VL 1795     \VL  1124        \VL\NR
+      \VL 1880     \VL  2405        \VL\NR
+      \VL 1995     \VL  7408        \VL\NR
+      \HL
+      \stoptable}{衹用\type{\NR}}
+   \stopcombination}
+\stopbuffer
+
+\typebuffer
+
+上面例子中第一個表格中使用了\type{\SR}、\type{\FR}、\type{\MR}
+以及\type{\LR} 等命令，這些命令能調整表格中的行間距，而之後的那個表格
+衹用\type{\NR} 命令換行而不調整行間距。
+
+\getbuffer
+
+下面我們演示一下如何用\type{s0} 參數和\type{s1} 參數調整列間距。
+
+\startbuffer
+\startbuffer[one]
+\starttable[|c|c|]
+\HL
+\VL \bf  年代  \VL \bf 市民數量 \VL\SR
+\HL
+\VL 1675 \VL  ~428 \VL\FR
+\VL 1795 \VL  1124 \VL\MR
+\VL 1880 \VL  2405 \VL\MR
+\VL 1995 \VL  7408 \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\startbuffer[two]
+\starttable[s0 | c | c |]
+\HL
+\VL \bf  年代  \VL \bf 市民數量 \VL\SR
+\HL
+\VL 1675 \VL  ~428 \VL\FR
+\VL 1795 \VL  1124 \VL\MR
+\VL 1880 \VL  2405 \VL\MR
+\VL 1995 \VL  7408 \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\startbuffer[three]
+\starttable[| s0 c | c |]
+\HL
+\VL \bf  年代  \VL \bf 市民數量 \VL\SR
+\HL
+\VL 1675 \VL  ~428 \VL\FR
+\VL 1795 \VL  1124 \VL\MR
+\VL 1880 \VL  2405 \VL\MR
+\VL 1995 \VL  7408 \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\startbuffer[four]
+\starttable[| c | s0 c |]
+\HL
+\VL \bf  年代  \VL \bf 市民數量 \VL\SR
+\HL
+\VL 1675 \VL  ~428 \VL\FR
+\VL 1795 \VL  1124 \VL\MR
+\VL 1880 \VL  2405 \VL\MR
+\VL 1995 \VL  7408 \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\startbuffer[five]
+\starttable[s1 | c | c |]
+\HL
+\VL \bf  年代  \VL \bf 市民數量 \VL\SR
+\HL
+\VL 1675 \VL  ~428 \VL\FR
+\VL 1795 \VL  1124 \VL\MR
+\VL 1880 \VL  2405 \VL\MR
+\VL 1995 \VL  7408 \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\placetable
+  [here,force]
+  [tab:example formatcommands]
+  {格式命令的效果。}
+  {\startcombination[3*2]
+    {\getbuffer[one]}   {標準}
+    {\getbuffer[two]}   {\type{s0}}
+    {\getbuffer[three]} {第一列使用\type{s0}}
+    {\getbuffer[four]}  {第二列使用\type{s0}}
+    {\getbuffer[five]}  {\type{s1}}
+    {}                  {}
+  \stopcombination}
+\stopbuffer
+
+\typebuffer
+
+這些表格代碼的結果就{\processingverbatimtrue 如\in{表}[tab:example formatcommands]}。
+表格默認的列間距為\type{s2}。
+
+\getbuffer
+
+我們通常用豎線$|$ 分開各列，用橫線分割各行。
+
+\startbuffer
+\placetable
+  [here,force]
+  [tab:divisions]
+  {各參數的效果。}
+\starttable[|c|c|c|]
+\NC 南京 \NC 北京 \NC 上海 \NC\SR
+\DC     \DL     \DC         \DR
+\NC 北京 \VL 上海 \VL 南京 \NC\SR
+\DC     \DL     \DC         \DR
+\NC 上海 \NC 南京 \NC 北京 \NC\SR
+\stoptable
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+\in{表}[tab:example contextcommands] 所示的例子
+也許能更好地讓你感受這些命令。
+
+\startbuffer
+\placetable
+  [here,force]
+  [tab:example contextcommands]
+  {\CONTEXT\ 格式命令效果。}
+\starttable[|l|c|c|c|c|]
+\HL
+\VL \FIVE \JustCenter{1994 市議會選舉。}                  \VL\SR
+\HL
+\VL \LOW{黨派}   \VL \THREE{區域}        \VL \LOW{總計}   \VL\SR
+\DC             \DL[3]                  \DC                \DR
+\VL             \VL 1   \VL 2   \VL 3   \VL             \VL\SR
+\HL
+\VL PvdA        \VL 351 \VL 433 \VL 459 \VL 1243        \VL\FR
+\VL CDA         \VL 346 \VL 350 \VL 285 \VL ~981        \VL\MR
+\VL VVD         \VL 140 \VL 113 \VL 132 \VL ~385        \VL\MR
+\VL HKV/RPF/SGP \VL 348 \VL 261 \VL 158 \VL ~767        \VL\MR
+\VL GPV         \VL 117 \VL 192 \VL 291 \VL ~600        \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\typebuffer
+
+最末一列中的\type{~} 符用來將三位數的數字拼湊成四位數的寬度，\type{~}
+的寬度為一個數字寬。
+
+\getbuffer
+
+有時，你會遇到表格太大的情況，這時，你需要調整它，比如說，
+縮小字體、表格線旁的豎直與水平間距等。需要用到下面的命令：
+
+\shortsetup{setuptables}
+
+\startbuffer
+\placetable
+  [here,force]
+  [tab:setuptable]
+  {\type{\setuptables} 的使用。}
+{\startcombination[1*3]
+{\setuptables[bodyfont=10pt]
+\starttable[|c|c|c|c|c|c|]
+\HL
+\VL \use6 \JustCenter{財富的減少（荷蘭盾）}    \VL\SR
+\HL
+\VL Year \VL 1.000--2.000
+         \VL 2.000--3.000
+         \VL 3.000--5.000
+         \VL 5.000--10.000
+         \VL 10.000 以上      \VL\SR
+\HL
+\VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
+\VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
+\VL 1750 \VL 12 \VL 3 \VL 2  \VL 2  \VL -- \VL\MR
+\VL 1808 \VL ~9 \VL 2 \VL -- \VL -- \VL -- \VL\LR
+\HL
+\stoptable}{\tt bodyfont=10pt}
+{\setuptables[bodyfont=8pt]
+\starttable[|c|c|c|c|c|c|]
+\HL
+\VL \use6 \JustCenter{財富的減少（荷蘭盾）}    \VL\SR
+\HL
+\VL Year \VL 1.000--2.000
+         \VL 2.000--3.000
+         \VL 3.000--5.000
+         \VL 5.000--10.000
+         \VL 10.000 以上      \VL\SR
+\HL
+\VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
+\VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
+\VL 1750 \VL 12 \VL 3 \VL 2  \VL 2  \VL -- \VL\MR
+\VL 1808 \VL ~9 \VL 2 \VL -- \VL -- \VL -- \VL\LR
+\HL
+\stoptable}{\tt bodyfont=8pt}
+{\setuptables[bodyfont=6pt,distance=small]
+\starttable[|c|c|c|c|c|c|]
+\HL
+\VL \use6 \JustCenter{財富的減少（荷蘭盾）}    \VL\SR
+\HL
+\VL Year \VL 1.000--2.000
+         \VL 2.000--3.000
+         \VL 3.000--5.000
+         \VL 5.000--10.000
+         \VL 10.000 以上      \VL\SR
+\HL
+\VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
+\VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
+\VL 1750 \VL 12 \VL 3 \VL 2  \VL 2  \VL -- \VL\MR
+\VL 1808 \VL ~9 \VL 2 \VL -- \VL -- \VL -- \VL\LR
+\HL
+\stoptable}{\tt bodyfont=6pt,distance=small}
+\stopcombination}
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+你還可以用下面命令來設置表格的輸出樣式：
+
+\shortsetup{setupfloats}
+
+以及用下面命令來設置標題樣式和自動編號：
+
+\shortsetup{setupcaptions}
+
+這些命令可以放到輸入文件的設置區，這樣就會對所有浮動体
+進行全局設置了。
+
+\startbuffer
+\setupfloats[location=left]
+\setupcaption[style=boldslanted]
+
+\placetable[here][tab:opening hours]{圖書館開放時間。}
+\starttable[|l|c|c|]
+\HL
+\VL \bf 日期 \VL \use2 \bf 開放時間                \VL\SR
+\HL
+\VL 週一    \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\FR
+\VL 週二    \VL                \VL                \VL\MR
+\VL 週三    \VL 10.00 -- 12.00 \VL 14.00 -- 17.30 \VL\MR
+\VL 週四    \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\MR
+\VL 週五    \VL 14.00 -- 17.30 \VL                \VL\MR
+\VL 週六    \VL 10.00 -- 12.30 \VL                \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\typebuffer
+
+上述代碼生成的表格即{\processingverbatimtrue 為\in{表}[tab:opening hours]}。
+
+\start
+\getbuffer
+\stop
+
+\stopcomponent
