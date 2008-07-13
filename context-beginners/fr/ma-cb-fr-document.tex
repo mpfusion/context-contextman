@@ -80,14 +80,14 @@ traitements de texte sont capables d'exporter votre fichier au format
 
 Le fichier d'entrée devrait contenir le texte que vous souhaitez que
 \CONTEXT\ traite ainsi que des commandes \CONTEXT. Une commande
-\CONTEXT\ débute par un antislash~\tex{}. Par l'utilisation de la
+\CONTEXT\ débute par un antislash~\type{\}. Par l'utilisation de la
 commande \type{\starttext}, vous indiquez le début de votre texte. La
 zone précédant \type{\starttext} est appelée zone de réglage et est
 utilisée pour la définition de nouvelles commandes et pour le réglage
 de l'apparence de votre document. 
 
 Une commande est généralement suivie par un couple de crochet gauche
-et droit \type{[]} et/ou par des accolades gauche et droite
+et droit \type{[]} et|/|ou par des accolades gauche et droite
 \type{{}}. Par exemple, dans \type{\chapter[dernierchapitre]{Le
     dernier chapitre}} la commande \type{\chapter} demande à \CONTEXT\
 d'exécuter quelques actions de conception, de typographie et de
@@ -136,8 +136,7 @@ pages. Dans le but d'établir une table des matières, \CONTEXT\ a
 besoin de connaître la numérotation des pages qui reste pour l'instant
 inconnue. Vous devez donc compiler ce fichier deux fois (deux
 passes). \CONTEXT\ produira quelques fichiers auxiliaires pour stocker
-ce genre d'informations. Ils ont besoin d'être traités par
-\TEXUTIL. Dans certains cas, vous aurez même besoin de compiler le
+ce genre d'informations. Dans certains cas, vous aurez même besoin de compiler le
 fichier trois fois (trois passes). On peut utiliser \TEXEXEC\ pour
 exécuter \CONTEXT\ à partir de la ligne de commande. Ce script \PERL\
 gère les passes multiples. \TEXEXEC\ fait partie de la distribution
