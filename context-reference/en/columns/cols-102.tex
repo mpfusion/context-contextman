@@ -1,0 +1,27 @@
+% content=tex
+%
+% copyright=pragma-ade readme=readme.pdf licence=cc-by-nc-sa
+
+\definecolumnset[example][n=4]
+
+\starttext
+
+\startbuffer
+\placefigure[tbrl]    {tblr}{\externalfigure[fake][width=\One,  lines=5]}
+\placefigure[fxtb:2*4]{fxtb}{\externalfigure[fake][width=\Two,  lines=5]}
+\placefigure[btlr]    {btlr}{\externalfigure[fake][width=\Two,  lines=5]}
+\placefigure[btlr]    {btlr}{\externalfigure[fake][width=\Three,lines=5]}
+\dorecurse{5}{\fakewords{100}{200}\par}
+\stopbuffer
+
+\startcolumnset[example]
+
+   \definecolumnsethsize{example}{1}{1}\One
+   \definecolumnsethsize{example}{1}{2}\Two
+   \definecolumnsethsize{example}{1}{3}\Three
+
+   \dorecurse{4}{\getbuffer}
+
+\stopcolumnset 
+
+\stoptext

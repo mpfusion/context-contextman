@@ -1,0 +1,1283 @@
+\startcomponent co-en-11
+
+\environment contextref-env
+\product contextref
+
+\chapter[descriptions]{Descriptions}
+
+\section{Introduction}
+
+In a document we can find text elements that bring structure
+to a document. We have already seen the numbered chapter and
+section titles, but there are more elements with a
+recognizable layout. We can think of numbered and
+non||numbered definitions, itemizations and citations. One
+of the advantages of \TEX\ and therefore of \CONTEXT\ is
+that coding these elements enables us to guarantee a
+consistent design in our document, which in turn allows us
+to concentrate on the content of our writing.
+
+In this chapter we will discuss some of the elements that
+will bring structure to your text. We advise you to
+experiment with the commands and their setups. When applied
+correctly you will notice that layout commands in your text
+are seldom necessary.
+
+\section[definitions]{Definitions}
+\index{definitions}
+\index{theses}
+\macro{\tex{definedescription}}
+\macro{\tex{setupdescriptions}}
+\macro[name]{\tex{<<name>>}}
+\macro[description]{\tex{<<description>>}}
+\macro[startdescription]{\tex{start<<description>>}}
+
+Definitions of concepts and|/|or ideas, that are to be
+typeset in a distinctive way, can be defined by \type
+{\definedescription}.
+
+\showsetup{definedescription}
+
+The first argument of this command contains the name. After
+the definition a new command is available.
+
+\showsetup{<<description>>}
+
+\startbuffer[examp-1]
+\definedescription[definition][location=top,headstyle=bold]
+
+\definition{icon}
+
+An icon is a representation of an action or the name of a computer
+program. Icons are frequently used in operating systems on several
+computer platforms. \par
+\stopbuffer
+
+\startbuffer[examp-2]
+\definedescription[definition][location=right,headstyle=bold]
+\definition{icon}
+
+Some users of those computer platforms are using these icons with an
+almost religious fanaticism. This brings the word icon almost back
+to its original meaning. \par
+\stopbuffer
+
+\startbuffer[examp-3]
+\definedescription[definition][location=left,headstyle=bold]
+\definition{icon}
+
+An icon should be recognizable for every user but they are designed
+within a cultural and historical setting. In this fast and ever changing
+era the recognizability of icons is relative. \par
+\stopbuffer
+
+\startbuffer[examp-4]
+\definedescription[definition][location=inmargin,headstyle=bold]
+\definition{icon}
+
+The 8||bit principle of computers was the reason that non||Latin
+scriptures were hardly supported by the operating systems. Not long
+ago this changed. \par
+\stopbuffer
+
+\startbuffer[examp-5]
+\definedescription
+  [definition]
+  [location=serried,headstyle=bold,width=broad,sample={icon}]
+
+\definition{icon}
+
+What for some languages looked like a handicap has now become a feature.
+Thousands of words and concepts are already layed down in characters.
+These characters therefore can be considered icons. \par
+\stopbuffer
+
+\startbuffer[examp-6]
+\definedescription[definition][location=serried,headstyle=bold]
+\definition{icon}
+
+It is to be expected that people with expressive languages overtake
+us in computer usage because they are used to thinking in concepts. \par
+\stopbuffer
+
+\startbuffer[examp-7]
+\definedescription[definition][location=left,headstyle=bold,hang=broad]
+\definition{icon}
+
+The not||so||young generation remembers the trashcan in the earlier
+operating systems used to delete files. We in Holland were lucky that the
+text beneath it said: trashcan. A specific character for the trashcan
+would have been less sensitive misinterpretation, than the rather
+American||looking garbage receptacle unknown to many young people.\par
+\stopbuffer
+
+An example of the definition is:
+
+\startexample
+\typebuffer[examp-1]
+\stopexample
+
+Several alternatives are displayed below:
+
+\startreality \getbuffer[examp-1] \stopreality
+\startreality \getbuffer[examp-2] \stopreality
+\startreality \getbuffer[examp-3] \stopreality
+\startreality \getbuffer[examp-4] \stopreality
+\startreality \getbuffer[examp-5] \stopreality
+\startreality \getbuffer[examp-6] \stopreality
+\startreality \getbuffer[examp-7] \stopreality
+
+In the fifth example the definition is placed \type
+{serried} and defined as:
+
+\startexample
+\typebuffer[examp-5]
+\stopexample
+
+In the seventh example we have set \type {hang} at \type
+{broad}. This parameter makes only sense when we set the
+label at the right or left. When we set \type {width} at
+\type {fit} or \type {broad} instead of a number, the width
+of the sample is used. With \type {fit}, no space is added,
+with \type {broad}, a space of \type {distance} is inserted.
+When no sample is given the with of the defined word is
+used. The parameter \type {align} specifies in what way the
+text is aligned. When the definition is placed in the margin
+or typeset in a serried format, the parameter \type {margin}
+is of importance. When set to \type {standard} or \type {ja},
+the marging follows the document setting. Alternatively you
+can pass a dimension.
+
+Some characteristics of the description can be specified with:
+
+\showsetup{setupdescriptions}
+
+The setup of a description can be changed with the command
+below. This has the same construct as \type
+{\definedescription}:
+
+\startexample
+\starttyping
+\setupdescriptions[<<name>>][<<setups>>]
+\stoptyping
+\stopexample
+
+When a description consists of more than one paragraph, use:
+
+\showsetup{start<<description>>}
+
+\startexample
+\starttyping
+\startdefinition{icon}
+
+An icon is a painting of Jesus Christ, Mother Mary or other holy figures.
+These paintings may have a special meaning for some religious people.
+
+For one reason or the other the description icon found its way to the
+computer world where it leads its own life.
+
+\stopdefinition
+\stoptyping
+\stopexample
+
+These commands will handle empty lines adequately.
+
+\section[enumeration]{Enumeration}
+\index{descriptions}
+\index{itemization}
+\index{enumeration+texts}
+\macro{\tex{enumeration}}
+\macro{\tex{setupenumerations}}
+\macro[name]{\tex{<<name>>}}
+\macro[subname]{\tex{sub<<name>>}}
+\macro[subsubname]{\tex{subsub<<name>>}}
+\macro[subsubsubname]{\tex{subsubsub<<name>>}}
+\macro[resetname]{\tex{reset<<name>>}}
+\macro[nextname]{\tex{next<<name>>}}
+\macro[nextsubname]{\tex{nextsub<<name>>}}
+\macro[nextsubsubname]{\tex{nextsubsub<<name>>}}
+\macro[enumeration]{\tex{<<enumeration>>}}
+\macro[startenumeration]{\tex{start<<enumeration>>}}
+
+Sometimes you will encounter text elements you would like to
+number, but they do not fit into the category of figures,
+tables, etc. Therefore \CONTEXT\ has a numbering mechanism
+that we use for numbering text elements like questions,
+remarks, examples, etc. Such a text element is defined with:
+
+\showsetup{defineenumeration}
+
+After such a definition, the following commands are
+available:
+
+\startexample
+\starttyping
+\<<name>>
+\sub<<name>>
+\subsub<<name>>
+\subsubsub<<name>>
+\stoptyping
+\stopexample
+
+Where {\sl \type{name}} stands for any chosen name.
+
+\showsetup{<<enumeration>>}
+
+The numbering can take place at four levels. Conversion is
+related to the last level. If you specify a text, then this
+will be a label that preceeds every generated number. A
+number can be set and reset with the command:
+
+\startexample
+\starttyping
+\set<<enumeration>>{value}
+\reset<<enumeration>>
+\stoptyping
+\stopexample
+
+You can use the \type {start} parameter in the setup command
+to explictly state a startnumber. Keep in mind that the
+enumeration commands increase the number, so to start at~4,
+one must set the number at~3. Numbers and subnumbers and be
+explictly increased with the commands:
+
+\startexample
+\starttyping
+\next<<enumeration>>
+\nextsub<<enumeration>>
+\nextsubsub<<enumeration>>
+\stoptyping
+\stopexample
+
+The example below illustrates the use of \type
+{\enumeration}. After the shown commands the content of a
+remark can be typed after \type{\remark}.
+
+\startexample
+\starttyping
+\defineenumeration
+  [remark]
+  [location=top,
+   text=Remark,
+   between=\blank,
+   before=\blank,
+   after=\blank]
+\stoptyping
+\stopexample
+
+\defineenumeration
+  [remark]
+  [location=top,
+   text=Remark,
+   before=\blank,
+   between=\blank,
+   after=\blank]
+
+Some examples of remarks are:
+
+\remark After definition the \quote {remark} is available at
+four levels: \type {\remark}, \type {\subremark}, \type
+{\subsubremark} and \type {\subsubsubremark}.
+
+\remark This command looks much like the command \type
+{\definedescription}.
+
+The characteristics of numbering are specified with \type
+{\setupenumerations}. Many parameters are like that of the
+descriptions because numbering is a special case of
+descriptions.
+
+\startexample
+\starttyping
+\setupenumerations[<<name>>][<<setups>>]
+\stoptyping
+\stopexample
+
+\showsetup{setupenumerations}
+
+The characteristics of sub and subsub enumerations can be
+set too. For example:
+
+\startexample
+\starttyping
+\setupenumerations[example][headstyle=bold]
+\setupenumerations[subexample][headstyle=slanted]
+\stoptyping
+\stopexample
+
+Just like the description command there is a \type
+{\start}||\type {\stop} construction for multi paragraph
+typesetting.
+
+\showsetup{start<<enumeration>>}
+
+Sometimes the number is obsolete. For example when we number
+per chapter and we have only {\em one} example in a specific
+chapter. In that case you can indicate with a \type{[-]}
+that you want no number to be displayed.
+
+\remark[-] Because this remark was recalled by \type
+{\remark[-]} there is {\em no} number. Just as with other
+commands, we can also pass a reference label between
+\setchars. Also, we can setup the enumeration to stop
+numbering by setting \type {number} to \type {no}.
+
+The numbering command can be combined usefully with the
+feature to move textblocks. An example is given in
+\in{section}[textblocks]. In that example we also
+demonstrate how to couple one numbered text to another.
+These couplings only have a meaning in interactive documents
+where cross references (hyperlinks) can be useful.
+
+The numbering of text elements can appear in different
+forms. In that case we can let one numbered text element
+inherit its characteristic from another. We illustrate this
+in an example.
+
+\startbuffer
+\defineenumeration[first]
+
+\first  The numbering \type {first} is unique. We see that one
+argument is sufficient. By default label and number are placed at the left
+hand side.
+
+\defineenumeration[second][first][location=right]
+
+\second  The \type {second} inherits its counters from \type {first},
+but is placed at the right hand side. In case of three arguments the first
+one is the copy and the second the original.
+
+\defineenumeration[third,fourth][location=inright]
+
+\third The numbered elements \type {third} and \type {fourth} are both
+unique and are placed in right margin.
+
+\fourth  Both are defined in one command but they do have own
+counters that are in no way coupled.
+
+\defineenumeration[fifth,sixth][first]
+
+\fifth The elements \type {fifth} and \type {sixth} inherit the properties
+and counters of \type {first}.
+
+\sixth  Note: inheriting of \type{second} is not allowed because \type
+{second} is not an original! \par
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+It may seem very complex but the text below may shed some
+light on this issue:
+
+\getbuffer
+
+It is possible to couple a numbered text element to another.
+For example we may couple questions and answers. In an
+interactive document we can click on a question which will
+result in a jump to the answer. And vice versa. The counters
+must be synchronised. Be aware of the fact that the counters
+need some resetting now and then. For example at the
+beginning of each new chapter. This can be automated by
+setting the parameter \type {way} to \type {bychapter}.
+
+\starttyping
+\definedescription [question] [coupling=answer]
+\definedescription [answer]   [coupling=question]
+\stoptyping
+
+\section[indenting]{Indenting}
+\index{tabulate}
+\index{indenting}
+\macro{\tex{indentation}}
+\macro{\tex{setupindentations}}
+\macro[name]{\tex{<<name>>}}
+\macro[indentation]{\tex{<<indentation>>}}
+
+Indented itemizations, like dialogues, can be typeset with
+the command defined by
+
+\showsetup{defineindenting}
+
+After this command \type{\<<name>>}, \type{\sub<<name>>} and
+\type{\subsub<<name>>} are available.
+
+\showsetup{<<indentation>>}
+
+The parameters can be set up with the command:
+
+\showsetup{setupindentations}
+
+It is possible to change the setup of \type{\indentation}
+with the command:
+
+\startexample
+\starttyping
+\setupindentations[<<name>>][<<setups>>]
+\stoptyping
+\stopexample
+
+An example of how you can use the indentation mechanism is
+given below:
+
+\startbuffer
+\setupindentations
+  [sample={rime m},
+   separator={:},
+   distance=.5em]
+
+\defineindenting[ra][text=rime a]
+\defineindenting[rb][text=rime b]
+\defineindenting[rc][text=rime c]
+
+\startpacked
+\ra  pretty litte girl \par
+\ra  pretty litte girl in a blue dress \par
+\rb  pretty little girl in a blue dress \par
+\rc  playing in the sand \par
+\rb  make my day \par
+\rc  smile for me \par
+\stoppacked
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This results in:
+
+\startreality
+\getbuffer
+\stopreality
+
+A series of indenting commands can be enclosed with the
+commands:
+
+\startexample
+\starttyping
+\startindentation
+\stopindentation
+\stoptyping
+\stopexample
+
+\section[label]{Numbered labels}
+\index{label}
+\index{numbering+label}
+\macro{\tex{label}}
+\macro[resetname]{\tex{reset<<name>>}}
+\macro[incrementname]{\tex{increment<<name>>}}
+\macro[nextname]{\tex{next<<name>>}}
+\macro[currentname]{\tex{current<<name>>}}
+\macro[label]{\tex{<<label>>}}
+
+There is another numbering mechanism that is used for
+numbering specific text labels that also enables you to
+refer to these labels. For example, when you want to refer
+in your text to a number of transparencies that you use in
+presentations the next command can be used:
+
+\showsetup{definelabel}
+
+Where the parameter \type {location} is set at \type
+{intext} and \type {inmargin}. After this definition the
+following commands are available:
+
+\startexample
+\starttyping
+\reset<<name>>
+\increment<<name>>
+\next<<name>>
+\current<<name>>[reference]
+\stoptyping
+\stopexample
+
+\startbuffer
+\definelabel[video][text=video,location=inmargin]
+\stopbuffer
+
+\getbuffer
+
+The \type {[reference]} after \type {currentname} is optional.
+After
+
+\typebuffer
+
+This defines \video\type {\video}, that results in a
+numbered label {\em video} in the margin. The command \type
+{\currentvideo} would have resulted in the number~0. The
+label can also be recalled with:
+
+\showsetup{<<labeling>>}
+
+In our case, saying \type {\video} results in the marginal
+note concerning a video. The values of \type {before} and
+\type {after} are executed around the label (which only makes
+sense for in||text labels.
+
+\section[itimize]{Itemize}
+\index{itemize}
+\index{numbering+itemize}
+\index{items}
+\index{questionnaire}
+\index{forms}
+\macro{\tex{startitemize}}
+\macro{\tex{setupitemize}}
+\macro{\tex{mar}}
+\macro{\tex{nop}}
+\macro{\tex{item}}
+\macro{\tex{head}}
+\macro{\tex{sub}}
+\macro{\tex{its}}
+\macro{\tex{sym}}
+\macro{\tex{ran}}
+\macro{\tex{but}}
+
+Items in an itemization are automatically preceded by
+symbols or by enumerated numbers or characters. The symbols
+and the enumeration can be set up (see \in {table}
+[tab:item]). The layout can also be influenced. Itemization
+has a maximum of four levels.
+
+\placetable
+  [here][tab:item]
+  {Item separator identifications in itemizations.}
+\startcombination[2]
+  {\starttable[|c|c|]
+   \HL
+   \VL \bf setup      \VL \bf result                             \VL\SR
+   \HL
+   \VL \type{n}       \VL 1, 2, 3, 4                             \VL\FR
+   \VL \type{a}       \VL a, b, c, d                             \VL\MR
+   \VL \type{A}       \VL A, B, C, D                             \VL\MR
+   \VL \type{KA}      \VL \kap{A}, \kap{B}, \kap{C}, \kap{D}     \VL\MR
+   \VL \type{r}       \VL i, ii, iii, iv                         \VL\MR
+   \VL \type{R}       \VL I, II, III, IV                         \VL\MR
+   \VL \type{KR}      \VL \kap{I}, \kap{II}, \kap{III}, \kap{IV} \VL\MR
+   \VL \type{m}       \VL {\os 1}, {\os 2}, {\os 3}, {\os 4}     \VL\MR
+   \VL \type{g}       \VL $\alpha$, $\beta$, $\gamma$            \VL\MR
+   \VL \type{G}       \VL A, B, $\Gamma$                         \VL\LR
+   \HL
+   \stoptable} {}
+  {\starttable[|c|c|]
+   \HL
+   \VL \bf setup      \VL \bf result                  \VL\SR
+   \HL
+   \VL \type{1}       \VL dot (\symbol[1])            \VL\FR
+   \VL \type{2}       \VL dash (\symbol[2])           \VL\MR
+   \VL \type{3}       \VL star (\symbol[3])           \VL\MR
+   \VL \type{4}       \VL triangle (\symbol[4])       \VL\MR
+   \VL \type{5}       \VL circle (\symbol[5])         \VL\MR
+   \VL \type{6}       \VL big circle (\symbol[6])     \VL\MR
+   \VL \type{7}       \VL bigger circle (\symbol[7])  \VL\MR
+   \VL \type{8}       \VL square (\symbol[8])         \VL\MR
+   \VL                \VL                             \VL\MR
+   \VL                \VL                             \VL\LR
+   \HL
+   \stoptable} {}
+\stopcombination
+
+The command to itemize is:
+
+\startexample
+\starttyping
+\startitemize[<<setups>>]
+\item ........
+\item ........
+\stopitemize
+\stoptyping
+\stopexample
+
+So you can do things like this:
+
+\startbuffer
+Which of these theses are true?
+
+\startitemize[A]
+\item The difference between a village and a city is the existence of
+      a townhall.
+\item The difference between a village and a city is the existence of
+      a courthouse.
+\stopitemize
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This will lead to:
+
+\startreality
+\getbuffer
+\stopreality
+
+The symbols used under \type{1} to~\type{8} can be defined
+with the command \type {\definesymbol} (see \in {section}
+[symbols]) and the conversion of the numbering with \type
+{\defineconversion} (see \in {section} [convert]). For
+example:
+
+\startbuffer
+Do the following propositions hold some truth?
+
+\definesymbol[1][$\diamond$]
+
+\startitemize[1]
+\item The city of Amsterdam is built on wooden poles.
+\item The city of Rome was built in one day.
+\stopitemize
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+results in:
+
+\startreality
+\getbuffer
+\stopreality
+
+The keys \type{n}, \type{a}, etc. are related to the
+conversions. This means that all conversions are accepted.
+Take for example:
+
+\startitemize[g,packed]
+\item a \type{g} for Greek characters
+\item a \type{G} for Greek capitals
+\stopitemize
+
+When the setup and the \setchars\ are left out then the
+default symbol is typeset.
+
+The indentation and horizontal whitespace is set up locally
+or globally with:
+
+\showsetup{setupitemize}
+
+These arguments may appear in different combinations, like:
+
+\startbuffer
+What proposition is true?
+
+\startitemize[a,packed][stopper=:]
+\item 2000 is a leap-year
+\item 2001 is a leap-year
+\item 2002 is a leap-year
+\item 2003 is a leap-year
+\stopitemize
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+this will become:
+
+\startreality
+\getbuffer
+\stopreality
+
+Both argument are optional. The key \type {packed} is one
+of the most commonly used:
+
+\startbuffer
+What proposition is true?
+
+\startitemize[n,packed,inmargin]
+\item[ok] 2000 is a leap-year
+\item 2001 is a leap-year
+\item 2002 is a leap-year
+\item 2003 is a leap-year
+\stopitemize
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+will result in:
+
+\startreality
+\getbuffer
+\stopreality
+
+It happens very often that an itemization is preceded by a
+sentence like \quotation {\em\unknown\ can be seen below:}.
+In that case we add the key \type {intro} and the
+introduction sentence will be \quote {connected} to the
+itemization. After this setup a pagebreak between sentence
+and itemization is discouraged.
+
+\startexample
+\starttyping
+\startitemize[n,packed,inmargin,intro]
+\stoptyping
+\stopexample
+
+The setup of the itemization commands are presented in
+\in{table}[tab:setupitemize].
+
+\placetable
+  [here][tab:setupitemize]
+  {Setup of \type{\setupitemize}.}
+\starttable[|l|l|]
+\HL
+\VL \bf setup            \VL \bf result                                  \VL\SR
+\HL
+\VL \type{standard}      \VL default setup                               \VL\FR
+\VL \type{packed}        \VL no white space between items                \VL\MR
+\VL \type{joinedup}      \VL no white space before and after itemization \VL\MR
+\VL \type{paragraph}     \VL no white space before an itemization        \VL\MR
+\VL \type{<<n>>*serried} \VL little horizontal white space after symbol  \VL\MR
+\VL \type{<<n>>*broad}   \VL extra horizontal white space after symbol   \VL\MR
+\VL \type{inmargin}      \VL item separator in margin                    \VL\MR
+\VL \type{atmargin}      \VL item separator at the margin                \VL\MR
+\VL \type{stopper}       \VL punctuation after item separator            \VL\MR
+\VL \type{intro}         \VL no pagebreak                                \VL\MR
+\VL \type{columns}       \VL two columns                                 \VL\LR
+\HL
+\stoptable
+
+In the last example we saw a reference point behind the
+command \type{\item} for future cross referencing. In this
+case we could make a cross reference to \in{answer}[ok] with
+the command \type{\in[ok]}.
+
+The enumeration may be continued  by adding the key
+\type{continue}, for example:
+
+\startbuffer
+\startitemize[continue]
+\item 2005 is a leap-year
+\stopitemize
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This would result in a rather useless addition:
+
+\startreality
+\getbuffer
+\stopreality
+
+Another example illustrates that \type {continue}
+even works at other levels of itemizations:
+
+\startbuffer
+\startitemize[1,packed]
+\head  supported image formats in \PDFTEX \par
+      \startitemize[a]
+      \item png \item eps \item pdf
+      \stopitemize
+\head  non supported image formats in \PDFTEX \par
+      \startitemize[continue]
+      \item jpg \item gif \item tif
+      \stopitemize
+\stopitemize
+\stopbuffer
+
+\startreality
+\getbuffer
+\stopreality
+
+This was typed as (in this document we have set \type
+{headstyle=bold}):
+
+\startexample
+\typebuffer
+\stopexample
+
+When we use the key \type {columns} the items are typeset
+in two columns. The number of columns can be set by the keys
+\type{one}, \type{two} (default), \type{three} or
+\type{four}.
+
+\startbuffer
+\startitemize[n,columns,four]
+\item png \item tif \item jpg \item eps \item pdf
+\item gif \item pic \item bmp \item bsd \item jpe
+\stopitemize
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+We can see that we can type the items at our own preference.
+
+\startreality
+\getbuffer
+\stopreality
+
+In such a long enumerated list the horizontal space between
+itemseparator and text may be too small. In that case we use
+the key \type {broad}, here \type {2*broad}:
+
+\startbuffer
+\startitemize[R,columns,four,2*broad]
+\item png \item tif \item jpg \item eps \item pdf
+\item gif \item pic \item bmp \item bsd \item jpe
+\stopitemize
+\stopbuffer
+
+\startreality
+\getbuffer
+\stopreality
+
+The counterpart of \type {broad} is \type{serried}. We can
+also add a factor. Here we used \type {2*serried}.
+
+\startbuffer
+\startitemize[2*serried,packed]
+\item What format is this?
+\stopitemize
+\stopbuffer
+
+\startreality
+\getbuffer
+\stopreality
+
+We can abuse the key \type {broad} for very simple tables.
+It takes some guessing to reach the right spacing.
+
+\startbuffer
+\startitemize[4*broad,packed]
+\sym {yes} this is a nice format
+\sym {no}  this is very ugly
+\stopitemize
+\stopbuffer
+
+This results in a rather strange example:
+
+\startexample
+\typebuffer
+\stopexample
+
+\startreality
+\getbuffer
+\stopreality
+
+The parameter \type {stopper} expects a character of your own
+choice. By default it is set at a period. When no level is
+specified and the \setchars\ are empty the actual level is
+activated. In \in {section} [symbols] we will discuss this
+in more detail. Stoppers only apply to ordered (numbered)
+list.
+
+There are itemizations where a one line head is followed by
+a text block. In that case you use \type{\head} instead of
+\type {\item}. You can specify the layout of \type {\head}
+with the command \type {\setupitemize}. For example:
+
+\startbuffer
+\setupitemize[each][headstyle=bold]
+
+\startitemize[n]
+
+\head A title head in an itemization
+
+      After the command \type{\head} an empty line is mandatory. If you
+      leave that out you will get a very long header.
+
+\stopitemize
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This becomes:
+
+\startreality
+\getbuffer
+\stopreality
+
+If we would have used \type{\item} the head would have been
+typeset in a normal font. Furthermore a pagebreak could
+have been introduced between head and textblock. This is not
+permitted when you use \type {\head}.
+
+\showsetup{head}
+
+When an itemization consists of only one item we can leave
+out the commands \type {\startitemize} and \type
+{\stopitemize} and the level~1 symbol is used.
+
+\startbuffer
+\item The itemization commands force the user into a consistent layout
+      of the itemizations. \par
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+Instead of the \type{\par} you could have used an empty line.
+In each case, we get the following output:
+
+\startreality
+\getbuffer
+\stopreality
+
+Only the text directly following the command and ended by an
+empty line or \type{\par} is indented.
+
+When you want to re-use the last number instead of
+increasing the next item you can use \type{\sub}.
+This feature is used in discussion documents where earlier
+versions should not be altered too much for reference
+purposes.
+
+\startreality
+\startitemize[n,packed]
+\item This itemization is preceded by \type
+      {\startitemize[n,packed]}.
+\sub  This item is preceded by \type{\sub}, the other items
+      by \type{\item}.
+\item The itemization is ended by \type
+      {\stopitemize}.
+\stopitemize
+\stopreality
+
+The most important commands are:
+
+\showsetup{startitemize}
+
+\showsetup{item}
+
+\showsetup{sub}
+
+In addition to \type{\item} there is \type{\sym}. This
+command enables us to type an indented text with our own
+symbol.
+
+\showsetup{sym}
+
+Another alternative to \type{\item} is \type{\mar}.
+The specified argument is set in the margin (by default a
+typeletter) and enables us to comment on an item.
+
+\showsetup{mar}
+
+Some at first sight rather strange alternatives are:
+
+\showsetup{its}
+
+\showsetup{ran}
+
+These acronyms are placeholders for \type {items} and \type
+{range}. We illustrate most of these commands with an
+example that stems from a \NTG\ questionnaire:
+
+\startbuffer
+\startitemize[5,packed][width=8em,distance=2em,items=5]
+
+\ran {no\hss yes}
+
+\its I can not do without \TeX.
+\its I will use \TeX\ forever.
+\its I expect an alternative to \TeX\ in the next few years.
+\its I use \TeX\ and other packages.
+\its I hardly use \TeX.
+\its I am looking for another system.
+
+\stopitemize
+\stopbuffer
+
+\startreality
+\getbuffer
+\stopreality
+
+The source is typed below. Look at the setup, it is local.
+
+% Dit ziet er in broncode als volgt uit. Let op de
+% instellingen. Het verdient de voorkeur dergelijke
+% instellingen los te koppelen van de vragen en slechts
+% eenmalig te doen.
+
+\startexample
+\typebuffer
+\stopexample
+
+For the interactive version there is:
+
+\showsetup{but}
+
+This command resembles \type {\item} but produces an
+interactive symbol that executes the reference sequence
+specified.
+
+The example below shows a combination of the mentioned
+commands. We also see the alternative \type {\nop}.
+
+\startbuffer
+\startitemize
+\head  he got a head ache
+
+      \startitemize[n,packed]
+      \item     of all the items
+      \nop      he had to learn at school
+      \mar{++}  because the marginal explanation
+      \sub      of the substantial content
+      \sym{\#}  turned out to be mostly symbolic
+      \stopitemize
+\stopitemize
+\stopbuffer
+
+\startreality
+\getbuffer
+\stopreality
+
+This list was typed like this:
+
+\startexample
+\typebuffer
+\stopexample
+
+With the no||operation command:
+
+\showsetup{nop}
+
+During the processing of itemizations the number of items is
+counted. This is the case with all versions. The next pass
+this information is used to determine the optimal location
+to start a new page. So do not despair when at the first
+parse your itemizations do not look the way you expected.
+When using \TEXEXEC\ this is all taken care of.
+
+We have two last pieces of advises. When items consist of
+two or more paragraphs always use \type {\head} instead of
+\type {\item}, especially when the first paragraph consists
+only one line. The command \type{\head} takes care of
+adequate pagebreaking between two paragraphs. Also, always
+use the key \type {[intro]} when a one line sentence
+preceeds the itemization. This can be automated by:
+
+\starttyping
+\setupitemize[each][autointro]
+\stoptyping
+
+\section[items]{Items}
+\index{items}
+\index{questionnaire}
+\index{itemize}
+\index{forms}
+\index{lists}
+\macro{\tex{items}}
+\macro{\tex{setupitems}}
+
+A rarely used variant of producing lists is the command
+\type {\items}. It is used to produce simple, one level,
+vertical or horizontal lists. The command in its simplest
+form looks like this:
+
+\startexample
+\starttyping
+\items{<<alternative 1>>,<<alternative 2>>,...,<<alternative N>>}
+\stoptyping
+\stopexample
+
+Instead of an alternative you can also type \type{-}. In
+that case space is reserved but the item is not set. The
+layout of such a list is set with the command:
+
+\showsetup{setupitems}
+
+The number (\type{n}) as well as the width are calculated
+automatically. When you want to do this yourself you can use
+the previous command or you pass the options directly. We
+show some examples.
+
+\startbuffer
+\items[location=left]{png,eps,pdf}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+\getbuffer
+
+\startbuffer
+\items[location=bottom]{png,eps,pdf}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+\getbuffer
+
+\startbuffer
+\items[location=right,width=2cm]{png,eps,pdf}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+\getbuffer
+
+\startbuffer
+\items[location=top,width=6cm,align=left]{png,eps,pdf}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+\getbuffer
+
+\startbuffer
+\items[location=inmargin]{png,eps,pdf}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+\getbuffer
+
+\startbuffer
+\items[location=left,n=2,symbol=5]{jpg,tif}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+\getbuffer
+
+\startbuffer
+\items[symbol=3,n=6,width=\hsize,location=top]{png,eps,pdf,jpg,tif}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+\getbuffer
+
+The setup just after \type{\items} have the same effect as
+those of \type{\setupitems}:
+
+\showsetup{items}
+
+\section[citations]{Citations}
+\index{citation}
+\index{quotation}
+\index{language+quotes}
+\macro{\tex{quote}}
+\macro{\tex{quotation}}
+\macro{\tex{setupquotation}}
+\macro{\tex{startquotation}}
+
+The use of quotes depends on the language of a country:
+{\mainlanguage [nl]\quote {Nederlands},
+\mainlanguage [en]\quote {English},
+\mainlanguage [de]\quote {Deutsch},
+\mainlanguage [fr]\quote {Fran\cc ais}}.
+The consistent use of single and double quotes is supported
+by a number of commands. A citation in the running text is
+typeset by:
+
+\showsetup{startquotation}
+
+This command can be compared with \type {\startnarrower} and
+has the same setup parameters. The quotes are placed around
+the text and they fall outside the textblock:
+
+\startbuffer
+\startquotation
+In commercial advertising \quote {experts} are quoted. Not too
+long ago I saw a commercial where a washing powder was recommended
+by the Dutch Society of Housewives. The remarkable thing was that
+there was a spokesman and not a spokeswoman. He was introduced as
+the \quotation {director}. It can't be true that the director of the
+Society of Housewives is a man. Can it?
+\stopquotation
+\stopbuffer
+
+\startreality
+\getbuffer
+\stopreality
+
+In this example we see two other commands:
+
+\startexample
+\typebuffer
+\stopexample
+
+The command \type {\quotation} produces double quotes and
+\type {\quote} single quotes.
+
+\showsetup{quote}
+
+\showsetup{quotation}
+
+These commands adapt to the language. In Dutch, English,
+German and French texts other quotes are activated.
+The body font is set with:
+
+\showsetup{setupquote}
+
+The location of a period, inside or outside a citation is
+somewhat arbitrary. The opinions on this issue differ
+considerately.
+
+\startbuffer
+He said: \quotation {That is a bike} to which she replied:
+\quotation {Take a hike}.
+\stopbuffer
+
+\getbuffer
+
+The quotes are language dependent. Therefore it is of some
+importance that language switching is done correctly.
+
+\startbuffer
+\quotation {He answered: \fr \quotation {Je ne parle pas fran\c cais}.}
+\quotation {He answered: \quotation {\fr Je ne parle pas fran\c cais}.}
+\quotation {\fr Il r\'epondait: \quotation{Je ne parle pas fran\c cais}.}
+\fr \quotation {Il r\'epondait: \quotation{Je ne parle pas fran\c cais}.}
+\stopbuffer
+
+\typebuffer
+
+Watch the subtle difference.
+
+\startlines
+\getbuffer
+\stoplines
+
+When we want different quotes, we can change them. This is a
+language related setting.
+
+\starttyping
+\setuplanguage
+  [en]
+  [leftquote=\upperleftsinglesixquote,
+   leftquotation=\upperleftdoublesixquote]
+\stoptyping
+
+Fo rconsistency, such a setting can best be put into the
+local system file \type {cont-sys.tex}, together with other
+local settings. The following quotes are available:
+
+\def\ToonQuotes#1#2%
+  {\NC \tttf \string#1 \NC {#1\showstruts\strut}
+   \NC \tttf \string#2 \NC {\showstruts\strut#2} \NC \NR}
+
+\starttabulate[|l|c|l|c|]
+\ToonQuotes \lowerleftsingleninequote \lowerrightsingleninequote
+\ToonQuotes \lowerleftdoubleninequote \lowerrightdoubleninequote
+\ToonQuotes \upperleftsingleninequote \upperrightsingleninequote
+\ToonQuotes \upperleftdoubleninequote \upperrightdoubleninequote
+\ToonQuotes \upperleftsinglesixquote  \upperrightsinglesixquote
+\ToonQuotes \upperleftdoublesixquote  \upperrightdoublesixquote
+\stoptabulate
+
+\stopcomponent

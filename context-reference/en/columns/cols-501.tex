@@ -1,0 +1,37 @@
+% content=tex
+%
+% copyright=pragma-ade readme=readme.pdf licence=cc-by-nc-sa
+
+\definecolumnset[example][n=4]
+
+\definecolumnsetarea
+  [one][both]
+  [x=1,y=1,nx=2,ny=6,
+   align=high,offset=1ex,
+   background=contrast,state=testflow]
+
+\setupcolumnsetareatext
+  [one] [both] [\flushtextflow{demoflow}]
+
+\definetextflow
+  [demoflow] 
+  [style=smallbodyfont,width=\dimexpr(\Two-2ex)]
+
+\definecolumnsethsize{example}{1}{2}\Two
+
+% \definetest[testflow][next]{\doiftextflowelse{demoflow}}
+
+\definetest[testflow]{\doiftextflowelse{demoflow}}
+\starttextflow[demoflow] \stoptextflow % force content 
+
+\starttext
+
+\startcolumnset[example]
+
+   \starttextflow[demoflow] \fakewords{100}{125} \stoptextflow
+
+   \dorecurse{30}{\fakewords{50}{100}}
+
+\stopcolumnset
+
+\stoptext

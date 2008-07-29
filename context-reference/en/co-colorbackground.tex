@@ -1,0 +1,739 @@
+\startcomponent co-colorbackground
+
+\environment contextref-env
+\product contextref
+
+\input colorbackground/buffers
+
+\chapter[color,backgrounds]{Color and background}
+
+\section{Introduction}
+
+Judicious use of color can enhance your document's layout.
+For example. in interactive documents color can be used to
+indicate hyperlinks or other aspects that have no meaning in
+paper documents, or background colors can be used to
+indicate screen areas that are used for specific information
+components.
+
+In this chapter we describe the \CONTEXT\ color support. We
+will also pay attention to backgrounds and overlays because
+these are related to the color mechanism.
+
+\section[color]{Color}
+\index{color}
+\index[rgb]{\RGB}
+\index[cmyk]{\CMYK}
+\index{gray conversion}
+\macro{\tex{definecolor}}
+\macro{\tex{setupcolors}}
+\macro{\tex{setupcolors}}
+\macro{\tex{color}}
+\macro{\tex{startcolor}}
+\macro{\tex{showcolor}}
+
+One of the problems in typesetting color is that different
+colors may result in identical gray shades. We did some
+research in the past on this subject and we will describe
+the \CONTEXT\ facilities on this matter and the way
+\CONTEXT\ forces us to use color consistently. Color should
+not be used indiscriminately, therefore you first have to
+activate the color mechanism:
+
+\startexample
+\starttyping
+\setupcolors[state=start]
+\stoptyping
+\stopexample
+
+Other color parameters are also available:
+
+\showsetup{setupcolors}
+
+The parameter \type {state} can also be set at \type {local}
+or \type {global}. If you do not know whether the use of
+color will cross a page boundary, then you should use \type
+{global} or \type {start} to keep track of the color. We use
+\type {local} in documents where color will never cross a
+page border, as is the case in many screen documents. This
+will also result in a higher processing speed. (For most
+documents it does not hurt that much when one simply uses
+\type {start}).
+
+By default both the \RGB\ and \CMYK\ colorspaces are
+supported. When the parameter \type {cmyk} is set at \type
+{no}, then the \CMYK\ color specifications are automatically
+converted to \RGB. The reverse is done when \type {rgb=no}.
+When no color is allowed the colors are automatically
+converted to weighted grayshades. You can set this conversion
+with \type {conversion}. When set to \type {always}, all
+colors are converted to gray, when set to \type {yes}, only
+gray colors are converted.
+
+Colors must be defined. For some default color spaces, this
+is done in the file \type{colo-<<xxx>>.tex}. After
+definition the colors can be recalled with their mnemonic
+name \type {<<xxx>>}. By default the file \type {colo-rgb.tex} is
+loaded. In this file we find definitions like:
+
+\startexample
+\starttyping
+\definecolor [darkred]   [r=.5, g=.0, b=.0]
+\definecolor [darkgreen] [r=.0, g=.5, b=.0]
+............ ...........  ..................
+\stoptyping
+\stopexample
+
+A file with color definitions is loaded with:
+
+\startexample
+\starttyping
+\setupcolor[rgb]
+\stoptyping
+\stopexample
+
+Be aware of the fact that there is also a command \type
+{\setupcolors} that has a different meaning. The \type {rgb}
+file is loaded by default.
+
+Color must be activated like this:
+
+\startexample
+\starttyping
+\startcolor[darkgreen]
+We can use as many colors as we like. But we do have to take into
+account that the reader is possibly \color [darkred] {colorblind}. The
+use of color in the running text should always be carefully considered.
+The reader easily tires while reading multi||color documents.
+\stopcolor
+\stoptyping
+\stopexample
+
+In the same way you can define \CMYK\ colors and grayshades:
+
+\startexample
+\starttyping
+\definecolor [cyan] [c=1,m=0,y=0,k=0]
+\definecolor [gray] [s=0.75]
+\stoptyping
+\stopexample
+
+gray can also be defined like this:
+
+\startexample
+\starttyping
+\definecolor [gray] [r=0.75,r=0.75,b=0.75]
+\stoptyping
+\stopexample
+
+When the parameter \type {conversion} is set at \type {yes}
+the color definitions are automatically downgraded to the
+\type{s}||form: \type {[s=.75]}. The~\type {s} stands for
+\quote {screen}. When \type {reduction} is \type {yes}, the
+black component of a \CMYK\ color is distilled from the
+other components.
+
+One of the facillities of color definition is the heritage
+mechanism:
+
+\startbuffer
+\definecolor [important] [red]
+\stopbuffer
+
+\getbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+These definitions enable you to use colors consistently.
+Furthermore it is possible to give all \color [marked]
+{important} issues a different color, and change colors
+afterwards or even in the middle of a document.
+
+So, next to \type {\setupcolors} we have the following
+commands for defining colors:
+
+\showsetup{definecolor}
+
+A color definition file is loaded with:
+
+\showsetup{setupcolor}
+
+Typesetting color is done with:
+
+\showsetup{color}
+
+\showsetup{startcolor}
+
+A complete palette of colors is generated with:
+
+\showsetup{showcolor}
+
+\in{Figure}[fig:some colors] shows the colors that are
+standard available (see \type {colo-rgb.tex}).
+
+\placefigure
+  [][fig:some colors]
+  {Some examples of colors.}
+  {\getbuffer[colo-1]}
+
+\startcolor[darkgreen] The use of color in \TEX\ is not
+trivial. \TEX\ itself has no color support. Currently color
+support is implemented using \TEX's low level \type
+{\mark}'s and \type {\special}'s. This means that there are
+some limitations, but in most cases these go unnoticed.
+
+It is possible to cross page boundaries with colors. The
+headers and footers and the floating figures or tables will
+stil be set in the correct colors. However, the mechanism is
+not robust.
+
+In this sentence we use colors within colors. Aesthetically
+this is bad.
+
+As soon as a color is defined it is also available as a
+command. So there is a command \type {\darkred}. These
+commands do obey grouping. So we can say {\darkred \type
+{{\darkred this is typeset in dark red}}}.
+
+\stopcolor
+
+There are a number of commands that have the parameter \type
+{color}. In general, when a \type {style} can be set, \type
+{color} can also be set.
+
+The default color setup is:
+
+\starttyping
+\setupcolors [conversion=yes, reduction=no, rgb=yes, cmyk=yes]
+\stoptyping
+
+This means that both colorspaces are supported and that the
+$k$||component in \CMYK\ colors is maintained. When \type
+{reduction=yes}, the $k$||component is \quote {reduced}. With
+\type{conversion=no} equal color components are converted to
+gray shades.
+
+\section[gray]{Grayscales}
+\index{grayscales}
+\macro{\tex{graycolor}}
+\macro{\tex{grayvalue}}
+\macro{\tex{colorvalue}}
+
+When we print a document on a black and white printer we
+observe that the differences between somes colors are gone.
+\in{Figure}[fig:cyan] illustrates this effect.
+
+\placefigure
+  [][fig:cyan]
+  {Three cyan variations with equal gray shades.}
+  {\getbuffer[colo-2]}
+
+In a black and white print all blocks look the same but
+the three upper blocks have different cyan based colors. The
+lower blocks simulate grayshades. We use the following
+conversion formula:
+
+\placeformula[-]
+\startformula
+\rm gray = .30 \times red   +
+           .59 \times green +
+           .11 \times blue
+\stopformula
+
+A color can be displayed in gray with the command:
+
+\showsetup{graycolor}
+
+The actual values of a color can be recalled by the commands
+\type{\colorvalue{<<name>>}} and
+\type{\grayvalue{<<name>>}}.
+
+We can automatically convert all used colors in weighted
+grayshades.
+
+\starttyping
+\setupcolors [conversion=always]
+\stoptyping
+
+\section[colorgroups,palettes]{Colorgroups and palettes}
+\index{colorgroups}
+\index{palettes}
+\macro{\tex{definepalet}}
+\macro{\tex{definecolorgroup}}
+\macro{\tex{setuppalet}}
+\macro{\tex{showpalet}}
+\macro{\tex{showcolorgroup}}
+\macro{\tex{comparepalet}}
+\macro{\tex{comparecolorgroup}}
+
+\TEX\ itself has hardly any built||in graphical features.
+However the \CONTEXT\ color mechanism is designed by looking
+at the way colors in pictures are used. One of the problems
+is the effect we described in the last section. On a color
+printer the picure may look fine, but in black and white
+the results may be disappointing.
+
+In \TEX\ we can aproach this problem systematically.
+Therefore we designed a color mechanism that can be compared
+with that in graphical packages.
+
+We differentiate between individual colors and colorgroups.
+A colorgroup contains a number of gradations of a color.
+By default the following colorgroups are defined.
+
+\placefigure{none}{\getbuffer[colo-3]}
+
+The different gradations within a colorgroup are represented
+by a number. A colorgroup is defined with:
+
+\showsetup{definecolorgroup}
+
+An example of a part of the \RGB\ definition is:
+
+\startexample
+\starttyping
+\definecolorgroup
+  [blue][rgb]
+  [1.00:1.00:1.00,
+   0.90:0.90:1.00,
+   ..............,
+   0.40:0.40:1.00,
+   0.30:0.30:1.00]
+\stoptyping
+\stopexample
+
+The \type {[rgb]} is not mandatory in this case, because
+\CONTEXT\ expects \RGB\ anyway. This command can be viewed
+as a range of color definitions.
+
+\startexample
+\starttyping
+\definecolor [blue:1] [r=1.00, g=1.00, b=1.00]
+\definecolor [blue:2] [r=0.90, g=0.90, b=1.00]
+..............
+\definecolor [blue:7] [r=0.40, g=0.40, b=1.00]
+\definecolor [blue:8] [r=0.30, g=0.30, b=1.00]
+\stoptyping
+\stopexample
+
+A color within a colorgroup can be recalled with
+\type{<<name>>:<<number>>}, for example: \type{blue:4}.
+
+There is no maximum to the number of gradations within a
+colorgroup, but on the bases of some experiments we advise
+you to stay within 6~to 8~gradations. We can explain this.
+Next to colorgroups we have palettes. A pallet consists of a
+limited number of {\em logical} colors. Logical means that
+we indicate a color with a name. An example of a palette is:
+
+\placefigure[force][]{none}
+  {\showpalet[alfa][horizontal,name,number]}
+
+The idea behind palettes is that we have to avoid colors
+that are indistinguishable in black and white print. A
+palette is defined by:
+
+\startexample
+\starttyping
+\definepalet
+  [example]
+  [strange=red:3,
+       top=green:1,
+        .....
+    bottom=yellow:8]
+\stoptyping
+\stopexample
+
+We define a palette with the command:
+
+\showsetup{definepalet}
+
+\CONTEXT\ contains a number of predefined palettes. Within a
+palette we use the somewhat abstract names of quarks: {\em
+top}, {\em bottom}, {\em up}, {\em down}, {\em strange} and
+{\em charm}. There is also {\em friend} and {\em rude}
+because we ran out of names. Be aware of the fact that these
+are just examples in the \RGB\ definition file and based on
+our own experiments. Any name is permitted.
+
+The system of colorgroups and palettes is based on the idea
+that we compose a palette from the elements of a colorgroup
+with different numbers. Therefore the prerequisite is that
+equal numbers should have an equal grayshade.
+
+\placefigure[force][]{none}{\getbuffer[colo-4]}
+
+When a palette is composed we can use the command:
+
+\showsetup{setuppalet}
+
+After that we can use the colors of the chosen palette. The
+logical name can be used in for example \type
+{\color[strange]{is this not strange}}.
+
+An example of the use of palettes is shown in the verbatim
+typesetting of \TEX\ code. Within this mechanism colors
+with names like \type {prettyone}, \type {prettytwo}, etc.
+are used. There are two palettes, one for color and one for
+gray:
+
+\startexample
+\starttyping
+\definecolor [colorprettyone] [r=.9, g=.0, b=.0]
+\definecolor [grayprettyone]  [s=.3]
+\stoptyping
+\stopexample
+
+These palettes are combined into one with:
+
+\startexample
+\starttyping
+\definepalet
+  [colorpretty]
+  [  prettyone=colorprettyone,    prettytwo=colorprettytwo,
+   prettythree=colorprettythree, prettyfour=colorprettyfour]
+
+\definepalet
+  [graypretty]
+  [  prettyone=grayprettyone,     prettytwo=grayprettytwo,
+   prettythree=grayprettythree,  prettyfour=grayprettyfour]
+\stoptyping
+\stopexample
+
+Now we can change all colors by resetting the palette with:
+
+\startexample
+\starttyping
+\setuptyping[palet=colorpretty]
+\stoptyping
+\stopexample
+
+Each filter can be set differently:
+
+\startexample
+\starttyping
+\definepalet [MPcolorpretty] [colorpretty]
+\definepalet [MPgraypretty]  [graypretty]
+\stoptyping
+\stopexample
+
+As you can see a palette can inherit its properties from
+another palette. This example shows something of the color
+philosophy in \CONTEXT: you can treat colors as abstractions
+and group them into palettes and change these when
+necessary.
+
+On behalf of the composition of colorgroups and palettes
+there are some commands available to test whether the colors
+are distinguishable.
+
+\showsetup{showcolorgroup}
+
+\showsetup{showpalet}
+
+\showsetup{comparecolorgroup}
+
+\showsetup{comparepalet}
+
+The overviews we have shown thusfar are generated by the
+first two commands and the gray values are placed below the
+baseline. On the left there are the colors of the grayshades.
+
+\placefigure[force][]{none}{\comparecolorgroup[green]}
+
+This overview is made with \type {\comparecolorgroup[green]}
+and the one below with \type {\comparepalet[gamma]}.
+
+\placefigure[force][]{none}{\comparepalet[gamma]}
+
+The standard colorgroups and palettes are composed very
+carefully and used systematically for coloring pictures.
+These can be displayed adequately in color and black and
+white.
+
+\placefigure
+  {Some examples of the use of color.}
+  \startcombination[4*1]
+    {\externalfigure[vew1179]} {}
+    {\externalfigure[vew1182]} {}
+    {\externalfigure[vew1218]} {}
+    {\externalfigure[spin016]} {}
+  \stopcombination
+
+\section[background text]{Text backgrounds}
+\index{screens}
+\index{backgrounds+text}
+\macro{\tex{setupscreens}}
+\macro{\tex{setupbackground}}
+\macro{\tex{background}}
+\macro{\tex{startbackground}}
+\macro{\tex{startraster}}
+
+In a number of commands, for example \type {\framed}, you
+can use backgrounds. A background may have a color or a
+screen (pure gray). By default the \type {backgroundscreen} is
+set at \type {0.95}. Usable values lie between ~0.70
+and~1.00.
+
+Building screens in \TEX\ is memory consuming and may cause
+error messages. The screens are therefore build up
+externally by means of \POSTSCRIPT\ or \PDF\ instructions.
+This is set up with:
+
+\showsetup{setupscreens}
+
+The parameter \type {factor} makes only sense when the
+method \type {line} or \type {dot} is chosen. The parameter
+\type {screen} determines the \quote {grid} of the screen.
+Text on a screen of 0.95 is still readable.
+
+Visually the \TEX\ screens are comparable with \POSTSCRIPT\
+screens. When memory and time are non issues \TEX\ screens
+come out more beautiful than postscript screens. There are
+many ways to implement screens but only the mentioned
+methods are implemented.
+
+\startbackground
+Behind the text in the pagebody screens can be typeset.
+This is done by enclosing the text with the commands:
+
+\startexample
+\starttyping
+\startbackground
+\stopbackground
+\stoptyping
+\stopexample
+
+We have done so in this text. Backgrounds can cross page
+boundaries when necessary. Extra vertical whitespace is
+added around the text for reasons of readability.
+\stopbackground
+
+\showsetup{startbackground}
+
+The background can be set up with:
+
+\showsetup{setupbackground}
+
+The command \type {\background} can be used in combination
+with for example placeblocks:
+
+\startexample
+\starttyping
+\placetable
+  {Just a table.}
+  \background
+  \starttable[|c|c|c|]
+  \HL
+  \VL red  \VL green   \VL blue   \VL \AR
+  \VL cyan \VL magenta \VL yellow \VL \AR
+  \HL
+  \stoptable
+\stoptyping
+\stopexample
+
+The command  \type{\background} expects an argument.
+Because a table is \quote {grouped} it will generate
+\argchars\ by itself and no extra braces are necessary.
+
+\showsetup{background}
+
+A fundamental difference between colors and screens is that
+screens are never converted. There is a command \type
+{\startraster} that acts like \type {\startcolor}, but in
+contrast to the color command, \CONTEXT\ does not keep track
+of screens across page boundaries. This makes sense,
+because screens nearly always are used as simple backgrounds.
+
+\section[backgrounds layout]{Layout backgrounds}
+\index{screens}
+\index{backgrounds+layout}
+\macro{\tex{setupbackgrounds}}
+
+In interactive or screen documents the different screen
+areas may have different functions. Therefore the systematic
+use of backgrounds may seem obvious. It is possible to
+indicate all areas or compartments of the pagebody
+(screenbody). This is done with:
+
+\showsetup{setupbackgrounds}
+
+Don't confuse this command with \type {\setupbackground}
+(singular). A background is only calculated when something
+has changed. This is more efficient while generating a
+document. When you want to calculate each background
+separately you should set the parameter \type {state} at
+\type {repeat}. The page background is always recalculated,
+since it provides an excellent place for page dependent
+buttons.
+
+After \type {\setupbackgrounds} without any
+arguments the backgrounds are also re||calculated.
+
+A specific part of the layout is identified by means of
+an axis (see \in{figure}[fig:axis]).
+
+\placefigure
+  [hier][fig:axis]
+  {The coordinates in \type{\setupbackgrounds}.}
+  {\getbuffer[colo-5]}
+
+You are allowed to provide more than one coordinate at a
+time, for example:
+
+\startexample
+\starttyping
+\setupbackgrounds
+  [header,text,footer]
+  [text]
+  [background=screen]
+\stoptyping
+\stopexample
+
+or
+
+\startexample
+\starttyping
+\setupbackgrounds
+  [text]
+  [text,rightedge]
+  [background=color,backgroundcolor=MyColor]
+\stoptyping
+\stopexample
+
+Some values of the paremeter \type{page}, like \type{offset}
+and \type{corner} also apply to other compartments, for
+example:
+
+\startexample
+\starttyping
+\setupbackgrounds
+  [page]
+  [offset=.5\bodyfontsize
+   depth=.5\bodyfontsize]
+\stoptyping
+\stopexample
+
+When you use menus in an interactive or screen document
+alignment is automatically adjusted for offset and|/|or depth.
+It is also possible to set the parameter \type{page} to the
+standard colors and screens.
+
+If for some reason an adjustment is not generated you can
+use \type{\setupbackgrounds} (without an argument). In
+that case \CONTEXT\ will calculate a new background.
+
+\section[overlays]{Overlays}
+\index{overlays}
+\macro{\tex{defineoverlay}}
+
+\TEX\ has only limited possibilities to enhance the layout
+with specific features. In \CONTEXT\ we have the possibility
+to \quote{add something to a text element}. You can think of
+a drawing made in some package or other ornaments. What we
+technically do is lay one piece of text over another piece
+text. That is why we speak of \quote {overlays}.
+
+When we described the backgrounds you saw the paremeters
+\type {color} and \type {screen}. These are both examples of
+an overlay. You can also define your own background:
+
+\startbuffer
+\defineoverlay[gimmick][\green a green text on a background]
+
+\framed
+  [height=2cm,background=gimmick,align=middle]
+  {at\\the\\foreground}
+\stopbuffer
+
+\typebuffer
+
+This would look like this:
+
+\startlinecorrection
+\getbuffer
+\stoplinecorrection
+
+An overlay can be anything:
+
+\startbuffer
+\defineoverlay
+  [gimmick]
+  [{\externalfigure[koe][width=\overlaywidth,height=\overlayheight]}]
+\framed
+  [height=2cm,width=5cm,background=gimmick,align=right]
+  {\vfill this is a cow}
+\stopbuffer
+
+\typebuffer
+
+We can see that in designing an overlay the width and height
+are available in macros. This enables us to scale the
+figure.
+
+\startlinecorrection
+\getbuffer
+\stoplinecorrection
+
+We can combine overlays with one another or with a screen and
+color.
+
+\startbuffer
+\defineoverlay
+  [gimmick]
+  [{\externalfigure[koe][width=\overlaywidth,height=\overlayheight]}]
+\defineoverlay
+  [nextgimmick]
+  [\red A Cow]
+\framed
+  [height=2cm,width=.5\textwidth,
+   background={screen,gimmick,nextgimmick},align=right]
+  {\vfill this is a cow}
+\stopbuffer
+
+\startlinecorrection
+\getbuffer
+\stoplinecorrection
+
+The \TEX\ definitions look like this:
+
+\typebuffer
+
+\section{\METAPOST}
+\index[metapost]{\METAPOST}
+
+In a \CONTEXT\ document we can use \METAPOST\ code
+directly. For example:
+
+\typebuffer[mp-1]
+
+A direct relation with the \CONTEXT\ color mechanism is
+obvious:
+
+\typebuffer[mp-2]
+
+\METAPOST\ support is very extensive. You can store
+definitions and re||use them at random. If possible
+processed \METAPOST\ pictures are re||used.
+
+A detailed discussion on embedding \METAPOST\ graphics is
+beyond this manual, and therefore will be covered elsewhere.
+For the moment it is enough to know the basics of putting
+for instance graphics in the background. In the next example,
+a graphic is calculated each time it is refered to:
+
+\typebuffer[mp-3]
+
+When the graphic does not change, we can best reuse it, like:
+
+\typebuffer[mp-4]
+
+When using the \CONTEXT\ command line interface \TEXEXEC,
+graphics are processed automatically. Unless one calls
+\METAPOST\ at runtime, a second pass is needed to get the
+graphics in their final state.
+
+\stopcomponent
+

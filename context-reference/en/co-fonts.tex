@@ -1,0 +1,1801 @@
+\startcomponent co-fonts
+
+\environment contextref-env
+\product contextref
+
+
+\chapter[fonts]{Fonts}
+
+\section{Introduction}
+\index{fonts}
+
+% we assume that there are fontfiles demofont.afm/pfb
+%
+% runtools mfonts.rb
+
+% \loadmapfile[texnansi-test-test.map]
+
+% examples
+
+\fixme{the \type{funny} buffer used to have lucida instead of palatino}
+
+\startbuffer[funny]
+\definetypeface [funny] [rm] [serif] [palatino] [default] [encoding=texnansi]
+\definetypeface [funny] [ss] [sans]  [palatino] [default] [encoding=texnansi]
+\definetypeface [funny] [tt] [mono]  [palatino] [default] [encoding=texnansi]
+\definetypeface [funny] [mm] [math]  [palatino] [default] [encoding=texnansi]
+\stopbuffer
+
+\startbuffer[joke]
+\definetypeface [joke] [rm] [serif] [times]     [default] [encoding=texnansi]
+\definetypeface [joke] [ss] [sans]  [helvetica] [default] [rscale=.9,encoding=texnansi]
+%\definetypeface [joke] [tt] [mono]  [courier]   [default] [rscale=1.1,encoding=texnansi]
+\definetypeface [joke] [mm] [math]  [times]     [default] [encoding=texnansi]
+\stopbuffer
+
+\startbuffer[nojoke]
+\definetypeface [nojoke] [rm] [serif] [times]     [default] [encoding=texnansi]
+\definetypeface [nojoke] [ss] [sans]  [helvetica] [default] [encoding=texnansi]
+\definetypeface [nojoke] [tt] [mono]  [courier]   [default] [encoding=texnansi]
+\definetypeface [nojoke] [mm] [math]  [times]     [default] [encoding=texnansi]
+\stopbuffer
+
+\startbuffer[whow]
+\definetypeface [whow] [rm] [serif] [modern] [latin-modern] [encoding=ec]
+\definetypeface [whow] [ss] [sans]  [modern] [latin-modern] [encoding=ec]
+\definetypeface [whow] [tt] [mono]  [modern] [latin-modern] [encoding=ec]
+\definetypeface [whow] [mm] [math]  [modern] [latin-modern] [encoding=ec]
+\stopbuffer
+
+\getbuffer[funny,nojoke,joke,whow]
+
+\def\FakeLine#1%
+  {\hbox to \hsize
+     {\strut
+      \hbox to \hsize
+        {\startcolor[AltColor]%
+         \leaders
+         \hrule height .8\ht\strutbox depth  .6\dp\strutbox
+         \hfil
+         \stopcolor
+         #1}%
+      \hskip-\hsize
+      \hbox to \hsize
+        {\startcolor[white]%
+         \leaders
+         \hrule height .25pt depth .25pt
+         \hfil
+         \stopcolor
+         \hphantom{#1}}%
+      \hss}%
+   \par}
+
+\def\FakeParagraph#1#2%
+ {\startlinecorrection[blank]
+  \FakeLine{}\FakeLine{#1{#2{-}}}
+  \FakeLine{}\FakeLine{#1{#2{,}}}
+  \FakeLine{}\FakeLine{#1{#2{.}}}
+  \stoplinecorrection}
+
+\todo{Integrate and resplit this chapter with the Typography chapter}
+
+This manual is no replacement for the reference manual but
+an addendum. Here we will cover some details of defining
+fonts and collections of fonts, called typefaces. We will
+also spend some words on installing fonts. In any case, it
+helps if you know what a font is, and are familiar with the
+\CONTEXT\ font switching macros.
+
+The original \CONTEXT\ font model was based on plain \TEX,
+but evolved into a more extensive one primarily aimed at
+consistently typesetting our educational documents. The fact
+that we had to typeset pseudo caps in any font shape in
+normal text as well as superscript mode, has clearly
+determined the design. This model has been relatively stable
+since 1995.
+
+Currently there are three layers of font definitions:
+
+\startitemize
+
+\item  simple font definitions: such definitions provide
+       \type {\named} access to a specific font in a
+       predefined size
+
+\item  body font definitions: these result in a coherent
+       set of fonts (often) from a same type foundry (or
+       designer) that can be used intermixed
+
+\item  typeface definitions: they package serif, sans serif,
+       mono spaced and math and other styles in such a way
+       that you can conveniently switch between different
+       combinations
+
+\stopitemize
+
+These three mechanisms are actually build on top of each
+other and all rely on a low level mapping mechanism
+that is responsible for resolving the real font file name
+and the specific font encoding used.
+
+When \TEX\ users install one of the \TEX\ distributions,
+like \TEX-live, they will have a lot of fonts already on the
+system. Unfortunately it is not that easy to get a clear
+picture of what is there and what is needed to use them.
+Although the \type {texmf} tree is prepared for commercial
+fonts, adding them is not trivial. To compensate this,
+\CONTEXT\ comes with \type {texfont.pl}, that can install
+fonts for you. Also, to help you on your way, we provide
+typescripts for a couple of free fonts.
+
+\section {Font files and encodings}
+
+In \CONTEXT\ when possible you should use symbolic names for
+fonts. The mapping from these names onto real ones in most
+cases goes unnoticed for the user. This is good since the
+name depends on the encoding and therefore not seldom is
+obscure and hard to remember.
+
+\starttyping
+\definefontsynonym [Serif]    [Palatino]
+\definefontsynonym [Palatino] [uplr8t]   [encoding=ec]
+\stoptyping
+
+The advantage of using for instance \type {Serif} in
+definitions is, that we can later easily remap this name
+onto another font than \type {Palatino}. In a similar way,
+we can define new names that map onto \type {Serif}.
+
+\starttyping
+\definefontsynonym [TitleFont] [Serif]
+\stoptyping
+
+By using symbolic names in for instance style and macro
+definitions, you can make them independent of a particular
+font and let themselves adapt to the main document fonts,
+which normally are defined in terms of \type {Serif}.
+
+There is no limitation on the level of mapping, but the last
+one in the chain has to be a valid font filename. Specific
+font encoding declarations take place at that level, since
+they are closely related to specific instances of fonts. We
+come back to this in later sections.
+
+\section {Simple font definitions}
+
+The most simple font definition takes place with \type
+{\definefont}. If you want a fixed size, you can define a
+font as follows:
+
+\starttyping
+\definefont [TitleFont] [Serif at 24pt]
+\stoptyping
+
+The \type {at} specifier is a natural \TEX\ one, just as
+\type {scaled}. But where \type {at} is useful, \type
+{scaled} is rather useless, since it scales the font
+related to its design size which is often unknown.
+Depending on the design size is especially dangerous when
+you use symbolic names, since different fonts have
+different design sizes, and designers differ in their ideas
+about what a design size is. Compare for instance the 10pt
+instance of a Computer Modern Roman with Lucida Bright
+(which more looks like a 12pt then).
+
+\starttyping
+\definefont [TitleFont] [Serif scaled 2400]
+\stoptyping
+
+Hard codes sizes can be annoying when you want to define
+fonts in such a way that their definitions adapt themselves.
+Therefore we provide an additional way of scaling:
+
+\starttyping
+\definefont [TitleFont] [Serif sa 2.4]
+\stoptyping
+
+The \type {sa} directive means as much as \quote {scaled at
+the body font size}. Therefore this definition will lead to
+a 24pt scaling when the (document) body font size equals
+10pt. Because the definition has a lazy nature, the font
+size will adapt itself to the current body font size.
+
+Instead of a number, you can also use an identifier, as
+defined in the body font environment that specifies related
+dimensions. This scales the font to the \type {b} size,
+being 1.440 by default.
+
+
+\starttyping
+\definefont [TitleFont] [Serif sa b]
+\stoptyping
+
+An alternative to \type {sa} is \type {mo}. Here the size
+maps onto the remapped body font size when given. We will
+not cover this in detail here.
+
+\section {Defining body fonts}
+
+The core of this model is the definition command that is used
+as follows:
+
+\starttyping
+\definebodyfont [10pt] [rm] [tf=tir at 10pt]
+\stoptyping
+
+As one can expect, the first implementation of a font model
+in \TEX\ is also determined and thereby complicated by the
+fact that the Computer Modern Roman fonts come in design
+sizes. As a result, definitions can look rather complex and
+because most \TEX\ users start with those fonts, font
+definitions are considered to be complex.
+
+Another complicating factor is that in order to typeset math,
+even more definitions are needed. Add to that the fact that
+sometimes we need to use fonts with mixed encodings, i.e.\
+with the glyphs positioned in different font slots, and you
+can understand why font handling in \TEX\ is often qualified
+as \quote {the font mess}. Flexibility simply has its price.
+
+Many documents have a rather simple design and use only a
+couple of (often related) fonts. For some commonly used
+fonts, this means that one can stick to loading the
+appropriate predefined font definition file. \footnote {The
+original font definition files are replaced by typescripts
+in \type {type-pre}, but font files are still supported for
+upward compatibility reasons.} But font life is seldom
+simple and, in a worst case scenario, one must define
+the fonts in the document style.
+
+Because most fonts come in one design size, we can simplify
+the definitions by using predefined sizes, like the default
+one (type {sa 1}):
+
+\starttyping
+\definebodyfont [10pt,11pt,12pt] [rm] [default]
+\stoptyping
+
+The default relations between sizes are determined by the
+body font environment. You can get some insight in this by
+typesetting this environment as shown in \in {figure}
+[fig:environment].
+
+\startbuffer
+\showbodyfontenvironment % [lbr]
+\stopbuffer
+
+\typebuffer
+
+\placefigure
+  [here][fig:environment]
+  {The current bodyfont environment.}
+  {\getbuffer}
+
+Because the font names (may) depend on the encoding vector, we
+can use the previously discussed method for mapping symbolic
+names. So, one can comfortably say:
+
+\starttyping
+\definebodyfont [10pt,11pt,12pt] [rm] [tf=tir         sa 1]
+\definebodyfont [10pt,11pt,12pt] [rm] [tf=Times-Roman sa 1]
+\definebodyfont [10pt,11pt,12pt] [rm] [tf=Serif       sa 1]
+\stoptyping
+
+As we already pointed out, the mapping from symbolic names
+onto the real file name can be direct or indirect. The
+indirect method has the advantage that one can also use the
+more abstract name (\type {Serif}) as well as the real name
+(\type {Times-Roman}), but can leave the file name
+untouched. Document styles thereby can be defined in such a
+way that they are independent of font file names. This
+means that the previous definition can become:
+
+\starttyping
+\definebodyfont    [10pt,11pt,12pt] [rm] [tf=Serif sa 1]
+\definefontsynonym [Serif] [Times-Roman]
+\definefontsynonym [Times-Roman] [tir] [encoding=texnansi]
+\stoptyping
+
+These commands permit you to combine fonts in any way in
+any size, but when documents have a more complicated
+design, there may be many \type {Serif}'s and multiple math
+fonts used. Of course this can be handled, but only by
+redefining fonts on the spot and this is not only
+cumbersome, but also undesirable from the perspective of
+document source management.
+
+\startbuffer[sample]
+Who is {\it fond} of fonts?
+Who claims that $t+e+x+t=m+a+t+h$?
+Who {\ss can see} {\tt the difference} here?
+\stopbuffer
+
+Consider the following text:
+
+\typebuffer[sample]
+
+In Computer Modern Roman fonts, this looks like:
+
+\bgroup
+  \switchtobodyfont[cmr]
+  \startlines
+  \getbuffer[sample]
+  \stoplines
+\egroup
+
+While in Lucida it shows up as:
+
+\bgroup
+  \switchtobodyfont[lbr]
+  \startlines
+  \getbuffer[sample]
+  \stoplines
+\egroup
+
+The standard \POSTSCRIPT\ font have yet another look and feel:
+
+\bgroup
+  \switchtobodyfont[pos]
+  \startlines
+  \getbuffer[sample]
+  \stoplines
+\egroup
+
+As you can notice, there are differences in size and shape.
+The switch between those fonts was done by issuing the
+following commands.
+
+\starttyping
+\switchtobodyfont[cmr]
+\switchtobodyfont[lbr]
+\switchtobodyfont[pos]
+\stoptyping
+
+With \type {\showbodyfont[...]} we can get a summary of such a
+font collection.
+
+\starttyping
+\showbodyfont[cmr]
+\showbodyfont[lbr]
+\showbodyfont[pos]
+\stoptyping
+
+\placefigure
+  {Computer Modern Roman.}
+  {\showbodyfont[cmr]}
+
+\placefigure
+  {Lucida Bright.}
+  {\showbodyfont[lbr]}
+
+\placefigure
+  {Times Roman, Helvetica \& Courier.}
+  {\showbodyfont[postscript]}
+
+This way of switching fonts has been part of \CONTEXT\ from
+the beginning, but as more complicated designs started to
+show up, we felt the need for a more versatile mechanism.
+
+\section {Typescripts and typefaces}
+
+On top of the existing (but extended) traditional font
+module, we now provide a more abstract layer of typescripts
+and building blocks for definitions and typefaces as font
+containers. The original font definition files have been
+regrouped into such typescripts thereby reducing the number
+of files involved.
+
+Typescripts are in fact just organized definitions. The
+previously shown Lucida Bright font collection can be
+defined as follows. First we map some symbolic names onto
+Lucida names; the mapping to encoding specific filenames
+takes place somewhere else.
+
+\starttyping
+\definefontsynonym [Serif]         [LucidaBright]
+\definefontsynonym [SerifBold]     [LucidaBright-Demi]
+....
+\definefontsynonym [Sans]          [LucidaSans]
+\definefontsynonym [SansBold]      [LucidaSans-Demi]
+....
+\definefontsynonym [Mono]          [LucidaSans-Typewriter]
+\definefontsynonym [MonoBold]      [LucidaSans-TypewriterBold]
+....
+\definefontsynonym [MathRoman]     [LucidaBright]
+\definefontsynonym [MathExtension] [LucidaNewMath-Extension]
+\stoptyping
+
+Because no design sizes are involved, we can define the
+sizes in a rather fast way.
+
+\starttyping
+\definebodyfont
+  [17.3pt,14.4pt,12pt,11pt,10pt,9pt,8pt,7pt,6pt,5pt,4pt]
+  [rm,ss,tt,mm]
+  [default]
+\stoptyping
+
+As you can see here, these definitions define the \type
+{serif}, \type {sans}, \type {mono} and \type {math} shapes
+together. In the typescript layer, these definitions are
+split:
+
+\starttyping
+\starttypescript [serif] [lucida] [name]
+  \definefontsynonym [Serif]     [LucidaBright]
+  \definefontsynonym [SerifBold] [LucidaBright-Demi]
+  ....
+\stoptypescript
+\stoptyping
+
+In a similar way the sizes have become typescripts:
+
+\starttyping
+\starttypescript [serif] [default] [size]
+  \definebodyfont
+    [17.3pt,14.4pt,12pt,11pt,10pt,9pt,8pt,7pt,6pt,5pt,4pt]
+    [rm] [default]
+\stoptypescript
+\stoptyping
+
+The definition of the Lucida Bright font collection can now
+be simplified to:
+
+\starttyping
+\starttypescript [lbr]
+  \usetypescript [all] [lucida]  [name]
+  \usetypescript [all] [default] [size]
+\stoptypescript
+\stoptyping
+
+Typescripts and its invocations have up to three specifiers.
+An invocation matches the script specification when the three
+arguments have common keywords. The special keyword \type
+{all} is equivalent to any match. Although any keyword is
+permitted, the current definitions have some reserved
+(advised) keys, like:
+
+\starttabulate[|lT|p|]
+\HL
+\NC \bf pattern \NC \bf application \NC \NR
+\HL
+\NC [serif] [*] [*]   \NC serif fonts             \NC \NR
+\NC [sans] [*] [*]    \NC sans serif fonts        \NC \NR
+\NC [mono] [*] [*]    \NC mono spaced fonts       \NC \NR
+\NC [math] [*] [*]    \NC math fonts              \NC \NR
+\NC [*] [*] [size]    \NC size specification      \NC \NR
+\NC [*] [*] [name]    \NC symbolic name mapping   \NC \NR
+\NC [*] [*] [special] \NC special settings        \NC \NR
+\NC [*] [*] [special] \NC special settings        \NC \NR
+\NC [*] [default] [*] \NC default case(s)         \NC \NR
+\NC [map] [*] [*]     \NC map file specifications \NC \NR
+\HL
+\stoptabulate
+
+In many cases the font class or encoding is part of the
+specification. These are variable.
+
+\starttabulate[|lT|p|]
+\HL
+\NC \bf pattern \NC \bf application \NC \NR
+\HL
+\NC [*] [class] [*]    \NC a specific font class    \NC \NR
+\NC [*] [*] [encoding] \NC a specific font encoding \NC \NR
+\HL
+\stoptabulate
+
+When you take a close look at the files you will notice a
+couple of more keywords, but we will not discuss them here.
+Instead of the predefined size \type {default}, you can use
+the \type {dtp} size scripts with their associated body font
+environments.
+
+In the example of the Lucida Bright definition, we still
+treat the font as a whole: \type {serif}, \type {sans},
+\type {mono} and \type {math} come from one family of
+fonts. Instead of defining the font this way, we could have
+created a so called typeface collection. Such a definition
+looks as follows:
+
+\typebuffer[funny]
+
+From this moment, \type {\funny} will enable this specific
+collection of fonts. In a similar way we can define a
+collection \type {\joke}.
+
+
+\fixme{the \type{courier} line whines about Courier-Caps}
+
+\typebuffer[joke]
+
+And the familiar Computer Modern Roman as \type {\whow}:
+
+\typebuffer[whow]
+
+When typeset in \type {\funny}, \type {\joke}, and \type
+{whow}, the samples now look like:
+
+\startlines
+{\funny \getbuffer[sample]}
+\stoplines
+
+\startlines
+{\joke  \getbuffer[sample]}
+\stoplines
+
+\startlines
+{\whow  \getbuffer[sample]}
+\stoplines
+
+With \type {\showbodyfont} you can get an overview of this font.
+
+\placefigure
+  {The \type {funny} typeface collection.}
+  {\showbodyfont[funny]}
+
+\placefigure
+  {The \type {joke} typeface collection.}
+  {\showbodyfont[joke]}
+
+\placefigure
+  {The \type {whow} typeface collection.}
+  {\showbodyfont[whow]}
+
+When defining the joke typeface collection, we used a scale
+directive. The next sample demonstrates the difference
+between the non scaled and the scaled alternatives.
+
+\startlines
+{\nojoke \getbuffer[sample]}
+\stoplines
+
+\startlines
+{\joke   \getbuffer[sample]}
+\stoplines
+
+In due time \CONTEXT\ will come with more predefined typeface
+collections. One of the currently predefined typefaces is
+Computer Modern Roman:
+
+\starttyping
+\usetypescript[modern][ec]       % western european languages
+\usetypescript[modern][texnansi] % western european languages
+\usetypescript[modern][qx]       % eastern european languages
+\usetypescript[modern][t5]       % vietnamese users
+\stoptyping
+
+Another set is made up by Adobe's standard 15 fonts:
+
+\starttyping
+\usetypescript[postscript][texnansi] % our prefered encoding
+\usetypescript[postscript][ec]       % another popular one
+\stoptyping
+
+It may not be clear from the previous examples, but a big
+difference between using typeface definitions and the old
+method of redefining over and over again, is that the new
+method uses more resources. This is because each typeface
+gets its own name space assigned. As an intentional side
+effect, the symbolic names also follow the typeface. This
+means that for instance:
+
+\startbuffer[big]
+\definefont[MyBigFont][Serif sa 1.5] \MyBigFont A bit larger!
+\stopbuffer
+
+\typebuffer[big]
+
+will adapt itself to the currently activated serif font
+shape, here \type {\funny}, \type {\joke} and \type {\whow}.
+
+\startlines
+{\funny \getbuffer[big]}
+{\joke  \getbuffer[big]}
+{\whow  \getbuffer[big]}
+\stoplines
+
+The option to define relative font sizes using the \type
+{rscale} parameter permits fine tuning of font sizes.
+Fine tuning of the sizes \type {x}, \type {xx}, \type {a},
+\type {b}, \unknown\ as well as interline spacing is handled
+by the bodyfont environment. This command normally takes two
+arguments, but accepts an optional (first) one denoting a
+class. You can use this command to tailor the environment for
+a specific typeface.
+
+\startbuffer
+\definebodyfontenvironment
+  [joke] [11pt]
+  [interlinespace=20pt]
+\stopbuffer
+
+\bgroup \joke Although the default interline space is quite
+well tuned to the average font, you may want to change it
+using this command. The defaults used to typeset this
+paragraph are related to the x||height of the font. \par
+\egroup
+
+\typebuffer
+
+\bgroup \getbuffer \joke However, keep in mind that when you
+change the dimensions for one size, you also need to change
+them for other sizes in order to get a consistent look and
+feel when switching to a smaller or larger size. \par \egroup
+
+Math is kind of special in the sense that it has its own set
+of fonts, either or not related to the main text font. By
+default, a change in style, for instance bold, is applied to
+text only.
+
+\startbuffer[math]
+$        \sqrt{625} =     5\alpha$
+$\bf     \sqrt{625} =     5\alpha$
+$        \sqrt{625} = \bf 5\alpha$
+$\bfmath \sqrt{625} =     5\alpha$
+\stopbuffer
+
+\typebuffer[math]
+
+The difference between these four lines is as follows:
+
+\startlines
+\funny \getbuffer[math]
+\stoplines
+
+In order to get a bold $\alpha$ symbol, we need to define
+bold math fonts. \footnote {Bold math is already prepared in
+the core modules, so normally one can do with less code} The
+most convenient way of doing this is the following:
+
+\startbuffer
+\definetypeface [funny] [mm]
+  [math,boldmath] [palatino] [default] [encoding=texnansi]
+\stopbuffer
+
+\typebuffer \getbuffer
+
+Bold math looks like this:
+
+\startlines
+\funny \getbuffer[math]
+\stoplines
+
+The definitions are given on the next page. Such definitions
+are normally collected in the project bound file, for
+instance called \type {typeface.tex}. You can add a filename
+to the list of typescript files yourself:
+
+\starttyping
+\usetypescriptfile[typeface] % project scripts
+\stoptyping
+
+An example of such a file is shown below:
+
+\start
+\switchtobodyfont[9pt] \typefile{typeface}
+\stop
+
+It is also possible to avoid typescripts. When definitions are
+used only once, it makes sense to use a more direct method.
+We will illustrate this with a bit strange example.
+
+Imagine that you want some math formulas to stand out, but
+that you don't have bold fonts. In that case you can for
+instance scale them. A rather direct method is the following.
+
+\startbuffer
+\definebodyfont
+  [funny]
+  [12pt,11pt,10pt,9pt,8pt,7pt] [mm]
+  [mrbf=MathRoman     mo 2,
+   exbf=MathExtension mo 2,
+   mibf=MathItalic    mo 2,
+   sybf=MathSymbol    mo 2]
+\stopbuffer
+
+\typebuffer \getbuffer
+
+Our math sample will now look like:
+
+\startlines
+\funny \getbuffer[math]
+\stoplines
+
+We can also use an indirect method:
+
+\startbuffer
+\definebodyfont
+  [smallmath] [mm]
+  [mrbf=MathRoman     mo .5,
+   exbf=MathExtension mo .5,
+   mibf=MathItalic    mo .5,
+   sybf=MathSymbol    mo .5]
+
+\definebodyfont
+  [funny]
+  [12pt,11pt,10pt,9pt,8pt,7pt]
+  [mm] [smallmath]
+\stopbuffer
+
+\typebuffer \getbuffer
+
+This method is to be preferred when we have to define more
+typefaces since it saves keystrokes.
+
+\startlines
+\funny \getbuffer[math]
+\stoplines
+
+For efficiency reasons, the font definitions (when part of
+a typeface) are frozen the first time they are used. Until
+that moment definitions will adapt themselves to changes in
+for instance scaling and (mapped) names. Freezing
+definitions is normally no problem because typefaces are
+defined for a whole document and one can easily define
+more instances. When you redefine it, a frozen font is
+automatically unfrozen.
+
+\section {Spacing}
+
+The baseline distance as well as a couple of other spacing
+values are derived from the body font size. The main
+spacing is set up in such a way that it adapts itself to
+the current font size.
+
+\starttyping
+\setupinterlinespace[line=2.8ex]
+\stoptyping
+
+Hard coded values (like 15pt) are kind of dangerous here
+since these inhibit \CONTEXT\ to adapt itself. This command
+has some more parameters that are discussed in the reference
+manual. Here we limit the discussion to definitions of
+fonts.
+
+Occasionally you may want to adapt the baseline distance
+(interline spacing) to a specific font, for instance a big
+title font on the cover. The best way to do this is:
+
+\starttyping
+\definefont [PiFont] [Serif sa 3.1415]
+\PiFont \setupinterlinespace
+\stoptyping
+
+or:
+
+\starttyping
+\definedfont [EFont] [Sans sa 2.71] \setupinterlinespace
+\stoptyping
+
+If you do this grouped, you should end the paragraph inside
+the group, otherwise the spacing dimensions are forgotten:
+
+\starttyping
+{\PiFont \setupinterlinespace Fonts in \par \ConTeXt \par}
+\stoptyping
+
+Instead of setting the spacing at the document level, i.e.\
+for each font, you can set the spacing per body font
+environment:
+
+\starttyping
+\setupbodyfontenvironment
+  [modern] [12pt]
+  [interlinespace=14pt]
+\stoptyping
+
+\section {Encodings and mappings}
+
+Not every language uses the (western) latin alphabet. Although
+in most languages the basic 26 characters are somehow used,
+they can be combined with a broad range of accents placed in
+any place.
+
+In order to get a character representation, also called
+glyph, in the resulting output, you have to encode
+it in the input. This is no problem for \type {a..z}, but
+other characters are accessed by name, for instance \type
+{\eacute}. The glyph \eacute\ can be present in the font but when
+it's not there, \TEX\ has to compose the character from a
+letter~e and an accent~\textgrave.
+
+In practice this means that the meaning of \type {\eacute}
+depends on the font and font encoding used. There are many
+such encodings, each suited for a subset of languages.
+
+\starttabulate [|lT|p|l|]
+\HL
+\NC \bf encoding \NC \bf usage \NC \bf status \NC \NR
+\HL
+\NC texnansi  \NC a combination of \TEX\ and Adobe standard encoding          \NC okay     \NC \NR
+\NC qx        \NC an encoding that covers most eastern european languages     \NC okay     \NC \NR
+\NC t5        \NC an encoding dedicated to vietnamese (many (double) accents) \NC okay     \NC \NR
+\NC ec (cork) \NC the prefered encoding of \TEX\ distributions                \NC bugged   \NC \NR
+\NC 8r        \NC a (strange) mixture of encodings                            \NC useless  \NC \NR
+\NC default   \NC the 7 bit \ASCII\ encoding as used by plain \TEX            \NC obsolete \NC \NR
+\NC il2       \NC iso latin 2 encoding as needed for Czech and Slovak         \NC obsolete \NC \NR
+\NC pl0       \NC a native Polish encoding                                    \NC obsolete \NC \NR
+\HL
+\stoptabulate
+
+These encodings are font related as is demonstrated in \in
+{figure} [fig:font a], \in{}[fig:font b],  \in{}[fig:font c], \in
+{and} [fig:font d]. Here we used the \type {\showfont} command.
+
+\definefontsynonym [TestA] [ec-lmr10]       [encoding=ec]
+\definefontsynonym [TestB] [texnansi-lmr10] [encoding=texnansi]
+\definefontsynonym [TestC] [qx-lmr10]       [encoding=qx]
+\definefontsynonym [TestD] [t5-lmr10]       [encoding=t5]
+
+\placefigure
+  [here][fig:font a]
+  {The Latin Modern Roman font in ec encoding.}
+  {\scale[width=\textwidth]{\showfont[TestA]}}
+
+\placefigure
+  [here][fig:font b]
+  {The Latin Modern Roman font in texnansi encoding.}
+  {\scale[width=\textwidth]{\showfont[TestB]}}
+
+\placefigure
+  [here][fig:font c]
+  {The Latin Modern Roman font in qx encoding.}
+  {\scale[width=\textwidth]{\showfont[TestC]}}
+
+\placefigure
+  [here][fig:font d]
+  {The Latin Modern Roman font in t5 encoding.}
+  {\scale[width=\textwidth]{\showfont[TestD]}}
+
+The situation is even more complicated than it looks, since
+the font may be virtual, that is, built from several fonts.
+
+The advantage of using specific encodings is that you can
+let \TEX\ hyphenate words in the appropriate way. The
+hyphenation patterns are applied to the internal
+data structures that represent the sequence of glyphs. In
+spite of what you may expect, they are font||dependent! Even
+more confusing: they not only depend on the font encoding,
+but also on the mapping from lower to uppercase characters,
+or more precise, on the existence of such a mapping.
+
+Unless you want to play with these encodings and mappings,
+in most cases you can forget their details and rely on what
+other \TEX\ experts tell you to do. Normally switching from
+one to another encoding and|/|or mapping takes place with the
+change in fonts or when some special output encoding is
+needed, for instance in \PDF\ annotations and|/|or unicode
+vectors that enable searching in documents. So, to summarize
+this: encodings and mappings depend on the fonts used as well
+have consequences for the language specific hyphenation
+patterns. Fortunately \CONTEXT\ handles this for you
+automatically.
+
+If you want to know to what extent a font is complete and
+characters need to be composed on the fly, you can typeset a
+a couple of tables. The (current) composition is shown by
+\type {\showaccents}:
+
+\showaccents
+
+with \type {\showcharacters}, you get a list of named
+characters (and glyphs) as known to the system.
+
+\showcharacters
+
+If you want to know what patterns are used, you can try to
+hyphenate a word with \type {\showhyphenations}.
+
+\showhyphenations{abracadabra}
+
+\section {Regimes}
+
+When you key in an english document, a normal \kap {QWERTY}
+keyboard combined with the standard \ASCII\ character set
+will do. However, in many countries dedicated keyboards and
+corresponding input encodings are used. This means that
+certain keystrokes correspond to non||standard \ASCII\
+characters and these need to be mapped onto the characters
+present in the font. Unless the input encoding matches the
+output (font) encoding, intermediate steps are needed to
+take care of the right mapping. For instance, input
+code~145 can become command \type {\eacute} which can
+result in character~123 of a certain font.
+
+Although all kind of intermediate, direct or indirect,
+mappings are possible, in \CONTEXT\ the preferred method is
+to go by named glyphs. The advantage of this method is that
+we can rather comfortably convert the input stream into
+different output streams as needed for typesetting text (the
+normal \TEX\ process) and embedding information in the file
+(like annotations or font vectors needed for searching
+documents).
+
+The conversion from input characters into named glyphs is
+handled by regimes. While further mapping is done
+automatically and is triggered by internal processes,
+regimes need to be chosen explicitly. This is because only
+the user knows what he has input.
+
+Most encodings (like \type {il2}) have an associated regime. You
+can get some insight in what a regime involves by showing it:
+
+\starttyping
+\showregime[il2]
+\stoptyping
+
+In addition there are a couple of platform dependent ones:
+
+\starttabulate[|lT|lp|]
+\HL
+\NC \bf regime \NC \bf platform \NC \NR
+\HL
+\NC ibm \NC the old standard \MSDOS\ code page       \NC \NR
+\NC win \NC the western europe \MSWINDOWS\ code page \NC \NR
+\HL
+\stoptabulate
+
+If you want to know what regimes are available, you can take a
+look at the \type {regi-*.tex} files. A regime that becomes more
+and more popular is the utf-8 regime. If you want some insight in
+what vectors provide, you can use commands like:
+
+\starttyping
+\showunicodevector[001]
+\stoptyping
+
+and
+
+\starttyping
+\showunicodetable[001]
+\stoptyping
+
+where the last one produces a rather large table.
+
+\section {Font handling}
+
+In the following fake paragraph, you can see a hyphenation
+point, a secondary sentence, separated by a comma, and a
+last sentence, ending with a period. Miraculously, this
+paragraph fits into lines. Although exaggerated, these lines
+demonstrate that visually the hyphen and punctuation
+characters make the margin look ragged.
+
+\FakeParagraph\hbox\relax
+
+Before computers started to take over the traditional
+typesetter's job, it was common practice to move hyphens and
+punctuation into the margin, like in:
+
+\FakeParagraph\rlap\relax
+
+In this alternative, the margin looks less ragged, and this
+becomes more noticable once you get aware of this phenomenon.
+
+Sometimes, shifting the characters completely into the
+margin is too much for the sensitive eye, for instance with
+a slanted font, where the characters already hang to the
+right. In such cases, we need to compromise.
+
+\FakeParagraph{\hbox to .2ex}\rlap
+
+\PDFTEX\ has provisions to move characters into the margin
+when they end up at the end of a line. Such characters are
+called protruding characters. \PDFTEX\ takes protruding
+into account when breaking a paragraph. \footnote {One can
+also protrude characters without interference with the
+breaking routines, but since we consider this less good,
+\CONTEXT\ simply does not support it.}
+
+We demonstrate protruding using a quote from Hermann Zapf's
+article \quotation {About micro||typography and the {\sl
+hz}||program} in Electronic Publishing, vol~6~(3), 1993.
+
+\bgroup
+\switchtobodyfont[lbr,9pt] \noindent \input zapf \par
+\egroup
+
+\blank \input zapf \blank
+
+After \TEX\ has typeset this paragraph, it has constructed
+the following lines.
+
+\blank
+
+\beginofshapebox
+\switchtobodyfont[lbr,9pt] \noindent \input zapf \par
+\endofshapebox
+\reshapebox{\hbox{\AltColor\ruledhbox{\black\box\shapebox}}}
+\flushshapebox
+
+\blank
+
+As you can see, the height and depth of the lines depend on
+the characters, but their width equals what \TEX\ calls
+\type {\hsize}. However, the natural width of the lines may
+differ from \type {\hsize}.
+
+\blank
+
+\beginofshapebox
+\switchtobodyfont[lbr,9pt] \noindent \input zapf \par
+\endofshapebox
+\reshapebox{\hbox{\AltColor\ruledhbox{\black\unhbox\shapebox}}}
+\flushshapebox
+
+\blank
+
+Here the inter||word space is fixed to what \TEX\ considers
+to be a space. This example also demonstrates that \TEX\
+does not have spaces, but stretches the white area between
+words to suit its demands. When breaking lines, \TEX's mind
+is occupied by boxes, glue and penalties, or in more common
+language: (parts of) words, stretchable white space, and more
+or less preferred breakpoints.
+
+\blank
+
+\bgroup
+\def\postprocesscolumnbox#1{\hbox{\AltColor\ruledhbox{\black\box#1}}}
+\startcolumns[n=3]
+\setupfontsynonym [Serif] [handling=normal] % [pure]
+\setupalign[verytolerant,stretch,hanging]
+\switchtobodyfont[lbr,9pt] \noindent \input zapf \par
+\stopcolumns
+\egroup
+
+\blank
+
+This time we have enabled \PDFTEX's protruding mechanism.
+The characters that stick into the margin are taken into
+account when breaking the paragraph into lines, but in the
+final result, they do not count in the width. Here we used
+an ugly three column layout so that we got a few more
+hyphens to illustrate the principle, but in the next
+examples we will stick to two columns.
+
+\blank
+
+\startcolumns[n=2]
+\setupalign[verytolerant,stretch]
+\switchtobodyfont[lbr,9pt] \noindent \input zapf \par
+\stopcolumns
+
+\blank
+
+In this first example we just typeset the text in the
+traditional way. The hyphens and punctuation fit into the
+margin.
+
+\blank
+
+\startcolumns[n=2]
+\setupfontsynonym [Serif] [handling=pure]
+\setupalign[verytolerant,stretch,hanging]
+\switchtobodyfont[lbr,9pt] \noindent \input zapf \par
+\stopcolumns
+
+\blank
+
+In this example, the protruding machinery is put to labour.
+The hyphens and punctuation may now stick into the margin
+completely. The next two examples shows what happens when we
+limit the protruding to 75\% and 50\% respectively.
+
+\blank
+
+\startcolumns[n=2]
+\setupfontsynonym [Serif] [handling=pure]
+\setupfonthandling[normal][left=.75,right=.75]
+\setupalign[verytolerant,stretch,hanging]
+\switchtobodyfont[lbr,9pt] \noindent \input zapf \par
+\stopcolumns
+
+\blank
+
+\startcolumns[n=2]
+\setupfontsynonym [Serif] [handling=pure]
+\setupfonthandling[normal][left=.5,right=.5]
+\setupalign[verytolerant,stretch,hanging]
+\switchtobodyfont[lbr,9pt] \noindent \input zapf \par
+\stopcolumns
+
+\blank
+
+Although available in \PDFTEX, this feature is not limited
+to \PDF\ output. If this may comfort you: when protruding
+is not enabled the output is 100\% identical.
+
+Since protruding is related to the shape of the font, in
+\CONTEXT\ setting it up (currently) takes place in a
+similar way as encodings.
+
+\starttyping
+\definefontsynonym
+  [Lucida-Bright] [lbr] [encoding=texnansi,handling=pure]
+\stoptyping
+
+We can also specify a handler at a higher level of
+abstraction:
+
+\starttyping
+\setupfontsynonym [Lucida-Bright] [handling=pure]
+\stoptyping
+
+Or even:
+
+\starttyping
+\setupfontsynonym [Serif] [handling=pure]
+\stoptyping
+
+The values that \THANH\ mentions in his thesis, are
+available under the names \type {punctuation} and \type
+{alpha}:
+
+\starttabulate[|lT|l|]
+\HL
+\NC \bf vector \NC \bf protruding character set \NC \NR
+\HL
+\NC punctuation \NC hyphenation and punctuation characters \NC \NR
+\NC alpha       \NC the latin alphabet characters          \NC \NR
+\NC extended    \NC the other characters                   \NC \NR
+\HL
+\stoptabulate
+
+The \type {extended} category maps the special characters onto the
+base 26 ones, and thereby honors the font encoding vector. This
+mapping vector can be used to enhance other handling vectors with
+support for accented characters (in most cases \aacute, \agrave,
+etc.\ need a treatment similar to~a).
+
+The default punctuation vector looks like this:
+
+\starttyping
+\startfonthandling[punctuation]
+  \defineprotrudefactor ,  0  .7
+  \defineprotrudefactor .  0  .7
+  \defineprotrudefactor :  0  .5
+  \defineprotrudefactor ;  0  .5
+  .....
+\stopfonthandling
+\stoptyping
+
+Equaly valid are definitions like:
+
+\starttyping
+\defineprotrudefactor hyphen 0 .7
+\stoptyping
+
+Any character can protrude:
+
+\starttyping
+\defineprotrudefactor A .05 .05
+\stoptyping
+
+For convenience we let composed characters inherit the
+values from their parents.
+
+\starttyping
+\inheritprotrudefactor Acircumflex A
+\stoptyping
+
+Instead of using numbers (like the 700 in the previous
+definition), we use fractions, one for the left and one for the
+right shift. There are a few more vectors defined, like \type
+{defalph} for characters, where we only apply very small shifts.
+
+A combination of such vectors is packaged in a font handler
+using the following command:
+
+\starttyping
+\definefonthandling [normal] [punctuation,alpha]
+\stoptyping
+
+These definitions depend on the encoding, they are
+loaded with the \type {\usehandling} command. You can for
+instance load the default definitions with: :
+
+\starttyping
+\usehandling[def]
+\stoptyping
+
+Since this vector is already preloaded in \CONTEXT, you
+normally don't have to provide this command.
+
+In \CONTEXT\ we have integrated protruding characters
+(hanging punctuation) into the normal alignment macros.
+
+\starttyping
+\setupalign[hanging]
+\stoptyping
+
+Font protruding is turned off automatically in controlled
+situations, and more control will be added in due time. We
+already mentioned that the amount of protruding depends on
+the shape, which is why we may need different values for
+slanted and bold shapes. One way of using the same vector for
+different shapes, is changing the strength of the protruding:
+
+\starttyping
+\definefonthandling [slanted] [punctuation] [right=1.5]
+\stoptyping
+
+Here, because a slanted glyph already sticks into the
+margin, we limit protruding to punctuation. You may expect
+more (probably incompatible) fine tuning in the future. For
+the moment, when you want to play safe, the most simple way
+to enable hanging punctuation is to use the predefined
+typescript:
+
+\starttyping
+\usetypescript [serif,sans,mono] [hanging] [pure]
+\setupalign[hanging]
+\stoptyping
+
+or even:
+
+\starttyping
+\setupfontsynonym [handling=pure] \setupalign[hanging]
+\stoptyping
+
+In addition to these two handlings (hz and protruding) \CONTEXT\
+also provides the \type {noligs} handling (handy when one
+processes \XML), \type {flexspacing} and \type {prespacing}
+(meant for languages like French that need spacing around for
+instance \type {:} and~\type {;}). These handlings are somewhat
+experimental.
+
+\section {Math collection}
+
+Math is a complicated matter and therefore we will not spend
+that many words on the gory details. For the user it is
+enough to know that you can mix different math fonts in a
+comfortable way and that \CONTEXT\ will take care of the
+proper mapping on specific math fonts.
+
+Because the wide range of math symbols can come from
+different fonts, math characters are organized into so
+called math collections. Normally such a collection is
+chosen automatically when you load a font definition, just
+as with font encodings. The \AMS\ math fonts extend the
+default math collection, which gives you a comfortable fall
+back. More information can be found in the documentation of
+the math module.
+
+You can generate a list of the current math character set
+with the command \type {\showmathcharacters}.
+
+\showmathcharacters
+
+\section {Predefined typefaces}
+
+\startbuffer[sample]
+In \CONTEXT, fonts can be used in any combination, but in
+practice only certain combinations make sense. In most
+cases, you will use a Serif or Sans Serif font for the main
+body text. {\ss If you combine both shapes, you should be
+aware that not all combinations look well.} A third shape
+is tagged as Mono. {\tt A mono spaced font is often used to
+identify text that is to be keyed in verbatim in computer
+programs.} And then there is Math. Quite often $m+a+t+h \ne
+t+e+x+t$ although the normal text and numbers, as in $y = 2
+\sin x$, in most cases is the same as the main body font.
+\stopbuffer
+
+We have predefined a couple of typeface combinations. If you
+want to define your own typefaces, you can peek into the
+following files:
+
+\starttabulate[|lT|lp|]
+\HL
+\NC \bf script file \NC \bf content \NC \NR
+\HL
+\NC type-enc \NC file name definitions, often encoding specific \NC \NR
+\NC type-syn \NC symbolic font names, often based on foundry names \NC \NR
+\NC type-map \NC map file definitions \NC \NR
+\NC type-spe \NC special definitions, like math collections \NC \NR
+\NC type-siz \NC size specifications \NC \NR
+\NC type-pre \NC predefined typescripts, downward compatible with \type {font-*.tex} \NC \NR
+\NC type-exa \NC example definitions, that can be used too \NC \NR
+\HL
+\stoptabulate
+
+These files will be extended depending on user input and
+wishes, so feel free to submit additional definitions. The
+file with example definitions is probbaly the best place to
+start. There you will find for instance the \type
+{times} typeface. \footnote {We will also add support for
+MathTimes with \type {texnansi} encodings.}
+
+\startbuffer[definition]
+\usetypescript[times][ec]
+\switchtobodyfont[times,11pt]
+\stopbuffer
+
+\typebuffer[definition]
+
+This is a mixture of Times Roman (\type {serif}), Helvetica
+(\type {sans}, Computer Modern Roman (\type {mono}) and
+TX Times (\type {math}).
+
+\starttypescript [times] [ec]
+
+  \definetypeface [times] [rm] [serif] [times]
+    [default] [encoding=ec]
+
+  \definetypeface [times] [mm] [math]  [times]
+    [default] [encoding=ec]
+
+  \definetypeface [times] [ss] [sans]  [helvetica]
+    [default] [rscale=.9, encoding=ec]
+
+  \definetypeface [times] [tt] [mono]  [computer-modern]
+    [default] [rscale=1.1, encoding=ec]
+
+\stoptypescript
+
+Due to relative scaling, these fonts combine in an
+acceptable way:
+
+{\getbuffer[definition,sample]\par}
+
+\section {Symbols and glyphs}
+
+Some day you may want to define your own symbols, if
+possible in such a way that they nicely adapt themselves to
+changes in style and size. A good example are the \symbol
+[euro] symbols. You can take a look in \type {symb-eur.tex}
+to see how such a glyph is defined.
+
+\starttyping
+\definefontsynonym [EuroSerif]     [eurose]
+\definefontsynonym [EuroSerifBold] [euroseb]
+...
+\definefontsynonym [EuroSans]      [eurosa]
+\definefontsynonym [EuroSansBold]  [eurosab]
+...
+\definefontsynonym [EuroMono]      [euromo]
+\definefontsynonym [EuroMonoBold]  [euromob]
+\stoptyping
+
+Here we use the free Adobe euro fonts, but there are
+alternatives available. The symbol itself is defined as:
+
+\starttyping
+\definesymbol [euro] [\getglyph{Euro}{\char160}]
+\stoptyping
+
+You may notice that we only use the first part of the
+symbolic name. \CONTEXT\ will complete this name according
+to the current style. You can now access this symbol with
+\typ {\symbol [euro]}
+
+\starttabulate[|l|c|c|c|c|c|c|]
+\NC           \NC \tex{tf}    \NC \tex{bf}    \NC \tex{sl}
+              \NC \tex{it}    \NC \tex{bs}    \NC \tex{bi}    \NC\NR
+\NC \rm Serif \NC \rm\tf\euro \NC \rm\bf\euro \NC \rm\sl\euro
+              \NC \rm\it\euro \NC \rm\bs\euro \NC \rm\bi\euro \NC\NR
+\NC \ss Sans  \NC \ss\tf\euro \NC \ss\bf\euro \NC \ss\sl\euro
+              \NC \ss\it\euro \NC \ss\bs\euro \NC \ss\bi\euro \NC\NR
+\NC \tt Mono  \NC \tt\tf\euro \NC \tt\bf\euro \NC \tt\sl\euro
+              \NC \tt\it\euro \NC \tt\bs\euro \NC \tt\bi\euro \NC\NR
+\stoptabulate
+
+More details on defining symbols and symbol sets can be
+found in the reference manual and documentation of the
+symbol modules.
+
+\section{Map files}
+
+If you're already sick of reading about fonts, you probably
+don't want read this section. But alas, \DVI\ post processors
+and \PDFTEX\ will not work well if you don't provide them
+\type {map} files that tell them how to handle the files
+that contain the glyphs.
+
+In its simplest form, a definition looks as follows:
+
+\starttyping
+usedname < texnansi.enc < realname.pfb
+\stoptyping
+
+This means as much as: when you want to include a file that
+has the \type {tfm} file \type {usedname}, take the outline
+file \type {realname.pfb} and embed it with the \type
+{texnansi} encoding vector. Sometimes you need more
+complicated directives and you can leave that to the
+experts. We try to keep up with changes in the map file
+syntax, the names of fonts, encodings, locations in the
+\TEX\ tree, etc. However, it remains a troublesome area.
+
+It makes sense to take a look at the \type {cont-sys.rme} file
+to see what preferences make sense. If you want to speed up
+the typescript processing, say (in \type {cont-sys.tex}:
+
+\starttyping
+\preloadtypescripts
+\stoptyping
+
+If you want to change the default encoding, you should add
+something:
+
+\starttyping
+\setupencoding [default=texnansi]
+\stoptyping
+
+If you want the default berry names:
+
+\starttyping
+\usetypescript [berry] [\defaultencoding]
+\stoptyping
+
+If you run into missing font metrics kind of problems,
+you may want to add:
+
+\starttyping
+\usetypescript[adobekb] [\defaultencoding]
+\stoptyping
+
+Beware: if you use an other encoding afterwards, change this
+into:
+
+\starttyping
+\usetypescript[berry]   [all]
+\usetypescript[adobekb] [all]
+\stoptyping
+
+You can let \CONTEXT\ load the map files for \PDFTEX:
+
+\starttyping
+\autoloadmapfilestrue
+\stoptyping
+
+The following lines will remove exiting references to map
+files and load a few defaults.
+
+\starttyping
+\resetmapfiles
+\loadmapfile[original-base.map]
+\loadmapfile[original-ams-base.map]
+\loadmapfile[original-public-lm.map]
+\stoptyping
+
+As said, map files are a delicate matter.
+
+\section{Installing fonts}
+
+Most \TEX\ distributions come with a couple of fonts, most
+noticeably the Computer Modern Roman typefaces. In order to
+use a font, \TEX\ has to know its characteristics. These are
+defined in \type {tfm} and \type {vf} files. In addition to
+these files, on your system you can find a couple of more
+file types.
+
+\starttabulate[|cT|lp|]
+\HL
+\NC \bf suffix \NC \bf content \NC \NR
+\HL
+\NC tfm \NC \TEX\ specific font metric files that, in
+            many cases, can be generated from \type {afm}
+            files \NC \NR
+\NC vf  \NC virtual font files, used for building glyph
+            collections from other ones \NC \NR
+\NC afm \NC Adobe font metric files that are more limited
+            than \type {tfm} files (especially for math
+            fonts) \NC \NR
+\NC pfm \NC Windows specific font metric files, not used
+            by \TEX\ applications \NC \NR
+\NC pfb \NC files that contain the outline specification of
+            the glyphs fonts, also called Type 1 \NC \NR
+\NC enc \NC files with encoding vector specifications \NC \NR
+\NC map \NC files that specify how and what font files
+            are to be included \NC \NR
+\HL
+\stoptabulate
+
+On your disk (or cdrom) these files are organized in such a
+way that they can be located fast. \footnote {If you have
+installed \TETEX\ or \FPTEX\ (possibly from the \TEX live
+\CDROM) you will have many thousands of font files on your
+system.} The directory structure normally is as follows:
+
+\starttyping
+texmf / fonts  / tfm    / vendor   / name / *.tfm
+               / afm    / vendor   / name / *.afm
+               / pfm    / vendor   / name / *.pfm
+               / vf     / vendor   / name / *.vf
+               / type1  / vendor   / name / *.pfb
+      / pdftex / config /                   *.cfg
+               / config /                   *.map
+               / config / encoding /        *.enc
+\stoptyping
+
+The \type {texmf-local} or even better \type {texmf-fonts}
+tree normally contains your own fonts, so that you don't
+have to reinstall them when you reinstall the main tree.
+The \type {pdftex} directory contains the files that
+\PDFTEX\ needs in order to make decisions about the fonts
+to include. The \type {enc} files are often part of
+distributions, as is the configuration \type {cfg} file.
+When you install new fonts, you often also have to add or
+edit \type {map} files.
+
+\CONTEXT\ comes with a \PERL\ script \type {texfont.pl}
+that you can use to install new fonts. Since its usage is
+covered by a separate manual, we limit ourselves to a short
+overview.
+
+Say that you have just bought a new font. A close look at
+the files will reveal that you got at least a bunch of \type
+{afm} and \type {pfb} files and if you're lucky \type {tfm}
+files.
+
+Installing such a font can be handled by this script. For
+this you need to know (or invent) the name of the font
+vendor, as well as the name of the font. The full set of
+command line switches is given below: \footnote {there are a
+couple of more switches described in the manual \type
+{mtexfonts}.}
+
+\starttabulate[|lT|lp|]
+\HL
+\NC \bf switch \NC \bf meaning \NC \NR
+\HL
+\NC fontroot   \NC texmf font root (automatically determined) \NC \NR
+\NC vendor     \NC vendor name (first level directory) \NC \NR
+\NC collection \NC font collection (second level directory)\NC \NR
+\NC encoding   \NC encoding vector (default: texnansi) \NC \NR
+\NC sourcepath \NC when installing, copy from this path \NC \NR
+\NC install    \NC copy files from source to font tree \NC \NR
+\NC makepath   \NC when needed, create the paths \NC \NR
+\NC show       \NC run tex on \type{*.tex} afterwards \NC \NR
+\HL
+\stoptabulate
+
+You seldom need to use them all. In any case it helps if you
+have a local path defined already. The next sequence does
+the trick:
+
+\starttyping
+texfont --ve=FontFun --co=FirstFont --en=texnansi --ma --in
+\stoptyping
+
+This will generate the \type {tfm} files from the \type
+{afm} files, and copy them to the right place. The Type~1
+files (\type {pfb}) will be copied too. The script also
+generates a \type {map} file. When this is done successfully,
+a \TEX\ file is generated and processed that shows the font
+maps. If this file looks right, you can start using the
+fonts. The \TEX\ file also show you how to define the fonts.
+
+This script can also do a couple of more advanced tricks.
+Let us assume that we have bought (or downloaded) a new
+font package in the files \type {demofont.afm} and \type
+{demofont.pfb} which are available on the current (probably
+scratch) directory. First we make sure that this font is
+installed (in our case we use a copy of the public Iwona
+Regular):
+
+\starttyping
+texfont --ve=test --co=test --ma --in demofont
+\stoptyping
+
+We can now say:
+
+% \loadmapfile[demofont.map] % in case we forgot to generate
+
+\startbuffer
+\loadmapfile[texnansi-test-test.map]
+\definefontsynonym[DemoFont][texnansi-demofont]
+\ruledhbox{\definedfont[DemoFont at 50pt]Interesting}
+\stopbuffer
+
+\typebuffer \startlinecorrection \getbuffer \stoplinecorrection
+
+From this font, we can derive a slanted alternative by
+saying:
+
+\starttyping
+texfont --ve=test --co=test --ma --in --sla=.167 demofont
+\stoptyping
+
+The map file is automatically extended with the entry needed.
+
+\startbuffer
+\definefontsynonym[DemoFont-Slanted][texnansi-demofont-slanted-167]
+\ruledhbox{\definedfont[DemoFont-Slanted at 50pt]Interesting}
+\stopbuffer
+
+\typebuffer \startlinecorrection \getbuffer \stoplinecorrection
+
+We can also create a wider version:
+
+\starttyping
+texfont --ve=test --co=test --ma --in --ext=1.50 demofont
+\stoptyping
+
+When you use the \type {--make} and \type {--install} switch,
+the directories are made, fonts installed, and entries
+appended to the map file if needed.
+
+\startbuffer
+\definefontsynonym[DemoFont-Extended][texnansi-demofont-extended-1500]
+\ruledhbox{\definedfont[DemoFont-Extended at 50pt]Interesting}
+\stopbuffer
+
+\typebuffer \startlinecorrection \getbuffer \stoplinecorrection
+
+Instead of using pseudo caps in \TEX\ by using \type
+{\kap}, you can also create a pseudo small caps font.
+
+\starttyping
+texfont --ve=test --co=test --ma --in --cap=0.75 demofont
+\stoptyping
+
+This method is much more robust but at the cost of an extra
+font.
+
+\startbuffer
+\definefontsynonym[DemoFont-Caps][texnansi-demofont-capitalized-750]
+\ruledhbox{\definedfont[DemoFont-Caps at 50pt]Interesting}
+\stopbuffer
+
+\typebuffer \startlinecorrection \getbuffer \stoplinecorrection
+
+\starttabulate[|lT|lp|]
+\HL
+\NC \bf switch \NC \bf meaning \NC \NR
+\HL
+\NC extend=factor \NC stretch the font to the given factor \NC \NR
+\NC narrow=factor \NC shrink the font to the given factor \NC \NR
+\NC slant=factor  \NC create a slanted font \NC \NR
+\NC caps=factor   \NC replace lowercase characters by small uppercase ones \NC \NR
+\NC test          \NC use test/test as vendor/collection \NC \NR
+\HL
+\stoptabulate
+
+When manipulating a font this way, you need to provide a
+file name. Instead of a factor you can give the keyword
+\type {default} or a \type {*}.
+
+\starttyping
+texfont --test --auto --caps=default demofont
+\stoptyping
+
+The previous example runs create fonts with the rather
+verbose names:
+
+\starttyping
+demofont
+demofont-slanted-167
+demofont-extended-150
+demofont-capitalized-750
+\stoptyping
+
+This naming scheme makes it possible to use more instances
+without the risk of conflicts.
+
+In the distribution you will find an example batch file
+\type {type-tmf.dat} which creates metrics for some free
+fonts for the encoding specified. When you create the
+default font metrics this way, preferably \type
+{texmf-fonts}, you have a minimal font system tuned for you
+prefered encoding without the risk for name clashes. When
+you also supply \type {--install}, the font outlines will be
+copied from the main tree to the fonts tree, which sometimes
+is handy from the perspective of consistency.
+
+\section {Getting started}
+
+This is the most tricky section to write, since fonts are
+probably the most complicated aspect of \TEX. If you are not
+sure that you have the latest \CONTEXT, fetch the zipped
+archive \type {cont-tmf.zip} from the main site or one of
+the mirrors. Unzip the archive in the path \type {texmf-local}
+(or similar):
+
+\starttyping
+unzip cont-tmf.zip
+\stoptyping
+
+Run \type {mktexlsr} afterwards. In order to prevent
+unwanted interference, you may want to remove old copies
+of \CONTEXT. Removing the \type {base} paths is enough.
+
+Next, take a look at \type {cont-sys.rme} for options that
+you can set. You need to copy this file into one with the
+suffix \type {tex} and put it in the \CONTEXT\ user path. If
+you already have such a file, make sure that you bring it up
+to date. Choose a default encoding and preload the map files
+that \PDFTEX\ needs. If you want to use the default
+filenames, load the \type {berry} typescript too, but if you
+are going to install your own fonts, you may use the more
+verbose naming scheme (which is what we do at \PRAGMA).
+
+Again, make sure that you run \type {mktexlsr} after each
+file that you add to the system.
+
+We already discussed \type {texfont} and if you have a
+couple of megabytes left, you can now generate font
+metrics. If you want to isolate your fonts from the main
+trees, which is a good idea if you also want to install your
+own fonts.
+
+The way \TEX\ searches for files (we're talking \WEBC\ now)
+is determined by the configuration file to which the \type
+{TEXMFCNF} environment variable points (the following
+examples are from my own system):
+
+\starttyping
+set TEXMFCNF=T:/TEXMF/WEB2C
+\stoptyping
+
+When searching for files, a list of directories is used:
+
+\starttyping
+set TEXMF={$TEXMFFONTS,$TEXMFPROJECT,$TEXMFLOCAL,!!$TEXMFMAIN}
+\stoptyping
+
+Here we've added a font path, which itself is set with:
+
+\starttyping
+set TEXMFMAIN=E:/TEX/TEXMF
+set TEXMFLOCAL=E:/TEX/TEXMF-LOCAL
+set TEXMFFONTS=E:/TEX/TEXMF-FONTS
+\stoptyping
+
+Now you can generate metrics and map files. The batch file is
+searched for at the \CONTEXT\ data path in the \TEXMF\ tree
+or on the local path.
+
+\starttyping
+texfont --encoding=ec --batch type-tmf.dat
+\stoptyping
+
+If you want to play with encoding, you can also generate
+more encodings, like \type {8r} or \type {texnansi}.
+
+\starttyping
+texfont --encoding=texnansi --batch type-tmf.dat
+texfont --encoding=8r       --batch type-tmf.dat
+\stoptyping
+
+After a while, there will be generated \type {tfm}, \type
+{vf}, and \type {map} files. If you let \CONTEXT\ pass
+the map file directives to \PDFTEX, you're ready now.
+Otherwise you need to add the names of the mapfiles to the
+file \type {pdftex.cfg}. You can best add them in front of
+the list, and, if you use \CONTEXT\ exclusively, you can
+best remove the other ones.
+
+As a test you can process the \TEX\ files that are generated
+in the process. These also give you an idea of how well the
+encoding vectors match your expectations.
+
+Now, the worst that can happen to you when you process your
+files, is that you get messages concerning unknown \type
+{tfm} files or reports on missing fonts when \PDFTEX\
+writes the file. In that case, make sure that you indeed
+{\em have} the right fonts (generated) and|/|or that the map
+files are loaded. As a last resort you can load all map
+files by saying:
+
+\starttyping
+\usetypescript [map] [all]
+\stoptyping
+
+and take a look at the log file and see what is reported.
+
+In due time we will provide font generation scripts for
+installation of other fonts as well as extend the
+typescript collection.
+
+\section {Remarks}
+
+It really makes sense to take a look at the font and type
+definition files (\type {font-*.tex} and \type {type-*.tex}).
+There are fallbacks defined, as well as generic definitions.
+Studying styles and manual source code may also teach you a
+few tricks.
+
+\stopcomponent

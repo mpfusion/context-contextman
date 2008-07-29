@@ -1,0 +1,27 @@
+% content=tex
+%
+% copyright=pragma-ade readme=readme.pdf licence=cc-by-nc-sa
+
+\definecolumnset[example][n=4]
+
+\starttext
+
+\startcolumnset[example]
+
+   \fakewords{50}{75} \column
+   \fakewords{50}{75} \column[yes]   yes: 
+   \fakewords{50}{75} \column[page]  page: 
+
+   \fakewords{50}{75} \column[2]     column 2:
+   \fakewords{50}{75} \column[3]     column 3:
+   \fakewords{50}{75} \column[first] first:   
+
+   \fakewords{50}{75} \column[last]  last:    
+   \fakewords{50}{75} \page          page: 
+
+   \fakewords{50}{75} \column[3*5]   3*5:     
+   \fakewords{50}{75} 
+
+\stopcolumnset 
+
+\stoptext 

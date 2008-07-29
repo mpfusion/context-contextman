@@ -1,0 +1,14 @@
+\setuppapersize     [A5][A4]
+\setuplayout        [backspace=2cm,width=middle,
+                     footer=0cm,margin=1cm,
+                     location=middle,marking=on]
+\setuppagenumbering [alternative=singlesided]
+\setupbodyfont      [lbr,6pt]
+\setupheadertexts   [alfa][beta]
+
+\showframe
+
+\starttext
+  \dorecurse{10}{\input tufte \par \input knuth \par}
+\stoptext
+

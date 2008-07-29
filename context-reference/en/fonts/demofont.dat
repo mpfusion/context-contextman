@@ -1,0 +1,8 @@
+# we assume that demofont.afm and demofont.pfb are present
+# run with: "texfont demofont.dat"
+
+--ve=test --co=test --ma --in            demofont
+--ve=test --co=test --ma --in --sla=.167 demofont
+--ve=test --co=test --ma --in --ext=1.50 demofont
+--ve=test --co=test --ma --in --cap=.750 demofont
+--ve=test --co=test --ma --in --nol      demofont

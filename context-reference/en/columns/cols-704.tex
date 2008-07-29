@@ -1,0 +1,53 @@
+% content=tex
+%
+% copyright=pragma-ade readme=readme.pdf licence=cc-by-nc-sa
+
+\definecolor[shadecolor][r=.5,g=.5,b=.25] % yellow
+
+\startuseMPgraphic{mpos:par:columnset:shade}
+  path p, q, r ; numeric h ; 
+  for i=1 upto nofmultipars : 
+    p := multipars[i] ;
+    h := bbheight(p) ; 
+    q := multipars[i] topenlarged    -.5h ;
+    r := multipars[i] bottomenlarged -.5h ;
+    if one_piece_multi_par : 
+      linear_shade(q,8,white,boxfillcolor) ; 
+      linear_shade(r,8,boxfillcolor,white) ; 
+    elseif multilocs[i] = 1 : 
+      linear_shade(p,8,boxfillcolor,white) ; 
+    elseif multilocs[i] = 2 : 
+      linear_shade(q,8,boxfillcolor,white) ; 
+      linear_shade(r,8,white,boxfillcolor) ; 
+    else :
+      linear_shade(p,8,white,boxfillcolor) ; 
+    fi ;
+  endfor ; 
+\stopuseMPgraphic
+
+\definecolumnset
+  [example]
+  [n=4]
+
+\definetextbackground
+  [shade]
+  [location=paragraph,
+   backgroundcolor=shadecolor,
+   mp=mpos:par:columnset:shade,
+   method=mpos:par:columnset,
+   leftoffset=\topskipgap, 
+   before=\blank,
+   after=\blank]
+
+\starttext
+
+\startcolumnset[example] 
+
+  \dorecurse{40}
+    {\starttextbackground[shade]
+       \fakewords{10}{200}
+     \stoptextbackground}
+
+\stopcolumnset 
+
+\stoptext

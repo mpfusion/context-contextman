@@ -1,0 +1,23 @@
+\startcomponent st-nl-04
+
+\project manual
+
+\chapter[texmacros]{Commands}
+
+The pagenumbers refer to the chapter or paragraph that
+describes the command. 
+
+
+\unprotect
+
+\placeregister
+  [texmacro]
+  [\c!criterium=\v!all,
+   \c!before={\blank[\v!line]},
+   \c!after={\blank[\v!line]},
+   \c!balance=\v!yes]
+
+\protect
+
+
+\stopcomponent

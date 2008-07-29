@@ -1,0 +1,204 @@
+\toonkader
+
+\stelkorpsin
+  [lbr]
+
+\switchnaarkorps
+  [klein]
+
+\stelwitruimtein
+  [groot]
+
+\stelkleurenin
+  [status=start]
+
+\startbuffer[voorb-1]
+\stellayoutin 
+  [kopwit=3cm,
+   hoogte=24cm,
+   hoofd=1.5cm,
+   voet=1cm,
+   bovenafstand=6pt,
+   hoofdafstand=12pt,
+   voetafstand=12pt,
+   onderafstand=6pt,
+   rugwit=4.5cm,
+   breedte=10cm,
+   linkermarge=0.75cm,
+   rechtermarge=1.5cm,
+   linkerrand=2cm,
+   rechterrand=1.75cm,
+   linkermargeafstand=18pt,
+   rechterrandafstand=6pt,
+   linkerrandafstand=12pt,
+   rechterrandafstand=12pt]
+\stopbuffer
+
+\startbuffer[voorb-2]
+\stelinteractiein
+  [status=start,
+   menu=aan]
+\stopbuffer
+
+\startbuffer[voorb-3]
+\definieerinteractiemenu
+  [onder]
+  [{alfa[menu:a]},
+   {beta[menu:b]},  
+   {gamma[menu:c]},
+   {delta[menu:d]}]
+
+\definieerinteractiemenu
+  [boven]
+  [{alfa[menu:a]},
+   {beta[menu:b]},
+   {gamma[menu:c]},
+   {delta[menu:d]}]
+
+\definieerinteractiemenu
+  [links]
+  [{alfa[menu:a]},
+   {beta[menu:b]},
+   {gamma[menu:c]},
+   {delta[menu:d]}]
+
+\definieerinteractiemenu
+  [rechts]
+  [{alfa[menu:a]},
+   {beta[menu:b]},
+   {gamma[menu:c]},
+   {delta[menu:d]}]
+\stopbuffer
+
+\startbuffer[voorb-4]
+\stelinteractiemenuin 
+  [onder,boven,links,rechts]
+  [status=start,
+   letter=klein,
+   breedte=1.5cm]
+\stopbuffer
+
+\startbuffer[voorb-5]
+\stelinteractiemenuin 
+  [onder,boven,links,rechts]
+  [achtergrond=raster,
+   kader=uit]
+\stopbuffer
+
+\startbuffer[voorb-6]
+\definieerinteractiemenu
+  [extra]
+  [rechts]
+  [status=start]
+  
+\stelinteractiemenuin
+  [extra]
+  [{beta[menu:b]},
+   {delta[menu:d]}]
+\stopbuffer
+
+\haalbuffer[voorb-1]
+\haalbuffer[voorb-2]
+\haalbuffer[voorb-3]
+\haalbuffer[voorb-4]
+
+\starttekst
+
+\paginareferentie[menu:a]
+\paginareferentie[menu:b]
+
+De vier lokaties \type{links}, \type{rechts}, \type{onder}
+en \type{boven} worden hier allemaal getoond. We zien dat de
+menu's buiten de zetspiegel vallen. 
+
+De hier getoonde zetspiegel is verre van fraai, maar toont
+de positionering van de verschillende menu's in de randen en
+boven en onderregels. 
+
+\typebuffer[voorb-1]
+
+We besparen de gebruiker de twee truukjes die nodig zijn om
+dit binnen de bestaande layout te realiseren. 
+
+De keus voor de plaats is subjectief. Links leent zich minder
+voor rechtshandigen en andersom. Omdat we van links naar 
+rechts lezen kan een menu links afleiden. Boven suggereert 
+dat men over het 'papier' moet reiken. Bovendien staat daar 
+als het tegenzit de interface van het programma. Blijven dus 
+over rechts en onder.  
+
+Standaard zijn teksten niet interactief, vandaar het
+onderstaande comman\-do. We kunnen het plaatsen van menu's
+uitzetten. Dit scheelt aanzienlijk in de verwerkingstijd. 
+
+\typebuffer[voorb-2]
+
+De menu's verschillen per bladzijde. Dat is een gevolg van 
+het feit dat op deze drie bladzijden enkele verwijzingen 
+worden gegenereerd. Op deze bladzijde is dat bijvoorbeeld:
+
+\starttypen
+\paginareferentie[menu:a]
+\paginareferentie[menu:b]
+\stoptypen
+
+\pagina
+
+\paginareferentie[menu:c]
+
+\haalbuffer[voorb-5]
+
+Omdat het vrij zinloos is naar een bladzijde te springen
+als je hem toch al ziet, wordt het menu automatisch
+aangepast. Menu||item delta wordt dan ook niet getoond. Omdat 
+we een wat andere layout gebruiken, zien we wel een vlakje. 
+Op de vorige bladzijde bleef het kader bij het ontbrekend 
+item \type{[menu:c]} (gamma) echter achterwege. 
+
+\typebuffer[voorb-5]
+
+Menu's worden in de rand geplaatst. Het is technisch
+mogelijk een menu in de marge, het hoofd of de voet te
+plaatsen; het ligt echter meer voor de hand de breedte van
+de marge en/of de hoogte van het hoofd en/of de voet gelijk
+te maken aan \type{0cm}. De afstand tussen de rand en de
+marge komen automatisch te vervallen. Hetzelfde geldt voor
+de afstand tussen het hoofd en boven, en de voet en onder. 
+
+De vier menu's zijn op gelijke wijze gedefinieerd. Let op het
+gebruik van de verschillende haakjes. 
+
+\typebuffer[voorb-3]
+
+\pagina
+
+\paginareferentie[menu:d]
+
+De gebruiker wordt aangeraden eens wat te experimenteren met
+de instellingen \type{voor}, \type{tussen} en \type{na}. Aan
+deze variabelen kunnen \kap{\TeX}||commando's worden
+toegekend, zoals \type{\hfill} (bij onder en boven) en
+\type{\vfill} (bij links en rechts). 
+
+Een menu wordt pas getoond als \type{status=start}.
+Standaard is de breedte van de menu||items afgestemd op die
+van de randen. Andere waarden zijn echter mogelijk. 
+
+\typebuffer[voorb-4]
+
+\haalbuffer[voorb-6]
+
+Tot slot tonen we in dit voorbeeld dat we meerdere menu's
+naast elkaar kunnen plaatsen. De parameter \type{afstand}
+kan worden gebruikt om de afstand tussen de menu's in te
+stellen. Standaard wordt de afstand tussen de marge en de
+rand gebruikt. 
+
+\typebuffer[voorb-6]
+
+Op vergelijkbare wijze kunnen menu's boven elkaar worden
+geplaatst. Wanneer we een menu willen onderdrukken,
+gebruiken we \type{status=geen}. 
+
+\stoptekst
+

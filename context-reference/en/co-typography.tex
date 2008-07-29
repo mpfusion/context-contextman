@@ -1,0 +1,1338 @@
+\startcomponent co-en-06
+
+\environment contextref-env
+\product contextref
+
+\chapter[typography]{Typography}
+
+\section{Introduction}
+\index{typography}
+
+Through the millennia we have developed and adapted methods
+for storing facts and thoughts on a variety of different
+medium. A very efficient way of doing this is using
+logograms, like Chinese have done for ages. Another method
+is to represent each syllable in a word by a symbol, like
+the Japanese do when writing telegrams. However, the most
+familiar way of storing information is using a limited set
+of pictures representing so called phonemes. Such a
+collection is called an alphabet, and often the same glyph
+is used for different sounds.
+
+Although \TEX\ is primarily meant for typesetting languages
+that use this third method, in principle the other two can
+also be dealt with. In this manual we will focus on the
+languages that use such alphabets.
+
+The little pictures representing the characters that make up
+an alphabet are more or less standardized, and thereby can
+be recognized by readers, even if their details differ. Such
+a collection of pictures, often called glyphs, make up a
+font.
+
+\usetypescriptfile[type-buy]
+\usetypescript[map,sans,mono,handwriting,calligraphy,serif][lucida,times,antykwa-torunska][texnansi]
+
+\startlinecorrection
+\ruledhbox to \hsize
+  {\hss
+   \definefont[test][ComputerModern          at 60pt]\test gap\setstrut\strut\hss
+   \definefont[test][LucidaBright            at 60pt]\test gap\hss
+   \definefont[test][Times-Roman             at 60pt]\test gap\hss
+   \definefont[test][AntykwaTorunska-Regular at 60pt]\test gap\hss}
+\stoplinecorrection
+
+From left to right we see the Computer Modern, a Lucida
+Bright, a Times Roman and an Antiqua Torunka font, all
+scaled to 60pt. Fonts colections are designed in such a way
+that the overall appearance of a page looks good and that
+reading is as comfortable as possible.
+
+\startlinecorrection
+\ruledhbox to \hsize
+  {\hss
+   \definefont[test][LucidaBright            at 48pt]\test lap\setstrut\strut\hss
+   \definefont[test][LucidaBright-Demi       at 48pt]\test lap\hss
+   \definefont[test][LucidaBright-Italic     at 48pt]\test lap\hss
+   \definefont[test][LucidaBright-DemiItalic at 48pt]\test lap\hss}
+\stoplinecorrection
+
+Within a font design there can be variations. In the example
+above we see a normal, a bold, an italic, and a bold italic
+alternative of the Lucida Bright font.
+
+The distance between the individual glyphs in a word depend
+on the combinations of these glyphs. In the next sample, the
+gap between the~b and the~o as well as the distance between
+the~o and the~x is slightly altered. This is called kerning.
+
+\getbuffer[kerning]
+
+Here we show a Computer Modern, the default \TEX\ font. This
+font is designed by Donald Knuth and is a variation on a
+Monotype Times font. The Computer Modern has many kerning
+pairs, while the Lucida Bright used in this manual has none.
+
+This kind of micro||typography is not to be altered by the
+user. It is part of the font design. However the user can
+alter fonts and interline spacing and some more aspects on
+the level of macro||typography. The choice of font is the
+main topic of this chapter.
+
+There are different ways to classify fonts. There are
+classification systems based on times of development, the
+characteristics of the fonts or the font application, for
+example in a newspaper or a book.
+
+\getbuffer[ok-1]
+
+In this example we see five font styles of Lucida: the
+Bright, Sans, Typewriter, Handwriting and Calligraphy. This
+is one of the few examples of a font collection that
+provides many consistent alternative styles. The Computer
+Modern is another example of a rather complete font. It is
+one of the few fonts that comes with dedicated design sizes.
+The example below shows the differences of a 5, 7, 9, 12 and
+17~point design scaled up to 48 points. Such nuances in font
+size are seldom seen these days.
+
+\getbuffer[ok-2]
+
+The general appearance of a style can be classified
+according to many schemes. In \in {table} [tab:font
+triplets] we see some examples of the naming of styles.
+
+\placetable
+  [here][tab:font triplets]
+  {Some ways of classifying the styles in a font.}
+  {\getbuffer[styles]}
+
+The first two series are used by typographers, however in
+\CONTEXT\ we rather use the last series because it is
+traditionally used in plain \TEX. The command \type {\rm} is
+used to switch to a roman|/|serif|/|regular style, and \type
+{\tt} for switching to mono spaced or typewriter style.
+
+In the next sections we will go into switching of font
+styles and fonts in your documents. Note that the font
+switching mechanism is rather complex. This is caused by the
+different modes like math mode and text mode in \CONTEXT. If
+you want to be able to understand the mechanism you will
+have to acquaint yourself with the concept of the encoding
+vector and obtain some knowledge on fonts and their
+peculiarities.
+
+\section[bodyfont]{The mechanism}
+\index{bodyfont}
+\index{font size}
+\index{roman}
+\index{sans serif}
+\index{typewriter}
+\macro{\tex{setupbodyfont}}
+\macro{\tex{switchtobodyfont}}
+\macro{\tex{x}}
+\macro{\tex{xi}}
+\macro{\tex{xii}}
+\macro{\tex{ix}}
+\macro{\tex{viii}}
+
+Font switching is one of the eldest features of \CONTEXT\
+because font switching is indispensable in a macropackage.
+The last few years extensions to the font switching
+mechanism were inevitable. We have chosen the following
+starting points during the development of this mechanism:
+
+\startitemize[packed]
+\item To change a {\em style} must be easy, this
+      means switching to: roman (serif, regular), sans serif
+      (support), teletype (or monospaced) etc. (\type {\rm},
+      \type {\ss}, \type {\tt} etc.)
+\item More than one {\em variations} of character must be
+      available like slanted and bold (\type {\sl} and \type
+      {\bf}).
+\item Different font {\em families} like Computer Modern
+      Roman and Lucida Bright must be supported.
+\item Changing the bodyfont must also be easy, and so
+      font size between 8pt and 12pt must be available by
+      default.
+\item Within a font different sub|| and superscripts must be
+      available. The script sizes can be used during
+      switching of family, style and alternative.
+\item Specific characteristics of a {\em body font} like
+      font definition (encoding vector) must be taken into
+      account.
+\stopitemize
+
+Text can be typeset in different font sizes. We often use
+the unit \type {pt} to specify the size. The availability of
+these font sizes are defined in definition files.
+Traditionally font designers used to design a glyph
+collection for each font size, but nowadays most fonts have
+a design size of 10 points. An exception to this rule is the
+Computer Modern Roman that comes with most \TEX\
+distributions.
+
+The most frequently used font sizes are predefined: 8, 9, 10,
+11, 12 and 14.4 points. When you use another size |<|for
+example for a titlepage|>| \CONTEXT\ will define this font
+itself within the constraints of the used typeface.
+\CONTEXT\ works with a precision of 1~digit which prevents
+unnecessary loading of fontsizes with small size
+differences. When a fontsize is not available \CONTEXT\
+prefers to use a somewhat smaller font size. We consider
+this to be more tolerable than a somewhat bigger font size.
+
+The bodyfont (main font), font style and size is set up with:
+
+\showsetup{setupbodyfont}
+
+In a running text a temporary font switch is done with the
+command:
+
+\showsetup{switchtobodyfont}
+
+This command doesn't change the bodyfont in headers and
+footers. With \type {small} and \type {big} you switch to a
+smaller or larger font.
+
+In most cases, the command \type {\setupbodyfont} is only
+used once: in the styledefinition. Fontswitching is done
+with \type {\switchtobodyfont}. Don't mix these two up
+because this may lead to some rather strange but legitimate
+effects.
+
+\TEX\ searches for font information in the file with the
+extension \type {tfm}. Pre||loading is possible but
+\CONTEXT\ will only load these files when necessarry. The
+reason is that filenames can differ per distribution.
+
+The font used in headers, footers and footnotes are adapted
+automatically. This includes the interline space and
+vertical whitespaces. Font switches with \type {\vi}, \type
+{\vii}, \type {\viii}, \type {\ix}, \type {\x}, \type {\xi}
+and \type {\xii} have only local effects.
+
+The commands:
+
+\startbuffer
+{\xii  with these commands \par}
+{\xi   for font switching  \par}
+{\x    it is possible to   \par}
+{\ix   produce an eyetest: \par}
+{\viii a x c e u i w m q p \par}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+When changing the size of the bodyfont, the interline space
+is adapted automatically. This is shown on the left. On the
+right we see what happens when the interline space is not
+adapted.
+
+\startlinecorrection
+\startcombination
+  {\vtop{\forgetall\hsize.4\textwidth                \getbuffer}} {}
+  {\vtop{\forgetall\hsize.4\textwidth\everybodyfont{}\getbuffer}} {}
+\stopcombination
+\stoplinecorrection
+
+\section[font switching]{Font switching}
+\index{fonts}
+\index{roman}
+\index{slanted}
+\index{boldface}
+\index{italic}
+\index{typewriter}
+\index{sans serif}
+\index{old style}
+\index{medaeval numbers}
+
+The mechanism to switch from one style to another is rather
+complex and therefore hard to explain. To begin with, the
+terminology is a bit fuzzy. We call a collection of font
+shapes, like Lucida or Computer Modern Roman a family.
+Within such a family, the members can be grouped according
+to characteristics. Such a group is called a style. Examples
+of styles within a family are: {\rmtf roman}, {\sstf sans
+serif} and {\tttf teletype}. We already saw that there can
+be alternative classifications, but they all refer to the
+pressence of serifs and the glyphs having equal widths. In
+some cases handwritten and|/|or calligraphic styles are also
+available. Within a style there can be alternatives, like
+{\bf boldface} and {\sl slanted}.
+
+There are different ways to change into a new a style or
+alternative. You can use \type {\ss} to switch to a sans
+serif font style and \type {\bf} to get a bold alternative.
+When a different style is chosen, the alternatives adapt
+themselves to this style. Often we will typeset the document
+in one family and style. This is called the bodyfont.
+
+A consequent use of commands like \type {\bf} and \type
+{\sl} in the text will automatically result in the desired
+bold and slanted altermatives when you change the family or
+style in the setup area of your input file. A somewhat
+faster way of style switching is done by \type {\ssbf},
+\type {\sssl}, etc. but this should be used with care, since
+far less housekeeping takes place.
+
+The alternatives within a style are given below. The
+abbreviation \type {\sl} means {\sl slanted}, \type {\it}
+means {\it italic} and \type {\bf} means {\bf boldface}.
+Sometimes \type {\bs} and \type {\bi} are also available,
+meaning {\bs bold slanted} and {\bi bold italic}. When an
+alternative is not known, \CONTEXT\ will choose a suitable
+replacement automatically.
+
+With \type {\os} we tell \CONTEXT\ that we prefer mediaeval or
+old||style numbers {\os 139} over {\rm 139}. The \type {\sc}
+generates {\sc Small Caps}. With an \type {x} we switch to
+smaller font size, with \type {a}, \type {b}, \type {c} and
+\type {d} to a bigger one. The actual font style is stated
+by \type {\tf} or typeface.
+
+\startexample
+\starttyping
+\tfa \tfb \tfc \tfd
+\tfx \bfx \slx \itx
+\bf \sl \it \bs \bi \sc \os
+\stoptyping
+\stopexample
+
+It depends on the completeness of the font definition files
+whether alternatives like \type {\bfa}, \type {\bfb}, etc.
+are available. Not all fonts have for instance italic and
+slanted or both their bold alternatives. In such situations,
+slanted and italic are threated as equivalents.
+
+Switching to a smaller font is accomplished by \type {\tfx},
+\type {\bfx}, \type {\slx}, etc., which adapt themselves to
+the actual alternative. An even more general downscaling is
+achieved by \type {\tx}, which adapts itself to the style
+and alernative. This command is rather handy when one wants
+to write macros that act like a chameleon. Going one more
+step smaller, is possible too: \type {\txx}. Using \type
+{\tx} when \type {\tx} is already given, is equivalent to
+\type {\txx}.
+
+Frequent font switching leads to longer processing times.
+When no sub- or superscripts are used and you are very
+certain what font you want to use, you can perform fast font
+switches with: \type {\rmsl}, \type {\ssbf}, \type {\tttf},
+etc.
+
+Switching to another font style is done by:
+
+\startexample
+\starttyping
+\rm \ss \tt \hw \cg
+\stoptyping
+\stopexample
+
+When \type {\rm} is chosen \CONTEXT\ will interpret the
+command \type {\tfd} as \type {\rmd}. All default font
+setups use \type {tf}||setups and will adapt automatically.
+
+The various commands will adapt themselves to the actual
+setup of font and size. For example:
+
+\startbuffer
+{\rm test {\sl test} {\bf test} \tfc test {\tx test} {\bf test}}
+{\ss test {\sl test \tx test} {\bf test \tx test}}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+will result in:
+
+\startreality
+\startlines
+\getbuffer
+\stoplines
+\stopreality
+
+When a character is not available the most acceptable
+alternative is chosen.
+
+We will not go into the typographical sins of underlining.
+These commands are discussed in \in {section} [underline]
+(\over [underline]).
+
+\section[character]{Characters}
+\index{\type{character}}
+
+A number of commands use the parameter \type {style} to set
+up the font style and size. You can use commands like
+\type {\sl} or \type {\rma} or keywords like:
+
+\startexample
+\starttyping
+normal  bold  slanted  boldslanted  italic  bolditalic  type
+small  smallbold  smallslanted  ...  smallitalic  ...  smalltype
+capital
+\stoptyping
+\stopexample
+
+The parameter mechanism is rather flexible so with the
+parameter \type {style} you can type \type {bold} and \type
+{\bf} or \type {bf}. Even the most low level kind of font
+switching commands like \type {12ptrmbf} are permitted. This
+is fast but requires some insight in macros behind this
+mechanism.
+
+\section[fonts]{Available alternatives}
+\index{\type{cmr}}
+\index{\type{eul}}
+\index{\type{con}}
+\index{\type{lbr}}
+
+There are only a few font families that can handle math. There
+is the Computer Modern Roman, the very beautiful Lucida
+Bright that we prefer in electronic documents, and of course
+one can use the \quote {prefered by publishers font} Times.
+These fonts carry a complete set of characters and symbols
+for mathematical typesetting. Among these, the Computer
+Modern Roman distinguishes itself by its many design sizes,
+which pays off when typesetting complicate math. On this
+design there are a few variations called Euler and Concrete.
+\footnote {See Concrete Mathematics by Knuth cs., an
+outstanding book from the perspective of typography and
+didactically.}
+
+The Computer Modern Roman contains 70~charactertypes and
+sizes. Because a number of charactersizes are not defined
+the 11~point characters are defined as scaled 9~and
+10~point characters under the option \type {cmr}. With
+\type {eul} and \type {con} we obtain a Computer Modern.
+
+\showsetup{showbodyfont}
+
+With the command \type {\showbodyfont} an overview is
+generated of the available characters. Below the 12pt||body
+font Computer Modern Roman (\type {cmr}) is shown. The close
+reader will note that not all alternatives are available by
+default.
+
+\showbodyfont[cmr,12pt]
+
+We can see that the 12pt Lucida Bright (\type {lbr}) is
+somewhat bigger than the 12pt Computer Modern Roman. An
+\type {x}||character for example \type {\bfx} is 2pts smaller
+than the actual typeface. The bigger characters are scaled
+by \TEX's \type {\magstep}.
+
+\showbodyfont[lbr,12pt]
+
+A last remark. When you have chosen a larger charactersize,
+for example \type {\tfb}, then \type {\tf} equals \type {\tfb},
+\type {\bf} equals \type {\bfb}, etc. This method is
+preferable over returning to the original character size.
+
+\section[emphasize]{Emphasize}
+\index{emphasize}
+\index{slanted}
+\index{italic}
+\macro{\tex{em}}
+
+Within most macropackages the command \type {\em} is
+available. This command behaves like a chameleon which means
+that it will adapt to the actual typeface. In \CONTEXT\
+\type {\em} has the following characteristics:
+
+\startitemize[packed]
+\item a switch to {\sl slanted} or {\it
+      italic} is possible
+\item a switch within \type {\bf} results in {\bs bold
+      slanted} or {\bi bold italic} (when available)
+\item a so called {\em italic correction} is performed
+      automatically (\type {\/})
+\stopitemize
+
+The bold italic or bold slanted characters are supported only
+when \type {\bs} and \type {\bi} are available.
+
+\startbuffer
+The mnemonic {\em em} means {\em emphasis}.
+{\em The mnemonic {\em em} means {\em emphasis}.}
+{\bf The mnemonic {\em em} means {\em emphasis}.}
+{\em \bf The mnemonic {\em em} {\em emphasis}.}
+{\it The mnemonic em {\em means \bf emphasis}.}
+{\sl The mnemonic em {\em means \bf emphasis}.}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This results in:
+
+\startlines
+\getbuffer
+\stoplines
+
+The advantage of the use of \type {\em} over \type {\it}
+and|/|or \type {\sl} is that consistent typesetting is
+enforced.
+
+By default emphasis is set at {\em slanted}, but in this text
+it is set at {\em italic}. The setting is made by:
+
+\startexample
+\starttyping
+\setupbodyfontenvironment[default][em=italic]
+\stoptyping
+\stopexample
+
+\section[capitals]{Capitals}
+\index{capital characters}
+\index{capitals}
+\index{small capitals}
+\index{small||caps}
+\macro{\tex{setupcapitals}}
+\macro{\tex{CAP}}
+\macro{\tex{Cap}}
+\macro{\tex{cap}}
+\macro{\tex{nocap}}
+\macro{\tex{Caps}}
+\macro{\tex{Words}}
+\macro{\tex{WORDS}}
+\macro{\tex{Word}}
+\macro{\tex{characters}}
+
+Words and abbreviations can be typeset in capitals. Both
+small and big characters are converted into capitals. When
+\type {\cap} is used to typeset a capital the size is that
+of an \type {\tx}. When we switch to slanted (\type {\sl}),
+bold (\type {\bf}), etc. the capital letter will also
+change. Since \type {\cap} has a specific meaning in math
+mode, the format implementation is called \type {\cap}.
+However in text mode one can use \type {\cap}.
+
+\showsetup{kap}
+
+\showsetup{Cap}
+
+\showsetup{CAP}
+
+\showsetup{Caps}
+
+The first command converts all letters to a capital. We
+advise you not to type capital letters in your source file
+because real small caps distinguishes between small and big
+letters.
+
+\startbuffer
+Capitals for \cap {UK} are \cap {OK} and capitals for \cap {USA} are
+okay. But what about capitals in \cap {Y2K}.
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+this results in:
+
+\startreality
+\getbuffer
+\stopreality
+
+A \type {\cap} within a \type {\cap} will not lead to any
+problems:
+
+\startbuffer
+\cap {People that have gathered their \cap {capital} at the cost of other
+people are not seldom \nocap {decapitated} in revolutionary times.}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+or:
+
+\startreality
+\getbuffer
+\stopreality
+
+In this example we see that \type {\cap} can be temporarily
+revoked by \type {\nocap}.
+
+\showsetup{nocap}
+
+The command \type {\Cap} changes the first character of a
+word into a capital and \type {\CAP} changes letters that
+are preceded by \type {\\} into capital letters. With \type
+{\Caps} you can change the first character of several words
+into a capital letter.
+
+\showsetup{setupcapitals}
+
+With this command the capital mechanism can be set up. The
+key \type {sc=yes} switches to real {\sc Small Caps}. With
+\type {title} we determine whether capitals in titles are
+changed.
+
+Next to the former \type {\cap}||commands we have:
+
+\showsetup{Word}
+
+and
+
+\showsetup{Words}
+
+These commands switch the first characters of words into
+capitals. All characters in a word are changed with:
+
+\showsetup{WORD}
+
+We end this section with real small capitals. When these are
+available the real small caps \type {\sc} are preferred over
+the pseudo||capital in abbreviations and logos.
+
+\startbuffer
+In a manual on \TeX\ and Con\TeX t  there is always the question whether to
+type \cap{\TeX} and \cap{Con\TeX t} or {\sc \TeX} and {\sc Con\TeX t}. Both
+are defined as a logo in the style definition so we type \type {\TEX} and
+\type {\CONTEXT}, which come out as \TEX\ and \CONTEXT.
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+Results in:
+
+\startreality
+\getbuffer
+\stopreality
+
+{\sc It is always possible to typeset text in small
+capitals. However, realize that lower case characters
+discriminate more and make for an easier read.}
+
+An important difference between \type {\cap} and \type {\sc}
+is that the last command is used for a specific designed
+font type. The command \type {\cap} on the other hand adapts
+itself to the actual typeface: {\sl \cap {kap}}, {\bf \cap
+{kap}}, {\bs \cap {kap}}, etc.
+
+Some typesetting packages stretch words (inter character
+spacing) to reach an acceptable alignment. In \CONTEXT\
+this not supported. On purpose! Words in titles can be
+stretched by:
+
+\showsetup{stretched}
+
+\startbuffer
+\hbox to \hsize {\stretched{there\\is\\much\\stretch\\in ...}}
+\hbox to 20em   {\stretched{... and\\here\\somewhat\\less}}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+With \type {\\} we enforce a space (\type {{}} is also
+allowed).
+
+\startreality
+\leavevmode\getbuffer
+\stopreality
+
+These typographically non permitted actions are only allowed
+in heads. The macros that take care of stretching do this
+by processing the text character by character.
+
+\section[verbatim]{Verbatim text}
+\index{verbatim text}
+\index{typed text}
+\index{typing}
+\index{verbatim}
+\macro{\tex{starttyping}}
+\macro{\tex{setuptyping}}
+\macro{\tex{setuptype}}
+\macro{\tex{type}}
+\macro{\tex{typ}}
+\macro{\tex{tex}}
+\macro{\tex{typefile}}
+
+Text can be displayed in verbatim (typed) form. The text is
+typed between the commands:
+
+\showsetup{starttyping}
+
+Like in:
+
+\startbuffer
+\starttyping
+In this text there are enough examples of verbatim text. The command
+definitions and examples are typeset with the mentioned commands. Like in
+this example.
+\stoptyping
+\stopbuffer
+
+\startreality
+\typebuffer
+\stopreality
+
+For in||line typed text the command \type {\type} is
+available.
+
+\showsetup{type}
+
+A complete file can be added to the text with the command:
+
+\showsetup{typefile}
+
+The style of typing is set with:
+
+\showsetup{setuptyping}
+
+This setup influences the display verbatim (\type
+{\starttyping}) and the verbatim typesetting of files (\type
+{\typefile}) and buffers (\type {\typebuffer}). The first
+optional argument can be used to define a specific verbatim
+environment.
+
+\starttyping
+\setuptyping[file][margin=default]
+\stoptyping
+
+When the key \type {space=on}, the spaces are shown:
+
+\startreality
+\setuptyping[space=on]
+\starttyping
+No alignment is to be preferred
+over   aligning   by   means  of
+spaces or the s t r e t c h i n g of words
+\stoptyping
+\stopreality
+
+A very special case is:
+
+\startbuffer
+\definetyping
+  [broadtyping]
+
+\setuptyping
+  [broadtyping]
+  [oddmargin=-1.5cm,evenmargin=-.75cm]
+\stopbuffer
+
+\getbuffer
+
+\typebuffer
+
+This can be used in:
+
+\startbuffer
+\startbroadtyping
+A verbatim line can be very long and when we don't want to hyphenate we
+typeset it in the margin on the uneven pages.
+\stopbroadtyping
+\stopbuffer
+
+\typebuffer
+
+At a left hand side page the verbatim text is set in the
+margin.
+
+\getbuffer
+
+An in||line verbatim is set up by:
+
+\showsetup{setuptype}
+
+When the parameter \type {option} is set at \type {slanted}
+all text between \type{<}\type{<} and \type{>}\type{>} is
+typeset in {\ttsl a slanted letter}. This feature can be
+used with all parameters. In this way \type
++\type{aa<+\type+<bb>+\type+>cc}+ will result in: \type
+{aa<<bb>>cc}.
+
+% Het gekruk met de gesplitste << voorkomt ongewenste
+% ligaturen in lucida fonts.
+
+For reasons of readability you can also use other characters
+than \type+{+ and \type+}+ as {\em outer} parenthesis. You
+can choose your own non||active (a non||special) character,
+for example: \type{\type+like this+} or \type{\type-like
+that-}. Furthermore you can use the mentioned
+\type{<}\type{<} and \type{>}\type{>}, as in
+\type+\type<+\type+<like this>+\type+>+ or even
+\type{\type<like that>}.
+
+The parameter \type {option=commands} enables you to process
+commands in a typed text. In this option \texescape\ is
+replaced by \type {/}. This option is used for typesetting
+manuals like this one. For example:
+
+\startexample
+\setuptyping[option=none]
+\starttyping
+\seethis <</rm : this command has no effect>>
+ /vdots
+\sihtees <</sl : neither has this one>>
+\stoptyping
+\stopexample
+
+The double \type{<}\type{<} and \type{>}\type{>} overtake
+the function of \type+{}+.
+
+Within the type||commands we are using \type {\tttf}. When
+we would have used \type {\tt}, the \type {\sl} would have
+produced a slanted and \type {\bf} a bold typeletter. Now
+this will not happen:
+
+\startexample
+\setuptyping[option=commands]
+\starttyping
+\seethis <</rm : this command has no effect>>
+ /vdots
+\sihtees <</sl : neither has this one>>
+\stoptyping
+\stopexample
+
+One of the most interesting options of typesetting verbatim
+is a program source code. We will limit the information on
+this topic and refer readers to the documentation in the
+files \type {verb-<<xxx>>.tex} and \type {cont-ver.tex}. In
+that last file you can find the following lines:
+
+\starttyping
+\definetyping [MP]  [option=MP]
+\definetyping [PL]  [option=PL]
+\definetyping [JS]  [option=JS]
+\definetyping [TEX] [option=TEX]
+\stoptyping
+
+Here we see that it is possible to define your own verbatim
+environment. For that purpose we use the command:
+
+\showsetup{definetyping}
+
+The definitions above couple such an environment to an
+option.
+
+\startbuffer
+\startMP
+beginfig (12) ;
+  MyScale = 1.23 ;
+  draw unitsquare scaled MyScale shifted (10,20) ;
+endfig ;
+\stopMP
+\stopbuffer
+
+\typebuffer
+
+In color (or reduced gray) this will come out as:
+
+\startreality
+\getbuffer
+\stopreality
+
+These environments take care of typesetting the text in such
+a way that the typographics match the chosen language. It is
+possible to write several filters. Languages like \METAPOST,
+\METAFONT, \PERL, \JAVASCRIPT, \SQL, and off course \TEX\
+are supported. By default color is used to display these
+sources, where several palettes take care of the different
+commands. That is why you see the parameter \type {palet} in
+\type {\setuptyping}. One can use font changes or even own
+commands instead, by assigning the appropriate values to the
+\type {icommand} (for identifiers), \type {vcommand} (for
+variables) and \type {ccommand} parameters (for the rest). By
+default we have:
+
+\starttyping
+\setuptyping [icommand=\ttsl, vcommand=, ccommand=\tf]
+\stoptyping
+
+We have some alternatives for \type {\type}. When
+typesetting text with this command the words are not
+hyphenated. Hyphenation is performed however when one uses:
+
+\showsetup{typ}
+
+When you are thinking of producing a manual on \TEX\ you
+have two commands that may serve you well:
+
+\showsetup{tex}
+
+\showsetup{arg}
+
+The first command places a \tex{} in front of typed text and
+the second command encloses the text with \arg{}.
+
+\section{Math}
+\index{math}
+\macro{\tex{mf}}
+\macro{\tex{enablembox}}
+\macro{\tex{definebodyfont}}
+
+Many \TEX\ users have chosen \TEX\ for its superb math type
+setting. The math oriented character of \TEX\ has also
+influenced the font mechanism. We will not go into any
+details but the central key is the {\em family}. There is a
+font family for \type {\bf}, \type {\it}, etc. Within a
+family we distinguish three members: text, script and
+scriptscript, or a normal, smaller and smallest font. The
+normal font size is used for running text and the smaller
+ones for sub and superscripts. The next example will show
+what the members of a font family can do.
+
+\typebuffer[math-1]
+
+When this is typeset you see this:
+
+\startlines
+\getbuffer[math-1]
+\stoplines
+
+We can see that the characters adapt but that the
+symbols are typeset in the same font. Technically this
+means that the symbols are set in font family~0 (there are
+16~families) and in this case that is default \type {\tf}.
+
+It can also be done somewhat differently as we will see in
+the next example. A new command is used: \type {\mf}, which
+stands for {\em math font}. This command takes care of the
+symbols in such a way that they are set in the actual
+font.\footnote{We also see a strange visual effect. It seems
+as if the lines are sloped.}
+
+\startlines
+\getbuffer[math-2]
+\stoplines
+
+You should take into account that \TEX\ typesets a formula
+as a whole. In some cases this means that setups at the end
+of the formula have effect at the beginning.
+
+\typebuffer[math-2]
+
+The exact location of \type {\mf} is not that important.
+We also could have typed:
+
+\typebuffer[math-3]
+
+One other aspect of fonts in math mode is the way reserved
+names like \type {\sin} and \type {\cos} are typeset.
+
+\typebuffer[math-4]
+
+Unlike plain \TEX, the $\bf\sin$ is also set bold.
+
+\getbuffer[math-4]
+
+In \CONTEXT\ the 12pt math (Computer Modern) fonts are
+defined with:
+
+\typebuffer[math-5]
+
+It is possible to use \type {\tf}, \type {\bf}, etc. within
+math mode.
+
+\typebuffer[math-6]
+
+The example we used before would become:
+
+{\enablembox\getbuffer[math-6]\getbuffer[math-4]}
+
+\section{Em and Ex}
+\index[em]{\type{em}}
+\index[ex]{\type{ex}}
+
+In specifying dimensions we can distinguish physical units
+like \type {pt} and \type {cm} and internal units like \type
+{em} and \type {ex}. These last units are related to the
+actual fontsize. When you use these internal units in
+specifying for example horizontal and vertical spacing you
+don't have to do any recalculating when fonts are switched
+in the style definition.
+
+Some insight in these units does not hurt. The width of an
+\type {em} is not the with of an M, but that of an --- (an
+em||dash). When this glyph is not available in the font
+another value is used. \in {Table} [ems] shows some
+examples. We see that the width of a digit is about \type
+{.5em}. In Computer Modern Roman a digit is excactly half
+an em wide.
+
+\placetable
+  [here][ems]
+  {The width of an \type{em}.}
+  {\getbuffer[em-ex-1]}
+
+In most cases we use \type{em} for specifying width and and
+\type {ex} for height. \in {Table} [exes] shows some
+examples. We see that the height equals the height of a
+lowercase~x.
+
+\placetable
+  [here][exes]
+  {The height of an \type{ex}.}
+  {\getbuffer[em-ex-2]}
+
+\section[encoding]{Definitions}
+\index{font+definition}
+\macro{\tex{startencoding}}
+\macro{\tex{startmapping}}
+\macro{\tex{definecharacter}}
+\macro{\tex{defineaccent}}
+\macro{\tex{definecommand}}
+\macro{\tex{definecasemap}}
+\macro{\tex{definefontsynonym}}
+\macro{\tex{definebodyfont}}
+\macro{\tex{definebodyfontenvironment}}
+\macro{\tex{definefont}}
+\macro{\tex{definebodyfontenvironment}}
+\macro{\tex{setupbodyfontenvironment}}
+\macro{\tex{showbodyfontenvironment}}
+\macro{\tex{definefontsynonym}}
+\macro{\tex{definestyle}}
+
+{\em This section is meant for curious users or those users
+that want to do some experimenting on defining fonts. We
+will not discuss precise definitions of accents and
+encodings. For these issues we refer to the examples in the
+source code and the files \type {font-<<xxx>>} and \type
+{enco-<<xxx>>}}.
+
+Earlier we have seen that within a font family there are
+different font sizes. The relations between these sizes
+are defined with:
+
+\startexample
+\setuptyping[option=commands]
+\starttyping
+\definebodyfontenvironment
+  [12pt]
+  [        text=12pt,    <</Roman Math dimensions: normal dimensions,>>
+         script=9pt,     <</Roman super- and subscripts and>>
+   scriptscript=7pt,     <</Roman supersuper- and subsubscripts.>>
+              x=10pt,    <</Roman Pseudo caps and >>
+             xx=8pt,     <</Roman nested pseudo caps.>>
+            big=12pt,    <</Roman In case we switch to/tt big>>
+          small=10pt]    <</Roman or/tt small.>>
+\stoptyping
+\stopexample
+
+When we use a fontsize that is not predefined in this way
+\CONTEXT\ applies the same proportions anyhow. You can alter
+this definition by specifying the parameter \type {default}.
+When you want to have a somewhat bigger fontsize you can
+type:
+
+\startexample
+\starttyping
+\definebodyfontenvironment [24pt]
+\stoptyping
+\stopexample
+
+You can switch to a 12.4 environment, without any specific
+actions. Within a group these fontdefinitions are temporary.
+When you use the definitions several times in your document
+you should type the definitions in the setup area of your
+source file (style definition) since this can save much
+runtime.
+
+An overview of the different fontsizes within a family can be
+summoned with:
+
+\showsetup{showbodyfontenvironment}
+
+For the \type {lbr} family of fonts this is:
+
+\showbodyfontenvironment[lbr]
+
+For all regular fontsizes environments are predefined
+that fulfill their purpose adequately. However when you want
+to do some extra defining yourself there is:
+
+\showsetup{setupbodyfontenvironment}
+
+The real definitions, i.e. the coupling of commands to the
+font files, can be done in different ways. The most
+transparant is the font file \type {font-phv}.
+
+\typebuffer[font-1]
+
+With \type {\definefontsynonym} we couple a logical name,
+like \typ {SansBold} to a font name, like \typ
+{Helvetica-Bold}. The real coupling is done somewhere else,
+by default in the file \type {font-fil}. There you will see:
+
+\typebuffer[font-2]
+
+This is the only location where a system dependent setup is
+made. When we work under the naming regime of Karl Berry,
+the next setup would be more obvious (see \type
+{font-ber}):
+
+\typebuffer[font-3]
+
+Coupling fonts in this way has no real limits. It is
+interesting to look in \type {font-unk} where different
+styles are coupled in such a way that they be used
+interchangeably.
+
+\typebuffer[font-4]
+
+We see that the basic specification is \type {Serif}. The
+default serif fonts are defined with:
+
+\typebuffer[font-5]
+
+We saw that \type {\tf} is the default font. Here \type
+{\tf} is defined as \typ{Serif sa 1} which means that it is
+a serif font, scaled to a normal font size. This \type
+{Serif} is projected elsewhere on for example \typ
+{LucidaBright} which in turn is projected on the filename
+\type {lbr}.
+
+The kind of all||in||one definitions as shown previously for
+Helvetica use the \type {default} settings and enable easy
+font definitions. This is okay for fonts that come in one
+design size.
+
+We, like other \TEX\ users, started with the use of Computer
+Modern Roman fonts. Since these fonts have specific design
+sizes \CONTEXT\ supports accurate definitions. See the file
+\type {font-cmr}:
+
+\typebuffer[font-6]
+
+We use here the available \TEX||specifications \type
+{scaled} and \type {at}, but \CONTEXT\ also supports a
+combination of both: \type {sa} (scaled at). For example if
+we do not want to use the default Helvetica definition we
+define:
+
+\typebuffer[font-7]
+
+The scaling is done in relation to the bodyfont size. In
+analogy with \TEX's \type {\magstep} we can use \type
+{\magfactor}: instead of \type {sa 1.440} we specify \type
+{sa \magfactor2}. Because typing all these numbers is rather
+tiresome so we replace \type {1.200} by \type {a}, etc. The
+relations between \type {a} and \type {1.200} can be set up
+in the bodyfont environment.
+
+\typebuffer[font-8]
+
+Since font files are used in all interfaces we use English
+commands. The definitions take place in files with the name
+\type {font-<<xxx>>.tex}, see for example the file \type
+{font-cmr.tex}.
+
+\showsetup{definebodyfont}
+
+The setups \type {ex}, \type {mi}, \type {sy}, \type {ms},
+\type {mb} and \type {mc} relate to the math charactersets.
+The first three we can also find in plain \TEX, the last
+three are necessary in other font families. The symbols and
+characters in \AMSTEX\ can also be used in \CONTEXT: \type
+{\definebodyfont [ams]}. These can be found in \type {ma}
+and \type {mb}.
+
+The \type {a}||\type {d} are not mandatory. As an example we
+will define a bigger fontsize of \type {\tf}:
+
+\startbuffer
+\definebodyfont [10pt,11pt,12pt] [rm] [tfe=Regular at 48pt]
+\tfe Big Words.
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This becomes:
+
+\startreality
+\startlinecorrection
+\getbuffer
+\stoplinecorrection
+\stopreality
+
+This definition brings us to other definitions. It is
+possible to define a bodyfont in a several ways. We can use
+classifications like \type {Regular}, or abstract names like
+\type {TimesRoman}, or filenames, like \type {tir}, or even
+fancy names like \type {HeadLetter}.
+
+\starttyping
+\definebodyfont[HeadLetter][Regular sa 1.2]
+\stoptyping
+
+After these definitions we can use \type {\HeadLetter} to
+switch fonts. It may be necessary to adapt the interline
+spacing with \type {\setupinterlinespace} like this:
+
+\starttyping
+\HeadLetter \setupinterlinespace text \par
+\stoptyping
+
+For advanced \TEX\ users there is the dimension||register
+\type {\bodyfontsize}. This variable can be used to set
+fontwidths. The number (rounded) points is available in
+\type {\bodyfontpoints}.
+
+Until now we assumed that an~\type {a} will become an~a
+during type setting. However, this is not always the case.
+Take for example~\"a or~\ae. This character is not available
+in every font and certainly not in the Computer Modern
+Typefaces. Often a combination of characters \type {\"a} or a
+command \type {\ae} will be used to produce such a character.
+In some situation \TEX\ will combine characters
+automatically, like in \type {fl} that is combined to fl and
+not \hbox{f}\hbox{l}. Another problem occurs in converting
+small print to capital print and vice versa.
+
+Below you see an example of the \type {texnansi} mapping:
+
+\typebuffer[enco-1]
+
+This means so much as: in case of a capital the character
+with code 228 becomes character 228 and in case of small
+print the character becomes character 196.
+
+These definitions can be found in \type {enco-ans}. In this
+file we can also see:
+
+\typebuffer[enco-2]
+
+and
+
+\typebuffer[enco-3]
+
+As a result of the way accents are placed over characters we
+have to approach accented characters different from normal
+characters. There are two methods: \TEX\ does the accenting
+itself {\em or} prebuild accentd glyphs are used. The
+definitions above take care of both methods. Other
+definitions are sometimes needed. In the documentation of
+the file \type {enco-ini} more information on this can be
+found.
+
+We once again return to font definitions. Fast fontswitching
+is done with commands like \type {\xii} or \type
+{\twelvepoint}, which is comparable to the way it is done in
+plain \TEX. These commands are defined with:
+
+\typebuffer[font-10]
+
+The keys in \type {\setupbodyfont} are defined in terms of:
+
+\typebuffer[font-11]
+
+In many command setups we encounter the parameter \type
+{style}. In those situations we can specify a key. These
+keys are defined with \type {\definestyle}. The third
+argument is only of importance in chapter and section
+titles, where, apart from \type {\cap}, we want to obey the
+font used there.
+
+\typebuffer[font-12]
+
+In \in{section}[emphasize] we have already explained how
+{\em emphasizing} is defined. With oldstyle digits this is
+somewhat different. We cannot on the forehand in what font
+these can be found. By default we have the setup:
+
+\typebuffer[font-13]
+
+As we see they are obtained from the same font as the math
+italic characters.
+
+In addition to these commands there are others, for example
+macros for manipulating accents. These commands are
+discussed in the file \type {font-ini}. More information can
+also be found in the file \type {core-fnt} and specific
+gimmicks in the file \type {supp-fun}. So enjoy yourself.
+
+\section{Page texts}
+\index{headers}
+\index{footers}
+\index{menus}
+
+Page texts are texts that are placed in the headers,
+footers, margins and edges of the so called pagebody. This
+sentence is for instance typeset in the bodyfont in the
+running text. The fonts of the page texts are set up by
+means of different commands. The values of the parameters
+may be something like \type {style=bold} but
+\type {style=\ss\bf} is also allowed. Setups like
+\type {style=\ssbf} are less obvious because commands like
+\type {\cap} will not behave the way you expect.
+
+Switching to a new font style (\type {\ss}) will cost some
+time. Usually this is no problem but in interactive documents
+where we may use interactive menus with dozens of
+items and related font switches the effect can be
+considerable. In that case a more efficient font switching
+is:
+
+\startexample
+\starttyping
+\setuplayout[style=\ss]
+\stoptyping
+\stopexample
+
+Border texts are setup by its command and the related key.
+For example footers may be set up with the key
+\type {letter}:
+
+\startexample
+\starttyping
+\setupfooter[style=bold]
+\stoptyping
+\stopexample
+
+\section{Files}
+\index{font files}
+
+A number of font definition files that are standard in most
+distributions are mentioned in \in{table}[tab:fontfiles].
+These fonts can be recalled by their last three letters.
+
+\placetable
+  [here][tab:fontfiles]
+  {Some standard font definition files
+   ($\type{pos} = \type{ptm} + \type{phv} + \type{pcr}$).}
+  {\getbuffer[fontfil]}
+
+The most commonly used encoding vectors, like \type {ans},
+\type {ec} and \type {il2}, are preloaded. Extra encoding
+files are loaded by \type {\useencoding}, but this is seldom
+needed. The last two files mentioned in \in {table}
+[tab:encofiles] relate to the support of the non||standard
+keyboard styles. These should be loaded explicitly.
+
+\placetable
+  [here][tab:encofiles]
+  {Some standard encoding definition files.}
+  {\getbuffer[encofil]}
+
+\section{Figures}
+\index{figures+fonts}
+
+When you use figures in your document they may contain text.
+Most of time the \TEX||fonts are not available. When you use
+a serif in your document you can best use a Helvetica in the
+figures. In \in{figure}[fig:helvetica] we use a Helvetica,
+while we use Knuth's Sans Serif in the caption.
+
+\placefigure
+  [here]
+  [fig:helvetica]
+  {\ss The use of fonts in pictures.}
+  {\externalfigure[bor0129]}
+
+\stopcomponent

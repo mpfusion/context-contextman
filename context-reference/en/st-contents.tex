@@ -1,0 +1,34 @@
+\startcomponent st-en-01
+
+\project manual
+
+\title[inhoud]{Content}
+
+\unprotect
+
+\start
+
+\setuplist
+  [\v!chapter]
+  [\c!alternative=a,
+   \c!before={\page[\v!preference]\blank},
+   \c!after=\blank,
+   \c!style=\v!bold,
+   \c!pagestyle=\v!boldslanted]
+
+\setuplist
+  [\v!section]
+  [\c!alternative=d,
+   \c!margin=2em,
+   \c!prefix=nee,
+   \c!pagestyle=\v!slanted]
+
+\getvalue{\e!place\v!content}
+  [\c!level=\v!section]
+
+\stop
+
+\protect
+
+
+\stopcomponent

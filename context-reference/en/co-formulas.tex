@@ -1,0 +1,659 @@
+\startcomponent co-formulas
+
+\environment contextref-env
+\product contextref
+
+\input supp-mps % for \MPdivten (chemic)
+\let \ifgrTEXgraphic \ifforceMPTEXgraphic
+
+\chapter[formulas]{Formulas}
+
+\section{Introduction}
+
+For what reason do we need a complete chapter on formulas?
+The reason is obvious: a considerable part of the
+functionality of \TEX\ relates to math typesetting since
+the main reason for developing \TEX\ was the need for
+typesetting math.
+
+In \CONTEXT\ math typesetting is not really an isue.
+\CONTEXT\ was developed for typesetting educational
+materials and not necessarily math. Therefore more attention
+was paid to chemical formulas and consistent use of units
+than to math. Math was available anyhow.
+
+In \CONTEXT\ the functionality is more oriented towards the
+educational disciplines and these can be found in specific
+modules. A module will not supply basic functionality
+because it can be found in the core.
+
+There are modules for chemical stuff, units and
+flow||charts, which all have their own manual. The same goes
+for the math module. This module contains the same
+functionality as the macros developed by the {\em American
+Mathematical Society}. Those macros are well||known in the
+\TEX\ community. Most extensions concern the interface and
+consistent spacing. In this chapter we pay attention to the
+standard functionality in \CONTEXT.
+
+\section{Basic commands}
+\index{placing+formulas}
+\index{overviews+formulas}
+\index{numbering+formulas}
+\index{formulas+placing}
+\index{formulas+overviews}
+\macro{\tex{setupformulae}}
+\macro{\tex{placeformula}}
+\macro{\tex{placesubformula}}
+\macro{\tex{subformulanumber}}
+\macro{\tex{formulanumber}}
+\macro{\tex{startformula}}
+
+Typesetting formulas is one of the strong points of \TEX.
+Special commands are available for typesetting math. These
+commands are enclosed by single or double dollar signs.
+
+In the running text we use single dollar signs:
+\type {$a=b^2+1/c$} becomes  $a=b^2+1/c$. In conjunction
+with in||line||math there is display||math, or rather
+formulas surrounded by whitespace. Those formulas are
+frequently numbered. The location and way of numbering can
+be set with:
+
+\showsetup{setupformulas}
+
+With \type{left} and \type{right} characters on the left
+or right side of the formula number are set up. Default
+these are \type{(}~and~\type{)}.
+
+A (numbered) formula is defined with the commands:
+
+\showsetup{placeformula}
+
+\showsetup{placesubformula}
+
+The reference and subnumber are optional. Below we give
+some examples of formulas. In the margin we display the
+references. Typing the formula number manually is necessary
+when we make use of tables, matrices and \TEX||commando's
+like \type{\displaylines}. In the examples we use \type
+{$$} to save some space; however we advise you to use the
+command \type {\startformula}.
+
+\start
+
+\def\ShowMathExample[#1]%
+  {\bgroup
+   \setupinmargin[location=left]
+   \def\doShowMathExample##1{\in{##1:}[##1]\\}%
+   \doifsomething{#1}
+     {\margintitle{\processcommalist[#1]\doShowMathExample\unskip}}
+   \typebuffer
+   \getbuffer
+   \egroup}
+
+\startbuffer
+\placeformula          $$ a + b = c                            $$
+\stopbuffer
+\ShowMathExample[]
+
+\startbuffer
+\placeformula          $$ a + b = c                            $$
+\stopbuffer
+\ShowMathExample[]
+
+\startbuffer
+\placesubformula   {a} $$ a + b = c                            $$
+\stopbuffer
+\ShowMathExample[]
+
+\startbuffer
+\placesubformula   {b} $$ a + b = c                            $$
+\stopbuffer
+\ShowMathExample[]
+
+\startbuffer
+\placeformula   [a]    $$ a + b = c                            $$
+\stopbuffer
+\ShowMathExample[a]
+
+\startbuffer
+\placeformula   [b]    $$ a + b = c                            $$
+\stopbuffer
+\ShowMathExample[b]
+
+\startbuffer
+\placesubformula[c]{a} $$ a + b = c                            $$
+\stopbuffer
+\ShowMathExample[c]
+
+\startbuffer
+\placesubformula[d]{b} $$ a + b = c                            $$
+\stopbuffer
+\ShowMathExample[d]
+
+\startbuffer
+\placeformula          $$ a + b = c \quad \formulanumber       $$
+\stopbuffer
+\ShowMathExample[]
+
+\startbuffer
+\placeformula          $$ a + b = c \quad \formulanumber       $$
+\stopbuffer
+\ShowMathExample[]
+
+\startbuffer
+\placesubformula   {a} $$ a + b = c \quad \formulanumber       $$
+\stopbuffer
+\ShowMathExample[]
+
+\startbuffer
+\placesubformula   {b} $$ a + b = c \quad \formulanumber       $$
+\stopbuffer
+\ShowMathExample[]
+
+\startbuffer
+\placeformula   [e]    $$ a + b = c \quad \formulanumber       $$
+\stopbuffer
+\ShowMathExample[e]
+
+\startbuffer
+\placeformula   [f]    $$ a + b = c \quad \formulanumber       $$
+\stopbuffer
+\ShowMathExample[f]
+
+\startbuffer
+\placesubformula[g]{a} $$ a + b = c \quad \formulanumber       $$
+\stopbuffer
+\ShowMathExample[g]
+
+\startbuffer
+\placesubformula[h]{b} $$ a + b = c \quad \formulanumber       $$
+\stopbuffer
+\ShowMathExample[h]
+
+\startbuffer
+\placesubformula      $$ a + b = c \quad \formulanumber   {a} $$
+\stopbuffer
+\ShowMathExample[]
+
+\startbuffer
+\placesubformula       $$ a + b = c \quad \formulanumber   {b} $$
+\stopbuffer
+\ShowMathExample[]
+
+\startbuffer
+\placeformula          $$ a + b = c \quad \formulanumber[i]    $$
+\stopbuffer
+\ShowMathExample[i]
+
+\startbuffer
+\placeformula          $$ a + b = c \quad \formulanumber[j]    $$
+\stopbuffer
+\ShowMathExample[j]
+
+\startbuffer
+\placesubformula       $$ a + b = c \quad \formulanumber[k]{a} $$
+\stopbuffer
+\ShowMathExample[k]
+
+\startbuffer
+\placesubformula       $$ a + b = c \quad \formulanumber[l]{b} $$
+\stopbuffer
+\ShowMathExample[l]
+
+\startbuffer
+\placeformula   [m]    $$ a + b = c \quad \formulanumber   {a} $$
+\stopbuffer
+\ShowMathExample[m]
+
+\startbuffer
+\placeformula   [n]    $$ a + b = c \quad \formulanumber   {b} $$
+\stopbuffer
+\ShowMathExample[n]
+
+\startbuffer
+\placesubformula[o]    $$ a + b = c \quad \formulanumber   {a} $$
+\stopbuffer
+\ShowMathExample[o]
+
+\startbuffer
+\placesubformula[p]    $$ a + b = c \quad \formulanumber   {b} $$
+\stopbuffer
+\ShowMathExample[p]
+
+\startbuffer
+\placeformula   [q]    $$ a + b = c \quad \formulanumber[r]{a} $$
+\stopbuffer
+\ShowMathExample[q,r]
+
+\startbuffer
+\placeformula   [s]    $$ a + b = c \quad \formulanumber[t]{b} $$
+\stopbuffer
+\ShowMathExample[s,t]
+
+\startbuffer
+\placesubformula[u]    $$ a + b = c \quad \formulanumber[v]{a} $$
+\stopbuffer
+\ShowMathExample[u,v]
+
+\startbuffer
+\placesubformula[w]    $$ a + b = c \quad \formulanumber[x]{b} $$
+\stopbuffer
+\ShowMathExample[w,x]
+
+\stop
+
+When we want {\em no} numbers we have to indicate that
+explicitly by means of \type{[-]}:
+
+\startbuffer
+\placeformula[-]
+  $$\displaylines
+      {ab=ba\hfill\cr
+       ac+bc=(a+b)c\hfill\cr}$$
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This results in:
+
+\getbuffer
+
+We also could have used here \type {\startformula...}\type
+{\stopformula}:
+
+\startbuffer
+\placeformula[-]
+  \startformula
+  \displaylines{ab=ba\hfill\cr ac+bc=(a+b)c\hfill\cr}
+  \stopformula
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+The use of the \type{\start...}\type{\stop}||pair
+has the advantage that we can test symmetry in some
+wordprocessors. The disadvantage is we can not see
+immediately that we work in math mode.
+
+\showsetup{startformula}
+
+The next examples does use numbers. In this example \type
+{[that's it]} is a logical name, a label, for future
+referencing.
+
+\startbuffer
+\placeformula
+  \startformula
+    \displaylines
+        {a\times b=b\times a\hfill\formulanumber\cr
+         a+b=b+a\hfill\subformulanumber\cr
+         ac+bc=(a+b)c\hfill\formulanumber[that's it]{x}\cr}
+  \stopformula
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This becomes:
+
+\getbuffer
+
+\section{Legends}
+\index{formulas+legends}
+\macro{\tex{startfact}}
+\macro{\tex{startlegend}}
+
+In case of physics formulas you may want to explain the
+meaning of the used symbols. There are two commands to do
+that:
+
+\showsetup{startlegend}
+
+\showsetup{startfact}
+
+A legend and facts are coded as follows:
+
+\startbuffer
+\placeformula[for:force]$$F = m a$$
+
+\startlegend
+\leg F \\ force        \\ N       \\
+\leg m \\ mass         \\ kg      \\
+\leg a \\ acceleration \\ m/{s^2} \\
+\stoplegend
+
+Determine by means of formula~\in[for:force] the acceleration~$a$
+when given is that:
+
+\startfact
+\fact mass  \\ m \\ 10~kg  \\
+\fact force \\ F \\ 1500~N \\
+\stopfact
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This results in:
+
+\getbuffer
+
+A combination is also possible:
+
+\startbuffer
+\startlegend[two]
+\leg F \\      \\ force        \\ N       \\
+\leg m \\   10 \\ mass         \\ kg      \\
+\leg a \\ 1500 \\ acceleration \\ m/{s^2} \\
+\stoplegend
+\stopbuffer
+
+\getbuffer
+
+This was specified in this way:
+
+\typebuffer
+
+\section[units]{Units}
+\index{overviews+units}
+\index{formulas+units}
+\index{units}
+\macro{\tex{unit}}
+\macro{\tex{mathematics}}
+
+A unit can be typeset with:
+
+\startexample
+\starttyping
+10~$\rm m^3$
+\stoptyping
+\stopexample
+
+For the purpose of consistent typesetting the command
+\type{\unit} is available. This is an example of the use of
+synonyms as described in \in{section}[synonyms].
+
+\startexample
+\starttyping
+\unit {strange} {m^3\!/s^2} {a strange unit}
+\stoptyping
+\stopexample
+
+In this case the \type{\!} takes care of backskipping
+the~$/$ in such a way that in stead of $\rm m^3/s^2$ we get
+$\rm m^3\!/s^2$. In fact we can do without these kind of
+cryptic typing, because the unit module offers a better
+alternative. The module is loaded in the set up area of your
+source file with:
+
+\starttyping
+\usemodule[unit]
+\stoptyping
+
+After that you can type the recall unit by typing them. For
+example:
+
+\starttyping
+... 10 \Meter \Per \Second\ ...
+... 33 \Kilo \Gram \Per \Square \Meter\ ...
+\stoptyping
+
+At this point we advise you to read the manual that comes
+with this module for more examples.
+
+When we use math commands there may occur problems as soon
+as we use~\type{$} in a nested way. When we are in math mode
+and we use a~\type{$} for the purpose of switching to math
+mode we just end math mode like this:
+
+\startexample
+\starttyping
+$a $\times$ b$
+\stoptyping
+\stopexample
+
+\TEX\ will produce an error because \type{\times} is typed
+outside math mode. In this example we saw what goes wrong
+but the problem is less obvious in the next example:
+
+\startexample
+\starttyping
+\def\multiply{$\times$}
+$a \multiply b$
+\stoptyping
+\stopexample
+
+This seems correct but with \type{\multiply} we leave math
+mode. We can prevent errors by defining \type{\multiply}
+as follows:
+
+\startexample
+\starttyping
+\def\multiply{\ifmmode \times \else $\times$ \fi}
+\stoptyping
+\stopexample
+
+The next commands does just that:
+
+\showsetup{mathematics}
+
+We can use this command in nested situations:
+
+\startbuffer
+\mathematics{a\mathematics{b\mathematics{c\mathematics{d\mathematics{e}}}}}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+and it will result in a correct output:
+
+\startreality
+\getbuffer
+\stopreality
+
+so do not use this:
+
+\startbuffer
+$a$b$c$d$e$
+\stopbuffer
+
+\startreality
+\getbuffer
+\stopreality
+
+which we would have obtained by typing:
+
+\startexample
+\typebuffer
+\stopexample
+
+\section{Chemicals}
+\index[PPCHTEX]{\PPCHTEX}
+\index{chemical formulas}
+\macro{ch}
+\macro{startchemical}
+\macro{chemical}
+\macro{usemodule}
+
+Earlier we stated that in this chapter we also describe the
+module for chemical typesetting. This module is loaded with:
+
+\starttyping
+\usemodule[chemic]
+\stoptyping
+
+The first version of this module used \PICTEX\ for
+positioning text and drawing the chemical structures, the
+current version uses \METAPOST\ for drawing the graphics.
+The results are better and the files are more compact.
+
+\startbuffer
+\startchemical[with=fit,height=fit]
+  \chemical
+    [SIX,B,C,ADJ1,
+     FIVE,ROT3,SB34,+SB2,-SB5,Z345,DR35,SR4,CRZ35,SUB1,
+     ONE,OFF1,SB258,Z0,Z28]
+    [C,N,C,O,O,
+     CH,COOC_2H_5,COOC_2H_5]
+\stopchemical
+\stopbuffer
+
+\startlinecorrection
+\getbuffer
+\stoplinecorrection
+
+This chemical structure was typed as follows:
+
+\typebuffer
+
+The interface (syntax) looks rather cryptic but after some
+practice its compactness is an asset. There is an extensive
+manual and a collection of examples available.
+
+One characteristic of chemical typesetting is the fact that
+all super|| respectively subscripts are at the same height.
+This is not the case in math typesetting where the location
+of the super|| and subscripts depend on the available
+vertical space. The command \type {\chemical} takes this
+into account. When you want to put a chemical formula in a
+math formula |<|for example when you want to display an
+expression for a chemical equilibrium|>| there is the
+command \type{\ch}. This command has one argument and adapts
+automatically to its context: \type
+{$\frac{\ch{N}}{\ch{O}}$}
+
+\section{Math}
+\index{fraktur}
+\index{gothic}
+\index{calligraphy}
+\index{fractions}
+\macro{\tex{fraction}}
+\macro{\tex{frac}}
+\macro{\tex{maframed}}
+\macro{\tex{inmaframed}}
+\macro{\tex{frak}}
+\macro{\tex{goth}}
+\macro{\tex{cal}}
+\macro{\tex{fraktur}}
+\macro{\tex{gothic}}
+\macro{\tex{calligraphic}}
+
+We limit ourselves only to those commands that are
+available by default. In addition to the commands mentioned
+here, the math module implements many more:
+
+\starttyping
+\usemodule[math]
+\stoptyping
+
+The extra commands are described in a separate manual.
+
+Like in  plain \TEX\ we offer the next commands
+for switching to some specialized fonts:
+
+\starttabulate[|l|l|l|]
+\NC \type {\frak} \NC fraktur      \NC \frak ABC \NC\NR
+\NC \type {\goth} \NC gothic       \NC \goth abc \NC\NR
+\NC \type {\cal}  \NC calligraphic \NC \cal  ABC \NC\NR
+\stoptabulate
+
+Alternatively one can use the commands \type {\fraktur},
+\type {\gothic} and \type {\calligraphic} which each take
+one argument, like in \type {\fraktur {TEXT}}.
+
+These are typical fonts meant for math typesetting and
+special characters.
+
+Fractions can occur quite often so we also added the command
+\type {\frac} on request: \type {$\frac{a}{b}$} results as
+expected $\frac{a}{b}$. This command adapts to its
+surroundings as good as possible.
+
+For instructional purposes a frame or a background can be
+useful to indicate the specific math symbol. There is a
+special version of \type {\framed}: \type {\maframed}. We
+give some examples:
+
+\startbuffer
+\startformula
+  y + \maframed{y} + y^{2} + y^{\maframed{2}}
+\stopformula
+
+\startformula
+  x \times \maframed{y} \times y^{\maframed{z}_{\maframed{z}}}
+\stopformula
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+In this example we can see that the superscript~2 is rather
+big. This can be prevented by using the commands \type
+{\super} and \type {\suber} in stead of \type {^} and \type
+{_}.
+
+\startbuffer
+\startformula
+  x \times \maframed{y} \times y\super{\maframed{z}\suber{\maframed{z}}}
+\stopformula
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+If you want to use \type {^} and \type {_} anyhow, than you
+can use \type {\enablesupersub} to reach the same effect.
+
+To obtain a good spacing in framed math texts the \type
+{offset} equals \type {overlay}. The offset is produced by
+giving \type {frameoffset} an adequate value. Other setups
+are also possible:
+
+\startbuffer
+\startformula
+  x \times y\super{\maframed[framecolor=red]{z}\suber{z}}
+\stopformula
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+For in||line math the command \type {\inmaframed}
+is available.
+
+It is possible to typeset fractions without switching to
+math mode with the command:
+
+\showsetup{fraction}
+
+The braces are essential in the next example.
+
+\startbuffer
+If \fraction{123}{456} equals \fraction{x}{y}, then \fraction{y}{x} equals
+\fraction{456}{123}.
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+results in:
+
+\startreality
+\getbuffer
+\stopreality
+
+\stopcomponent

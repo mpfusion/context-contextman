@@ -1,0 +1,19 @@
+% content=tex
+%
+% copyright=pragma-ade readme=readme.pdf licence=cc-by-nc-sa
+
+\definecolumnset[example][n=4]
+
+\setupbackgrounds[text][text][background=contrast]
+
+\setupcolumnset[example][1][width=.3\makeupwidth]
+
+\starttext
+
+\startcolumnset[example]
+
+   \dorecurse{25}{\fakewords{50}{75}\column[local]}
+
+\stopcolumnset 
+
+\stoptext 

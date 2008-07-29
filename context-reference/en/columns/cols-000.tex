@@ -1,0 +1,66 @@
+% content=tex
+%
+% copyright=pragma-ade readme=readme.pdf licence=cc-by-nc-sa
+
+\startenvironment cols-000
+
+\dontcomplain
+
+\usemodule[visual]
+
+\useMPlibrary[dum]
+
+\usetypescript
+  [palatino]
+  [\defaultencoding]
+
+\setupbodyfont
+  [palatino]
+
+\setupcolors
+  [state=start]
+
+\setuplayout
+  [grid=yes]
+
+\setuplayout
+  [middle]
+
+\setupsystem
+  [random=1234]
+
+\setuppagenumbering
+  [alternative=doublesided,
+   location=]
+
+\setupheadertexts
+  [pagenumber][right]
+  [left][pagenumber]
+
+\setupfootertexts
+  [\tttf\inputfilename]
+
+\setuptolerance
+  [verytolerant,stretch]
+
+% todo: flatten
+
+\startuniqueMPgraphic{frame}
+  fill OverlayBox withcolor transparent(1,.25,red) ;
+  fill OverlayBox withcolor transparent(1,.25,blue);
+\stopuniqueMPgraphic
+
+\startuniqueMPgraphic{contrast}
+  fill OverlayBox withcolor white ;
+  fill OverlayBox withcolor transparent(1,.25,red) ;
+  fill OverlayBox withcolor transparent(1,.25,yellow) ;
+\stopuniqueMPgraphic
+
+\defineoverlay[frame]   [\useMPgraphic{frame}]
+\defineoverlay[contrast][\useMPgraphic{contrast}]
+
+\definecolor[red]  [r=.75,g=.5,b=.5]
+\definecolor[green][r=.5,g=.75,b=.5]
+\definecolor[blue] [r=.5,g=.5,b=.75]
+
+\stopenvironment

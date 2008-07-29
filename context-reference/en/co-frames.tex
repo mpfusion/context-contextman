@@ -1,0 +1,1067 @@
+\startcomponent co-en-12
+
+\environment contextref-env
+\product contextref
+
+\chapter[lines,frames]{Lines and frames}
+
+\section{Introduction}
+
+\TEX\ has an enormous capacity in handling text, but is very
+weak at handling graphical information. Lines can be handled
+adequately as long as you use vertical or horizontal lines.
+However, you can do graphical work with \TEX\ by combining
+\TEX\ and \METAPOST.
+
+In this chapter we introduce a number of commands that
+relate to drawing straight lines in your text. We will see a
+very sophisticated command \type {\framed} that can be used
+in many ways. The parameters of this command are also
+available in other commands.
+
+\section[single lines]{Single lines}
+\index{lines}
+\macro{\tex{hairline}}
+\macro{\tex{thinrule}}
+\macro{\tex{thinrules}}
+\macro{\tex{setupthinrules}}
+\macro{\tex{vl}}
+\macro{\tex{hl}}
+
+The simplest way to draw a line in \CONTEXT\ is:
+
+\showsetup{hairline}
+
+For example:
+
+\startbuffer
+\hairline
+In what fairy tale is the wolf cut open and filled with stones? Was it in
+{Little Red Riding-hood} or in \quote {The wolf and the seven goats}.
+\hairline
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This will become:
+
+\startreality
+\getbuffer
+\stopreality
+
+It does not look good at all. This is caused by the fact
+that a drawn line gets its own vertical whitespace.
+In \in{section}[textlines] we will show how to alter this.
+
+The effects of the command \type{\hairline} is best
+illustrated when we visualize \type{\strut}'s. We did so by
+saying \type {\showstruts} first.
+
+\page \message{harde paginaovergang ivm toonstrut}
+
+\startreality
+{\showstruts\hairline}
+A strut is a character with a maximum height and depth, but
+no width. The text in this example is surrounded by two
+strutted lines.
+{\showstruts\hairline}
+\stopreality
+
+It is  also possible to draw a line over the width of the
+actual paragraph:
+
+\showsetup{thinrule}
+
+Or more than one lines by:
+
+\showsetup{thinrules}
+
+For example:
+
+\startbuffer
+\startitemize
+\item question 1 \par \thinrules[n=2]
+\item question 2 \par \thinrules[n=2]
+\stopitemize
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+If you leave out a \type {\par} (or empty line), the thin
+rules come after the text. Compare
+
+\getbuffer
+
+with
+
+\startbuffer
+\startitemize
+\item question 1 \thinrules[n=2]
+\item question 2 \thinrules[n=2]
+\stopitemize
+\stopbuffer
+
+\getbuffer
+
+The last example was keyed in as:
+
+\typebuffer
+
+The parameters are set with:
+
+\showsetup{setupthinrules}
+
+You can draw thin vertical or horizontal lines with the
+commands:
+
+\showsetup{vl}
+
+\showsetup{hl}
+
+The argument is optional. To \type{\vl} (\hbox spread .5em
+{\hss \vl \hss}) you may pass a factor that relates to the
+actual height of a line and to \type{\hl} (\hbox spread .5em
+{\hss \hl \hss}) a width that relates to the width of an em.
+So \type {\vl[2]} produces a rule with a height of two lines.
+
+\section[fill in rules]{Fill in rules}
+\index{lines}
+\index{questionnaire}
+\macro{\tex{fillinline}}
+\macro{\tex{fillinrules}}
+\macro{\tex{setupfillinline}}
+\macro{\tex{setupfillinrules}}
+
+On behalf of questionnaires there is the command:
+
+\showsetup{fillinline}
+
+With the accompanying setup command:
+
+\showsetup{setupfillinlines}
+
+The example:
+
+\startbuffer
+\fillinline[n=2,width=2cm]{name} \par
+\fillinline[n=2,width=2cm]{address} \par
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+Leads to the next list:
+
+\startreality
+\getbuffer
+\stopreality
+
+An alternative is wanting the fill||in rule at the end of a
+paragraph. Then you use the commands:
+
+\showsetup{fillinrules}
+
+\showsetup{setupfillinrules}
+
+The next example will show the implications:
+
+\startbuffer
+\fillinline[width=3cm] Consumers in this shopping mall are frequently
+confronted with questionnaires. Our hypothesis is that consumers rather
+shop somewhere else than answer these kind of questionnaires. Do you
+agree with this?
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+In this example we could of course have offered some
+alternatives for answering this question. By setting the
+width to \type {broad}, we get
+
+\startreality
+\getbuffer\par
+\stopreality
+
+The next set of examples demonstrate how we can influence the
+layout.
+
+\startbuffer
+\fillinrules[n=2,width=fit]{first}
+\fillinrules[n=2,width=broad]{first}
+\fillinrules[n=2,width=3cm]{first}
+\fillinrules[n=2,width=fit,distance=.5em,separator=:]{first}
+\fillinrules[n=2,width=broad,distance=.5em]{first}{last}
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+\section[textlines]{Text lines}
+\macro{\tex{textrule}}
+\macro{\tex{setuptextruleen}}
+
+A text line is drawn just before and/or after a paragraph.
+The upper line may also contain text. The command is:
+
+\showsetup{textrule}
+
+An example:
+
+\startbuffer
+\textrule[top]{Instruments}
+Some artists mention the instruments that they use during the production
+of their \kap{CD}. In Peter Gabriel's \quote {Digging in the dust} he used
+the {\em diembe}, {\em tama} and {\em surdu}. The information on another
+song mentions the {\em doudouk}. Other \quote {unknown} instruments are
+used on his \kap{cd} \quote {Passion}.
+\textrule
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This will result in:
+
+\getbuffer
+
+The behaviour of textlines is set up with the command below.
+With the parameter \type{width} you set the length of the
+line in front of the text.
+
+\showsetup{setuptextrules}
+
+These is also a \type {\start}||\type {\stop} alternative.
+This one also honors the \type {bodyfont} parameter.
+
+\showsetup{starttextrule}
+
+\section[underline,overline,overstrike]{Underline}
+\index{underline}
+\index{overstrike}
+\macro{\tex{underbar}}
+\macro{\tex{underbars}}
+\macro{\tex{overstrike}}
+\macro{\tex{overstrikes}}
+
+Underlining text is not such an ideal method to banner your
+text. Nevertheless we introduced this feature in \CONTEXT.
+Here is how it \underbar{works}. We use:
+
+\showsetup{underbar}
+
+\startbuffer
+\underbar {A disadvantage of this command is that words can \underbar
+{no} longer be hyphenated. This is a nasty side||effect. But we do
+support \underbar {nested} underlining.}
+
+\underbars {The spaces in the last paragraph were also underlined. If
+we do not want that in this paragraph we use:}
+\stopbuffer
+
+\getbuffer
+
+\showsetup{underbars}
+
+From the input we can see that the hyphen results from the
+compound word.
+
+\typebuffer
+
+The counterpart of these commands are:
+
+\showsetup{overbar}
+
+\showsetup{overbars}
+
+You may wonder for what reasons we introduced these commands.
+The reasons are mainly financial:
+
+\startbuffer
+\starttabulate[|l|r|]
+\NC product 1 \NC          1.420  \NC \NR
+\NC product 2 \NC          3.182  \NC \NR
+\NC total     \NC \overbar{4.602} \NC \NR
+\stoptabulate
+\stopbuffer
+
+\startreality
+\getbuffer
+\stopreality
+
+This financial overview is made with:
+
+\startexample
+\typebuffer
+\stopexample
+
+The number of parameters in these commands is limited:
+
+\showsetup{setupunderbar}
+
+The alternatives are:
+{\setupunderbar [alternative=a]\underbar {alternative~a},
+ \setupunderbar [alternative=b]\underbar {alternative~b},
+ \setupunderbar [alternative=c]\underbar {alternative~c}}
+while another line thickness results in:
+{\setupunderbar [rulethickness=1pt]\underbar {1pt~line},
+ \setupunderbar [rulethickness=2pt]\underbar {2pt~line}}.
+
+A part of the text can be \overstrike {striked} with the
+command:
+
+\showsetup{overstrike}
+
+This command supports no nesting. Single \overstrikes {words
+are striked} with:
+
+\showsetup{overstrikes}
+
+\section[framing,stp:framed]{Framing}
+\index{framing}
+\index{frames}
+\macro{\tex{setupframedin}}
+\macro{\tex{framed}}
+\macro{\tex{inframed}}
+
+Texts can be framed with the command: \type{\framed}. In its
+most simple form the command looks like this:
+
+\startbuffer
+\framed{A button in an interactive document is a framed text
+with specific characteristics.}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+The becomes:
+
+\startlinecorrection
+\getbuffer
+\stoplinecorrection
+
+The complete definition of this command is:
+
+\showsetup{framed}
+
+You may notice that all arguments are optional.
+
+\startbuffer
+\framed
+  [height=broad]
+  {A framed text always needs special attention as far as the spacing
+   is concerned.}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+Here is the output of the previous source code:
+
+\startlinecorrection
+\getbuffer
+\stoplinecorrection
+
+For the height, the values \type {fit} and \type {broad} have
+the same results. So:
+
+\startbuffer
+\hbox
+  {\framed[height=broad]{Is this the spacing we want?}
+   \hskip1em
+   \framed[height=fit]  {Or isn't it?}}
+\stopbuffer
+
+\typebuffer
+
+will give us:
+
+\startlinecorrection
+\getbuffer
+\stoplinecorrection
+
+To obtain a comparable layout between framed and non||framed
+framing can be set on and off.
+
+\startlinecorrection
+\hbox{\framed[width=2cm,frame=on]{yes}
+      \framed[width=2cm,frame=off]{no}
+      \framed[width=2cm,frame=on]{yes}}
+\hbox{\framed[width=2cm,frame=off]{no}
+      \framed[width=2cm,frame=on]{yes}
+      \framed[width=2cm,frame=off]{no}}
+\stoplinecorrection
+
+The rulethickness is set with the command \type
+{\setuprulethickness} (see \in{section}[rulethickness]).
+
+A framed text is typeset \quote {on top of} the baseline.
+When you want real alignment you can use the command
+\type{\inframed}.
+
+\startbuffer
+to \framed{frame} or to be \inframed{framed}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+or:
+
+\startreality
+\getbuffer
+\stopreality
+
+It is possible to draw parts of the frame. In that case you
+have to specify the separate sides of the frame with \type
+{leftframe=on} and the alike.
+
+We will now show some alternatives of the command \type
+{\framed}. Please notice the influence of \type {offset}.
+When no value is given, the offset is determined by the
+height and depth of the \type {\strut}, that virtual
+character with a maximum height and depth with no width.
+When exact positioning is needed within a frame you set
+\type {offset} at \type {none} (see also \in {tables}
+[tab:strut 1], \in [tab:strut 2] \in {and} [tab:strut 3]).
+Setting the \type {offset} to \type {none} or \type
+{overlay}, will also disable the strut.
+
+\def\toonframed[#1]%
+  {\leavevmode\framed[#1]{\tttf#1}\par}
+
+\startpacked
+\toonframed[width=fit]
+\toonframed[width=broad]
+\toonframed[width=8cm,height=1.5em]
+\toonframed[offset=5pt]
+\toonframed[offset=0pt]
+\toonframed[offset=none]
+\toonframed[offset=overlay]
+\toonframed[width=8cm,height=1.5em,offset=0pt]
+\toonframed[width=8cm,height=1.5em,offset=none]
+\stoppacked
+
+The commands \type {\lbox} (ragged left), \type {\cbox}
+(ragged center) and \type {\rbox} (ragged right) can be
+combined with \type {\framed}:
+
+\startbuffer[examp-1]
+\framed
+  [width=.2\hsize,height=3cm]
+  {\lbox to 2.5cm{\hsize2.5cm left\\of the\\middle}}
+\stopbuffer
+
+\startbuffer[examp-2]
+\framed
+  [width=.2\hsize,height=3cm]
+  {\cbox to 2.5cm{\hsize2.5cm just\\in the\\middle}}
+\stopbuffer
+
+\startbuffer[examp-3]
+\framed
+  [width=.2\hsize,height=3cm]
+  {\rbox to 2.5cm{\hsize2.5cm right\\of the\\middle}}
+\stopbuffer
+
+\startlinecorrection
+\startcombination[3]
+  {\getbuffer[examp-1]} {\type{\lbox}}
+  {\getbuffer[examp-2]} {\type{\cbox}}
+  {\getbuffer[examp-3]} {\type{\rbox}}
+\stopcombination
+\stoplinecorrection
+
+The second text is typed as follows:
+
+\startexample
+\typebuffer[examp-2]
+\stopexample
+
+There is a more convenient way to align a text, since we
+have the parameters \type {align} and \type{top} and
+\type{bottom}. In the next one shows the influence of \type
+{top} and \type {bottom} (the second case is the default).
+
+\startbuffer
+\setupframed[width=.2\hsize,height=3cm,align=middle]
+\startcombination[4]
+  {\framed[bottom=\vss,top=\vss]{just\\in the\\middle}}
+  {\type{top=\vss}\crlf\type{bottom=\vss}}
+  {\framed[bottom=\vss,top=]    {just\\in the\\middle}}
+  {\type{top=}    \crlf\type{bottom=\vss}}
+  {\framed[bottom=,top=\vss]    {just\\in the\\middle}}
+  {\type{top=\vss}\crlf\type{top=}}
+  {\framed[bottom=,top=]        {just\\in the\\middle}}
+  {\type{top=}    \crlf\type{bottom=}}
+\stopcombination
+\stopbuffer
+
+\typebuffer
+
+\startlinecorrection
+\getbuffer
+\stoplinecorrection
+
+In the background of a framed text you can place a screen or
+a coloured background by setting \type {background} at \type
+{color} or \type {screen}. Don't forget to activate the the
+colour mechanism by saying (\type
+{\setupcolors[state=start]}).
+
+\start
+\setupframed[width=5cm,height=1cm]
+\startlinecorrection
+\startcombination[2*2]
+  {\framed
+    [background=screen]
+    {\tfb In the}}
+  {\tttf background=screen}
+  {\framed
+    [background=screen,backgroundscreen=0.7]
+    {\tfb dark}}
+  {\tttf background=screen \endgraf backgroundscreen=0.7}
+  {\framed
+    [background=color]
+    {\tfb all cats}}
+  {\tttf background=color}
+  {\framed
+    [background=color,backgroundcolor=red]
+    {\tfb are grey.}}
+  {\tttf background=color \endgraf backgroundcolor=red}
+\stopcombination
+\stoplinecorrection
+\stop
+
+There is also an option to enlarge a frame or the background
+by setting the \type {frameoffset} and|/|or \type
+{backgroundoffset}. These do not influence the dimensions.
+Next to screens and colours you can also use your own kind
+of backgrounds. This mechanism is described in \in {section}
+[overlays].
+
+The command \type{\framed} itself can be an argument
+of \type{\framed}. We will obtain a framed frame.
+
+\startbuffer[examp-1]
+\framed
+  [width=3cm,height=3cm]
+  {\framed[width=2.5cm,height=2.5cm]{hello world}}
+\stopbuffer
+
+\startexample
+\typebuffer[examp-1]
+\stopexample
+
+In that case the second frame is somewhat larger than
+expected. This is caused by the fact that the first framed
+has a strut. This strut is placed automatically to enable
+typesetting one framed text next to another. We suppress
+\type{\strut} with:
+
+\startbuffer[examp-2]
+\framed
+  [width=3cm,height=3cm,strut=no]
+  {\framed[width=2.5cm,height=2.5cm]{hello world}}
+\stopbuffer
+
+\startexample
+\typebuffer[examp-2]
+\stopexample
+
+When both examples are placed close to one another we see the
+difference:
+
+\startlinecorrection
+\startcombination
+  {\showstruts\getbuffer[examp-1]} {\type{strut=yes}}
+  {\showstruts\getbuffer[examp-2]} {\type{strut=no}}
+\stopcombination
+\stoplinecorrection
+
+A \type {\hairline} is normally draw over the complete width
+of a text (\type{\hsize}). Within a frame the line is drawn
+from the left to the right of framed box.
+
+Consequently the code:
+
+\startbuffer
+\framed[width=8cm,align=middle]
+  {when you read between the lines \hairline
+   you may see what effort it takes \hairline
+   to write a macropackage}
+\stopbuffer
+
+\typebuffer
+
+produces the following output:
+
+\startlinecorrection
+\getbuffer
+\stoplinecorrection
+
+When no width is specified only the vertical lines are
+displayed.
+
+\startbuffer
+\framed
+  {their opinions \hairline differ \hairline considerately}
+\stopbuffer
+
+\startlinecorrection
+\getbuffer
+\stoplinecorrection
+
+Which was obtained with:
+
+\startexample
+\typebuffer
+\stopexample
+
+The default setup of \type{\framed} can be changed with
+the command:
+
+\showsetup{setupframed}
+
+The command \type{\framed} is used within many other
+commands. The combined use of \type{offset} and \type{strut}
+may be very confusing. It really pays off to spend some time
+playing with these macros and parameters, since you will
+meet \type {\framed} in many other commands. Also, the
+parameters \type{width} and \type{height} are very important
+for the framing texts. For that reason we summarize the
+consequences of their settings in \in {table} [tab:strut 1],
+\in [tab:strut 2] \in {and} [tab:strut 3].
+
+\startbuffer[table]
+\starttable[|c|c|c|c|c|c|]
+\HL
+\VL
+\VL                             \VL \FOUR{\tt offset} \VL\SR
+\DC                 \DC         \DL[4]                   \DR
+\VL                 \VL         \VL \tt .25ex
+                                \VL \tt 0pt
+                                \VL \tt none
+                                \VL \tt overlay       \VL\SR
+\HL
+\VL \LOW{\tt strut} \VL \tt yes \VL \o[yes,.25ex]
+                                \VL \o[yes,0pt]
+                                \VL \o[yes,none]
+                                \VL \o[yes,overlay]    \VL\SR
+\DC                 \DL[1]                       \DC\DC\DC\DR
+\VL                 \VL \tt no  \VL \o[no,.25ex]
+                                \VL \o[no,0pt]
+                                \VL \o[no,none]
+                                \VL \o[no,overlay]     \VL\SR
+\HL
+\stoptable
+\stopbuffer
+
+\placetable
+  [here][tab:strut 1]
+  {The influence of \type{strut} and \type{offset} in
+   \type{\framed} (1).}
+  {\def\o[#1,#2]{\framed[strut=#1,offset=#2]{}}
+   \getbuffer[table]}
+
+\placetable
+  [here][tab:strut 2]
+  {The influence of \type{strut} and \type{offset} in
+   \type{\framed} (2).}
+  {\def\o[#1,#2]{\framed[strut=#1,offset=#2]{\TeX}}
+   \getbuffer[table]}
+
+\startbuffer[table]
+\starttable[|c|c|c|c|]
+\HL
+\VL
+\VL                                     \VL
+    \TWO{\tt width}                     \VL\SR
+\DC \DC \DL[2]                             \DR
+\VL                                     \VL
+                                        \VL
+    \tt fit                             \VL
+    \tt broad (\string\hsize=4cm)       \VL\SR
+\HL
+\VL \LOW{\tt height}                    \VL
+    \tt fit                             \VL
+    \o[fit,fit]                         \VL
+    \hsize=4cm \o[fit,broad]            \VL\SR
+\DC \DL[1]                              \DC\DR
+\VL                                     \VL
+    \tt broad                           \VL
+    \o[broad,fit]                       \VL
+    \hsize=4cm \o[broad,broad]          \VL\SR
+\HL
+\stoptable
+\stopbuffer
+
+\placetable
+  [here][tab:strut 3]
+  {The influence of \type{height} and \type{width} in
+   \type{\framed}.}
+  {\def\o[#1,#2]{\framed[height=#1,width=#2]{xxxx}}
+   \getbuffer[table]}
+
+\startbuffer
+\placefigure
+  [left]
+  {none}
+  {\framed[align=middle]{happy\\birthday\\to you}}
+\stopbuffer
+
+\getbuffer
+
+At first sight it is not so obvious that \type {\framed} can
+determine the width of a paragraph by itself. When we set
+the parameter \type {align} the paragraph is first typeset
+and then framed. This feature valuable when typesetting
+titlepages. In the example left of this text, linebreaks are
+forced by \type {\\}, but this is not mandatory. This
+example was coded as follows:
+
+\startexample
+\typebuffer
+\stopexample
+
+The parameter \type {offset} needs some special attention.
+By default it is set at \type {.25ex}, based on the
+cureently selected font. The next examples will illustrate
+this:
+
+\startbuffer
+\hbox{\bf \framed{test} \sl \framed{test} \tfa \framed{test}}
+\hbox{\framed{\bf test} \framed{\sl test} \framed{\tfa test}}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+The value of \type{1ex} outside \type{\framed} determines
+the offset. This suits our purpose well.
+
+\startlinecorrection
+\getbuffer
+\stoplinecorrection
+
+The differences are very subtle. The distance between the
+framed boxes depends on the actual font size,
+the dimensions of the frame, the offset, and the strut.
+
+\TEX\ can only draw straight lines. Curves are drawn with
+small line pieces and effects the size of \DVI||files
+considerately and will cause long processing times. Curves in
+\CONTEXT\ are implemented by means of \POSTSCRIPT. There are
+two parameters that affect curves: \type{corner} and
+\type{radius}. When \type{corner} is set at \type{round},
+round curves are drawn.
+
+\startlinecorrection
+\framed[corner=round]{Don't be to edgy.}
+\stoplinecorrection
+
+It is also possible to draw circles by setting \type{radius}
+at half the width or height. But do not use this command for
+drawing, it is meant for framing text. Use \METAPOST\
+instead.
+
+Technically speaking the background, the frame and the text
+are separate components of a framed text. First the
+background is set, then the text and at the last instance the
+frame. The curved corner of a frame belongs to the frame and
+is not influenced by the text. As long as the radius is
+smaller than the offset no problems will occur.
+
+\section[framed texts]{Framed texts}
+\index{framing}
+\index{frames}
+\macro{\tex{defineframedtext}}
+\macro{\tex{setupframedtexts}}
+\macro{\tex{startframedtext}}
+
+When you feel the urge to put a frame around or a backgroud
+behind a paragraph there is the command:
+
+\showsetup{startframedtext}
+
+An application may look like this:
+
+\startbuffer
+\startframedtext[left]
+From an experiment that was conducted by C. van Noort (1993) it was
+shown that the use of intermezzos as an attention enhancer is not very
+effective.
+\stopframedtext
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+\getbuffer % geen zinnetje ervoor
+
+This can be set up with:
+
+\showsetup{setupframedtexts}
+
+Framed texts can be combined with the place block mechanism,
+as can be seen in \in {intermezzo} [int:demo 1].
+
+\startbuffer
+\placeintermezzo
+  [here][int:demo 1]
+  {An example of an intermezzo.}
+  \startframedtext
+    For millions of years mankind lived just like animals. Then
+    something happened, which unleashed the power of our imagination.
+    We learned to talk.
+    \blank
+    \rightaligned{--- The Division Bell / Pink Floyd}
+  \stopframedtext
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+In this case the location of the framed text (between
+\setchars) is left out.
+
+\getbuffer
+
+You can also draw a partial frame. The following setup
+produces \in {intermezzo} [int:demo 2].
+
+\startexample
+\starttyping
+\setupframedtexts[frame=off,topframe=on,leftframe=on]
+\stoptyping
+\stopexample
+
+\start
+\setupframedtexts[frame=off,topframe=on,leftframe=on]
+\placeintermezzo
+  [here][int:demo 2]
+  {An example of an intermezzo.}
+\startframedtext
+Why are the world leaders not moved by songs like {\em Wozu sind Kriege
+da?} by Udo Lindenberg. I was, and now I wonder why wars go on and on.
+\stopframedtext
+\stop
+
+You can also use a background. When the background is active
+it looks better to omit the frame.
+
+\start
+\setupframedtexts[frame=off,background=screen]
+\placeintermezzo
+  [here][]
+  {An example of an intermezzo with background.}
+\startframedtext
+An intermezzo like this will draw more attention, but the readability
+is far from optimal. However, you read can it. This inermezzo was set
+up with :
+
+\starttyping
+\setupframedtexts[frame=off,background=screen]
+\stoptyping
+\stopframedtext
+\stop
+
+\in {Intermezzo} [int:color] demonstrate how to use some
+color:
+
+\startbuffer
+\setupframedtexts
+  [background=screen,
+   frame=off,
+   rightframe=on,
+   framecolor=darkgreen,
+   rulethickness=3pt]
+
+\placeintermezzo
+  [here][int:color]
+  {An example of an intermezzo with a trick.}
+  \startframedtext
+    The trick is really very simple. But the fun is gone when Tom, Dick
+    and Harry would use it too.
+  \stopframedtext
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+So, in order to get a partial frame, we have to set the whole
+\type {frame} to \type {off}. This is an example of a
+situation where we can get a bit more readable source when
+we say:
+
+\startbuffer
+\startbuffer
+\startframedtext ... \stopframedtext
+\stopbuffer
+
+\placeintermezzo
+  [here][int:color]
+  {An example of an intermezzo with a trick.}{\getbuffer}
+\stopbuffer
+
+\typebuffer
+
+You do not want to set up a framed text every time you need
+it, so there is the following command:
+
+\showsetup{defineframedtext}
+
+\startbuffer
+\defineframedtext
+  [musicfragment]
+  [frame=off, rightframe=on, leftframe=on]
+
+\placeintermezzo
+  [here][]
+  {An example of a predefined framed text.}
+\startmusicfragment
+Imagine that there are fragments of music in your interactive document.
+You will not be able to read undisturbed.
+\stopmusicfragment
+\stopbuffer
+
+The definition:
+
+\startexample
+\typebuffer
+\stopexample
+
+results in:
+
+\getbuffer
+
+\section[margin rules]{Margin rules}
+\index{margin+lines}
+\macro{\tex{startmarginrule}}
+\macro{\tex{marginrule}}
+\macro{\tex{setupmarginrule}}
+
+To add some sort of flags to paragraphs you can draw
+vertical lines in the margin. This can be used to indicate
+that the paragraph was altered since the last version. The
+commands are:
+
+\showsetup{startmarginrule}
+
+\showsetup{marginrule}
+
+The first command is used around paragraphs, the second
+within a paragraph.
+
+By specifying a level you can suppress a margin rule. This
+is done by setting the \quote {global} level higher than the
+\quote {local} level.
+
+\showsetup{setupmarginrules}
+
+In the example below we show an application of the use of
+margin rules.
+
+\startbuffer
+\startmarginrule
+The sound of a duck is a good demonstration of how different people
+listen to a sound. Everywhere in Europe the sound is equal. But in
+every country it is described differently: kwaak||kwaak (Netherlands),
+couin||couin (French), gick||gack (German), rap||rap (Danish) and
+mech||mech  (Spanish). If you speak these words aloud you will notice
+that \marginrule[4]{in spite of the} consonants the sound is really very
+well described. And what about a cow, does it say boe, mboe or mmmmmm?
+\stopmarginrule
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+Or:\footnote{G.C. Molewijk, Spellingsverandering van zin
+naar onzin (1992).}
+
+\getbuffer
+
+If we would have set \type {\setupmarginrules[level=2]} we
+would have obtained a margin rule in the middle of the
+paragraph. In this example we also see that the thickness of
+the line is adapted to the level. You can undo this feature
+with \type{\setupmarginrules[thickness=1]}.
+
+\section[black rules]{Black rules}
+\index{black rules}
+\macro{\tex{blackrule}}
+\macro{\tex{blackrules}}
+\macro{\tex{setupblackrules}}
+
+Little black boxes |<|we call them black rules|>| (\blackrule)
+can be drawn by \type{\blackrule}:
+
+\showsetup{blackrule}
+
+When the setup is left out, the default setup is used.
+
+\showsetup{setupblackrules}
+
+The height, depth and width of a black rule are in
+accordance with the usual height, depth and width of \TEX.
+When we use the key \type {max} instead of a real value the
+dimensions of \TEX's \type{\strutbox} are used. When we set
+all three dimensions to \type {max} we get: \blackrule
+[width=max, height=max, depth=max].
+
+\inleft{\blackrule}Black rules may have different purposes.
+You can use them as identifiers of sections or subsections.
+This paragraph is tagged by a black rule with default
+dimensions: \type{\inleft{\blackrule}}.
+
+A series of black rules can be typeset by \type{\blackrules}:
+
+\showsetup{blackrules}
+
+\inleft{\blackrules}There are two versions. Version
+\type{a} sets \type{n} black rules next to each other with an
+equal specified width. Version~\type{b} divides the
+specified width over the number of rules. This paragraph is
+tagged with \type {\inleft{\blackrules}}. The setup after
+\type {\blackrule} and \type {\blackrules} are optional.
+
+\section[grids]{Grids}
+\index{grids}
+\index{squares}
+\macro{\tex{grid}}
+
+We can make squared paper (a sort of grid) with the
+command:
+
+\showsetup{grid}
+
+The default setup produces:
+
+\startlinecorrection
+\grid
+\stoplinecorrection
+
+It is used in the background when defining interactive areas
+in a figure. And for the sake of completeness it is
+described in this chapter.
+
+\stopcomponent
+

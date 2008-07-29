@@ -1,0 +1,27 @@
+
+This directory contains the sources for the virtual bookshelf
+
+ "Context Reference"
+
+In this preliminary, still very incomplete, version the following
+english language manuals are included / merged:
+
+  * The Big Manual
+  * Fonts
+  * Columns sets
+  * Processing modes
+  * Texmfstart
+  * Hyphenation patterns
+
+You should be able to go to the 'en' directory and run 'make'.
+If this gives errors for the 'fonts' chapter, you have add the
+contents of 'texmf' to the font search path.
+
+
+The home page of this project is 
+
+   http://foundry.supelec.fr/projects/contextman/context-reference
+
+If you would like to help out, please contact me at:
+
+Taco Hoekwater <taco@metatex.org>

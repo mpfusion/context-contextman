@@ -1,0 +1,2387 @@
+% interface=en
+
+\startcomponent co-layout
+
+\environment contextref-env
+\product contextref
+
+\input layout/buffers
+
+
+\chapter[layout]{Layout}
+
+\todo{Split this chapter, it is much too large even in it's current
+incomplete state}
+
+\section{Introduction}
+
+The look of a publication is determined by the page design,
+the chosen fonts and other aspects like vertical spacing.
+In this chapter we will explore the latter. Sometimes we
+will go into detail but a novice user can skip such parts.
+In normal applications, the default setups are most
+adequate, because they will adapt to the different
+situations. For the impatient reader we will just mention a
+few setups. Spacing between paragraphs is defined by:
+
+\starttyping
+\setupwhitespace[big]
+\stoptyping
+
+In your source file you can best use an empty line between
+paragraphs. This increases readability and it makes the
+typing of \type {\par} at the end of each paragraph
+obsolete. Indentation at every new paragraph is obtained
+by:
+
+\starttyping
+\setupindenting[medium]
+\stoptyping
+
+A doublesided publication is generated when you type:
+
+\starttyping
+\setuppagenumbering[alternative=doublesided]
+\stoptyping
+
+As you might expect this might generate page numbering on the
+right and left hand side of a paper and the margins will be
+mirrored automatically.
+
+As we have said before only the curious have to read on.
+
+\section[paragraphs]{Paragraphs}
+\index{layout}
+\index{paragraphs}
+\macro{\tex{paragraph}}
+\macro{\tex{par}}
+
+The most important unit in \TEX\ is paragraph. A new
+paragraph is forced by:
+
+\startitemize[n,packed]
+\item an empty line
+\item the \TEX||command\type {\par} or \type {\endgraf}
+\item the \CONTEXT||command \type {\paragraph}
+\stopitemize
+
+The first alternative is the most obvious. You will obtain a
+readable input file (\ASCII\ file) and errors are minimized.
+The second alternative is chosen when it is mandatory to the
+used command. For example in definitions (see \in
+[definitions]).
+
+\section[linespacing]{Line spacing}
+\index{linespacing}
+\index{baselines}
+\index{whitespacing}
+\index{spacing}
+\macro{\tex{setupinterlinespace}}
+
+In \TEX\ linespacing is determined by a number of variable
+dimensions like \type {\topskip}, \type {\parskip} and \type
+{\baselineskip}. However, in \CONTEXT\ these variables are
+related to the bodyfont size.
+
+A line has a height and a depth. The distance between two
+lines is normally equal to the sum of the maximum height and
+maximum depth:
+
+\blackrule[height=max,depth=0pt] +
+\blackrule[height=0pt,depth=max] =
+\blackrule[height=max,depth=max]
+
+This sum is in \CONTEXT\ equal to 2.8ex, so almost three
+times the height of an~x. This is about $1.2 \times$ the
+bodyfont height. The proportion between maximum height and
+depth is default .72~:~.28. Linespacing alters when a new
+bodyfont is used or when linespacing is defined explicitly
+by:
+
+\starttyping
+\bfd \setupinterlinespace Now, the interline spacing is larger ... \par
+\stoptyping
+
+One has to consider the fact that \TEX\ operates on
+paragraphs and within a group one has to close the paragraph
+explicitly with an empty line or \type {\par}. However, in
+most cases \CONTEXT\ will take care of this.
+
+Sometimes a line does not have the maximum height or depth.
+The next example illustrates this:
+
+\def\somecharacter#1%
+  {\setbox0=\hbox{#1}%
+   \blackrule[width=\wd0,height=\ht0,depth=\dp0]}
+
+\def\someline%
+  {\processtokens\somecharacter\somecharacter\relax\space
+     {The height and depth of lines differs.}}
+
+\someline
+
+It says:
+
+\startbaselinecorrection
+\ruledhbox{The height and depth of lines differs.}
+\stopbaselinecorrection
+
+When we put two of these lines above each other we will get:
+
+\someline \crlf \someline
+
+You can see that the distance is somewhat bigger that the
+sum of the height and depth of each separate line. This
+distance is called the baseline distance (\type
+{\baselineskip}) and is in this document \the \baselineskip.
+If we add some extra height to the line we see this:
+
+\someline \blackrule[height=2ex,depth=2ex] \crlf \someline
+
+To prevent the lines from touching \TEX\ adds a \type
+{\lineskip}, in our example {\the\lineskip}. In a similar
+way \TEX\ is taking care of the first line of a page to have
+at least a height of \type {\topskip} (here \the\topskip).
+
+Linespacing is setup by:
+
+\showsetup{setupinterlinespace}
+
+Linespacing adapts to the size of the actual bodyfont
+automatically. This means that the user can leave this
+command untouched, unless a different linespacing is wanted.
+Instead of a factor one of the predetermined values \type
+{small} (1.0), \type {medium} (1.25) or \type {big} (1.5)
+can be given. Below an example is given of a text with a
+linespacing of 1.25: \type {\setupinterlinespace[medium]}.
+
+\startreality
+\setupinterlinespace[1.25]
+Whenever it comes to my mind that \quotation {everything that comes in
+quantities, will somehow survive}, I also got the feeling that in a few
+hundred years people will draw the saddening conclusion that all those
+top||ten hits produced by computers represent the summum of todays
+musical and instrumental abilities. Isn't it true that archeologists can
+spend a lifetime on speculating about some old coins from the first century?
+On the other hand, the mere fact that one can have success with this type
+of non||music success of some top||hit musicians demonstrates both the
+listeners inability to rate the product and the lack of self criticism of
+the performers. In principle the future archeologist will therefore draw
+the right conclusion. \par
+\stopreality
+
+When you make a fontswitch the linespacing is adapted when
+you type the command \type {\setupinterlinespace} without set
+up parameters or by adding \type {reset}, for example:
+\type {[reset,medium]}.
+
+\start \tfa \setupinterlinespace In books meant for children
+we often find a somewhat bigger typeface, for instance
+because we are convinced that this enables them to read the
+book themselves. On the other hand, I can also imagine that
+it is a cheap way to increase the number of pages.
+Unfortunately scaling up will also uncover the lack of
+quality of the typesetting used and|/|or the lack of
+typographic knowledge of the user of such a system. The
+interline space sometimes differs on a line by line basis,
+and depends on the {\tfd height} of the current line.
+Therefore, when changing the style, something that should
+only be done on purpose, also change the baseline distance
+when needed. \par \stop
+
+The text above is typeset in the fontsize \type {\tfa} which
+equals \type {\rma} (see also \in {chapter} [typography]).
+
+\startexample
+\starttyping
+\start \tfa \setupinterlinespace In books meant for children we often find
+a somewhat ... when needed. \par \stop
+\stoptyping
+\stopexample
+
+In this example the \type {\par} is necessary because
+otherwise \TEX\ will have forgotten the linespacing before
+the paragraph is finished (in that case, the paragraph is
+ended by the empty line after the \type {\stop}).
+
+Instead of a keyword, one can pass a key||value pair to
+define the characteristics of a line. The default settings
+are:
+
+\starttyping
+\setuplinespacing
+  [height=.72,
+   depth=.28,
+   top=1.0,
+   bottom=0.4,
+   line=2.8ex]
+\stoptyping
+
+The \type {height} and \type {depth} determine the ratio
+between the height and depth of a line. The baseline
+distance is set to 2.8ex. The parameters \type {top} and
+\type {bottom} specify the relation between the bodyfont
+size and the height of the first line and the depth of the
+last line on a page. The last two quantities are related to
+\TEX's \type {\topskip} and \type {\maxdepth}.
+
+\section[indentation]{Indentation}
+\index{indentation}
+\index{smaller layout}
+\index{paragraphs+indentation}
+\macro{\tex{setupindenting}}
+\macro{\tex{indenting}}
+\macro{\tex{noindenting}}
+\macro{\tex{startnarrower}}
+\macro{\tex{setupnarrower}}
+
+When a text has little whitespacing, for example in a novel,
+it is a custom to indent each new paragraph. Indentation is
+setup with:
+
+\showsetup{setupindenting}
+
+By default there is \quote {no} indentation. When
+indentation is turned on, when possible the commands will
+determine whether indentation is necessary. For example, it
+doesn't look good to indent after a vertical whitespace. In
+a number of cases it is even undesirable to indent. Think
+for example of headers and itemizations.
+
+This manual is typeset without indentation. The great
+quantity of short sentences and examples would result in a
+very messy page layout.
+
+When indentation is used, we may have to tell \TEX\ in some
+cases {\em not} to indent. This is done by:
+
+\showsetup{noindenting}
+
+We can set up indenting by:
+
+\showsetup{indenting}
+
+The meaning of the setups is described in \in {table}
+[tab:indenting]. Next to the commands described above we
+could use the \TEX||commands \type {\indent} and
+\type {\noindent}.
+
+\startbuffer
+\starttable[|l|l|]
+\HL
+\VL \bf setup      \VL \bf result                      \VL\SR
+\HL
+\VL \type {no} /
+    \type {not}    \VL don't indent the next paragraph \VL\FR
+\VL \type {yes} /
+    \type {always} \VL turn on indentation             \VL\MR
+\VL \type {never}  \VL turn off indentation            \VL\MR
+\VL \type {first}  \VL indent first paragraphs too     \VL\MR
+\VL \type {next}   \VL don't indent first paragraphs   \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\placetable
+  [here][tab:indenting]
+  {The way of indenting.}
+  {\getbuffer}
+
+The settings \type {first} and \type {next} determine if
+paragraphs following whitespace should be indented or not. It
+is a sort of custom not to indent these.
+
+A text my be typeset smaller than the default textwidth. In
+that case the complete text will be indented on both sides.
+
+\showsetup{startnarrower}
+
+For example:
+
+\startbuffer
+\startnarrower[3*left,2*right]
+The relatively small revolution in in Russia in 1917 had big consequences for
+this country as well as the rest of the world. It is interesting to see that
+some 80~years later a just as small revolution was needed to undo the 1917
+one. In both cases, the main reason for the revolutions was to prevent
+democracy to arise.
+\stopnarrower
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+Will become:
+
+\startreality
+\getbuffer
+\stopreality
+
+Next to using \type {left}, \type {right} and \type {middle}
+also combinations and manifolds are possible. Indentation in
+the example above could have obtained by typing \type
+{2*middle,left}. So, \type {middle} is equivalent to \type
+{left,right}.
+
+The value of indentation is set up by:
+
+\showsetup{setupnarrower}
+
+\section[whitespacing]{Vertical spacing (whitespacing)}
+\index{vertical spacing}
+\index{paragraphs+vertical spacing}
+\index{spacing}
+\macro{\tex{blank}}
+\macro{\tex{setupblank}}
+\macro{\tex{godown}}
+\macro{\tex{startpacked}}
+\macro{\tex{setupwhitespace}}
+\macro{\tex{nowhitespace}}
+\macro{\tex{whitespace}}
+\macro{\tex{startlinecorrection}}
+\macro{\tex{correctwhitespace}}
+
+Vertical spacing between paragraphs is set up by:
+
+\showsetup{setupwhitespace}
+
+Instead of a random value it is better to use one of the
+pre defined dimension. Default there is no vertical spacing.
+Without any set up values the vertical spacing is related to
+the actual fontsize.
+
+Vertical spacing can be forced by either:
+
+\showsetup{whitespace}
+
+\showsetup{nowhitespace}
+
+These commands have only effect when vertical spacing is set
+up. In fact these commands will not be necessary for
+\CONTEXT\ takes care of most situations.
+
+\TEX\ handles vertical spacing around lines quite different
+from that around text. In case these problematic situations
+occur one can use the following commands. Spacing around
+figures and tables is dealt with by \CONTEXT, so only use
+these commands when the typeset text looks really bad.
+
+\showsetup{startlinecorrection}
+
+For example:
+
+\startexample
+\starttyping
+\startlinecorrection
+\framed{To boxit or not, that's a delicate question!}
+\stoplinecorrection
+\stoptyping
+\stopexample
+
+One can add vertical spacing with the \TEX\ command \type
+{\vskip}, but please don't. We advise you to use:
+
+\showsetup{blank}
+
+We can use a value of one of the keywords \type {small},
+\type {medium} or \type {big}. A big jump is twice a medium
+jump which is four times a small jump. A value however can
+be left out (\type {\blank}) when the default vertical
+space is desired. It is advisable to set up the vertical
+spacing only once in the setup area of your document. Local
+alterations throughout your document will result in a
+badly||spaced document.
+
+Normally there is some stretch in the vertical spacing. This
+enables \TEX\ to fill out a page optimally. In the next
+example we see what happens when we add stretch to
+whitespace. Each sample shows from top to bottom three \type
+{\blank}'s of \type {big}, \type {medium} and \type {small}.
+The left and right sample show the range of the stretch. The
+rightmost sample shows that adding stretch can result in
+shrink.
+
+\getbuffer[baseline]
+
+The last vertical space can be undone by typing \type
+{\blank[back]} and the next blank can be blocked by \type
+{disable}. With \type {reset} a \type {disable} is ignored.
+
+The command \type {\blank} is one of the more advanced
+commands. The next call is allowed:
+
+\startexample
+\starttyping
+\blank[2*big,medium,disable]
+\stoptyping
+\stopexample
+
+Since \type {medium} is half the amount of \type {big}, this
+results in adding a vertical spaces of 2.5 times \type
+{big}. The previous vertical space will be undone
+automatically and the \type {disable} suppressed the next
+\type {\blank}.
+
+A lasting vertical space can be sustained by \type {force}.
+For example, if you want some extra spacing at the top of a
+page you will have to type \type {force}.
+
+The default vertical spaces are set up with:
+
+\showsetup{setupblank}
+
+An example of such a definition is:
+
+\startexample
+\starttyping
+\setupblank[big]
+\stoptyping
+\stopexample
+
+The vertical spaces will be automatically adapted to the
+fontsize and they are flexible. Changing the default set up
+locally is therefore not advisable. Without an argument
+\type {\setupblank} adapts to the actual fontsize!
+
+The keywords \type {fixed} and \type {flexible} are used to
+end or reinstate this adaptive characteristic. In columns it
+is recommended to use the setup \type {[fixed,line]} or the
+opposite setup \type {[flexible,standard]}.
+
+This text is typeset a bodyfont of \the \bodyfontpoints pt
+and is downscaled by a few percent. The setup that is used
+in this document is shown in \in {table} [tab:skips]. We see
+some stretch in the vertical spacing. The stretching enables
+\TEX\ to fill out a page satisfactorily. Default the maximal
+vertical space is 75\% of the line space and the stretch
+maximal of 25\%.
+
+\edef\globalbaselineskip{\the\baselineskip}
+
+\placetable
+  [here]
+  [tab:skips]
+  {The whitespace values to a \the\bodyfontpoints pt bodyfont.}
+\starttable[|l|l|]
+\HL
+\VL \bf setup       \VL \bf value            \VL\SR
+\HL
+\VL \type {small}   \VL \the\smallskipamount \VL\FR
+\VL \type {medium}  \VL \the\medskipamount   \VL\MR
+\VL \type {big}     \VL \the\bigskipamount   \VL\MR
+\VL \type {line}    \VL \globalbaselineskip  \VL\LR
+\HL
+\stoptable
+
+In \in {paragraph} [paragraph] it was said that the vertical
+spacing can be set up with the command \type
+{\setupwhitespace}. Default there is no whitespace between
+paragraphs. The setup of vertical spacing and line spacing
+are related to each other.
+
+Instead of direct setup you can use an indirect way. This
+has the advantage that you can change the layout more easily.
+In that case we use:
+
+\showsetup{defineblank}
+
+If we type for example:
+
+\starttyping
+\defineblank[aroundverbatim][medium]
+\stoptyping
+
+than \type {aroundverbatim} is equal to \type {medium}, which
+can be used, for example around verbatim, as in:
+
+\starttyping
+\setuptyping
+  [before={\blank[aroundverbatim]},
+    after={\blank[aroundverbatim]}]
+\stoptyping
+
+If we want some more whitespacing we only have to change the
+definition of \type {aroundverbatim}:
+
+\starttyping
+\defineblank[aroundverbatim][big]
+\stoptyping
+
+The vertical spacing between two lines can be suppressed with
+the command:
+
+\showsetup{packed}
+
+Vertical spacing between more than one line is suppressed by:
+
+\showsetup{startpacked}
+
+The spacing around \quote {packed} text is automatically
+corrected. Opposed to this command is:
+
+\showsetup{startunpacked}
+
+Skipping more than one vertical space is done with:
+
+\showsetup{godown}
+
+One of the most important lessons to be learned is to avoid
+using \type {\vskip} in running text. This can interfere
+with some hidden mechanisms of \CONTEXT.
+
+Sometimes \TEX\ is not able to sort out spacing on its own.
+In such situations one can insert the next command at the
+troublesome location.
+
+\showsetup{correctwhitespace}
+
+Normally one will not need this command, although sometimes
+when writing macros, it can be added to make sure that the
+spacing is okay. Use this kind of tweaking with care!
+
+\section[word spacing]{Word spacing}
+\index{word spacing}
+\index{french spacing}
+\index{spacing after colon}
+\macro{\tex{setupspacing}}
+\macro{\tex{space}}
+\macro{\tex{fixedspaces}}
+\macro{\tex{nospace}}
+
+Default a space is placed after a period that ends a
+sentence. In some countries it is custom to stretch the
+space after a period. Especially documents typeset in small
+columns will look better that way. Because this is a language
+specific feature. the default depends on the language. One
+can however (temporarily) change this spacing.
+
+\showsetup{setupspacing}
+
+In many cases we combine words and numbers that should not
+be separated at linebreaking, for example number~12. These
+combinations can be connected by a tight space: \type
+{number~12}. Word and number will never be separated at
+linebreaking on that spot. A space can be made visible by:
+
+\showsetup{space}
+
+Undesired spaces can be suppressed by:
+
+\showsetup{nospace}
+
+When you want to align a row of numbers you can use
+tight spaces with the width of a number. Tight spaces are
+activated by:
+
+\showsetup{fixedspaces}
+
+After this command the \type {~} (tilde) generates a tight
+space with the width of a number.
+
+\section{Struts}
+\index{struts}
+\index{alignment}
+\macro{\tex{strut}}
+\macro{\tex{setstrut}}
+\macro{\tex{setnostrut}}
+\macro{\tex{showstruts}}
+
+A strut is a little invisible block without width but with
+the maximal height and depth of a character or line.
+If you want to force these maximal dimensions, for example
+when you are using boxes in your own commands, than you can
+use the command \type {\strut}:
+
+\startexample
+\starttyping
+\hbox{\strut test}
+\stoptyping
+\stopexample
+
+If we leave out the strut in this example the box has no
+depth. The characters in the word test don't reach under the
+baseline. Compare for example {\showstruts \ruledhbox
+{\strut test}} (with strut) with \ruledhbox {test}.
+
+Many commands use struts automatically. If for some reason
+you don't want struts you can try to suppress them by \type
+{\setnostrut}. However take care that this command works
+only locally. A strut can be set by \type {\setstrut}.
+
+The struts that are used by \CONTEXT\ can be made visible
+with the command:
+
+\showsetup{showstruts}
+
+\section[text in margin]{Text in the margin}
+\index{margin+text}
+\index{titles+margins}
+\macro{\tex{setupinmargin}}
+\macro{\tex{inmarge}}
+\macro{\tex{inothermargin}}
+\macro{\tex{inleft}}
+\macro{\tex{inright}}
+\macro{\tex{margintext}}
+
+Texts can be place in the margins with:
+
+\showsetup{inmargin}
+
+A new line in a margin text is forced with \type {\\}. An
+example of a margin text is:
+
+\startbuffer
+\inmargin{the marginal\\influence of\\advertisement}It would be great
+if the recent reduction in washing powder needed to get your wash
+perfectly clean had resulted in an equal reduction of time needed to
+advertise this kind of products.
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+or:
+
+\startreality
+\getbuffer
+\stopreality
+
+
+When this command is used in the middle of a paragraph the
+margin text will appear on the same line in the\inmargin
+{over here} margin. The command \type {\inmargin} puts the
+text in the left or right margin. The location where the
+text will show up depends on the character of the document:
+single||sided or double||sided. You can also force the text
+into a specific margin, using:
+
+\showsetup{inleft}
+
+\showsetup{inright}
+
+There is also:
+
+\showsetup{inothermargin}
+
+Some examples of the use of margin text appear below:
+
+\startbuffer
+\startlines
+\inleft{to be}\quotation{To be or not to be} to me
+\inright{or not}is rather famous english
+\inmargin{to be}And just as it is meant to be
+that quote will never perish
+\stoplines
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This will become:
+
+\startreality
+\getbuffer
+\stopreality
+
+\inmargin [low] {\ssd 123}The mechanism of margin texts is
+rather complex. If you think of multiline margin texts and
+the alignment of these lines with the lines in the textbody
+you can imagine a few typographic problems. The number {\ss
+123} next to this paragraph is not aligned but is typeset
+somewhat lower. This is done by adding the keyword \type
+{low}:
+
+\startexample
+\starttyping
+\inmargin[low]{\ssd 123}The mechanism of margin texts ...
+\stoptyping
+\stopexample
+
+It is possible to set up the way margin texts are typeset by
+means of the command:
+
+\showsetup{setupinmargin}
+
+\start
+\setupinmargin[align=middle]
+
+\inleft{a rather\\marginal\\effect\\}With \type {align} we
+define the left or right alignment of the margin text.
+Default margin texts are right aligned. In this example
+alignment is \type {middle}.
+
+\stop
+
+We can also align on the left of right side automatically.
+In a double sided document design optimisation of the margin
+text may ask for more than one processing step. In the
+example below you see some of the possible setups.
+
+\startlines
+\setupinmargin [align=left]
+\inmargin{left}   This is \type {left} aligned
+\setupinmargin [align=middle]
+\inmargin{middle} but this goes in the \type {middle}. Don't forget that
+\setupinmargin [align=right]
+\inmargin{right} \type {right} in this sense, align means a ragged right margin.
+\setupinmargin [align=yes]
+\inmargin{yes}   Just to be complete, there is \type {yes}
+\setupinmargin [align=no]
+\inmargin{no}    and \type {no}.
+\setupinmargin [align=inner]
+\inmargin{inner} The outsiders \type {inner} and
+\setupinmargin [align=outer]
+\inmargin{outer} \type {outer} adapt themselvs to a doublesided design.
+\stoplines
+
+The left and right margin can be set up separately by adding
+\type {[left]} or \type {[right]} as the first argument.
+
+\start
+
+\startbuffer
+\setupinmargin
+  [style=\bfx\setupinterlinespace]
+\stopbuffer
+
+\getbuffer
+
+\inleft {that way we can\\move quite some\\text into the
+margin}With \type {before} and \type {after} we can
+influence margin texts. Bij default the same line spacing is
+used as in the textbody. But when a narrower fontsize is
+used we can also adapt the interline spacing. For example:
+
+\stop
+
+\startexample
+\typebuffer
+\stopexample
+
+Page breaking and margin text are in conflict with each
+other. The reason is that \TEX\ first typesets a complete
+page in order to be able to determine the right spot for
+page breaking. However the margin text is already typeset at
+that moment. In a next processing stage the margin texts are
+typeset correctly. If you want to force margin texts in a
+margin you can type \type {\inmargin[+]}.
+
+The next command can be compared with the command like \type
+{\section}. Before the command is placed in the margin \TEX\
+looks if it can be placed on the actual page. If not, it is
+moved to the following page.
+
+\showsetup{margintext}
+
+The layout of your \ASCII||file will not interfere with the
+function of this command. This may seem obvious, but \TEX\
+programmers know that it is not the case. For example even
+commands that take care of index entries can be typed close
+to the margin texts.
+
+The layout of your \ASCII||file will not interfere with the
+function of this command. You might not expect it to, but
+\TEX\ programmers know that with \TEX, the layout of the
+source usually interferes with for instance margin texts
+and index entries. In \CONTEXT\ commands that take care of
+margin texts take care of this situation, so that index
+entries can be typed close to the margin texts and margin
+texts can be separated from the next paragraph by an empty
+line. The same cannot be said for other \TEX\ macropackages.
+
+\startexample
+\starttyping
+\margintext{text in themargin}
+\index{margintexts}
+
+After experimenting a long time I have succeeded to filter
+empty lines and commands that stand between body texts and
+margin texts. It is amazing but the index entry really works.
+\stoptyping
+\stopexample
+
+Because of the close relation with the page design the margin
+width is set up by means of: \type {\setuplayout} (see \in
+{section} [margins]).
+
+\startbuffer[voorbeeld]
+\margintext{Isn't}
+\margintext{this}
+\margintext{cute?}
+\stopbuffer
+
+\startbuffer[settings]
+\setupinmargin[1][align=right, line=1,style=slanted]
+\setupinmargin[2][align=middle,line=2,style=boldslanted]
+\setupinmargin[3][align=left,  line=3,style=bold]
+\stopbuffer
+
+\start
+
+\getbuffer[settings,voorbeeld]
+
+The command \type {\margintext} enables you to put texts in
+the margin that show completely different characteristics
+than that of the text body. You can typeset different
+margin texts with different characteristics like bodyfont,
+line spacing and offset.
+
+\stop
+
+\typebuffer[voorbeeld]
+
+In the setup we see an optional argument. The number is
+determined by the order of definition.
+
+\typebuffer[settings]
+
+This means that the second margintext in a row will start on
+line~2, and be typeset in a bold slanted font. One can
+explicitly force a margintext to go some place, by saying for
+instance:
+
+\starttyping
+\margintext[2]{this is the second one}
+\stoptyping
+
+\section[highlow]{Subscript and superscript}
+\index{high text}
+\index{low text}
+\index{superscript}
+\index{subscript}
+\macro{\tex{low}}
+\macro{\tex{high}}
+\macro{\tex{lohi}}
+
+There are three commands to create superscript and subscript
+outside the math mode:
+
+\showsetup{high}
+
+\showsetup{low}
+
+\showsetup{lohi}
+
+The next example illustrates the use of these commands:
+
+\startbuffer
+You can walk on \high {high} heels or \low {low} heels but your height
+is still the same.
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This results in:
+
+\startreality
+\getbuffer
+\stopreality
+
+These commands relate to the \type {^} and \type {_} in math
+mode. In case of larger fontsizes like \type {\tfc}, the
+\type {^} and \type {_} will not create the desired output.
+Compare the examples below:
+
+\startbuffer
+test\high{test} test test$^{\rm test}$ test
+{\bf test\high{test} test test$^{\bf test}$ test}
+{\tfb test\high{test} test test$^{\tfb test}$ test}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This becomes:
+
+\startreality
+\startlines
+\getbuffer
+\stoplines
+\stopreality
+
+\section[columns]{Columns}
+\index{columns}
+\index{tabulation}
+\index{alignment+columns}
+\macro{\tex{setupcolumns}}
+\macro{\tex{startcolumns}}
+\macro{\tex{column}}
+
+The \TEX\ programmer knows that it is not easy to put
+text in columns. Gratefully a \CONTEXT\ user is not bothered
+with the implementation of extensive macros.
+
+\start
+\switchtobodyfont[small]
+\startcolumns[n=3,tolerance=tolerant,align=no]
+You can typeset text in columns. Most commands can be used
+in a normal way without any problems. The floating object
+like tables or figures are somewhat limited. This is caused
+by the fact that \TEX\ has limited capabilities for
+typesetting columns. For insiders: columns are produced with
+the primitives: \type {\output} and \type {\vsplit}.
+
+The number of columns is unlimited, however \TEX s memory
+can only handle upto about twenty to thirty or fourty
+columns.
+
+The number of columns and the type setting of a vertical line
+as a column separator is set up by:
+\stopcolumns
+\stop
+
+\showsetup{setupcolumns}
+
+The \type {n} indicates the number of columns. The column
+text is enclosed by:
+
+\showsetup{startcolumns}
+
+The local setup of columns can be added directly after this
+command. A new column is forced by:
+
+\showsetup{column}
+
+The text below is typeset in two columns with a \type
+{verytolerant} alignment.
+
+\startexample
+\starttyping
+\startcolumns[rule=on,n=2,tolerance=verytolerant]
+Thus, I came to the conclusion that the designer of a new
+system must not only be the implementer and first
+.
+.
+\bf D.E. Knuth
+\stopcolumns
+\stoptyping
+\stopexample
+
+\startbuffer
+\startcolumns[rule=on,n=2,tolerance=tolerant]
+Thus, I came to the conclusion that the designer of a new
+system must not only be the implementer and first
+large||scale user; the designer should also write the first
+user manual.
+
+The separation of any of these four components would have
+hurt \TeX\ significantly. If I had not participated fully in
+all these activities, literally hundreds of improvements
+would never have been made, because I would never have
+thought of them or perceived why they were important.
+
+But a system cannot be successful if it is too strongly
+influenced by a single person. Once the initial design is
+complete and fairly robust, the real test begins as people
+with many different viewpoints undertake their own
+experiments.
+
+\bf D.E. Knuth
+\stopcolumns
+\stopbuffer
+
+\start
+\setupcolumns[blank={flexible,big}]\getbuffer
+\stop
+
+This example makes it painfully obvious that spacing
+between lines is not on forehand equal. By default the line
+spacing in this document is \type {big}, which equals
+$.75\times$\type {\lineheight}. Furthermore, the allowable
+stretch in line spacing makes vertical alignment
+practically impossible.
+
+For this reason the default line spacing is equal to the
+lineskip and stretching is not allowed. When a switch in
+fontsize is desirable you should do so before starting the
+column mechanism. Font switches within columns will have a
+poor result. The next example shows a line spacing equal to
+the lineskip.
+
+\start
+\setupcolumns[blank={fixed,line}]\getbuffer
+\stop
+
+This effect is reached by the (default) setup:
+
+\startexample
+\starttyping
+\setupcolumns[blank={fixed,line}]
+\stoptyping
+\stopexample
+
+In \in {section} [grids] typesetting on a grid is explained.
+This mechanism works quite well within columns.
+
+\startbuffer[column-1]
+\def\FramedColumn#1{\ruledhbox{\box#1}}
+
+\setupcolumns[command=\FramedColumn]
+\stopbuffer
+
+\startbuffer[column-2]
+\startcolumns
+\TEX\ is not an easy to learn typesetting system or program.
+The problem is that \quotation {knowing everything is possible}
+leads to \quotation {wanting everything that is possible}.
+However using \CONTEXT\ or \TEX\ takes considerable learning
+time. And it is not feasible to explain every single detail
+in this manual. Therefore \quotation {doing} is the answer.
+\stopcolumns
+\stopbuffer
+
+\start
+\let\footnote\gobbleoneargument
+\getbuffer[column-1,column-2]
+\stop
+
+This text shows that one can do some tricks with columns.
+The frame is created by:
+
+\typebuffer[column-1]
+
+\startbuffer[column-3]
+\def\FramedColumn#1%
+  {\hbox to \hsize
+     {\ifodd\currentcolumn\unhbox\hss#1\else\unhbox#1\hss\fi}}
+\stopbuffer
+
+A less senseless display is:
+
+\typebuffer[column-3]
+
+This time the columns will look like:
+
+\start
+\let\footnote\gobbleoneargument
+\getbuffer[column-3,column-2]
+\stop
+
+A column can be manipulated as a whole. For example to create
+a background:
+
+\startbuffer[column-4]
+\setupfootnotes
+  [location=columns,
+   background=color,
+   backgroundcolor=white]
+
+\setuplayout
+  [grid=yes]
+\stopbuffer
+
+\typebuffer[column-4]
+
+This time the column will be typeset on a grid:
+
+\start
+\nowhitespace\getbuffer[column-4,column-2]
+\stop
+
+\section[alineas]{Paragraphs in columns}
+\index{columns}
+\index{paragraphs}
+
+\macro{\tex{defineparagraphs}}
+\macro{\tex{setupparagraphs}}
+\macro[startparagraph]{\tex{start<<paragraph>>}}
+\macro[paragraph]{\tex{<<paragraph>>}}
+
+In some cases you want to typeset a paragraph in columns.
+For example in a definition where you have a first column
+containing meaningful text and a second column containing
+meaningful text. In these cases you can use:
+
+\showsetup{defineparagraphs}
+
+This command defines a column layout that is recalled by its
+name.
+
+\showsetup{start<<paragraph>>}
+
+The layout can be set up by:
+
+\showsetup{setupparagraphs}
+
+The width of non||specified columns is determined
+automatically. Distance relates to horizontal white space in
+front of a column. The next column is specified by:
+
+\showsetup{<<paragraph>>}
+
+We show a simple example of the use of paragraphs in columns.
+
+\startbuffer
+\defineparagraphs[TwoColumns][n=2]
+\setupparagraphs[TwoColumns][1][width=5cm]
+
+\startTwoColumns
+  This is the top left corner.
+\TwoColumns
+  In graphic environments the top right corner is also called the upper
+  right corner.
+\stopTwoColumns
+
+\startTwoColumns
+  In a similar way, the bottom left corner is called the lower left corner.
+\TwoColumns
+  Which leaves the bottom right corner, that is also known as lower right
+  corner. Now what is the alternative name for the top left corner?
+\stopTwoColumns
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+Here the \type {\TwoColumns} separates the columns. With a
+default setup this results in:
+
+\startreality
+\getbuffer
+\stopreality
+
+We also could have used \type {\nextTwoColumns} instead of
+\type {\TwoColumns}. Sometimes this is more readable in your
+\ASCII\ text. An alternative specification is:
+
+\startexample
+\starttyping
+\TwoColumns first text \\ second text \\
+\stoptyping
+\stopexample
+
+You can add a command to the keywords \type {bottom} and \type
+{top}. These commands will be executed before or after the
+text. For example a column can be forced down by \type
+{[top=\vfill]}.
+
+This is the right place to show a more complex example. The
+use of \type {paragraphs} is preferred over the use of columns
+because the text is kept together. If we want to score an
+item on two dimensions we need three columns:
+
+\startbuffer
+\defineparagraphs [CombinedItem]     [n=3,rule=on]
+\setupparagraphs  [CombinedItem] [2] [width=3em]
+\setupparagraphs  [CombinedItem] [3] [width=7em]
+\stopbuffer
+
+\getbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+The item itself is defined with \type {\defineenumeration}
+(see \in {section} [enummeration]):
+
+\startbuffer
+\defineenumeration
+  [SomeItem]
+  [location=left,text=,width=3em,before=,after=]
+\stopbuffer
+
+\getbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+The scoring is done on a scale that is typeset as an
+itemization (see \in {section} [itemizing]). An item might
+look like this in \ASCII:
+
+\startbuffer
+\startCombinedItem
+  \startSomeItem
+    The student is able to write a detailed planning for the
+    design and construction of a water purification plant.
+  \stopSomeItem
+\nextCombinedItem
+  \startitemize[5,packed]
+    \item yes \item no
+  \stopitemize
+\nextCombinedItem
+  \startitemize[5,packed]
+    \item self study \item class room \item simulation
+  \stopitemize
+\stopCombinedItem
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+And will result in:
+
+\getbuffer
+
+When the scoring scales are identical over all items we can
+use macros:
+
+\startbuffer
+\def\firstscale%
+  {\startitemize[5,packed]
+     \item yes \item no
+   \stopitemize}
+
+\def\secondscale%
+  {\startitemize[5,packed]
+   \item self study \item class room \item simulation
+   \stopitemize}
+
+\startCombinedItem
+  \startSomeItem
+    The student is able to write a detailed planning for the
+    design and construction of a water purification plant.
+  \stopSomeItem
+\nextCombinedItem
+  \firstscale
+\nextCombinedItem
+  \secondscale
+\stopCombinedItem
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+Or even more sophisticated:
+
+\startbuffer
+\def\startItem%
+  {\startCombinedItem
+   \startSomeItem}
+
+\def\stopItem%
+  {\stopSomeItem
+   \nextCombinedItem \firstscale
+   \nextCombinedItem \secondscale
+   \stopCombinedItem}
+
+\startItem
+  The student is able to write a detailed planning for the
+  design and construction of a water purification plant.
+\stopItem
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+A definition like the one above can be very surprising. The
+commands in such a definition can interfere and result in
+undesirable output. We think of \type {\vtop}'s that align
+on the baseline and \type {\vbox} s that align under the
+baseline. Another example with framed texts show that
+\CONTEXT\ takes care of most of the problems.
+
+\startbuffer
+\defineparagraphs
+  [Three]
+  [n=3,
+   line=on]
+
+\setupframedtexts
+  [align=middle]
+
+\startThree
+  \startframedtext[left]   left   \stopframedtext
+\nextThree
+  \startframedtext[middle] middle \stopframedtext
+\nextThree
+  \startframedtext[right]  right  \stopframedtext
+\stopThree
+\stopbuffer
+
+%\startreality
+\getbuffer
+%\stopreality
+
+\section[tabulate 1]{Tabulate}
+\index{tables}
+\index{lists}
+\index{tabulate}
+\macro{\tex{starttabulate}}
+
+In a later chapter we will go into detail on typesetting
+tables. Consider this paragraph to be an appetizer. We use
+the term tabulate when a table is part of the running text.
+A simple tabulation looks like this:
+
+\startbuffer
+\starttabulate[|l|p|]
+\NC question \NC Sometimes it is surprising to notice that writers,
+independently of each other, explore the same theme along similar lines.
+Three of the four books mentioned here fall into this category. Which
+books do not belong in this list? \NC \NR
+\stoptabulate
+
+\starttabulate[|l|l|l|]
+\NC A. \NC This Perfect Day           \NC Ira Levin           \NC \NR
+\NC B. \NC Opstaan op Zaterdag        \NC Jan Gerhart Toonder \NC \NR
+\NC C. \NC Tot waar zal ik je brengen \NC Anton Koolhaas      \NC \NR
+\NC D. \NC The City And The Stars     \NC Arthur Clarke       \NC \NR
+\stoptabulate
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This results in:
+
+\startreality
+\getbuffer
+\stopreality
+
+With \type {\NC} we go to the next column and with \type
+{\NR} to the next row. Definitions like \type {[|l|p|]} and
+\type {[|l|l|l|]} are called a template. The set ups are
+similar to those of \type {\starttable} (see \in {in}
+[tables]).
+
+The default template looks like this: \type {[|l|p|]}. The
+second column is typeset as a normal paragraph and with a
+width that is calculated automatically by \TEX.
+
+\startbuffer
+\starttabulate
+\NC d: \NC avond, afond, avend, afend \NC \NR
+\NC t: \NC avont, afont, avent, afent \NC \NR
+\stoptabulate
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This quotation from \quotation{Spellingsverandering van zin
+naar onzin} by G.C. Molewijk (1992) will look like this:
+\footnote {For the non||dutch readers: this book \quotation
+{Change of spelling, from sense to nonsense} is one of the
+most humorous books on the developments in a language one
+can imagine. If you ever come to studying dutch, you should
+give this book a try.}
+
+\getbuffer
+
+\section[align]{Alignment}
+\index{align}
+\macro{\tex{setupalign}}
+\macro{\tex{startalignment}}
+\macro{\tex{leftaligned}}
+\macro{\tex{rightaligned}}
+\macro{\tex{midaligned}}
+\macro{\tex{setuptolerance}}
+
+Horizontal and vertical alignment is set up by:
+
+\showsetup{setupalign}
+
+The keys \type {left}, \type {middle} and \type {right},
+\type {inner} and \type {outer} apply to horizontal
+alignment and \type {bottom}, \type {height} and \type
+{line} to vertical alignment.
+
+The key \type {right} results in the text being typeset
+ragged right. The keyword \type {broad} can be combined with
+\type {left}, \type {middle} and \type {right} which results
+in somewhat more rough alignments.
+
+The option \type {line} lets the last line touch the bottom
+of the page while \type {height} aligns the baseline to the
+bottom.
+
+Individual lines can be aligned with the commands:
+
+\showsetup{leftaligned}
+
+\showsetup{midaligned}
+
+\showsetup{rightaligned}
+
+alignment over a number of lines is done by:
+
+\showsetup{startalignment}
+
+The text below shows a number of examples of horizontal
+alignment.
+
+\startbuffer
+\leftaligned{The Brittish stubbornly stick to}
+\leftaligned{driving at the left side of the road.}
+\blank[medium]
+\rightaligned{This can be considered a form conservatism,}
+\rightaligned{or alternatively phrased: right||wing thinking.}
+\blank[medium]
+\midaligned{However, a political drive||in||the||middle}
+\midaligned{compromise would definitely lead to accidents.}
+\stopbuffer
+
+\startreality
+\getbuffer
+\stopreality
+
+We done this with:
+
+\startexample
+\typebuffer
+\stopexample
+
+The last words of a paragraph can be placed on the right
+hand side by the command \type {\wordright}, \wordright
+{\bf so with:}
+
+\showsetup{wordright}
+
+When typesetting a paragraph, \TEX\ tries several
+alternatives and decides which one to choose based on a
+system, of penalties. Normally \TEX\ is very strict, but we
+can instruct \TEX\ to be a bit more tolerant. This means
+that, instead of letting problematic situations remain
+unsolved |<|i.e.\ let words that cannot be hyphenated stick
+into the margin|>| \TEX\ will add a bit more stretch and
+apply different penalties for successive hyphens.
+
+Alignment can be set up by:
+
+\showsetup{setuptolerance}
+
+By default we use \type {[horizontal,verystrict]} for
+horizontal alignment and \type {[vertical,strict]} for
+vertical alignment. \footnote {If you want a real ugly
+result, you should set the \TEX\ variable \type
+{\pretolerance} to 10.000. It is up to you.} A last resort
+is provided by the keyword \type {stretch}, which in
+unsolvable situations will stretch spaces, extending the
+ugliness even further.
+
+In double sided typesetting, alignment can be coupled to
+the left or right pages.
+
+\startbuffer
+\startalignment[inner]
+\quotation {Out of nowhere} is a rather normal way of saying that it is
+not clear where something originates. It is typically a phrase that has
+no counterpart, in the sense that nobody would comprehend the remark
+\quotation {Into somewhere}.
+\stopalignment
+
+\startalignment[outer]
+\quotation {Out of bounds} is a similar quote. There is no counterpart
+\quotation {In of bounds}. Both examples demonstrate that in(ner) and
+out(er) are not always counterparts.
+\stopalignment
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+Results of the commands above depend on the location of the
+page (left of right). The commands lead to:
+
+\startreality
+\getbuffer
+\stopreality
+
+\section[lines]{New lines}
+\index{new lines}
+\index{new+lines}
+\index{numbering+lines}
+\macro{\tex{crlf}}
+\macro{\tex{startlines}}
+\macro{\tex{startlinenumbering}}
+\macro{\tex{setuplinenumbering}}
+\macro{\tex{setuplines}}
+
+A new line is forced by: \footnote {In titles, headers and
+margin texts \type {\\} is available for introducing a new
+line.}
+
+\showsetup{crlf}
+
+If you want to have lines show up the way you typed
+them in your source file you can use:
+
+\showsetup{startlines}
+
+Default indenting is off. You can set up lines by:
+
+\showsetup{setuplines}
+
+If we set up \type {indenting=odd} for example we will
+obtain:
+
+\startbuffer
+\setupindenting[medium]
+\setuplines[indenting=even]
+\startlines
+Come on, he said, give me a while,
+and I will typeset you this text
+with rivers like the river Nile
+\stoplines
+\stopbuffer
+
+\start
+\getbuffer
+\stop
+
+This was typed in the source file as:
+
+\typebuffer
+
+Lines can be numbered with:
+
+\showsetup{startlinenumbering}
+
+A simple example of numbered lines might look like this:
+
+\startbuffer
+\startlinenumbering
+There is of course no problem with trying to prevent illegal copying of
+\cap {cd}'s and records. However, why should artists benefit from these
+measures, who themselves have no problems with copying themes, lyrics
+and melodies?
+\stoplinenumbering
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+this becomes:
+
+%\startreality
+\getbuffer
+%\stopreality
+
+We can influence line numbering by:
+
+\showsetup{setuplinenumbering}
+
+With the variable \type {conversion} you set up the type of
+numbering. You may even use your own character, for example
+an em||dash (keyed in as \type {---}). In that case this
+character is set in front of each line.
+
+In \in {chapter} [cross references] we will explain how we
+can refer to a linenumber. The parameters \type {prefix} and
+\type {referencing} can be used to unfluence that proces.
+
+In the example below we use the following setup:
+
+\startexample
+\starttyping
+\setuplinenumbering[conversion=numbers,step=2,location=intext]
+\stoptyping
+\stopexample
+
+and:
+
+\startexample
+\starttyping
+\setuplinenumbering[conversion=characters,step=1,location=intext]
+\stoptyping
+\stopexample
+
+\startsimplecolumns
+\setuplines[before=,after=]
+\setuplinenumbering[conversion=numbers,step=2,location=intext]
+\startlines
+\startlinenumbering
+a macro is a piece of text
+random at first sight
+a bunch of stupid tokens that
+looks less that awful right
+\stoplinenumbering
+\stoplines
+\break
+\setuplinenumbering[conversion=characters,step=1,location=intext]
+\startlines
+\startlinenumbering
+but when fed to \TEX\ the program
+you will be surprised
+thanks to macros your text too
+will look quite organized
+\stoplinenumbering
+\stoplines
+\stopsimplecolumns
+
+You can also mark lines in order to refer to specific line
+numbers. This will be shown in in \in{chapter}[cross references].
+
+\section[pages]{New page}
+\index{new pages}
+\index{new+page}
+\macro{\tex{page}}
+
+In some instances it is up to you to force, prevent or
+encourage a new page.
+
+\showsetup{page}
+
+The possible set ups are explained in \in {table}
+[tab:page]. If no setup is used \type {\page} will result in
+a new page.
+
+\placetable
+  [here][tab:page]
+  {Setups of \type {\page}.}
+\starttable[|l|l|]
+\HL
+\VL \bf setup                                 \VL
+    \bf result                                \VL\SR
+\HL
+\VL \type {yes}                                  \VL
+     force a new page                            \VL\FR
+\VL \type {makeup}                               \VL
+     the same, without fill                      \VL\MR
+\VL \type {no}                                   \VL
+     when possible, avoid page break             \VL\MR
+\VL \type {preference}                           \VL
+     when possible, force page break             \VL\MR
+\VL \type {bigpreference}                        \VL
+     when possible, force page break, try harder \VL\MR
+\VL \type {left}                                 \VL
+     force a left page                           \VL\MR
+\VL \type {right}                                \VL
+     force a right page                          \VL\MR
+\VL \type {disable}                              \VL
+     ignore the next \type {\page} command       \VL\MR
+\VL \type {last}                                 \VL
+     add last page(s)                            \VL\MR
+\VL \type {quadruple}                            \VL
+     add pages until quadruple number of pages   \VL\MR
+\VL \type {even}                                 \VL
+     go to the next even page                    \VL\MR
+\VL \type {odd}                                  \VL
+     go to the next odd page                     \VL\MR
+\VL \type {blank}                                \VL
+     insert a completely blank page              \VL\MR
+\VL \type {empty}                                \VL
+     insert an empty page (with headers etc.)    \VL\MR
+\VL \type {reset}                                \VL
+     reset the disable command                   \VL\LR
+\HL
+\stoptable
+
+The setups \type {last} and \type {quadruple} can be used in
+double sided (reduced) typesetting. The first setup up will
+add pages until an even number is obtained, the second set
+up will add pages until the next quadruple is reached. When
+you want to overrule the automatic page numbering you type
+the pagenumber yourself:
+
+\startexample
+\starttyping
+\page[25]
+\stoptyping
+\stopexample
+
+You can also use a relative number like \type {[+4]}. You
+can use this feature when you want to be on the safe side
+and if you don't know at what page you are.
+
+While generating empty pages you have to take
+doublesidedness into account, for example:
+
+\startexample
+\starttyping
+\page[right,empty,right]
+\stoptyping
+\stopexample
+
+\section[pagenumbers]{Pagenumbers}
+\index{pagenumbers}
+\index{numbering+pages}
+\index{mirroring}
+\index{backspace}
+\index{footers}
+\index{headers}
+\index{double||sided}
+\index{single||sided}
+\index{screen numbers}
+\macro{\tex{setuppagenumbering}}
+\macro{\tex{setuppagesubnumbering}}
+\macro{\tex{setuppagenumber}}
+\macro{\tex{pagenumber}}
+\macro{\tex{subpagenumber}}
+\macro{\tex{totalnumberofpages}}
+\macro{\tex{numberofsubpages}}
+
+At any location in the text the pagenumber can be set up with
+the command:
+
+\showsetup{setuppagenumber}
+
+The pagenumber position on the page is defined by:
+
+\showsetup{setuppagenumbering}
+
+The position varies with the nature of the document. With
+\type {conversion} we state the way we want to display the
+number. With \type {location} we define pagenumber positions
+like the bottom or top, left or right side or in the margin.
+You can use combinations of these options. For example:
+
+\startexample
+\starttyping
+\setuppagenumbering[location={header,inmargin}]
+\stoptyping
+\stopexample
+
+\placetable
+  [here][tab:setuppagenumbering]
+  {setups to \type {\setuppagenumbering}.}
+\starttable[|Tl|Tl|]
+\HL
+\VL alternative=singlesided \VL alternative=doublesided \VL\SR
+\HL
+\VL left, right             \VL marginedge              \VL\FR
+\VL middle                  \VL middle                  \VL\MR
+\VL margin                  \VL margin                  \VL\LR
+\HL
+\stoptable
+
+Another alternative is \type {{singlesided,doublesided}}.
+In this case headers and footers will be mirrored in a
+double||sided document. The backspace is not mirrored (see
+\in {figure} [fig:mirroring]).
+
+\placefigure
+  []
+  [fig:mirroring]
+  {Three ways to mirror.}
+  {\getbuffer[sdsided]}
+
+You can assign text to the parameters \type {left} and \type
+{right}. These texts will encloses the pagenumber:
+
+\startexample
+\starttyping
+\setuppagenumbering[conversion=romannumerals,left={--~},right={~--}]
+\stoptyping
+\stopexample
+
+This will lead to: --~\romannumerals {8}~--. With \type
+{style} you define the font and with \type {state}
+pagenumbering is switched on and off.
+
+Numbering can become very fancy when you use \type {command}
+to execute an operation. This command has an argument and
+will be executed every time a pagenumber is placed. A framed
+pagenumber can be obtained by:
+
+\startexample
+\starttyping
+\setuppagenumbering[command=\inframed]
+\stoptyping
+\stopexample
+
+or partially framed by:
+
+\startexample
+\starttyping
+\def\mypagenumber#1%
+  {\inframed[frame=off,leftframe=on,rightframe=on]{#1}}
+
+\setuppagenumbering[command=\mypagenumber]
+\stoptyping
+\stopexample
+
+In this we use \type {\inframed} instead of \type {\framed},
+because the pagenumber must align with the texts of the
+headers and footers.
+
+With \type {textseparator} you can define a separator
+between the section and pagenumber. Default this is a --.
+When the pagenumber is to appear at the margin the \type
+{numberseparator} is placed between the number and the
+footer text. Default this is a space with a width of 1em.
+
+In interactive documents subpagenumbering is frequently used
+for hyperlinking. When every new section is started on a new
+page the footer text can be set up with:
+
+\startexample
+\starttyping
+\setupsubpagenumber
+  [way=byparagraph]
+\setupfootertexts
+  [screen {\subpagenumber} of {\numberofsubpages}] []
+\stoptyping
+\stopexample
+
+The setup is done with:
+
+\showsetup{setupsubpagenumber}
+
+and the numbers themselves can be recalled by
+\type {\subpagenumber} and \type {\numberofsubpages}. These
+numbers are only reliable in headers and footers. In the
+case of interactive documents a more abstract definition can
+be used:
+
+\startexample
+\starttyping
+\setupfootertexts[][{\interactionbar[alternative=d]}]
+\stoptyping
+\stopexample
+
+In this case one can jump to the previous and following
+subpages. The subnumbering can be reset with \type {[reset]}.
+
+In a similar fashion one has access to the page number and
+the total number of pages: \type {\pagenumber} and \type
+{\totalnumberofpages}.
+
+\section[headandfoot]{Headers and footers}
+\index{header}
+\index{footer}
+\macro{\tex{definetext}}
+\macro{\tex{setupheadertexts}}
+\macro{\tex{setupfootertexts}}
+\macro{\tex{setuptoptexts}}
+\macro{\tex{setuptexttexts}}
+\macro{\tex{setupbottomtexts}}
+\macro{\tex{setupheader}}
+\macro{\tex{setupfooter}}
+\macro{\tex{setuptext}}
+\macro{\tex{setuptop}}
+\macro{\tex{setupbottom}}
+\macro{\tex{noheadersandfooterlines}}
+\macro{\tex{notopandbottomlines}}
+\macro{\tex{donttest}}
+
+Text in the header and footer are set up with the commands:
+
+\showsetup{setupheadertexts}
+
+\showsetup{setupfootertexts}
+
+A great number of arguments can be added. When the first
+argument is left out it is taken for granted that the footer
+and header should be place under or over the pagebody (\type
+{text}). The edge is located at the left side of the margin
+and is only used in interactive documents where a extended
+pagebody is needed.
+
+The key \type {date} generates a date and \type {pagenumber}
+generates the pagenumber. Part, chapter and section titles
+can be summoned to appear in the header|| and footer text by
+\type {part}, \type {chapter}, \type {paragraph} etc. By
+default the mark mechanism is active. Sectionnumbers can
+also be recalled: \type {chapternumber} etc.
+
+Setting the \type {state} is done for the whole header, so
+one should use the one||argument version:
+
+\starttyping
+\setupheader[state=high]
+\stoptyping
+
+Those who want more variations in headers and footers can
+use four instead of two arguments. Four arguments have only
+effect in double||sided documents.
+
+\startexample
+\starttyping
+\setupfootertexts
+  [even left][even right]
+  [odd left][odd right]
+\stoptyping
+\stopexample
+
+So there are different combinations of arguments possible:
+
+\starttyping
+\setupheadertexts
+\setupheadertexts[mid text]
+\setupheadertexts[left text][right text]
+\setupheadertexts[left text][right text][left .][right .]
+\setupheadertexts[location][left text][right text]
+\setupheadertexts[location][left text][right text][left .][right .]
+\stoptyping
+
+Instead of text, one can specify keywords like \type
+{chapter}, \type {date} or \type {pagenumber}. When the
+pagenumber is positioned in this way, one should also say:
+
+\starttyping
+\setuppagenumbering[location=]
+\stoptyping
+
+The current setups of the headers and footers are cleared
+when no values are stated in \type {\setupfootertexts}.
+Problems can be expected when you use \setchars\ in your
+setup. These have to be enclosed in curly brackets:
+
+\startexample
+\starttyping
+\setupfootertexts[chapter][{\currentdate[month,year]}]
+\stoptyping
+\stopexample
+
+The type setting of head|| and foot texts can be influenced
+by:
+
+\showsetup{setupheader}
+
+and
+
+\showsetup{setupfooter}
+
+As with \type {\setup...texts} the first argument is
+optional. The keys \type {state}, \type {before} and \type
+{after} work on all parts of the pagebody, on the main text,
+the margins and edges.
+
+When \type {...width} is set up the text is clipped at the
+given width. The key \type {strut} is important when footers
+or headers contain other objects than text. When \type
+{strut} is set to \type {no}, the object is not corrected
+for linedepth. You could use the command \type {\showstruts}
+to get some information on this phenomena.
+
+The setups with \type {state} are explained in \in {table}
+[tab:stelhoofdin]. You should bear in mind that page
+numbering will always continue whether or not the pagenumbers
+are placed.
+
+\placetable
+  [here][tab:stelhoofdin]
+  {Setups with \type {\setupheader} and \type {\setupfooter}.}
+\starttable[|l|l|]
+\HL
+\VL \bf setup         \VL \bf result                                 \VL\SR
+\HL
+\VL \type {normal}    \VL visible                                    \VL\FR
+\VL \type {none}      \VL invisible, no whitespace                   \VL\MR
+\VL \type {empty}     \VL one page invisble, whitespace              \VL\MR
+\VL \type {high}      \VL one page visible, no whitespace            \VL\MR
+\VL \type {start}     \VL visible                                    \VL\MR
+\VL \type {nomarking} \VL leave out marks                            \VL\MR
+\VL \type {stop}      \VL invisible, whitespace                      \VL\LR
+\HL
+\stoptable
+
+When setups are done between \type {\start} and \type
+{\stop} they will only work locally. This means that the
+setups are reset after \type {stop}. Headers and footers may
+appear even while you think new ones should appear. This is
+due to the way \TEX\ determines valid breakpoints. One can
+never be certain when such an automatic break will occur.
+The solution is to force a new page by \type {\page} before
+\type {\stop}.
+
+Headers and footers can be switched off on a page by means
+of:
+
+\showsetup{noheaderandfooterlines}
+
+Next to head|| and footertexts there are also over|| and
+bottomtexts. These are setup in a similar way:
+
+\showsetup{setuptoptexts}
+\showsetup{setuptexttexts}
+\showsetup{setupbottomtexts}
+
+\showsetup{setuptop}
+\showsetup{setuptext}
+\showsetup{setupbottom}
+
+\showsetup{notopandbottomlines}
+
+When the height of an area equals zero, no text is placed.
+By default the top and bottom area have zero height, so
+setting their text areas without setting the height has no
+effect.
+
+At the instance of a new part or chapter we can deal in a
+different way with the headers and footers. Suppose that a
+default setup looks like this:
+
+\starttyping
+\setupheadertexts[pagenumber]
+\setupfootertexts[chapter][paragraph]
+\stoptyping
+
+At the first page of new chapters this may look not too
+good. Therefore we could state:
+
+\starttyping
+\setuphead[chapter][header=empty,footer=empty]
+\stoptyping
+
+However if we use it in this way we loose the pagenumber. A
+more adequate solution is:
+
+\starttyping
+\definetext[chapter][footer][pagenumber]
+\stoptyping
+
+with:
+
+\starttyping
+\setuphead[chapter][header=high,footer=chapter,page=right]
+\stoptyping
+
+we obtain the desired effect. The pagenumber appears in the
+foot and the header disappears completely. These kind of
+commands are essential when you don't want to define all
+kinds of setups locally in a text, for example before every
+new chapter. This mechanism only works when going to a new
+page enabled.
+
+\showsetup{definetext}
+
+\section[footnotes]{Footnotes}
+\index{footnotes}
+\index{symbols}
+\macro{\tex{footnote}}
+\macro{\tex{note}}
+\macro{\tex{setupfootnotes}}
+\macro{\tex{startlocalfootnotes}}
+\macro{\tex{placelocalfootnotes}}
+\macro{\tex{placefootnotes}}
+
+In some texts you can't do without footnotes. The footnote
+marker is placed in the text and the note itself is typeset
+at another location in the text, usually at the bottom of
+the page. Most often at the bottom of the page.
+
+\showsetup{footnote}
+
+A footnote number or ||symbol is recalled with:
+
+\showsetup{note}
+
+An example of footnotes is given below.
+
+\startbuffer
+The first compositions of the American composer Steve Reich will probably
+only appreciated by the most \quote {purist} among those who like
+minimal||music \footnote {A decent minimal is not so much characterized by
+a minimal use of musical instruments, but more by subtle shifts in
+polyphonic rhythms.}, his later works, like \quote {The Desert Music}, are
+compositions for full orchestra, where the orchestra is extended with a for
+Reich characteristic rhythm section \footnote {In most cases this section
+consists of pianos, marimbas and xylophones.} and choir. Together
+with John Adams, \footnote {His \quote {Fearful Symmetries} is a perfect mix
+of classic, jazz, swing and pop music.} Reich can be considered one of
+today's leading composers. It is, however, a pity that they can only be seen
+\footnote {The nice thing about compositions like \quote {Drumming} and
+\quote {Sextet} is de fact that \quotation {what the ear hears} differs
+from what the \quotation {eye sees happening}.} and heard at the smaller
+broad companies, like the \cap {VPRO}. \footnote{A non commercial Dutch
+broadcast company.} \footnote {Sometimes also at other companies, because
+somehow this kind of music is quite suited for impressive and|/|or
+melodramatic documentaries.}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+Undesired spaces are ignored. Spacing between two footnote
+numbers or symbols is taken care of. The result looks like
+this:
+
+\startreality
+\getbuffer
+\stopreality
+
+The type setting of the footnote can be setup with the
+command below that is defined in the setup area of your
+document.
+
+\showsetup{setupfootnotes}
+
+By default footnotes are placed at the bottom of a page.
+When using columns you can set \type {location} to \type
+{columns} so that the footnotes appear in the last column.
+
+We can frame footnotes, place them in columns and decouple
+them from a page. The meaning of this last option is
+explained in an example.
+
+\startbuffer
+\startlocalfootnotes[n=0]
+  \placetable
+    {A (latin) table.}
+    \placelegend
+      {\starttable[|l|r|]
+       \HL
+       \VL Nota \footnote {Bene} \VL Bene \footnote {Nota} \VL\FR
+       \VL Bene \footnote {Nota} \VL Nota \footnote {Bene} \VL\LR
+       \HL
+       \stoptable}
+      {\placelocalfootnotes}
+\stoplocalfootnotes
+\stopbuffer
+
+\typebuffer
+
+The table enables the float placement mechanism, so we don't
+know on which page the table nor the footnotes will appear.
+So the footnotes are coupled to the table by using local
+footnotes.
+
+\getbuffer
+
+\showsetup{startlocalfootnotes}
+
+\showsetup{placelocalfootnotes}
+
+Footnotes can be placed at the end of a chapter or a
+document. The key \type {location} is set at \type {text}
+and we use the following command to place the footnotes:
+
+\showsetup{placefootnotes}
+
+When \type {n} is set at~2, you can display the footnotes in
+columns. This should be done at an early stage because \TEX\
+is using the dimensions of the footnotes to determine the
+page break. More information can be found in the source code
+of the \CONTEXT\ module: \type {core-not.tex}.
+
+The next example demonstrates that footnote numbers can be
+replaced by footnote symbols. In this example \type
+{conversion} is set at \type {set 3}.
+
+\startitemize[3*broad,packed]
+
+\setupfootnotes[conversion=set 3]
+
+\sym{note:} use footnotes sparingly \footnote [first]
+{During the development of \CONTEXT\ the footnote mechanism
+was one of the first real challenges. And I'm challenged
+still since I just encountered documents with footnotes
+within footnotes.}
+
+\sym{note:} be brief \footnote{Why? See note \note[first].}
+
+\sym{note:} no notes are even better \footnote{QED.}
+
+\stopitemize
+
+Default the key \type {numbercommand} is set \type
+{\high}, but other setups are allowed. You can also
+work with:
+
+\showsetup{setupfootnotedefinition}
+
+to define the exact way of how to display the footnotes,
+because the standard definition mechanism is used (see \in
+{section} [definities]).
+
+\section{Aligned boxes}
+\index{alignment}
+\macro{\tex{lbox}}
+\macro{\tex{rbox}}
+\macro{\tex{cbox}}
+\macro{\tex{sbox}}
+\macro{\tex{vbox}}
+\macro{\tex{vtop}}
+\macro{\tex{hbox}}
+\macro{\tex{tbox}}
+\macro{\tex{bbox}}
+
+\TEX\ is basically aware of two kind of boxes: \type {\hbox}
+and \type {\vbox}. A horizontal \type {\hbox} can be
+considered a line, a \type {\vbox} a paragraph. There are
+two types of vertical boxes: a \type {\vbox} aligns on the
+baseline of the last line, while a \type {\vtop} aligns on
+the first line.
+
+\startbuffer
+\hbox{\hbox{one} \vbox{two\par three} \vtop{four\par five}}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+When we make the frames visible |<|in this case we said \type
+{\showboxes} in advance|>| the example above becomes:
+
+\startbaselinecorrection
+\hsize3cm\showboxes\getbuffer
+\stopbaselinecorrection
+
+In addition \CONTEXT\ provides a lot of alternative boxes,
+like: \type {\cbox}, \type {\lbox} and \type {\rbox}. These
+commands can be used while defining your own macros, but
+will seldom appear in the running text. Like in \type
+{\hbox} and \type {\vbox} the dimension of the width can be
+added.
+
+\startexample
+\starttyping
+\cbox{... text ...}
+\lbox to 4cm{... text ...}
+\stoptyping
+\stopexample
+
+The reader is invited to experiment with these commands. A
+new line is forced with \type {\\}.
+
+For some very dedicated purposes there is \type {\sbox}.
+This command is used to give a box the height of a strut.
+You may forget this command.
+
+To another category of boxes belong \type {\tbox} and \type
+{\bbox}. Both are used within tables. Look at the example
+below that illustrates their use.
+
+\getbuffer[boxes-1]
+
+The \type {\tbox} and \type {\bbox} are also used in
+figures.
+
+\getbuffer[boxes-2]
+
+In \CONTEXT\ a complete repertoire of macros is available
+that relies on boxes. For example we can add cutmarks to a
+box:
+
+\startexample
+\typebuffer[boxes-3]
+\stopexample
+
+Be aware of the fact that such marks lie outside the boxes.
+
+\startreality
+\startbaselinecorrection
+\getbuffer[boxes-3]
+\stopbaselinecorrection
+\stopreality
+
+We can visualize boxes by using \type {\ruledhbox}, \type
+{\ruledvbox} and \type {\ruledvtop} instead of \type
+{\hbox}, \type {\vbox} and \type {\vtop}. With \type
+{\showmakeup} we can visualise everything automatically and
+we can get some insight on the features of \CONTEXT\ and
+\TEX.
+
+The next example shows that we can use \TEX\ for more than
+only the straight forward typesetting. However, to be able
+to do this, one should have some insight in the manipulation
+of boxes. We use buffers to enhance comprehensibility.
+
+\getbuffer[boxes-4]
+
+\typebuffer[boxes-4]
+
+This text is typeset in a framed box. We use two temporary
+boxes. The first determines the height of the second one.
+Instead of \type {\tfx\setupinterlinespace} you could use
+\type {\switchtobodyfont} to switch to a narrower bodyfont.
+(\type {[small]}). The \type {\par} is essential!
+
+\startbuffer
+\framed[offset=\bodyfontsize]
+  {\setbox0=\vbox
+     {\hsize 16em\switchtobodyfont[ss]\getbuffer[water]}
+   \setbox2=\vbox to \ht0
+     {\vfill\externalfigure[vew1091a][width=5cm]\vfill}
+   \hskip1em\box2\hskip1em\box0\hskip1em}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+The result |<|an example of a drinking water warning|>| is shown
+below.
+
+\startbaselinecorrection
+\getbuffer
+\stopbaselinecorrection
+
+\section[typesetting]{Makeup}
+\index{makeup}
+\macro{\tex{definemakeup}}
+\macro{\tex{setupmakeup}}
+\macro[startnamemakeup]{\tex{start<<name>>makeup}}
+\macro{\tex{startstandardmakeup}}
+
+A document may have a titlepage, a colofon and some pages
+that are not directly related to the main part of the
+document. Mostly these pages are not numbered and can do
+without headers and footers. Because their layout needs
+extra attention we prefer the word makeup for defining
+their specific layout.
+
+The commands \type {\startstandardmakeup} and \type
+{\stopstandardmakeup} exclude text from the standard
+pagebody and its layout. Below a simple example is given.
+You will notice commands like \type {\vfill}, \type
+{\blank}, \type {\tf} and even \type {\crlf} and \type
+{\vskip}.
+
+\startexample
+\starttyping
+\startstandardmakeup
+  \tfd Jobs around the house \blank[2*big]
+  \tfb Part 1: Gas, water and  electricity \vfill
+  \tfb J. Hagen \crlf A.F. Otten \blank
+  \tfb Hasselt \crlf \currentdate[month,year]
+\stopstandardmakeup
+\stoptyping
+\stopexample
+
+In double||sided documents an empty page is generated that
+functions as the backside of the title page. However
+sometimes this backside should also be typeset.
+
+\startexample
+\starttyping
+\startstandardmakeup[doublesided=no]
+... the front
+\stopstandardmakeup
+\startstandardmakeup[page=no]
+... the back
+\stopstandardmakeup
+\stoptyping
+\stopexample
+
+Because double||sided typesetting is turned off, a backside
+page is not generated. And because the key \type {page} is
+\type {no} the next page does not get the layout of a right
+hand side page (this would be default).
+
+With the command \type {\showframe} frames can be made
+visible (temporarily) around the made up text. This is
+very convenient during the typesetting of separate pages.
+
+Next to the command \type {\startstandardmakeup} one can
+define his own layout with different dimensions by means of:
+
+\showsetup{definemakeup}
+
+\showsetup{setupmakeup}
+
+\showsetup{start<<name>>makeup}
+
+The first command generates a \type {\start...stop}||pair
+between which the new typesetting commands can be typed.
+Bij default the result of this new layout is typeset on an empty
+page. The new layout is marked with \type {<<name>>}, for
+selection at a later stage (see \in {section} [selecteren]).
+
+The commands that are provided after the key \type {commands}
+are executed immediately when a new layout is called. In
+this local layouts can be defined.
+
+\stopcomponent
+

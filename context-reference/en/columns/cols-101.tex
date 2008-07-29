@@ -1,0 +1,27 @@
+% content=tex
+%
+% copyright=pragma-ade readme=readme.pdf licence=cc-by-nc-sa
+
+\definecolumnset[example][n=4]
+
+\starttext
+
+\startbuffer
+\fakewords{100}{200} 
+\placefigure{}{\externalfigure[placeholder][width=\One]}
+\fakewords{100}{200} 
+\placefigure{}{\externalfigure[placeholder][width=\Two]}
+\fakewords{100}{200} 
+\stopbuffer
+
+\startcolumnset[example]
+
+   \definecolumnsethsize{example}{1}{1}\One
+   \definecolumnsethsize{example}{1}{2}\Two
+
+   \dorecurse{5}{\getbuffer}
+   \dorecurse{10}{\fakewords{100}{200}\par}
+
+\stopcolumnset 
+
+\stoptext

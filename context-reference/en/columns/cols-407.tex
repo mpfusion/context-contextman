@@ -1,0 +1,35 @@
+% content=tex
+%
+% copyright=pragma-ade readme=readme.pdf licence=cc-by-nc-sa
+
+\definecolumnset[example][n=3]
+\definecolumnset[therest][n=4]
+
+\setupbackgrounds[text][text][background=contrast]
+
+\setupcolumnset[example]   [distance=.5cm]
+\setupcolumnset[therest]   [distance=.5cm]
+
+\setupcolumnset[example]   [width=\dimexpr((\makeupwidth-1.5cm)/4)]
+\setupcolumnset[therest]   [width=\dimexpr((\makeupwidth-1.5cm)/4)]
+
+\setupcolumnset[example][1][width=\dimexpr(\makeupwidth-1.0cm-2
+                                  \dimexpr((\makeupwidth-1.5cm)/4))]
+
+\starttext
+
+\startcolumnset[example,therest]
+
+   \startcolumnmakeup
+
+     \vfill \fakewords{50}{100}
+
+   \stopcolumnmakeup
+
+   \column[local]
+
+   \dorecurse{25}{\fakewords{100}{150}\par}
+
+\stopcolumnset 
+
+\stoptext 

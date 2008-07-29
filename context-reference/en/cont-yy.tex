@@ -1,0 +1,173 @@
+% interface=nl
+
+\starttext
+
+% TODO: translate this stuff
+
+\iffalse
+
+\unprotect
+
+\setuplayout
+  [\c!kopwit=4cm,
+   \c!hoogte=22cm,
+   \c!hoofd=1.5cm,
+   \c!voet=1cm,
+   \c!bovenafstand=6pt,
+   \c!hoofdafstand=12pt,
+   \c!voetafstand=12pt,
+   \c!onderafstand=6pt,
+   \c!rugwit=5cm,
+   \c!breedte=10.5cm,
+   \c!linkermarge=0.75cm,
+   \c!rechtermarge=1.5cm,
+   \c!linkerrand=2cm,
+   \c!rechterrand=1.75cm,
+   \c!linkermargeafstand=18pt,
+   \c!rechterrandafstand=6pt,
+   \c!linkerrandafstand=12pt,
+   \c!rechterrandafstand=12pt]
+
+\stelboventekstenin [\v!rand]  [\tttf LLL] [\tttf RRR]
+\stelboventekstenin [\v!marge] [\tttf LL]  [\tttf RR]
+\stelboventekstenin [\v!tekst] [\tttf L]   [\tttf R]
+
+\stelhoofdtekstenin [\v!rand]  [\tttf LLL] [\tttf RRR]
+\stelhoofdtekstenin [\v!marge] [\tttf LL]  [\tttf RR]
+\stelhoofdtekstenin [\v!tekst] [\tttf L]   [\tttf R]
+
+\stelvoettekstenin  [\v!rand]  [\tttf LLL] [\tttf RRR]
+\stelvoettekstenin  [\v!marge] [\tttf LL]  [\tttf RR]
+\stelvoettekstenin  [\v!tekst] [\tttf L]   [\tttf R]
+
+\stelondertekstenin [\v!rand]  [\tttf LLL] [\tttf RRR]
+\stelondertekstenin [\v!marge] [\tttf LL]  [\tttf RR]
+\stelondertekstenin [\v!tekst] [\tttf L]   [\tttf R]
+
+\definieerbeeldmerk 
+  [test oa] [\v!onder] [\v!linkerrand]   
+  [\c!commando=\omlijnd{\type{lll}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test ob] [\v!onder] [\v!linkermarge]  
+  [\c!commando=\omlijnd{\type{ll}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test oc] [\v!onder] [\v!links]        
+  [\c!commando=\omlijnd{\type{l}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test od] [\v!onder] [\v!midden]       
+  [\c!commando=\omlijnd{\type{m}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test oe] [\v!onder] [\v!rechts]       
+  [\c!commando=\omlijnd{\type{r}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test of] [\v!onder] [\v!rechtermarge] 
+  [\c!commando=\omlijnd{\type{rr}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test og] [\v!onder] [\v!rechterrand]  
+  [\c!commando=\omlijnd{\type{rrr}},\c!status=\v!start]
+
+\definieerbeeldmerk 
+  [test ba] [\v!boven] [\v!linkerrand]   
+  [\c!commando=\omlijnd{\type{lll}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test bb] [\v!boven] [\v!linkermarge]  
+  [\c!commando=\omlijnd{\type{ll}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test bc] [\v!boven] [\v!links]        
+  [\c!commando=\omlijnd{\type{l}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test bd] [\v!boven] [\v!midden]       
+  [\c!commando=\omlijnd{\type{m}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test be] [\v!boven] [\v!rechts]       
+  [\c!commando=\omlijnd{\type{r}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test bf] [\v!boven] [\v!rechtermarge] 
+  [\c!commando=\omlijnd{\type{rr}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test bg] [\v!boven] [\v!rechterrand]  
+  [\c!commando=\omlijnd{\type{rrr}},\c!status=\v!start]
+
+\definieerbeeldmerk 
+  [test va] [\v!voet]  [\v!linkerrand]   
+  [\c!commando=\omlijnd{\type{lll}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test vb] [\v!voet]  [\v!linkermarge]  
+  [\c!commando=\omlijnd{\type{ll}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test vc] [\v!voet]  [\v!links]        
+  [\c!commando=\omlijnd{\type{l}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test vd] [\v!voet]  [\v!midden]       
+  [\c!commando=\omlijnd{\type{m}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test ve] [\v!voet]  [\v!rechts]       
+  [\c!commando=\omlijnd{\type{r}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test vf] [\v!voet]  [\v!rechtermarge] 
+  [\c!commando=\omlijnd{\type{rr}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test vg] [\v!voet]  [\v!rechterrand]  
+  [\c!commando=\omlijnd{\type{rrr}},\c!status=\v!start]
+
+\definieerbeeldmerk 
+  [test ha] [\v!hoofd] [\v!linkerrand]   
+  [\c!commando=\omlijnd{\type{lll}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test hb] [\v!hoofd] [\v!linkermarge]  
+  [\c!commando=\omlijnd{\type{ll}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test hc] [\v!hoofd] [\v!links]        
+  [\c!commando=\omlijnd{\type{l}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test hd] [\v!hoofd] [\v!midden]       
+  [\c!commando=\omlijnd{\type{m}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test he] [\v!hoofd] [\v!rechts]       
+  [\c!commando=\omlijnd{\type{r}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test hf] [\v!hoofd] [\v!rechtermarge] 
+  [\c!commando=\omlijnd{\type{rr}},\c!status=\v!start]
+\definieerbeeldmerk 
+  [test hg] [\v!hoofd] [\v!rechterrand]  
+  [\c!commando=\omlijnd{\type{rrr}},\c!status=\v!start]
+
+\stelachtergrondenin
+  [\v!boven,\v!hoofd,\v!tekst,\v!voet,\v!onder]
+  [\v!linkerrand,\v!linkermarge,\v!tekst,\v!rechtermarge,\v!rechterrand]
+  [\c!achtergrond=\v!raster,
+   \c!raster=.875]
+
+\stelachtergrondenin
+  [\v!pagina]
+  [\c!achtergrond=\v!raster,
+   \c!raster=.95,
+   \c!offset=0pt,
+   \c!diepte=0pt]
+
+\protect
+
+\fi
+
+\placelogos
+
+\showframe
+
+\switchtobodyfont[8pt]
+
+Here we show the complete layout, expressed in frames and
+units. The settings can be generated with \type
+{\showsetups}. The settings in this exampe are different
+from those used in this manual. 
+
+\startlinecorrection
+\showsetups
+\stoplinecorrection
+
+The \type {\textheight} is calculated by subtracting the
+footer and header dimensions from the height. The
+multi||digit precision is due to the fact that we store the
+dimensions in internal registers and thereby are bound by
+\TEX's internal precission. 
+
+\stoptext

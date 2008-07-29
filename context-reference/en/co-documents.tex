@@ -1,0 +1,924 @@
+% interface=en
+
+\startcomponent co-documents
+
+\environment contextref-env
+\product contextref
+
+\input documents/buffers
+
+\chapter[documents]{Documents}
+
+\section{Introduction}
+
+Why should one use \TEX\ in the first place? Many people
+start using \TEX\ because they want to typeset math. Others
+are charmed by the possibility of separating content and
+make||up. Yet another kind of user longs for a programmable
+system. And let us not forget those users that go for quality.
+
+When using \TEX\ one does not easily run into capacity
+problems. Typesetting large documents with hundreds of
+pages is typically a job for \TEX. If possible, when coding
+a document one should look beyond the current document.
+These days we see documents that were originally typeset
+for paper being published in electronic format. And how
+about making a stripped version of a 700 page document? A
+strict separation between content and layout (make||up) on
+the one hand and an acceptable redundancy in structure on
+the other is often enough to guarantee multiple use of one
+document source.
+
+A system like \CONTEXT\ is meant to make life easier.
+When coding a document the feeling can surface that \quotation
+{this or that should be easier}. This feeling often
+reflects the truth and the answer to the question can often
+be found in this manual, although sometimes obscured. It
+takes some time to learn to think in structure and content,
+certainly when one is accustomed to mouse driven
+word processors. In this chapter we focus on the structure of
+collections of documents.
+
+\section[startstop]{Start and stop}
+\index{start}
+\index{stop}
+\index{structure}
+\macro{\tex{starttext}}
+
+In a self contained text we use the following commands to
+mark the begin and end of a text:
+
+\startexample
+\starttyping
+\starttext
+\stoptext
+\stoptyping
+\stopexample
+
+The first command takes care of a number of initializations
+and the last command tells \TEX\ that processing can stop.
+When this command is left out \TEX\ will display a \type{*}
+(a star) on the command line at the end of the job. \TEX\
+will expect a command, for example \type{\end}.
+
+It is advisable to type the document setups before the
+\type{\start}||command, the so called setup area of the
+document. In this way a clever word||processor can identify
+where the text starts, and therefore can include those
+setups when it partially processes the document, given of
+course that it supports partial processing of files.
+
+In the example below a very simple layout is being used.
+
+\startexample
+\starttyping
+\starttext
+
+\subject{Introduction}
+
+\unknown\ America has always been a land set firmly not in the past, but
+in the future. On a recent visit to England, I found dozens of wonderful
+bookstores chock full of the past --- ancient history, rooms full of it,
+and great literature in such monumental stacks as to be overwhelming. In
+the usual American bookstore, history might occupy a few bookcases; great
+literature has its honoured place, but this year's paperbacks dominate. The
+past is not disregarded, but neither does it loom so large and run so deep
+in our blood.
+
+\blank
+
+{\bf Greg Bear, introduction to Tangents (1989).}
+
+\stoptext
+\stoptyping
+\stopexample
+
+The commands \type{\starttext...\stoptext} may be nested.
+Within a text a new text containing \type{\starttext} and
+\type{\stoptext} may be loaded.
+
+\section[structure]{Structure}
+\index{structure}
+\index{products}
+\index{projects}
+\index{environments}
+\index{components}
+\macro{\tex{startproject}}
+\macro{\tex{startproduct}}
+\macro{\tex{startenvironment}}
+\macro{\tex{startlocalenvironment}}
+\macro{\tex{startcomponent}}
+\macro{\tex{project}}
+\macro{\tex{product}}
+\macro{\tex{environment}}
+\macro{\tex{components}}
+
+In this section a structured approach of managing your
+documents is discussed. For very simple and self containing
+documents you can use the following approach:
+
+\starttyping
+\environment this
+\environment that
+
+\starttext
+... some interesting text ...
+\stoptext
+\stoptyping
+
+When you have to typeset very bulky documents it is better
+to divide your document in logical components. \CONTEXT\
+allows you to setup a project structure to manage your
+texts. You have to know that:
+
+\startitemize
+
+\item A group of texts that belong together have to be
+      maintained as a whole. We call this a {\em project}.
+
+\item Layout characteristics and macros have to be defined
+      at the highest level. For this, the term {\em
+      environment} has been reserved.
+
+\item Texts that belong together in a project we call {\em
+      products}.
+
+\item A product can be divided into components, these
+      components can be shared with other products.
+      Components can be processed individually.
+
+\stopitemize
+
+Programmable word processors can be adapted to this
+structure.
+
+A {\em project}, {\em environment }, {\em product} or {\em
+component} is started and stopped with one of the following
+commands:
+
+\showsetup{startproject}
+\showsetup{startproduct}
+\showsetup{startenvironment}
+\showsetup{startcomponent}
+
+Before a \type{\start}||\type{\stop}||pair commands can be
+added. When a file is not found on the directory \CONTEXT\
+looks for the files on higher level directories. This
+enables the user to use one or more environments for
+documents that are placed on several subdirectories.
+
+\placetable
+  [here][tab:structure commands]
+  {The structure commands that can be used in the files that
+   make up a project.}
+\starttable[|l|c|c|c|c|]
+\HL
+\VL \bf command     \VL
+    \bf project     \VL
+    \bf environment \VL
+    \bf product     \VL
+    \bf componnent  \VL\SR
+\HL
+\VL \type{\project <<name>>}
+    \VL           \VL        \VL  \yes  \VL  \yes  \VL\FR
+\VL \type{\environment <<name>>}
+    \VL    (\yes) \VL (\yes) \VL (\yes) \VL (\yes) \VL\MR
+\VL \type{\product <<name>>}
+    \VL     \yes  \VL        \VL        \VL (\yes) \VL\MR
+\VL \type{\componentonderdeel <<name>>}
+    \VL           \VL        \VL (\yes) \VL (\yes) \VL\LR
+\HL
+\stoptable
+
+To treat products and components as individual documents,
+the commands in \in{table}[tab:structure commands] are used.
+The commands marked with \yes\ are obligatory and the
+commands marked with (\yes) are optional. The content is
+typed before the \type{\stop} command.
+
+\startbuffer
+\startproject documents
+
+\environment layout
+
+\product  teacher
+\product  pupil
+\product  curriculum
+
+\stopproject
+\stopbuffer
+
+\startfiguretext[left,offset]{none}
+  \startMiniFile
+    \typebuffer
+  \stopMiniFile
+  An example of a project file.
+\stopfiguretext
+
+\startbuffer
+\startproduct teacher
+
+\project   documents
+
+\component teacher1
+\component teacher2
+
+\stopproduct
+\stopbuffer
+
+\startfiguretext[left,offset]{none}
+  \startMiniFile
+    \typebuffer
+  \stopMiniFile
+  The product \type{teacher.tex} (a teacher manual)
+  can be defined as shown on the opposite site.
+\stopfiguretext
+
+\startbuffer
+\startcomponent teacher2
+
+\project documents
+\product teacher
+
+... text ...
+
+\stopcomponent
+\stopbuffer
+
+\startfiguretext[left,offset]{none}
+  \startMiniFile
+    \typebuffer
+  \stopMiniFile
+  Here we see the component.
+\stopfiguretext
+
+In most cases working with only \type {\starttext} and
+\type {\stoptext} in combination with \type {\input} or
+\type {\enviroment} is sufficient. A project structure has
+advantages when you have to manage a great number of texts.
+Although it is more obvious to process {\em products} as a
+whole, it also enables you to process {\em components}
+independently, given that the stucture is defined properly.
+
+In principal a project file contains only a list of products
+and environments. If you would process the project file all
+products will be placed in one document. This is seldom
+wanted. This manual for example has a project structure.
+Every part is a product and every chapter is a component.
+There are several environments that are loaded in the main
+project file.
+
+Schematically the coherence between files could be
+displayed as illustrated in \in {figures} [fig:structure
+1], \in [fig:structure 2] \in {and} [fig:structure 3].
+
+\placefigure
+  [here][fig:structure 1]
+  {An example of project structure.}
+  {\FLOWchart[opzet-3]}
+
+\placefigure
+  [here][fig:structure 2]
+  {An example with only products.}
+  {\FLOWchart[opzet-2]}
+
+\placefigure
+  [here][fig:structure 3]
+  {An example with only one component.}
+  {\FLOWchart[opzet-1]}
+
+It is good practice to put all setups in one environment.
+In case a component or product has a different layout you
+could define {\em localenvironments}:
+
+\startexample
+\starttyping
+\startlocalenvironment[<<names>>]
+... setups ...
+\stoplocalenvironment
+\stoptyping
+\stopexample
+
+A local environment can be typed in an environment file or
+is a separate file itself. When a separate file is used the
+local environment is loaded with:
+
+\startexample
+\starttyping
+\localenvironment <<name>>
+\stoptyping
+\stopexample
+
+Below you will find an example of a project structure.
+
+\startbuffer
+\startproject demos
+
+\environment environ
+\product     example
+
+\stopproject
+\stopbuffer
+
+\startfiguretext[left,offset]{none}
+  \startMiniFile
+    \typebuffer
+  \stopMiniFile
+  file: \type{demos.tex}
+  \blank
+  This file is used to define the products and environments.
+\stopfiguretext
+
+\startbuffer
+\startenvironment environ
+
+\setupwhitespace[big]
+
+\setupfootertexts[part][chapter]
+
+\stopenvironment
+\stopbuffer
+
+\startfiguretext[left,offset]{none}
+  \startMiniFile
+    \typebuffer
+  \stopMiniFile
+  file: \type{environ.tex}
+  \blank
+  In the environment we type the setups that relate to all
+  the different products. More than one environment or local
+  environments per product can be used.
+\stopfiguretext
+
+\startbuffer
+\startproduct example
+
+\project demos
+
+\startfrontmatter
+  \completecontent
+\stopfrontmatter
+
+\startbodymatter
+  \component first
+  \component second
+\stopbodymatter
+
+\startbackmatter
+  \completeindex
+\stopbackmatter
+
+\stopproduct
+\stopbuffer
+
+\startfiguretext[left,offset]{none}
+  \startMiniFile
+    \typebuffer
+  \stopMiniFile
+  file: \type{example.tex}
+  \blank
+  The product file contains the structure of the product.
+  Because indexes and registers can be evoked quite easily
+  we do not use a separate file.
+\stopfiguretext
+
+\startbuffer
+\startcomponent first
+
+\part{One}
+
+\completecontent
+
+\chapter{First}
+
+..... text .....
+
+\chapter{Second}
+
+..... text .....
+
+\completeindex
+
+\stopcomponent
+\stopbuffer
+
+\startfiguretext[left,offset]{none}
+  \startMiniFile
+    \typebuffer
+  \stopMiniFile
+  file: \type{first.tex}
+  \blank
+  In the components of a product we place the textual
+  content, figures etc. It is also possible to request the
+  tables of content and registers per product.
+\stopfiguretext
+
+\startbuffer
+\startcomponent second
+
+\part{Two}
+
+\completecontent
+
+\chapter{Alfa}
+
+..... text .....
+
+\chapter{Beta}
+
+..... text .....
+
+\completeindex
+
+\stopcomponent
+\stopbuffer
+
+\startfiguretext[left,offset]{none}
+  \startMiniFile
+    \typebuffer
+  \stopMiniFile
+  file: \type{second.tex}
+  \blank
+  The product contains more than one component. We could have
+  defined a product for each part and a component for each
+  chapter.
+\stopfiguretext
+
+The files \type{first.tex}, \type{second.tex} and
+\type{example.tex} can be processed separately. As long as
+there is one product in this project you can also process
+\type{project.tex}. If you process an environment there will
+be no pages of output.
+
+\section[directories]{Directories}
+\index{files+directories}
+\index{directories}
+
+Many \TEX\ implementations look for a file in all
+directories and subdirectories when a requested file is not
+in the current directory. This is not only time||consuming
+but may lead to errors when the wrong file (a file with the
+same name) is loaded.
+
+For this reason \CONTEXT\ works somewhat differently. A file
+that is not available on the working directory is searched
+for on the parent directories. This means that environments
+can be placed in directories that are parents to the
+products that use them. For example:
+
+\starttyping
+/texfiles/course/layout.tex
+/texfiles/course/teacher/manual.tex
+/texfiles/course/student/learnmat.tex
+/texfiles/course/otherdoc/sheets.tex
+\stoptyping
+
+The last three files (in different subdirectories) all use
+the same environment \type {layout.tex}. So, instead of
+putting all files into one directory, one can organize them
+in subdirectories. When a project is properly set up, that
+is, as long as the project file and specific environments
+can be found, one can process components and products
+independently.
+
+\section[versie]{Versions}
+\index{testing}
+\index{references+checking}
+\index{index+checking}
+\macro{\tex{version}}
+
+During the process of document production it is useful to
+generate a provisional version. This version shows the
+references and the typesetting failures. The provisional
+version is produced when you type:
+
+\showsetup{version}
+
+By default the definitive version is produced. In case a
+preliminary version is produced the word {\em concept} is
+placed at the bottom of each page. The keyword \type
+{temporary} shows some information on for instance overfull
+lines, references, figure placement, and index entries. Most
+messages are placed in the margin. In some cases these
+messages refer to the next pages because \TEX\ is processing
+in advance.
+
+\section[modes]{Modes}
+\index{selective typesetting}
+\index{modes}
+\index{styles}
+\index{specials}
+\index{output format}
+\index[texexec+mode]{\TEXEXEC+mode}
+\macro{\tex{setupoutput}}
+\macro{\tex{startmode}}
+\macro{\tex{startnotmode}}
+\macro{\tex{enablemode}}
+\macro{\tex{disablemode}}
+\macro{\tex{doifmodeelse}}
+\macro{\tex{doifmode}}
+\macro{\tex{doifnotmode}}
+
+\TEX\ can directly produce \DVI\ or \PDF. A document can be
+designed for paper and screen, where the last category
+often has additional functionality. From one document we
+can generate different alternatives, both in size and in
+design. So, from one source several alternatives can be
+generated.
+
+Processing a file in practice comes down to launching \TEX\
+with the name of the file to be processed. Imagine that by
+default we generate \DVI\ output. Switching to \PDF\ is
+possible by enabling another output format in the file itself
+or a configuration file, but both are far from comfortable.
+
+\starttyping
+\setupoutput[pdftex]
+\stoptyping
+
+for direct \PDF\ output, or for \PDF\ produced from
+\POSTSCRIPT:
+
+\starttyping
+\setupoutput[dvips,acrobat]
+\stoptyping
+
+The key to the solution of this problem is \TEXEXEC. This
+\PERL\ script provides \CONTEXT\ with a
+command||line||interface. When we want \PDF\ instead of
+\DVI, we can launch \TEXEXEC\ with:
+
+\starttyping
+texexec  --pdf  filename
+\stoptyping
+
+There are more options, like making A5||booklets; more on
+these features can be found in the manual that comes with
+\TEXEXEC. However, one option deserves more time: modes.
+
+\starttyping
+texexec  --pdf  --mode=screen  filename
+\stoptyping
+
+The idea behind modes is that within a style definition, at
+each moment one can ask for in what mode the document is
+processed. An example of a mode dependant definition is:
+
+\starttyping
+\startmode[screen]
+  \setupinteraction[state=start]
+  \setupcolors[state=start]
+\stopmode
+\stoptyping
+
+if needed, accompanied by:
+
+\starttyping
+\startnotmode[screen]
+  \setupcolors[state=start,conversion=always]
+\stopnotmode
+\stoptyping
+
+One can also pass more than one mode, separated by comma's.
+There are also some low level mode dependant commands.
+Given that we are dealing with a screen mode, we can say:
+
+\starttyping
+\doifmodeelse {screen} {do this} {and not that}
+\doifmode     {screen} {do something}
+\doifnotmode  {screen} {do something else}
+\stoptyping
+
+A mode can be activated by saying:
+
+\starttyping
+\enablemode[screen]
+\disablemode[screen]
+\stoptyping
+
+Again, we can pass more modes:
+
+\starttyping
+\enablemode[paper,A4]
+\stoptyping
+
+One strength of \TEXEXEC\ is that one is not forced to
+enable modes in a file: one can simply pass a command line
+switch. Just as with choosing the output format: the less
+we spoil the document source with output and mode settings,
+the more flexible we are.
+
+To enable users to develop a style that adapts itself to
+certain circumstances, \CONTEXT\ provide system modes. For
+the moment there are:
+
+\starttabulate[|lT|p|]
+\NC *list         \NC the list one called for is placed indeed     \NC \NR
+\NC *register     \NC the register one called for is placed indeed \NC \NR
+\NC *interaction  \NC interaction (hyperlinks etc) are turned on   \NC \NR
+\NC *sectionblock \NC the named sectionblock is entered            \NC \NR
+\stoptabulate
+
+System modes are prefixed by a \type {*}, so they will not
+conflict with user modes. An example of a sectionblock mode
+is \type {*frontmatter}. One can use these modes like:
+
+\starttyping
+\startmode[*interaction]
+  \setuppapersize[S6][S6]
+\stopmode
+\stoptyping
+
+
+\section{Modes Manual}
+
+\todo{Merge with previous section}
+
+Every user will at one moment run into modes. Modes are used for
+conditional processing. You enable or disable modes:
+
+\starttyping
+\enablemode[screen]
+\disablemode[proof]
+\stoptyping
+
+as well as prevent modes being set:
+
+\starttyping
+\preventmode[doublesided]
+\stoptyping
+
+Later on you can act upon this mode using:
+
+\starttyping
+\startmode[screen]
+  \setupinteraction[state=start]
+\stopmode
+\stoptyping
+
+The counterpart of this command is:
+
+\starttyping
+\startnotmode[screen]
+  \setupinteraction[state=start]
+\stopnotmode
+\stoptyping
+
+You can set modes in your document or in styles, but you can
+also do that at runtime:
+
+\starttyping
+texexec --pdf --mode=screen --result=myfile-s myfile
+texexec --pdf --mode=A4     --result=myfile-a myfile
+texexec --pdf --mode=letter --result=myfile-l myfile
+\stoptyping
+
+You can test for more modes at the same time:
+
+\starttyping
+\startmode[color,colour]
+  \setupcolors[state=start]
+\stopmode
+\stoptyping
+
+If you want to satisfy a combination of modes, you use:
+
+\starttyping
+\startmode[final]
+  \setuplayout[markings=on]
+\stopmode
+\startallmodes[final,color]
+  \setuplayout[markings=color]
+\stopallmodes
+\stoptyping
+
+The counterpart is
+
+\starttyping
+\startnotallmodes[print,proof]
+  \setuplayout[markings=off]
+\stopnotallmodes
+\stoptyping
+
+Instead of the \type {start}||\type {stop} variants, you can use
+the \type {\doif} alternatives. These have the advantage that they
+can be nested.
+
+\starttyping
+\doifmodeelse     {modes} {action} {alternative}
+\doifmode         {modes} {action}
+\doifnotmode      {modes} {action}
+\doifallmodeselse {modes} {action} {alternative}
+\doifallmodes     {modes} {action}
+\doifnotallmodes  {modes} {action}
+\stoptyping
+
+Mode can be combined with variables:
+
+\starttyping
+\setupvariables[document][alternative=print]
+
+\enablemode[document:\getvariable{document}{alternative}]
+
+\startmode[document:print]
+  ...
+\stopmode
+
+\startmode[document:screen]
+  ...
+\stopmode
+\stoptyping
+
+An alternative for such an selective approach is to use setups:
+
+\starttyping
+\setupvariables[document][alternative=print]
+
+\startsetups[document:print]
+  ...
+\stopsetups
+
+\startsetups[document:screen]
+  ...
+\stopsetups
+
+\setups[document:\getvariable{document}{alternative}]
+\stoptyping
+
+The difference is that mode blocks are processed in the order that
+the document (or style) is loaded, while setups are stored and
+recalled later.
+
+In addition to your own modes, \CONTEXT\ provides a couple
+of system modes. These are preceded by a \type {*}, as in:
+
+\starttyping
+\startmode[*first]
+  % this is the first run
+\stopmode
+\stoptyping
+ The following system modes are available (more will implemented):
+
+% \start \setuptype[color=]
+
+\startswitch
+{\type{color-c},\type{color-m},\type{color-y},\type{color-k}}
+
+These are rather special modes related to color separation. They are
+only set when channels are split off.
+
+\stopswitch
+
+\startswitch {\type{figure}}
+
+This mode is set when a graphic is found. You can use this mode in
+for instance figure postprocessing actions.
+
+\stopswitch
+
+\startswitch {\type{text}, \type{project}, \type{product},
+\type{component}, \type{environment}}
+
+These modes are set when one enters one of the associated
+structuring environments. Nesting is supported.
+
+\stopswitch
+
+\startswitch {\type{list}}
+
+After using \type {\determinelistcharacteristics} this mode reflects
+if list entries were found.
+
+\stopswitch
+
+\startswitch {\type{pairedbox}} This mode is enabled when a paired
+box (legenda and such) is constructed. \stopswitch
+
+\startswitch {\type{combination}} This mode is enabled when a
+combination (often used for graphics) is constructed. \stopswitch
+
+\startswitch {\type{interaction}}
+
+When interaction is enabled, this mode is true. You can for instance
+use this mode to add different content to for instance screen and
+paper versions.
+
+\stopswitch
+
+\startswitch {\type{register}}
+
+After using \type {\determineregistercharacteristics} this mode
+reflects if register entries were found.
+
+\stopswitch
+
+\startswitch {\type{sectionnumber}}
+
+This mode is enabled when a section head is numbered. You can access
+the mode while building the section head, which is true when you have
+your own commands hooked into the head mechanism.
+
+\stopswitch
+
+\startswitch {\type{frontpart}, \type{bodypart}, \type{backpart},
+\type{appendix}}
+
+The state of main sections in a document as well as user defined
+ones, are reflected in system modes.
+
+\stopswitch
+
+\startswitch {\type{suffix-\jobfilesuffix}}
+
+You can use this mode to differentiate between input file types. We
+use this for instance to distinguish between different XML content
+variants when pretty|-|printing (given that they can be recognized
+on their suffix).
+
+\stopswitch
+
+\startswitch {\type{first}}
+
+Often multiple runs are needed to get a document right. Think of
+cross references, object references, tables of contents, indices,
+etc. You can use this mode to determine if the first run is taking
+place. For instance, when you do real time graphic conversions, it
+makes sense to do that only once.
+
+\stopswitch
+
+\startswitch {\type{last}}
+
+This mode is set if the last run in a session is taking place.
+Normally this is not known in advance, unless one has asked for an
+additional imposition pass.
+
+\stopswitch
+
+\startswitch {\type{background}}
+
+This mode is set when there is a (new) background defined.
+
+\stopswitch
+
+\startswitch {\type{postponing}}
+
+While postponing some content using the postpone mechanism this mode
+is enabled.
+
+\stopswitch
+
+\startswitch {\type{grid}}
+
+When you are typesetting on a grid, special care has to be taken not
+spoil grid snapping. You can use this mode to test if you are in
+grid typesetting mode.
+
+\stopswitch
+
+\startswitch {\type{header}}
+
+This mode is enabled when there is a page header, i.e.\ the header
+has non|-|zero dimensions.
+
+\stopswitch
+
+\startswitch {\type{footer}}
+
+This mode is enabled when there is a page footer, i.e.\ the header
+has non|-|zero dimensions.
+
+\stopswitch
+
+\startswitch {\type{makeup}}
+
+The makeup mechanisms are used to build single pages like title
+pages. This mode is set during construction.
+
+\stopswitch
+
+\startswitch {\type{pdf}, \type{dvi}}
+
+One of these modes is set, which one depends on the output driver
+that is loaded.
+
+\stopswitch
+
+\startswitch {\type{*language-id}, \type{language-id}}
+
+When a language is chosen, its id is set as mode. For example, when the main
+language is English, and the current language Dutch, we can test for the
+modes \type {**en} and \type {*nl} (watch the extra \type {*}).
+
+\stopswitch
+
+\startswitch {\type{*marking}}
+
+This flag is set when a marking (e.g.\ in a header or footer) is
+being typeset (processed).
+
+\stopswitch
+
+
+\stopcomponent
+

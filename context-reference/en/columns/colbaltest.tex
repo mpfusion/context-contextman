@@ -1,0 +1,76 @@
+% output=pdftex interface=en
+%
+% copyright=pragma-ade readme=readme.pdf licence=cc-by-nc-sa
+
+\setuplayout[grid=yes] \showgrid \showstruts % gaat nogal fout zonder grid
+
+\setuptolerance[verytolerant]
+
+\definecolumnset [test-1] [n=2]
+\definecolumnset [test-2] [n=3]
+
+\starttext
+
+\startcolumnset [test-1] \dorecurse {1}{\input tufte \par} \stopcolumnset
+\startcolumnset [test-2] \dorecurse {2}{\input ward  \par} \stopcolumnset
+
+\page
+
+\setupcolumnset [test-1] [balance=yes]
+\setupcolumnset [test-2] [balance=yes]
+
+\setupcolumnsetlines[test-1][1][1] [8]
+\setupcolumnsetlines[test-1][1][2][10]
+
+\startcolumnset [test-1] \dorecurse {1}{\input tufte \par} \stopcolumnset
+\startcolumnset [test-2] \dorecurse {2}{\input ward  \par} \stopcolumnset
+
+\page
+
+\setupcolumnsetlines[test-1][1][1] [8]
+\setupcolumnsetlines[test-1][1][2][10]
+
+\setupcolumnsetlines[test-2][1][1][19]
+\setupcolumnsetlines[test-2][1][2][18]
+\setupcolumnsetlines[test-2][1][3][19]
+
+\startcolumnset [test-1] \dorecurse {1}{\input tufte \par} \stopcolumnset
+\startcolumnset [test-2] \dorecurse {2}{\input ward  \par} \stopcolumnset
+
+\page
+
+\setupcolumnsetlines[test-1][1][1] [8]
+\setupcolumnsetlines[test-1][1][2][10]
+
+\setupcolumnsetlines[test-2][1][1][0]
+\setupcolumnsetlines[test-2][1][2][-2]
+\setupcolumnsetlines[test-2][1][3][0]
+
+\startcolumnset [test-1] \dorecurse {1}{\input tufte \par} \stopcolumnset
+\startcolumnset [test-2] \dorecurse {6}{\input ward  \par} \stopcolumnset
+
+\page
+
+\setupcolumnsetlines[test-1][1][1] [8]
+\setupcolumnsetlines[test-1][1][2][10]
+
+\setupcolumnsetstart[test-2][1][1][20]
+\setupcolumnsetstart[test-2][1][2][20]
+\setupcolumnsetstart[test-2][1][3][20]
+
+\startcolumnset [test-1] \dorecurse {1}{\input tufte \par} \stopcolumnset
+\startcolumnset [test-2] \dorecurse {2}{\input ward  \par} \stopcolumnset
+
+\page
+
+\setupcolumnsetlines[test-1][1][1] [8]
+\setupcolumnsetlines[test-1][1][2][10]
+
+\setupcolumnsetlines[test-2][1][1][-20]
+\setupcolumnsetlines[test-2][1][2][-20]
+\setupcolumnsetlines[test-2][1][3][-20]
+
+\startcolumnset [test-1] \dorecurse {1}{\input tufte \par} \stopcolumnset
+\startcolumnset [test-2] \dorecurse {2}{\input ward  \par} \stopcolumnset
+
+\stoptext

@@ -1,0 +1,603 @@
+% interface=en
+
+\startcomponent co-en-02
+
+\environment contextref-env
+\product contextref
+
+\chapter{Introduction}
+
+\section{\TEX}
+\index[tex]{\TEX}
+\index{Knuth}
+
+\TEX\ was developed at the Stanford University during the
+seventies. The designer, developer and spiritual father of
+\TEX\ is Donald E. Knuth. Knuth developed \TEX\ to typeset
+his own publications and to give an example of a
+systematically developed and annotated program.
+
+The \TEX\ project was supported by the American Mathematical
+Society and resulted in the programming language and program
+\TEX, the programming language and program \METAFONT, the
+Computer Modern typefaces and a number of tools and
+publications.
+
+\TEX\ is used worldwide, supports many languages, runs on
+almost every platform and is stable since 1982, which is
+rather unique in today's information technology.
+
+\TEX\ is a batch||oriented typesetting system. This means
+that the complete text is processed from beginning to end
+during which typesetting commands are interpreted. Because
+you tell your typesetting intentions to \TEX, the system can
+also be qualified as an intentional typesetting system.
+
+In most documents one can stick to commands that define the
+structure and leave the typographic details to \CONTEXT. One
+can concentrate on the content, instead of on makeup; the
+author can concentrate on his reader and his intentions with
+the text. In this respect one can classify \CONTEXT\ as an
+intentional system. We prefer such a system over a
+page||oriented system, especially in situations where you
+have to process bulky documents of with regularly changing
+content. Furthermore an intentional typesetting system is
+rather flexible and makes it possible to change layout
+properties depending on its application. It can also
+cooperate quite well with other text||processing programs
+and tools.
+
+\section[context]{\CONTEXT}
+\index[context]{\CONTEXT}
+
+The development of \CONTEXT\ was started in 1990. A number
+of \TEX\ based macropackages had been used to our
+satisfaction. However, the non||technical users at our
+company were not accustomed to rather complex and non||Dutch
+interfaces. For this reason we initiated the development of
+\CONTEXT\ with a parameter driven interface and commands
+that are easy to understand. Initially the user interface
+was only available in Dutch.
+
+The functionality of \CONTEXT\ was developed during the
+production of a great number of complex educational
+materials and workplace manuals and handbooks. In 1994 the
+package was stable enough to warrant a Dutch user manual.
+Over the years \CONTEXT\ has been upgraded with many
+features and German and English interfaces were added.
+Though \CONTEXT\ is as (un|)|stable as any other
+macropackage there are still a great number of wishes. These
+will be implemented in the spirit of the existing \CONTEXT\
+commands.
+
+\CONTEXT\ comes with a number of \PERL\ scripts, like
+\TEXUTIL\ and \TEXEXEC. Also a number of modules are
+available, like \PPCHTEX\ for typesetting chemical
+structures.
+
+\section{Commands}
+\index{commands}
+\index{macros}
+\index{brackets}
+
+A \CONTEXT\ document is normally coded in \ASCII. Such a
+document consist of text mixed with \CONTEXT\ commands.
+These commands tell the system how the text should be
+typeset. An example of such a command is \type {\sl}. A
+\CONTEXT\ command begins with a backslash (\type {\}). Most
+of the time a command does something with the text that
+comes after the command. The text after the command \type
+{\sl} will be typed {\sl slanted}.
+
+When we use a command like \type{\sl} we are typesetting.
+Typesetting and writing are conflicting activities. As an
+author you would rather spend as little time as possible
+with typesetting. However, you want to indicate that
+something has to happen with the text. An example is a
+command like \type{\em} ({\em emphasis}). Commands like
+\type{\em} enable the typesetter to change the meaning of
+this command without having to edit the text.
+
+\placefigure[left][fig:cohesion tex]{}{\getbuffer[fig-cont]}
+
+A \TEX\ user normally speaks of macros instead of commands.
+A macro is a, often small, program. Although we will use
+both \quote {command} and \quote {macro}, we try to
+consistently use the word command for users and macro for
+programmers.
+
+A collection of macros is called a macropackage. We believe
+\CONTEXT\ is one of the most extensive and complete
+macropackages. One of the advantages of \CONTEXT\ is the
+availability of most of the plain \TEX\ macros.
+
+A command is often followed by setups or by text. Setups
+are placed between brackets (\type{[]}). The scope or range
+of the command, the text acted upon, is placed between curly
+brackets (\type{{}}). For example:
+
+\startbuffer
+\framed[width=2cm,height=1cm]{that's it}
+\stopbuffer
+
+\typebuffer
+
+If we process this text and command by \TEX\ we get:
+
+\startbaselinecorrection
+\midaligned{\getbuffer}
+\stopbaselinecorrection
+
+Setups in \CONTEXT\ are defined by commands like:
+
+\startbuffer
+\setupsomething[variable=value,variable=value,...]
+\stopbuffer
+
+\typebuffer
+
+or
+
+\startbuffer
+\setupsomething[option,option,...]
+\stopbuffer
+
+\typebuffer
+
+In both examples the setups are placed between \type{[]}.
+Several setups are defined in a comma list. A number of
+examples are:
+
+\startbuffer
+\setupwhitespace[big]
+\setupitemize[packed,columns]
+\setuplayout[backspace=4cm,topspace=2.5cm]
+\stopbuffer
+
+\typebuffer
+
+There are also commands that are used to define new commands.
+For example:
+
+\startbuffer
+\definesomething[name]
+\stopbuffer
+
+\typebuffer
+
+Sometimes a definition inherits its characteristics from
+another (existing) one. In those situations a definition
+looks like:
+
+\startbuffer
+\definesomething[clone][original]
+\stopbuffer
+
+\typebuffer
+
+In many cases one can also pass settings to these commands.
+In that case a definition looks like:
+
+\startbuffer
+\definesomething[name][variable=value,...]
+\stopbuffer
+
+\typebuffer
+
+These setups can also be defined in a later stage with:
+
+\startbuffer
+\setupsomething[name][variable=value,...]
+\stopbuffer
+
+\typebuffer
+
+An example of such a name coupled definiton and setup is:
+
+\startbuffer
+\definehead[section][chapter]
+\setuphead[section][textstyle=bold]
+\stopbuffer
+
+\typebuffer
+
+The alternatives shown above are the most common appearances
+of the commands. But there are exceptions:
+
+\startbuffer
+\defineenumeration[Question][location=inmargin]
+\useexternalfigure[Logo][FIG-0001][width=4cm]
+\definehead[Procedure][section]
+\setuphead[Procedure][textstyle=slanted]
+\stopbuffer
+
+\typebuffer
+
+After the first command the newly defined command \type
+{\Question} is available which we can use for numbered
+questions and to place numbers in the margin. With the
+second command we define a picture that is scaled to a \type
+{width} of 4cm. After the third command a new command \type
+{\procedure} is available that inherits its characteristics
+from the predefined command \type {\section}. The last
+command alters the characteristics of the newly defined
+head. Later we will discuss these commands in more detail.
+
+Many typographical operations are performed on a text that
+is enclosed within a \type{start-stop} construction:
+
+\startbuffer
+\startsomething
+.............................
+\stopsomething
+\stopbuffer
+
+\typebuffer
+
+Often keywords or key||value pairs can be passed, that inform
+\CONTEXT\ on the users wishes:
+
+\startbuffer
+\startnarrower[2*left,right]
+.............................
+\stopnarrower
+\stopbuffer
+
+\typebuffer
+
+or
+
+\startbuffer
+\startitemize[n,broad,packed]
+\item .............................
+\item .............................
+\stopitemize
+\stopbuffer
+
+\typebuffer
+
+We use \type{begin-end} constructions to mark textblocks.
+Marked textblocks can be typeset, hidden, replaced or
+called up at other locations in the document.
+
+\startbuffer
+\beginsomething
+.............................
+\endsomething
+\stopbuffer
+
+\typebuffer
+
+These commands enable the author to type questions and
+answers in one location and place them at another location
+in the document. Answers could be placed at the end of a
+chapter with:
+
+\startbuffer
+\defineblock[Answer]
+\setupblock[Answer][bodyfont=small]
+\hideblocks[Answer]
+.............................
+\chapter{........}
+.............................
+\beginofAnswer
+.............................
+\endofAnswer
+.............................
+\stopbuffer
+
+\typebuffer
+
+In this case answers will be typeset in a smaller bodyfont
+size, but only when asked for. They are hidden by default,
+but stored in such a way, that they can later be typeset.
+
+Commands come in many formats. Take for example:
+
+\startbuffer
+\placefigure
+  [left]
+  [fig:logo]
+  {This is an example of a logo.}
+  {\externalfigure[Logo]}
+\stopbuffer
+
+\typebuffer
+
+This command places a picture at the left hand side of a
+text while the text flows around the picture. The picture
+has a reference \type {fig:logo}, i.e. a logical name. The
+third argument contains the title and the fourth calls the
+picture. In this case the picture is a figure defined
+earlier as \type {Logo}. \in {Figure} [fig:cohesion tex] is
+typeset this way.
+
+The last example has arguments between optional brackets
+(\type{[]}). Many commands have optional arguments. In case
+these optional arguments are left out the default values
+become operative.
+
+You may have noticed that a spacy layout of your \ASCII\
+text is allowed. In our opnion, this increases readability
+considerably, but you may of course decide to format your
+document otherwise. When the \CONTEXT\ commands in this
+manual are discussed they are displayed in the following
+way:
+
+% \repeatsetup{setupfootertexts}
+
+The command \type{\setupfootertexts}, which we will discuss
+in detail in a later chapter, has three arguments of which
+the first is optional. The first argument defaults to
+\type{[text]}. Optional arguments are displayed as {\sl
+slanted} text. Default values are \underbar{underlined} and
+possible alternatives are typeset {\it slanted}. In this
+example {\sl text} means that you can provide any
+footertext. \CONTEXT\ is able to keep track of the status of
+information on the page, for instance the name of the
+current chapter. We call this kind of information {\sl
+mark}, so the command \type {\setupfootertexts} accept
+references to marks, like those belonging to sectioning
+commands: \type{chapter}, \type{section}, etc. The argument
+\type{date} results in the current systemdate.
+
+When the setup of some commands are displayed you will
+notice a $\blacktriangleleft \blacktriangleright$ in the
+right hand top corner of the frame. This indicates that this
+command has a special meaning in interactive or screen
+documents. Commands for the interactive mode only show solid
+arrows, commands with an additional functionality show
+gray arrows.
+
+\section{Programs}
+\index[texutil]{\TEXUTIL}
+\index[texexec]{\TEXEXEC}
+
+\TEX\ does a lot of text manipulations during document
+processing. However, some manipulations are carried out by
+\TEXUTIL. This program helps \TEX\ to produce registers,
+lists, tables of contents, tables of formulas, pictures etc.
+This program is a \PERL\ script.
+
+Document processing can best be done with \TEXEXEC. This
+\PERL\ script enables the user to use different processing
+modes and to produce different output formats. It also keeps
+track of changes and processes the files as many times as
+needed to get the references and lists right.
+
+\section{Files}
+\index{files}
+\index{extensions}
+\index[ascii]{\ASCII}
+\index[table]{\TABLE}
+
+\TEX\ is used with \ASCII\ source files. \ASCII\ is an
+international standardized computer alphabet. The \ASCII\
+file with the prescribed extension \type{tex} is processed
+by \TEX. During this process \TEX\ produces a file with
+graphical commands. This file has the extension \type{dvi}.
+A machine||specific driver transforms this file into a
+format that is accepted by photosetters and printers.
+Usually, \POSTSCRIPT\ drivers are used to produce
+\POSTSCRIPT\ files.
+
+\CONTEXT\ relies on plain \TEX. Plain \TEX, \CONTEXT\ and a
+third package \TABLE\ are brought together in a so called
+format file. \TABLE\ is a powerful package for typesetting
+tables. A format file can be recognized by its suffix
+\type{fmt}. \TEX\ can load format files rather fast and
+efficiently.
+
+A \type{dvi} file can be viewed on screen with a dedicated
+program. For electronic distribution \POSTSCRIPT\ files can
+be transformed (distilled) into Portable Document Format
+(\PDF) files. \PDF\ files are of high graphical quality and
+are also interactive (hyperlinked). \CONTEXT\ fully supports
+\PDFTEX, which means that you can generate \PDF\ output
+directly.
+
+\section{Texts}
+
+\subsection{Characters}
+\index{characters}
+
+A \TEX\ text contains \ASCII\ characters. Higher \ASCII\
+values to produce characters like \"e, \^o and \~n can also
+be used in this version of \TEX. Some characters in \TEX\
+have a special meaning. These characters can be typeset by
+putting a \type {\} in front of it. A \% is obtained by
+typing \type {\%}. If one would type only a \type {%} the
+result would be undesirable because \TEX\ interprets text
+after a \% as comment that should not be processed. A \$ is
+produced by \type {\$}. A \type {$} without a \type {\}
+indicates the beginning of the mathemathical mode.
+
+\subsection{Paragraphs}
+\index{paragraphs}
+
+\TEX\ performs its operations mostly upon the text element
+{\em paragraph}. A paragraph is ended by \type{\par} or
+preferably by an empty line. Empty lines in an \ASCII\ text
+are preferred because of readability.
+
+\subsection{Boxes}
+\index{boxes}
+
+In this manual we will sometimes talk about boxes. Boxes are
+the building blocks of \TEX. \TEX\ builds a page in
+horizontal and vertical boxes. Every {\handletokens
+character\with \ruledhbox} is a box, a \ruledhbox
+{\handletokens word\with \ruledhbox} is also a box
+{\handletokens built\with \ruledhbox} out of a number of
+boxes, a line is \unknown
+
+When \TEX\ is processing a document many messages may occur
+on the screen. Some of these messages relate to overfull or
+underful boxes. Horizontal and vertical boxes can be typeset
+by the \TEX\ commands \type{\hbox} and \type{\vbox}.
+Displacements can be achieved by using \type {\hskip} and
+\type {\vskip}. It does not hurt to know a bit about the
+basics of \TEX, because that way one can far more easilly
+write his or her own alternatives to, for instance, chapter
+headers.
+
+\subsection{Fonts}
+\index{fonts}
+
+\TEX\ is one of the few typesetting systems that does math
+typesetting right. To do so \TEX\ needs a complete
+fontfamily. This means not only the characters and numbers
+but also the mathematical symbols. Complete fontfamilies are
+Computer Modern Roman and Lucida Bright. Both come in serif
+and sans serif characters and a monospaced character is also
+available. Other fontfamilies are available.
+
+\subsection{Dimensions}
+\index{dimensions}
+\index{\type{pt}}
+\index{\type{ex}}
+\index{\type{em}}
+\index{\type{cm}}
+
+Characters have dimensions. Spacing between words and lines
+have dimensions. These dimensions are related to one of the
+units of \in{table}[tab:dimensions]. For example the
+linespacing in this document is \the\baselineskip.
+
+\placetable[here][tab:dimensions]{Dimensions in \TEX.}
+\starttable[|c|l|l|]
+\HL
+\VL \bf dimension  \VL \bf meaning \VL \bf equivalent   \VL \SR
+\HL
+\VL \type{pt} \VL point         \VL $\rm 72.27pt=1in$   \VL \FR
+\VL \type{pc} \VL pica          \VL $\rm 1pc=12pt$      \VL \MR
+\VL \type{in} \VL inch          \VL $\rm 1in=2.54cm$    \VL \MR
+\VL \type{bp} \VL big point     \VL $\rm 72bp=1in$      \VL \MR
+\VL \type{cm} \VL centimeter    \VL $\rm 2.54cm=1in$    \VL \MR
+\VL \type{mm} \VL millimeter    \VL $\rm 10mm=1cm$      \VL \MR
+\VL \type{dd} \VL didot point   \VL $\rm 1157dd=1238pt$ \VL \MR
+\VL \type{cc} \VL cicero        \VL $\rm 1cc=12dd$      \VL \MR
+\VL \type{sp} \VL scaled point  \VL $\rm 65536sp=1pt$   \VL \LR
+\HL
+\stoptable
+
+We will often specify layout dimensions in points or
+centimeters or milimeters. A point is about $\rm.35 mm$.
+Most dimensions are rather American. The European Didot
+point is equivalent to $\rm 1/2660 m = 3.759398496 mm$.
+
+Next to the mentioned dimension \TEX\ also uses \type{em}
+and \type{ex}. Both are font dependant. An \type {ex} has
+the height of an x, and an \type{em} the width of an M. In
+the Computer Modern Roman typefaces, numbers have a width of
+$1/2$em, while a --- (\type{---}) is one em.
+
+\subsection{Error messages}
+\index{error messages}
+\index{stopping}
+
+While processing a document, \TEX\ generates status messages
+(what is \TEX\ doing), warning messages (what could \TEX\ do
+better) and error messages (what considers \TEX\ wrong). An
+error message is always followed by a \type{halt} and
+processing will be stopped. A linenumber and a \type{?} will
+appear on screen. At the commandline you can type \type{H}
+for help and the available commands will be displayed.
+
+Some fatal errors will lead to an * on the screen. \TEX\ is
+expecting a filename and you have to quit processing. You
+can type \type{stop} or \type{exit} and if that doesn't work
+you can always try \type{ctrl-z} or \type{ctrl-c}.
+
+\section{Version numbers}
+\index[TeX+version]{\TEX+version}
+\index[ETeX]{\ETEX}
+\index[NTS]{\NTS}
+\index[PDFTEX]{\PDFTEX}
+
+\TEX\ was frozen in 1982. This meant that no functionality
+would be added from that time on. However, exceptions were
+made for the processing of multi||language documents, the
+use of 8-bits \ASCII||values and composed characters.
+Additionally some bugs were corrected. At this moment \TEX\
+version 3.141592 is being used. The final \TEX\ version
+number will be~$\pi$, while \METAFONT\ will become the Euler
+number~$e$.
+
+\CONTEXT\ can handle both \ETEX\ and \PDFTEX, which are
+extensions to \TEX. Both are still under development, so we
+suggest using the latest versions available. This manual is
+typeset using \ifx \eTeXversion \undefined \else \PDFETEX,
+with \ETEX\ version \the \eTeXversion \eTeXrevision\ and
+\fi \PDFTEX\ version \the \pdftexversion \pdftexrevision.
+
+\CONTEXT\ is still under development. Macros are continually
+improved in terms of functionality and processing speed.
+Improvements are made within existing macros. For example
+the possibility to produce highly interactive \PDF\
+documents has altered some low||level functionality of
+\CONTEXT\ but did not alter the interface. We hope that in
+due time \CONTEXT\ will be a reasonable complete document
+processing system, and we hope this manual shows enough of
+its possibilities. This document was processed with version
+\contextversion.
+
+\section{Top ten}
+
+A novice user might be shooed away by the number of
+\CONTEXT\ commands. Satisfying results can be obtained by
+only using the next ten groups of commands:
+
+\startitemize[n,packed,broad]
+\item  \type {\starttext},
+       \type {\stoptext}
+\item  \type {\chapter},
+       \type {\section},
+       \type {\title},
+       \type {\subject},
+       \type {\setuphead},
+       \type {\completecontent}
+\item  \type {\em},
+       \type {\bf},
+       \type {\cap}
+\item  \type {\startitemize},
+       \type {\stopitemize},
+       \type {\item},
+       \type {\head}
+\item  \type {\abbreviation},
+       \type {\infull},
+       \type {\completelistofabbreviations}
+\item  \type {\placefigure},
+       \type {\externalfigure},
+       \type {\useexternalfigures}
+\item  \type {\placetable},
+       \type {\starttable},
+       \type {\stoptable}
+\item  \type {\definedescription},
+       \type {\defineenumeration}
+\item  \type {\index},
+       \type {\completeindex}
+\item  \type {\setuplayout},
+       \type {\setupfootertexts},
+       \type {\setupheadertexts}
+\stopitemize
+
+\section{Warning}
+
+\CONTEXT\ users can define their own commands. These newly
+defined commands may conflict with plain \TEX\ or \CONTEXT\
+commands. Therefore it is advisable to use capital characters
+in your own command definitions.
+
+\startexample
+\starttyping
+\def\MyChapter#1%
+  {\chapter{#1}\index{#1}}
+\stoptyping
+\stopexample
+
+This command starts a new chapter and defines an index entry
+with the same name.
+
+\stopcomponent
+

@@ -1,0 +1,1187 @@
+\startcomponent co-en-13
+
+\environment contextref-env
+\product contextref
+
+\chapter[blocks]{Blocks}
+
+\section{Introduction}
+\index{blocks}
+\index{floats}
+\index{placing+blocks}
+
+A block in \CONTEXT\ is defined as typographical unit
+that needs specific handling. We distinguish the following
+block types:
+
+\startitemize
+
+\head floats
+
+      Examples of floats are figures, tables, graphics,
+      intermezzos etc. The locations of these blocks are
+      determined by \TEX\ and depends on the available space
+      on a page.
+
+\head textblocks
+
+      Examples of textblocks are questions and answers in a
+      studybook, summaries, definitions or derivatives of
+      formulas. The location of these kind of blocks in the
+      final document cannot be determined beforehand. And
+      the information may be used repeatedly in several
+      settings.
+
+\head opposite blocks
+
+      Opposite (or spread) blocks are typeset on the
+      left||hand page when a single sided output is
+      generated. The layout of the right||hand side page is
+      influenced by the blocks on the left.
+
+\head margin blocks
+
+      Margin blocks are more extensive than single margin
+      words. Text and figures can be placed in the margin
+      with this feature.
+
+\stopitemize
+
+There are a number of commands that support the use of these
+block types. These are discussed in this chapter.
+Furthermore we will discuss other forms of text
+manipulation. Formulas can also be seen as blocks. Since
+formulas are covered in a separate chapter we don't go into
+details here.
+
+This chapter is typeset with the option \type {\version
+[temporary]}. This does not refer to the content but to the
+typesetting. With this option, design information is placed
+in the margin.
+
+\start    % in verband met \versie[voorlopig]
+
+\version[temporary] \overfullrule=0pt
+
+\section[floats]{Floats}
+\index{figures+placing}
+\index{tables+placing}
+\index{figures+numbering}
+\index{tables+numbering}
+\index{figures+listing}
+\index{tables+listing}
+\index{placing+figures}
+\index{placing+tables}
+\index{numbering+figures}
+\index{numbering+tables}
+\index{listing+figures}
+\index{listing+tables}
+\macro{\tex{definefloat}}
+\macro[placefloat]{\tex{place<<float>>}}
+\macro[placelistoffloats]{\tex{placelistof<<floats>>}}
+\macro[completelistoffloats]{\tex{completelistof<<floats>>}}
+\macro[reservefloat]{\tex{reserve<<float>>}}
+\macro[setupfloat]{\tex{setup<<floats>>}}
+\macro[startfloattest]{\tex{start<<float>>text}}
+\macro{\tex{setupfloats}}
+\macro{\tex{setupcaptions}}
+
+Floats are composed of very specific commands. For example a
+table in \CONTEXT\ is typeset using a shell around \TABLE.
+Drawings and graphics are made with external packages, as
+\TEX\ is only capable of reserving space for graphics.
+
+Most floats are numbered and may have a caption. A float is
+defined with the command:
+
+\showsetup{definefloat}
+
+In \CONTEXT, figures, graphics, tables, and intermezzos are
+predefined with:
+
+\startexample
+\starttyping
+\definefloat [figure]     [figures]
+\definefloat [table]      [tables]
+\definefloat [graphic]    [graphics]
+\definefloat [intermezzo] [intermezzos]
+\stoptyping
+\stopexample
+
+As a result of these definitions you can always use \type
+{\placefigure}, \type {\placetable}, \type {\placegraphic}
+and \type {\placeintermezzo}. Of course, you can define your
+own floats with \type {\definefloat}. You place your newly
+defined floats with the command:
+
+\showsetup{place<<float>>}
+
+When a float cannot be placed at a specific location on a
+page, \CONTEXT\ will search for the most optimal
+alternative. \CONTEXT\ provides a number of placement options
+for floats. These are listed in \in {table} [tab:floats].
+
+\placetable
+  [here][tab:floats]
+  {Preferences for float placement.}
+\starttable[|l|l|]
+\HL
+\VL \bf preference                \VL
+    \bf result                    \VL\SR
+\HL
+\VL \type{left}                   \VL
+    left of text                  \VL\FR
+\VL \type{right}                  \VL
+    right of text                 \VL\MR
+\VL \type{here}                   \VL
+    preferably here               \VL\MR
+\VL \type{top}                    \VL
+    at top of page                \VL\MR
+\VL \type{bottom}                 \VL
+    at bottom of page             \VL\MR
+\VL \type{inleft}                 \VL
+    in left margin                \VL\MR
+\VL \type{inright}                \VL
+    in right margin               \VL\MR
+\VL \type{inmargin}               \VL
+    in the margin (left or right) \VL\MR
+\VL \type{margin}                 \VL
+    in the margin (margin float)  \VL\MR
+\VL \type{page}                   \VL
+    on a new (empty) page         \VL\MR
+\VL \type{opposite}               \VL
+    on the left page              \VL\MR
+\VL \type{always}                 \VL
+    precedence over stored floats \VL\MR
+\VL \type{force}                  \VL
+    per se here                   \VL\LR
+\HL
+\stoptable
+
+The commands can be used without the left and right brackets.
+For example:
+
+\startexample
+\starttyping
+\place...{<<caption>>}{<<content>>}
+\stoptyping
+\stopexample
+
+When the caption is left out, the float number is generated
+anyway. When the number is not needed you type \type {none},
+like in:
+
+\starttyping
+\placefigure{none}{.....}
+\stoptyping
+
+It is mandatory to end this command by an empty line or a
+\type {\par}. You don't have to embed a table in braces,
+since the \type {\start} and \type {\stop} commands have
+them built in:
+
+\startbuffer
+\placetable
+  [here][tab:example]
+  {A very simple example of a table.}
+  \starttable[|c|c|]
+  \HL
+  \VL this \VL is     \VL\FR
+  \VL a    \VL table  \VL\LR
+  \HL
+  \stoptable
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+\start
+\setuptables[VL=medium,HL=medium]
+\getbuffer
+\stop
+
+The vertical whitespace for a float can be reserved with:
+
+\showsetup{reserve<<float>>}
+
+This command can be used without the left and right bracket.
+An example of a reservation is:
+
+\startbuffer
+\reservefigure
+  [height=4cm,width=10cm,frame=on][here][fig:reservation]
+  {An example of a reservation.}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+Which results in \in{figure}[fig:reservation].
+
+\getbuffer
+
+When the content of a float is not yet available, you can type
+\type {\empty...} instead of \type {\place...}. In this way
+you can also reserve vertical whitespace. When no option is
+added, so \argchars\ is typed, the default empty float is
+used. However, whether the figure or table is available is
+not that important. You can always type:
+
+\startexample
+\starttyping
+\placefigure{This is a figure caption.}{}
+\stoptyping
+\stopexample
+
+As a first argument you can specify a key \type {left} or
+\type {right} that will cause \CONTEXT\ to let the text flow
+around the float. The second optional parameter can be a
+cross reference, to be used later, like \type {\at {page}
+[fig:schematic process]}.
+
+\startexample
+\starttyping
+\placefigure[here][fig:demo]{This a figure caption.}{}
+\stoptyping
+\stopexample
+
+As we will later see, you can also use the next command:
+
+\showsetup{start<<float>>text}
+
+Preferences are \type {left}, \type {right} or \type
+{middle}. Furthermore you can specify \type {offset} in case
+the text should align with the float. Both setups can be
+combined: \type {[left,offset]}.
+
+A list of used floats is generated with the command:
+
+\showsetup{placelistof<<floats>>}
+
+For example, the command \type {\placelistoffigures} would
+typeset a list of figures. The list follows the numbering
+convention that is set with the command \type
+{\setupnumbering}, which was discussed at \at {page}
+[numbering].
+
+The next command generates a list of floats on a separate
+page.
+
+\showsetup{completelistof<<floats>>}
+
+Pagebreaks that occur at unwanted locations can be enforced
+in the same way that is done with a table of contents (see
+\in{section}[toc]):
+
+\startexample
+\starttyping
+\completelistof<<floats>>[pageboundaries={8.2,20.4}]
+\stoptyping
+\stopexample
+
+As with tables of content the default local lists are
+generated. Recalling a list within a chapter produces a list
+for that specific chapter. So, if you want a list of all
+figures, you need to specify \type {criterium} as \type
+{all}.
+
+\startbuffer
+\placelistoffigures[criterium=chapter]
+\stopbuffer
+
+\getbuffer
+
+The previous list was produced by saying:
+
+\typebuffer
+
+The characteristics of a specific class of floats are
+specified with the command:
+
+\showsetup{setupfloat}
+
+The (predefined) floats can also be set up with the more
+meaningful commands \type {\setupfigures}, \type
+{\setuptables} etc.
+
+The height and width relate to the vertical whitespace that
+should be reserved for an empty float. All settings of \type
+{\framed} can be used, so when \type {frame} is set to \type
+{on}, we get a framed float.
+
+The next two commands relate to {\em all} floats. The first
+command is used for setting the layout including the caption:
+
+\showsetup{setupfloats}
+
+The second command is used for setting the enumerated
+captions of figures, tables, intermezzos, etc.
+
+\showsetup{setupcaptions}
+
+You can also set up captions for a specific class of floats,
+like figures. The first argument of the next command is the
+name of that class of floats.
+
+\showsetup{setupcaption}
+
+The commands assigned to \type {before}, \type {after} are
+are executed before and after placing the float. The
+parameter \type {inbetween} is executed between the float
+and the caption. All three normally have a \type {\blank}
+command assigned.
+
+The parameter \type {style} is used for numbering ({\bf
+Figure~x.y}) and \type {width} for the width of the caption
+label. The parameter \type {margin} specifies the margin
+space around a float when it is surrounded by text. The
+float macros optimize the width of the caption (at \type
+{top} or \type {bottom}) related to the width of the figure
+or table.
+
+\start
+\setupcaptions[location=high]
+\setupfloats[location=left]
+\placefigure[force]{}
+\startframedtext
+\starttyping
+\setupcaptions[location=high]
+\setupfloats[location=left]
+\stoptyping
+\stopframedtext
+\stop
+
+With the three variables \type{ntop}, \type{nbottom} and
+\type{nlines} the float storage mechanism can be influenced.
+The first two variables specify the maximum number of floats
+that are saved per page at the top or the bottom of a page.
+
+By default these variables have the values ~2 and~0. Assume
+that ten figures, tables and|/|or other floats are stored,
+then by default two floats will be placed at each new page
+(if possible). For example, at a forced pagebreak or at the
+beginning of a new chapter, all stored floats are placed.
+
+The parameter \type {nlines} has the default value~4. This
+means that never less than four lines will be typeset on the
+page where the floats are placed.
+
+We continue with a few examples of floats (figures) placed
+next to the running text. This looks like:
+
+
+\startexample
+\starttyping
+\placefigure[right]{none}{}
+
+... here is where the text starts ....
+\stoptyping
+\stopexample
+
+For illustrating the mechanism we do need some text.
+Therefore the examples are used to explain some issues on the
+float mechanism.
+
+Floats are placed automatically. The order of appearance
+follows the order you have keyed in the source. This means
+that larger floats are placed somewhere else in your
+document. When \type{\version[temporary]} is set, you can
+get information on the float mechanism. By consulting that
+information you get some insight into the process.
+
+\placefigure[right]{none}{\externalfigure[rb00006]}
+
+Floats can be surrounded by text. The float at the right was
+set with \type {\placefigureright[right]{none}{...}}. The
+float mechanism works automatically. Should it occur that
+pages are left blank as a result of poor float placement,
+you will need to make some adaptations manually. You can
+downsize your figure or table or alter your text. It is also
+a good practice to define your float some paragraphs up in
+your source. However, all of this should be done at the
+final production stage.
+
+With the key \type{force} you can force a float to be placed
+at that exact location. Tables or figures that are preceded
+by text like: \quote{as we can see in the figure below} may
+be defined with this option.
+
+\placefigure[left]{none}{\externalfigure[rb00008]}
+
+In manuals and study books we encounter many illustrations.
+It is almost unavoidable to manually adapt these for optimal
+display. However, the float commands in \CONTEXT\ are
+optimized in such a way that you can produce books with
+hundreds of floats effortlessly. The worst case is that some
+floats are stored and placed at the end of the chapter. But
+this can be influenced with the command \type
+{\startpostponing}. Postponing is done with the keys \type
+{always} which can be combined with the location, like \type
+{[left,always]} or \type {[here,always]}. Because the order
+of the floats is changed several parses are necessary for
+the document. These processes can be traced via messages
+on the terminal.
+
+This brings us to a figure that is placed at the left side
+of a page. The side float mechanism in inspired and based on
+a mechanism of D.~Comenetz. In the background three
+mechanisms are active. A mechanism to typeset a figure on
+top, inbetween, of under existing text. There is a mechanism
+to place figures on the right or left of a page. And there
+is a third mechanism to typeset text next to a figure.
+
+\startfiguretext[right]{none}{\externalfigure[rb00015]}
+
+We see an example of the last mechanism. The text is
+enclosed by the commands:
+
+\starttyping
+\startfiguretext
+   [right]{none}{\externalfigure[rb00015]}
+....
+\stopfiguretext
+\stoptyping
+
+\stopfiguretext
+
+\startfiguretext[left,offset]{none}{\externalfigure[vos1082]}
+
+It is obvious that we can also place the figure at the left.
+With \type {\start...text} we can add the key \type
+{offset}. Here we used \type {[left,offset]}.
+
+When the text is longer than expected, then it will {\em not}
+flow around the float. By default the floats are handled in the
+same order they are typed in the source file. This means that the
+stored figures are placed first. If this is not desired you
+can type the key \type{always}. The actual float will get
+priority.
+\stopfiguretext
+
+\startfiguretext[right,middle]{none}{\externalfigure[vos1083]}
+
+There are more options. In this case the setup \type
+{[right,middle]} is given. In the same way we place text
+\type {high} and \type {low}.
+
+When the key \type {long} is used the rest of the text is
+filled out with empty lines, as here.
+
+\stopfiguretext
+
+When several figures are set under each other, making them
+the same width makes for a nice presentation on the page.
+This looks better.
+
+\section{Combining figures}
+\index{figures+combining}
+\index{combining}
+\macro{\tex{startcombination}}
+\macro{\tex{setupcombinations}}
+\macro{\tex{placesidebyside}}
+\macro{\tex{placeontopofeachother}}
+
+For reasons of convenience we now discuss a command
+that enables us to combine floats into one.
+
+\showsetup{startcombination}
+
+This command is used to place the figures under or next to
+each other.
+
+\startbuffer
+\placefigure
+  [here]
+  [fig:combinations]
+  {An example of \type{\startcombination...}.}
+  {\startcombination[3*2]
+     {\externalfigure[lb00220]} {a} {\externalfigure[lb00221]} {b}
+     {\externalfigure[lb00222]} {c} {\externalfigure[lb00223]} {d}
+     {\externalfigure[lb00225]} {e} {\externalfigure[lb00226]} {f}
+   \stopcombination}
+\stopbuffer
+
+\getbuffer
+
+The example in \in{figure}[fig:combinations] is typeset
+with the commands:
+
+\startexample
+\typebuffer
+\stopexample
+
+Between \setchars\ we specify how the combination is
+combined: \type{[3*2]}, \type{[4*2]} etc. When we put two
+floats next to each other it is sufficient to specify
+\type{[2]}, \type{[4]} etc.
+
+The floats, mostly figures or tables, are specified within
+two arguments. The first content is placed over the second
+content: \type{{xxx}{yyy}}. The second argument can be
+empty: \type{{xxx}{}}. The general construct looks like
+this:
+
+\startexample
+\starttyping
+\startcombination[n*m]
+  {text 1} {subcaption 1}
+  {text 2} {subcaption 2}
+  ........ ..............
+\stopcombination
+\stoptyping
+\stopexample
+
+The combination can be set up with:
+
+\showsetup{setupcombinations}
+
+With \type{distance} you specify the horizontal distance
+between objects. The parameters \type{align} relates to
+the subcaption. By default the text and objects are centered.
+The width is the total width of the combination.
+
+The three parameters \type{before}, \type{after} and
+\type{between} are processed in the order of specification
+in \in{figure}[fig:order of combinations]. There are some
+examples in \in{figure}[fig:spacing in combinations]. We can
+see in \in{figure}[fig:no subcaptions] that when the title
+in the second argument is empty the spacing adapted.
+
+\startbuffer
+\startcombination[4]
+  {\framed{test}} {\framed{a}}
+  {\framed{test}} {\framed{b}}
+  {\framed{test}} {\framed{c}}
+  {\framed{test}} {\framed{d}}
+\stopcombination
+\stopbuffer
+
+\setbox4=\vbox
+  {\setupcombinations[inbetween={\blank[big]}]\getbuffer}
+
+\setbox6=\vbox
+  {\setupcombinations[inbetween={\blank[medium]}]\getbuffer}
+
+\setbox8=\vbox
+  {\setupcombinations[inbetween={\blank[small]}]\getbuffer}
+
+\placefigure
+  [here][fig:spacing in combinations]
+  {The spacing within combinations (1).}
+\startcombination[3]
+   {\box4} {\arg{\blank[big]}}
+   {\box6} {\arg{\blank[medium]}}
+   {\box8} {\arg{\blank[small]}}
+\stopcombination
+
+\placefigure
+  [here][fig:order of combinations]
+  {The spacing within combinations (2).}
+  {\forgetall
+   \setupframed[width=4cm]
+   \framed[height=3cm,frame=on]{figure}%
+   \framed[frame=off]{\type{<inbetween>}}%
+   \framed[height=1cm,frame=on]{subtitle}%
+   \framed[frame=off]{\type{<after>}}%
+   \framed[frame=off]{\type{<before>}}}
+
+\placefigure
+  [here][fig:no subcaptions]
+  {Combinations without captions.}
+\startcombination[3]
+  {\externalfigure[vew1095]} {}
+  {\externalfigure[vew1096]} {}
+  {\externalfigure[vew1097]} {}
+\stopcombination
+
+Using combinations require figures that have the correct
+dimensions or equal proportions. Unequally proportioned
+figures are hard to combine.
+
+The simple version of combining is this:
+
+\showsetup{placesidebyside}
+
+\showsetup{placeontopofeachother}
+
+We use them in this way:
+
+\starttyping
+\placesidebyside       {\framed{\Logo[ADE]}} {\framed{\Logo[BUR]}}
+\placeontopofeachother {\framed{\Logo[ADE]}} {\framed{\Logo[BUR]}}
+\stoptyping
+
+\section[textblocks]{Text blocks}
+\index{moving text}
+\index{blocks+moving}
+\index{blocks+numbering}
+\index{numbering+blocks}
+\macro{\tex{defineblocks}}
+\macro[beginblock]{\tex{begin<<block>>}}
+\macro{\tex{hideblocks}}
+\macro{\tex{selectblocks}}
+\macro{\tex{useblocks}}
+\macro{\tex{keepblocks}}
+\macro{\tex{processblocks}}
+\macro{\tex{setupblock}}
+\macro{\tex{reset}}
+
+For practical reasons we sometimes want to key text
+somewhere in the source that should be typeset at a
+completely different location in the typeset document. It is
+also useful to be able to use text more than once. The
+commands described below are among the eldest of \CONTEXT.
+They were one of the reasons to start writing the
+macropackage.
+
+\stop  \message{[check i.v.m. versie voorlopig]}
+
+You can mark text (a text block) and hide or move that block,
+but first you have to define it using:
+
+\showsetup{defineblock}
+
+If necessary you can pass several names in a comma||delimited
+list. After the definition you can mark text with:
+
+\startexample
+\starttyping
+\begin<<name>>
+....................
+....................
+\end<<name>>
+\stoptyping
+\stopexample
+
+Between the \type{begin}|| and \type{end} command you can
+use any command you want.
+
+The commands below tell \CONTEXT\ to hide or recall text
+blocks:
+
+\showsetup{hideblocks}
+
+\showsetup{useblocks}
+
+\showsetup{keepblocks}
+
+\showsetup{selectblocks}
+
+\showsetup{processblocks}
+
+These commands make it necessary to process your text at
+least twice. You can also recall more than one text block,
+for example \type {[question,answer]}.
+
+In hidden and re||used blocks commands for numbering
+can be used. Assume that you use questions and answers in
+your document. By defining the questions as text blocks
+you can:
+
+\startitemize[n,packed,stopper]
+\item at that location typeset the questions
+\item[item:reuse] only use the questions and use the answers in
+      a separate chapter
+\item use questions and answers in a separate chapter
+\item hide the answers
+\item etc.
+\stopitemize
+
+When we choose \in{option}[item:reuse] the definitions look
+like this:
+
+\startexample
+\starttyping
+\defineenumeration[question][location=top,text=Question]
+\defineenumeration[answer][location=top,text=Answer]
+
+\defineblock[question,answer]
+
+\hideblocks[answer]
+\stoptyping
+\stopexample
+
+A question and answer in the source look like this:
+
+\startexample
+\starttyping
+\beginquestion
+\question Why do we use blocks? \par
+\endquestion
+
+\beginanswer
+\answer I really don't know. \par
+\endanswer
+\stoptyping
+\stopexample
+
+The questions are only used in the text. Questions and
+answers are both numbered. Answers are summoned by:
+
+\startexample
+\starttyping
+\chapter{Answers}
+
+\reset[answer]
+\useblocks[answer]
+\stoptyping
+\stopexample
+
+The command \type{\reset...} is necessary for resetting the
+numbering mechanism. When the answers are used in the same
+chapter you can use the following commands:
+
+\startexample
+\starttyping
+\section{Answers}
+
+\reset[answer]
+\selectblocks[answer][criterium=chapter]
+\stoptyping
+\stopexample
+
+You must be aware of the fact that it may be necessary to
+(temporarily) disable the reference mechanism also:
+
+\startexample
+\starttyping
+\setupreferencing[state=stop]
+\stoptyping
+\stopexample
+
+A more complex situation is this one. Assume that you have
+several mathematical formulas in your document, and that you
+want to recapitulate the more complex ones in a separate
+chapter at the end of the document. You have to specify an
+\type{[-]} at formulas you do not want repeated.
+
+\startexample
+\starttyping
+\defineblock[formula]
+
+\beginformula
+\placeformula[newton 1]$$f=ma$$
+\endformula
+
+This can also be written as:
+
+\beginformula[-]
+\placeformula[newton 2]$$m=f/a$$
+\endformula
+\stoptyping
+\stopexample
+
+When you re||use the formulas only the first one is typeset.
+The rest of the formulas is processed, so the numbering
+will not falter.
+
+The opposite is also possible. By default all local
+specifications are undone automatically. This means for
+example that the enumeration of text elements like
+questions, answers, definitions, etc. can be temporarily
+stopped. When numbering should continue you specify: \type
+{[+]}.\footnote {When you use enumerations within text
+blocks you can best use the \type {\start...stop}
+alternative (see~\at {page} [numbering]).}
+
+Among the parameters of the number mechanism we (in some
+cases) use the parameter \type{blockwise}. This parameter
+relates to numbering within a set of blocks, for example per
+chapter.
+
+You may have a document in which the questions and answers
+are collected in text blocks. The questions are typeset in the
+document and the answers in a separate appendix. Answers and
+question are put at the same location in the source file.
+When we number the questions and answers per chapter, then
+question~4.12 is the 12th question in chapter~4. The correct
+number is used in the appendix. In this example answer~4.12
+refers to question~4.12 and not the appendix number.
+
+In case we do want the appendix number to be the prefix of
+the blocknumber we set the parameter \type{blockwise} at
+\type{no}. This is a rather complex situation and will
+seldom occur.
+
+Earlier we discussed the initializing and resetting of
+counters. For reasons of uniformity we also have:
+
+\showsetup{reset}
+
+In future there will be an option to sort blocks. For that
+purpose a second set of optional \setchars\ in {\useblocks}
+and \type {\selectblocks} is available. The first argument
+is used for \quote {tags}. These tags are logical labels
+that enable us to recall the blocks.
+
+\startexample
+\starttyping
+\beginremark[important]
+This is an important message!
+\endremark
+\stoptyping
+\stopexample
+
+Now we can recall the \quote {important} messages by:
+
+\startexample
+\starttyping
+\useblocks[remark][important]
+\stoptyping
+\stopexample
+
+or:
+
+\startexample
+\starttyping
+\selectblocks[remark][important][criterium=chapter]
+\stoptyping
+\stopexample
+
+Here, \type {criterium} has the same function as in lists
+(like tables of content) and registers: it limits the
+search. In this case, only the blocks belonging to this
+chapter will be typeset.
+
+More than one \quote {tag} is allowed in a comma delimited
+list. Text blocks may be nested:
+
+\startexample
+\starttyping
+\beginpractice
+\beginquestion
+\question Is that clear? \par
+\endquestion
+\beginanswer
+\answer Yes it is! \par
+\endanswer
+\endpractice
+\stoptyping
+\stopexample
+
+In this case we use three blocks. Such blocks are stored in
+a file. This file must be available when the blocks are
+re||used. This means that the document must be processed at
+least twice. When blocks are summoned at the end of your
+source file only one processing step is sufficient but then
+you have to type the command \type {nomoreblocks} before the
+blocks are recalled:
+
+\showsetup{nomoreblocks}
+
+After this command no blocks should be specified. In the
+future commands will be developed for local adaptations of the
+layout of text blocks. Until that moment the following
+command is all there is:
+
+\showsetup{setupblock}
+
+A block is being processed within a group, in other words:
+within \argchars. The setup of \type{before} and
+\type{after} are used outside this group, and the setup of
+\type{inner} is used within the group. For example if we
+mark a re||used text block in the margin we can use the
+following setup:
+
+\startbuffer
+\defineblock[exampletext]
+
+\beginexampletext
+If you wonder why this mechanism was implemented consider an educational
+document with hundreds of \quote {nice to know} and \quote {need to know}
+text blocks at several ability levels.
+\endexampletext
+
+\setupblock[exampletext][inner=\margintitle{reused}]
+\useblocks[exampletext]
+\stopbuffer
+
+\typebuffer
+
+The first text is set without an indicator in the margin and
+the second is. If we would have used \type {before} instead
+of \type {inner} some grouping problems had occurred.
+
+\getbuffer
+
+You can import text blocks from other source files. For
+example if you want to use text blocks from a manual for
+students in a manual for teachers, you can specify:
+
+\startexample
+\starttyping
+\setupblock
+  [homework]
+  [file=student,
+   before=\startbackground,
+   after=\stopbackground]
+\stoptyping
+\stopexample
+
+In that case the blocks are imported from the file \type
+{student.tex}. In this example these blocks are typeset
+differently, with a background. When the student material is
+specified with:
+
+\startexample
+\starttyping
+\beginhomework[meeting 1]
+..........
+\endhomework
+\stoptyping
+\stopexample
+
+we can summon the blocks in the teacher's manual with:
+
+\startexample
+\starttyping
+\useblocks[homework][meeting 1]
+\stoptyping
+\stopexample
+
+In extensive documents it will take some time to generate
+these products. But this mechanism garantees we use the same
+homework descriptions in the students and teachers manual.
+Furthermore it saves typing and prevents errors.
+
+Questions and answers are good examples of text blocks that
+can be hidden and moved. The example below will illustrate
+this. Because commands like \type {\question} have a
+paragraph as an argument the \type {\par}'s and/or empty
+lines are essential.
+
+In the setup we see that questions and answers are coupled.
+A coupling has a meaning in interactive documents.
+
+\startexample
+\starttyping
+\defineblock[question]
+\defineblock[answer]
+
+\defineenumeration[question][location=inmargin,coupling=answer]
+\defineenumeration[answer][location=top,coupling=question]
+
+\hideblocks[answer]
+
+\starttext
+
+\chapter{\CONTEXT}
+
+\CONTEXT\ is a macropackage that is based on \TEX. \TEX\ is a typesetting
+system and a programm. This unique combination is used extensively in
+\CONTEXT.
+
+\beginquestion
+  \startquestion
+  To date, the fact that \TEX\ is a programming language enables \CONTEXT\
+  to do text manipulations that cannot be done with any other known package.
+
+  Can you mention one or two features of \CONTEXT\ that are based on the
+  fact that \TEX\ is programming language?
+  \stopquestion
+\endquestion
+
+\beginanswer
+  \answer You can think of features like floating blocks and text block
+  manipulation. \par
+\endanswer
+
+\beginquestion
+  \question Are there any limitations in \TEX ? \par
+\endquestion
+
+\beginanswer
+  \answer Yes and no. The implementation of \TEXEXEC\ is done in
+  \PERL\ rather than in \TEX.
+\endanswer
+
+\TEX\ is a very powerful tool, but much of its power is yet to be
+unleashed. \CONTEXT\ tries to make a contribution with its user||friendly
+interface and its support of many features, like interactivety.
+
+\chapter{Answers}
+
+\useblocks[question,answer]
+
+\stoptext
+\stoptyping
+\stopexample
+
+With \type {\processblocks} blocks are processed but
+not typeset. Assume that we have two types of questions:
+
+\starttyping
+\defineblock[easyquestion,hardquestion]
+\stoptyping
+
+When both types of questions use the same numbering
+mechanism, we can recall the hard questions in their original
+order by hiding the easy questions.
+
+\starttyping
+\processblocks[easyquestion]
+\useblocks[hardquestion]
+\stoptyping
+
+\section[opposite blocks]{Opposite blocks}
+\index{mirroring}
+\index{blocks+moving}
+\index{moving text}
+\macro{\tex{startopposite}}
+
+In future versions of \CONTEXT\ there will be support of spread based
+typesetting. For the moment the only command available is:
+
+\showsetup{startopposite}
+
+Everything between \type{start} and \type{stop} is typeset
+at the left page in such a way that it is aligned with the
+last paragraph that is typeset on the right page.
+
+\showsetup{setupoppositeplacing}
+
+\section[marginblocks]{Margin blocks}
+\index{margin+blocks}
+\macro{\tex{startmarginblock}}
+\macro{\tex{setupmarginblocks}}
+
+Within limits you can place text and figures in the margin.
+In this case the margin is handled as a separate (very
+narrow) page next to the actual page.
+
+\showsetup{startmarginblock}
+
+This can be setup with:
+
+\showsetup{setupmarginblocks}
+
+{\em The mechanism to place blocks is still under
+construction.}
+
+\section[texthiding]{Hiding text}
+\index{hiding text}
+\macro{\tex{starthiding}}
+
+It is possible to hide text (skip during processing) by:
+
+\showsetup{starthiding}
+
+\section[postponing]{Postponing text}
+\index{postponing text}
+\macro{\tex{startpostponing}}
+
+Text elements can be postponed (stored) and placed at the
+next empty page. This option is needed in case \CONTEXT\
+encounters large figures or tables. The postponed
+textelement is placed at the next page generated by \TEX\ or
+forced by the user with a manual page break.
+
+\showsetup{startpostponing}
+
+Several text blocks can be postponed and stored. This proces
+can be followed on screen during document generation.
+
+\startexample
+\starttyping
+\startpostponing
+\placefigure{A rather large figure.}{...}
+\stoppostponing
+\stoptyping
+\stopexample
+
+When a lot of text elements are postponed or when a figure
+uses a complete page we advise you to add \type{\page} after
+the postponing. Otherwise there is the possibility that a
+blank page is inserted. This is caused by the fact that the
+postponing mechanism and the float mechanism are completely
+independent.
+
+\startexample
+\starttyping
+\startpostponing
+\placefigure{A very large figure.}{...}
+\page
+\stoppostponing
+\stoptyping
+\stopexample
+
+\section[buffers]{Buffers}
+\index{buffers}
+\index{moving text}
+\macro{\tex{startbuffer}}
+\macro{\tex{setupbuffer}}
+\macro{\tex{getbuffer}}
+\macro{\tex{typebuffer}}
+
+Buffers simplify the moving of text blocks. They are stored
+in a file with the extension \type {tmp} and are used to
+bring readability to your source. Furthermore they can be
+recalled at any location without retyping them.
+
+\showsetup{startbuffer}
+
+\showsetup{getbuffer}
+
+\showsetup{typebuffer}
+
+The example below shows the use of these commands.
+
+\startbuffer
+\startbuffer
+We see that a {\em buffer} works something like a {\em block}.\par
+\stopbuffer
+
+\startlines
+{\tf \getbuffer}
+{\bf \getbuffer}
+{\sl \getbuffer}
+\stoplines
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This results in:
+
+\startreality
+\getbuffer
+\stopreality
+
+The name is optional. A name makes sense only when several
+buffers are used. Most of the time the default buffer will
+do. Most examples in this manual are typed in buffers.
+
+In \in {chapter} [tables] we can see that the last argument
+of a \type {\place<<block>>} can be rather extensive. A
+buffer can be useful when such large tables are defined.
+
+\startexample
+\setuptyping[option=commands]
+\starttyping
+\startbuffer
+... <</rm many lines>> ...
+\stopbuffer
+
+\placetable{A table.}{\getbuffer}
+\stoptyping
+\stopexample
+
+The buffer is set up with:
+
+\showsetup{setupbuffer}
+
+The first argument is optional and relates to the buffers you
+defined yourself. You can define your own buffer with:
+
+\showsetup{definebuffer}
+
+Be aware of possible conflicting names and use capital
+letters. After this command \type {/get<<buffer>>} and \type
+{/type<<buffer>>} are available where \type{<<buffer>>} is
+the name of the buffer.
+
+\stopcomponent
+

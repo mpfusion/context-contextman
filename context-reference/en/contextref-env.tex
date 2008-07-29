@@ -1,0 +1,348 @@
+
+\unprotect
+
+\usemodule[set-11] \loadsetups
+
+\usemodule[chart,chemic,unit,abr-02]
+
+\preloadtypescripts
+
+\setupcolors[state=start]
+
+\setupsystem
+  [\c!random=\v!big]
+
+\setuplayout
+  [\c!location=\v!middle,
+   \c!style=\ss,
+   \c!backspace=2.5cm,
+   \c!topspace=1.5cm,
+   \c!width=16cm,
+   \c!margindistance=.25cm,
+   \c!margin=2.5cm,
+   \c!height=\v!middle]
+
+\usetypescript[palatino]
+
+\switchtobodyfont[palatino,11pt]
+
+\definefontsynonym[chapternumberfont][RegularBold]
+\definefontsynonym[chaptertextfont]  [RegularBold]
+
+\definebodyfont[11pt][rm][bfe=RegularBold at 30pt]
+\definebodyfont[11pt][rm][bft=RegularBold at 60pt]
+
+
+\definelayout
+  [fullpage]
+  [\c!backspace=0pt,
+   \c!topspace=0pt,
+   \c!width=\v!middle,
+   \c!height=\v!middle,
+   \c!header=0pt,
+   \c!footer=0pt]
+
+\setuppagenumbering
+  [\c!alternative=\v!doublesided]
+
+\def\macro
+  {\dosingleempty\domacro}
+
+\def\domacro[#1]#2%
+  {\bgroup
+   \let\tex\firstofoneargument
+   \iffirstargument
+     \expanded{\texmacro[#1]{\noexpand\firstofoneargument{#2}}}%
+   \else
+     \expanded{\texmacro    {\noexpand\firstofoneargument{#2}}}%
+   \fi
+   \egroup}
+
+\def\startexample
+  {\blank
+   \begingroup}
+
+\def\stopexample
+  {\endgroup
+   \blank}
+
+\def\startreality
+  {\blank
+   \page[\v!preference]
+   \begingroup}
+
+\def\stopreality
+  {\relax
+   \endgroup
+   \blank}
+
+\defineframedtext
+  [MiniFile]
+  [\c!width=25em,
+   \c!offset=0.25ex,
+   \c!bodyfont=7pt,
+   \c!background=\v!color,
+   \c!backgroundcolor=GrayColor,
+   \c!backgroundoffset=.25ex,
+   \c!frame=\v!off,
+   \c!before=,
+   \c!after=]
+
+\def\yes      {$\star$}
+\def\argchars {\hbox{\arg{ }}}
+\def\setchars {\hbox{\type{[ ]}}}
+
+\definecolor[maincolor][g=.6]
+\definecolor[textcolor][r=.6]
+
+\definecolor[pagecolor][s=.6]
+\definecolor[darkcolor][s=.2]
+
+\definecolor[PageColor]     [white]
+\definecolor[PlusColor]     [black]
+\definecolor[FrameColor]    [maincolor] % [r=.5,g=.6,b=.7]
+\definecolor[OtherColor]    [textcolor] % [r=.7,g=.6,b=.5]
+\definecolor[GrayColor]     [s=.95]
+\definecolor[AltColor]      [s=.5]
+
+
+\definecolor[NoteColor]      [g=1,r=.25,b=.25]
+\definecolor[WarnColor]      [r=1,g=.25,b=.25]
+
+\definecolor[GridLineColor] [FrameColor]
+\definecolor[GridTextColor] [OtherColor]
+\definecolor[ChartColor]    [GrayColor]
+
+\setuppagenumbering
+  [\c!location=]
+
+\setuptolerance
+  [\v!verytolerant,\v!stretch]
+
+\setupblank
+  [\v!medium]
+
+\setupwhitespace
+  [\v!medium]
+
+\setuptyping
+  [\c!blank=\v!medium]
+
+\setupheadertexts
+  [\v!margin]
+  [][\hfill\pagenumber\hfill]
+
+\setupfootertexts
+  [\v!margin]
+  [][{\hfill\doifnotmode{*\v!frontpart}{\getmarking[\v!chapter\v!number]}\hfill}]
+
+\setupheadertexts
+  [\v!text]
+  [][{\hfill\getmarking[\v!chapter]\hfill}]
+
+\setupfootertexts
+  [\v!text]
+  [][{\hfill\getmarking[\v!section]\hfill}]
+
+\setupbodyfontenvironment
+  [default]
+  [em=italic]
+
+\setupsectionblock[\v!frontpart] [\c!page=\v!yes]
+\setupsectionblock[\v!bodypart]  [\c!page=\v!yes]
+\setupsectionblock[\v!appendix]  [\c!page=\v!yes]
+\setupsectionblock[\v!frontpart] [\c!before=,\c!after=]
+
+\setuphead
+  [\v!chapter]
+  [\c!command=\PlaceSection,
+   \c!page=\v!yes,
+   \c!before=,
+   \c!header=\v!nomarking,
+   \c!style=\bfd]
+
+\setuphead
+  [\v!title]
+  [\c!command=\PlaceSection,
+   \c!page=\v!right,
+   \c!before=,
+   \c!header=\v!nomarking,
+   \c!style=\bfd]
+
+\setuphead
+  [\v!section]
+  [\c!command=\PlaceSection,
+   \c!inbetween=,
+   \c!style=\bfb]
+
+\setuphead
+  [\v!subsection]
+  [\c!command=\PlaceSection,
+   \c!before=\blank,
+   \c!style=\bfa]
+
+\setuphead
+  [\v!subsubsection]
+  [\c!command=\PlaceSection,
+   \c!before=\blank,
+   \c!style=\bsa]
+
+\def\PlaceSection#1#2%
+  {\vbox
+     {\localheadsetup
+      \begstrut
+      \inleftmargin{\hbox to \leftmarginwidth{\hss#1\hss}}%
+      #2}}
+
+\setMPtext{text}{some test text}
+
+\startusableMPgraphic{text}
+  picture r ;
+  r := image ( graphictext
+    \MPstring{text}
+    randomized .4pt
+    scaled 6pt
+    withfillcolor .8\MPcolor{maincolor}
+    withpen pencircle scaled 1pt ; ) ;
+  draw r ;
+\stopusableMPgraphic
+
+\setuptype
+  [\c!option=\v!slanted]
+
+\setuptyping
+  [\c!option=\v!slanted]
+
+\setuplist
+  [\v!section]
+  [\c!width=3em]
+
+\defineregister
+  [texmacro]
+  [texmacros]
+
+\setupregister
+  [texmacro]
+  [\c!indicator=\v!off,
+   \c!distance=1em minus .25em]
+
+\setupfootnotes
+  [\c!rule=\v!on]
+
+\setuphead
+  [\v!chapter]
+  [\c!header=\v!empty]
+
+\setupitemgroup[\v!itemize]
+  [\v!each]
+  [\c!headstyle=\v!bold]
+
+\setupitemgroup[\v!itemize]
+  [\v!each]
+  [\v!stopper]
+
+\setupsubpagenumber
+  [\c!way=\v!by\v!chapter,
+   \c!state=\v!start]
+
+% Bij de setups wordt gebruik gemaakt van 'sorteren'. Hierdoor
+% zijn ze in de bijlage op te roepen.
+
+\setupframedtexts
+  [setuptext]
+  [\c!background=\v!color,
+   \c!frame=\v!off,
+   \c!backgroundcolor=GrayColor]
+
+\let\showsetup\setup
+\let\toonsetup\setup
+
+\def\repeatsetup#1%
+  {\bgroup
+   \setupsetup[\c!reference=2] % wel tonen, niet genereren
+   \showsetup{#1}%
+   \egroup}
+
+\setupsetup
+  [\c!criterium=\v!used,
+   \c!reference=1]
+
+\useexternalfigure [bor0118] [bor0118a] [\c!hfactor=120]
+\useexternalfigure [bor0129] [bor0129a] [\c!hfactor=240]
+
+\useexternalfigure [lb00220] [lb00220a] [\c!hfactor=40]
+\useexternalfigure [lb00221] [lb00221a] [\c!hfactor=40]
+\useexternalfigure [lb00222] [lb00222a] [\c!hfactor=40]
+\useexternalfigure [lb00223] [lb00223a] [\c!hfactor=40]
+\useexternalfigure [lb00225] [lb00225a] [\c!hfactor=40]
+\useexternalfigure [lb00226] [lb00226a] [\c!hfactor=40]
+
+\useexternalfigure [rb00006] [rb00006a] [\c!hfactor=120]
+\useexternalfigure [rb00007] [rb00007e] [\c!hfactor=120]
+\useexternalfigure [rb00008] [rb00008a] [\c!hfactor=120]
+\useexternalfigure [rb00015] [rb00015a] [\c!hfactor=120]
+
+\useexternalfigure [vew1067] [vew1067a] [\c!hfactor=120]
+\useexternalfigure [vew1071] [vew1071a] [\c!hfactor=120]
+\useexternalfigure [vew1091] [vew1091a] [\c!width=5cm]
+\useexternalfigure [vew1095] [vew1095a] [\c!hfactor=100]
+\useexternalfigure [vew1096] [vew1096a] [\c!hfactor=100]
+\useexternalfigure [vew1097] [vew1097a] [\c!hfactor=100]
+\useexternalfigure [vew1113] [vew1113a] [\c!hfactor=120]
+
+\useexternalfigure [vew1179] [vew1179a] [\c!hfactor=75,\c!frame=\v!on]
+\useexternalfigure [vew1182] [vew1182a] [\c!hfactor=75,\c!frame=\v!on]
+\useexternalfigure [vew1218] [vew1218a] [\c!hfactor=75,\c!frame=\v!on]
+\useexternalfigure [spin016] [spin016a] [\c!hfactor=75,\c!frame=\v!on]
+
+\useexternalfigure [vos1082] [vos1082a] [\c!hfactor=120]
+\useexternalfigure [vos1083] [vos1083a] [\c!hfactor=120]
+
+\useexternalfigure [eenkoe]  [cow]   [\c!hfactor=120] %
+
+\useexternalfigure [] [cont-xx]  [\c!hfactor=120,\c!frame=\v!on]
+\useexternalfigure [] [cont-yy]  [\c!height=.85\textheight,\c!frame=\v!on]
+\useexternalfigure [] [cont-zz1] [\c!height=.85\textheight,\c!frame=\v!on]
+\useexternalfigure [] [cont-zz2] [\c!height=.85\textheight,\c!frame=\v!on]
+\useexternalfigure [] [cont-zz3] [\c!height=.85\textheight,\c!frame=\v!on]
+
+
+\setupFLOWcharts  % Pas op, geldt nu voor alle charts!
+  [\c!width=6em,
+   \c!height=3em,
+   \c!dx=1.5em,
+   \c!dy=1em,
+   \c!frame=\v!on,
+   \c!framecolor=FrameColor,
+   \c!background=\v!color,
+   \c!backgroundcolor=ChartColor,
+   \c!offset=.25em]
+
+\setupFLOWlines
+  [\c!rulethickness=3pt,
+   \c!color=FrameColor]
+
+
+\def\todo#1%
+  {\startframedtext
+    [background=color,backgroundcolor=NoteColor]
+  {\bf TODO:}~~#1\par
+  \stopframedtext }
+
+\def\fixme#1%
+  {\startframedtext
+    [background=color,backgroundcolor=WarnColor]
+  {\bf FIXME:}~~#1\par
+  \stopframedtext }
+
+\definedescription
+  [switch]
+  [headstyle=type,
+   headcolor=AltColor,
+   location=serried,
+   width=broad]
+
+
+\input buffers
+
+\protect

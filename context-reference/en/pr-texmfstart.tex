@@ -1,0 +1,479 @@
+
+\startcomponent pr-texmfstart
+
+\environment contextref-env
+\product contextref
+
+\chapter[texmfstart]{texmfstart manual}
+
+\subject{Introduction}
+
+This manual is about a small (\RUBY) script that can be used to run
+a script or open a document which is located somewhere in the \type
+{texmf} tree. This scripts evolved out of earlier experiments and
+is related to scripts and programs like \type {runperl}, \type
+{runruby} and \type {irun}.
+
+One of the main reasons for \type {texmfstart} to exist is that it
+enables us to be downward compatible when using a \TEX\ based
+environment. \TEX\ itself is pretty stable, but this is not true
+for the whole collection of files that comes with a distribution
+and the way they are organized. We will see some other reasons for
+using this script as well.
+
+We can also use this script for lanching applications that need access
+to resources in the \TEX\ tree but that lack the features to locate
+them.
+
+The script has a few dependencies on libraries. This means that
+relocating the script to a bin path may give problems. One can
+make a self||contained version by saying:
+
+\starttyping
+texmfstart --selfmerge
+\stoptyping
+
+One can undo this with the \type {--selfclean} option. Normally
+users don't have to worry about this because in the \CONTEXT\
+distribution the merged version is shipped. A \MSWINDOWS\ (pseudo)
+binary can be made with \type {exerb} or one can simply associate
+the \type {.rb} suffix with the \RUBY\ program.
+
+\starttyping
+FTYPE RubyScript=c:\data\system\ruby\bin\ruby.exe %%1 %%*
+
+ASSOC .rb=RubyScript
+ASSOC .rbw=RubyScript
+\stoptyping
+
+On \UNIX\ one can make a copy without suffix:
+
+\starttyping
+cp texmfstart.rb /path/to/bin/texmfstart
+chmod +x texmfstart
+\stoptyping
+
+Alternative approaches have been discussed on the \CONTEXT\ and
+\TEX Live mailing lists and can be found in their archives.
+
+\subject{Launching programs}
+
+The primary usage of \type {texmfstart} is to launch programs and
+scripts. We can start the \type{texexec} \PERL\ script with:
+
+\starttyping
+texmfstart texexec.pl --pdf somefile
+\stoptyping
+
+We can also start the \type{pstopdf} \RUBY\ script:
+
+\starttyping
+texmfstart pstopdf.rb --method=3 cow.eps
+\stoptyping
+
+However, we can omit the suffix:
+
+\starttyping
+texmfstart texexec --pdf somefile
+texmfstart pstopdf --method=3 cow.eps
+\stoptyping
+
+The suffixless method is slower unless the scripts are known.  For
+familiar \CONTEXT\ scripts it's best not to use the suffix since
+this permits us to change the scripting language. \CONTEXT\ related
+scripts are known. Because in the meantime \type {texexec} has become a
+\RUBY\ script, users who use the suffixless method automatically will
+get the right version.
+
+You can also say:
+
+\starttyping
+texmfstart --file=pstopdf --method=3 cow.eps
+\stoptyping
+
+When locating a file to run, several methods are applied, one being
+\type {kpsewhich}. You can control the path searching by providing a
+program space, which by default happens to be \type {context}.
+
+\starttyping
+texmfstart --program=context --file=pstopdf --method=3 cow.eps
+\stoptyping
+
+The general pattern is:
+
+\starttyping
+texmfstart switches filename arguments
+\stoptyping
+
+Here \type {switches} control \type {texmfstart}'s behaviour, and
+\type {arguments} are passed to the program identified by \type
+{filename}.
+
+Sometimes the operating system will spoil our little game of passing
+arguments. In the following case we want the output of \type
+{texexec} to be written to a log file. By using quotes, we can pass the
+redirection without problems.
+
+\starttyping
+texmfstart texexec "somefile.tex > whatever.log"
+\stoptyping
+
+\subject{Generating stubs}
+
+One of the reasons for writing \type {texmfstart} is that it permits
+us to write upward compatible scripts (batch files), so instead of
+
+\starttyping
+texexec --pdf somefile
+texexec --pdf anotherfile
+\stoptyping
+
+We prefer to use:
+
+\starttyping
+texmfstart texexec --pdf somefile
+texmfstart texexec --pdf anotherfile
+\stoptyping
+
+Instead of using \type {texmfstart} directly you can also use it in a
+stub file. For \MSWINDOWS\ such a file looks like:
+
+\starttyping
+@echo off
+texmfstart texexec %*
+\stoptyping
+
+In this case, the file itself is named \type {texexec.cmd}. Now, given that
+no new functionality of \type {texmfstart} itself is needed, one will
+automatically use the version of \type {texexec} that is present in the
+(latest) installed \CONTEXT\ tree.
+
+It is possible to generate stubs automatically. You can provide a path
+where the stub will be written. This permits tricks like the following.
+Say that on a \CDROM\ we have the following structure:
+
+\starttyping
+tex/texmf-mswin/bin/texexec.bat
+tex/texmf-linux/bin/texexec
+tex/texmf-local/scripts/context/ruby/texexec.rb
+\stoptyping
+
+If we are on the main \type {tex} path, we can run \type
+{texmfstart} as follows:
+
+\starttyping
+texmfstart --make --windows --stubpath=tex/texmf-mswin/bin \
+    ../../texmf-local/scripts/context/ruby/texexec.rb
+texmfstart --make --unix    --stubpath=tex/texmf-linux/bin \
+    ../../texmf-local/scripts/context/ruby/texexec.rb
+\stoptyping
+
+This will generate start up scripts that point directly to the \PERL\
+script. Such a link may fail when files get relocated. In that case
+you can use the \type {--indirect} directive, which will force the
+\type {texmfstart} into the stub file.
+
+\starttyping
+texmfstart --make --windows --indirect --stubpath=tex/texmf-mswin/bin \
+    ../../texmf-local/scripts/context/ruby/texexec.rb
+texmfstart --make --unix    --indirect --stubpath=tex/texmf-linux/bin \
+    ../../texmf-local/scripts/context/ruby/texexec.rb
+\stoptyping
+
+However, the prefered way and most simple way to generate the stubs
+for the scripts that come with \CONTEXT\ is:
+
+\starttyping
+texmfstart --make all
+\stoptyping
+
+This will generate stubs suitable for the current operating system in
+the current path.
+
+\subject{Documents}
+
+You can use \type {texmfstart} to open a document.
+
+\starttyping
+texmfstart showcase.pdf
+\stoptyping
+
+This will open the document \type {showcase.pdf}, when found. The
+chance is minimal that such a document can be located by
+\type {kpsewhich}. In that case, \type {texmfstart} will search the
+tree itself.
+
+Given that it is supported on your platform, you can also open a
+\PDF\ file on a given page.
+
+\starttyping
+texmfstart --page=2 showcase.pdf
+\stoptyping
+
+On \MSWINDOWS\ the following command will open the \PDF\ file in a
+web browser. This is needed when you want support for form
+submission.
+
+\starttyping
+texmfstart --browser examplap.pdf
+\stoptyping
+
+\subject{Search strategy}
+
+In a first attempt, \type {kpsewhich} will be used to locate a file.
+When \type {kpsewhich} cannot locate the file, the following
+environment variables will be used:
+
+\starttabulate[|T||]
+\NC RUBYINPUTS   \NC ruby   scripts   with suffix \type {rb}  \NC \NR
+\NC PERLINPUTS   \NC perl   scripts   with suffix \type {pl}  \NC \NR
+\NC PYTHONINPUTS \NC python scripts   with suffix \type {py}  \NC \NR
+\NC JAVAINPUTS   \NC java   archives  with suffix \type {jar} \NC \NR
+\NC PDFINPUTS    \NC pdf    documents with suffix \type {pdf} \NC \NR
+\stoptabulate
+
+It using them fails as well, the whole tree is searched, which will take
+some time.
+
+When a file found, its location is remembered and passed on to nested
+runs. So, in general, a nested run will start faster.
+
+\subject{Directives}
+
+The script accepts a few directives. Some are rather general:
+
+\starttabulate[|T||]
+\NC --verbose   \NC report some status and progress information             \NC \NR
+\NC --arguments \NC an alternative for providing the arguments to be passed \NC \NR
+\NC --clear     \NC don't pass info about locations to child processes      \NC \NR
+\stoptabulate
+
+Directives that concern starting an application are:
+
+\starttabulate[|T||]
+\NC --program=str \NC the program space where \type {kpsewhich} will search \NC \NR
+\NC --locate      \NC report the call as it should happen (no newline)      \NC \NR
+\NC --report      \NC report the call as it should happen (simulated)       \NC \NR
+\NC --browser     \NC start the document in a web browser                   \NC \NR
+\NC --file        \NC an alternative for providing the file                 \NC \NR
+\NC --direct      \NC run a program without searching for it's location     \NC \NR
+\NC --execute     \NC use \RUBY's 'exec' instead of 'system'                \NC \NR
+\NC --batch       \NC {\em not yet implemented}                             \NC \NR
+\stoptabulate
+
+You can create startup scripts by providing one of the following
+switches in combination with a filename.
+
+\starttabulate[|T||]
+\NC --make     \NC create a start script or batch file for the given program \NC \NR
+\NC --windows  \NC when making a startup file, create a windows batch file   \NC \NR
+\NC --linux    \NC when making a startup file, create a unix script          \NC \NR
+\NC --stubpath \NC destination of the startup file                           \NC \NR
+\NC --indirect \NC always use \type {texmfstart} in a stub file              \NC \NR
+\stoptabulate
+
+Some directives can be accompanied by specifications, like:
+
+\starttabulate[|T||]
+\NC --page=n          \NC open the document at this page                 \NC \NR
+\NC --path=str        \NC change from the current path to the given path \NC \NR
+\NC --before=str      \NC {\em not yet implemented}                      \NC \NR
+\NC --after=str       \NC {\em not yet implemented}                      \NC \NR
+\NC --tree=str        \NC use the given \TEX\ tree                       \NC \NR
+\NC --autotree        \NC automatically determine the \TEX\ tree to use  \NC \NR
+\NC --environment=str \NC use the given tmf environment file             \NC \NR
+\stoptabulate
+
+Conditional directives are:
+
+\starttabulate[|T||]
+\NC --iftouched=str,str \NC only run when the given files have different time stamps \NC \NR
+\NC --ifchanged=str     \NC only run when the given file has changed (md5 check)     \NC \NR
+\stoptabulate
+
+Special features:
+
+\starttabulate[|T||]
+\NC --showenv \NC show the environment variables known at runtime \NC \NR
+%NC --serve   \NC act as a kpse server (distributed \RUBY)        \NC \NR
+\NC --edit    \NC open the given file in an editor                \NC \NR
+\stoptabulate
+
+In addition, there are prefixes for filenames:
+
+\starttabulate[|T||]
+\NC bin:filename  \NC expanded name, based on \type {PATH} environment variable        \NC \NR
+\NC kpse:filename \NC expanded name, based on \type {kpsewhich} result                 \NC \NR
+\NC rel:filename  \NC expanded name, backtracking on current path (\type {. .. ../..}) \NC \NR
+\NC env:name      \NC expanded name, based on environment variable \type {name}        \NC \NR
+\NC path:filename \NC pathpart of \type {filename} as located by \type {kpsewhich}     \NC \NR
+\stoptabulate
+
+\subject {Performance}
+
+The performance of the indirect call is of course less than a direct
+call. You can gain some time by setting the environment variables or
+by using a small \TEX\ tree.
+
+The script tries to be clever. First it tries to honor a given path,
+and if that fails it will strip the path part and look on the
+current path. When this fails, it will consult the environment
+variables. Then it will use \type {kpsewhich} and when that fails as
+well, it will start searching the \TEX\ trees. This may take a
+while, especially when you have a complete tree, like the one on
+\TEX\ Live. \footnote {On my computer I use multiple trees parallel
+to the latest \TEX\ Live tree. This results in a not that
+intuitively and predictable search process. The cover of this manual
+reflects state of those trees.}
+
+If you want, you can use the built in \type {kpsewhich} functionality
+(written in \RUBY) by setting the environment variable \type {KPSEFAST}
+to \type {yes}. The built in handler is a bit faster and maintains its own
+file database. Such a database is generated with:
+
+\starttyping
+tmftools --reload
+\stoptyping
+
+\subject {Using prefixes}
+
+You can also use \type {texmfstart} to launch other programs that
+need files in one of the \TEX\ trees:
+
+\starttyping
+texmfstart --direct xsltproc kpse:somescript.xsl somefile.xml
+\stoptyping
+
+or shorter:
+
+\starttyping
+texmfstart bin:xsltproc kpse:somescript.xsl somefile.xml
+\stoptyping
+
+In both cases \type {somescript.xsl} will be resolved and in the
+second case \type {bin:} will be stripped. The \type {--direct}
+switch and \type {bin:} prefix tell \type {texmfstart} not to search
+for the program, but to assume that it is a binary. The \type
+{kpse:} prefix also works for previously mentioned usage.
+
+A convenient way to edit your local context system setup file is the
+following; we don't need to go to the path where the file resides.
+
+\starttyping
+texmfstart bin:scite kpse:cont-sys.tex
+\stoptyping
+
+Because editing is happening a lot, you can also say:
+
+\starttyping
+texmfstart --edit kpse:cont-sys.tex
+\stoptyping
+
+You can set the environment variable \type {TEXMFSTART_EDITOR} to
+your favourite editor.
+
+\subject{Conditional processing}
+
+A bit obscure feature is triggered with \type {--iftouched}, for
+instance:
+
+\starttyping
+texmfstart --iftouched=normal.pdf,lowres.pdf \
+    downsample.rb --verylow normal.pdf lowres.pdf
+\stoptyping
+
+Here, \type {downsample.rb} is only executed when \type {normal.pdf} and
+\type {lowres.pdf} have a different modification time. After execution,
+the times are synchronized. This feature is rather handy when you want
+to minimize runtime. We use it in the resource library tools.
+
+\starttyping
+texmfstart --iftouched=foo.bar,bar.foo convert_foo_to_bar.rb
+\stoptyping
+
+A similar option is \type {ifchanged}:
+
+\starttyping
+texmfstart --ifchanged=whatever.mp texexec --mpgraphic whatever.mp
+\stoptyping
+
+This time we look at the MD5 checksum, when the sum is changed, \type
+{texexec} will be run, otherwise we continue.
+
+\subject {\TEX\ trees}
+
+There are a few more handy features built in. The reason for putting those
+into this launching program is that the sooner they are executed, the less
+runtime is needed later in the process.
+
+Imagine that you have installed your tree on a network attached storage
+device. In that case you can say:
+
+\starttyping
+texmfstart --tree=//nas-1/tex texexec --pdf yourfile
+\stoptyping
+
+There should be a file \type {setuptex.tmf} in the root of the tree. An
+example of such a file is part of the \CONTEXT\ distribution (minimal
+trees). This feature permits you to have several trees alongside and run
+specific ones. You can also specify additional environments, using \type
+{--environment}.
+
+Such an environment file is platform independent and looks as follows. The
+\type {%VAR%} variables will be replaced by their meaning, while the \type
+{$VAR} variables are left untouched. The \type {=} sets a value, while
+\type {>} and \type {<} prepend and append the given value to the current
+value.
+
+\starttyping
+# author: Hans Hagen - PRAGMA ADE - Hasselt NL - www.pragma-ade.com
+#
+# usage: texmfstart --tree=f:/minimal/tex ...
+#
+# this assumes that calling script sets TEXPATH without a trailing
+# slash; %VARNAME% expands to the environment variable, $VARNAME
+# is left untouched; we also assume that TEXOS is set.
+
+TEXMFMAIN    = %TEXPATH%/texmf
+TEXMFLOCAL   = %TEXPATH%/texmf-local
+TEXMFFONTS   = %TEXPATH%/texmf-fonts
+TEXMFEXTRA   = %TEXPATH%/texmf-extra
+TEXMFPROJECT = %TEXPATH%/texmf-project
+VARTEXMF     = %TMP%/texmf-var
+HOMETEXMF    =
+
+TEXMFOS      = %TEXPATH%/%TEXOS%
+# OSFONTDIR  = %SYSTEMROOT%/fonts
+
+TEXMFCNF     = %TEXPATH%/texmf{-local,}/web2c
+TEXMF        = {$TEXMFOS,$TEXMFPROJECT,$TEXMFFONTS,
+                    $TEXMFLOCAL,$TEXMFEXTRA,!!$TEXMFMAIN}
+TEXMFDBS     = $TEXMF
+
+TEXFORMATS   = %TEXMFOS%/web2c/{$engine,}
+MPMEMS       = %TEXFORMATS%
+TEXPOOL      = %TEXFORMATS%
+MPPOOL       = %TEXPOOL%
+
+PATH         > %TEXMFOS%/bin
+PATH         > %TEXMFLOCAL%/scripts/perl/context
+PATH         > %TEXMFLOCAL%/scripts/ruby/context
+
+RUBYLIB      > %TEXMFLOCAL%/scripts/ruby/context
+
+TEXINPUTS    =
+MPINPUTS     =
+MFINPUTS     =
+\stoptyping
+
+When you only want to set a variable that has no value yet, you can use an \type
+{?}. These symbols have alternatives as well:
+
+\starttabulate[|T|T|l|]
+\NC = \NC << \NC  assign a value to the variable \NC \NR
+\NC ? \NC ?? \NC  only assign a valuehen the variable is unset \NC \NR
+\NC < \NC += \NC  append a value to the current value of the variable \NC \NR
+\NC > \NC =+ \NC  prepend a value to the current value of the variable \NC \NR
+\stoptabulate
+
+\stopcomponent

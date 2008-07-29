@@ -1,0 +1,22 @@
+% content=tex
+%
+% copyright=pragma-ade readme=readme.pdf licence=cc-by-nc-sa
+
+\definecolumnset[example][n=2]
+
+\setupcolumnsetlines[example][1][1][-2]
+\setupcolumnsetlines[example][1][2][-4]
+\setupcolumnsetlines[example][2][1][-6]
+\setupcolumnsetlines[example][2][2][-6]
+\setupcolumnsetlines[example][3][1][-4]
+\setupcolumnsetlines[example][3][2][-2]
+
+\starttext
+
+\startcolumnset[example]
+
+   \dorecurse{15}{\fakewords{100}{200}\par}
+
+\stopcolumnset
+
+\stoptext

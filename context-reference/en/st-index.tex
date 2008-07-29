@@ -1,0 +1,23 @@
+\startcomponent st-nl-03
+
+\project manual
+
+\chapter[index]{Index}
+
+The pagenumbers refer to the chapter or paragraph that
+describes the topic. 
+
+\unprotect
+
+\placeregister
+  [index]
+  [\c!criterium=\v!all,
+   \c!distance=1em minus .25em,
+   \c!before={\blank[\v!line]},
+   \c!after={\blank[\v!line]},
+   \c!indicator=\v!yes,
+   \c!balance=\v!yes]
+
+\protect
+
+\stopcomponent

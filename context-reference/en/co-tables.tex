@@ -1,0 +1,1859 @@
+
+\startcomponent co-tables
+
+\environment contextref-env
+\product contextref
+
+\start
+
+\unprotect
+\def\exampletable
+  {\bgroup
+   \getvalue{\e!start\v!figure\e!text}[\v!left,\v!none][]{}{\getbuffer}
+   \setupwhitespace[\v!none]
+   \setuptyping[\c!before=,\c!after=]
+   \typebuffer
+   \getvalue{\e!stop\v!figure\e!text}
+   \egroup}
+\protect
+
+
+
+\setuptables
+  [VL=medium,
+   HL=medium]
+
+\chapter[tables]{Tables and tabulation}
+
+\section{Introduction}
+
+In \CONTEXT\ there are two methods of making tables. The
+method chosen depends on the fact if the table is a
+component of the running text or the complexity of the
+table.
+
+Originally \CONTEXT\ had only one table alternative based on
+the flexible, robust and complete macropackage \TABLE. We
+added some functionality to that macropackages on behalf of
+spacing, color and table splitting. This alternative is very
+powerful with table cells with little text.
+
+As soon as you want to typeset complete paragraphs in a table
+cell the alternative is inadequate because the width of the
+cells have to be set manually. Therefore we added the
+tabulation alternative. Tabulation is not that advanced yet
+but it is able to automatically divide the available
+width of the cells. Cells can be filled with complete
+paragraphs and the tabulation environment has no problems
+with pagebreaks.
+
+Both the table and the tabulation environment are discussed
+in this chapter. Because the definition of tables and
+tabulations differ not much they can be converted easily into
+each other. Many examples apply to both environments.
+
+\section{Tables}
+\index{tables}
+\macro{\tex{starttable}}
+\macro{\tex{starttables}}
+\macro{\tex{setuptables}}
+\macro{\tex{placetable}}
+\macro{\tex{FR}}
+\macro{\tex{LR}}
+\macro{\tex{MR}}
+\macro{\tex{SR}}
+\macro{\tex{NR}}
+\macro{\tex{AR}}
+\macro{\tex{NC}}
+\macro{\tex{FC}}
+\macro{\tex{MC}}
+\macro{\tex{LC}}
+\macro{\tex{LOW}}
+\macro{\tex{HL}}
+\macro{\tex{VL}}
+\macro{\tex{DL}}
+\macro{\tex{DC}}
+\macro{\tex{DR}}
+\macro{\tex{BL}}
+\macro{\tex{BC}}
+\macro{\tex{BR}}
+\macro{\tex{CL}}
+\macro{\tex{RL}}
+
+In (plain) \TEX\ there are a few options to construct
+tables, for example:
+
+\startbuffer
+\settabs 5\columns
+\+ The  & quick & brown & fox & jumps \cr
+\+ over & the   & lazy  & dog & !     \cr
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+or:
+
+\whitespace
+
+\startreality
+\getbuffer
+\stopreality
+
+These kind of commands are based on the \type {\halign}
+mechanism. In most macropackages tables are developed around
+this mechanism. In \CONTEXT\ we use the functionality of
+\TABLE\ by M.~Wichura. Although this macropackage is
+complete we decided to write a shell around this package.
+The most important reason was that we wanted to force users
+to work with a consistent spacing within tables without loss
+of the \TABLE\ functionality.\footnote {\TABLE\ commands are
+described in a seperate manual.}
+
+In due time we will develop a more flexible mechanism that
+is compatible with \TABLE\ and in which \METAPOST\
+functionality is integrated.
+
+\placetable
+  [here][tab:population]
+  {Growth of population.}
+\starttable[|l|l|]
+\HL
+\VL \bf year \VL \bf population \VL\SR
+\HL
+\VL 1500     \VL 0.90 \`a 1.00 million  \VL\FR
+\VL 1550     \VL 1.20 \`a 1.30 million  \VL\MR
+\VL 1600     \VL 1.40 \`a 1.60 million  \VL\MR
+\VL 1650     \VL 1.85 \`a 1.90 million  \VL\MR
+\VL 1670     \VL 0.95 million           \VL\MR
+\VL 1700     \VL 1.85 \`a 1.95 million  \VL\MR
+\VL 1730     \VL 2.12 million           \VL\MR
+\VL 1750     \VL 1.90 \`a 1.95 million  \VL\MR
+\VL 1770     \VL 2.11 million           \VL\MR
+\VL 1800     \VL 2.08 million           \VL\MR
+\VL 1820     \VL 2.20 million           \VL\LR
+\HL
+\stoptable
+
+We begin with an example of a very simple table in normal
+\TABLE\ coding. The table identified as als \in {table}
+[tab:population] was defined as follows:
+
+\starttyping
+\BeginTable
+\BeginFormat | l | l | \EndFormat
+\_
+| \bf year | \bf population | \\+22
+\_
+| 1500     | 0.90 \`a 1.00 million  | \\+20
+| 1550     | 1.20 \`a 1.30 million  | \\+00
+. ....     . ...................  . .....
+| 1800     | 2.08 million         | \\+00
+| 1820     | 2.20 million         | \\+02
+\_
+\EndTable
+\stoptyping
+
+We don't consider this as a transparent way of coding a
+table. Furthermore consistent spacing is far off since the
+user can alter every interline space at will. As most
+commands in \CONTEXT\ we enclose a table with \type
+{\start}||\type{\stop}||commands. These commands are used in
+stead of the \TABLE\ commands \type {\BeginTable}, \type
+{\EndTable}, \type {\BeginFormat} and \type {\EndFormat}.
+
+\showsetup{starttable}
+
+Between \setchars\ the column format is defined. Because
+\setchars\ may be used within the table definition
+\setchars\ other variations are possible:
+
+\starttyping
+\starttable[|l|l|]
+\starttable[{|l|l|}]
+\starttable{|l|l|}
+\stoptyping
+
+In \in {section} [plaatsblokken] we saw that the command
+\type {\placetable} gets a table as a last argument. When
+the command is used the way it is defined above, you will
+not need the curly braces around the table.
+
+Spacing deserves somewhat more attention. Below the
+definition of the \in {table} [tab:population] is
+given.\footnote {Source: Delta 2, Nederlands verleden in
+vogelvlucht, de nieuwe tijd: 1500 tot 1813, S.~Groenveld and
+G.J.~Schutte, Martinus Nijhoff Uitgevers, Leiden, 1992.}
+More advanced examples can be found in the \TABLE\ manual.
+
+\startexample
+\starttyping
+\placetable
+  [here][tab:population]
+  {Growth of population.}
+  \starttable[|l|l|]
+    \HL
+    \VL \bf year \VL \bf population \VL\SR
+    \HL
+    \VL 1500     \VL 0.90 \`a 1.00 million  \VL\FR
+    \VL 1550     \VL 1.20 \`a 1.30 million  \VL\MR
+    ... ....     ... ...................    ......
+    \VL 1800     \VL 2.08 million           \VL\MR
+    \VL 1820     \VL 2.20 million           \VL\LR
+    \HL
+  \stoptable
+\stoptyping
+\stopexample
+
+In the \CONTEXT\ interface for table definition \type {\HL}
+and \type {\VL} stand for Horizontal Line and Vertical Line.
+The other commands stand for Separate Row, First Row, Mid
+Row and Last Row.
+
+These commands can be compared with the active \TABLE\
+characters \type {|} and \type {"}, the spacing command
+\type {\\} and the line command \type {\-}.
+
+When keys like \type {s0} are used in the table
+specification we have to use spaces in the specification.
+For example:
+
+\starttyping
+\starttable[s0 |l|l|]
+\stoptyping
+
+In that case we use a space to end the number. We give some
+more examples below. When a table is not framed by (\type
+{\VL}), we may have to suppress undesired whitespace. The
+background of the tables illustrates the effect of the
+different location of \type {s0}.
+
+\start
+
+\setupfloat[figure][background=screen]
+
+\startbuffer
+\starttable[|l|l|]
+\NC first  \NC second \NC \SR
+\HL
+\NC alfa   \NC beta   \NC \FR
+\NC one    \NC two    \NC \LR
+\stoptable
+\stopbuffer
+
+\exampletable
+
+\startbuffer
+\starttable[s0 | c s1 | c s0 |]
+\NC first  \NC second \NC \SR
+\HL
+\NC alfa   \NC beta   \NC \FR
+\NC one    \NC two    \NC \LR
+\stoptable
+\stopbuffer
+
+\exampletable
+
+\startbuffer
+\starttable[o0 | c | c o0 |]
+\NC first  \NC second \NC \SR
+\HL
+\NC alfa   \NC beta   \NC \FR
+\NC one    \NC two    \NC \LR
+\stoptable
+\stopbuffer
+
+\exampletable
+
+\stop
+
+We may want to typeset tables like these:
+
+\startbuffer
+\starttable[ s0 | l w(6cm) | r s0 | l | ]
+\NC first weight (full can)   \NC 151,2 g \NC            \NC\FR
+\NC second weight (empty can) \NC  35,6 g \NC            \NC\LR
+\NC                           \NC \-      \NC~\Smash{--} \NC\NR
+\NC filled weighed t          \NC 115,6 g \NC            \NC\SR
+\stoptable
+\stopbuffer
+
+\getbuffer
+
+This table is defined by:
+
+\startexample
+\typebuffer
+\stopexample
+
+% hier werkte het nog %%%%%%%%%%%%%%%%%
+
+
+One or more table characteristics can be set up with:
+
+\showsetup{setuptables}
+
+The keys \type {HL} and \type {VL} refer to the line
+thickness. The tables in this manual are set with
+\type {VL=none} en \type {HL=medium}.
+
+\startbuffer
+\starttable[|c|c|]
+\HL
+\VL first \VL second \VL\SR
+\HL
+\VL first \VL second \VL\FR
+\VL first \VL second \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\placefigure
+  {The available line thicknesses in tables.}
+\startcombination[3*1]
+  {\setuptables[HL=small]\getbuffer}  {\type{HL=small}}
+  {\setuptables[HL=medium]\getbuffer} {\type{HL=medium}}
+  {\setuptables[HL=big]\getbuffer}    {\type{HL=big}}
+\stopcombination
+
+By means of \type{commands} specific parameters of \TABLE\
+itself can be defined, for example:
+
+\starttyping
+\setuptables[commands=\Expand]
+\stoptyping
+
+This results in a table with a width \type {\hsize}.
+
+The parameters \type {distance} and \type {bodyfont} relate
+to the commands mentioned earlier \type {\SR},
+\type {\FR}, \type {\MR} and \type {\LR}.
+
+\def\showtable[#1]%
+  {\def\doshowtable[##1]%
+     {\hbox to .25\hsize
+        {\hss
+         \setuptables[bodyfont=#1,distance=##1]%
+         \starttable[|c|c|]
+         \HL
+         \VL \TWO{\type{#1 - ##1}} \VL\SR
+         \HL
+         \VL \TeX \VL \TeX         \VL\FR
+         \VL \TeX \VL \TeX         \VL\MR
+         \VL \TeX \VL \TeX         \VL\LR
+         \HL
+         \stoptable
+         \hss}}%
+   \leavevmode\hbox
+      {\doshowtable[big]%
+       \doshowtable[medium]%
+       \doshowtable[small]%
+       \doshowtable[none]}}
+
+\showtable[10pt]
+
+\showtable[9pt]
+
+\showtable[8pt]
+
+Next to these commands we have \type {\DL} that stands for
+Division Line, \type {\DC} stands for Division Column and
+\type {\DR} stands for Division Row, while \type {\NC} is
+used to jump to the Next Column. We also use the command
+\type {\NR} that stands for Next Row.
+
+\startbuffer
+\starttable[|c|c|c|]
+\HL
+\VL alfa  \NC beta  \NC gamma \VL\SR
+\DC       \DL       \DC          \DR
+\VL beta  \VL gamma \VL alfa  \VL\SR
+\DC       \DL       \DC          \DR
+\VL gamma \NC alfa  \NC beta  \VL\SR
+\HL
+\stoptable
+\stopbuffer
+
+\exampletable
+
+The command \type {\DC} applies default to only one column
+and is equal to the \TABLE\ command \type {\=}. When we want
+to draw a multi column line we define that in the way that
+is shown in the example below.
+
+\startbuffer
+\starttable[|c|c|c|]
+\HL
+\VL \LOW{low} \VL \TWO{n/m} \VL\SR
+\DC           \DL[2]           \DR
+\VL           \VL n \VL m   \VL\SR
+\HL
+\VL alfa      \VL 1 \VL a   \VL\FR
+\VL alfa      \VL 2 \VL b   \VL\MR
+\VL alfa      \VL 3 \VL c   \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\exampletable
+
+In stead of \type {\TWO} we also could have used the
+\TABLE||command \type {\use2}. Because of our criterium of
+consistent spacing we can not replace \type {\LOW} by \type
+{\lower} in every situation.
+
+We show here another example of the use of \type {\DL}:
+
+\startbuffer
+\starttable[|l|c|c|]
+\DC        \DL[2]                   \DR
+\NC        \VL Mickey   \VL Goofy   \VL\SR \HL
+\VL Donald \VL $\star$  \VL         \VL\SR \HL
+\VL Pluto  \VL          \VL $\star$ \VL\SR \HL
+\stoptable
+\stopbuffer
+
+\exampletable
+
+In \in {table} [tab:tablecommands] the commands are
+summarized.
+
+\startbuffer[tab-1]
+\starttable[|l|l|]
+\HL
+\VL \bf command   \VL \bf meaning     \VL\SR
+\HL
+\VL \type{\FR}    \VL First Row       \VL\FR
+\VL \type{\LR}    \VL Last Row        \VL\MR
+\VL \type{\MR}    \VL Mid Row         \VL\MR
+\VL \type{\SR}    \VL Separate Row    \VL\MR
+\VL \type{\NR}    \VL No Row          \VL\MR
+\VL               \VL                 \VL\MR
+\VL \type{\AR}    \VL Auto Row        \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\startbuffer[tab-2]
+\starttable[|l|l|]
+\HL
+\VL \bf command            \VL \bf meaning     \VL\SR
+\HL
+\VL \type{\NC}             \VL Next Column     \VL\FR
+\VL \type{\FC}             \VL First Column    \VL\MR
+\VL \type{\MC}             \VL Mid Column      \VL\MR
+\VL \type{\LC}             \VL Last Column     \VL\MR
+\VL                        \VL                 \VL\MR
+\VL \type{\LOW}\arg{text}  \VL Low Text        \VL\MR
+\VL                        \VL                 \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\startbuffer[tab-3]
+\starttable[|l|l|]
+\HL
+\VL \bf command   \VL \bf meaning     \VL\SR
+\HL
+\VL \type{\HL}    \VL Horizontal Line \VL\FR
+\VL \type{\VL}    \VL Vertical Line   \VL\MR
+\VL               \VL                 \VL\MR
+\VL \type{\DL}    \VL Division Line   \VL\MR
+\VL \type{\DL[n]} \VL Division Line n \VL\MR
+\VL \type{\DC}    \VL Division Column \VL\MR
+\VL \type{\DR}    \VL Division Row    \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\placetable
+  [here][tab:tablecommands]
+  {Table||commands.}
+  \startcombination[3*1]
+    {\getbuffer[tab-1]} {}
+    {\getbuffer[tab-2]} {}
+    {\getbuffer[tab-3]} {}
+  \stopcombination
+
+You could ask yourself whether determining inter line
+spacing within a table should be done manually or
+automatically. We would say automatically. In the first
+place this reduces the chance for errors. And in the second
+place \TEX\ can do the job for us. The commands \type
+{\SR}, \type {\FR} etc. are a consequence of \TABLE\
+mechanism that was not strict enough for us. Instead of
+providing these spacing commands yourself, you can use
+\type {\AR} and rely on \CONTEXT\ to sort out the spacing
+as good as possible.
+
+
+\placetable
+  [here][tab:registers]
+  {Registration (valves) at the base||side of the Schnitke
+   organ in Zwolle.}
+  {\externalfigure[tables/registers-buffer][width=\textwidth]}
+
+In \in {table} [tab:registers] we used \type {\AR}. The
+definition of this table looks likes this.
+
+\startexample
+\typebuffer
+\stopexample
+
+This mechanism works with rules too, as is demonstrated in
+\in {table} [tab:registers].
+
+\startbuffer
+\starttable[|||||||||B|]
+\HL
+\NC\bf8\NC\bf7\NC\bf6\NC\bf5\NC\bf4\NC\bf3\NC\bf2\NC\bf1\NC   \NC\AR
+\HL
+\NC    \NC  8 \NC    \NC  2 \NC  4 \NC  3 \NC  8 \NC    \NC A \NC\AR
+\NC  8 \NC  1+\NC  2 \NC  4 \NC  4 \NC  6 \NC  8 \NC HZ \NC B \NC\AR
+\NC    \NC  2 \NC  8 \NC 32 \NC  2 \NC  8 \NC 16 \NC HB \NC C \NC\AR
+\NC  8 \NC 16 \NC    \NC  2 \NC  4 \NC  8 \NC 16 \NC HR \NC D \NC\AR
+\NC    \NC  8 \NC    \NC    \NC  4 \NC  4 \NC  8 \NC PH \NC E \NC\AR
+\HL
+\stoptable
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+At the moment the commands \type {\FC}, \type {\MC} and
+\type {\LC} are equivalent to \type {\NC}, but in the future
+they may show additional functionality.
+
+\placetable
+  [here][tab:voetmaten]
+  {The pitch of the registrations (valves) at the
+   base||side of the Schnitke organ in Zwolle.}
+  {\getbuffer}
+
+\section{Color in tables}
+\index{color+tables}
+\index{tables+color}
+
+The macros that work in the background are rather complicated
+but the mechanism for color in tables is this:
+
+\startitemize[n,packed]
+\item draw a thick horizontal line
+\item jump back vertically
+\item set the textline
+\stopitemize
+
+The height and depth of the drawn line have to be equal to
+that of the textline which accurately defined. We do not
+have to bother ourselves with the width because \TEX\ does
+that for us. The necessary commands fall back on the command
+\type {\noalign}.
+
+The commands to make the cell backgrounds grey or colored
+look like the commands to draw Division Lines (see
+\in{table}[tab:colored cells]).
+
+\placetable
+  [here][tab:colored cells]
+  {The table||commands to color cells.}
+\starttable[|l|l|]
+\HL
+\VL \bf command                      \VL \bf meaning       \VL\SR
+\HL
+\VL \type{\BL}                       \VL Background Line   \VL\FR
+\VL \type{\BL[n,type,specification]} \VL Background Line n \VL\MR
+\VL \type{\BC}                       \VL Background Column \VL\MR
+\VL \type{\BR}                       \VL Background Row    \VL\MR
+\VL \type{\CL[specification]}        \VL Color Line        \VL\MR
+\VL \type{\RL[specification]}        \VL Raster Line       \VL\LR
+\HL
+\stoptable
+
+The examples below illustrate the use of these commands. The
+lines where the backgrounds are specified {\em precede}
+those with the text. Note that just as with \type {\DL} the
+command automatically goes to the next column. So do not use
+more \type {\BC}'s than necessary.
+
+With \type {\BR} you recall the last specification. This
+command is followed by commands like \type {\SR} and \type
+{\FR} that give the height of the (yet to follow) textline.
+
+Optional backgrounds are \type {color} and \type {screen}.
+When no column is specified the commands are in effect over
+only one column. We start with some simple examples.
+
+\startbuffer
+\starttable[|c|c|]
+\BC      \BL         \SR
+\HL
+\VL test \VL test \VL\SR
+\HL
+\VL test \VL test \VL\FR
+\VL test \VL test \VL\MR
+\VL test \VL test \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\exampletable
+
+With \type {\BC} we go to column~1. With \type {\BL} we go
+to column~2 where a background is intended. At last we
+specify by \type {\SR} that the background should be used in
+a (still to follow) Separate Row. The space between the
+table columns is taken into account during the background
+generation.
+
+The reverse alternative is defined below. Keep in mind that
+we use \type {\BL} for skipping to the next column.
+
+\startbuffer
+\starttable[|c|c|]
+\BL                  \SR
+\HL
+\VL test \VL test \VL\SR
+\HL
+\VL test \VL test \VL\FR
+\VL test \VL test \VL\MR
+\VL test \VL test \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\exampletable
+
+Two or more adjourning cells get a background
+when the number of columns is specified:
+
+\startbuffer
+\starttable[|c|c|]
+\BL[2]               \SR
+\HL
+\VL test \VL test \VL\SR
+\HL
+\VL test \VL test \VL\FR
+\VL test \VL test \VL\MR
+\VL test \VL test \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\exampletable
+
+And here is another example.
+
+\startbuffer
+\starttable[|c|c|c|]
+\BL[3]                        \SR
+\HL
+\VL test \VL test \VL test \VL\SR
+\HL
+\VL test \VL test \VL test \VL\FR
+\VL test \VL test \VL test \VL\MR
+\VL test \VL test \VL test \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\exampletable
+
+\startbuffer
+\starttable[|c|c|c|]
+\BC      \BL[2]               \SR
+\HL
+\VL test \VL test \VL test \VL\SR
+\HL
+\VL test \VL test \VL test \VL\FR
+\VL test \VL test \VL test \VL\MR
+\VL test \VL test \VL test \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\exampletable
+
+\startbuffer
+\starttable[|c|c|c|]
+\BC      \BC      \BL         \SR
+\HL
+\VL test \VL test \VL test \VL\SR
+\HL
+\VL test \VL test \VL test \VL\FR
+\VL test \VL test \VL test \VL\MR
+\VL test \VL test \VL test \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\exampletable
+
+\startbuffer
+\starttable[|c|c|c|]
+\BC      \BL                  \SR
+\HL
+\VL test \VL test \VL test \VL\SR
+\HL
+\VL test \VL test \VL test \VL\FR
+\VL test \VL test \VL test \VL\MR
+\VL test \VL test \VL test \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\exampletable
+
+In the example below there seems to be a missing \type
+{\BC}. Note that there is \type {\BL} to jump to the next
+column.
+
+\startbuffer
+\starttable[|c|c|c|]
+\BL               \BL         \SR
+\HL
+\VL test \VL test \VL test \VL\SR
+\HL
+\VL test \VL test \VL test \VL\FR
+\VL test \VL test \VL test \VL\MR
+\VL test \VL test \VL test \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\exampletable
+
+\startbuffer
+\starttable[|c|c|c|]
+\BC      \BL                  \SR
+\HL
+\VL test \VL test \VL test \VL\SR
+\HL
+                           \BR\FR
+\VL test \VL test \VL test \VL\FR
+                           \BR\MR
+\VL test \VL test \VL test \VL\MR
+                           \BR\LR
+\VL test \VL test \VL test \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\exampletable
+
+Because \type {\SR} closes a line we do not
+have to specify \type {\BC}'s in the other columns.
+
+We complete these series of examples with a few wider
+tables.
+
+\startbuffer
+\starttable[|c|c|c|c|]
+\BC    \BL[r,0.7]    \BL[r,0.9] \SR
+\HL
+\VL aa \VL bb \VL cc \VL dd  \VL\SR
+\HL
+                             \BR\FR
+\VL aa \VL bb \VL cc \VL dd  \VL\FR
+                             \BR\MR
+\VL aa \VL bb \VL cc \VL dd  \VL\MR
+                             \BR\LR
+\VL aa \VL bb \VL cc \VL dd  \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\exampletable
+
+With \type {\BR} we recall the most recent specification so
+we do not have to specify each background separately. The
+spacing however should be specified.
+
+The first line in the example above could have been shorter:
+
+\starttyping
+\BC \RL[0.7] \RL[0.9] \SR
+\stoptyping
+
+You can use screens and colors in one table. Screens may also be
+specified in terms of colors. A screen with a greyshade
+$Gr=.9$ can be compared with a color with \kap {rgb}||values
+$r=g=b=.9$. Most of the time you can use color and some
+greyshades.
+
+\startbuffer
+\starttable[|c|c|c|c|]
+%\BC    \BL[r,0.8]    \BL[c,red] \SR
+\HL
+\VL aa \VL bb \VL cc \VL dd   \VL\SR
+\HL
+                              \BR\FR
+\VL aa \VL bb \VL cc \VL dd   \VL\FR
+                              \BR\MR
+\VL aa \VL bb \VL cc \VL dd   \VL\MR
+                              \BR\LR
+\VL aa \VL bb \VL cc \VL dd   \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+TODO: above table doesnt compile
+
+\exampletable 
+
+We can see that with \type {\BL} another background
+specification \type {r} or \type {c} is used. The same
+result is obtained with \type {screen} or \type {color}.
+Colors and screens can be used interchangeably.
+
+A row can be typeset with a background by means of
+\type {\RL} and \type {\CL}, without adding rownumbers.
+
+\startbuffer
+\starttable[|c|c|c|c|]
+                            \RL\FR
+\VL aa \VL bb \VL cc \VL dd \VL\FR
+\VL aa \VL bb \VL cc \VL dd \VL\MR
+                            \RL\MR
+\VL aa \VL bb \VL cc \VL dd \VL\MR
+\VL aa \VL bb \VL cc \VL dd \VL\LR
+\stoptable
+\stopbuffer
+
+\exampletable
+
+\startbuffer
+\starttable[|c|c|c|c|]
+%\CL[green]\FR
+\VL aa \VL bb \VL cc \VL dd \VL\FR
+\VL aa \VL bb \VL cc \VL dd \VL\MR
+\VL aa \VL bb \VL cc \VL dd \VL\MR
+\VL aa \VL bb \VL cc \VL dd \VL\LR
+\stoptable
+\stopbuffer
+
+\exampletable
+
+The next (specifications of) commands are equivalent:
+
+\starttyping
+\BL[c,...]  \BL[color,...]   \COLOR[...]
+\BL[r,...]  \BL[screen,...]  \SCREEN[...]
+\stoptyping
+
+The reader will have noticed that cells get a background
+even when no background is specified. These default
+backgrounds can be set up with:
+
+\starttyping
+\setuptables
+  [backgroundcolor=,
+   backgroundscreen=,
+   background=]
+\stoptyping
+
+The key \type {background} can get the value \type
+{color} or \type {screen}. The default value is \type
+{screen}. As a \type {backgroundcolor} you can specify the
+name of a color or as a \type {backgroundscreen} with
+a number between~0 and~1.
+
+Unfortunately the line mechanism is not that accurate.
+Whether the cause lies with \CONTEXT, \TEX\ or with the \kap
+{DVI}||drivers is unclear stil. It is important that the
+Horizontal Rules (\type {\HL}) are placed {\em after} the
+background is set otherwise the background becomes
+foreground and part of the line will disappear. The earlier
+examples show how to specify correct; the example below
+shows how it is {\em not} done.
+
+\startbuffer
+\starttable[|c|c|c|c|]
+%\BC    \BL[c,green]  \BL[c,red] \SR
+\HL
+\VL aa \VL bb \VL cc \VL dd   \VL\SR
+                              \BR\FR
+\HL
+\VL aa \VL bb \VL cc \VL dd   \VL\FR
+                              \BR\MR
+\VL aa \VL bb \VL cc \VL dd   \VL\MR
+                              \BR\LR
+\VL aa \VL bb \VL cc \VL dd   \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\exampletable
+
+In none of the examples thusfar we see two adjacent colored
+columns. The reason is that this is not possible without
+complex constructions. One solution is using dummy||columns:
+
+\startbuffer
+\starttable[|c||c||c|]
+%\BL[c,green] \BL[c,red]         \FR
+\NC aa    \NC\NC bb \NC\NC cc \NC\FR
+                              \BR\MR
+\NC aa    \NC\NC bb \NC\NC cc \NC\MR
+                              \BR\LR
+\NC aa    \NC\NC bb \NC\NC cc \NC\LR
+\stoptable
+\stopbuffer
+
+\exampletable
+
+We see that the distance between columns is somewhat too
+big. We solve that by adapting the \TABLE||variables \type
+{\InterColumn...}. The alternative of using \type {\-} in
+stead of \type {\=} is rejected, because the results are
+rather poor.
+
+You are free to experiment on this issue. The example shows
+that we can fool the mechanism. In this case all textlines
+must end with \type {\SR}.
+
+\startbuffer
+\starttable[|c|c|c|]
+%\BL[c,green] \BL[c,red]  \MR
+\NC aa  \NC bb \NC cc \NC\SR
+                      \BR\MR
+\NC aa  \NC bb \NC cc \NC\SR
+                      \BR\MR
+\NC aa  \NC bb \NC cc \NC\SR
+\stoptable
+\stopbuffer
+
+\exampletable
+
+We also see some extra text in this table. We can avoid
+extra spaces with the command \type {\tracetablesfalse}.
+Default interline inconsistencies are reported during
+document generation.
+
+Next to the Format Keys from \TABLE\ the Format Key \type
+{K} is available that results in typesetting the text in
+that column in capitals (\type {\kap}). In addition to \type
+{n} and \type {N} there are \type {q} and \type {Q}. This
+command is meant for aligning numbers and it works with
+commas in stead of dots.
+
+\startexample
+\starttyping
+\starttable[{| l k | q[3,4] | Q[2,1] | c |}]
+.......
+\stoptable
+\stoptyping
+\stopexample
+
+In this situation we use an extra set of \argchars\ to
+prevent any problems. The use of those are explained in the
+\TABLE\ manual.
+
+\section{Tables with identical layouts}
+\index{tables+templates}
+\index{templates+table}
+
+Integrating hundreds of tables is for \TEX\ hardly a
+problem. Definition of these tables is a formidable job.
+When tables have comparable formats its obvious to specify
+common elements only once. The next example will show how it
+works. First we define the table layout:
+
+\startbuffer[template]
+\definetabletemplate[demo][|r|l|]
+\stopbuffer
+
+\typebuffer[template]
+
+\getbuffer[template]
+
+The template, with the name \type {demo}, can be used in the
+table definition:
+
+\startbuffer
+\starttable[demo]
+\VL left \VL right \VL\AR
+\VL over \VL under \VL\AR
+\stoptable
+\stopbuffer
+
+\exampletable
+
+and
+
+\startbuffer
+\starttable[demo]
+\VL left \VL right \VL\AR
+\VL over \VL under \VL\AR
+\stoptable
+\stopbuffer
+
+\exampletable
+
+We can redefine such a table layout. Next to the layout we
+can specify the table head and tail.
+
+\startbuffer[template]
+\definetabletemplate[demo][|r|l|][demo head][demo tail]
+\stopbuffer
+
+\typebuffer[template]
+
+\getbuffer[template]
+
+The head and tail are defined separately:
+
+\startbuffer[template]
+\starttablehead[demo head]
+\HL   \VL this \VL that \VL\AR   \HL
+\stoptablehead
+
+\starttabletail[demo tail]
+\HL
+\stoptabletail
+\stopbuffer
+
+\typebuffer[template]
+
+\getbuffer[template]
+
+The table we defined earlier looks like this:
+
+\exampletable
+
+The core of this mechanism is the command:
+
+\showsetup{definetabletemplate}
+
+\section{Splitting tables}
+\index{tables+splitting}
+
+Like the title of this section says: tables can be split.
+Results of splitting tables is satisfactory but the
+mechanism is not 100\% waterproof. A table will be split at
+a pagebreak when you use \type {\starttables} in stead of
+\type {\starttable}
+
+\showsetup{starttables}
+
+The table head and tail are defined in the way described in
+the last section.
+
+\startexample
+\starttyping
+\starttablehead
+  ...
+\stoptablehead
+
+\starttabletail
+  ...
+\stoptabletail
+\stoptyping
+\stopexample
+
+Off course you can also use head and tail definitions that
+are defined globally in combination with a specified table
+layout. It may be necessary to number a split table. The
+next command will do that.
+
+\showsetup{splitfloat}
+
+We may have specified the next splitable table:
+
+\startbuffer
+\startbuffer
+\starttablehead
+\HL \VL Greec \VL Latin \VL\AR \HL
+\stoptablehead
+
+\starttabletail
+\HL
+\stoptabletail
+
+\starttables[|mc|c|]
+\VL \alpha \VL a \VL\AR
+\VL \beta  \VL b \VL\AR
+    ...        .
+\VL \zeta  \VL z \VL\AR
+\stoptables
+\stopbuffer
+\stopbuffer
+
+\typebuffer
+
+Because we stored the table in a buffer we specify the table
+in the following way:
+
+\starttyping
+\splitfloat
+  {\placetable[here][tab:demo]{A demo table.}}
+  {\getbuffer}
+\stoptyping
+
+And the result will be:
+
+\splitfloat
+  {\placetable[here][tab:demo]{A demo table.}}
+  {\getbuffer}
+
+Set ups can be added as a first optional argument. One of the
+parameters is \type {lines}, with which you reserve space
+for the caption and vertical spacing. Default the value is~3.
+
+\showsetup{setupfloatsplitting}
+
+The parameter \type {conversion} is used for the
+subnumbering of the subtables. Every subtable automatically
+gets a subnumber. The parameter \type {conversion} takes
+care of its representation (1, 2, 3 -- a, b, c -- I, II, III
+-- etc.).
+
+
+\section{Tabulation}
+\index{tabulation}
+\index{tables+running text}
+\macro{\tex{starttabulate}}
+\macro{\tex{definetabulate}}
+\macro{\tex{setuptabulate}}
+
+The second mechanism for generating tabular information
+is tabulation. We will see that the specification of
+tabulations does not differ much from that of tables.
+
+Tabular information can be found in the running text and the
+location of that information is fixed (i.e. it is not allowed
+to float like tables and figures).
+
+The tabulation mechanism is meant for that tabular
+information in which cells may contain information with more
+that one paragraph. However the table and tabular mechanism
+can be used indifferently we advise you to use them
+consistently because the spacing within the both mechanisms
+differ.
+
+The table commands form a layer around \TABLE, but the
+tabulation commands are written for \CONTEXT. The tabulation
+mechanism uses the same interface when possible. As we do in
+the table mechanism we use \type {\NC} as column separator
+and \type {\NR} as row separator.
+
+\startbuffer
+\starttabulate[|l|c|r|]
+\NC this and that \NC left and right \NC here and there \NC \NR
+\NC low and high  \NC up and down    \NC back and forth \NC \NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+The three commands \type {l}, \type {c} and \type {r} stand for:
+
+\starttabulate[|lT|p|]
+\NC l \NC left align  \NC \NR
+\NC c \NC center      \NC \NR
+\NC r \NC right align \NC \NR
+\stoptabulate
+
+There are spacing commands. These relate to
+one||line as well as multi||line (paragraphs) cells.
+
+\starttabulate[|lT|p|]
+\NC i\sl n \NC spacing left   \NC \NR
+\NC j\sl n \NC spacing right  \NC \NR
+\NC k\sl n \NC spacing around \NC \NR
+\stoptabulate
+
+The factor {\ttsl n} is applied to the unit of spacing which
+is default set at .5em (see \type {\setuptabulate}).
+
+\startbuffer
+\starttabulate[|l|k2c|r|]
+\NC this and that \NC left and right \NC here and there \NC \NR
+\NC low and high  \NC up and down    \NC back and forth \NC \NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+The width of a column is set with:
+
+\startbuffer
+\starttabulate[|lw(4cm)|w(4cm)l|r|]
+\NC this and that \NC left and right \NC here and there \NC \NR
+\NC low and high  \NC up and down    \NC back and forth \NC \NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+The most important reason for developing the tabulation
+mechanism lies in the fast that we wanted to be able to type
+set multi paragraph columns. A prerequisite was that we
+should be able to use the full width of the text body. This
+option is supported by:
+
+\starttabulate[|lT|p|]
+\NC w({\sl d}) \NC 1 line,   fixed width    \NC \NR
+\NC p({\sl d}) \NC paragraph, fixed width   \NC \NR
+\NC p          \NC paragraph, maximum width \NC \NR
+\stoptabulate
+
+In the next example the first column has an unknown width.
+The second column contains a left aligned paragraph with a
+width of 4~cm. The third column has a width of 2~cm and
+consists of one line. The last column contains a paragraph
+that occupies the remaining width.
+
+\starttyping
+\starttabulate[|l|p(4cm)l|w(2cm)|p|]
+...
+\stoptabulate
+\stoptyping
+
+A four column table with four paragraphs is specified with:
+
+\starttyping
+\starttabulate[|p|p|p|p|]
+...
+\stoptabulate
+\stoptyping
+
+In stead of specifying a body font in each cell we can
+specify them per column. In the next tabulation the
+definition is \type {[|lT|p|]}.
+
+\starttabulate[|lT|p|]
+\NC B \NC \bf boldface \NC \NR
+\NC I \NC \it italic   \NC \NR
+\NC R \NC \sl roman    \NC \NR
+\NC S \NC \sl slanted  \NC \NR
+\NC T \NC \tt teletype \NC \NR
+\stoptabulate
+
+Math is possible with:
+
+\starttabulate[|lT|p|]
+\NC m \NC in||line math \NC \NR
+\NC M \NC display  math \NC \NR
+\stoptabulate
+
+With the letter \type {f} we can specify a body font, like
+\type {f\bs}. There are also the following commands:
+
+\starttabulate[|lT|p|]
+\NC f\tex{command} \NC font specification                \NC \NR
+\NC b\arg{..}      \NC place \type{..} before the entry  \NC \NR
+\NC a\arg{..}      \NC place \type{..} after the entry   \NC \NR
+\NC h\tex{command} \NC apply  \tex{command} on the entry \NC \NR
+\stoptabulate
+
+The \type{h}||command (hook) allows some tricks like:
+
+\startbuffer
+\starttabulate[|w(2cm)h\inframed|b{(}a{)}|p|]
+\HC {Uggly}     \NC isn't it?       \NC he says.     \NC \NR
+\HC {Beautiful} \NC but meaningless \NC I would say. \NC \NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer
+
+Because we use \type {\inframed} the frame remains within the
+line. The command applies only to the cells that are
+preceded by \type {\HC}. The \arg{} are important because
+\type {\inframed} expects these.
+
+\getbuffer
+
+We can use \type {h} for alternative situations, like:
+
+\startbuffer
+\unexpanded\def\SmallDash#1{\blackrule[width=#1em]}
+\starttabulate[|l|lh\SmallDash|]
+\HL
+\NC \bf item \NC \bf number \NC \NR
+\HL
+\NC figures  \HC  {5}       \NC \NR
+\NC tables   \HC  {8}       \NC \NR
+\NC formulas \HC {12}       \NC \NR
+\HL
+\stoptabulate
+\stopbuffer
+
+\getbuffer
+
+All three cells are adapted. Do not forget the \arg{} in
+the column with the numbers!
+
+\typebuffer
+
+We used \type {\NC} as a column separator but an alternative
+is \type {\EQ} that places a specified character.
+
+\startbuffer
+\starttabulate
+\NC =||sign      \EQ a separator can be specified by altering the
+                     variable \type {EQ} \NC \NR
+\NC :||character \EQ default a colon is used but an equal sign
+                     is a reasonable alternative \NC \NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer
+
+This results in:
+
+\getbuffer
+
+We saw \type {\NC} for normal cell entries, \type {\EQ} for
+entries separated by a character and \type {\HC} for entries
+that are influenced by a command. There is also \type
+{\HQ} for a cell entry with a separator and a command. When
+no formatting is needed there are the commands: \type {\RC}
+and \type {\RQ}.
+
+\startbuffer
+\starttabulate[|*{4}{cBh\type|}]
+\NC     separator \NC normal \NC raw   \NC command \NC \NR
+\RC \bf yes       \HC {\EQ}  \HC {\RQ} \HC {\HQ}   \NC \NR
+\RC \bf no        \HC {\NC}  \HC {\RC} \HC {\HC}   \NC \NR
+\stoptabulate
+\stopbuffer
+
+\getbuffer
+
+This small tabulation shows all three alternatives. Here we
+have a tabulation with four centered columns, {\bf boldface}
+or \type {verbatim}, of which two cells have a different
+alignment. The table is coded as:
+
+\typebuffer
+
+The equal sign or any other character can be forced with the
+\type {e}~command in the definition.
+
+\starttabulate[|lT|p|]
+\NC e \NC sets a symbol in front of the next column \NC \NR
+\stoptabulate
+
+When several columns have an equal specification we can
+combine those specifications. Note that the number
+of~\type{|} must be correct.
+
+\startbuffer
+\starttabulate[|*{3}{k1pc|}]
+\NC this and that \NC left and right \NC here and there \NC \NR
+\NC low and high  \NC up and down    \NC back and forth \NC \NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer
+
+Here we typed $1+3\times1=4$ times a \type{|}.
+
+\getbuffer
+
+A better example of the automatic cell width determination
+is the next one.
+
+\startbuffer
+\starttabulate[|l|p|]
+\NC tables     \NC We use \type {\starttable} when we typeset tables
+                   but the exact location is not fixed and the
+                   information is allowed to float in the running
+                   text. \NC \NR
+\NC tabulation \NC The command \type {\starttabulate} is meant for
+                   tabular information that is part of the running text.
+                   The automatic calculation of the cell width
+                   is a feature in this mechanism. \NC \NR
+\stoptabulate
+\stopbuffer
+
+\getbuffer
+
+
+This tabulation was typed as:
+
+\typebuffer
+
+When no tabulation is specified it is assumed that
+\type{[|l|p|]} is wanted. To prevent typing the same
+specification all over again you can use the tabulation
+format definition command:
+
+\startbuffer
+\definetabulate[Three][|lB|lS|p|]
+
+\startThree
+\NC one \NC two  \NC three four five six seven eight nine ten eleven
+                     twelve thirteen fourteen fifteen and so on \NC \NR
+\stopThree
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+The tabulation commands can be summarized with:
+
+\showsetup{definetabulate}
+
+The first argument gives the tabulation a logical name. The
+second argument is optional and specifies the associated
+tabulations; later on we will give an example. The last
+argument specifies the cells.
+
+Then we have:
+
+\showsetup{starttabulate}
+
+In this command the first argument specifies the cells, the
+second and optional argument the set up.
+
+\showsetup{setuptabulate}
+
+The optional argument specifies the associated tabulations.
+When the parameter \type {indenting} is set at \type {yes},
+the width of the tabulations will adapt to the actual
+indent. In case of a \type {\start ... \stopnarrower}
+environment the left and right indent are taken into
+account. The parameter \type {unit} is used for the
+spacing commands~\type {i}, \type {j} and~\type {k}. The
+commands specified after the parameter \type {inner} are
+applied just in front of the first row and are effective in
+the whole tabulation.
+
+The possibilities for framing tabulations are limited. You
+can add horizontal lines with \type {\HL}. This command takes
+care of the vertical spacing as the next example
+illustrates:
+
+\startbuffer
+\starttabulate[|l|p|]
+\HL
+\NC small  \NC They say, small is beautiful.        \NC \NR
+\HL
+\NC medium \NC It seems that medium is the message. \NC \NR
+\HL
+\NC large  \NC Large T||shirts are always sold out. \NC \NR
+\HL
+\stoptabulate
+\stopbuffer
+
+\typebuffer
+
+When a pagebreak occurs in the middle of a tabulation the
+horizontal line is repeated automatically. Vertical spacing
+can be set by \type {\FL}, \type {\ML} and \type {\LL}.
+These commands stand for {\em first}, {\em middle} and {\em
+last line}.
+
+\getbuffer
+
+The spacing around the lines is related to the depth of a line.
+
+\starttyping
+\setuptabulate[distance={depth,medium}]
+\stoptyping
+
+There are different ways to adapt this set up, like:
+
+\starttyping
+\setuptabulate[distance=none]
+\setuptabulate[distance=big]
+\setuptabulate[distance={blank,small}]
+\setuptabulate[distance={1ex,medium}]
+\setuptabulate[distance=1cm]
+\stoptyping
+
+Tabulation is meant for the running text but it can also be
+used in a floating block. In that case the spacing around
+tabulation is suppressed. In the running text the actual
+whitespace and textwidth are taken into account.
+
+\startbuffer
+\starttabulate
+\NC You see? \NC As we can expect the width of a paragraph is adapted
+                 to the width of the text. And you can even put an
+                 itemize in such a cell.
+                 \startitemize[packed]
+                 \item like this
+                 \item or that
+                 \stopitemize \NC \NR
+\stoptabulate
+\stopbuffer
+
+\startitemize
+
+\item  This means that a tabulation within an itemization
+       is adapted to the indent.
+
+\getbuffer
+
+\item  This little table was defined like this:
+
+\typebuffer
+
+\stopitemize
+
+We can use and abuse tabulations to obtain some special
+effects. Vice versa common effects can be combined quite
+well with tabulations. The next, somewhat strange example
+will illustrate that.
+
+\startbuffer
+\starttabulate[|p(2cm)|p(4cm)|p|]
+\NC \startitemize[n,packed]
+    \item first \item second \item third
+    \stopitemize
+\NC \startitemize[packed][items=5,width=4em,distance=.5em]
+    \its this or that \its so and so \its here or there
+    \stopitemize
+\NC \startitemize[g,packed,broad]
+    \item alpha \item beta \item gamma
+    \stopitemize
+\NC\NR
+\stoptabulate
+\stopbuffer
+
+\getbuffer
+
+In these kind of situations we should set the itemization
+with the key \type {packed}.
+
+\typebuffer
+
+The content of a tabulation has some limitations, because
+\TEX\ first reads the complete table. These limitations
+relate to the macros that use \type {\catcode} adaptations.
+In normal situations you will not notice these limitations,
+only when you have typeset \TEX\ input with \TEX.
+
+While discussing tables we already saw a financial table.
+These kind of tables can best be set with the tabulation
+commands.
+
+\startbuffer
+\starttabulate[|l|r|]
+\NC not so much   \NC          1.220  \NC \NR
+\NC somewhat more \NC          5.186  \NC \NR
+\NC together      \NC \overbar{6.406} \NC \NR
+\stoptabulate
+\stopbuffer
+
+\getbuffer
+
+This tabulation was typed like this:
+
+\typebuffer
+
+As soon as we work with numbers there are several ways of
+alignment. Like in tables we can make use of~\type {~}, but
+we have to indicate the meaning of \type {~} explicitly.
+This is caused by the fact that we still want to use
+the~\type {~} within paragraphs as an non||hyphenatable space.
+
+\starttyping
+\starttabulate[|l|~c|]
+\NC this is less \NC ~12 \NC \NR
+\NC than that    \NC 185 \NC \NR
+\stoptabulate
+\stoptyping
+
+We return to the defining of categories of tabulations.
+An application of this option can be found in the commands
+that make up a legend with a formula.
+
+\starttyping
+\definetabulate [legend]       [|emj1|i1|mR|]
+\definetabulate [legend] [two] [|emj1|emk1|i1|mR|]
+\setuptabulate  [legend]       [unit=.75em,EQ={=}]
+\stoptyping
+
+After these definitions that are default in \CONTEXT\ we can
+type:
+
+\startbuffer
+\startlegend
+\NC w \NC the width of a box  \NC pt \NR
+\NC h \NC the height of a box \NC pt \NR
+\NC d \NC the depth of a box  \NC pt \NR
+\stoplegend
+\stopbuffer
+
+\typebuffer
+
+This very simple legend becomes this:
+
+\getbuffer
+
+An extra entry is possible when we add the key \type {two}:
+
+\startbuffer
+\startlegend[two]
+\NC w \NC width  \NC the width of a box  \NC pt \NR
+\NC h \NC height \NC the height of a box \NC pt \NR
+\NC d \NC depth  \NC de depth of a box   \NC pt \NR
+\stoplegend
+\stopbuffer
+
+\typebuffer
+
+This related tabulation inherits the set up of the original.
+We also could have defined \type {\startlegendtwo}, but the
+mentioned definition origins from the older functionality
+that was part of earlier \CONTEXT\ versions.
+
+\getbuffer
+
+In a similar way the commands for typesetting facts are
+defined.
+
+\starttyping
+\definetabulate [fact] [|R|ecmj1|i1mR|]
+\setuptabulate  [fact] [unit=.75em,EQ={=}]
+\stoptyping
+
+The first column is set in roman and the next column is
+separated by an equal sign. That second column is centered
+and is set in math mode. That column also has some more
+whitespace. The last column is also set in math mode but the
+characters are set in roman. Some whitespace is added.
+
+\startbuffer
+\startfact
+\NC width  \NC w \NC 48pt \NR
+\NC height \NC h \NC  9pt \NR
+\NC depth  \NC d \NC  3pt \NR
+\stopfact
+\stopbuffer
+
+\typebuffer
+
+This results in:
+
+\getbuffer
+
+In reality we also give a value to \type {inner} and then
+specifications as below are possible:
+
+\starttyping
+\startfact
+\\ width  \\ w \\ 48pt \\
+\\ height \\ h \\  9pt \\
+\\ depth  \\ d \\  3pt \\
+\stopfact
+\stoptyping
+
+We want to conclude with an example of an automatic
+calculation of the width of a paragraph. This command shows
+|<|and we already saw that in other examples|>| that the
+last \type {\NC} is redundant.
+
+\startbuffer
+\starttabulate[|Bl|p|Bl|]
+\NC Read Me \NC \input tufte \NC Edward Tufte \NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+As was said earlier \CONTEXT\ takes care of adequate page
+breaking in the middle of a tabulation. When we set \type
+{\tracetabulatetrue} red lines are drawn in positions where
+breaking is not allowed.
+
+\startbuffer
+\starttabulate[|c|p|p|]
+\NC \bf Alpha \NC \bf Beta    \NC \bf Gamma              \NC\NR
+\NC 1         \NC right indeed    \NC definitely wrong   \NC\NR
+\NC 2         \NC \thinrules[n=3] \NC \thinrules[n=3]    \NC\NR
+\NC 3         \NC oh yes          \NC simply no          \NC\NR
+\NC 4         \NC very true       \NC as false as can be \NC\NR
+\NC 5         \NC \thinrules[n=5] \NC \thinrules[n=5]    \NC\NR
+\NC 6         \NC \thinrules[n=3] \NC \thinrules[n=4]    \NC\NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer {\tracetabulatetrue\getbuffer}
+
+\startbuffer
+\starttabulate[|c|p|p|]
+\NC \bf Alpha \NC \bf Beta        \NC \bf Gamma          \NC\NR
+\NC 1         \NC right indeed    \NC definitely wrong   \NC\NR
+\NC 2         \NC oh yes          \NC simply no          \NC\NR
+\NC 3         \NC very true       \NC as false as can be \NC\NR
+\NC 4         \NC the whole truth \NC but the truth      \NC\NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer {\tracetabulatetrue\getbuffer}
+
+
+\section{Buffers and scaling}
+\index{tables+buffers}
+\index{tables+scaling}
+\macro{\tex{startbuffer}}
+\macro{\tex{getbuffer}}
+
+Very big tables combined with the floating block mechanism
+can be a confusing sight in the source file. The following
+alternative is recommended.
+
+\startexample
+\starttyping
+\startbuffer
+  ... table ...
+\stopbuffer
+
+\placetable{A title.}{\getbuffer}
+\stoptyping
+\stopexample
+
+In this way we can keep track of what happens. Another
+advantage is the fact that we can manipulate tables in this
+way (see \in {section} [tex figures]). A table that is too
+wide for the page width can be downscaled to that width.
+Here is an example:
+
+\startexample
+\starttyping
+\placetable
+  {Fits exactly.}
+  {\externalfigure[buffer][width=\textwidth]}
+\stoptyping
+\stopexample
+
+Default a figure \type {buffer} is defined as the standard
+buffer. \in {Table} [tab:registers] is type set in that way.
+
+\section{Remarks}
+
+Within \TABLE\ the bar has a special meaning just like the
+double quote. Within \CONTEXT\ we use \type {||} for
+combined words and other word related tricks. Furthermore
+German users want to use \type {"} as an umlaut trigger.
+Conflicts within the \TABLE\ mechanism are at hand and
+therefore both characters keep their original meaning. If
+you can not live without the \type {|} and \type {"} you can
+use the next command to make them behave the way that was
+meant in \TABLE. We do not recommend that.
+
+\startexample
+\starttyping
+\ObeyTableBarAndQuote
+\stoptyping
+\stopexample
+
+\stop
+
+(unfinished)
+
+\stopcomponent
+
+\section{Opmerkingen}
+
+Het kan voorkomen dat one (omvangrijke) tabel meerdere malen
+wordt gebruikt, echter in steeds iets andere vorm. Eenmaal
+bekend met de sterke kanten van \TEX, waaronder het kunnen
+defini\"eren van commando's, zal in dat geval de vraag
+opkomen of men kan volstaan met one definitie. Dat kan. Stel
+dat we de volgende tabel hebben gedefinieerd.
+
+\startbuffer
+\startbuffer[tabel]
+\ifton\starttable[|l|l|l|]\else\starttable[|l|l|]\fi
+\HL
+\ifhans \VL hans \VL hans \ifton \VL hans \fi         \VL\FR \fi
+        \VL test \VL test \ifton \VL ton  \fi \ifhans \VL\MR
+                                              \else   \VL\FR \fi
+        \VL test \VL test \ifton \VL ton  \fi         \VL\MR
+        \VL test \VL test \ifton \VL ton  \fi         \VL\LR
+\HL
+\stoptable
+\stopbuffer
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+In de file(s) waarin we deze tabel oproepen kunnen we deze
+tabel als volgt oproepen:
+
+\startexample
+\starttyping
+\newif\ifton
+\newif\ifhans
+
+\placetable {first variant} {\getbuffer[tabel]}
+\placetable {second variant} {\tontrue\getbuffer[tabel]}
+\placetable {derde variant}  {\hanstrue\getbuffer[tabel]}
+\placetable {vierde variant} {\tontrue\hanstrue\getbuffer[tabel]}
+\stoptyping
+\stopexample
+
+In het onderstaande overzicht geven we deze vier
+alternatieven naast elkaar weer.
+
+\newif\ifton
+\newif\ifhans
+
+\startlinecorrection
+\startcombination[4]
+  {\getbuffer\getbuffer[tabel]}
+    {\strut}
+  {\tontrue\getbuffer\getbuffer[tabel]}
+    {\tex{tontrue}}
+  {\hanstrue\getbuffer\getbuffer[tabel]}
+    {\tex{hanstrue}}
+  {\hanstrue\tontrue\getbuffer\getbuffer[tabel]}
+    {\tex{tontrue}\endgraf\tex{hanstrue}}
+\stopcombination
+\stoplinecorrection
+
+Met name bij wat meer gecompliceerde tabellen kan de behoefte
+bestaan one setup slechts eenmaal te hoeven defini\"eren. In
+deze behoefte is voorzien.
+
+\startexample
+\starttyping
+\def\standaardsetup%
+  {\starttable[|c|c|c|c|]}
+
+\starttable[standaardsetup]
+.....
+\stoptable
+\stoptyping
+\stopexample
+
+We herhalen dus \type {\starttable}! Dit maakt het mogelijk
+kopregels te defini\"eren, bijvoorbeeld
+
+\startexample
+\starttyping
+\def\standaardsetup%
+  {\starttable[|c|c|c|c|]
+   \HL
+   \NC a \NC b \NC c \NC d \NC\SR
+   \HL}
+
+\starttable[standaardsetup]
+.....
+\HL
+\stoptable
+\stoptyping
+\stopexample
+
+\stop
+
+\stopcomponent

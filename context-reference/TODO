@@ -1,0 +1,52 @@
+
+There is an enormous amount of work still to do. 
+
+The following official context manuals exist but have not been
+integrated yet (often there is no source in the repository at
+ctx.pragma-ade.nl):
+
+  * Installation 
+  * Texexec 
+  * Texutil
+  * Texfont
+  * MetaFun
+  * Chemistry (ppchtex)
+  * Chinese
+  * Texwork
+  * Metapost Outlines (makempy)
+  * XML (eXaMpLe)
+  * MathML
+  * MathML support
+  * Figure Databases
+  * StepCharts
+  * PhysML
+  * ChemML
+  * Widgets
+  * Charts (flowchart)
+  * Color Separation
+  * Example GUI
+  * It's in the details (details)
+  * Correspondence
+  * MPtoPDF
+  * SciTE in Context
+  * Texsync
+  * Xmldir
+  * foXet
+  * Aleph
+  * Typographic Programming (style)
+  * Preprocessing and Manipulating
+  * MkII / MKIV (mk)
+
+There are also the `magazines', and a number of useful articles by
+Hans that have been published in the maps journal only and do not
+exist in any other form.
+
+Besides these official Pragma publications, there are some other
+sources that should / could be included:
+
+  * The module documentation for the Bibliography module
+  * Various `My Way'-s and Wiki pages
+  * Texshow-web examples and explanations
+
+
+Taco 

@@ -1,0 +1,33 @@
+% content=tex
+%
+% copyright=pragma-ade readme=readme.pdf licence=cc-by-nc-sa
+
+\definecolumnset[example][n=4]
+
+\starttext
+
+\startcolumnset[example]
+
+\placefigure[btlr]{brlr}{\externalfigure[fake][width=\textwidth,lines=3]}
+\placefigure[btlr]{brlr}{\externalfigure[fake][width=\textwidth,lines=3]}
+\placefigure[btrl]{btrl}{\externalfigure[fake][width=\textwidth,lines=3]}
+\placefigure[btrl]{btrl}{\externalfigure[fake][width=\textwidth,lines=3]}
+\placefigure[tblr]{tblr}{\externalfigure[fake][width=\textwidth,lines=3]}
+\placefigure[tblr]{tblr}{\externalfigure[fake][width=\textwidth,lines=3]}
+\placefigure[tbrl]{tbrl}{\externalfigure[fake][width=\textwidth,lines=3]}
+\placefigure[tbrl]{tbrl}{\externalfigure[fake][width=\textwidth,lines=3]}
+
+\placefigure[lrbt]{lrbt}{\externalfigure[fake][width=\textwidth,lines=3]}
+\placefigure[lrbt]{lrbt}{\externalfigure[fake][width=\textwidth,lines=3]}
+\placefigure[lrtb]{lrtb}{\externalfigure[fake][width=\textwidth,lines=3]}
+\placefigure[lrtb]{lrtb}{\externalfigure[fake][width=\textwidth,lines=3]}
+\placefigure[rlbt]{rlbt}{\externalfigure[fake][width=\textwidth,lines=3]}
+\placefigure[rlbt]{rlbt}{\externalfigure[fake][width=\textwidth,lines=3]}
+\placefigure[rltb]{rltb}{\externalfigure[fake][width=\textwidth,lines=3]}
+\placefigure[rltb]{rltb}{\externalfigure[fake][width=\textwidth,lines=3]}
+
+\dorecurse{10}{\fakewords{50}{100}\par}
+
+\stopcolumnset 
+
+\stoptext

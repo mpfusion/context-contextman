@@ -1,0 +1,14 @@
+\setuppapersize     [A7][A3,negative,mirrored]
+\setuparranging     [2*8,rotated,doublesided]
+\setuppagenumbering [alternative=doublesided]
+\setuplayout        [margin=0pt,width=fit]
+\setupbackgrounds   [text][text][background=screen]
+\setupcolors        [state=start]
+\setuplayout        [location=middle,marking=color]
+\setuptolerance     [tolerant]
+\setupbodyfont      [lbr,6pt]
+
+\starttext 
+  \dorecurse{30}{\input tufte \par \input knuth \par} 
+\stoptext
+

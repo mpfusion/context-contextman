@@ -1,0 +1,826 @@
+% interface=en 
+
+\startcomponent co-pagedesign
+
+\input pagedesign/buffers
+
+\unprotect
+
+\def\ShowArrangementA#1#2%
+  {\page
+   \placefloat
+     [\v!figure]
+     {#2}
+     \startcombination
+       {\externalfigure[#1l]
+          [\c!width=.4\makeupwidth,
+           \c!framecolor=PlusColor,
+           \c!background=\v!screen,
+           \c!backgroundscreen=1,
+           \c!frame=\v!on]}
+       {\translate[nl=rechts,en=right]}
+       {\externalfigure[#1r]
+          [\c!width=.4\makeupwidth,
+           \c!framecolor=PlusColor,
+           \c!background=\v!screen,
+           \c!backgroundscreen=1,
+           \c!frame=\v!on]}
+       {\translate[nl=links,en=left]}
+     \stopcombination
+   \typefile{#1q}
+   \page}
+
+\def\ShowArrangementB#1#2%
+  {\page
+   \dimen0=\textheight
+   \advance\dimen0 by -15\openlineheight
+   \edef\LeftOver{\the\dimen0}%
+   \placefloat
+     [\v!figure]
+     {#2}
+     {\externalfigure[#1]
+        [\c!height=\LeftOver,
+         \c!framecolor=PlusColor,
+         \c!background=\v!screen,
+         \c!backgroundscreen=1,
+         \c!frame=\v!on]}
+   \typefile{#1}
+   \page}
+
+\protect
+
+\environment contextref-env
+\product contextref
+
+\chapter[pagedesign]{Page design}
+
+\section{Introduction}
+
+While processing a text \TEX\ makes use of the actual \type
+{\hsize} (width) and \type {\vsize} (height). As soon as
+\type {\vsize} is exceeded \TEX's output routine is
+launched. The output routine deals with the typeset part
+--- most of the time this will be a page. It takes care of
+typesetting the headers and footers, the page number, the
+backgrounds and footnotes, tables and figures. This rather
+complex process makes it obvious that the output routine
+actually makes use of more dimensions than \type {\hsize}
+and \type {\vsize}.
+
+\section[paperdimension]{Paper dimensions}
+\index{page design}
+\index{paper dimension}
+\macro{\tex{definepapersize}}
+\macro{\tex{setuppapersize}}
+
+With the command \type{\setuppapersize} the dimensions of
+the paper being used are defined. There is a difference
+between the dimensions for typesetting and printing. 
+
+\showsetup{setuppapersize}
+
+The dimensions of \kap{DIN} formats are given in
+\in{table}[tab:dindimensions].
+
+\placetable
+  [here][tab:dindimensions]
+  {Default paper dimensions.}
+\startcombination[2]
+  {\starttable[|c|c|]
+   \HL
+   \VL \bf format    \VL \bf size in mm \VL\SR
+   \HL
+   \VL {\type{A0}}   \VL $841 \times 1189$    \VL\FR
+   \VL {\type{A1}}   \VL $594 \times ~841$    \VL\MR
+   \VL {\type{A2}}   \VL $420 \times ~594$    \VL\MR
+   \VL {\type{A3}}   \VL $297 \times ~420$    \VL\MR
+   \VL {\type{A4}}   \VL $210 \times ~297$    \VL\LR
+   \HL
+   \stoptable} {}
+  {\starttable[|c|c|]
+   \HL
+   \VL \bf format \VL \bf size in mm \VL\SR
+   \HL
+   \VL {\type{A5}}   \VL $148 \times 210$    \VL\FR
+   \VL {\type{A6}}   \VL $105 \times 148$    \VL\MR
+   \VL {\type{A7}}   \VL $~74 \times 105$    \VL\MR
+   \VL {\type{A8}}   \VL $~52 \times ~74$    \VL\MR
+   \VL {\type{A9}}   \VL $~37 \times ~52$    \VL\LR
+   \HL
+   \stoptable} {}
+\stopcombination
+
+Other formats like \type {B0}||\type {B9} and \type
+{C0}||\type {C9} are also available. You could also use:
+\type {letter}, \type {legal}, \type {folio} and \type
+{executive}, \type {envelop 9}||\type {14}, \type {monarch},
+\type {check}, \type {DL} and \type {CD}.
+
+A new format can be defined by:
+
+\showsetup{definepapersize}
+
+For example \type{CD} was defined as:
+
+\startexample
+\starttyping
+\definepapersize[CD][width=12cm,height=12cm]
+\stoptyping
+\stopexample
+
+After defining \type{CD} you can type:
+
+\startexample
+\starttyping
+\setuppapersize[CD][A4]
+\stoptyping
+\stopexample
+
+This means that for typesetting \CONTEXT\ will use the
+newly defined size \type {CD}. The resulting, rather small
+page, is positioned on an \type{A4} paper size. This second
+argument is explained in detail later.
+
+\CONTEXT\ can also be used to produce screen documents. For
+that purpose a number of screen formats are available that
+relate to the screen dimensions. You can use:
+\type{S3}||\type{S6}. These generate screens with widths
+varying from 300 to 600 pt and a height of $3/4$ of the
+width.
+
+When one chooses another paper format than \type{A4}, the
+default settings are scaled to fit the new size.
+
+\section[margins]{Page composition}
+\index{margins}
+\index{layout}
+\index{frames}
+\index{set ups}
+\index{layout}
+\index{topspace}
+\index{backspace}
+\macro{\tex{setuplayout}}
+\macro{\tex{adaptlayout}}
+\macro{\tex{showframe}}
+\macro{\tex{showsetups}}
+\macro{\tex{showlayout}}
+
+In page composition we distinguish the main text area,
+headers and footers, and the margins (top, bottom, right and
+left). The main text flows inside the main text area. When
+defining a layout, one should realize that the header, text
+and footer areas are treated as a whole. Their position on
+the page is determined by the topspace and backspace
+dimensions (see \in {picture} [fig:typesetting area]). 
+
+\startpostponing
+
+\placefigure
+  [here]
+  [fig:typesetting area]
+  {The A4 typesetting area and margins
+   ($\hbox{height} = \hbox{header} +
+    \hbox{text} + \hbox{footer}$).}
+  {\getbuffer[fig-layo]}
+
+\stoppostponing
+
+\startbuffer
+\inleft  {\inframed[background=color,backgroundcolor=GrayColor,framecolor=FrameColor]{left}}%
+\inright {\inframed[background=color,backgroundcolor=GrayColor,framecolor=FrameColor]{right}}%
+\stopbuffer
+
+The header is located on top of the main text area, and the
+footer comes after it. Normally, in the header and footer
+page numbers and running titles are placed. The left
+and|/|or right margin are often used for structural
+components like marginal notes and|/|or chapter and section
+numbers. The margins are located in the backspace. Their
+{\getbuffer} width has {\em no} influence on the location
+of the typesetting area on the page. 
+
+On the contrary, the height of the header and footer
+influence the height of the text area. When we talk about
+the height, we mean the sum of the header, text and footer
+areas. When one occasionally hides the header or footer, 
+this guarantees a consistent layout. 
+
+The dimensions and location of all those areas are set up
+with \type{\setuplayout}. 
+
+\startpostponing
+\showsetup{setuplayout}
+\stoppostponing
+
+Setting up the left or right margin has no influence on the
+typesetting area. In paper documents this parameter is only
+of use when keywords or other text are placed in the margin
+(hyphenation).
+
+In paper documents it is sufficient to set up the height,
+header, footer, top space and back space. In electronic
+documents and screen documents however we need some room for
+navigational tools (see \in{chapter}[interaction]). In
+screen documents it is common practice to use backgrounds.
+Therefore it is also possible to set up the space between
+the text area and the header and footer on a page, and
+thereby visually separating those areas. 
+
+It is possible to trace the setting by using the following
+commands: 
+
+\showsetup{showframe}
+
+The dimensions can be displayed by:
+
+\showsetup{showsetups}
+
+A multi||page combination of both is generated with:
+
+\showsetup{showlayout}
+
+The width of a text is available as \type{\hsize} and the
+height as \type{\vsize}. To be on the safe side one can
+better use the \type{\dimen}||registers \type{\textwidth}
+and \type{\textheight}, \type{\makeupwidth} and
+\type{\makeupheight}.
+
+When we are typesetting in one column of text
+\type{\textwidth} and \type{\makeupwidth} are identical. In
+case of a two columned text the \type{\textwidth} is
+somewhat less than half the \type{makeupwidth}. The
+\type{\textheight} is the \type{\makeupheight} minus the
+height of the header and footer.
+
+\placetable{Some \type{\dimen} variables.}
+\starttable[|l|l|]
+\HL
+\VL \bf variable         \VL \bf meaning                  \VL\SR
+\HL
+\VL \type{\makeupwidth}  \VL width of a text              \VL\FR
+\VL \type{\makeupheight} \VL height of a text             \VL\MR
+\VL \type{\textwidth}    \VL width of a column            \VL\MR
+\VL \type{\textheight}   \VL height $-$ header $-$ footer \VL\LR
+\HL
+\stoptable
+
+There are also other dimensions available like \type
+{\leftmarginwidth} and \type {\footerheight}, but be aware
+of the fact that you can only use these variables, you can
+not set them up. The width of a figure could for instance be
+specified as \type {width=.9\leftmarginwidth}. 
+
+In principal documents are typeset automatically. However,
+in some cases the output would become much better if a line
+would be moved to another page. For these situations you can
+adjust the layout momentarily (just for that page) by
+typing:
+
+\showsetup{adaptlayout}
+
+The use of these commands should be avoided because if you
+alter your document the adjustment would not be necessary
+anymore. So, if you use this command, use it at the top of
+your document. For example: 
+
+\startexample
+\starttyping
+\adaptlayout[21,38][height=+.5cm]
+\stoptyping
+\stopexample
+
+The layout of page~21 and~38 will temporarily be 0.5~cm
+higher though the footer will be maintained at the same
+height. The numbers to be specified are the numbers in the
+output file.
+
+If the layout is disturbed you can reset the layout by:
+
+\startexample
+\starttyping
+\setuplayout[reset]
+\stoptyping
+\stopexample
+
+In some commands you can set up the parameters \type{width}
+and \type{height} with the value \type{fit}. In that case
+the width and height are calculated automatically.
+
+On the next pages we will show a number of \cap{A5} page
+layouts centered on an \cap{A4}. The default setups
+(dimensions) are adequate for standard documents like
+manuals and papers. The setup adjusts automatically to the
+paper size. Notice the use of \type{middle} while setting up
+the parameters width and height.
+
+%\ShowArrangementA {co-en-1} {The default text||on||page (single sided).}
+%\ShowArrangementA {co-en-2} {The default text||on||page (double sided).}
+%\ShowArrangementA {co-en-3} {The default text||on||page (single--double sided).}
+%\ShowArrangementA {co-en-4} {Automatically centered text||on||page.}
+%\ShowArrangementA {co-en-5} {A non symmetric text||on||page.}
+%\ShowArrangementA {co-en-6} {A text without \type{footerheight}.}
+%\ShowArrangementA {co-en-7} {A text placed on a grid.}
+
+\bgroup
+
+\setuplayout
+  [grid=yes]
+
+\showgrid
+
+\setupwhitespace
+  [line]
+
+\setupfootnotes
+  [location=columns,
+   rule=off,
+   background=screen,
+   frame=off,
+   framecolor=blue]
+
+\section[grids]{Grids}
+\index{grid}
+\index{linespace}
+\index{footnotes}
+\index{columns}
+\index{align}
+\macro{\tex{placeongrid}}
+\macro{\tex{moveongrid}}
+\macro{\tex{showgrid}}
+
+There are many ways to align text on a page. Look at the
+example below and notice the vertical alignment of the words
+and the white space between the words on the mini pages. 
+
+\placefigure{none}{\getbuffer[grid-1]}
+
+The first three alternatives result in an undesired output.
+The fourth alternative will lead to pages with unequal length.
+So we rather make the white space between the lines a little
+stretchable.\footnote{Hey, watch this. A footnote!}
+
+\placefigure{none}{\getbuffer[grid-2]}
+
+\startcolumns
+A stretchable line spacing has the disadvantage that lines of
+two pages or two columns that are displayed close to
+each other, will seldom align. This is very disturbing for a
+reader.\footnote{Here! Another footnote.}
+
+In those situations we prefer to typeset on a grid. The
+means to do this in \TEX\ are very limited but \CONTEXT\ has
+some features to support grid typesetting.\footnote{Finally,
+the last footnote!}
+\stopcolumns
+
+During typesetting on a grid the heads, figures, formulas
+and the running text are set on a fixed line spacing. If a
+typographical component for any reason is not placed on the
+grid one can snap this component to the grid with:
+
+\startbuffer
+\placeongrid{\framed{This is like a snapshot.}}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This will result in:
+
+\startreality
+\color[blue]{\getbuffer}
+\stopreality
+
+This mechanism can be influenced with an argument:
+
+\startbuffer
+\placeongrid[bottom]{\framed{Do you like the snapshot?}}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+Now an empty line will appear below the framed text.
+Other parameters are: \type{top} and \type{both}.
+The last parameter divides the linespace between over and
+below the framed text.
+
+\startbuffer
+\placeongrid[both]{\framed{Now the snapshot looks better.}}
+\stopbuffer
+
+\startreality
+\color[blue]{\getbuffer}
+\stopreality
+
+These examples don't show pretty typesetting. The reason is
+that \type{\framed} has no depth because \TEX\ handles
+spacing before and after a line in a different way than
+text. \CONTEXT\ has a solution to this:
+
+\startbuffer
+\startlinecorrection
+\framed{This is something for hotshots.}
+\stoplinecorrection
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+The command \type{\startlinecorrection} tries to typeset
+the lines as good as possible and takes the use of grid in
+account.
+
+\startreality
+\color[blue]{\getbuffer}
+\stopreality
+
+Because line correction takes care of the grid we have to use
+yet another command to stretch the framed text:
+
+\startbuffer
+\moveongrid[both]
+\startlinecorrection
+\framed{Anyhow it is good to know how this works.}
+\stoplinecorrection
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+As you can see this results in somewhat more space:
+
+\startreality
+\color[blue]{\getbuffer}
+\stopreality
+
+For test purposes one can display the grid with the command
+\type{\showgrid}. So grid related commands are:
+
+\showsetup{placeongrid}
+
+\showsetup{moveongrid}
+
+\showsetup{showgrid}
+
+\page
+\setuplayout[grid=no]
+\egroup
+
+\section[printing]{Printing}
+\index{printing}
+\macro{\tex{showprint}}
+
+In an earlier section we used page and paper dimensions. In
+this section we will discuss how these two can be manipulated
+to yield a good output on paper.
+
+\startpostponing
+
+\placefigure
+  [here][fig:page composition 1]
+  {Manipulating the page composition with \type{\setuplayout}.}
+  {\switchtobodyfont[7pt]\getbuffer[print-1]}
+
+\placefigure
+  [here][fig:page composition 2]
+  {Manipulating the page composition with \type{\setuppapersize}.}
+  {\switchtobodyfont[7pt]\getbuffer[print-2]}
+
+\stoppostponing
+
+In \in{figure}[fig:page composition 1] \in{and}[fig:page
+composition 2] we see some alternatives to manipulate the
+page composition by means of \type {\setuppapersize}
+and\type {\setuplayout}. So it is possible to put a page in
+a corner or in the middle of the paper, to copy a page and
+to use cutting marks.
+
+When the parameter papersize is set to \type{landscape}
+width and height are interchanged. This is not the same as
+rotation! Rotation is done by typing \type{90}, \type{180}
+and \type{270} in the first argument of
+\type{\setuppapersize}. 
+
+\startexample
+\starttyping
+\setuppapersize[A5,landscape][A4]
+\stoptyping
+\stopexample
+
+These examples don't show that we can correct for duplex
+printing. For example when we type:
+
+\startexample
+\starttyping
+\setuppapersize[A5][A4]
+\setuplayout[location=middle,marking=on]
+\stoptyping
+\stopexample
+
+the front and back side will be placed in the middle of the
+paper. The markings enable you to cut the paper at the
+correct size. If we only want to cut twice, we type:
+
+\starttyping
+\setupppapersize[A5][A4]
+\setuplayout[location=duplex]
+\stoptyping
+
+This has the same meaning as \type{{duplex,left}}. At this
+setup \CONTEXT\ will automatically move front and back side
+to the correct corner. In \in{figure}[fig:cut paper] we show
+both alternatives.
+
+\startbuffer
+\startcombination[4]
+  {\framed[width=2cm,height=3cm,offset=overlay]
+     {\hbox to \hsize
+        {\framed[width=1.5cm,height=2cm,background=screen]{}\hss}\vfill}}
+  {right}
+  {\framed[width=2cm,height=3cm,offset=overlay]
+     {\hbox to \hsize
+       {\hss\framed[width=1.5cm,height=2cm,background=screen]{}}\vfill}}
+  {left}
+  {\framed[width=2cm,height=3cm]
+     {\framed[width=1.5cm,height=2cm,background=screen]{}}}
+  {right}
+  {\framed[width=2cm,height=3cm]
+     {\framed[width=1.5cm,height=2cm,background=screen]{}}}
+  {left}
+\stopcombination
+\stopbuffer
+
+\placefigure
+  [here]
+  [fig:cut paper]
+  {Positioning the page on paper for cutting.}
+  {\getbuffer}
+
+Rotating, mirroring, scaling, duplicating and placing pages
+on paper are independent operations. By combining these
+operations the desired effects can be reached. Rotating and
+mirroring and page and paper size are set up at the same
+time. The other operations are set up with
+\type{\setuplayout}.
+
+\showsetup{showprint}
+
+You can use \type{\showprint} to get an idea of how your
+print will look. However, it is just a representation of the
+real page as is shown in the examples above.
+
+\startexample
+\starttyping
+\showprint[mirrored][90][location=middle]
+\stoptyping
+\stopexample
+
+\section{Arranging pages}
+\index{arranging}
+\index{inslagschemas}
+\macro{\tex{setuparrangin}}
+
+By means of \type{\setuplayout} one can arrange pages on a
+sheet of paper. A special arrangement for example is that
+for booklets.
+
+\showsetup{setuparranging}
+
+We will show some page arrangements on the next pages. If you
+want to understand how it really works you should try this
+yourself one day.
+
+\startpostponing
+
+\placefigure {The \type{2*8}   arrangement.} {\getbuffer[pag-16]}
+\placefigure {The \type{2*4}   arrangement.} {\getbuffer[pag-8]}
+\placefigure {The \type{2*2}   arrangement.} {\getbuffer[pag-4]}
+\placefigure {The \type{2UP}   arrangement.} {\getbuffer[pag-2up]}
+\placefigure {The \type{2DOWN} arrangement.} {\getbuffer[pag-2down]}
+
+\stoppostponing
+
+The next examples show the cooperation of the commands
+\type{\setuppapersize}, \type{\setuplayout} and
+\type{\setuparranging}. Notice how these tests were
+generated.
+
+%\ShowArrangementB {co-en-1p} {Arranging: 16.}
+%\ShowArrangementB {co-en-2p} {Arranging: negative mirrored 16.}
+%\ShowArrangementB {co-en-3p} {Arranging: 8.}
+%\ShowArrangementB {co-en-4p} {Arranging: 4.}
+%\ShowArrangementB {co-en-5p} {Arranging: 2UP (1).}
+%\ShowArrangementB {co-en-6p} {Arranging: 2UP (2).}
+%\ShowArrangementB {co-en-7p} {Arranging: 2DOWN.}
+
+\section[logo types]{Logo types}
+\index{logo types}
+\index{letter heads}
+\macro{\tex{definelogo}}
+\macro{\tex{placelogos}}
+
+It is possible to place for example company logos at the top
+or the bottom of a page. We show some examples on the next
+pages. It is advisable to define a command for typesetting a
+logo type.
+
+The location of a logo type is defined by:
+
+\start \showframe
+
+\showsetup{definelogo}
+
+All logo types with \type{state=start} are automatically
+typeset on the page. A logo can also be recalled by:
+
+\showsetup{placelogos}
+
+In that case only the listed logos are typeset.
+
+\startbuffer
+\definelogo
+  [logo a] [bottom] [left]
+  [command=left bottom]
+\definelogo
+  [logo d] [top] [left]
+  [command=left top]
+\definelogo
+  [logo g] [footer]  [left]
+  [command=left footer]
+\definelogo
+  [logo j] [header] [left]
+  [command=left header]
+
+\placelogos[logo a,logo b,logo c,logo d]
+\stopbuffer
+
+\getbuffer
+
+\definelogo
+  [logo b] [bottom] [middle]
+  [command=middle bottom]
+\definelogo
+  [logo e] [top] [middle]
+  [command=middle top]
+\definelogo
+  [logo h] [footer] [middle]
+  [command=middle footer]
+\definelogo
+  [logo k] [header] [middle]
+  [command=middle header]
+
+\definelogo
+  [logo c] [bottom] [right]
+  [command=right bottom]
+\definelogo
+  [logo f] [top] [right]
+  [command=right top]
+\definelogo
+  [logo i] [footer] [right]
+  [command=right footer]
+\definelogo
+  [logo l] [header] [right]
+  [command=right header]
+
+\placelogos
+  [logo a,logo b,logo c,logo d,logo e,logo f,
+   logo g,logo h,logo i,logo j,logo k,logo l]
+
+\setuppagenumbering
+  [location=inmargin,
+   state=stop]
+
+\setupfootertexts
+\setupheadertexts
+
+On this page a few potential locations of logos are shown.
+Temporarily headers and footers of this manual are
+suppressed. For example the left logo types are defined by
+means of:
+
+\startexample
+\typebuffer
+\stopexample
+
+Instead of \type{command} we could have chosen \type{text}.
+We define the logo with \type{command} because it is evident
+that we will use the logo more than once. The example is
+discussed below.
+
+First we define a command that generates a small logo.
+
+\startbuffer[a]
+\def\ContextLogo%
+  {\externalfigure[mp-cont.502][height=24pt,method=mps]}
+\stopbuffer
+
+\startbuffer[b]
+\definelogo
+  [small logo] [bottom] [middle]
+  [command=\ContextLogo,state=start]
+\stopbuffer
+
+\getbuffer[a]
+\getbuffer[b]
+
+\startexample
+\typebuffer[a]
+\stopexample
+
+If we want to set this logo at the bottom of every page
+we type:
+
+\startexample
+\typebuffer[b]
+\stopexample
+
+This logo is placed at the bottom of every page. In letters
+however the logos are located on different positions on the
+paper. Again, we define the bigger logo including all
+address information. Watch the use of \type{\framed}.
+
+\startbuffer
+\def\ContextLetterhead%
+  {\hbox
+     {\definefont[ContextFont][RegularBold sa 1.5]%
+      \ContextFont \setupinterlinespace
+      \setupframed
+        [align=middle,top=\vfill,bottom=\vfill,
+         height=10\bodyfontsize,offset=overlay,frame=off]%
+      \framed
+        {The\\Con\TeX t\\Chronicle}%
+      \externalfigure
+        [mp-cont.502][height=10\bodyfontsize]%
+      \framed
+        {Ridderstraat 27\\8061GH Hasselt NL\\pragma@wxs.nl}}}
+\stopbuffer
+
+\getbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+We also define the position on the paper:
+
+\startbuffer
+\definelogo
+  [big logo] [header] [right]
+  [command=\ContextLetterhead]
+\stopbuffer
+
+\getbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This letterhead logo should appear only on the first page. So
+we simply say: 
+
+\startbuffer
+\placelogos[big logo]
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+% \page \writestatus{CHECK}{TOP OF PAGE \the \realpageno} 
+
+\getbuffer
+
+\dorecurse{8}{\line{\strut}} % en of andere interferentie 
+
+You will notice that the smaller logo is not placed at the
+bottom of the page because the command \type {\placelogos}
+typesets only the listed logos and suppresses all other
+logos. 
+
+The big logo needs some space on this page so the content of
+the letter should be moved to a somewhat lower location. We
+do this with the command:
+
+\startexample
+\starttyping
+\blank[force,8\bodyfontsize]
+\stoptyping
+\stopexample
+
+\page
+\stop
+\setuplayout
+
+\placefigure
+  {The location of header, footer, bottom and top logos on a page.}
+  {\externalfigure[cont-yy][factor=broad,background=raster,
+     backgroundraster=1,frame=on,framecolor=PlusColor]}
+
+\chardef\logostatus=0 % make logos go away again
+
+\stopcomponent

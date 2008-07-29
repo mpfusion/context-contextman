@@ -1,0 +1,95 @@
+% engine=luatex
+
+\startproduct contextref
+
+\environment contextref-env
+
+\setupbackgrounds
+   [rightpage]
+   [background=]
+
+\startmakeup[standard][doublesided=no]
+  \setupalign[left]
+  \bft \setupspacing \setstrut
+  \strut Con\TeX t
+  \par
+  \bfe \strut reference manual
+  \setupspacing \setstrut
+  \vfill
+  \bfd \strut Hans Hagen, Taco Hoekwater
+  \par
+  \strut \currentdate
+\stopmakeup
+
+\startmakeup[standard][page=,doublesided=no]
+  \vfill
+
+  This document is typeset using \LUATEX. 
+
+  \blank
+
+  \TEX\ and \AMSTEX\ are trademarks of the American
+  Mathematical Society; \METAFONT\ is a trademark of
+  Addison||Wesley Publishing Company; PostScript, Portable
+  Document Format and Acrobat are trademarks of Adobe Systems
+  Incorporated;  all other product names are
+  trademarks of their producers.
+
+  \blank
+
+  \copyright 1991--2008 Pragma ADE, Taco Hoekwater
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.2
+  or any later version published by the Free Software Foundation;
+  with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+  A copy of the license is included in the section entitled `GNU
+  Free Documentation License'.
+
+ 
+\stopmakeup
+
+\startfrontmatter
+  \component st-contents % inhoudsopgave
+  \component co-preface % woord vooraf
+\stopfrontmatter
+
+\startbodymatter
+  \component co-introduction
+  \component co-documents 
+  \component co-pagedesign
+  \component co-layout 
+  \component co-typography
+  \component co-fonts
+  \component co-colorbackground
+  \component co-language
+  \component co-textelements
+  \component co-references
+  \component co-descriptions
+  \component co-frames
+  \component co-blocks
+  \component co-figures
+  \component co-tables
+  \component co-formulas
+ %\component co-en-17 % files
+ %\component co-en-18 % interactie
+ %\component co-en-21 % positioneren
+ %\component co-en-19 % eigen commando's
+ %\component co-en-20 % diversen
+  % stijl onwerp
+  % modules
+ %\component co-en-22 % instellingen
+ %\component co-en-23 % opmerkingen
+ %\component co-en-24 % achtergronden
+\stopbodymatter
+
+\startappendices
+  \component st-definitions
+  \component st-index
+  \component st-commands
+  \component pr-texmfstart
+  \component pr-copying
+ %\component pr-en-02 % texexec
+ %\component pr-en-03 % installatie
+\stopappendices
+
+\stopproduct

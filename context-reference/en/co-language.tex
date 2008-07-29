@@ -1,0 +1,820 @@
+\startcomponent co-language
+
+\environment contextref-env
+\product contextref
+
+\chapter[hyphenation,languages]{Language specific issues}
+
+\section{Introduction}
+
+One of the more complicated corners of \CONTEXT\ is the
+department that deals with languages. Fortunately users will
+seldom notice this, but each language has its own demands
+and we put quite some effort in making sure that most of the
+issues on hyphenation rules and accented and non latin
+characters could be dealt with. For as long as it does not
+violate the \CONTEXT\ user interface, we also support
+existing input schemes. 
+
+In the early days \TEX\ was very American oriented, but
+since \TEX\ version~3 there is (simultaneous) support for
+multiple languages. The input of languages with many accents
+|<|sometimes more accents per character|>| may look rather
+complicated, depending on the use of dedicated input
+encodings or special \TEX\ commands.  
+
+The situation is further complicated by the fact that
+specific input does not have a one||to||one relation with
+the position of a glyph in a font. We discussed this in \in
+{section}[encoding]. It is important to make the right
+choices for input and font encoding. 
+
+In this chapter we will deal with hyphenation and language
+specific labels. More details can be found in the language
+definition files (\type {lang-<<xxx>>}), the font files
+(\type{font-<<xxx>>}) and the encoding files (\type
+{enco-<<xxx>>}). There one can find details on how to define
+commands that deal with accents and special characters as
+covered in a previous chapter, sorting indexes, providing
+support for \UNICODE, and more. 
+
+\section{Automatic hyphenating}
+\index{languages}
+\index{hyphenation}
+\macro{\tex{taal}}
+\macro{\tex{nl}}
+\macro{\tex{en}}
+\macro{\tex{fr}}
+\macro{\tex{de}}
+\macro{\tex{sp}}
+
+Each language has its own hyphenation rules. As soon as you
+switch to another language, \CONTEXT\ will activate the
+appropriate set of hyphenation patterns for that language.
+Languages are identified by their official two character
+identifiers, like: Dutch (\type{nl}), English (\type{en}),
+German (\type{de}) and French (\type{fr}). A language is
+chosen with the following command: \footnote{In case of any
+doubt please check if the hyphenation patterns are included
+in the \type {fmt}||file.}
+
+\showsetup{language}
+
+Some short cut  commands are also available. They can be used
+enclosed in braces: 
+
+\startexample
+\starttyping
+\nl  \en  \de  \fr  \sp  \uk  \pl  \cz  ...
+\stoptyping
+\stopexample
+
+The command \type {\language[nl]} can be compared with
+\type {\nl}. The first command is more transparant. The two
+character commands may conflict with existing commands.
+Take, for example, Italian and the code for {\it italic}
+type setting. For this reason we use capitals for commands
+that may cause any conflicts. One may also use the full 
+names, like \type {czech}. 
+
+At any instance you can switch to another language. In the
+example below we switch from English to French and vice
+versa. 
+
+\startexample
+\typebuffer[messian]
+\stopexample
+
+We use these language switching commands if we cannot be
+certain that an alternative hyphenation pattern is
+necessary. 
+
+\startcolumns[n=4,,rule=on]
+\getbuffer[messian]
+\stopcolumns
+
+How far do we go in changing languages. Borrowed words like
+perestrojka and glasnost are often hyphenated okay, since
+these are Russian words used in an English context. When
+words are incorrectly hyphenated you can define an
+hyphenation pattern with the \TEX||command: 
+
+\startexample
+\starttyping
+\hyphenation{<<ab-bre-via-tion>>}
+\stoptyping
+\stopexample
+
+You can also influence the hyphenation in a text by 
+indicating the allowed hyphenation pattern in the word:
+at the right locations the command \type{\-}
+is added: \type{al}\type{\-}\type{lo}\type{\-}\type{wed}.
+
+\section{Definitions and setups}
+\macro{\tex{installlanguage}}
+\macro{\tex{setuplanguage}}
+
+When a format file is generated the hyphenation pattern one
+needs should be added to this file. The definition and
+installation of a language is therefore not transparant for
+the user. We show the process to give some insight in the
+mechanism. An example: \footnote {The somewhat strange name
+\type {\upperleftsinglesixquote} is at least telling us what
+the quote will look like.} 
+ 
+\starttyping
+\installlanguage
+  [en]
+  [spacing=broad,
+   leftsentence=---,
+   rightsentence=---,
+   leftsubsentence=---,
+   rightsubsentence=---,
+   leftquote=\upperleftsinglesixquote,
+   rightquote=\upperrightsingleninequote,
+   leftquotation=\upperleftdoublesixquote,
+   rightquotation=\upperrightdoubleninequote,
+   date={month,\ ,day,{,\ },year},
+   default=en,
+   state=stop] 
+\stoptyping
+
+and:
+
+\starttyping
+\installlanguage
+  [uk]
+  [default=en,
+   state=stop]
+\stoptyping
+
+With the first definition you define the language component.
+You can view this definition in the file \type
+{lang-ger.tex}, the german languages. Languages are arranged
+in language groups. This arrangement is of no further
+significance at the moment. Since language definitions are 
+preloaded, users should not bother about setting up such 
+files. 
+
+The second definition inherits its set up from the English
+installation. In both definitions \type {state} is set at
+\type {stop}. This means that no patterns are loaded yet.
+That is done in the files \type{cont-<<xx>>}, the language
+and interface specific \CONTEXT\ versions. As soon as \type
+{state} is set at \type {start}, a new pattern is loaded,
+which can only be done during the generation of a format
+file. 
+
+We use some conventions in the file names of the patterns
+\type {lang-xx.pat} and the exceptions \type {lang-xx.hyp}.
+Normally a language is installed with a two character code.
+However there are three character codes, like {deo} for
+hyphenating \quote {old deutsch} and \type {nlx} the Dutch
+extended characterset, or 8||bit encoding. On distributions 
+that come with patterns, the filenames mentioned can be mapped 
+onto the ones available on the system. This happens in the 
+file \type {cont-usr.tex}.  
+
+After installation you are not bound to the two character
+definitions. Default the longer (English) equivalents are
+defined: 
+
+\starttyping
+\installlanguage[german][de]
+\stoptyping
+
+\showsetup{installlanguage}
+
+\showsetup{setuplanguage}
+
+The setup in these commands relate to the situations that are
+shown below. 
+
+\startbuffer
+\currentdate
+|<|all right there we go|>|
+|<| |<|all right|>| there we go|>|
+|<|all right |<|there|>| we go|>|
+\quote{all right there we go}
+\quotation{all right there we go}
+\quotation{\quote{all right} there we go}
+\quotation{all right \quote{there} we go}
+\stopbuffer
+
+\typebuffer
+
+This becomes: 
+
+\startlines
+\getbuffer 
+\stoplines
+
+We will discuss \type{||} in one of the next sections.
+
+\section[datum]{Date}
+\index{date}
+\macro{\tex{currentdate}}
+\macro{\tex{date}}
+
+Typesetting a date is also language specific so we have to
+pay some attention to dates here. When the computer runs at
+the actual time and date the system date can be recalled
+with: 
+
+\showsetup{currentdate}
+
+The sequence in which \type {day}, \type {month} and \type
+{year} are given is not mandatory. The pattern \type
+{[day,month,year]} results in \currentdate [day,month,year].
+We use \type {\currentdate[weekday,month,day,{,},year]} to
+obtain \currentdate[weekday,month,day,{,},year]. 
+
+A short cut looks like this: \type {[dd,mm,yy]} and will
+result in \currentdate [dd,mm,yy]. Something like \type
+{[d,m,y]} would result in \currentdate [d,m,y] and with
+\type {[referral]} you will get a \currentdate [referral].
+Combinations are also possible. Characters can also be added
+to the date pattern. The date \currentdate [dd,--,mm,--,yy] is
+generated by the pattern \type {[dd,--,mm,--,yy]}. 
+
+A date can be (type|)|set with the command:
+
+\showsetup{date}
+
+The first (optional) argument is used to specify the date: 
+
+\startbuffer
+\date[d=10,m=3,y=1996][weekday,month,day, year]
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+When no argument is given you will obtain the actual date.
+When the second argument is left out the result equals that
+of \type {\currentdate}. The example results in: 
+
+\startreality
+\getbuffer
+\stopreality
+
+\section[labels]{Labels and heads}
+\index{labels}
+\index{heads}
+\macro{\tex{mainlanguage}}
+\macro{\tex{setuplabeltext}}
+\macro{\tex{setupheadtext}}
+\macro{\tex{labeltext}}
+\macro{\tex{headtext}}
+
+In some cases \CONTEXT\ will generate text labels
+automatically, for example the word {\bf Figure} is
+generated automatically when a caption is placed under a
+figure. These kind of words are called textlabels. Labels
+can be set with the command: 
+
+\showsetup{setuplabeltext}
+
+Relevant labels are: \type {table}, \type {figure}, \type
+{chapter}, \type {appendix} and comparable text elements. An
+example of such a set up is: 
+
+\startexample
+\starttyping
+\setuplabeltext[en][chapter=Chapter ]
+\setuplabeltext[nl][hoofdstuk=Hoofdstuk ]
+\stoptyping
+\stopexample
+
+The space after \type{Chapter} is essential, because
+otherwise the chapternumber will be placed right after the
+word Chapter (Chapter1 instead of Chapter~1). A labeltext
+can recalled with: 
+
+\showsetup{labeltext}
+
+Some languages, like Chinese, use split labels. These can be 
+passed as a comma separated list, like  \type
+{chapter={left,right}}. 
+
+Titleheads for special sections of a document, like
+abbreviations and appendices are set up with: 
+
+\showsetup{setupheadtext}
+
+Examples of titleheads are \type{Content}, \type{Tables},
+\type{Figures}, \type{Abbreviations}, \type{Index} etc. An
+example definition looks like: 
+
+\startexample
+\starttyping
+\setupheadtext[content=Content]
+\stoptyping
+\stopexample
+
+A header can be recalled with:
+
+\showsetup{headtext}
+
+Labels and titleheads are defined in the file \type
+{lang-<<xxx>>}. You should take a look in these files to
+understand the use of titleheads and labels. 
+
+The actual language that is active during document
+generation does not have to be the same language that is
+used for the labels. For this reason next to \type
+{\language} we have: 
+
+\showsetup{mainlanguage}
+
+When typesetting a document, there is normally one main
+language, say \type {\mainlanguage[en]}. A temporary switch
+to another language is then accomplished by for instance
+\type {\language[nl]}, since this does not influence the
+labels and titles. language. 
+
+\section{Language specific commands}
+\index{german}
+
+German \TEX\ users are accustomed to entering \type {"e} and
+getting \"e typeset in return. This and a lot more are
+defined in \type {lang-ger} using the compound character
+mechanism built in \CONTEXT. Certain two or three character
+combinations result in one glyph or proper hyphenation. The
+example below illustrates this. Some macros are used that
+will not be explained here. Normally, users can stick to 
+simply using the already defined commands. 
+
+\starttyping
+\startlanguagespecifics[de]
+  \installcompoundcharacter "a  {\moveaccent{-.1ex}\"a\midworddiscretionary}
+  \installcompoundcharacter "s  {\SS}
+  .....
+  \installcompoundcharacter "U  {\smashaccent\"U}
+  \installcompoundcharacter "Z  {SZ}
+  .....
+  \installcompoundcharacter "ck {\discretionary {k-}{k}{ck}}
+  \installcompoundcharacter "TT {\discretionary{TT-}{T}{TT}}
+  .....
+  \installcompoundcharacter "`  {\handlequotation\c!leftquotation}
+\stoplanguagespecifics
+\stoptyping
+
+The command \type {\installcompoundcharacter} takes care of
+the German type setting, \type {"a} is converted to {\de
+"a}, \type {"U} in {\de "U}, \type {"ck} for the right
+hyphenation, etc. One can add more definitions, but this will
+violate portability. In a Polish \CONTEXT\ the \type {/} is 
+used instead of a \type {"}. 
+
+\section{Automatic translation}
+\index{translate}
+\macro{\tex{translate}} 
+
+It is possible to translate a text automatically in the
+actual language. This may be comfortable when typesetting
+letterheads. The example below illustrates this. 
+
+\showsetup{translate}
+
+\startbuffer
+It depends on the actual language whether a labeltext is type set in 
+English {\en as an \translate [en=example, fr=exemple], \fr or in French
+as an \translate}.
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+The second command call \type{\translate} uses the applied
+values. That is, \type {\translate} with no options uses the 
+options of the last call to \type {\translate}.  
+
+\startreality
+\getbuffer
+\stopreality
+
+\section{Composed words}
+\index{hyphen}
+\macro{\tex{setuphyphenmark}}
+
+Words consisting of two separate words are often separated
+by an intra word dash, as in x||axis. This dash can be
+placed between \type{| |}, for example \type{|--|}. This
+command, which does not begin with a \texescape, serves
+several purposes. When \type{||} is typed the default intra
+word dash is used, which is \type{--}. This dash is set up
+with: 
+
+\showsetup{setuphyphenmark}
+
+The \type {| |} is also used in word combinations like
+(intra)word, which is typed as \type {(intra|)|word}. The
+mechanism is not foolproof but it serves most purposes. In
+case the hyphenation is incorrect you can hyphenate the
+first word of the composed one by hand: \type
+{(in\-tra|)|word}. 
+
+\placetable
+  {Hyphenation of composed words.}
+  {\getbuffer[hyph-1]}
+
+The main reason behind this mechanism is that \TEX\ doesn't
+really know how to hyphenate composed words and how to
+handle subsentences. \TEX\ know a lot about math, but far
+less about normal texts. Using this command not only serves
+consistency, but also makes sure that \TEX\ can break
+compound words at the right places. It also keeps boundary
+characters at the right place when a breakpoint is inserted. 
+
+\section{Pattern files manual}
+
+\todo{A large part of this section is obsolete}
+
+\TEX\ has two mysterious commands that the average user will never
+or seldom meet:
+
+\starttyping
+\hyphenation{as-so-ciates}
+\patterns   {.ach4}
+\stoptyping
+
+Both commands can take multiple strings, so in fact both commands
+should be plural. The first command can be given any time and can be
+used to tell \TEX\ that a word should be hyphenated in a certain
+way. The second command can only be issued when \TEX\ is in virgin
+mode, i.e.\ starting with a clean slate. Normally this only happens
+when a format is generated.
+
+The second command is more mysterious than the first one and its
+entries are a compact way to tell \TEX\ between what character
+sequences it may hyphenate words. The numbers represent weights and
+the (often long) lists of such entries are generated with a special
+program called \type {patgen}. Since making patterns is work for
+specialists, we will not go into the nasty details here.
+
+In the early stage of \CONTEXT\ development it came with its own
+pattern files. Their names started with \type{lang-} and their
+suffixes were \type {pat} and \type {hyp}.
+
+However, when \CONTEXT\ went public, I was convinced to drop those
+files and use the files already available in distributions. This was
+achieved by using the \CONTEXT\ filename remapping mechanism. Although
+those files are supposed to be generic, this is not always the case,
+and it remains a gamble if they work with \CONTEXT. Even worse,
+their names are not consistent and the names of some files as well
+as locations in the tree keep changing. The price \CONTEXT\ users
+pay for this is lack of hyphenation until such changes are noticed
+and taken care of. Because constructing the files is an uncoordinated
+effort, all pattern files have their own characteristics, most
+noticably their encoding.
+
+After the need to adapt the name mapping once again, I decided to
+get back to providing \CONTEXT\ specific pattern files. Pattern
+cooking is a special craft and \TEX\ users may call themselves
+lucky that it's taken care of. So, let's start with thanking all
+those \TEX\ experts who dedicate their time and effort to get
+their language hyphenated. It's their work we will build (and keep
+building) upon.
+
+In the process of specific \CONTEXT\ support, we will take care of:
+
+\startitemize
+\item consistent naming, i.e.\ using language codes when possible as
+      a prelude to a more sophisticated naming scheme, taking versions
+      into account
+\item consistent splitting of patterns and hyphenation exceptions in
+      files that can be recognized by their suffix
+\item making the files encoding independent using named glyphs
+\item providing a way to use those patterns in plain \TEX\ as well
+\stopitemize
+
+Instead of using a control sequence for the named glyphs, we use a
+different notation:
+
+\starttyping
+[ssharp] [zcaron] [idiaeresis]
+\stoptyping
+
+The advantage of this notation is that we don't have to mess with
+spacing so that parsing and cleanup with scripts becomes more robust. The
+names conform to the \CONTEXT\ way of naming glyphs and the names
+and reverse mappings are taken from the encoding files in the
+\CONTEXT\ distribution, so you need to have \CONTEXT\ installed.
+
+The \CONTEXT\ pattern files are generated by a \RUBY\ script. Although
+the converting is rather straightforward, some languages need special
+treatment, but a script is easily adapted. If you want a whole bunch of
+pattern files, just say:
+
+\starttyping
+ctxtools --patterns all
+\stoptyping
+
+or, if you want one language:
+
+\starttyping
+ctxtools --patterns nl
+\stoptyping
+
+If for some reason this program does not start, try:
+
+\starttyping
+texmfstart ctxtools --patterns nl
+\stoptyping
+
+When things run well, this will give you four files:
+
+\starttabulate[|l|p|]
+\NC \type{lang-nl.pat} \NC the patterns in an encoding indepent format \NC \NR
+\NC \type{lang-nl.hyp} \NC the hyphenation exceptions \NC \NR
+\NC \type{lang-nl.log} \NC the conversion log (can be deleted afterwards) \NC \NR
+\NC \type{lang-nl.rme} \NC the preambles of the files used (copyright notices and such) \NC \NR
+\stoptabulate
+
+If you redistribute the files, it makes sense to bundle the \type
+{rme} files as well, unless the originals are already in the
+distribution. It makes no sense to keep the log files on your
+system. When the file \type {lang-all.xml} is present, the info
+from that file will be used and added to the pattern and
+hyphenation files. In that case no \type {rme} and \type {log}
+file will be generated, unless \type {--log} is provided.
+
+In the Dutch pattern file you will notice entries like the
+following:
+
+\starttyping
+e[ediaeresis]n3
+\stoptyping
+
+So, instead of those funny (encoding specific) \type {^^fc} or
+(format specific) \type {\"e} we use names. Although this looks
+\CONTEXT\ dependent it is rather easy to map those names back to
+characters, especially when one takes into account that most
+languages only have a few of those special characters and we only
+have to deal with lower case instances.
+
+The \CONTEXT\ support module \type {supp-pat.tex} is quite generic and
+contains only a few lines of code. Actually, most of the code is
+dedicated to the simple \XML\ handler. Loading a pattern meant
+for EC encoded fonts in another system than \CONTEXT\ is done as
+follows:
+
+\starttyping
+\bgroup
+
+  \input supp-pat
+
+  \lccode"E4="E4  \definepatterntoken adiaeresis ^^e4
+  \lccode"F6="F6  \definepatterntoken odiaeresis ^^f6
+  \lccode"FC="FC  \definepatterntoken ediaeresis ^^fc
+  \lccode"FF="FF  \definepatterntoken ssharp     ^^ff
+
+  \enablepatterntokens
+  \enablepatternxml
+
+  \input lang-de.pat
+  \input lang-de.hyp
+
+\egroup
+\stoptyping
+
+In addition to this one may want to set additional lower and
+uppercase codes. In \ETEX\ these are stored with the language.
+
+Just for completeness we provide the magic command to generate
+the \XML\ variants:
+
+\starttyping
+ctxtools --patterns --xml all
+\stoptyping
+
+This will give you files like:
+
+\starttyping
+<?xml version='1.0' standalone='yes'?>
+
+<!-- some comment -->
+
+<patterns>
+... e&ediaeresis;n3 ...
+</patterns>
+\stoptyping
+
+This is also accepted as input but for our purpose it's probably
+best to stick to the normal method. The pattern language is a \TEX\
+specific one anyway.
+
+\section{Installing languages}
+
+Installing a language in \CONTEXT\ should not take too much effort
+assuming the language is supported. Language specific labels are
+grouped in \type {lang-*} files, like \type {lang-ger.tex} for the
+germanic languages.
+
+Patterns will be loaded from the files in the general \TEX\
+distribution unless \type {lang-nl.pat} is found, in which case
+\CONTEXT\ assumes that you prefer the \CONTEXT\ patterns. In that
+case, run
+
+\starttyping
+ctxtools --patterns all
+\stoptyping
+
+You need to move the files to the \CONTEXT\ base path that you can
+locate with:
+
+\starttyping
+textools --find context.tex
+\stoptyping
+
+You can also use \type {kpsewhich}, but the above method does an
+extensive search. Of course you can also generate the files on a
+temporary location. Now it's time to generate the formats:
+
+\starttyping
+texexec --make --all
+\stoptyping
+
+Since \XETEX\ needs patterns in \UTF-8 encoding, we provide a switch
+for achieving that:
+
+\starttyping
+texexec --make --all --utf8
+\stoptyping
+
+Beware: you need to load patterns for each language and encoding
+combination you are going to use. You can configure your local
+\type {cont-usr} file to take care of this. When an encoding does
+not have the characters that are needed, you will get an error.
+When using the non \CONTEXT\ versions of teh patterns this may go
+unnoticed because the encoding is hard coded in the file. Of
+course it will eventually get noticed when the hyphenations come
+out wrong.
+
+The \CONTEXT\ distribution has a file lang-all.xml that holds the
+copyright and other notes of the patterns. A discription looks like:
+
+\starttyping
+<description language='nl'>
+  <sourcefile>nehyph96.tex</sourcefile>
+  <title>TeX hyphenation patterns for the Dutch language</title>
+  <copyright>
+    <year>1996</year>
+    <owner> Piet Tutelaers (P.T.H.Tutelaers@tue.nl)</owner>
+    <comment>8-bit hyphenation patterns for TeX based upon the new
+      Dutch spelling, officially since 1 August 1996. These
+      patterns follow the new hyphenation rules in the
+      `Woordenlijst Nederlandse Taal, SDU Uitgevers, Den Haag
+      1995' (the so called `Groene Boekje') described in
+      section 5.2 (Het afbreekteken)</comment>
+  </copyright>
+</description>
+\stoptyping
+
+{\em This file is \quote {work in process}: more details will be added
+and comments will be enriched.}
+
+\section {Commands}
+
+You can at any moment add additional hyphenation exceptions to the
+language specific dictionaries. For instance:
+
+\starttyping
+\language[nl] \hyphenation{pa-tiën-ten}
+\stoptyping
+
+Switching to another language is done with the \type {\language}
+command. The document language is set with \type {\mainlanguage}.
+
+If you want to let \TEX\ know that a word should be hyphenated in a
+special way, you use the \type {\-} command, for instance:
+
+\starttyping
+Con\-TeXt
+\stoptyping
+
+Compound words are not recognized by the hyphenation engine, so there
+you need to add directives, like:
+
+\starttyping
+the ConTeXt|-|system
+\stoptyping
+
+If you are using \XML\ as input format, you need to load the
+hyphenation filter module. Here we assume that \UTF\ encoding
+is used:
+
+\starttyping
+\useXMLfilter[utf,hyp]
+\stoptyping
+
+In your \XML\ file you can now add:
+
+\starttyping
+<hyphenations language='nl' regime='utf'>
+  <hyphenation>pa-tiën-ten</hyphenation>
+  <hyphenation>pa-tiën-ten-or-ga-ni-sa-tie</hyphenation>
+  <hyphenation>pa-tiën-ten-plat-form</hyphenation>
+</hyphenations>
+\stoptyping
+
+This filter also defines some auxiliary elements. Explicit
+hyphenation points can be inserted as follows:
+
+\starttyping
+Zullen we hier af<hyphenate/>bre<hyphenate/>ken of niet?
+\stoptyping
+
+The compound token can be anything, but keep in mind that some
+tokens are treated special (see other manuals).
+
+\starttyping
+Wat is eigenlijk een patiënten<compound token="-"/>platform?
+\stoptyping
+
+A language is set with:
+
+\starttyping
+nederlands <language code="en">english</language> nederlands
+\stoptyping
+
+If you set attribute \type {scope} to \type {global}, labels (as
+used for figure captions and such) adapt to the language switch.
+This option actually invokes \type {\mainlanguage}.
+
+\section {Languages}
+
+When users in a specific language area use more than one font
+encoding, patterns need to be loaded multiple times. In theory
+this means that one can end up with more instances than \TEX\ can
+host. However, the number of sensible font encodings is limited as
+is the number of languages that need hyphenation. Now that memory
+is cheap and machines are fast, preloading a lot of pattern files
+is no problem. The following table shows the patterns that are
+preloaded in the version of \CONTEXT\ that is used to process this
+file.
+
+\fixme{\type{\showpatterns} doesn't exist anymore}
+
+% \showpatterns
+
+{\em In the (near) future the somewhat arcane \type {pl0} and \type
+{il2} encodings will go away since they are only used for Polish
+and Czech/Slovak computer modern fonts, which can be replaced by
+Latin Modern alternatives. Also, a new dense encoding may find its
+way into this list.}
+
+\section{Hyphenation}
+
+While hypenating, \TEX\ has to deal with ligatures as well. While
+Thomas, Taco and I were discussing the best ways to neutralize the
+ancient greek patterns, Taco Hoekwater came up with the following
+explanation.\footnote {Thomas Schmitz is responsible
+for the associated third party module.}
+
+\placefigure
+  [nonumber]
+  {The most common ligatures.}
+  {\startcombination[4*1]
+     {\scale[height=3\lineheight]{\color[AltColor]{fi}}}  {}
+     {\scale[height=3\lineheight]{\color[AltColor]{fl}}}  {}
+     {\scale[height=3\lineheight]{\color[AltColor]{ffi}}} {}
+     {\scale[height=3\lineheight]{\color[AltColor]{ffl}}} {}
+   \stopcombination}
+
+Any direct use of a ligature (as accessed by \type {\char} or
+through active characters) is wrong and will create faulty
+hypenation. Normally, when TeX sees \quote {office}, it has the
+six tokens \type {office} and it knows from the patterns that it
+can hyphenate  between the \type {ff}. It will build an
+internal list of four nodes, like this:
+
+\starttyping
+[char, o  , ffi ]
+[lig , ffi, c   ,[f,f,i]]
+[char, c  , e   ]
+[char, e  , NULL]
+\stoptyping
+
+As you can see from the \type {ffi} line, it has remembered the
+original characters. While hyphenating, it temporarily changes
+back to that, then re-instates the ligature afterwards.
+
+If you feed it the ligature directly, like so:
+
+\starttyping
+[char, o   , ffi ]
+[char, ffi , c   ]
+[char, c   , e   ]
+[char, e   , NULL]
+\stoptyping
+
+it cannot do that. It tries to hyphenate as if the \type{ffi}
+was a character, and the result is wrong hyphenation.
+
+
+\stopcomponent
+

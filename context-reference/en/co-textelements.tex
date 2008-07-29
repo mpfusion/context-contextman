@@ -1,0 +1,1056 @@
+\startcomponent co-en-09
+
+\environment contextref-env
+\product contextref
+
+\chapter[text elements]{Text elements}
+
+\section{Introduction}
+\index{structure}
+
+The core of \CONTEXT\ is formed by the commands that
+structures the text. The most common structuring elements
+are chapters and sections. The structure is visualized by
+means of titles and summarized in the table of contents.
+
+A text can be subdivided in different ways. As an
+introduction we use the methods of H.~van Krimpen,
+K.~Treebus and the Collectief Gaade. First we examine the
+method of van Krimpen:
+
+\startitemize[n,broad,columns,three]
+\item  French title
+\item  title
+\item  history \& copyright
+\item  mission
+\item  preface|/|introduction
+\item  \unknown
+\item  list of illustrations
+\item  acknowledgement
+\item  errata
+\item  the content
+\item  notes
+\item  literature
+\item  register(s)
+\item  colofon
+\stopitemize
+
+The French title is found at the same spread as the back of
+the cover, or first empty sheet. In the colofon we find the
+used font, the names of the typesetter and illustrator, the
+number of copies, the press, the paper, the binding, etc.
+
+The subdivision of Treebus looks like this:
+
+\startitemize[n,broad,columns,three]
+\item  French title
+\item  titlepage
+\item  colofon
+\item  copyright
+\item  mission
+\item  preface (1)
+\item  table of content
+\item  list of illustrations
+\item  introduction|/|preface (2)
+\item  \unknown
+\item  epilogue
+\item  appendices
+\item  summaries
+\item  notes
+\item  literature
+\item  used words
+\item  addenda
+\item  register
+\item  acknowledgement photos
+\item  (colofon)
+\stopitemize
+
+In this way of dividing a text the colofon is printed on the
+back of the titlepage. The first preface is written by
+others and not by the author.
+
+The last text structure is that of the Collectief Gaade:
+
+\startitemize[n,broad,columns,three]
+\item  French  title
+\item  series title
+\item  title
+\item  copyright
+\item  mission
+\item  blank
+\item  preface
+\item  table of content
+\item  introduction
+\item  \unknown
+\item  appendices
+\item  notes
+\item  list of illustrations
+\item  used words
+\item  bibliography
+\item  colofon
+\item  register
+\stopitemize
+
+Since there seems to be no standardized way of setting up a
+document, \CONTEXT\ will only provide general mechanisms.
+These are designed in such a way that they meet the following
+specifications:
+
+\startitemize[n]
+
+\item  In a text the depth of sectioning seldom exceeds
+       four. However, in a complex manuals more depth can be
+       useful. In paper documents a depth of six may be very
+       confusing for the reader but in electronic documents
+       we need far more structure. This is caused by the
+       fact that a reader cannot make a visual
+       representation of the electronic book. Elements to
+       indicate this structure are necessary to be able to
+       deal with the information.
+
+\item  Not every level needs a number but in the background
+       every level is numbered to be able to refer to these
+       unnumbered structuring elements.
+
+\item  The names given to the structuring elements must be
+       a logical ones and must relate to their purpose.
+
+\item  It is possible to generate tables of contents and
+       registers at every level of the document and they
+       must support complex interactivity.
+
+\item  A document will be divided in functional components
+       like introductions and appendices with their
+       respective (typographical) characteristics.
+
+\item  The hyphenation of titles must be handled correctly.
+
+\item  Headers and footers are supported based on the
+       standard labels used in a document. For example
+       \type{chapter} in a book and \type{procedure} in a
+       manual.
+
+\item  A \CONTEXT\ user must be able to design titles without
+       worrying about vertical and horizontal spacing,
+       referencing and synchronisation.
+
+\stopitemize
+
+These prerequisites have resulted in a heavy duty mechanism
+that works in the background while running \CONTEXT. The
+commands that are described in the following sections are an
+example of an implementation. We will also show examples of
+self designed titles.
+
+\section[subdivision,structuring]{Subdividing the text}
+\index{structure}
+\index{structuring elements}
+\index{parts}
+\index{chapters}
+\index{sections}
+\index{heads}
+\index{numbering+chapters}
+\index{titles}
+\index{marking}
+\index{headers+marking}
+\index{footers+marking}
+\macro{\tex{part}}
+\macro{\tex{chapter}}
+\macro{\tex{section}}
+\macro{\tex{subsection}}
+\macro{\tex{subsubsection}}
+\macro{\tex{title}}
+\macro{\tex{subject}}
+\macro{\tex{subsubject}}
+\macro{\tex{subsubsubject}}
+\macro{\tex{definehead}}
+\macro{\tex{momarking}}
+\macro{\tex{nolist}}
+
+A text is divided in chapters, sections, etc. with the
+commands:
+
+\showsetup{part}
+
+\showsetup{chapter}
+
+\showsetup{section}
+
+\showsetup{subsection}
+
+\showsetup{subsubsection}
+
+and
+
+\showsetup{title}
+
+\showsetup{subject}
+
+\showsetup{subsubject}
+
+\showsetup{subsubsubject}
+
+The first series of commands (\type{\chapter} \unknown)
+generate a numbered head, with the second series the titles
+are not numbered. There are a few more levels available than
+those shown above.
+
+\placetable{The structuring elements.}
+\starttable[|c|l|l|]
+\HL
+\VL \bf level \VL \bf numbered title       \VL
+                  \bf unnumbered title     \VL\SR
+\HL
+\VL 1          \VL {\type{\part}}          \VL
+                                           \VL\FR
+\VL 2          \VL {\type{\chapter}}       \VL
+                   {\type{\title}}         \VL\MR
+\VL 3          \VL {\type{\section}}       \VL
+                   {\type{\subject}}       \VL\MR
+\VL 4          \VL {\type{\subsection}}    \VL
+                   {\type{\subsubject}}    \VL\MR
+\VL 5          \VL {\type{\subsubsection}} \VL
+                   {\type{\subsubsubject}} \VL\LR
+\HL
+\stoptable
+
+By default \type {\part} generates {\em no} title because
+most of the times these require special attention and a
+specific design. In the background however the partnumbering
+is active and carries out several initialisations. The other
+elements are set up to typeset a title.
+
+A structuring element has two arguments. The first argument,
+the reference, makes it possible to refer to the chapter or
+section from another location of the document. In
+\in{chapter}[references] this mechanism is described in
+full. A reference is optional and can be left out.
+
+\startexample
+\starttyping
+\section{Subdividing a text}
+\stoptyping
+\stopexample
+
+\CONTEXT\ generates automatically the numbers of chapters
+and sections. However there are situations where you want to
+enforce your own numbering. This is also supported.
+
+\startbuffer
+\setuphead[subsection][ownnumber=yes]
+\subsection{399}{The old number}
+\subsection[someref]{400}{Another number}
+\stopbuffer
+
+\typebuffer
+
+In this example an additional argument appears. In the
+background \CONTEXT\ still uses its own numbering mechanism,
+so operations that depend upon a consistent numbering still
+work okay. The extra argument is just used for typesetting
+the number. This user||provided number does not have to be
+number, it may be anything, like ABC-123.
+
+\start \getbuffer \stop
+
+You can automatically place titles of chapters, sections or
+other structuring elements in the header and footer with the
+marking mechanism. Titles that are too long can be shortened
+by:
+
+\showsetup{nomarking}
+
+For example:
+
+\startexample
+\starttyping
+\chapter{Influences \nomarking{in the 20th century:} an introduction}
+\stoptyping
+\stopexample
+
+The text enclosed by \type {\nomarking} is replaced by dots
+in the header or footer. Perhaps an easier strategy is to
+use the automatic marking limiting mechanism. The next
+command puts the chapter title left and the section title
+right in the header. Both titles are limited in length.
+
+\startexample
+\starttyping
+\setupheadertexts[chapter][section]
+\setupheader[leftwidth=.4\hsize,rightwidth=.5\hsize]
+\stoptyping
+\stopexample
+
+A comparable problem may occur in the table of contents. In
+that case we use \type {\nolist}:
+
+\startexample
+\starttyping
+\chapter{Influences in the 20th century\nolist{: an introduction}}
+\stoptyping
+\stopexample
+
+When you type the command \type{\\} in a title a new line
+will be generated at that location. When you type
+\type {\crlf} in a title you will enforce a new line only in
+the table of contents. For example:
+
+\startexample
+\starttyping
+\chapter{Influences in the 20th century:\crlf an introduction}
+\stoptyping
+\stopexample
+
+This will result in a two line title in the table of context,
+while the title is only one line in the text.
+
+It is possible to define your own structuring elements. Your
+\quote {own} element is derived from an existing text
+element.
+
+\showsetup{definehead}
+
+An example of a definition is:
+
+\startexample
+\starttyping
+\definehead[category][subsubject]
+\stoptyping
+\stopexample
+
+From this moment on the command \type{\category} behaves
+just like \type{\subsubject}, i.e., \type {\category} {\em
+inherits} the default properties of \type {\subsubject}. For
+example, \type {\category} is not numbered.
+
+A number of characteristics available with \type
+{\setuphead} are described in \in {section} [titles]. Your
+own defined structuring elements can also be set up. The
+category defined above can be set up as follows:
+
+\startexample
+\starttyping
+\setuphead[category][page=yes]
+\stoptyping
+\stopexample
+
+This setup causes each new instance of category to be placed
+at the top of a new page.
+
+We can also block the sectionnumbering with \type
+{\setupheads[sectionnumber=no]}. Sectionnumbering will
+stop but \CONTEXT\ will continue the numbering on the
+background. This is necessary to be able to perform local
+actions like the generating local tables of content.
+
+In defining your own structuring elements there is always
+the danger that you use existing \TEX\ or \CONTEXT\
+commands. It is of good practice to use capitals for your
+own definitions. For example:
+
+\startexample
+\starttyping
+\definehead[WorkInstruction][section]
+\stoptyping
+\stopexample
+
+\section[titles]{Variations in titles}
+\index{chapters}
+\index{titles}
+\index{numbering+chapters}
+\macro{\tex{setupheads}}
+\macro{\tex{setuphead}}
+\macro{\tex{setupheadnumber}}
+\macro{\tex{headnumber}}
+\macro{\tex{coupledocument}}
+
+The numbering and layout of chapters, sections and
+subsections can be influenced by several commands. These
+commands are also used in the design of your own heads. We
+advise you to start the design process in one of the final
+stages of your document production process. You will find
+that correct header definitions in the setup area of your
+source file will lead to a very clean source without any
+layout commands in the text.
+
+The following commands are at your disposal:
+
+\showsetup{setuphead}
+
+Later we will cover many of the parameters mentioned here.
+This command can be used to set up one or more heads, while
+the next can be used to set some common features.
+
+\showsetup{setupheads}
+
+The number of a title can be set up with:
+
+\showsetup{setupheadnumber}
+
+This command accepts absolute and relative numbers, so \type
+{[12]}, \type {[+2]} and \type {[+]}. The relative method is
+preferred, like:
+
+\starttyping
+\setuphead[chapter][+1]
+\stoptyping
+
+This command is only used when one writes macros that do
+tricky things with heads. A number can be recalled by:
+
+\showsetup{headnumber}
+
+and/or:
+
+\showsetup{currentheadnumber}
+
+For example:
+
+\starttabulate[|l|l|]
+\NC \type{\currentheadnumber}   \EQ \currentheadnumber   \NC\NR
+\NC \type{\headnumber[chapter]} \EQ \headnumber[chapter] \NC\NR
+\NC \type{\headnumber[section]} \EQ \headnumber[section] \NC\NR
+\stoptabulate
+
+When you want to use the titlenumber in calculations you
+must use the command \type {\currentheadnumber}. This number
+is calculated by and available after:
+
+\showsetup{determineheadnumber}
+
+When headers and footers use the chapter and section titles
+they are automatically adapted at a new page. The example
+below results in going to new right hand side page for each
+chapter.
+
+\startexample
+\starttyping
+\setuphead
+  [chapter]
+  [page=right,
+   after={\blank[2*big]}]
+\stoptyping
+\stopexample
+
+In extensive documents you can choose to start sections on a
+new page. The title of the first section however should be
+placed directly below the chapter title. You can also prefer
+to start this first section on a new page. In that case you
+set \type{continue} at \type{no}. \in {Figure}
+[fig:continue] shows the difference between these two
+alternatives.
+
+\startexample
+\starttyping
+\setuphead
+  [section]
+  [page=yes,continue=no,
+   after=\blank]
+\stoptyping
+\stopexample
+
+\startbuffer
+\setupframed[width=8em,height=10em,top=,align=right]
+\tfx
+\startcombination[4*2]
+  {\framed{chapter 1\\section 1.1}} {}
+  {\framed{section 1.2}}            {}
+  {\framed{section 1.3}}            {}
+  {}                                {}
+  {\framed{chapter 1}}              {}
+  {\framed{section 1.1}}            {}
+  {\framed{section 1.2}}            {}
+  {\framed{section 1.3}}            {}
+\stopcombination
+\stopbuffer
+
+\placefigure
+  [hier]
+  [fig:continue]
+  {Two alternatives for the first section.}
+  {\getbuffer}
+
+It is also possible that you do not want any headers and
+footers on the page where a new chapter begins. In that case
+you should set \type {header} at \type {empty}, \type
+{high}, \type {nomarking} or an identification of a self
+defined header (this is explained in \in {section}
+[headandfoot]).
+
+By default the titles are typeset in a somewhat larger font.
+You can set the text and number style at your own chosen
+bodyfont. When the titles make use of the same body font
+(serif, sans, etc.) as the running text you should use
+neutral identifications for these fonts. So you use \type
+{\tfb} instead of \type {\rmb}. Font switching is also an
+issue in titles. For example if we use \type {\ssbf} instead
+of \type {\ss\bf} there is a chance that capitals and
+synonyms are not displayed the way they should. So you
+should always use the most robust definitions for
+fontswitching. Commands like \type {\kap} adapt their
+behaviour to these switchings.
+
+A chapter title consists of a number and a text. It is
+possible to define your own command that typesets both
+components in a different way.
+
+% In verband met de interactieve versie herstellen we enkele
+% standaardinstellingen.  Dit is iets voor insiders.
+
+\startbuffer
+\setupheads[alternative=normal]
+\subsection{Title alternative equals normal}
+\setupheads[alternative=inmargin]
+\subsection{Title alternative equals inmargin}
+\setupheads[alternative=middle]
+\subsubject{Title alternative equals middle}
+\stopbuffer
+
+\start
+
+\writestatus{WATCH OUT}{check whether co-en-09.tex has the right head}
+
+\setuplist
+  [subsection]
+  [state=stop]
+
+\setuphead
+  [subsection]
+  [command=\normalplacehead,
+   commandbefore=,
+   style=\tfb,textstyle=,numberstyle=]
+
+\getbuffer
+
+\stop
+
+These titles were generates by:
+
+\typebuffer
+
+In this manual we use a somewhat different title layout. The
+design of such a title is time consuming, not so much
+because the macros are complicated, but because cooking up
+something original takes time. In the examples below we will
+show the steps in the design process.
+
+% In verband met de interactieve versie herstellen we enkele
+% standaardinstellingen. Dit is iets voor insiders.
+
+\start
+
+\setuplist
+  [subsection]
+  [state=stop]
+
+\setuphead
+  [subsection]
+  [commandbefore=]
+
+\startbuffer
+\def\HeadTitle#1#2%
+  {\hbox to \hsize
+     {\hfill % the % after {#1} suppresses a space
+      \framed[height=1cm,width=2cm,align=left]{#1}%
+      \framed[height=1cm,width=4cm,align=right]{#2}}}
+
+\setuphead[subsection][command=\HeadTitle]
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+\getbuffer
+\subsection{Title}
+
+A reader will expect the title of a section on the left hand
+side of the page, but we see an alternative here. The title
+is at the right hand side. One of the advantages of using
+\type {\framed} is, that turning \type {frame=on}, some
+insight can be gained in what is happening.
+
+\startbuffer
+\def\HeadTitle#1#2%
+  {\hbox to \hsize \bgroup
+   \hfill
+   \setupframed[height=1cm,offset=.5em,frame=off]
+   \framed[width=2cm,align=left]{#1}%
+   \framed[width=4cm,align=right,leftframe=on]{#2}%
+   \egroup}
+
+\setuphead
+  [subsection]
+  [command=\HeadTitle,
+   style=\tfb]
+\stopbuffer
+
+\getbuffer
+\subsection{Another title}
+
+This alternative looks somewhat better. The first definition
+is slightly altered. This example also shows the features
+of the command \type{\framed}.
+
+\typebuffer
+
+We see that the font is set with the command
+\type{\setuphead}. These font commands should not be placed
+in the command \type{\HeadTitle}. You may wonder what happens
+when \CONTEXT\ encounters a long title. Here is the answer.
+
+\getbuffer\subsection{A somewhat longer title}
+
+Since we have fixed the height at 1cm, the second line of
+the title end up below the frame. We will solve that problem
+in the next alternative. A \type {\tbox} provides a top
+aligned box.
+
+\startbuffer
+\def\HeadTitle#1#2%
+  {\hbox to \hsize \bgroup
+   \hfill
+   \setupframed[offset=.5em,frame=off]
+   \tbox{\framed[width=3cm,align=left]{#1}}%
+   \tbox{\framed[width=4cm,align=right,leftframe=on]{#2}}%
+   \egroup}
+
+\setuphead
+  [subsection]
+  [command=\HeadTitle]
+\stopbuffer
+
+\typebuffer
+
+This definition results in a title and a number that align on
+their first lines (due to \type {\tbox}).
+
+\getbuffer
+\subsection{A considerably longer title}
+
+\stop
+
+When the title design becomes more complex you have to know
+more of \TEX. Not every design specification can be foreseen.
+
+\startbuffer
+\setuphead[subsubject]   [alternative=text,style=bold]
+\setuphead[subsubsubject][alternative=text,style=slantedbold]
+\stopbuffer
+
+\typebuffer
+
+\start
+\getbuffer \setuphead[subsubject,subsubsubject][command=]
+
+\subsubject
+  {Titles in the text}
+\subsubsubject
+  {Why are titles in the text more  difficult to program in
+   \TEX\ than we may expect beforehand.}
+
+The answer lies in the fact that \CONTEXT\ supports the
+generation of parallel documents. These are documents that
+have a printable paper version and an electronic screen
+version. These versions are coupled and thus hyperlinked by
+their titles. This means that when you click on a title you
+will jump to the same title in the other document. So we
+{\em couple} document versions:
+
+\starttyping
+\coupledocument
+  [screenversion]
+  [repman-e]
+  [chapter,section,subsection,subsubsection,part,appendix]
+  [The Reporting Manual]
+\setuphead
+  [chapter,section,subsection,subsubsection,part,appendix]
+  [file=screenversion]
+\stoptyping
+
+The first argument in \type {\coupledocument} identfies the
+screen document and the second argument specifies the file
+name of that document. The third argument specifies the
+coupling and the fourth is a description. After generating
+the documents you can jump from one version to another by
+just clicking the titles. This command only preloads
+references, the actual coupling is achieved by \type
+{\setuphead} command. Because titles in a text may take up
+several lines some heavy duty manipulation is necessary when
+typesetting such titles as we will see later.
+
+\stop
+
+\section[introduction]{Meta||structure}
+\index{introductions}
+\index{headers}
+\index{appendices}
+\index{extroductions}
+\macro{\tex{startintroductions}}
+\macro{\tex{startbodypart}}
+\macro{\tex{startappendices}}
+\macro{\tex{startextroductions}}
+
+You can divide your document in functional components. The
+characteristics of the titles may depend in what component
+the title is used. By default we distinguish the next
+functional components:
+
+\startitemize[packed,columns,four]
+\item frontmatter
+\item bodypart
+\item appendices
+\item backmatter
+\stopitemize
+
+Introductions and extroductions are enclosed by \type{\start
+... \stop} constructs. In that case the titles will not be
+numbered like the chapters, but they are displayed in the
+table of contents. Within the component \quote
+{bodypart} there are no specific actions or layout
+manipulations, but in the \quote {appendices} the titles are
+numbered by letters (A, B, C, etc.).
+
+\startexample
+\setuptyping[option=commands]
+\starttyping
+\startfrontmatter
+  \completecontent
+  \chapter{Introduction}    <</Roman in content, no number>>
+\stopfrontmatter
+
+\startbodymatter
+  \chapter{First}           <</Roman number 1, in content>>
+    \section{Alfa}          <</Roman number 1.1, in content>>
+    \section{Beta}          <</Roman number 1.2, in content>>
+  \chapter{Second}          <</Roman number 2, in content>>
+    \subject{Blabla}        <</Roman no number, not in content>>
+\stopbodymatter
+
+\startappendices
+  \chapter{Index}           <</Roman letter A, in content>>
+  \chapter{Abbreviations}   <</Roman letter B, in content>>
+\stopappendices
+
+\startbackmatter
+  \chapter{Acknowlegdement} <</Roman no number, in content>>
+  \title{Colofon}           <</Roman no number, not in content>>
+\stopbackmatter
+\stoptyping
+\stopexample
+
+When this code is processed, you will see that commands like
+\type {\title} and \type {\subject} never appear in the
+table of content and never get a number. Their behaviour is
+not influenced by the functional component they are used in.
+The behaviour of the other commands depend on the setup
+within such a component. Therefore it is possible to adapt
+the numbering in a functional component with one parameter
+setup.
+
+% \section[bijlagen]{Bijlagen}
+% \index{bijlagen}
+% \macro{\tex{startbijlagen}}
+%
+% Standaard worden chapterken genummerd in cijfers. Bijlagen
+% daarentegen worden in letters genummerd. Bijlagen worden, zo
+% zagen we in de vorige section, voorafgegaan en afgesloten
+% met:
+%
+% \startexample
+% \starttyping
+% \startbijlagen
+% \stopbijlagen
+% \stoptyping
+% \stopexample
+%
+% In de volgende section zullen we zien dat bijlagen een
+% voorbeeld zijn van een functionele eenheid.
+%
+% Er is een commando \type{\bijlage} beschikbaar waarmee
+% \quote {zelfstandig genummerde} bijlagen kunnen worden
+% gemaakt.
+%
+% \showsetup{bijlage}
+%
+% Eigenlijk is dit commando niet nodig, omdat hetzelfde
+% eenvoudig kan worden bereikt met andere commando's. We geven
+% hieronder de (wat uitgeklede) definitie van het commando.
+%
+% \startexample
+% \starttyping
+% \def\bijlage[#1]#2%
+%   {\pagina[rechts]
+%    \stelnummeringin[state=stop]
+%    \chapter[#1]{#2}
+%    \pagina[rechts]
+%    \stelnummeringin[state=start]
+%    \stelpaginanummerin[nummer=1]}
+% \stoptyping
+% \stopexample
+%
+% Allereerst gaan we over naar een nieuwe bladzijde. Doen we
+% dit niet, dan lopen we de kans dat de instelling
+% \type{[state=stop]} ook voor de vorige bladzijde geldt.
+% Vervolgens plaatsen we, op een aparte bladzijde, de titel
+% van de bijlage. Ook hier dwingen we weer een overgang naar
+% een nieuwe bladzijde af, omdat we de nummering weer op
+% \type{start} willen zetten en het paginanummer op~\type{1}.
+% Het is leerzaam eens een uurtje te experimenteren met
+% dergelijke commando's.
+%
+% De overgang naar een rechter||bladzijde is nodig in het
+% geval we dubbelzijdig zetten.
+%
+% \startexample
+% \starttyping
+% \bijlage[bijl:antwoorden]{Antwoorden}
+%
+% \onderdeel antwoord.tex    % of \input antwoord.tex
+% \stoptyping
+% \stopexample
+%
+% Een voorbeeld van een aanroep is:
+%
+% \startexample
+% \starttyping
+% \bijlage[bijl:antwoorden]{Antwoorden}
+%
+% \onderdeel antwoord.tex    % of \input antwoord.tex
+% \stoptyping
+% \stopexample
+
+\section[alternative heads]{Alternative mechanisms}
+\index{titles+alternatives}
+\index{numbering+chapters}
+\macro[nextsection]{\tex{next<<section>>}}
+
+Not every document can be structured in chapters and
+sections. There are documents with other numbering mechanisms
+and other ways to indicate levels in the text. The title
+mechanism supports these documents.
+
+At the lowest level, the macros of \CONTEXT\ do not work
+with chapters and sections but with sectionblocks. The
+chapter and section commands are predefined sectionblocks. In
+dutch this distinction is more clear, since there we have
+\type {\hoofdstuk} and \type {\paragraaf} as instances of
+\quote {secties}.
+
+\showsetup{definesectionblock}
+
+\showsetup{setupsectionblock}
+
+\showsetup{definesection}
+
+\showsetup{setupsection}
+
+By default there are four sectionblocks:
+
+\startexample
+\starttyping
+\definesectionblock [bodypart]      [headnumber=yes]
+\definesectionblock [appendices]    [headnumber=yes]
+\definesectionblock [introductions] [headnumber=no]
+\definesectionblock [extroductions] [headnumber=no]
+\stoptyping
+\stopexample
+
+We see that numbering is set with these commands. When
+numbering is off local tables of contents can not be
+generated. When numbers are generated but they do not have
+to be displayed you can use
+\type{\setupheads[sectionnumber=no]}.
+
+By default every sectionblock starts at a new (right hand
+side) page. This prevents markings from being reset too
+early. A new page is enforced by \type{page}.
+
+In \CONTEXT\ there are seven levels in use but more levels
+can be made available.
+
+\startexample
+\starttyping
+\definesection [section-1]
+\definesection [section-2]
+.............. ..........
+\definesection [section-7]
+\stoptyping
+\stopexample
+
+There are a number of titles predefined with the command
+\type {\definehead}. We show here some of the definitions:
+
+\startexample
+\starttyping
+\definehead [part]    [section=section-1]
+\definehead [chapter] [section=section-2]
+\definehead [section] [section=section-3]
+\stoptyping
+\stopexample
+
+The definition of a subsection differs somewhat from the
+others, since the subs inherit the characteristics of a
+section:
+
+\startexample
+\starttyping
+\definehead
+  [subsection]
+  [section=section-4,
+   default=section]
+\stoptyping
+\stopexample
+
+The definitions of unnumbered titles and subjects are
+different because we don't want any numbering:
+
+\startexample
+\starttyping
+\definehead
+  [title]
+  [coupling=chapter,
+   default=chapter,
+   incrementnumber=no]
+\stoptyping
+\stopexample
+
+The unnumbered title is coupled to the numbered chapter.
+This means that in most situations the title is handled the
+same way as a chapter. You can think of the ways new pages
+are generated at each new unnumbered title or chapter.
+Characteristics like the style and color are also inherited.
+
+There is more to consider. The predefined sectionblocks
+are used in appendices, because these have a different
+numbering system.
+
+\startexample
+\starttyping
+\setupsection
+  [section-2]
+  [appendixconversion=Character, % Watch the capital
+   previousnumber=no]
+\setuphead
+  [part]
+  [placehead=no]
+\setuphead
+  [chapter]
+  [appendixlabel=appendix,
+   bodypartlabel=chapter]
+\stoptyping
+\stopexample
+
+This means that within an \type{appendix} conversion
+from number to character takes place, but only at the level of
+section~2. Furthermore the titles that are related
+to \type{section-2} do not get a prefix in front of the
+number. The prefix consists of the separate numbers of the
+sectionblocks:
+
+\startexample
+\setuptyping[option=commands]
+\starttyping
+<section-1><separator><section-2><separator><section-3> <</rm etc.>>
+\stoptyping
+\stopexample
+
+By default section~2 (appendix) will be prefixed by the
+partnumber and a separator (.) and this is not desirable at
+this instance. At that level we block the prefix mechanism
+and we prevent that in lower levels (section~3 ...) the
+partnumber is included.
+
+In the standard setup of \CONTEXT\ we do not display
+the part title. You can undo this by saying:
+
+\starttyping
+\setuphead[part][placehead=yes]
+\stoptyping
+
+Chapters and appendices can be labeled. This means that the
+titles are preceded with a word like {\em Chapter} or {\em
+Appendix}. This is done with \type {\setuplabeltext}, for
+example:
+
+\startexample
+\starttyping
+\setuplabeltext[appendix=Appendix~]
+\stoptyping
+\stopexample
+
+The look of the titles are defined by \type {\setuphead}.
+\CONTEXT\ has set up the lower level section headings to
+inherit their settings from the higher level. The default
+setups for \CONTEXT\ are therefore limited to:
+
+\startexample
+\starttyping
+\setuphead
+  [part,chapter]
+  [align=normal,
+   continue=no,
+   page=right,
+   head=nomarking,
+   style=\tfc,
+   before={\blank[2*big]},
+   after={\blank[2*big]}]
+
+\setuphead
+  [section]
+  [align=normal,
+   style=\tfa,
+   before={\blank[2*big]},
+   after=\blank]
+\stoptyping
+\stopexample
+
+With \type {nomarking}, we tell \CONTEXT\ to ignore markings
+in running heads at the page where a chapter starts. We
+prefer \type{\tfc}, because this enables the title to adapt
+to the actual bodyfont. The \argchars\ around \type{\blank}
+are essential for we do not want any conflicts with
+\setchars.
+
+Earlier we saw that new structuring elements could be
+defined that inherit characteristics of existing elements.
+Most of the time this is sufficient:
+
+\startexample
+\starttyping
+\definehead[topic]   [section][style=bold,before=\blank]
+\definehead[category][subject][style=bold,before=\blank]
+\stoptyping
+\stopexample
+
+One of the reasons that the mechanism is rather complex is
+the fact that we use the names of the sections as setups
+in other commands. The marking of \type {category} can be
+compared with that of \type{subject}, but that of subject
+can not be compared with that \type{section}. During the
+last few years it appeared that subject is used for all
+sorts of titles in the running text. We don't want to see
+these in headers and footers.
+
+While setting the parameter \type {criterium} in lists and
+registers and the \type {way} of numbering, we can choose
+\type {persection} or \type {persubject}. For indicating the
+level we can use the parameter \type {section} as well as \type
+{subject}. So we can alter the names of sections in logical
+ones that relate to their purpose. For example:
+
+\startexample
+\starttyping
+\definehead [handbook]       [section=section-1]
+\definehead [procedure]      [section=section-2]
+\definehead [subprocedure]   [section=section-3]
+\definehead [instruction]    [procedure]
+\stoptyping
+\stopexample
+
+After this we can set up the structuring elements (or
+inherit them) and generate lists of procedures and
+instructions. We will discuss this feature in detail in one
+of the later chapters.
+
+\stopcomponent

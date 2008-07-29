@@ -1,0 +1,1880 @@
+\startcomponent co-en-10
+
+\environment contextref-env
+\product contextref
+
+\chapter[references]{References}
+
+\section[toc]{Table of contents}
+\index{references}
+\index{table of contents}
+\index{combined list}
+\index{lists}
+\macro[placecombined]{\tex{place<<combinedlist>>}}
+\macro[completecombined]{\tex{complete<<combinedlist>>}}
+\macro{\tex{definecombinedlist}}
+\macro{\tex{setupcombinedlist}}
+\macro{\tex{definelist}}
+\macro{\tex{setuplist}}
+\macro{\tex{placelist}}
+\macro{\tex{writetolist}}
+\macro{\tex{writebetweenlist}}
+\macro{\tex{nolist}}
+
+The table of contents is very common in books and is used
+to refer to the text that lies ahead. Tables of content are
+generated automatically by:
+
+\startexample
+\starttyping
+\placecontent
+\stoptyping
+\stopexample
+
+The table of contents shows a list of chapters and sections
+but this depends also on the location where the table of
+contents is summoned. Just in front of a chapter we will
+obtain a complete table. But just after the chapter we will
+only obtain a list of relevant sections or subsections. The
+same mechanism also works with sections and subsections.
+
+\startexample
+\starttyping
+\chapter{Mammals}
+\placecontent
+\section{Horses}
+\stoptyping
+\stopexample
+
+A table of contents is an example of a combined list. Before
+discussing combined lists we go into single lists. A single
+list is defined with:
+
+\showsetup{definelist}
+
+An example of such a definition is:
+
+\startexample
+\starttyping
+\definelist[firstlevel]
+\stoptyping
+\stopexample
+
+Such a list is recalled with:
+
+\startexample
+\starttyping
+\placelist[firstlevel]
+\stoptyping
+\stopexample
+
+Each list may have its own set up:
+
+\startexample
+\starttyping
+\setuplist[firstlevel][width=2em]
+\stoptyping
+\stopexample
+
+Lists can be set up simultaneously, for example:
+
+\startexample
+\starttyping
+\setuplist[firstlevel,secondlevel][width=2em]
+\stoptyping
+\stopexample
+
+To generate a list you type:
+
+\showsetup{placelist}
+
+\startpostponing
+\showsetup{setuplist}
+\stoppostponing
+
+The layout of a list is determined by the values of \type
+{alternative} (see \in {table} [tab:setupcombinedlist]),
+\type{margin}, \type{width} and \type{distance}. The
+alternatives \type{a}, \type{b} and \type{c} are line
+oriented. A line has the following construct:
+
+\startlinecorrection
+\hbox
+  {\vbox to 3em{\framed[width=.1\hsize,rightframe=off]{\strut margin}\vss}%
+   \vbox to 3em{\framed[width=.2\hsize,rightframe=off]{\strut width}\vss}%
+   \vbox to 3em{\framed[width=.1\hsize,rightframe=off]{\strut distance}\vss}%
+   \vbox to 3em{\framed[width=.6\hsize,height=3em]{}}}
+\stoplinecorrection
+
+\startlinecorrection
+\hbox
+  {\vbox to 3em{\framed[width=.1\hsize,rightframe=off]{}\vss}%
+   \vbox to 3em{\framed[width=.2\hsize,rightframe=off]{headnumber}\vss}%
+   \vbox to 3em{\framed[width=.1\hsize,rightframe=off]{}\vss}%
+   \vbox to 3em{\framed[width=.6\hsize,height=3em]{head and pagenumber}}}
+\stoplinecorrection
+
+In a paper document it is sufficient to set up \type
+{width}. In an interactive document however the \type
+{width} determines the clickable area. \footnote {This also
+depends on the value assigned to \type {interaction}.}
+
+In alternative \type{d} the titles in the table will be type
+set as a continuous paragraph. In that case the \type{before}
+and \type{after} have no meaning. The \type{distance}, that is
+1em at a minimum, relates to the distance to the next element
+in the list. The next set up generates a compact table of
+contents:
+
+\startbuffer
+\setuplist
+  [chapter]
+  [before=\blank,after=\blank,style=bold]
+\setuplist
+  [section]
+  [alternative=d,left=(,right=),pagestyle=slanted,prefix=no]
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+Since both lists are defined already when defining the
+sectioning command, we do not define them here. The
+parameter \type{prefix} indicates whether the preceding
+level indicator numbering is used. In this alternative the
+prefix is not used. Alternative~\type{d} looks like this:
+
+\startnarrower
+\getbuffer\placelist[section][criterium=chapter]
+\stopnarrower
+
+When \type {alternative} is set to \type {d}, an element in
+the list has the following construction:
+
+\startlinecorrection
+\hbox
+  {\framed[rightframe=off]{left}%
+   \framed[rightframe=off]{headnumber}%
+   \framed[rightframe=off]{right}%
+   \framed[rightframe=off,width=.3\hsize]{head}%
+   \framed[rightframe=off]{page}%
+   \framed{distance}}
+\stoplinecorrection
+
+When you define a title you also define a list. This means
+that there are standard lists for chapters, sections and
+subsections, etc. available.
+
+These (sub)sections can be combined into one combined list.
+The default table of contents is such a combined list:
+
+\startexample
+\starttyping
+\definecombinedlist
+  [content]
+  [part,
+   chapter,section,subsection,subsubsection,
+   subsubsubsection,subsubsubsubsection]
+  [level=subsubsubsubsection,
+   criterium=local]
+\stoptyping
+\stopexample
+
+The alternative setups equals that of the separate lists.
+
+\showsetup{definecombinedlist}
+
+\showsetup{setupcombinedlist}
+
+These commands themselves generate the commands:
+
+\showsetup{complete<<combinedlist>>}
+
+\showsetup{place<<combinedlist>>}
+
+The first command places a title at the top of the list.
+This title is unnumbered because we do not want the table of
+contents as an element in the list. In the next section we will
+discuss lists where the numbered title \type {\chapter} is
+used.
+
+\placetable
+  [here][tab:setupcombinedlist]
+  {Alternatives in combined lists.}
+\starttable[|c|l|]
+\HL
+\VL \bf alternative                            \VL
+    \bf display                                \VL\SR
+\HL
+\VL \type{a}                                   \VL
+    number -- title -- pagenumber              \VL\FR
+\VL \type{b}                                   \VL
+    number -- title -- spaces -- pagenumber    \VL\MR
+\VL \type{c}                                   \VL
+    number -- title -- dots -- pagenumber   \VL\MR
+\VL \type{d}                                   \VL
+    number -- title -- pagenumber (continuous) \VL\MR
+\VL \type{e}                                   \VL
+    title (framed)                             \VL\MR
+\VL \type{f}                                   \VL
+    title (left, middle or right aligned)     \VL\MR
+\VL \type{g}                                   \VL
+    title (centered)                           \VL\LR
+\HL
+\stoptable
+
+Possible alternatives are summed up in \in {table}
+[tab:setupcombinedlist]. There are a number of possible
+variations and we advise you to do some experimenting when
+you have specific wishes. The three parameters \type
+{width}, \type {margin} and \type {style} are specified for
+all levels \`or for all five levels separately.
+
+\startexample
+\starttyping
+\setupcombinedlist
+  [content]
+  [alternative=c,
+   aligntitle=no,
+   width=2.5em]
+\stoptyping
+\setuplist
+  [chapter]
+  [style=bold,
+   before=\blank,
+   after=\blank]
+\stopexample
+
+The parameter \type {aligntitle} forces entries with no
+section number (like titles, subjects and alike) to be
+typeset onto the left margin. Otherwise the title is aligned
+to the numbered counterparts (like chapter, section and
+alike). Compare:
+
+\startpacked
+\hphantom{12\quad}title \crlf 12\quad chapter
+\stoppacked
+
+with:
+
+\startpacked
+title\crlf 12\quad chapter
+\stoppacked
+
+You can also pass setup parameters to the \type {\place...}
+commands. For example:
+
+\startexample
+\starttyping
+\placecontent[level=part]
+\stoptyping
+\stopexample
+
+In this situation only the parts are used in the displayed
+list. Instead of an identifier, like part or chapter, you
+can also use a number. However this suggests that you have
+some insight in the level of the separate sections (part=1,
+chapter=2 etc.)
+
+A table of contents may cross the page boundaries at an
+undesired location in the list. Pagebreaking in tables of
+content can hardly be automated. Therefore it is possible to
+adjust the pagebreaking manually. The next example
+illustrates this.
+
+\startexample
+\starttyping
+\completecontent[pageboundaries={2.2,8.5,12.3.3}]
+\stoptyping
+\stopexample
+
+This kind of \quote {fine||tuning} should be done at the end
+of the production proces. When the document is revised you
+have to evaluate the pagebreaking location. \CONTEXT\
+produces terminal feedback to remind you when these kind of
+commands are in effect.
+
+Before a list can be generated the text should be processed
+twice. When a combined list is not placed after the text is
+processed twice you probably have asked for a local list.
+
+There are two commands to write something directly to a
+list. The first command is used to add an element and the
+second to add a command:
+
+\showsetup{writetolist}
+
+\showsetup{writebetweenlist}
+
+We supply a simple example:
+
+\startexample
+\starttyping
+\writebetweenlist [section] {\blank}
+\writetolist      [section] {---} {from here temporary}
+\writebetweenlist [section] {\blank}
+\stoptyping
+\stopexample
+
+The next command is used in situations where information goes
+into the title but should not go into the list.
+
+\showsetup{nolist}
+
+Consider for example the following example:
+
+\startexample
+\starttyping
+\definehead[function][ownnumber=yes]
+\function{A-45}{manager logistics \nolist{(outdated)}}
+\placelist[function][criterium=all]
+\stoptyping
+\stopexample
+
+When we call for a list of functions, we will get (\unknown)
+instead of (outdated). This can be handy for long titles.
+Keep in mind that each head has a corresponding list.
+
+In an interactive document it is common practice to use more
+lists than in a paper document. The reason is that the
+tables of content is also a navigational tool. The user of
+the interactive document arrives faster at the desired
+location when many subtables are used, because clicking is
+the only way to get to that location.
+
+In designing an interactive document you can consider the
+following setup (probably in a different arrangement):
+
+\starttyping
+\setuplayout[rightedge=3cm]
+\setupinteraction[state=start,menu=on]
+\setupinteractionmenu[right][state=start]
+\startinteractionmenu[right]
+  \placecontent
+    [level=current, criterium=previous,
+     alternative=f, align=right,
+     interaction=all,
+     before=, after=]
+\stopinteractionmenu
+\stoptyping
+
+These definitions make sure that a table of contents is
+typeset at every page (screen) in the right edge. The table
+displays the sections one level deeper than the actual
+level. So, for each section we get a list of subsections.
+
+When you produce an interactive document with a table of
+contents at every level you can make a (standard) button
+that refers to \type {[previouscontent]}. This reference is
+generated automatically.
+
+The list elements that are written to a list are not
+expanded (that is, commands remain commands). When expansion
+is needed you can set the parameter \type{expansion}.
+Expansion is needed in situations where you write variable
+data to the list. This is seldom the case.
+
+In a more extensive document there may occur situations
+where at some levels there are no deeper levels available.
+Then the table of contents at that level is not available
+either. In that case you need more information on the list
+so you can act upon it. You can have access to:
+
+\starttabulate[|l|l|]
+\NC \type{\listlength} \NC the number of items                  \NC\NR
+\NC \type{\listwidth}  \NC the maximum width of a list element  \NC\NR
+\NC \type{\listheight} \NC the maximum height of a list element \NC\NR
+\stoptabulate
+
+These values are determined by:
+
+\showsetup{determinelistcharacteristics}
+
+We end this section with an overview of the available
+alternatives. The first three alternatives are primarily
+meant for paper documents. The \type {criterium} parameter
+determines what lists are typeset, so in the next example,
+the sections belonging to the current chapter are typeset.
+
+\startbuffer
+\placelist
+  [section]
+  [criterium=chapter,alternative=a]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+\startbuffer
+\setuplabeltext[en][section={ugh }]
+\placelist
+  [section]
+  [criterium=chapter,alternative=a,
+   label=yes,width=2cm]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+\startbuffer
+\placelist
+  [section]
+  [criterium=chapter,alternative=b]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+\startbuffer
+\placelist
+  [section]
+  [criterium=chapter,alternative=b,
+   pagenumber=no,width=fit,distance=1em]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+\startbuffer
+\placelist
+  [section]
+  [criterium=chapter,alternative=c]
+\stopbuffer
+
+\startbuffer
+\placelist
+  [section]
+  [criterium=chapter,alternative=c,
+   chapternumber=yes,margin=1.5cm]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+\startbuffer
+\placelist % note the spaces on each side of the colon
+  [section]
+  [criterium=chapter,alternative=c,
+   chapternumber=yes,separator={ : },width=fit]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+\startbuffer
+\placelist
+  [section]
+  [criterium=chapter,alternative=d]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+\startbuffer
+\placelist
+  [section]
+  [criterium=chapter,alternative=d,
+   distance=2cm]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+\startbuffer
+\placelist
+  [section]
+  [criterium=chapter,alternative=d,
+   left={(},right={)}]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+\startbuffer
+\placelist
+  [section]
+  [criterium=chapter,alternative=e]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+\startbuffer
+\placelist
+  [section]
+  [criterium=chapter,alternative=e,
+   width=\textwidth,background=screen]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+\startbuffer
+\placelist
+  [section]
+  [criterium=chapter,alternative=e,
+   width=4cm]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+\startbuffer
+\placelist
+  [section]
+  [criterium=chapter,alternative=f]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+\startbuffer
+\placelist
+  [section]
+  [criterium=chapter,alternative=g]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+Within a list entry, each element can be made interactive.
+In most cases, in screen documents, the option all is the
+most convenient one. Alternative~e is rather well suited for
+screen documents and accepts nearly all parameters of
+\type {\framed}. In the next example we use a symbol
+instead of a sectionnumber. The parameter \type {depth}
+applies to this symbol.
+
+\startbuffer
+\placelist
+  [section]
+  [criterium=chapter,alternative=a,
+   pagenumber=no,distance=1em,
+   symbol=3,height=1.75ex,depth=.25ex,numbercolor=gray]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+When using color, don't forget to enable it. In the last
+example, All alternatives provide the means to hook in
+commands for the section number, text and pagenumber. Real
+complete freedom is provided by alternative \type {none}.
+
+\startbuffer
+\placelist
+  [section]
+  [criterium=chapter,alternative=none,
+   numbercommand=\framed,
+   textcommand=\framed,pagecommand=\framed]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+\startbuffer
+\def\ListCommand#1#2#3%
+  {at page {\bf #3} we discuss {\bf #2}}
+
+\placelist
+  [section]
+  [criterium=chapter,alternative=none,
+   command=\ListCommand]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+This alternative still provides much of the built||in
+functionality. Alternative \type {command} leaves nearly
+everything to the macro writer.
+
+\startbuffer
+\def\ListCommand#1#2#3%
+  {At p~#3 we discuss {\em #2}; }
+
+\placelist
+  [section]
+  [criterium=chapter,alternative=command,
+   command=\ListCommand]
+\stopbuffer
+
+\typebuffer \blank {\getbuffer} \blank
+
+As an alternative for \type {none}, we can use \type
+{horizontal} and \type {vertical}. Both commands have their
+spacing tuned for typesetting lists in for instance menus.
+
+\section[synonyms]{Synonyms}
+\index{abbreviations}
+\index{synonyms}
+\macro{\tex{definesynonyms}}
+\macro{\tex{setupsynonyms}}
+\macro[completelistofsy]{\tex{completelistof<<synonyms>>}}
+\macro[placelistofsy]{\tex{placelistof<<synonyms>>}}
+\macro[synonym]{\tex{<<synonym>>}}
+\macro[loadsynonyms]{\tex{load<<synonyms>>}}
+\macro{\tex{abbreviation}}
+
+In many texts we use abbreviations. An abbreviation has a
+meaning. The abbreviation and its meaning have to be used
+and typeset consistently throughout the text. We do not like
+to see ABC and in the next line an \kap{abc}. For this
+reason it is possible to define a list with the used
+abbreviations and their meanings. This list can be recalled
+and placed at the beginning or end of a book for the
+convenience of the reader.
+
+The use of abbreviations is an example of the synonym
+mechanism. A new category of synonyms is defined with the
+command:
+
+\showsetup{definesynonyms}
+
+The way the list is displayed can be influenced by:
+
+\showsetup{setupsynonyms}
+
+Abbreviations are defined with the command:
+
+\startexample
+\starttyping
+\definesynonyms[abbreviation][abbreviations][\infull]
+\stoptyping
+\stopexample
+
+We will explain the optional fourth argument later. After
+this definition a new command \type{\abbreviation} is
+available. An example of the use of abbreviations is:
+
+\startexample
+\starttyping
+\abbreviation {UN}  {United Nations}
+\abbreviation {UK}  {United Kingdom}
+\abbreviation {USA} {United States of America}
+\stoptyping
+\stopexample
+
+The meaning can be used in the text by:
+
+\startexample
+\starttyping
+\infull{abbreviation}
+\stoptyping
+\stopexample
+
+It is also possible to add commands in the abbreviation. In
+that case the command must be typed literally between the
+\setchars:
+
+\startexample
+\starttyping
+\abbreviation [TEX] {\TeX} {The \TeX\ Typesetting System}
+\stoptyping
+\stopexample
+
+Recalling such an abbreviation is done with \type {\TEX} and
+the meaning can be fetched with \type {\infull {TEX}}. In a
+running text we type \type{\TEX\} and in front of punctuation
+\type{\TEX}.
+
+A synonym is only added to a list when it is used. When you
+want to display all defined synonyms (used and not used) you
+have to set the parameter \type{criterium} at \type{all}.
+By setting \type{state} at \type{stop} you will prevent
+list elements to be the added to the list even when they are
+used. This can be a temporary measure:
+
+\startexample
+\starttyping
+\setupsynonyms[abbreviation][state=stop]
+\abbreviation {NIL} {Not In List}
+\setupsynonyms[abbreviation][state=start]
+\stoptyping
+\stopexample
+
+Here we left out the optional first argument, in which case
+the abbreviation itself becomes the command (\type {\NIL}).
+So, in this case the next two definitions are equivalent:
+
+\starttyping
+\abbreviation [NIL] {NIL} {Not In List}
+\abbreviation {NIL} {Not In List}
+\stoptyping
+
+The formal definition of a synonym looks like this:
+
+\showsetup{<<synonym>>}
+
+A list of synonyms is generated by:
+
+\showsetup{placelistof<<synonyms>>}
+
+The next command generates a list with a title
+(\type{\chapter}):
+
+\showsetup{completelistof<<synonyms>>}
+
+Here we see why we typed the plural form during the
+definition of the synonym. The plural is also used as the
+title of the list and the first character is capitalized. The
+title can be altered with \type{\setuphead} (see
+\in{section}[titles]).
+
+Synonyms are only available after they are used. There are
+instances when the underlying mechanism cannot preload
+the definitions. When you run into such troubles, you can
+try to load the meaning of the synonyms with the command:
+
+\showsetup{load<<synonyms>>}
+
+For instance, the meaning of abbreviations can be loaded
+with \type {\loadabbreviations}. In order to succeed, the
+text has to be processed at least once. Don't use this
+command if things run smoothly.
+
+Next to the predefined abbreviations we also defined the
+\SI||units as synonyms. These must be loaded as a separate
+module. We will discuss this in \in {section} [units].
+
+The attentive reader has seen that the command \type
+{\definesynonyms} has four arguments. The fourth argument is
+reserved for a command with which you can recall the
+synonym. In this way the synonyms are protected from the
+rest of the \CONTEXT\ commands and there will be no
+conflicts using them.
+
+\startexample
+\starttyping
+\definesynonyms[Function][Functions][\FunctionName][\FunctionNumber]
+\stoptyping
+\stopexample
+
+We could define some functions like:
+
+\startexample
+\starttyping
+\Function [0001] {0001a} {Lithographer}
+\Function [0002] {0002x} {Typesetter}
+\stoptyping
+\stopexample
+
+Than we can recall number and name by \type {\FunctionName}
+(Lithographer and Typesetter) and \type {\FunctionNumber}
+(0001a and 0002x), so:
+
+\starttyping
+The \FunctionName{0001} has functionnumber \FunctionNumber{0001}.
+\stoptyping
+
+\section[sorting]{Sorting}
+\index{sorting}
+\index{lists+sorting}
+\index{logos}
+\macro{\tex{definesorting}}
+\macro{\tex{setupsorting}}
+\macro[completelistofso]{\tex{completelistof<<sorts>>}}
+\macro[placelistofso]{\tex{placelistof<<sorts>>}}
+\macro[sort]{\tex{<<sorteer>>}}
+\macro[loadsorts]{\tex{load<<sorts>>}}
+\macro{\tex{logo}}
+
+Another instance of lists with synonyms
+is the sorted list. A sorted list is defined with:
+
+\showsetup{definesorting}
+
+The list is set up with:
+
+\showsetup{setupsorting}
+
+After the definition the next command is available. The
+\type{<<sort>>} indicates the name for the list you
+defined.
+
+\showsetup{<<sort>>}
+
+In accordance to lists there are two other commands
+available:
+
+\showsetup{placelistof<<sorts>>}
+
+The title can be set up with \type{\setuphead}:
+
+\showsetup{completelistof<<sorts>>}
+
+An example of sorting is:
+
+\startbuffer
+\definesorting[city][cities]
+\setupsorting[city][criterium=all]
+
+\city {London}
+\city {Berlin}
+\city {New York}
+\city {Paris}
+\city {Hasselt}
+
+\placelistofcities
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+The definition is typed in the setup area of your file or
+in an environment file. The cities can be typed anywhere in
+your text and the list can be recalled anywhere.
+
+\startreality
+\getbuffer
+\stopreality
+
+Another instance of the sorting command is that where we
+must type the literal text of the synonym in order to be
+able to sort the list. For example if you want a sorted list
+of commands you should use that instance. The predefined
+command \type {\logo} is an example of such a list.
+
+\startexample
+\starttyping
+\logo [TEX]   {\TeX}
+\logo [TABLE] {\TaBlE}
+\stoptyping
+\stopexample
+
+When you use the alternative with the \setchars\ \CONTEXT\
+automatically defines a command that is available throughout
+your document. In the example above we have \type{\TABLE}
+and \type{\TEX} for recalling the logo. For punctuation
+we use \type{\TABLE}.
+
+We advise you to use capital letters to prevent interference
+with existing \CONTEXT\ and|/|or \TEX\ commands.
+
+Like in synonyms, a sorted list is only available after an
+entry is used. When sorting leads to any problems you can
+load the list yourself:
+
+\showsetup{load<<sorts>>}
+
+When we add a command in the third argument during the
+definition of the sorted list we may recall sorted list with
+this command. In this way the sorted lists can not interfere
+with existing commands (see \in{section}[synonyms]).
+
+\section[marking]{Marking}
+\index{marking}
+\index{headers+marking}
+\index{footers+marking}
+\macro{\tex{marking}}
+\macro{\tex{definemarking}}
+\macro{\tex{couplemarking}}
+\macro{\tex{decouplemarking}}
+\macro{\tex{resetmarking}}
+\macro{\tex{getmarking}}
+\macro{\tex{setupmarking}}
+
+There is a feature to add \quote {invisible} marks to your
+text that can be used at a later stage. Marks can be used to
+place chapter or section titles in page headers or footers.
+
+A mark is defined with:
+
+\showsetup{definemarking}
+
+The second optional argument will be discussed at the end of
+this section. After the definition texts can be marked by:
+
+\showsetup{marking}
+
+and recalled by:
+
+\showsetup{getmarking}
+
+In analogy with the \TEX||command \type{\mark}, we keep
+record of three other marks per mark (see
+\in{table}[tab:marks]).
+
+\placetable
+  [hier][tab:marks]
+  {Recorded marks, completed with some combinations.}
+\starttable[|l|l|]
+\HL
+\VL \bf marks       \VL \bf location                  \VL\SR
+\HL
+\VL \type{previous} \VL the last of the previous page \VL\FR
+\VL \type{first}    \VL the first of the actual page  \VL\MR
+\VL \type{last}     \VL the last of the actual page   \VL\LR
+\HL
+\VL \type{both}     \VL first --- last                \VL\FR
+\VL \type{all}      \VL previous --- first --- last   \VL\LR
+\HL
+\stoptable
+
+When you use a combination of marks (\type {both} and \type
+{all}) marks are separated by an ---. This separator can be
+set up with:
+
+\showsetup{setupmarking}
+
+\pagereference[expansion]The use of marks can be blocked
+with the parameter \type {state}. The parameter \type
+{expansion} relates to the expansion mechanism. By default
+expansion is inactive. This means that a command is stored
+as a command. This suits most situations and is memory
+effective. When you use altering commands in the mark you
+should activate the expansion mechanism.
+
+Marks are initialised by:
+
+\showsetup{resetmarking}
+
+At the beginning of a chapter the marks of sections,
+subsections, etc. are reset. If we do not reset those marks
+would be active upto the next section or subsection.
+
+Assume that a word list is defined as follows (we enforce
+some pagebreaks on purpose):
+
+\startexample
+\starttyping
+\definemarking[words]
+
+\marking[words]{first}first word ...
+\marking[words]{second}second word ...
+\page
+\marking[words]{third}third word ...
+\marking[words]{fourth}fourth word ...
+\page
+\marking[words]{fifth}fifth word ...
+\page
+\stoptyping
+\stopexample
+
+The results are shown in \in{table}[tab:example marks].
+
+\placetable
+  []
+  [tab:example marks]
+  {The reordering of marks.}
+\starttable[|c|c|c|c|]
+\HL
+\VL \bf page \VL \bf previous \VL \bf first \VL \bf last \VL\SR
+\HL
+\VL  1       \VL ---          \VL first     \VL second   \VL\FR
+\VL  2       \VL second       \VL third     \VL fourth   \VL\MR
+\VL  3       \VL fourth       \VL fifth     \VL fifth    \VL\LR
+\HL
+\stoptable
+
+While generating the title of chapters and sections
+\type{first} is used. The content of the marks can be checked
+easily by placing the mark in a footer:
+
+\startexample
+\starttyping
+\setupfootertexts
+  [{\getmarking[words][first]}]
+  []
+\stoptyping
+\stopexample
+
+or all at once:
+
+\startexample
+\starttyping
+\setupfootertexts
+  [{\getmarking[words][previous]} --
+   {\getmarking[words][first]} --
+   {\getmarking[words][last]}]
+  []
+\stoptyping
+\stopexample
+
+A more convenient way of achieving this goal, is the
+following command. The next method also takes care of empty
+markings.
+
+\startexample
+\starttyping
+\setupfootertexts[{\getmarking[words][all]}][]
+\stoptyping
+\stopexample
+
+Commands like \type {\chapter} generate marks automatically.
+When the title is too long you can use the command \type
+{\nomarking} (see \in{section}[subdivision]) or pose limits
+to the length. In \CONTEXT\ the standard method to place
+marks in footers is:
+
+\startexample
+\starttyping
+\setupfootertexts[chapter][sectionnumber]
+\stoptyping
+\stopexample
+
+In case you defined your own title with \type {\definehead},
+the new title inherits the mark from the existing title. For
+example when we define \type{\category} as follows:
+
+\startexample
+\starttyping
+\definehead[category][subsection]
+\stoptyping
+\stopexample
+
+After this command it does not matter whether we recall the
+mark by \type {category} or \type {subsection}.
+In this way we can also set up the footer:
+
+\startexample
+\starttyping
+\setupfootertexts[chapter][category]
+\stoptyping
+\stopexample
+
+There are situations where you really want a separate mark
+mechanism \type{category}. We could define such a mark with:
+
+\startexample
+\starttyping
+\definemarking[category]
+\stoptyping
+\stopexample
+
+However, we do want to reset marks so we have to have some
+information on the level at which the mark is active.
+The complete series of commands would look something like
+this:
+
+\startexample
+\starttyping
+\definehead[category][subsection]
+\definemarking[category]
+\couplemarking[category][subsection]
+\stoptyping
+\stopexample
+
+Note that we do this only when we both use category and
+subsection! After these commands it is possible to say:
+
+\startexample
+\starttyping
+\setupfootertexts[subsection][category]
+\stoptyping
+\stopexample
+
+The command \type {\couplemarking} is formally defined as:
+
+\showsetup{couplemarking}
+
+Its counterpart is:
+
+\showsetup{decouplemarking}
+
+It is obvious that you can couple marks any way you want,
+but it does require some insight in the ways \CONTEXT\
+works.
+
+\section[cross references]{Cross references}
+\index{cross references}
+\index{references}
+\index{linenumbers}
+\macro{\tex{in}}
+\macro{\tex{at}}
+\macro{\tex{about}}
+\macro{\tex{somwhere}}
+\macro{\tex{atpage}}
+\macro{\tex{reference}}
+\macro{\tex{ref}}
+\macro{\tex{pagereference}}
+\macro{\tex{textreference}}
+\macro{\tex{setupreferencing}}
+\macro{\tex{startline}}
+\macro{\tex{someline}}
+\macro{\tex{inline}}
+
+We can add reference points to our text for cross
+referencing. For example we can add reference points at
+chapter titles, section titles, figures and tables. These
+reference points are typed between \setchars. It is even
+allowed to type a list of reference points separated by a
+comma. We refer to these reference points with the commands:
+
+\showsetup{in}
+
+\showsetup{at}
+
+\showsetup{about}
+
+A cross reference to a page, text (number) or both can
+be made with:
+
+\showsetup{pagereference}
+
+\showsetup{textreference}
+
+\showsetup{reference}
+
+The command \type {\in} provides the number of a chapter,
+section, figure, table, etc. The command \type {\at} produces
+a pagenumber and \type {\about} produces a complete title.
+In the first two calls, the second argument is optional, and
+when given, is put after the number or title.
+
+In the example below we refer to sections and pages
+that possess reference points:
+
+\startbuffer
+In section~\in[cross references], titled \about[cross references], we
+describe how a cross reference can be defined. This section starts
+at page~\at[cross references] and is part of chapter~\in[references].
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This becomes:
+
+\startreality
+\getbuffer
+\stopreality
+
+Here is another variation of the same idea:
+
+\startexample
+\starttyping
+In \in{section}[cross references], titled \about[cross references], we
+describe how a cross reference can be defined. This section starts
+at \at{page}[cross references] and is part of \in{chapter}[references].
+\stoptyping
+\stopexample
+
+We prefer this way of typing the cross references,
+especially in interactive documents. The clickable area is
+in this case not limited to the number, but also includes
+the preceding word, which is more convenient, especially
+when the numbering is disabled. In the first example you
+would have obtained a symbol like\high {\symbol
+[previouspage]} that is clickable. This symbol indicates the
+direction of the cross reference: forward\high {\symbol
+[nextpage]} or backward\high {\symbol [previouspage]}.
+
+\startbuffer
+The direction of a hyperlink can also be summoned by the command
+\type {\somewhere}. In this way we find chapters or other text elements
+\somewhere {before} {after} [text elements] and discuss somewhere
+\somewhere {previous} {later} [descriptions] the descriptions.
+\stopbuffer
+
+\getbuffer
+
+\showsetup{somewhere}
+
+This command gets two texts. The paragraph will be typed like
+this:
+
+\typebuffer
+
+The next command does not need any text but will generate it
+itself. The generated texts can be defined with \type
+{\setuplabeltext} (see \at {page} [labels]).
+
+\showsetup{atpage}
+
+At the locations where we make reference points we can also
+type a complete list of reference points in a comma
+delimited list:
+
+\startexample
+\starttyping
+\chapter[first,second,third]{First, second and third}
+\stoptyping
+\stopexample
+
+Now you can cross reference to this chapter with \type
+{\in[first]}, \type {\in[second]} or \type {\in[third]}. In
+a large document it is difficult to avoid the duplication of
+labels. Therefore it is advisable to bring some order to
+your reference point definitions. For example, in this
+manual we use: \type {[fig:first]}, \type {[int:first]},
+\type {[tab:first]} etc. for figures, intermezzos and tables
+respectively.
+
+\CONTEXT\ can do this for you automatically. Using the
+command \type {\setupreferencing}, you can set for instance
+\type {prefix=alfa}, in which case all references will be
+preceded by the word \type{alfa}. A more memory efficient
+approach would be to let \CONTEXT\ generate a prefix itself:
+\type {prefix=+}. Prefixing can be stopped with \type
+{prefix=-}.
+
+In many cases, changing the prefix in many places in the
+document is not an example of clearness and beauty. For that
+reason, \CONTEXT\ is able to set the prefix automatically
+for each section. When for instance you want a new prefix at
+the start of each new chapter, you can use the command \type
+{\setuphead} to set the parameter \type {prefix} to \type
+{+}. The chapter reference itself is not prefixed, so you
+can refer to them in a natural way. The references within
+that chapter are automatically prefixed, and thereby local.
+When a chapter reference if given, this one is used as
+prefix, otherwise a number is used. Say that we have
+defined:
+
+\starttyping
+\setuphead[chapter][prefix=+]
+
+\chapter[texworld]{The world of \TeX}
+\stoptyping
+
+In this chapter, we can safely use references, without the
+danger of clashing with references in other chapters. If we
+have a figure:
+
+\starttyping
+\placefigure[here][fig:worldmap]{A map of the \TeX\ world}{...}
+\stoptyping
+
+In the chapter itself we can refer to this figure with:
+
+\starttyping
+\in {figure} [fig:worldmap]
+\stoptyping
+
+but from another chapter, we should use:
+
+\starttyping
+\in {figure} [texworld:fig:worldmap]
+\stoptyping
+
+In general, when \CONTEXT\ tries to resolve a reference in
+\type {\in}, \type {\at} etc., it first looks to see whether
+it is a local reference (with prefix). If such a reference
+is not available, \CONTEXT\ will look for a global reference
+(without prefix). If you have some trouble understanding the
+mechanism during document production you can visualize the
+reference with the command \type {\version[temporary]}.
+
+There are situations where you want to make a global
+reference in the middle of document. For example when you
+want to refer to a table of contents or a register. In that
+case you can type \type {-:} in the reference point label
+that {\em no} prefix is needed: you type \type
+{[-:content]}. Especially in interactive documents the
+prefix||mechanism is of use, since it enables you to have
+documents with thousands of references, with little danger
+for clashes. In the previous example, we would have got a
+global reference by saying:
+
+\starttyping
+\placefigure[here][-:fig:worldmap]{A map of the \TeX\ world}{...}
+\stoptyping
+
+The generation of references can be started, stopped and
+influenced with the command:
+
+\showsetup{setupreferencing}
+
+In this command the parameter \type{\<<section>>number}
+relates to the way the page numbers must be displayed. In
+interactive documents, we can refer to other documents. In
+that case, when the parameter \type {convertfile} is set to
+\type {yes}, external filenames are automatically converted
+to uppercase, which is sometimes needed for \CDROM\
+distributions. We will go into details later.
+
+References from another document can be loaded with the
+command:
+
+\showsetup{usereferences}
+
+With \type {left} and \type {right} you can define what is
+written around a reference generated by \type {\about}.
+Default these are quotes. The parameter \type {interaction}
+indicates whether you want references to be displayed like
+{\em section~1.2}, {\em section}, {\em 1.2} or as a symbol,
+like~\symbol [somewhere].
+
+What exactly is a cross reference? Earlier we saw that we
+can define a reference point by typing a logical label at
+the titles of chapters, sections, figures, etc. Then we can
+summon the numbers of chapters, sections, figures, etc. or
+even complete titles at another location in the document.
+For some internal purposes the real pagenumber is also
+available. In the background real pagenumbers play an
+important role in the reference mechanism.
+
+% Er is ook nog een extra verwijzing mogelijk, maar die
+% wordt vooralsnog niet gebruikt in de standaard||commando's.
+
+In the examples below we discuss in detail how the reference
+point definitions and cross referencing works in \CONTEXT.
+
+\startbuffer
+\reference[my reference]{{Look}{at}{this}}
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+The separate elements can be recalled by \type{\ref}:
+
+\starttabulate[|lT|l|l|l|]
+\NC p \NC the typeset pagenumber   \NC \type{\ref[p][my reference]}
+                                   \NC \ref[p][my reference] \NC \NR
+\NC t \NC the text reference       \NC \type{\ref[t][my reference]}
+                                   \NC \ref[t][my reference] \NC \NR
+\NC r \NC the real pagenumber      \NC \type{\ref[r][my reference]}
+                                   \NC \ref[r][my reference] \NC \NR
+\NC s \NC the subtext reference    \NC \type{\ref[s][my reference]}
+                                   \NC \ref[s][my reference] \NC \NR
+\NC e \NC the extra text reference \NC \type{\ref[e][my reference]}
+                                   \NC \ref[e][my reference] \NC \NR
+\stoptabulate
+
+In a paper document the reference is static: a number or a
+text. In an interactive document a reference may carry
+functionality like hyperlinks. In addition to the commands
+\type {\in} and \type {\at} that we discussed earlier we
+have the command \type {\goto}, which allows us to jump.
+This command does not generate a number or a text because
+this has no meaning in a paper version.
+
+\CONTEXT\ supports interactivity which is integrated into
+the reference mechanism. This integration saved us the
+trouble of programming a complete new set of interactivity
+commands and the user learns how to cope with these
+non||paper features in a natural way. In fact there is no
+fundamental difference in referring to chapter~3, the
+activation of a \JAVASCRIPT, referring to another document
+or the submitting of a completed form.
+
+A direct advantage of this integration is the fact that we
+are not bound to one reference, but we can define complete
+lists of references.
+This next reference is legal:
+
+\starttyping
+... see \in{section}[flywheel,StartVideo{flywheel 1}] ...
+\stoptyping
+
+As expected this command generates a section number. And in
+an interactive document you can click on {\em section~nr}
+and jump to the correct location. At the moment that
+location is reached a video titled {\em flywheel~1} is
+started. In order to reach this kind of comfortable
+referencing we cannot escape a fully integrated reference
+mechanism.
+
+Assume that you want to make a cross reference for a general
+purpose. The name of the reference point is not known yet.
+In the next example we want to start a video from a general
+purpose menu:
+
+\starttyping
+\startinteractionmenu[right]
+  \but [previouspage]  previous \\
+  \but [nextpage]      next     \\
+  \but [ShowAVideo]    video    \\
+  \but [CloseDocument] stop     \\
+\stopinteractionmenu
+\stoptyping
+
+Now we can activate a video at any given moment by
+defining \type {ShowAVideo}:
+
+\starttyping
+\definerreference[ShowAVideo][StartVideo{a real nice video reel}]
+\stoptyping
+
+This reference can be redefined or erased at any moment:
+
+\starttyping
+\definereference[ShowAVideo][]
+\stoptyping
+
+\showsetup{definereference}
+
+\startbuffer
+\startlinenumbering
+A special case of referencing is that of referring to linenumbers.
+\startline [line:a] Different line numbering mechanism can be used
+interchangeably. \startline [line:b] This leads to confusing input.
+\stopline [line:a] \startline [line:c] Doesn't it? \stopline [line:c]
+\stopline [line:b] A cross reference to a line can result in one line
+number or a range of lines. \someline[line:d] {A cross reference is
+specified by \type {\inline} where the word {\em line(s)} is
+automatically added.} Here we have three cross references: \inline
+[line:a], \inline [line:b], \inline[line:c] and \inline {as the last
+reference} [line:d].
+\stoplinenumbering
+\stopbuffer
+
+\typebuffer
+
+With \type {\startlines..\stoplines} you will obtain the
+range of lines in a cross reference and in case of \type
+{\someline} you will get the first line number. In this
+example we see that we can either let \CONTEXT\ generate a
+label automatically, or privide our own text between braces.
+
+\getbuffer
+
+\showsetup{startlines}
+
+\showsetup{someline}
+
+\showsetup{inline}
+
+\section{Predefined references}
+\index{labels}
+\macro{\tex{definereferenceformat}}
+
+One can imagine that it can be cumbersome and even dangerous
+for consistency when one has many references which the same
+label, like {\bf figure} in \type {\in{figure}[somefig]}.
+For example, you may want to change each {\bf figure} into
+\type {Figure} afterwards. The next command can both save
+time and force consistency:
+
+\showsetup{definereferenceformat}
+
+\textreference[demo:b]{BB}\textreference[demo:c]{CC}Given
+the following definitions:
+
+\startbuffer
+\definereferenceformat [indemo]  [left=(,right=),text=demo]
+\definereferenceformat [indemos] [left=(,right=),text=demos]
+\definereferenceformat [anddemo] [left=(,right=),text=and]
+\stopbuffer
+
+\getbuffer
+
+\typebuffer
+
+we will have three new commands:
+
+\startbuffer
+\indemo [demo:b]
+\indemo {some text} [demo:b]
+\indemos {some text} [demo:b] \indemo {and more text} [demo:c]
+\indemos [demo:b] \anddemo [demo:c]
+\stopbuffer
+
+\typebuffer
+
+These will show up as:
+
+\startlines
+\getbuffer
+\stoplines
+
+Instead of using the \type {text} parameter, one can use
+\type {label} and recall a predefined label. The parameter
+\type {command} can be used to specify the command to use
+(\type {\in} by default).
+
+% \section[lijsten]{Referentie--lijsten}
+% \index{verwijzingen+overzichten}
+% \index{overzichten+verwijzingen}
+% \macro{\tex{reflijst}}
+% \macro{\tex{stelreferentielijstin}}
+%
+% Het is mogelijk een met een index vergelijkbare lijst te
+% genereren, bijvoorbeeld een lijst met subjecten en
+% paginanummers. Het commando luidt:
+%
+% \showsetup{reflijst}
+%
+% Referentielijsten worden vooralsnog niet gesorteerd. Mocht
+% daar behoefte aan bestaan dan zal dan in de toekomst alsnog
+% gebeuren.
+%
+% De referentie die wordt opgegeven verwijst naar een elders
+% aangemaakte referentie, bijvoorbeeld een chapter of een
+% section. Een voorbeeld van een lijst is:
+%
+% \startbuffer
+% \startpacked
+% \reflijst [startstop]  {Afsluiten}
+% \reflijst [lijsten]    {Referentie||lijsten}
+% \reflijst [definities] {Definities}
+% \stoppacked
+% \stopbuffer
+%
+% \startexample
+% \typebuffer
+% \stopexample
+%
+% Hierbij zorgt \type{\...packed} ervoor dat tussen de
+% verschillende elementen van de lijst geen witbroadte wordt
+% opgenomen. Dit wordt dus:
+%
+% \startreality
+% \getbuffer
+% \stopreality
+%
+% Het lettertype waarin de tekst wordt gezet, kan worden
+% ingesteld met:
+%
+% \showsetup{stelreferentielijstin}
+
+\section[registers]{Registers}
+\index{index}
+\index{registers}
+\index{registers+interaction}
+\index{interaction+registers}
+\macro[register]{\tex{<<register>>}}
+\macro{\tex{startregister}}
+\macro{\tex{defineregister}}
+\macro{\tex{setupregister}}
+\macro{\tex{coupleregister}}
+\macro[writetorgister]{\tex{writeto<<register>>}}
+\macro[placeregister]{\tex{place<<register>>}}
+\macro[completeregister]{\tex{complete<<register>>}}
+\macro[seeregister]{\tex{see<<register>>}}
+\macro[nextregister]{\tex{next<<register>>}}
+
+A book without a register is not likely to be taken
+seriously. Therefore we can define and generate one or more
+registers in \CONTEXT. The index entries are written to a
+separate file. The \PERL\ script \TEXUTIL\ converts this
+file into a format \TEX\ can typeset.
+
+A register is defined with the command:
+
+\showsetup{defineregister}
+
+There are a number of commands to create register entries and
+to place registers. One register is available by default:
+
+\startexample
+\starttyping
+\defineregister[index][indices]
+\stoptyping
+\stopexample
+
+An entry is created by:
+
+\showsetup{<<register>>}
+
+An entry has a maximum of three levels. The subentries are
+separated by a \type{+} or \type {&}. We illustrate this
+with an example.
+
+\startexample
+\starttyping
+\index{car}
+\index{car+wheel}
+\index{car+engine}
+\stoptyping
+\stopexample
+
+When index entries require special typesetting, for example
+\type{\sl} and \type{\kap} we have to take some measures,
+because these kind of commands are ignored during list
+generation and sorting. In those cases we can use the
+extended version. Between \setchars\ we type the literal
+\ASCII||string which will determine the alphabetical order.
+
+For example we have defined logos or abbreviations like \kap
+{UN}, \kap {UK} and \kap {USA} (see \in {section}
+[synonyms]), then an index entry must look like this:
+
+\startexample
+\starttyping
+\index[UN]{\UN}
+\index[UK]{\UK}
+\index[USA]{\USA}
+\stoptyping
+\stopexample
+
+If we do not do it this way \kap {UN}, \kap {UK} and \kap
+{USA} will be placed under the \texescape.
+
+A cross reference within a register is created with:
+
+\showsetup{see<<register>>}
+
+This command has an extended version also with which we
+can input a \quote {pure} literal \ASCII\ string.
+
+A register is generated and placed in your document with:
+
+\showsetup{place<<register>>}
+
+The next command results in register with title:
+
+\showsetup{complete<<register>>}
+
+The register can be set up with the command \type
+{\setupregister}. When you use the command \type
+{\version[temporary]} during processing, the entries and
+their locations will appear in the margin (see
+\in{section}[version]).
+
+\showsetup{setupregister}
+
+By default a complete register is generated. However it is
+possible te generate partial registers. In that case the
+parameter \type{criterium} must be set. With \type
+{indicator} we indicate that we want a letter in the
+alphabetical ordering of the entries. When \type
+{referencing=on} is a pagereference is generated for every
+letter indicator, for example \type {index:a} or \type
+{index:w}. We can use these automatically generated
+references to refer to the page where for instance the
+a||entries start.
+
+The commands we have mentioned thus far allow us to use a
+spacious layout in our source file. This means we can
+type the entries like this:
+
+\startexample
+\starttyping
+\chapter{Here we are}
+
+\section{Where we are}
+\index{here}
+\index{where}
+
+Wherever you are ...
+\stoptyping
+\stopexample
+
+Between \type{\chapter} and \type{\section} we should not
+type any text because the vertical spacing might be
+disturbed by the index entries. The empty line after the
+entry has no consequences. In case there are problems we
+always have the option to write index entries to the list by
+the more direct command:
+
+\showsetup{writeto<<register>>}
+
+There the \type{expansion} mechanism can be activated.
+Default expansion is inactive (see \at{page}[expansion]).
+
+In this reference manual there is a register with commands.
+This register is defined and initialised with:
+
+\startexample
+\starttyping
+\defineregister [macro] [macros]
+\setupregister  [macro] [indicator=no]
+\stoptyping
+\stopexample
+
+And we can find entries like:
+
+\startexample
+\starttyping
+\macro{\tex{chapter}}
+\macro{\tex{section}}
+\stoptyping
+\stopexample
+
+In case we want a register per chapter we can summon the
+accompanying register with the command below (the command
+\type{\tex} will place a \tex{} in front of a word, but is
+ignored during sorting): \footnote {Of course, \type
+{\placemacro} and \type {\completemacros} are also
+available.}
+
+\startbuffer
+\placeregister[macro]
+  [criterium=chapter,n=2,before=,after=]
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+and we will obtain:
+
+\start % dit moet, anders krijgen we dubbele letter-referenties
+\setupregister[macro][referencing=off,align=]
+\getbuffer
+\stop  % register macro wordt immers ook aan het eind opgeroepen
+
+A warning is due. The quality of the content of a register
+is completely in your hands. A bad selection of index
+entries leads to an inadequate register that is of no use to
+the reader.
+
+Every entry shows one or more pagenumbers. With \type
+{symbol} we can define some alternatives. With \type
+{distance} the horizontal spacing between word and number or
+symbol is set.
+
+\placetable{Alternatives for pagenumbers in registers.}
+\starttable[|c|c|]
+\HL
+\VL \bf symbol \VL \bf display                        \VL\SR
+\HL
+\VL \type{a} \VL a b c d                              \VL\FR
+\VL \type{n} \VL 1 2 3 4                              \VL\MR
+\VL \type{1} \VL $\bullet\ \bullet\ \bullet\ \bullet$ \VL\MR
+\VL \type{2} \VL \setbox0=\hbox{\vrule width 1em height 1ex}%
+                 \copy0\ \copy0\ \copy0\ \copy0       \VL\LR
+\HL
+\stoptable
+
+% nog eens een apartt handleiding van maken
+%
+% Een voorbeeld van een uitermate slecht register is de index
+% bij de reeks \quote {Opleiders in Organisaties}. Na een
+% pretentieuze inleiding volgen ongeveer 50~bladzijden met
+% verwijzingen. Het betreft een index bij 22~specials met
+% meerdere artikelen over eenzelfde subject. Achter ieder
+% (sub)woord in de cumulatieve index staat (enkele
+% uitzonderingen daargelaten) slechts \'e\'en bladzijdenummer,
+% wat de suggestie wekt dat er nauwelijks overlap in de
+% artikelen zit. Zo is er slechts ‚‚n nummer vermeld achter
+% \quote {opleidingsafdeling}, terwijl dit begrip in veel
+% artikelen terugkomt. Verder staat ieder woord wat maar te
+% bedenken valt in het register, en krijgen verschillende
+% verschijningsvormen van een woord een eigen ingang.
+%
+% Bestudering van deze index leidt al snel tot een aantal
+% aanbevelingen met betrekking tot registers. Vaak is controle
+% op de volgende punten al voldoende. Het genoemde register is
+% waarschijnlijk nooit gecontroleerd.
+%
+% \startitemize[n]
+%
+% \item  Gebruik geen ingangen waar geen normaal denkend mens
+%       op komt. broad de helft van de ingangen in de genoemde
+%       index lijkt zinloos: {\em controle}, {\em consistent},
+%       {\em getal}. Niemand zal hierop gaan zoeken.
+%
+% \item  Gebruik geen subingangen als het hoofdwoord niet ook
+%       voor de hand ligt. In iedere kolom van de beruchte
+%       index staat wel zo'n onnodig dubbele ingang.
+%
+% \item  Gebruik subingangen consistent, en dus niet {\em
+%       assessment + model} naast {\em assessment||component},
+%       om over het engelse woord maar niet te spreken.
+%
+% \item  Controleer op enkelvoud en meervoud en gebruik dus niet
+%       {\em assessment} naast {\em assessments}.
+%
+% \item  Gebruik geen subingangen die naar dezelfde bladzijde
+%       verwijzen, terwijl er geen andere subingangen zijn. De
+%       genoemde index toont er vele, zoals: {\em
+%       consistent + extern}, {\em consistent + intern} en verder
+%       niets onder {\em consistent}.
+%
+% \item  Ga na of sommige ingangen niet beter achterwege kunnen
+%       blijven, bijvoorbeeld omdat de hele tekst er over
+%       gaat. Het heeft geen zin om {\em docenten + instructie}
+%       en {\em docenten + selectie} op te nemen (die bovendien
+%       naar dezelfde bladzijde verwijzen), terwijl in veel
+%       meer artikelen docenten aan de orde komen. Suggereer
+%       niet ten onrechte volledigheid.
+%
+% \item  Ga na of verschillende ingangen niet eigenlijk
+%       hetzelfde verwoorden. In het genoemde register is het
+%       subject mentor bijzonder slecht geordend. We vinden
+%       er {\em mentor en coach} naast (enkele ingangen
+%       verderop) {\em mentor of coach}. Los van het vermeende
+%       onderscheid is het beter om van {\em mentor} te
+%       spreken en onder {\em coach} te verwijzen naar dit
+%       woord.
+%
+% \stopitemize
+%
+% Misschien wel de belangrijkste tip die we hier kunnen geven
+% is de volgende:
+%
+% \startitemize[verder]
+% \item  Laat slechts ‚‚n persoon de index samenstellen en
+%       controleren. Iedere auteur zijn eigen ingangen laten
+%       aanleveren leidt gegarandeerd tot de genoemde problemen.
+% \stopitemize
+
+Most of the time the layout of a register is rather simple.
+Some manuals may need some form of differentiating between
+entries. The definition of several registers may be a
+solution. However the layout can contribute to a better use
+of the register:
+
+\starttyping
+\index           {entry}
+\index[key]      {entry}
+\index[form::]   {entry}
+\index[form::key]{entry}
+\index           {form::entry}
+\index[key]      {form::entry}
+\index[form::]   {form::entry}
+\index[form::key]{form::entry}
+\stoptyping
+
+The first two alternatives are known, but the rest is new and
+offers some control over the way the entry itself is
+typeset. The specification between
+\setchars\ relates to the pagenumber, the specification
+in front of the entry relates to the entry itself.
+
+\starttyping
+\setupregister[index][form][pagestyle=bold,textstyle=slanted]
+\stoptyping
+
+Without any problems we can use different appearances
+for pagenumber and entry.
+
+\starttyping
+\setupregister[index][nb][pagestyle=bold]
+\setupregister[index][hm][pagestyle=slanted]
+\stoptyping
+
+With for example:
+
+\starttyping
+\index[nb::]{squareroot}
+\index[hm::root]{$\srqt{2}$}
+\stoptyping
+
+The index entries we have discussed so far indicate the one
+page where the entry is made, but we can also indicate
+complete ranges of pages using:
+
+\showsetup{<<start>>register}
+
+The entries in between, which are of the same order, are not
+placed in the register.
+
+\starttyping
+\startregister[endless]{endless}
+...... an endless story ......
+\stopregister[endless]
+\stoptyping
+
+An extensive index entry, i.e.\ an entry with a large number
+of appearances, may have an uncomfortably long list of
+pagenumbers. Especially in interactive documents this leads
+to endless back and forth clicking. For this purpose we
+designed the feature of linked index entries. This means
+that you can couple identical entries into a list that
+enables the user to jump from entry to (identical) entry
+without returning to the register. The coupling mechanism is
+activated by:
+
+\startexample
+\starttyping
+\setupregister[index][coupling=yes]
+\stoptyping
+\stopexample
+
+In this way a mechanism is activated that places references
+in the register (\hbox {\symbol [previous]\ \symbol
+[somewhere]\ \symbol [next]}) as well as in the text (\hbox
+{\symbol [previous]\ {\bf word}\ \symbol [next]}) depending
+on the availability of alternatives. A jump from the
+register will bring you to the first, the middle or the last
+appearance of the entry.
+
+This mechanism is only working at the first level;
+subentries are ignored. Clicking on the word itself will
+bring you back to the register. Because we need the
+clickable word in the text we use the following command for
+the index entry itself:
+
+\showsetup{coupled<<register>>}
+
+For example \type {\coupledindex{where}}. The couplings
+must be loaded with the command:
+
+\showsetup{coupleregister}
+
+Normally this command is executed automatically when needed,
+so it's only needed in emergencies.
+
+\stopcomponent

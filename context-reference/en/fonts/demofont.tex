@@ -1,0 +1,122 @@
+% output=pdftex interface=en
+%
+% copyright=pragma-ade readme=readme.pdf licence=cc-by-nc-sa
+
+\usemodule[fnt-01]
+
+\loadmapfile[texnansi-test-test.map]
+
+\starttext
+
+\ShowFont[Iwona-Regular][texnansi-demofont][texnansi]
+
+\setupheadertexts[\tttf example definitions]
+
+\starttyping
+texfont --ve=test --co=test --ma --in demofont
+\stoptyping
+
+\starttyping
+c:/data/develop/tex/texmf-fonts/fonts/map/pdftex/context/texnansi-test-test.map
+\stoptyping
+
+\starttyping
+\definefontsynonym[Iwona-Regular][texnansi-demofont][encoding=texnansi]
+\stoptyping
+
+\page
+
+\setupheadertexts[\tttf texnansi-test-test.map]
+
+\starttyping
+texnansi-raw-demofont Iwona-Regular 4 < demofont.pfb texnansi.enc
+\stoptyping
+
+
+%appended section
+
+\page
+
+\ShowFont[Iwona-Regular-Slanted][texnansi-demofont-slanted-167][texnansi]
+
+\setupheadertexts[\tttf example definitions]
+
+\starttyping
+texfont --ve=test --co=test --ma --in --sla=.167 demofont
+\stoptyping
+
+\starttyping
+c:/data/develop/tex/texmf-fonts/fonts/map/pdftex/context/texnansi-test-test.map
+\stoptyping
+
+\starttyping
+\definefontsynonym[Iwona-Regular-Slanted][texnansi-demofont-slanted-167][encoding=texnansi]
+\stoptyping
+
+\page
+
+\setupheadertexts[\tttf texnansi-test-test.map]
+
+\starttyping
+texnansi-raw-demofont-slanted-167 Iwona-Regular ".167 SlantFont" 4 < demofont.pfb texnansi.enc
+\stoptyping
+
+
+%appended section
+
+\page
+
+\ShowFont[Iwona-Regular-Extended][texnansi-demofont-extended-1500][texnansi]
+
+\setupheadertexts[\tttf example definitions]
+
+\starttyping
+texfont --ve=test --co=test --ma --in --ext=1.50 demofont
+\stoptyping
+
+\starttyping
+c:/data/develop/tex/texmf-fonts/fonts/map/pdftex/context/texnansi-test-test.map
+\stoptyping
+
+\starttyping
+\definefontsynonym[Iwona-Regular-Extended][texnansi-demofont-extended-1500][encoding=texnansi]
+\stoptyping
+
+\page
+
+\setupheadertexts[\tttf texnansi-test-test.map]
+
+\starttyping
+texnansi-raw-demofont-extended-1500 Iwona-Regular "1.50 ExtendFont" 4 < demofont.pfb texnansi.enc
+\stoptyping
+
+
+%appended section
+
+\page
+
+\ShowFont[Iwona-Regular-Caps][texnansi-demofont-capitalized-750][texnansi]
+
+\setupheadertexts[\tttf example definitions]
+
+\starttyping
+texfont --ve=test --co=test --ma --in --cap=.750 demofont
+\stoptyping
+
+\starttyping
+c:/data/develop/tex/texmf-fonts/fonts/map/pdftex/context/texnansi-test-test.map
+\stoptyping
+
+\starttyping
+\definefontsynonym[Iwona-Regular-Caps][texnansi-demofont-capitalized-750][encoding=texnansi]
+\stoptyping
+
+\page
+
+\setupheadertexts[\tttf texnansi-test-test.map]
+
+\starttyping
+texnansi-raw-demofont-capitalized-750 Iwona-Regular 4 < demofont.pfb texnansi.enc
+\stoptyping
+
+\stoptext

@@ -1,0 +1,10 @@
+\setuppapersize     [A5][A4]
+\setuparranging     [2UP,rotated,doublesided]
+\setuppagenumbering [alternative=doublesided]
+\setuplayout        [margin=0pt,width=fit]
+\setupbodyfont      [lbr,12pt]
+
+\starttext 
+  \dorecurse{30}{\input tufte \par \input knuth \par} 
+\stoptext
+

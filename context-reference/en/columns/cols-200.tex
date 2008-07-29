@@ -1,0 +1,55 @@
+% content=tex
+%
+% copyright=pragma-ade readme=readme.pdf licence=cc-by-nc-sa
+
+\setupoutput
+  [pdftex]
+
+\setuppapersize
+  [A0][A0]
+
+\setuplayout
+  [middle]
+
+\setuptolerance
+  [verytolerant,stretch]
+
+\showframe \showgrid 
+
+\definecolumnset
+  [karel]
+  [n=5,
+   distance=60pt]
+
+\setupbodyfont
+  [ppl,20pt]
+
+\useMPlibrary[dum] % heb jij nog niet 
+
+\setupcolors
+  [state=start]
+
+\starttext 
+
+\startcolumnset[karel]
+
+\placefigure
+  [btlr]
+  {none}
+  {\externalfigure[whatever][width=\dimexpr(2\textwidth+60pt)]}
+
+\placefigure
+  [tbrl]
+  {none}
+  {\externalfigure[whatever][width=\dimexpr(3\textwidth+120pt)]}
+
+\placefigure
+  [fxtb:4*50]
+  {none}
+  {\externalfigure[whatever][width=\dimexpr(2\textwidth+60pt)]}
+
+\dorecurse{20}{\input tufte \par} 
+
+\stopcolumnset
+
+\stoptext 
