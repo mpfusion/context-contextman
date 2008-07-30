@@ -1,0 +1,72 @@
+\startcomponent co-metapost
+
+\startbuffer[mp-1]
+\startMPgraphic
+  fill unitsquare scaled 100 withcolor (.2,.3,.4) ;
+\stopMPgraphic
+\stopbuffer
+
+\startbuffer[mp-2]
+\startMPgraphic
+  fill unitsquare scaled 100 withcolor \MPcolor{mark} ;
+\stopMPgraphic
+\stopbuffer
+
+\startbuffer[mp-3]
+\startuseMPgraphic{test a}
+  fill unitsquare xscaled \overlaywidth yscaled \overlayheight ;
+\stopuseMPgraphic
+
+\defineoverlay[A Nice Rectangle][\useMPgraphic{test a}]
+
+\setupbackgrounds[page][background=A Nice Rectangle]
+\stopbuffer
+
+\startbuffer[mp-4]
+\startreusableMPgraphic{test b}
+  fill unitsquare xscaled \overlaywidth yscaled \overlayheight ;
+\stopreusableMPgraphic
+
+\defineoverlay[A Nice Rectangle][\reuseMPgraphic{test b}]
+
+\setupbackgrounds[page][background=A Nice Rectangle]
+\stopbuffer
+
+
+\environment contextref-env
+\product contextref
+
+\chapter[metapost]{\METAPOST}
+
+In a \CONTEXT\ document we can use \METAPOST\ code
+directly. For example:
+
+\typebuffer[mp-1]
+
+A direct relation with the \CONTEXT\ color mechanism is
+obvious:
+
+\typebuffer[mp-2]
+
+\METAPOST\ support is very extensive. You can store
+definitions and re||use them at random. If possible
+processed \METAPOST\ pictures are re||used.
+
+A detailed discussion on embedding \METAPOST\ graphics is
+beyond this manual, and therefore will be covered elsewhere.
+For the moment it is enough to know the basics of putting
+for instance graphics in the background. In the next example,
+a graphic is calculated each time it is refered to:
+
+\typebuffer[mp-3]
+
+When the graphic does not change, we can best reuse it, like:
+
+\typebuffer[mp-4]
+
+When using the \CONTEXT\ command line interface \TEXEXEC,
+graphics are processed automatically. Unless one calls
+\METAPOST\ at runtime, a second pass is needed to get the
+graphics in their final state.
+
+\stopcomponent

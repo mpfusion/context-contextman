@@ -1,44 +1,31 @@
 
-sources =  co-blocks.tex \
-co-columns.tex           \
-co-colorbackground.tex   \
-co-descriptions.tex      \
-co-documents.tex         \
-co-figures.tex           \
-co-formulas.tex          \
-co-fonts.tex             \
-co-frames.tex            \
-co-introduction.tex      \
-co-language.tex          \
-co-layout.tex            \
-co-pagedesign.tex        \
-co-preface.tex           \
-co-references.tex        \
-co-tables.tex            \
-co-textelements.tex      \
-co-typography.tex
-
-contextref.pdf: contextref.tex contextref-env.tex $(sources)
-	context contextref
-
-clean:
-	texutil --purgeall
-	rm -f contextref-mp.{mpy,pdf,tex}
-
-co-colorbackground.tex: colorbackground/buffers.tex
-	touch co-colorbackground.tex
-
-co-documents.tex: documents/buffers.tex
-	touch co-documents.tex
-
-co-layout.tex: layout/buffers.tex
-	touch co-layout.tex
-
-co-tables.tex: tables/registers-buffer.tex
-	touch co-tables.tex
+sources =                  \
+  co-backgrounds.tex       \
+  co-blocks.tex            \
+  co-columns.tex           \
+  co-colors.tex            \
+  co-descriptions.tex      \
+  co-documents.tex         \
+  co-figures.tex           \
+  co-formulas.tex          \
+  co-fonts.tex             \
+  co-frames.tex            \
+  co-interactive.tex       \
+  co-introduction.tex      \
+  co-language.tex          \
+  co-layers.tex            \
+  co-layout.tex            \
+  co-metapost.tex          \
+  co-modules.tex           \
+  co-pagedesign.tex        \
+  co-preface.tex           \
+  co-references.tex        \
+  co-tables.tex            \
+  co-tabulate.tex          \
+  co-textelements.tex      \
+  co-typography.tex
 
 pagedesign_sources =      \
-  pagedesign/buffers.tex  \
   pagedesign/co-en-1p.tex \
   pagedesign/co-en-1q.tex \
   pagedesign/co-en-2p.tex \
@@ -53,9 +40,6 @@ pagedesign_sources =      \
   pagedesign/co-en-6q.tex \
   pagedesign/co-en-7p.tex \
   pagedesign/co-en-7q.tex
-
-co-pagedesign.tex: $(pagedesign_sources)
-	touch co-pagedesign.tex
 
 columns_sources =      \
   columns/cols-000.tex \
@@ -95,6 +79,19 @@ columns_sources =      \
   columns/cols-804.tex \
   columns/cols-805.tex \
   columns/cols-806.tex
+
+contextref.pdf: contextref.tex contextref-env.tex $(sources)
+	context contextref
+
+clean:
+	texutil --purgeall
+	rm -f contextref-mp.{mpy,pdf,tex}
+
+co-tables.tex: tables/registers-buffer.tex
+	touch co-tables.tex
+
+co-pagedesign.tex: $(pagedesign_sources)
+	touch co-pagedesign.tex
 
 co-columns.tex: $(columns_sources)
 	touch co-columns.tex

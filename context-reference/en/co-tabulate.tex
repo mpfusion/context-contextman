@@ -1,0 +1,596 @@
+\startcomponent co-tabulate
+
+\environment contextref-env
+\product contextref
+
+\chapter[tabulate]{Tabulation}
+\index{tabulation}
+\index{tables+running text}
+\macro{\tex{starttabulate}}
+\macro{\tex{definetabulate}}
+\macro{\tex{setuptabulate}}
+
+The second mechanism for generating tabular information
+is tabulation. We will see that the specification of
+tabulations does not differ much from that of tables.
+
+Tabular information can be found in the running text and the
+location of that information is fixed (i.e. it is not allowed
+to float like tables and figures).
+
+The tabulation mechanism is meant for that tabular
+information in which cells may contain information with more
+that one paragraph. However the table and tabular mechanism
+can be used indifferently we advise you to use them
+consistently because the spacing within the both mechanisms
+differ.
+
+The table commands form a layer around \TABLE, but the
+tabulation commands are written for \CONTEXT. The tabulation
+mechanism uses the same interface when possible. As we do in
+the table mechanism we use \type {\NC} as column separator
+and \type {\NR} as row separator.
+
+\startbuffer
+\starttabulate[|l|c|r|]
+\NC this and that \NC left and right \NC here and there \NC \NR
+\NC low and high  \NC up and down    \NC back and forth \NC \NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+The three commands \type {l}, \type {c} and \type {r} stand for:
+
+\starttabulate[|lT|p|]
+\NC l \NC left align  \NC \NR
+\NC c \NC center      \NC \NR
+\NC r \NC right align \NC \NR
+\stoptabulate
+
+There are spacing commands. These relate to
+one||line as well as multi||line (paragraphs) cells.
+
+\starttabulate[|lT|p|]
+\NC i\sl n \NC spacing left   \NC \NR
+\NC j\sl n \NC spacing right  \NC \NR
+\NC k\sl n \NC spacing around \NC \NR
+\stoptabulate
+
+The factor {\ttsl n} is applied to the unit of spacing which
+is default set at .5em (see \type {\setuptabulate}).
+
+\startbuffer
+\starttabulate[|l|k2c|r|]
+\NC this and that \NC left and right \NC here and there \NC \NR
+\NC low and high  \NC up and down    \NC back and forth \NC \NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+The width of a column is set with:
+
+\startbuffer
+\starttabulate[|lw(4cm)|w(4cm)l|r|]
+\NC this and that \NC left and right \NC here and there \NC \NR
+\NC low and high  \NC up and down    \NC back and forth \NC \NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+The most important reason for developing the tabulation
+mechanism lies in the fast that we wanted to be able to type
+set multi paragraph columns. A prerequisite was that we
+should be able to use the full width of the text body. This
+option is supported by:
+
+\starttabulate[|lT|p|]
+\NC w({\sl d}) \NC 1 line,   fixed width    \NC \NR
+\NC p({\sl d}) \NC paragraph, fixed width   \NC \NR
+\NC p          \NC paragraph, maximum width \NC \NR
+\stoptabulate
+
+In the next example the first column has an unknown width.
+The second column contains a left aligned paragraph with a
+width of 4~cm. The third column has a width of 2~cm and
+consists of one line. The last column contains a paragraph
+that occupies the remaining width.
+
+\starttyping
+\starttabulate[|l|p(4cm)l|w(2cm)|p|]
+...
+\stoptabulate
+\stoptyping
+
+A four column table with four paragraphs is specified with:
+
+\starttyping
+\starttabulate[|p|p|p|p|]
+...
+\stoptabulate
+\stoptyping
+
+In stead of specifying a body font in each cell we can
+specify them per column. In the next tabulation the
+definition is \type {[|lT|p|]}.
+
+\starttabulate[|lT|p|]
+\NC B \NC \bf boldface \NC \NR
+\NC I \NC \it italic   \NC \NR
+\NC R \NC \sl roman    \NC \NR
+\NC S \NC \sl slanted  \NC \NR
+\NC T \NC \tt teletype \NC \NR
+\stoptabulate
+
+Math is possible with:
+
+\starttabulate[|lT|p|]
+\NC m \NC in||line math \NC \NR
+\NC M \NC display  math \NC \NR
+\stoptabulate
+
+With the letter \type {f} we can specify a body font, like
+\type {f\bs}. There are also the following commands:
+
+\starttabulate[|lT|p|]
+\NC f\tex{command} \NC font specification                \NC \NR
+\NC b\arg{..}      \NC place \type{..} before the entry  \NC \NR
+\NC a\arg{..}      \NC place \type{..} after the entry   \NC \NR
+\NC h\tex{command} \NC apply  \tex{command} on the entry \NC \NR
+\stoptabulate
+
+The \type{h}||command (hook) allows some tricks like:
+
+\startbuffer
+\starttabulate[|w(2cm)h\inframed|b{(}a{)}|p|]
+\HC {Uggly}     \NC isn't it?       \NC he says.     \NC \NR
+\HC {Beautiful} \NC but meaningless \NC I would say. \NC \NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer
+
+Because we use \type {\inframed} the frame remains within the
+line. The command applies only to the cells that are
+preceded by \type {\HC}. The \arg{} are important because
+\type {\inframed} expects these.
+
+\getbuffer
+
+We can use \type {h} for alternative situations, like:
+
+\startbuffer
+\unexpanded\def\SmallDash#1{\blackrule[width=#1em]}
+\starttabulate[|l|lh\SmallDash|]
+\HL
+\NC \bf item \NC \bf number \NC \NR
+\HL
+\NC figures  \HC  {5}       \NC \NR
+\NC tables   \HC  {8}       \NC \NR
+\NC formulas \HC {12}       \NC \NR
+\HL
+\stoptabulate
+\stopbuffer
+
+\getbuffer
+
+All three cells are adapted. Do not forget the \arg{} in
+the column with the numbers!
+
+\typebuffer
+
+We used \type {\NC} as a column separator but an alternative
+is \type {\EQ} that places a specified character.
+
+\startbuffer
+\starttabulate
+\NC =||sign      \EQ a separator can be specified by altering the
+                     variable \type {EQ} \NC \NR
+\NC :||character \EQ default a colon is used but an equal sign
+                     is a reasonable alternative \NC \NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer
+
+This results in:
+
+\getbuffer
+
+We saw \type {\NC} for normal cell entries, \type {\EQ} for
+entries separated by a character and \type {\HC} for entries
+that are influenced by a command. There is also \type
+{\HQ} for a cell entry with a separator and a command. When
+no formatting is needed there are the commands: \type {\RC}
+and \type {\RQ}.
+
+\startbuffer
+\starttabulate[|*{4}{cBh\type|}]
+\NC     separator \NC normal \NC raw   \NC command \NC \NR
+\RC \bf yes       \HC {\EQ}  \HC {\RQ} \HC {\HQ}   \NC \NR
+\RC \bf no        \HC {\NC}  \HC {\RC} \HC {\HC}   \NC \NR
+\stoptabulate
+\stopbuffer
+
+\getbuffer
+
+This small tabulation shows all three alternatives. Here we
+have a tabulation with four centered columns, {\bf boldface}
+or \type {verbatim}, of which two cells have a different
+alignment. The table is coded as:
+
+\typebuffer
+
+The equal sign or any other character can be forced with the
+\type {e}~command in the definition.
+
+\starttabulate[|lT|p|]
+\NC e \NC sets a symbol in front of the next column \NC \NR
+\stoptabulate
+
+When several columns have an equal specification we can
+combine those specifications. Note that the number
+of~\type{|} must be correct.
+
+\startbuffer
+\starttabulate[|*{3}{k1pc|}]
+\NC this and that \NC left and right \NC here and there \NC \NR
+\NC low and high  \NC up and down    \NC back and forth \NC \NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer
+
+Here we typed $1+3\times1=4$ times a \type{|}.
+
+\getbuffer
+
+A better example of the automatic cell width determination
+is the next one.
+
+\startbuffer
+\starttabulate[|l|p|]
+\NC tables     \NC We use \type {\starttable} when we typeset tables
+                   but the exact location is not fixed and the
+                   information is allowed to float in the running
+                   text. \NC \NR
+\NC tabulation \NC The command \type {\starttabulate} is meant for
+                   tabular information that is part of the running text.
+                   The automatic calculation of the cell width
+                   is a feature in this mechanism. \NC \NR
+\stoptabulate
+\stopbuffer
+
+\getbuffer
+
+
+This tabulation was typed as:
+
+\typebuffer
+
+When no tabulation is specified it is assumed that
+\type{[|l|p|]} is wanted. To prevent typing the same
+specification all over again you can use the tabulation
+format definition command:
+
+\startbuffer
+\definetabulate[Three][|lB|lS|p|]
+
+\startThree
+\NC one \NC two  \NC three four five six seven eight nine ten eleven
+                     twelve thirteen fourteen fifteen and so on \NC \NR
+\stopThree
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+The tabulation commands can be summarized with:
+
+\showsetup{definetabulate}
+
+The first argument gives the tabulation a logical name. The
+second argument is optional and specifies the associated
+tabulations; later on we will give an example. The last
+argument specifies the cells.
+
+Then we have:
+
+\showsetup{starttabulate}
+
+In this command the first argument specifies the cells, the
+second and optional argument the set up.
+
+\showsetup{setuptabulate}
+
+The optional argument specifies the associated tabulations.
+When the parameter \type {indenting} is set at \type {yes},
+the width of the tabulations will adapt to the actual
+indent. In case of a \type {\start ... \stopnarrower}
+environment the left and right indent are taken into
+account. The parameter \type {unit} is used for the
+spacing commands~\type {i}, \type {j} and~\type {k}. The
+commands specified after the parameter \type {inner} are
+applied just in front of the first row and are effective in
+the whole tabulation.
+
+The possibilities for framing tabulations are limited. You
+can add horizontal lines with \type {\HL}. This command takes
+care of the vertical spacing as the next example
+illustrates:
+
+\startbuffer
+\starttabulate[|l|p|]
+\HL
+\NC small  \NC They say, small is beautiful.        \NC \NR
+\HL
+\NC medium \NC It seems that medium is the message. \NC \NR
+\HL
+\NC large  \NC Large T||shirts are always sold out. \NC \NR
+\HL
+\stoptabulate
+\stopbuffer
+
+\typebuffer
+
+When a pagebreak occurs in the middle of a tabulation the
+horizontal line is repeated automatically. Vertical spacing
+can be set by \type {\FL}, \type {\ML} and \type {\LL}.
+These commands stand for {\em first}, {\em middle} and {\em
+last line}.
+
+\getbuffer
+
+The spacing around the lines is related to the depth of a line.
+
+\starttyping
+\setuptabulate[distance={depth,medium}]
+\stoptyping
+
+There are different ways to adapt this set up, like:
+
+\starttyping
+\setuptabulate[distance=none]
+\setuptabulate[distance=big]
+\setuptabulate[distance={blank,small}]
+\setuptabulate[distance={1ex,medium}]
+\setuptabulate[distance=1cm]
+\stoptyping
+
+Tabulation is meant for the running text but it can also be
+used in a floating block. In that case the spacing around
+tabulation is suppressed. In the running text the actual
+whitespace and textwidth are taken into account.
+
+\startbuffer
+\starttabulate
+\NC You see? \NC As we can expect the width of a paragraph is adapted
+                 to the width of the text. And you can even put an
+                 itemize in such a cell.
+                 \startitemize[packed]
+                 \item like this
+                 \item or that
+                 \stopitemize \NC \NR
+\stoptabulate
+\stopbuffer
+
+\startitemize
+
+\item  This means that a tabulation within an itemization
+       is adapted to the indent.
+
+\getbuffer
+
+\item  This little table was defined like this:
+
+\typebuffer
+
+\stopitemize
+
+We can use and abuse tabulations to obtain some special
+effects. Vice versa common effects can be combined quite
+well with tabulations. The next, somewhat strange example
+will illustrate that.
+
+\startbuffer
+\starttabulate[|p(2cm)|p(4cm)|p|]
+\NC \startitemize[n,packed]
+    \item first \item second \item third
+    \stopitemize
+\NC \startitemize[packed][items=5,width=4em,distance=.5em]
+    \its this or that \its so and so \its here or there
+    \stopitemize
+\NC \startitemize[g,packed,broad]
+    \item alpha \item beta \item gamma
+    \stopitemize
+\NC\NR
+\stoptabulate
+\stopbuffer
+
+\getbuffer
+
+In these kind of situations we should set the itemization
+with the key \type {packed}.
+
+\typebuffer
+
+The content of a tabulation has some limitations, because
+\TEX\ first reads the complete table. These limitations
+relate to the macros that use \type {\catcode} adaptations.
+In normal situations you will not notice these limitations,
+only when you have typeset \TEX\ input with \TEX.
+
+While discussing tables we already saw a financial table.
+These kind of tables can best be set with the tabulation
+commands.
+
+\startbuffer
+\starttabulate[|l|r|]
+\NC not so much   \NC          1.220  \NC \NR
+\NC somewhat more \NC          5.186  \NC \NR
+\NC together      \NC \overbar{6.406} \NC \NR
+\stoptabulate
+\stopbuffer
+
+\getbuffer
+
+This tabulation was typed like this:
+
+\typebuffer
+
+As soon as we work with numbers there are several ways of
+alignment. Like in tables we can make use of~\type {~}, but
+we have to indicate the meaning of \type {~} explicitly.
+This is caused by the fact that we still want to use
+the~\type {~} within paragraphs as an non||hyphenatable space.
+
+\starttyping
+\starttabulate[|l|~c|]
+\NC this is less \NC ~12 \NC \NR
+\NC than that    \NC 185 \NC \NR
+\stoptabulate
+\stoptyping
+
+We return to the defining of categories of tabulations.
+An application of this option can be found in the commands
+that make up a legend with a formula.
+
+\starttyping
+\definetabulate [legend]       [|emj1|i1|mR|]
+\definetabulate [legend] [two] [|emj1|emk1|i1|mR|]
+\setuptabulate  [legend]       [unit=.75em,EQ={=}]
+\stoptyping
+
+After these definitions that are default in \CONTEXT\ we can
+type:
+
+\startbuffer
+\startlegend
+\NC w \NC the width of a box  \NC pt \NR
+\NC h \NC the height of a box \NC pt \NR
+\NC d \NC the depth of a box  \NC pt \NR
+\stoplegend
+\stopbuffer
+
+\typebuffer
+
+This very simple legend becomes this:
+
+\getbuffer
+
+An extra entry is possible when we add the key \type {two}:
+
+\startbuffer
+\startlegend[two]
+\NC w \NC width  \NC the width of a box  \NC pt \NR
+\NC h \NC height \NC the height of a box \NC pt \NR
+\NC d \NC depth  \NC de depth of a box   \NC pt \NR
+\stoplegend
+\stopbuffer
+
+\typebuffer
+
+This related tabulation inherits the set up of the original.
+We also could have defined \type {\startlegendtwo}, but the
+mentioned definition origins from the older functionality
+that was part of earlier \CONTEXT\ versions.
+
+\getbuffer
+
+In a similar way the commands for typesetting facts are
+defined.
+
+\starttyping
+\definetabulate [fact] [|R|ecmj1|i1mR|]
+\setuptabulate  [fact] [unit=.75em,EQ={=}]
+\stoptyping
+
+The first column is set in roman and the next column is
+separated by an equal sign. That second column is centered
+and is set in math mode. That column also has some more
+whitespace. The last column is also set in math mode but the
+characters are set in roman. Some whitespace is added.
+
+\startbuffer
+\startfact
+\NC width  \NC w \NC 48pt \NR
+\NC height \NC h \NC  9pt \NR
+\NC depth  \NC d \NC  3pt \NR
+\stopfact
+\stopbuffer
+
+\typebuffer
+
+This results in:
+
+\getbuffer
+
+In reality we also give a value to \type {inner} and then
+specifications as below are possible:
+
+\starttyping
+\startfact
+\\ width  \\ w \\ 48pt \\
+\\ height \\ h \\  9pt \\
+\\ depth  \\ d \\  3pt \\
+\stopfact
+\stoptyping
+
+We want to conclude with an example of an automatic
+calculation of the width of a paragraph. This command shows
+|<|and we already saw that in other examples|>| that the
+last \type {\NC} is redundant.
+
+\startbuffer
+\starttabulate[|Bl|p|Bl|]
+\NC Read Me \NC \input tufte \NC Edward Tufte \NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+As was said earlier \CONTEXT\ takes care of adequate page
+breaking in the middle of a tabulation. When we set \type
+{\tracetabulatetrue} red lines are drawn in positions where
+breaking is not allowed.
+
+\startbuffer
+\starttabulate[|c|p|p|]
+\NC \bf Alpha \NC \bf Beta    \NC \bf Gamma              \NC\NR
+\NC 1         \NC right indeed    \NC definitely wrong   \NC\NR
+\NC 2         \NC \thinrules[n=3] \NC \thinrules[n=3]    \NC\NR
+\NC 3         \NC oh yes          \NC simply no          \NC\NR
+\NC 4         \NC very true       \NC as false as can be \NC\NR
+\NC 5         \NC \thinrules[n=5] \NC \thinrules[n=5]    \NC\NR
+\NC 6         \NC \thinrules[n=3] \NC \thinrules[n=4]    \NC\NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer {\tracetabulatetrue\getbuffer}
+
+\startbuffer
+\starttabulate[|c|p|p|]
+\NC \bf Alpha \NC \bf Beta        \NC \bf Gamma          \NC\NR
+\NC 1         \NC right indeed    \NC definitely wrong   \NC\NR
+\NC 2         \NC oh yes          \NC simply no          \NC\NR
+\NC 3         \NC very true       \NC as false as can be \NC\NR
+\NC 4         \NC the whole truth \NC but the truth      \NC\NR
+\stoptabulate
+\stopbuffer
+
+\typebuffer {\tracetabulatetrue\getbuffer}
+
+\stopcomponent
+
+

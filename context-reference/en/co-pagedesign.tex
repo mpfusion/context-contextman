@@ -2,7 +2,278 @@
 
 \startcomponent co-pagedesign
 
-\input pagedesign/buffers
+\startbuffer[fig-layo]
+
+\unprotect
+
+\setuplinewidth[\v!small]
+
+\setupframed[\c!offset=0pt,\c!framecolor=PlusColor]
+
+\framed
+  [\c!strut=\v!no,
+   \c!background=\v!screen,
+   \c!backgroundscreen=1]
+  {\hbox
+     {\framed
+        [\c!height=15cm,\c!width=1.25cm]
+        {\translate[nl=rugwit,en=backspace]}%
+      \vbox
+        {\offinterlineskip
+         \setupframed[\c!width=7.5cm]
+         \framed
+           [\c!height=1.25cm]
+           {\translate[nl=kopwit,en=topspace]}
+         \framed
+           [\c!height=1.00cm,\c!background=\v!screen,\c!backgroundscreen=.85]
+           {\translate[nl=hoofd,en=header]}
+         \framed
+           [\c!height=10.50cm,\c!background=\v!screen,\c!backgroundscreen=.95]
+           {\translate[nl=tekst,en=text]}
+         \framed
+           [\c!height=1.00cm,\c!background=\v!screen,\c!backgroundscreen=.85]
+           {\translate[nl=hoofd,en=footer]}
+         \framed
+           [\c!height=1.25cm]
+           {}}%
+      \framed[\c!height=15cm,\c!width=1.75cm]{}}}
+
+\vskip.25cm
+
+\hbox to 10.5cm
+  {\hskip1.25cm
+   \llap{\hbox to 2cm
+      {\color[PlusColor]{\vl}\hss
+       \translate[nl=marge,en=margin]\hss
+       \color[PlusColor]{\vl}}}%
+   \hskip7.5cm
+   \hbox to 2.00cm
+     {\color[PlusColor]{\vl}\hss
+      \translate[nl=marge,en=margin]\hss
+      \color[PlusColor]{\vl}}%
+   \hss}
+
+\protect
+
+\stopbuffer
+
+\startbuffer[pag-16]
+
+\unprotect
+
+\hbox
+  {\forgetall
+   \offinterlineskip
+   \setupframed
+     [\c!width=1cm,\c!height=1.5cm,
+      \c!background=\v!screen,\c!backgroundscreen=1]%
+   \vbox
+     {\hbox
+        {\framed{8}\framed{9}\framed{12}\framed{5}}
+      \rotate[\c!rotation=180]{\hbox
+        {\framed{4}\framed{13}\framed{16}\framed{1}}}}%
+   \hskip.25cm
+   \vbox
+     {\hbox
+        {\framed{6}\framed{11}\framed{10}\framed{7}}
+      \rotate[\c!rotation=180]{\hbox
+        {\framed{2}\framed{15}\framed{14}\framed{3}}}}}
+
+\protect
+
+\stopbuffer
+
+\startbuffer[pag-8]
+
+\unprotect
+
+\hbox
+  {\forgetall
+   \offinterlineskip
+   \setupframed
+     [\c!width=1cm,\c!height=1.5cm,
+      \c!background=\v!screen,\c!backgroundscreen=1]%
+   \vbox
+     {\hbox
+        {\framed{4}\framed{5}}
+      \rotate[\c!rotation=180]{\hbox
+        {\framed{8}\framed{1}}}}%
+   \hskip.25cm
+   \vbox
+     {\hbox
+        {\framed{3}\framed{6}}
+      \rotate[\c!rotation=180]{\hbox
+        {\framed{2}\framed{7}}}}}
+
+\protect
+
+\stopbuffer
+
+\startbuffer[pag-4]
+
+\unprotect
+
+\hbox
+  {\setupframed
+     [\c!width=1cm,\c!height=1.5cm,
+      \c!background=\v!screen,\c!backgroundscreen=1]%
+   \hbox{\framed{1}\framed{4}}%
+   \hskip.25cm
+   \hbox{\framed{3}\framed{2}}}
+
+\protect
+
+\stopbuffer
+
+\startbuffer[pag-2up]
+
+\unprotect
+
+\hbox
+  {\setupframed
+     [\c!width=1cm,\c!height=1.5cm,
+      \c!background=\v!screen,\c!backgroundscreen=1]%
+   \hbox{\framed{1}\framed{8}}%
+   \hskip.25cm
+   \hbox{\framed{2}\framed{7}}%
+   \hskip.25cm
+   \hbox{\framed{3}\framed{6}}%
+   \hskip.25cm
+   \hbox{\framed{4}\framed{5}}}
+
+\protect
+
+\stopbuffer
+
+\startbuffer[pag-2down]
+
+\unprotect
+
+\hbox
+  {\forgetall
+   \offinterlineskip
+   \setupframed
+     [\c!width=1.5cm,\c!height=1cm,
+      \c!background=\v!screen,\c!backgroundscreen=1]%
+   \vbox{\framed{8}\break\framed{1}}%
+   \hskip.25cm
+   \vbox{\framed{7}\break\framed{2}}%
+   \hskip.25cm
+   \vbox{\framed{6}\break\framed{3}}%
+   \hskip.25cm
+   \vbox{\framed{5}\break\framed{4}}}
+
+\protect
+
+\stopbuffer
+
+\startbuffer[grid-1]
+  \advance\baselineskip by 0pt plus 1pt
+  \hsize.2\hsize
+  \def\Alpha{\translate[nl=alfa, en=alpha]}
+  \def\Beta {\translate[nl=beta, en=beta]}
+  \def\Gamma{\translate[nl=gamma,en=gamma]}
+  \startcombination[4]
+    {\ruledvbox to 5\baselineskip {\Alpha\par\Beta\par\Gamma\par}}                  {}
+    {\ruledvbox to 5\baselineskip {\Alpha\par\Beta\par\Gamma\par\kern-\prevdepth}} {}
+    {\ruledvbox to 5\baselineskip {\Alpha\par\Beta\par\Gamma\par\kern0pt}}         {}
+    {\ruledvbox to 5\baselineskip {\Alpha\par\Beta\par\Gamma\par\vfill}}           {}
+  \stopcombination
+\stopbuffer
+
+\startbuffer[grid-2]
+  \hsize.2\hsize
+  \def\Alpha{\translate[nl=alfa, en=alpha]}
+  \def\Beta {\translate[nl=beta, en=beta]}
+  \def\Gamma{\translate[nl=gamma,en=gamma]}
+  \def\Delta{\translate[nl=delta,en=delta]}
+  \startcombination[4]
+    {\ruledvbox to 5\baselineskip {\Alpha\par\Beta\blank\Gamma\par\Delta}} {}
+    {\ruledvbox to 5\baselineskip {\Alpha\par\Beta\par\Gamma\blank\Delta}} {}
+    {\ruledvbox to 5\baselineskip {\Alpha\blank\Beta\blank\Gamma}}        {}
+    {\ruledvbox to 5\baselineskip {\Alpha\par\Beta\par\Gamma}}              {}
+  \stopcombination
+\stopbuffer
+
+
+\startbuffer[print-1]
+
+\unprotect
+
+\startcombination[4*4]
+  {\showprint[][]}
+     {\strut}
+  {\showprint[][][\c!location=\v!middle]}
+     {\tttf\c!location=\v!middle}
+  {\showprint[][][\c!location=\v!middle,\c!marking=\v!on]}
+     {\tttf\c!marking=\v!on\break\c!location=\v!middle}
+  {\showprint[][][\c!location=\v!middle,\c!marking=\v!on,\c!nx=2]}
+     {\tttf\c!marking=\v!on\break\c!location=\v!middle\break\c!nx=2}
+  {\showprint[][][\c!location=\v!left]}
+     {\tttf\c!location=\v!left}
+  {\showprint[][][\c!location=\v!right]}
+     {\tttf\c!location=\v!right}
+  {\showprint[][][\c!location={\v!left,\v!bottom}]}
+     {\tttf\c!location={\v!left,\v!bottom}}
+  {\showprint[][][\c!location={\v!right,\v!bottom}]}
+     {\tttf\c!location={\v!right,\v!bottom}}
+  {\showprint[][][\c!nx=2,\c!ny=1]}
+     {\tttf\c!nx=2,\c!ny=1}
+  {\showprint[][][\c!nx=1,\c!ny=2]}
+     {\tttf\c!nx=1,\c!ny=2}
+  {\showprint[][][\c!nx=2,\c!ny=2]}
+     {\tttf\c!nx=2,\c!ny=2}
+  {\showprint[][][\c!nx=2,\c!ny=2,\c!location=\v!middle]}
+     {\tttf\c!nx=2,\c!ny=2\break\c!location=\v!middle}
+  {\showprint[][][\c!horoffset=3pt]}
+     {\tttf\c!horoffset=.5cm}
+  {\showprint[][][\c!veroffset=3pt]}
+     {\tttf\c!veroffset=.5cm}
+  {\showprint[][][\c!scale=1.5]}
+     {\tttf\c!scale=1.5}
+  {\showprint[][][\c!scale=0.8]}
+     {\tttf\c!scale=0.8}
+\stopcombination
+
+\protect
+
+\stopbuffer
+
+\startbuffer[print-2]
+
+\unprotect
+
+\startcombination[3*4]
+  {\showprint[\v!landscape][][\c!location=\v!middle]}
+     {\tttf\v!landscape}
+  {\showprint[][\v!landscape][\c!location=\v!middle]}
+     {\tttf\strut\break\v!landscape}
+  {\showprint[\v!landscape][\v!landscape][\c!location=\v!middle]}
+     {\tttf\v!landscape\break\v!landscape}
+  {\showprint[90][][\c!location=\v!middle]}
+     {\tttf90}
+  {\showprint[][90][\c!location=\v!middle]}
+     {\tttf\strut\break90}
+  {\showprint[90][90][\c!location=\v!middle]}
+     {\tttf90\break90}
+  {\showprint[180][][\c!location=\v!middle]}
+     {\tttf180}
+  {\showprint[][180][\c!location=\v!middle]}
+     {\tttf\strut\break180}
+  {\showprint[180][180][\c!location=\v!middle]}
+     {\tttf180\break180}
+  {\showprint[\v!mirrored][][\c!location=\v!middle]}
+     {\tttf\v!mirrored}
+  {\showprint[][\v!mirrored][\c!location=\v!middle]}
+     {\tttf\strut\break\v!mirrored}
+  {\showprint[\v!mirrored][\v!mirrored][\c!location=\v!middle]}
+     {\tttf\v!mirrored\break\v!mirrored}
+\stopcombination
+
+\protect
+
+\stopbuffer
+
 
 \unprotect
 
