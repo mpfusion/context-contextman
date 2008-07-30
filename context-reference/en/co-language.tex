@@ -3,6 +3,30 @@
 \environment contextref-env
 \product contextref
 
+\def\ShowComposed #1
+  {\handletokens#1\with\type\VL#1\VL\hyphenatedword{#1}}
+
+\startbuffer[hyph-1]
+\starttable[|l|l|l|]
+\HL
+\VL \bf input \VL \bf normal \VL \bf hyphenated \VL\SR
+\HL
+\VL \ShowComposed intra||word   \VL\FR
+\VL \ShowComposed intra|-|word  \VL\MR
+\VL \ShowComposed intra|(|word) \VL\MR
+\VL \ShowComposed (intra|)|word \VL\MR
+\VL \ShowComposed intra|--|word \VL\MR
+\VL \ShowComposed intra|~|word  \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\startbuffer[messian]
+The French composer {\fr Olivier Messiaen} wrote \quote {\fr Quatuor pour
+la fin du temps} during the World War II in a concentration camp. This
+may well be one of the most moving musical pieces of that period.
+\stopbuffer
+
 \chapter[hyphenation,languages]{Language specific issues}
 
 \section{Introduction}

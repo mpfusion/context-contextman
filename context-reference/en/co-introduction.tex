@@ -5,6 +5,45 @@
 \environment contextref-env
 \product contextref
 
+
+\MPinclusions
+  {color gray;
+   gray := (.95,.95,.95);}
+
+\def\MPcircle#1#2#3#4#5%
+  {\startuseMPgraphic{circle}
+     path p;
+     p := fullcircle xscaled #1\space yscaled #2;
+     pickup pencircle scaled #3;
+     fill p withcolor \MPcolor{#5};
+     draw p withcolor \MPcolor{#4};
+   \stopuseMPgraphic
+   \useMPgraphic{circle}}
+
+\defineoverlay
+  [MPcircleA]
+  [\MPcircle{\overlaywidth}{\overlayheight}{2pt}{FrameColor}{GrayColor}]
+
+\startbuffer[fig-cont]
+
+\unprotect
+
+\setupframed[\c!background=MPcircleA,\c!frame=\v!off,\c!offset=\v!none]
+
+\framed
+  [\c!width=6cm,\c!height=5cm]
+  {\vfil \ConTeXt \vfil
+   \leavevmode\framed[\c!width=.7\hsize,\c!height=.5\hsize]
+     {\vfil plain\ \TeX \vfil
+      \leavevmode\framed[\c!width=.7\hsize,\c!height=.3\hsize]{\TeX}
+      \vfil\vfil}
+   \vfil\vfil}
+
+\protect
+
+\stopbuffer
+
+
 \chapter{Introduction}
 
 \section{\TEX}
