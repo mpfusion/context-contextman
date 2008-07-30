@@ -1,9 +1,307 @@
-\startcomponent co-en-06
+\startcomponent co-typography
 
 \environment contextref-env
 \product contextref
 
+\startbuffer[kerning]
+
+\startlinecorrection
+\vbox
+  {\forgetall
+   \vfill
+   \definefont[test][ComputerModern at 48pt]\test
+   \hbox{box}
+   \vskip-36pt
+   \def\\#1%
+     {\toprulefalse
+      \bottomrulefalse
+      \ruledhbox{\vrule width 0pt height 72pt#1}}
+   \hbox{\\b\\o\\x}}
+\stoplinecorrection
+
+\stopbuffer
+
+\startbuffer[styles]
+
+\vskip1ex
+\startcombination[3*3]
+  {\rmtfc\setupinterlinespace   Serif\end}  {}
+  {\sstfc\setupinterlinespace    Sans\end}   {}
+  {\tttfc\setupinterlinespace    Mono\end}   {}
+  {\rmtfc\setupinterlinespace Regular\end}{}
+  {\sstfc\setupinterlinespace Support\end}{}
+  {\tttfc\setupinterlinespace    Mono\end}   {}
+  {\rmtfc\setupinterlinespace   Roman\end}  {}
+  {\sstfc\setupinterlinespace    Sans\end}   {}
+  {\tttfc\setupinterlinespace    Type\end}   {}
+\stopcombination
+\vskip1ex
+
+\stopbuffer
+
+\startbuffer[em-ex-1]
+
+\def\jump{\vl\hskip1em\vl}%
+\def\mmmm{\vl M\vl}%
+\def\dash{\vl---\vl}%
+\def\numb{\vl12\vl}%
+
+\starttable[|c|c|c|c|c|c|]
+\HL
+\VL \type{\tf} \VL \type{\bf} \VL \type{\sl}  \VL
+    \type{\tt} \VL \type{\ss} \VL \type{\tfx} \VL\SR
+\HL
+\VL \tf\numb   \VL \bf\numb   \VL \sl \numb   \VL
+    \tt\numb   \VL \ss\numb   \VL \tfx\numb   \VL\FR
+\VL \tf\mmmm   \VL \bf\mmmm   \VL \sl \mmmm   \VL
+    \tt\mmmm   \VL \ss\mmmm   \VL \tfx\mmmm   \VL\MR
+\VL \tf\jump   \VL \bf\jump   \VL \sl \jump   \VL
+    \tt\jump   \VL \ss\jump   \VL \tfx\jump   \VL\MR
+\VL \tf\dash   \VL \bf\dash   \VL \sl \dash   \VL
+    \tt\dash   \VL \ss\dash   \VL \tfx\dash   \VL\LR
+\HL
+\stoptable
+
+\stopbuffer
+
+\startbuffer[em-ex-2]
+
+\def\show
+  {\hbox
+    {\forgetall
+     \offinterlineskip
+     \vbox
+       {\hsize1em\hl[1]\endgraf\vskip1ex\hl[1]}%
+     \hskip.25em
+     \vbox
+       {\hsize.5em \vskip\linewidth x\vskip\linewidth}}}%
+
+\starttable[|c|c|c|c|c|c|]
+\HL
+\VL \type{\tf} \VL \type{\bf} \VL \type{\sl}  \VL
+    \type{\tt} \VL \type{\ss} \VL \type{\tfx} \VL\SR
+\HL
+\VL \tf\show   \VL \bf\show   \VL \sl\show    \VL
+    \tt\show   \VL \ss\show   \VL \tfx\show   \VL\SR
+\HL
+\stoptable
+
+\stopbuffer
+
+
+\startbuffer[font-1]
+\definefontsynonym [Sans]            [Helvetica]
+\definefontsynonym [SansBold]        [Helvetica-Bold]
+\definefontsynonym [SansItalic]      [Helvetica-Oblique]
+\definefontsynonym [SansSlanted]     [Helvetica-Oblique]
+\definefontsynonym [SansBoldItalic]  [Helvetica-BoldOblique]
+\definefontsynonym [SansBoldSlanted] [Helvetica-BoldOblique]
+\definefontsynonym [SansCaps]        [Helvetica]
+
+\definebodyfont [14.4pt,12pt,11pt,10pt,9pt,8pt,7pt,6pt,5pt] [ss] [default]
+\stopbuffer
+
+\startbuffer[font-2]
+\definefontsynonym [Helvetica-Bold] [hvb] [encoding=texnansi]
+\stopbuffer
+
+\startbuffer[font-3]
+\definefontsynonym [Helvetica-Bold] [phvb] [encoding=ec]
+\stopbuffer
+
+\startbuffer[font-4]
+\definefontsynonym [Regular] [Serif]
+\definefontsynonym [Roman]   [Serif]
+\stopbuffer
+
+\startbuffer[font-5]
+\definebodyfont [default] [rm]
+  [ tf=Serif        sa 1,
+   tfa=Serif        sa a,
+      ...
+    sl=SerifSlanted sa 1,
+   sla=SerifSlanted sa a,
+      ...]
+\stopbuffer
+
+\startbuffer[font-6]
+\definebodyfont [12pt] [rm]
+  [ tf=cmr12,
+   tfa=cmr12 scaled \magstep1,
+   tfb=cmr12 scaled \magstep2,
+   tfc=cmr12 scaled \magstep3,
+   tfd=cmr12 scaled \magstep4,
+    bf=cmbx12,
+    it=cmti12,
+    sl=cmsl12,
+    bi=cmbxti10 at 12pt,
+    bs=cmbxsl10 at 12pt,
+    sc=cmcsc10 at 12pt]
+\stopbuffer
+
+\startbuffer[font-7]
+\definebodyfont [12pt,11pt,10pt,9pt,8pt] [ss]
+  [tf=hv  sa 1.000,
+   bf=hvb sa 1.000,
+   it=hvo sa 1.000,
+   sl=hvo sa 1.000,
+  tfa=hv  sa 1.200,
+  tfb=hv  sa 1.440,
+  tfc=hv  sa 1.728,
+  tfd=hv  sa 2.074,
+   sc=hv  sa 1.000]
+\stopbuffer
+
+\startbuffer[font-8]
+\definebodyfont [12pt,11pt,10pt,9pt,8pt] [ss]
+  [tf=hv sa 1, tfa=hv sa a, tfb=hv sa b, tfc=hv sa c, tfd=hv sa d]
+\stopbuffer
+
+\startbuffer[enco-1]
+\startmapping[texnansi]
+  \definecasemap 228 228 196  \definecasemap 196 228 196
+  \definecasemap 235 235 203  \definecasemap 203 235 203
+  \definecasemap 239 239 207  \definecasemap 207 239 207
+  \definecasemap 246 246 214  \definecasemap 214 246 214
+  \definecasemap 252 252 220  \definecasemap 220 252 220
+  \definecasemap 255 255 159  \definecasemap 159 255 159
+\stopmapping
+\stopbuffer
+
+\startbuffer[enco-2]
+\startencoding[texnansi]
+  \defineaccent " a 228
+  \defineaccent " e 235
+  \defineaccent " i 239
+  \defineaccent " o 246
+  \defineaccent " u 252
+  \defineaccent " y 255
+\stopencoding
+\stopbuffer
+
+\startbuffer[enco-3]
+\startencoding[texnansi]
+  \definecharacter ae 230
+  \definecharacter oe 156
+  \definecharacter o  248
+  \definecharacter AE 198
+\stopencoding
+\stopbuffer
+
+\startbuffer[font-10]
+\definefontsynonym [twelvepoint] [12pt]
+\definefontsynonym [xii]         [12pt]
+\stopbuffer
+
+\startbuffer[font-11]
+\definefontstyle [rm,roman,serif,regular]    [rm]
+\definefontstyle [ss,sansserif,sans,support] [ss]
+\definefontstyle [tt,teletype,type,mono]     [tt]
+\definefontstyle [hw,handwritten]            [hw]
+\definefontstyle [cg,calligraphic]           [cg]
+\stopbuffer
+
+\startbuffer[font-12]
+\definestyle [normal]                  [\tf]  []
+\definestyle [bold]                    [\bf]  []
+\definestyle [type]                    [\tt]  []
+\definestyle [italic]                  [\it]  []
+\definestyle [slanted]                 [\sl]  []
+\definestyle [bolditalic,italicbold]   [\bs]  []
+\definestyle [boldslanted,slantedbold] [\bs]  []
+\definestyle [small,smallnormal]       [\tfx] []
+\stopbuffer
+
+\startbuffer[font-13]
+\definefontsynonym [OldStyle] [MathItalic]
+\stopbuffer
+
+\startbuffer[math-1]
+$\tf x^2+\bf x^2+\sl x^2+\it x^2+\bs x^2+ \bi x^2 =\rm 6x^2$
+$\tf x^2+\bf x^2+\sl x^2+\it x^2+\bs x^2+ \bi x^2 =\tf 6x^2$
+$\tf x^2+\bf x^2+\sl x^2+\it x^2+\bs x^2+ \bi x^2 =\bf 6x^2$
+$\tf x^2+\bf x^2+\sl x^2+\it x^2+\bs x^2+ \bi x^2 =\sl 6x^2$
+\stopbuffer
+
+\startbuffer[math-2]
+$\tf\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
+$\bf\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
+$\sl\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
+$\bs\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
+$\it\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
+$\bi\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
+\stopbuffer
+
+\startbuffer[math-3]
+$\bf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = \mf 6x^2$
+\stopbuffer
+
+\startbuffer[math-4]
+$\bf x^2 + \hbox{whatever} + \sin(2x)$
+\stopbuffer
+
+\startbuffer[math-5]
+\definebodyfont [12pt] [mm]
+  [ex=cmex10 at 12pt,
+   mi=cmmi12,
+   sy=cmsy10 at 12pt]
+\stopbuffer
+
+\startbuffer[math-6]
+\definebodyfont [10pt,11pt,12pt] [mm]
+  [tf=Sans          sa 1,
+   bf=SansBold      sa 1,
+   sl=SansItalic    sa 1,
+   ex=MathExtension sa 1,
+   mi=MathItalic    sa 1,
+   sy=MathSymbol    sa 1]
+
+\setupbodyfont
+\stopbuffer
+
+\startbuffer[fontfil]
+\starttable[|Tl|l|]
+\HL
+\NC font-cmr \NC Computer Modern Roman        \NC\AR
+\NC font-csr \NC Computer Slavik Roman (?)    \NC\AR
+\NC font-con \NC Concrete Roman               \NC\AR
+\NC font-eul \NC Euler                        \NC\AR
+\NC font-ams \NC American Mathematics Society \NC\AR
+\HL
+\NC font-ant \NC Antykwa Torunska             \NC\AR
+\HL
+\NC font-lbr \NC Lucida Bright                \NC\AR
+\HL
+\NC font-pos \NC Base PostScript Fonts        \NC\AR
+\NC font-ptm \NC Times Roman                  \NC\AR
+\NC font-phv \NC Helvetica                    \NC\AR
+\NC font-pcr \NC Courier                      \NC\AR
+\HL
+\NC font-fil \NC Standard Filenames           \NC\AR
+\NC font-ber \NC Karl Berry FileNames         \NC\AR
+\HL
+\stoptable
+\stopbuffer
+
+\startbuffer[encofil]
+\starttable[|Tl|l|]
+\HL
+\NC enco-ans \NC TeXnansi                     \NC\AR
+\NC enco-ec  \NC European Computer            \NC\AR
+\NC enco-il2 \NC ISO Latin 2                  \NC\AR
+\NC enco-plr \NC Polish Roman                 \NC\AR
+\HL
+\NC enco-ibm \NC default IBM PC code page     \NC\AR
+\NC enco-win \NC default MS Windows code page \NC\AR
+\HL
+\stoptable
+\stopbuffer
+
+
 \chapter[typography]{Typography}
+
+\todo{The situation of Latin-Modern vs. Computer-Modern and TeX-Gyre vs. URW
+needs explaining}
 
 \section{Introduction}
 \index{typography}
@@ -31,19 +329,20 @@ a collection of pictures, often called glyphs, make up a
 font.
 
 \usetypescriptfile[type-buy]
-\usetypescript[map,sans,mono,handwriting,calligraphy,serif][lucida,times,antykwa-torunska][texnansi]
+\usetypescriptfile[type-gyr]
+\usetypescript[map,sans,mono,handwriting,calligraphy,serif][helvetica,schoolbook,times,antykwa-torunska]
 
 \startlinecorrection
 \ruledhbox to \hsize
   {\hss
    \definefont[test][ComputerModern          at 60pt]\test gap\setstrut\strut\hss
-   \definefont[test][LucidaBright            at 60pt]\test gap\hss
+   \definefont[test][Helvetica               at 60pt]\test gap\hss
    \definefont[test][Times-Roman             at 60pt]\test gap\hss
    \definefont[test][AntykwaTorunska-Regular at 60pt]\test gap\hss}
 \stoplinecorrection
 
-From left to right we see the Computer Modern, a Lucida
-Bright, a Times Roman and an Antiqua Torunka font, all
+From left to right we see the Computer Modern, a Helvetica, 
+a Times Roman and an Antiqua Torunska font, all
 scaled to 60pt. Fonts colections are designed in such a way
 that the overall appearance of a page looks good and that
 reading is as comfortable as possible.
@@ -51,15 +350,15 @@ reading is as comfortable as possible.
 \startlinecorrection
 \ruledhbox to \hsize
   {\hss
-   \definefont[test][LucidaBright            at 48pt]\test lap\setstrut\strut\hss
-   \definefont[test][LucidaBright-Demi       at 48pt]\test lap\hss
-   \definefont[test][LucidaBright-Italic     at 48pt]\test lap\hss
-   \definefont[test][LucidaBright-DemiItalic at 48pt]\test lap\hss}
+   \definefont[test][Schoolbook-Roman      at 48pt]\test lap\setstrut\strut\hss
+   \definefont[test][Schoolbook-Bold       at 48pt]\test lap\hss
+   \definefont[test][Schoolbook-Italic     at 48pt]\test lap\hss
+   \definefont[test][Schoolbook-BoldItalic at 48pt]\test lap\hss}
 \stoplinecorrection
 
 Within a font design there can be variations. In the example
-above we see a normal, a bold, an italic, and a bold italic
-alternative of the Lucida Bright font.
+above we see a light, a bold, a light italic, and a bold italic
+alternative of the Schoolbook font.
 
 The distance between the individual glyphs in a word depend
 on the combinations of these glyphs. In the next sample, the
@@ -68,10 +367,10 @@ the~o and the~x is slightly altered. This is called kerning.
 
 \getbuffer[kerning]
 
-Here we show a Computer Modern, the default \TEX\ font. This
+Here we showed a Computer Modern, the default \TEX\ font. This
 font is designed by Donald Knuth and is a variation on a
-Monotype Times font. The Computer Modern has many kerning
-pairs, while the Lucida Bright used in this manual has none.
+Monotype \quote{Modern} font. The Computer Modern has many kerning
+pairs, while the Palatino font used in this manual has only a few.
 
 This kind of micro||typography is not to be altered by the
 user. It is part of the font design. However the user can
@@ -84,19 +383,32 @@ classification systems based on times of development, the
 characteristics of the fonts or the font application, for
 example in a newspaper or a book.
 
-\getbuffer[ok-1]
+\startlinecorrection
+\ruledhbox to \hsize
+  {\hss
+   \definefont[test][LMRoman-Regular           at 48pt]\test ok\setstrut\strut\hss
+   \definefont[test][LMSans-Regular            at 48pt]\test ok\hss
+   \definefont[test][LMTypewriter-Regular      at 48pt]\test ok\hss
+   \definefont[test][LMRoman-CapsRegular       at 48pt]\test ok\hss
+   \definefont[test][LMTypewriterVarWd-Regular at 48pt]\test ok\hss}
+\stoplinecorrection
 
-In this example we see five font styles of Lucida: the
-Bright, Sans, Typewriter, Handwriting and Calligraphy. This
-is one of the few examples of a font collection that
-provides many consistent alternative styles. The Computer
-Modern is another example of a rather complete font. It is
+In this example we see five font styles of Computer Modern: the
+Roman, Sans, Typewriter, Smallcaps and Variable Typewriter. It is
 one of the few fonts that comes with dedicated design sizes.
 The example below shows the differences of a 5, 7, 9, 12 and
 17~point design scaled up to 48 points. Such nuances in font
 size are seldom seen these days.
 
-\getbuffer[ok-2]
+\startlinecorrection
+\ruledhbox to \hsize
+  {\hss
+   \definefont[test][cmr5  at 48pt]\test ok\setstrut\strut\hss
+   \definefont[test][cmr7  at 48pt]\test ok\hss
+   \definefont[test][cmr9  at 48pt]\test ok\hss
+   \definefont[test][cmr12 at 48pt]\test ok\hss
+   \definefont[test][cmr17 at 48pt]\test ok\hss}
+\stoplinecorrection
 
 The general appearance of a style can be classified
 according to many schemes. In \in {table} [tab:font
