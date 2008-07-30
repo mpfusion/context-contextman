@@ -520,18 +520,16 @@ reason is that filenames can differ per distribution.
 
 The font used in headers, footers and footnotes are adapted
 automatically. This includes the interline space and
-vertical whitespaces. Font switches with \type {\vi}, \type
-{\vii}, \type {\viii}, \type {\ix}, \type {\x}, \type {\xi}
-and \type {\xii} have only local effects.
+vertical whitespaces. 
 
 The commands:
 
 \startbuffer
-{\xii  with these commands \par}
-{\xi   for font switching  \par}
-{\x    it is possible to   \par}
-{\ix   produce an eyetest: \par}
-{\viii a x c e u i w m q p \par}
+{\switchtobodyfont[14.4pt] with these commands \par}
+{\switchtobodyfont[12pt] for font switching  \par}
+{\switchtobodyfont[10pt]  it is possible to   \par}
+{\switchtobodyfont[8pt]  produce an eyetest: \par}
+{\switchtobodyfont[6pt]  a x c e u i w m q p \par}
 \stopbuffer
 
 \startexample
@@ -549,7 +547,8 @@ adapted.
   {\vtop{\forgetall\hsize.4\textwidth\everybodyfont{}\getbuffer}} {}
 \stopcombination
 \stoplinecorrection
-
+
+
 \section[font switching]{Font switching}
 \index{fonts}
 \index{roman}
@@ -673,7 +672,14 @@ alternative is chosen.
 We will not go into the typographical sins of underlining.
 These commands are discussed in \in {section} [underline]
 (\over [underline]).
-
+
+\todo{The next par may need more explaining }
+
+Note: the plain \TeX\ compatible font switches \type {\vi}, \type
+{\vii}, \type {\viii}, \type {\ix}, \type {\x},
+and \type {\xii} are also still defined, these have local effects
+like \type{\tfx} and \type{\tfa}. 
+
 \section[character]{Characters}
 \index{\type{character}}
 
