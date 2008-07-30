@@ -23,7 +23,8 @@ sources =                  \
   co-tables.tex            \
   co-tabulate.tex          \
   co-textelements.tex      \
-  co-typography.tex
+  co-typography.tex        \
+  co-verbatim.tex
 
 pagedesign_sources =      \
   pagedesign/co-en-1p.tex \

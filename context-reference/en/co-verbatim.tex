@@ -1,0 +1,232 @@
+\startcomponent co-verbatim
+
+\environment contextref-env
+\product contextref
+
+
+\chapter[verbatim]{Verbatim text}
+\index{verbatim text}
+\index{typed text}
+\index{typing}
+\index{verbatim}
+\macro{\tex{starttyping}}
+\macro{\tex{setuptyping}}
+\macro{\tex{setuptype}}
+\macro{\tex{type}}
+\macro{\tex{typ}}
+\macro{\tex{tex}}
+\macro{\tex{typefile}}
+
+Text can be displayed in verbatim (typed) form. The text is
+typed between the commands:
+
+\showsetup{starttyping}
+
+Like in:
+
+\startbuffer
+\starttyping
+In this text there are enough examples of verbatim text. The command
+definitions and examples are typeset with the mentioned commands. Like in
+this example.
+\stoptyping
+\stopbuffer
+
+\startreality
+\typebuffer
+\stopreality
+
+For in||line typed text the command \type {\type} is
+available.
+
+\showsetup{type}
+
+A complete file can be added to the text with the command:
+
+\showsetup{typefile}
+
+The style of typing is set with:
+
+\showsetup{setuptyping}
+
+This setup influences the display verbatim (\type
+{\starttyping}) and the verbatim typesetting of files (\type
+{\typefile}) and buffers (\type {\typebuffer}). The first
+optional argument can be used to define a specific verbatim
+environment.
+
+\starttyping
+\setuptyping[file][margin=default]
+\stoptyping
+
+When the key \type {space=on}, the spaces are shown:
+
+\startreality
+\setuptyping[space=on]
+\starttyping
+No alignment is to be preferred
+over   aligning   by   means  of
+spaces or the s t r e t c h i n g of words
+\stoptyping
+\stopreality
+
+A very special case is:
+
+\startbuffer
+\definetyping
+  [broadtyping]
+
+\setuptyping
+  [broadtyping]
+  [oddmargin=-1.5cm,evenmargin=-.75cm]
+\stopbuffer
+
+\getbuffer
+
+\typebuffer
+
+This can be used in:
+
+\startbuffer
+\startbroadtyping
+A verbatim line can be very long and when we don't want to hyphenate we
+typeset it in the margin on the uneven pages.
+\stopbroadtyping
+\stopbuffer
+
+\typebuffer
+
+At a left hand side page the verbatim text is set in the
+margin.
+
+\getbuffer
+
+An in||line verbatim is set up by:
+
+\showsetup{setuptype}
+
+When the parameter \type {option} is set at \type {slanted}
+all text between \type{<}\type{<} and \type{>}\type{>} is
+typeset in {\ttsl a slanted letter}. This feature can be
+used with all parameters. In this way \type
++\type{aa<+\type+<bb>+\type+>cc}+ will result in: \type
+{aa<<bb>>cc}.
+
+% Het gekruk met de gesplitste << voorkomt ongewenste
+% ligaturen in lucida fonts.
+
+For reasons of readability you can also use other characters
+than \type+{+ and \type+}+ as {\em outer} parenthesis. You
+can choose your own non||active (a non||special) character,
+for example: \type{\type+like this+} or \type{\type-like
+that-}. Furthermore you can use the mentioned
+\type{<}\type{<} and \type{>}\type{>}, as in
+\type+\type<+\type+<like this>+\type+>+ or even
+\type{\type<like that>}.
+
+The parameter \type {option=commands} enables you to process
+commands in a typed text. In this option \texescape\ is
+replaced by \type {/}. This option is used for typesetting
+manuals like this one. For example:
+
+\startexample
+\setuptyping[option=none]
+\starttyping
+\seethis <</rm : this command has no effect>>
+ /vdots
+\sihtees <</sl : neither has this one>>
+\stoptyping
+\stopexample
+
+The double \type{<}\type{<} and \type{>}\type{>} overtake
+the function of \type+{}+.
+
+Within the type||commands we are using \type {\tttf}. When
+we would have used \type {\tt}, the \type {\sl} would have
+produced a slanted and \type {\bf} a bold typeletter. Now
+this will not happen:
+
+\startexample
+\setuptyping[option=commands]
+\starttyping
+\seethis <</rm : this command has no effect>>
+ /vdots
+\sihtees <</sl : neither has this one>>
+\stoptyping
+\stopexample
+
+One of the most interesting options of typesetting verbatim
+is a program source code. We will limit the information on
+this topic and refer readers to the documentation in the
+files \type {verb-<<xxx>>.tex} and \type {cont-ver.tex}. In
+that last file you can find the following lines:
+
+\starttyping
+\definetyping [MP]  [option=MP]
+\definetyping [PL]  [option=PL]
+\definetyping [JS]  [option=JS]
+\definetyping [TEX] [option=TEX]
+\stoptyping
+
+Here we see that it is possible to define your own verbatim
+environment. For that purpose we use the command:
+
+\showsetup{definetyping}
+
+The definitions above couple such an environment to an
+option.
+
+\startbuffer
+\startMP
+beginfig (12) ;
+  MyScale = 1.23 ;
+  draw unitsquare scaled MyScale shifted (10,20) ;
+endfig ;
+\stopMP
+\stopbuffer
+
+\typebuffer
+
+In color (or reduced gray) this will come out as:
+
+\startreality
+\getbuffer
+\stopreality
+
+These environments take care of typesetting the text in such
+a way that the typographics match the chosen language. It is
+possible to write several filters. Languages like \METAPOST,
+\METAFONT, \PERL, \JAVASCRIPT, \SQL, and off course \TEX\
+are supported. By default color is used to display these
+sources, where several palettes take care of the different
+commands. That is why you see the parameter \type {palet} in
+\type {\setuptyping}. One can use font changes or even own
+commands instead, by assigning the appropriate values to the
+\type {icommand} (for identifiers), \type {vcommand} (for
+variables) and \type {ccommand} parameters (for the rest). By
+default we have:
+
+\starttyping
+\setuptyping [icommand=\ttsl, vcommand=, ccommand=\tf]
+\stoptyping
+
+We have some alternatives for \type {\type}. When
+typesetting text with this command the words are not
+hyphenated. Hyphenation is performed however when one uses:
+
+\showsetup{typ}
+
+When you are thinking of producing a manual on \TEX\ you
+have two commands that may serve you well:
+
+\showsetup{tex}
+
+\showsetup{arg}
+
+The first command places a \tex{} in front of typed text and
+the second command encloses the text with \arg{}.
+
+
+
+\stopcomponent
+
