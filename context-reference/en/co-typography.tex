@@ -3,7 +3,78 @@
 \environment contextref-env
 \product contextref
 
-\startbuffer[kerning]
+\def\definition#1{{\it #1}}
+
+% this chapter needs lots of typescripts
+
+\usetypescriptfile[type-buy]
+\usetypescriptfile[type-gyr]
+\usetypescript[map,sans,mono,handwriting,calligraphy,serif]
+              [helvetica,schoolbook,times,antykwa-torunska]
+
+
+\chapter[typography]{Typography}
+
+\section{Introduction}
+\index{typography}
+
+Throughout the millennia humans have developed and adapted methods for
+storing facts and thoughts on a variety of different mediums. A very
+efficient way of doing this is using logograms, like Chinese have done
+for ages. Another method is to represent each syllable in a word by a
+symbol, like the Japanese do when writing telegrams. However, the most
+common way of storing characters is by using a limited set of shapes
+representing basic sounds (a.k.a. phonemes). Such a collection is
+called an \definition{alphabet}, and the shapes are called
+\definition{letters}.
+
+\TEX\ is primarily meant for typesetting languages that 
+use this third method. The other two methods can also be dealt
+with, but some extra effort is needed. In this chapter we will focus
+on languages that use alphabets, the other methods will be
+explained in later chapters.
+
+The shapes representing the characters that make up an alphabet are
+more or less standardized, and thereby can be recognized by readers
+even if their details differ.  A collection of pictures matching
+character shapes is called a \definition{font}, and the pictures in a
+font are called \definition{glyphs}.
+
+\startlinecorrection
+\ruledhbox to \hsize
+  {\hss
+   \definefont[test][ComputerModern          at 60pt]\test gap\setstrut\strut\hss
+   \definefont[test][Helvetica               at 60pt]\test gap\hss
+   \definefont[test][Times-Roman             at 60pt]\test gap\hss
+   \definefont[test][AntykwaTorunska-Regular at 60pt]\test gap\hss}
+\stoplinecorrection
+
+From left to right we see a Computer Modern font, a Helvetica clone, a
+Times Roman clone and an Antiqua Torunska font, all scaled to 60pt.
+As you can see, quite some variation is possible and when intermixed,
+the result is not always pleasing. The term \definition{fonts collection}
+refers to a set of fonts combined together in such a way that the
+overall appearance on a page looks good and reading is as comfortable
+as possible.
+
+\startlinecorrection
+\ruledhbox to \hsize
+  {\hss
+   \definefont[test][Schoolbook-Roman      at 48pt]\test lap\setstrut\strut\hss
+   \definefont[test][Schoolbook-Bold       at 48pt]\test lap\hss
+   \definefont[test][Schoolbook-Italic     at 48pt]\test lap\hss
+   \definefont[test][Schoolbook-BoldItalic at 48pt]\test lap\hss}
+\stoplinecorrection
+
+Even within a single font design there can be variations. In the
+example above we see a light, a bold, an italic, and a bold
+italic alternative of a font. Such a set of fonts with the same basic
+design is known as a \definition{font family}. 
+
+The distance between the individual glyphs in a word depend
+on the combinations of these glyphs. In the next sample, the
+gap between the~b and the~o as well as the distance between
+the~o and the~x is slightly altered. This is called kerning.
 
 \startlinecorrection
 \vbox
@@ -19,7 +90,77 @@
    \hbox{\\b\\o\\x}}
 \stoplinecorrection
 
-\stopbuffer
+The font shown here is Computer Modern, the default \TEX\ font. This
+font is designed by Donald Knuth. The Computer Modern has many kerning
+pairs, while the Palatino||like font that is used for most of the text
+in this manual has only a few.
+
+This form of micro||typography is not to be altered by the user, it is
+part of the font design and the required data is stored inside the
+font file, together with the drawing routines for the actual
+pictures. It {\em is\/} possible for the user to alter fonts and
+interline spacing and some more aspects on the level of
+macro||typography. The choice of font is the main topic of this
+chapter.
+
+There are many different methods that can be used to classify
+fonts. There are classification systems based on the period in which
+the style was first developed; on the characteristics of the font; or
+the font application, like a newspaper or a book. Often, classification
+systems mix these characteristics up to some point.
+
+For example, the Computer Modern family can be classified as a
+\quote{modern} font. This is a classication that primarily indicates
+a period (late 18\high{th} century), but it also implies a particular
+shape: \quote{modern} fonts have a high contrast between thick and
+thin strokes, and their stress axis is perfectly vertical.
+
+At the same time, specific fonts in the Computer Modern family can be
+classified as \quote{serif} (glyphs strokes have embellishments at the
+end), \quote{sans serif} (shapes end abruptly), or \quote{monospaced}
+(all glyphs have the same width). 
+
+The Computer Modern family is in fact inspired by one font in particular:
+\quote{Modern 8a} by the Monotype corporation. Knuth implemented
+Computer Modern in \METAFONT\ using parameters so that he could
+generate a whole collection of fonts all closely matching eachother in
+style. In \CONTEXT\ you will normally use a reimplementation of
+Computer Modern using a more modern file format (Type~1 or OpenType).
+This new version is called \quote{Latin Modern}, and also features an
+extended glyph set making it usable for languages that could not be
+typeset with Knuth's original fonts.
+
+\startlinecorrection
+\ruledhbox to \hsize
+  {\hss
+   \definefont[test][LMRoman-Regular           at 48pt]\test ok\setstrut\strut\hss
+   \definefont[test][LMSans-Regular            at 48pt]\test ok\hss
+   \definefont[test][LMTypewriter-Regular      at 48pt]\test ok\hss
+   \definefont[test][LMRoman-CapsRegular       at 48pt]\test ok\hss
+   \definefont[test][LMTypewriterVarWd-Regular at 48pt]\test ok\hss}
+\stoplinecorrection
+
+In this example we see five font styles of Latin Modern: the Roman,
+Sans, Typewriter, Smallcaps and Variable Typewriter. Computer Modern
+is one of the few font families that comes with dedicated design
+sizes.  The example below shows the differences of a 5, 7, 9, 12 and
+17~point design scaled up to 48 points. Such nuances in font size are
+seldom seen these days.
+
+\startlinecorrection
+\ruledhbox to \hsize
+  {\hss
+   \definefont[test][cmr5  at 48pt]\test ok\setstrut\strut\hss
+   \definefont[test][cmr7  at 48pt]\test ok\hss
+   \definefont[test][cmr9  at 48pt]\test ok\hss
+   \definefont[test][cmr12 at 48pt]\test ok\hss
+   \definefont[test][cmr17 at 48pt]\test ok\hss}
+\stoplinecorrection
+
+As explained earlier, the general appearance of a font style can be
+classified according to many schemes. 
+In \in {table} [tab:font triplets] we see some examples of the naming
+of font styles that are often found together in a single document.
 
 \startbuffer[styles]
 
@@ -39,235 +180,26 @@
 
 \stopbuffer
 
-\startbuffer[em-ex-1]
-
-\def\jump{\vl\hskip1em\vl}%
-\def\mmmm{\vl M\vl}%
-\def\dash{\vl---\vl}%
-\def\numb{\vl12\vl}%
-
-\starttable[|c|c|c|c|c|c|]
-\HL
-\VL \type{\tf} \VL \type{\bf} \VL \type{\sl}  \VL
-    \type{\tt} \VL \type{\ss} \VL \type{\tfx} \VL\SR
-\HL
-\VL \tf\numb   \VL \bf\numb   \VL \sl \numb   \VL
-    \tt\numb   \VL \ss\numb   \VL \tfx\numb   \VL\FR
-\VL \tf\mmmm   \VL \bf\mmmm   \VL \sl \mmmm   \VL
-    \tt\mmmm   \VL \ss\mmmm   \VL \tfx\mmmm   \VL\MR
-\VL \tf\jump   \VL \bf\jump   \VL \sl \jump   \VL
-    \tt\jump   \VL \ss\jump   \VL \tfx\jump   \VL\MR
-\VL \tf\dash   \VL \bf\dash   \VL \sl \dash   \VL
-    \tt\dash   \VL \ss\dash   \VL \tfx\dash   \VL\LR
-\HL
-\stoptable
-
-\stopbuffer
-
-\startbuffer[em-ex-2]
-
-\def\show
-  {\hbox
-    {\forgetall
-     \offinterlineskip
-     \vbox
-       {\hsize1em\hl[1]\endgraf\vskip1ex\hl[1]}%
-     \hskip.25em
-     \vbox
-       {\hsize.5em \vskip\linewidth x\vskip\linewidth}}}%
-
-\starttable[|c|c|c|c|c|c|]
-\HL
-\VL \type{\tf} \VL \type{\bf} \VL \type{\sl}  \VL
-    \type{\tt} \VL \type{\ss} \VL \type{\tfx} \VL\SR
-\HL
-\VL \tf\show   \VL \bf\show   \VL \sl\show    \VL
-    \tt\show   \VL \ss\show   \VL \tfx\show   \VL\SR
-\HL
-\stoptable
-
-\stopbuffer
-
-
-\startbuffer[math-1]
-$\tf x^2+\bf x^2+\sl x^2+\it x^2+\bs x^2+ \bi x^2 =\rm 6x^2$
-$\tf x^2+\bf x^2+\sl x^2+\it x^2+\bs x^2+ \bi x^2 =\tf 6x^2$
-$\tf x^2+\bf x^2+\sl x^2+\it x^2+\bs x^2+ \bi x^2 =\bf 6x^2$
-$\tf x^2+\bf x^2+\sl x^2+\it x^2+\bs x^2+ \bi x^2 =\sl 6x^2$
-\stopbuffer
-
-\startbuffer[math-2]
-$\tf\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
-$\bf\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
-$\sl\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
-$\bs\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
-$\it\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
-$\bi\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
-\stopbuffer
-
-\startbuffer[math-3]
-$\bf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = \mf 6x^2$
-\stopbuffer
-
-\startbuffer[math-4]
-$\bf x^2 + \hbox{whatever} + \sin(2x)$
-\stopbuffer
-
-\startbuffer[math-5]
-\definebodyfont [12pt] [mm]
-  [ex=cmex10 at 12pt,
-   mi=cmmi12,
-   sy=cmsy10 at 12pt]
-\stopbuffer
-
-\startbuffer[math-6]
-\definebodyfont [10pt,11pt,12pt] [mm]
-  [tf=Sans          sa 1,
-   bf=SansBold      sa 1,
-   sl=SansItalic    sa 1,
-   ex=MathExtension sa 1,
-   mi=MathItalic    sa 1,
-   sy=MathSymbol    sa 1]
-
-\setupbodyfont
-\stopbuffer
-
-\chapter[typography]{Typography}
-
-\todo{The situation of Latin-Modern vs. Computer-Modern and TeX-Gyre vs. URW
-needs explaining}
-
-\section{Introduction}
-\index{typography}
-
-Through the millennia we have developed and adapted methods
-for storing facts and thoughts on a variety of different
-medium. A very efficient way of doing this is using
-logograms, like Chinese have done for ages. Another method
-is to represent each syllable in a word by a symbol, like
-the Japanese do when writing telegrams. However, the most
-familiar way of storing information is using a limited set
-of pictures representing so called phonemes. Such a
-collection is called an alphabet, and often the same glyph
-is used for different sounds.
-
-Although \TEX\ is primarily meant for typesetting languages
-that use this third method, in principle the other two can
-also be dealt with. In this manual we will focus on the
-languages that use such alphabets.
-
-The little pictures representing the characters that make up
-an alphabet are more or less standardized, and thereby can
-be recognized by readers, even if their details differ. Such
-a collection of pictures, often called glyphs, make up a
-font.
-
-\usetypescriptfile[type-buy]
-\usetypescriptfile[type-gyr]
-\usetypescript[map,sans,mono,handwriting,calligraphy,serif][helvetica,schoolbook,times,antykwa-torunska]
-
-\startlinecorrection
-\ruledhbox to \hsize
-  {\hss
-   \definefont[test][ComputerModern          at 60pt]\test gap\setstrut\strut\hss
-   \definefont[test][Helvetica               at 60pt]\test gap\hss
-   \definefont[test][Times-Roman             at 60pt]\test gap\hss
-   \definefont[test][AntykwaTorunska-Regular at 60pt]\test gap\hss}
-\stoplinecorrection
-
-From left to right we see the Computer Modern, a Helvetica, 
-a Times Roman and an Antiqua Torunska font, all
-scaled to 60pt. Fonts colections are designed in such a way
-that the overall appearance of a page looks good and that
-reading is as comfortable as possible.
-
-\startlinecorrection
-\ruledhbox to \hsize
-  {\hss
-   \definefont[test][Schoolbook-Roman      at 48pt]\test lap\setstrut\strut\hss
-   \definefont[test][Schoolbook-Bold       at 48pt]\test lap\hss
-   \definefont[test][Schoolbook-Italic     at 48pt]\test lap\hss
-   \definefont[test][Schoolbook-BoldItalic at 48pt]\test lap\hss}
-\stoplinecorrection
-
-Within a font design there can be variations. In the example
-above we see a light, a bold, a light italic, and a bold italic
-alternative of the Schoolbook font.
-
-The distance between the individual glyphs in a word depend
-on the combinations of these glyphs. In the next sample, the
-gap between the~b and the~o as well as the distance between
-the~o and the~x is slightly altered. This is called kerning.
-
-\getbuffer[kerning]
-
-Here we showed a Computer Modern, the default \TEX\ font. This
-font is designed by Donald Knuth and is a variation on a
-Monotype \quote{Modern} font. The Computer Modern has many kerning
-pairs, while the Palatino font used in this manual has only a few.
-
-This kind of micro||typography is not to be altered by the
-user. It is part of the font design. However the user can
-alter fonts and interline spacing and some more aspects on
-the level of macro||typography. The choice of font is the
-main topic of this chapter.
-
-There are different ways to classify fonts. There are
-classification systems based on times of development, the
-characteristics of the fonts or the font application, for
-example in a newspaper or a book.
-
-\startlinecorrection
-\ruledhbox to \hsize
-  {\hss
-   \definefont[test][LMRoman-Regular           at 48pt]\test ok\setstrut\strut\hss
-   \definefont[test][LMSans-Regular            at 48pt]\test ok\hss
-   \definefont[test][LMTypewriter-Regular      at 48pt]\test ok\hss
-   \definefont[test][LMRoman-CapsRegular       at 48pt]\test ok\hss
-   \definefont[test][LMTypewriterVarWd-Regular at 48pt]\test ok\hss}
-\stoplinecorrection
-
-In this example we see five font styles of Computer Modern: the
-Roman, Sans, Typewriter, Smallcaps and Variable Typewriter. It is
-one of the few fonts that comes with dedicated design sizes.
-The example below shows the differences of a 5, 7, 9, 12 and
-17~point design scaled up to 48 points. Such nuances in font
-size are seldom seen these days.
-
-\startlinecorrection
-\ruledhbox to \hsize
-  {\hss
-   \definefont[test][cmr5  at 48pt]\test ok\setstrut\strut\hss
-   \definefont[test][cmr7  at 48pt]\test ok\hss
-   \definefont[test][cmr9  at 48pt]\test ok\hss
-   \definefont[test][cmr12 at 48pt]\test ok\hss
-   \definefont[test][cmr17 at 48pt]\test ok\hss}
-\stoplinecorrection
-
-The general appearance of a style can be classified
-according to many schemes. In \in {table} [tab:font
-triplets] we see some examples of the naming of styles.
-
 \placetable
   [here][tab:font triplets]
   {Some ways of classifying the styles in a font.}
   {\getbuffer[styles]}
 
-The first two series are used by typographers, however in
-\CONTEXT\ we rather use the last series because it is
-traditionally used in plain \TEX. The command \type {\rm} is
-used to switch to a roman|/|serif|/|regular style, and \type
-{\tt} for switching to mono spaced or typewriter style.
+The top two series are normally used by typographers, but in
+\CONTEXT\ we use the bottom series because that is what was
+traditionally used in plain \TEX. The command \type {\rm} is used to
+switch to a roman|/|serif|/|regular style, and \type {\tt} for
+switching to mono spaced or typewriter style.
 
-In the next sections we will go into switching of font
-styles and fonts in your documents. Note that the font
-switching mechanism is rather complex. This is caused by the
-different modes like math mode and text mode in \CONTEXT. If
-you want to be able to understand the mechanism you will
-have to acquaint yourself with the concept of the encoding
-vector and obtain some knowledge on fonts and their
+In the next sections we will go into switching of font styles and
+fonts in your documents. Be warned that the font switching mechanism
+is rather complex. This is caused by the different modes like math
+mode and text mode in \CONTEXT. If you want to be understand the
+mechanism fully, you will have to acquaint yourself with the concept
+of encoding vectors and obtain some knowledge on fonts and their
 peculiarities.
-
+
+
 \section[bodyfont]{The mechanism}
 \index{bodyfont}
 \index{font size}
@@ -276,61 +208,55 @@ peculiarities.
 \index{typewriter}
 \macro{\tex{setupbodyfont}}
 \macro{\tex{switchtobodyfont}}
-\macro{\tex{x}}
-\macro{\tex{xi}}
-\macro{\tex{xii}}
-\macro{\tex{ix}}
-\macro{\tex{viii}}
 
-Font switching is one of the eldest features of \CONTEXT\
-because font switching is indispensable in a macropackage.
-The last few years extensions to the font switching
-mechanism were inevitable. We have chosen the following
-starting points during the development of this mechanism:
+Font switching is one of the eldest features of \CONTEXT\ because font
+switching is indispensable in a macro package.  During the years
+extensions to the font switching mechanism were inevitable. We have
+chosen the following starting points during the development of this
+mechanism:
 
 \startitemize[packed]
 \item To change a {\em style} must be easy, this
       means switching to: roman (serif, regular), sans serif
       (support), teletype (or monospaced) etc. (\type {\rm},
       \type {\ss}, \type {\tt} etc.)
-\item More than one {\em variations} of character must be
-      available like slanted and bold (\type {\sl} and \type
-      {\bf}).
-\item Different font {\em families} like Computer Modern
-      Roman and Lucida Bright must be supported.
-\item Changing the bodyfont must also be easy, and so
-      font size between 8pt and 12pt must be available by
-      default.
-\item Within a font different sub|| and superscripts must be
-      available. The script sizes can be used during
+\item More than one {\em variations} of glyphs shapes must be
+      available like slanted and bold (\type {\sl} and \type {\bf}).
+\item Different font {\em families} like Latin Modern Roman 
+      and Lucida Bright must be supported.
+\item It must be possbile to combine different families into font
+      {\em collections}.
+\item Different sub|| and superscripts must be
+      available. These script sizes have to be retained across the
       switching of family, style and alternative.
-\item Specific characteristics of a {\em body font} like
-      font definition (encoding vector) must be taken into
-      account.
+\item It should be possible to combine all of these requirements
+      into a single definition unit called a {\em body font}.
+\item Changing the global font collection as wel as the size must 
+      also be easy, and so sizes between 8pt and 14.4pt must be
+      available by default.
 \stopitemize
 
-Text can be typeset in different font sizes. We often use
-the unit \type {pt} to specify the size. The availability of
-these font sizes are defined in definition files.
-Traditionally font designers used to design a glyph
-collection for each font size, but nowadays most fonts have
-a design size of 10 points. An exception to this rule is the
-Computer Modern Roman that comes with most \TEX\
-distributions.
+Before reading further, please stop for a moment to make sure you
+thoroughly comprehend the above paragraphs. \CONTEXT's terminology
+probably differs from what you are accustomed to, especially if you
+were previously a \LATEX\ user.
 
-The most frequently used font sizes are predefined: 8, 9, 10,
-11, 12 and 14.4 points. When you use another size |<|for
-example for a titlepage|>| \CONTEXT\ will define this font
-itself within the constraints of the used typeface.
-\CONTEXT\ works with a precision of 1~digit which prevents
-unnecessary loading of fontsizes with small size
-differences. When a fontsize is not available \CONTEXT\
-prefers to use a somewhat smaller font size. We consider
-this to be more tolerable than a somewhat bigger font size.
+Text can be typeset in different font sizes. We often use the unit
+\type {pt} to specify the size. The availability of these font sizes
+are defined in definition files.  Traditionally font designers used to
+design a glyph collection for each font size, but nowadays most fonts
+have a single design size of 10 points, or small set of sizes with
+names indicating their proposed use, like {\em caption}, {\em text},
+and {\em display}.
+
+\blank
+\goodbreak
 
 The bodyfont (main font), font style and size is set up with:
 
 \showsetup{setupbodyfont}
+
+The various identifiers 
 
 In a running text a temporary font switch is done with the
 command:
@@ -341,22 +267,52 @@ This command doesn't change the bodyfont in headers and
 footers. With \type {small} and \type {big} you switch to a
 smaller or larger font.
 
-In most cases, the command \type {\setupbodyfont} is only
-used once: in the styledefinition. Fontswitching is done
-with \type {\switchtobodyfont}. Don't mix these two up
-because this may lead to some rather strange but legitimate
-effects.
+In most cases, the command \type {\setupbodyfont} is only used once:
+in the style definition, and font switching inside the document is done
+with \type {\switchtobodyfont}. Don't confuse these two because that
+may lead to some rather strange but legitimate effects.
 
-\TEX\ searches for font information in the file with the
-extension \type {tfm}. Pre||loading is possible but
-\CONTEXT\ will only load these files when necessarry. The
-reason is that filenames can differ per distribution.
+\subsection{Body font sizes}
 
-The font used in headers, footers and footnotes are adapted
-automatically. This includes the interline space and
-vertical whitespaces. 
+Body font sizes actually consist of two components. Of course if you
+specify a size it directly specifies the size at which the main font
+is loaded, but a number of indirect parameters have to taken care of
+as well. Think of things like the font size used in headers, footers,
+footnotes, sub|| and superscripts, as well as the interline space and
+a few others. 
 
-The commands:
+This is why in \CONTEXT\ there is the concept of a {\em body font
+environment} (expressed as a dimension), and that is what you pass as
+an argument to \type{\setupbodyfont} or \type{\switchtobodyfont}. The
+definitions as presented above use the indication \type{5pt ... 12pt}
+for the body font environment, but actually any dimension is
+acceptable. 
+
+The most frequently used sizes are predefined as body font
+environments: 4pt \dots\ 12pt, 14.4pt, and 17.3pt. But when you use a
+different, not-yet-defined size specification |<|for example for a
+titlepage|>| \CONTEXT\ will define a body font environment for that
+size automatically.  While doing so, \CONTEXT\ normally works with a
+precision of 1~decimal to prevent unnecessary loading of fontsizes
+with only small size differences.
+
+
+Be warned that in this case, the results may be a less than ideal. The
+reason is that \CONTEXT\ not just has to load the actual font, but it
+also has to guess at the various other settings like the relative font
+sizes and the interline space.  It does so by using the values from
+the nearest smaller body font environment is that is already defined.
+
+You can extend the list of predefined body font environments and even
+alter the precision in body font matching. See
+the~\in{section}[bodyfontsizes] for detailed information about how to
+tweak or define your own body font sizes.
+
+\blank
+
+To end this section, the example below demonstrates how the interline
+space is adapted automatically, when changing the size of the
+bodyfont. Consider this input:
 
 \startbuffer
 {\switchtobodyfont[14.4pt] with these commands \par}
@@ -370,10 +326,9 @@ The commands:
 \typebuffer
 \stopexample
 
-When changing the size of the bodyfont, the interline space
-is adapted automatically. This is shown on the left. On the
-right we see what happens when the interline space is not
-adapted.
+The actual \CONTEXT\ behaviour is shown below on the left. On the
+right you can see what would have happened if when the interline space
+were not automatically adapted.
 
 \startlinecorrection
 \startcombination
@@ -381,6 +336,8 @@ adapted.
   {\vtop{\forgetall\hsize.4\textwidth\everybodyfont{}\getbuffer}} {}
 \stopcombination
 \stoplinecorrection
+
+\subsection{Body font names}
 
 
 \section[font switching]{Font switching}
@@ -806,6 +763,50 @@ by processing the text character by character.
 \macro{\tex{enablembox}}
 \macro{\tex{definebodyfont}}
 
+
+\startbuffer[math-1]
+$\tf x^2+\bf x^2+\sl x^2+\it x^2+\bs x^2+ \bi x^2 =\rm 6x^2$
+$\tf x^2+\bf x^2+\sl x^2+\it x^2+\bs x^2+ \bi x^2 =\tf 6x^2$
+$\tf x^2+\bf x^2+\sl x^2+\it x^2+\bs x^2+ \bi x^2 =\bf 6x^2$
+$\tf x^2+\bf x^2+\sl x^2+\it x^2+\bs x^2+ \bi x^2 =\sl 6x^2$
+\stopbuffer
+
+\startbuffer[math-2]
+$\tf\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
+$\bf\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
+$\sl\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
+$\bs\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
+$\it\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
+$\bi\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
+\stopbuffer
+
+\startbuffer[math-3]
+$\bf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = \mf 6x^2$
+\stopbuffer
+
+\startbuffer[math-4]
+$\bf x^2 + \hbox{whatever} + \sin(2x)$
+\stopbuffer
+
+\startbuffer[math-5]
+\definebodyfont [12pt] [mm]
+  [ex=cmex10 at 12pt,
+   mi=cmmi12,
+   sy=cmsy10 at 12pt]
+\stopbuffer
+
+\startbuffer[math-6]
+\definebodyfont [10pt,11pt,12pt] [mm]
+  [tf=Sans          sa 1,
+   bf=SansBold      sa 1,
+   sl=SansItalic    sa 1,
+   ex=MathExtension sa 1,
+   mi=MathItalic    sa 1,
+   sy=MathSymbol    sa 1]
+
+\setupbodyfont
+\stopbuffer
+
 Many \TEX\ users have chosen \TEX\ for its superb math type
 setting. The math oriented character of \TEX\ has also
 influenced the font mechanism. We will not go into any
@@ -899,6 +900,31 @@ examples. We see that the width of a digit is about \type
 {.5em}. In Computer Modern Roman a digit is excactly half
 an em wide.
 
+\startbuffer[em-ex-1]
+
+\def\jump{\vl\hskip1em\vl}%
+\def\mmmm{\vl M\vl}%
+\def\dash{\vl---\vl}%
+\def\numb{\vl12\vl}%
+
+\starttable[|c|c|c|c|c|c|]
+\HL
+\VL \type{\tf} \VL \type{\bf} \VL \type{\sl}  \VL
+    \type{\tt} \VL \type{\ss} \VL \type{\tfx} \VL\SR
+\HL
+\VL \tf\numb   \VL \bf\numb   \VL \sl \numb   \VL
+    \tt\numb   \VL \ss\numb   \VL \tfx\numb   \VL\FR
+\VL \tf\mmmm   \VL \bf\mmmm   \VL \sl \mmmm   \VL
+    \tt\mmmm   \VL \ss\mmmm   \VL \tfx\mmmm   \VL\MR
+\VL \tf\jump   \VL \bf\jump   \VL \sl \jump   \VL
+    \tt\jump   \VL \ss\jump   \VL \tfx\jump   \VL\MR
+\VL \tf\dash   \VL \bf\dash   \VL \sl \dash   \VL
+    \tt\dash   \VL \ss\dash   \VL \tfx\dash   \VL\LR
+\HL
+\stoptable
+
+\stopbuffer
+
 \placetable
   [here][ems]
   {The width of an \type{em}.}
@@ -908,6 +934,30 @@ In most cases we use \type{em} for specifying width and and
 \type {ex} for height. \in {Table} [exes] shows some
 examples. We see that the height equals the height of a
 lowercase~x.
+
+\startbuffer[em-ex-2]
+
+\def\show
+  {\hbox
+    {\forgetall
+     \offinterlineskip
+     \vbox
+       {\hsize1em\hl[1]\endgraf\vskip1ex\hl[1]}%
+     \hskip.25em
+     \vbox
+       {\hsize.5em \vskip\linewidth x\vskip\linewidth}}}%
+
+\starttable[|c|c|c|c|c|c|]
+\HL
+\VL \type{\tf} \VL \type{\bf} \VL \type{\sl}  \VL
+    \type{\tt} \VL \type{\ss} \VL \type{\tfx} \VL\SR
+\HL
+\VL \tf\show   \VL \bf\show   \VL \sl\show    \VL
+    \tt\show   \VL \ss\show   \VL \tfx\show   \VL\SR
+\HL
+\stoptable
+
+\stopbuffer
 
 \placetable
   [here][exes]
