@@ -166,15 +166,15 @@ of font styles that are often found together in a single document.
 
 \vskip1ex
 \startcombination[3*3]
-  {\rmtfc\setupinterlinespace   Serif\end}  {}
-  {\sstfc\setupinterlinespace    Sans\end}   {}
-  {\tttfc\setupinterlinespace    Mono\end}   {}
-  {\rmtfc\setupinterlinespace Regular\end}{}
-  {\sstfc\setupinterlinespace Support\end}{}
-  {\tttfc\setupinterlinespace    Mono\end}   {}
-  {\rmtfc\setupinterlinespace   Roman\end}  {}
-  {\sstfc\setupinterlinespace    Sans\end}   {}
-  {\tttfc\setupinterlinespace    Type\end}   {}
+  {\rmtfc\setupinterlinespace    Serif\end} {}
+  {\sstfc\setupinterlinespace     Sans\end} {}
+  {\tttfc\setupinterlinespace     Mono\end} {}
+  {\rmtfc\setupinterlinespace  Regular\end} {}
+  {\sstfc\setupinterlinespace  Support\end} {}
+  {\tttfc\setupinterlinespace TeleType\end} {}
+  {\rmtfc\setupinterlinespace    Roman\end} {}
+  {\sstfc\setupinterlinespace     Sans\end} {}
+  {\tttfc\setupinterlinespace     Type\end} {}
 \stopcombination
 \vskip1ex
 
@@ -268,9 +268,9 @@ footers. With \type {small} and \type {big} you switch to a
 smaller or larger font.
 
 In most cases, the command \type {\setupbodyfont} is only used once:
-in the style definition, and font switching inside the document is done
-with \type {\switchtobodyfont}. Don't confuse these two because that
-may lead to some rather strange but legitimate effects.
+in the style definition, and font switching inside the document is
+done with \type {\switchtobodyfont}. Don't confuse these two because
+that may lead to some rather strange but legitimate effects. 
 
 \subsection{Body font sizes}
 
@@ -337,7 +337,284 @@ were not automatically adapted.
 \stopcombination
 \stoplinecorrection
 
-\subsection{Body font names}
+\subsection{Body font identifiers}
+
+In the definition block of \type{setupbodyfont} there was a list of
+words given besides the special marker \type{IDENTIFIER}. These words
+are the \CONTEXT\ names for the font styles that we ran into earlier,
+with a few aliases. Here are the defined font styles in \CONTEXT\ in
+table format:
+
+\starttabulate[|l|p|]
+\NC Identifier                \NC Maps to \NC\NR
+\NC serif, regular, roman     \NC rm \NC\NR
+\NC sans, support, sansserif  \NC ss \NC\NR
+\NC mono, type, teletype      \NC tt \NC\NR
+\NC handwritten               \NC hw \NC\NR
+\NC calligraphic              \NC cg \NC\NR
+\stoptabulate
+
+You can see that, apart from being all lowercase, the first lines
+three lines match the identifiers used in~\in {table} [tab:font
+triplets] exactly. 
+
+The other two extra font styles are defined because they are sometimes
+useful when dealing with really large font families or with very
+elaborate document layout definitions. In the \CONTEXT\ distribution,
+only the Lucida font family uses these styles, and in the default
+Latin Modern font set they are simply ignored.  You could use them in
+your own font support files (see the next chapter on how to do that).
+
+We will see later that there are other and easier ways to switch the
+font style, so if \type{\setupbodyfont} could only be used for this
+purpose it would be not all that useful. But luckily there is more:
+the identifier can also be a font collection identifier that has been
+defined in a font support file. \CONTEXT\ expects that you will define
+your own font collections |<|which is why there are no extra keywords
+listed in the macro syntax definition|>| but luckily there are a
+number of predefined identifiers that come with \CONTEXT; these are listed 
+in~\in{table}[tab:body font names] etc.
+
+% TH notes: 
+% I decided not to document the junk in type-pre and type-akb
+
+\startbuffer[bodyfontst1free]
+\switchtobodyfont[6pt]
+\starttabulate[|l|l|l|l|p|]
+\NC Identifier     \NC Needed font package    \NC file      \NC Encodings           \NC Supported styles \NC \NR
+\NC modern         \NC Latin Modern                     \NC type-one  \NC ec, qx, texnansi, t5, uc    \NC serif, sans, mono, math, boldmath, bfmath \NC \NR 
+\NC latin-modern   \NC Latin Modern                     \NC type-one  \NC ec, qx, texnansi, t5, uc    \NC serif, sans, mono, math, boldmath, bfmath \NC \NR 
+\NC computer-modern\NC Latin Modern                     \NC type-one  \NC cyr, lcy, t2a, t2b, t2c, x2 \NC serif, sans, mono, math, boldmath, bfmath  \NC \NR 
+\NC simple         \NC Latin Modern                     \NC type-one  \NC -- synonyms only --         \NC serif \NC \NR 
+\NC concrete       \NC -- MF bitmaps --                 \NC type-one  \NC -- hardcoded --             \NC serif \NC \NR
+\NC euler          \NC Euler                            \NC type-one  \NC -- hardcoded --             \NC math, boldmath, bfmath\NC \NR
+\NC ams            \NC AMS Symbols                      \NC type-one  \NC -- hardcoded --             \NC math\NC \NR
+\NC fourier        \NC Fourier                          \NC type-one  \NC ec                          \NC math, serif \NC \NR
+\NC courier        \NC URW PostScript (or Adobe)        \NC type-one  \NC 8r, ec, qx, texnansi, t5    \NC mono \NC \NR
+\NC helvetica      \NC URW PostScript (or Adobe)        \NC type-one  \NC 8r, ec, qx, texnansi, t5    \NC sans \NC \NR
+\NC times          \NC URW PostScript (or Adobe)        \NC type-one  \NC 8r, ec, qx, texnansi, t5, uc\NC serif, math \NC \NR
+\NC palatino       \NC URW PostScript (or Adobe)        \NC type-one  \NC 8r, ec, qx, texnansi, t5, uc\NC serif, math \NC \NR
+\NC bookman        \NC URW PostScript (or Adobe)        \NC type-one  \NC 8r, ec, qx, texnansi, t5    \NC serif \NC \NR
+\NC schoolbook     \NC URW PostScript (or Adobe)        \NC type-one  \NC 8r, ec, texnansi, t5        \NC serif \NC \NR
+\NC chancery       \NC URW PostScript (or Adobe)        \NC type-one  \NC 8r, ec, qx, texnansi        \NC calligraphy \NC \NR
+\NC charter        \NC Bitstream Charter                \NC type-one  \NC 8r, ec, texnansi            \NC serif \NC \NR
+\NC utopia         \NC Adobe Utopia                     \NC type-one  \NC ec, texnansi                \NC serif \NC \NR
+\NC antykwa-torunska           \NC Antykwa Torunska     \NC type-one  \NC texnansi,qx,t5,ec,t2a,t2b,t2c,greek \NC serif, math \NR
+\NC antykwa-torunska-light     \NC Antykwa Torunska     \NC type-one  \NC texnansi,qx,t5,ec,t2a,t2b,t2c,greek \NC serif, math \NR
+\NC antykwa-torunska-cond      \NC Antykwa Torunska     \NC type-one  \NC texnansi,qx,t5,ec,t2a,t2b,t2c,greek \NC serif, math \NR
+\NC antykwa-torunska-lightcond \NC Antykwa Torunska     \NC type-one  \NC texnansi,qx,t5,ec,t2a,t2b,t2c,greek \NC serif, math \NR
+\NC antykwa-poltawskiego       \NC Antykwa Poltawskiego \NC type-one  \NC 8r, ec, texnansi                    \NC serif \NR
+\NC iwona            \NC Iwona                 \NC type-one  \NC ec, qx, texnansi, t5\NC sans, math \NC \NR
+\NC iwona-light      \NC Iwona                 \NC type-one  \NC ec, qx, texnansi, t5\NC sans, math \NC \NR
+\NC iwona-medium     \NC Iwona                 \NC type-one  \NC ec, qx, texnansi, t5\NC sans, math \NC \NR
+\NC iwona-heavy      \NC Iwona                 \NC type-one  \NC ec, qx, texnansi, t5\NC sans, math \NC \NR
+\NC iwona-cond       \NC Iwona                 \NC type-one  \NC ec, qx, texnansi, t5\NC sans \NC \NR
+\NC iwona-light-cond \NC Iwona                 \NC type-one  \NC ec, qx, texnansi, t5\NC sans \NC \NR
+\NC iwona-medium-cond\NC Iwona                 \NC type-one  \NC ec, qx, texnansi, t5\NC sans \NC \NR
+\NC iwona-heavy-cond \NC Iwona                 \NC type-one  \NC ec, qx, texnansi, t5\NC sans \NC \NR
+\NC kurier           \NC Kurier                \NC type-one  \NC ec, qx, texnansi, t5\NC sans, math \NC \NR
+\NC kurier-light     \NC Kurier                \NC type-one  \NC ec, qx, texnansi, t5\NC sans, math \NC \NR
+\NC kurier-medium    \NC Kurier                \NC type-one  \NC ec, qx, texnansi, t5\NC sans, math \NC \NR
+\NC pagella          \NC TeX Gyre              \NC type-gyr  \NC ec, texnansi, cs, el, qx, rm, t5, t2a, t2b, t2c, l7x \NC serif\NC \NR
+\NC palatino         \NC TeX Gyre              \NC type-gyr  \NC ec, texnansi, cs, el, qx, rm, t5, t2a, t2b, t2c, l7x \NC serif\NC \NR
+\NC termes           \NC TeX Gyre              \NC type-gyr  \NC ec, texnansi, cs, el, qx, rm, t5, t2a, t2b, t2c, l7x \NC serif\NC \NR
+\NC times            \NC TeX Gyre              \NC type-gyr  \NC ec, texnansi, cs, el, qx, rm, t5, t2a, t2b, t2c, l7x \NC serif\NC \NR
+\NC bonum            \NC TeX Gyre              \NC type-gyr  \NC ec, texnansi, cs, el, qx, rm, t5, t2a, t2b, t2c, l7x \NC serif\NC \NR
+\NC bookman          \NC TeX Gyre              \NC type-gyr  \NC ec, texnansi, cs, el, qx, rm, t5, t2a, t2b, t2c, l7x \NC serif\NC \NR
+\NC schola           \NC TeX Gyre              \NC type-gyr  \NC ec, texnansi, cs, el, qx, rm, t5, t2a, t2b, t2c, l7x \NC serif\NC \NR
+\NC schoolbook       \NC TeX Gyre              \NC type-gyr  \NC ec, texnansi, cs, el, qx, rm, t5, t2a, t2b, t2c, l7x \NC serif\NC \NR
+\NC heros            \NC TeX Gyre              \NC type-gyr  \NC ec, texnansi, cs, el, qx, rm, t5, t2a, t2b, t2c, l7x \NC sans\NC \NR
+\NC helvetica        \NC TeX Gyre              \NC type-gyr  \NC ec, texnansi, cs, el, qx, rm, t5, t2a, t2b, t2c, l7x \NC sans\NC \NR
+\NC adventor         \NC TeX Gyre              \NC type-gyr  \NC ec, texnansi, cs, el, qx, rm, t5, t2a, t2b, t2c, l7x \NC sans\NC \NR
+\NC cursor           \NC TeX Gyre              \NC type-gyr  \NC ec, texnansi, cs, el, qx, rm, t5, t2a, t2b, t2c, l7x \NC mono\NC \NR
+\NC courier          \NC TeX Gyre              \NC type-gyr  \NC ec, texnansi, cs, el, qx, rm, t5, t2a, t2b, t2c, l7x \NC mono\NC \NR
+\NC omega            \NC Omega fonts           \NC type-omg  \NC -- hardcoded --    \NC naskh, serif, mono\NC \NR
+\NC cbgreek          \NC cbgreek               \NC type-cbg  \NC -- hardcoded --    \NC serif, sans, mono \NC \NR
+\NC cbgreek-medium   \NC cbgreek               \NC type-cbg  \NC -- hardcoded --    \NC serif, sans, mono \NC \NR
+\NC cbgreek-all      \NC cbgreek               \NC type-cbg  \NC -- hardcoded --    \NC serif, sans, mono \NC \NR
+\NC cow              \NC \CONTEXT\ cow font    \NC type-cow  \NC -- hardcoded --    \NC math, serif \NC \NR
+\NC sheep            \NC \CONTEXT\ cow font    \NC type-cow  \NC -- hardcoded --    \NC math, serif \NC \NR
+
+\stoptabulate
+\stopbuffer
+
+\startbuffer[bodyfontst1buy]
+\switchtobodyfont[6pt]
+\starttabulate[|l|l|l|l|p|]
+\NC Identifier           \NC Needed font package    \NC file      \NC Encodings           \NC Supported styles \NC \NR
+\NC lucida               \NC Lucida (Y\&Y, TUG)     \NC type-buy  \NC 8r, ec, texnansi, uc\NC serif, sans, mono, handwriting, calligraphy, math, 
+                                                                                             boldmath, bfmath, casual, fax \NC \NR
+\NC informal             \NC Micropress Informal    \NC type-buy \NC -- hardcoded --     \NC casual, math\NC \NR
+\NC officina             \NC ITC Officina           \NC type-buy \NC 8r, ec, texnansi    \NC serif, sans\NC \NR
+\NC meta                 \NC FF Meta                \NC type-buy \NC 8r, ec, texnansi    \NC serif, sans, expert \NC \NR
+\NC meta-medium          \NC FF Meta                \NC type-buy \NC 8r, ec, texnansi    \NC sans \NC \NR
+\NC meta-lf              \NC FF Meta                \NC type-buy \NC 8r, ec, texnansi    \NC sans \NC \NR
+\NC meta-book            \NC FF Meta                \NC type-buy \NC 8r, ec, texnansi    \NC sans \NC \NR
+\NC meta-book-lf         \NC FF Meta                \NC type-buy \NC 8r, ec, texnansi    \NC sans \NC \NR
+\NC meta-bold            \NC FF Meta                \NC type-buy \NC 8r, ec, texnansi    \NC sans \NC \NR
+\NC meta-bold-lf         \NC FF Meta                \NC type-buy \NC 8r, ec, texnansi    \NC sans \NC \NR
+\NC meta-normal          \NC FF Meta                \NC type-buy \NC 8r, ec, texnansi    \NC sans \NC \NR
+\NC meta-normal-lf       \NC FF Meta                \NC type-buy \NC 8r, ec, texnansi    \NC sans \NC \NR
+\NC meta-medium          \NC FF Meta                \NC type-buy \NC 8r, ec, texnansi    \NC sans \NC \NR
+\NC meta-medium-lf       \NC FF Meta                \NC type-buy \NC 8r, ec, texnansi    \NC sans \NC \NR
+\NC meta-black           \NC FF Meta                \NC type-buy \NC 8r, ec, texnansi    \NC sans \NC \NR
+\NC meta-black-lf        \NC FF Meta                \NC type-buy \NC 8r, ec, texnansi    \NC sans \NC \NR
+\NC univers              \NC Linotype Univers       \NC type-buy \NC 8r, ec, texnansi    \NC sans \NC \NR
+\NC univers-light        \NC Linotype Univers       \NC type-buy \NC 8r, ec, texnansi    \NC sans \NC \NR
+\NC univers-black        \NC Linotype Univers       \NC type-buy \NC 8r, ec, texnansi    \NC sans \NC \NR
+\NC mendoza              \NC Mendoza                \NC type-buy \NC 8r, ec, texnansi    \NC serif \NC \NR
+\NC frutiger             \NC Frutiger               \NC type-buy \NC 8r, ec, texnansi    \NC sans \NC \NR
+\NC kabel                \NC ITC Kabel              \NC type-buy \NC 8r, ec, texnansi    \NC sans \NC \NR
+\NC thesans              \NC FF The Sans            \NC type-buy \NC 8r, ec, texnansi    \NC sans, mono, expert \NC \NR
+\NC sabon                \NC Monotype Sabon         \NC type-buy \NC 8r, ec, texnansi    \NC serif \NC \NR
+\NC stone                \NC ITC Stone              \NC type-buy \NC ec, texnansi        \NC serif, sans \NC \NR
+\NC stone-oldstyle       \NC ITC Stone              \NC type-buy \NC -- synonyms only -- \NC serif, sans \NC \NR
+\NC industria            \NC Linotype Industria     \NC type-buy \NC ec, texnansi        \NC sans \NC \NR
+\NC bauhaus              \NC ITC Bauhaus            \NC type-buy \NC ec, texnansi        \NC sans \NC \NR
+\NC swift                \NC EF Swift               \NC type-buy \NC ec, texnansi        \NC serif \NC \NR
+\NC swift-light          \NC EF Swift               \NC type-buy \NC -- synonyms only -- \NC serif \NC \NR
+\NC syntax               \NC Linotype Syntax        \NC type-buy \NC ec, texnansi        \NC sans \NC \NR
+\NC linoletter           \NC Linotype Linoletter    \NC type-buy \NC ec, texnansi        \NC serif \NC \NR
+\NC zapfino              \NC ZapfinoT1              \NC type-ghz \NC 8r, ec, texnansi    \NC serif, handwriting\NC \NR
+\NC palatino-sans-light  \NC Palatino Sans Nova T1  \NC type-exp \NC texnansi, ec        \NC sans\NC \NR
+\NC palatino-sans-normal \NC Palatino Sans Nova T1  \NC type-exp \NC texnansi, ec        \NC sans\NC \NR
+\NC palatino-sans-medium \NC Palatino Sans Nova T1  \NC type-exp \NC texnansi, ec        \NC sans\NC \NR
+\NC opus                 \NC Fontsite 500 Opus      \NC type-fsf \NC 8r, ec, texnansi    \NC sans\NC \NR
+\NC typewriter           \NC Fontsite 500 Typewriter\NC type-fsf \NC 8r, ec, texnansi    \NC mono\NC \NR
+\NC garamond             \NC Fontsite 500 Garamond  \NC type-fsf \NC 8r, ec, texnansi    \NC serif\NC \NR
+\NC optima               \NC Optima Nova T1         \NC type-ghz \NC 8r, ec, texnansi    \NC sans\NC \NR
+\NC optima-nova          \NC Optima Nova T1         \NC type-ghz \NC 8r, ec, texnansi    \NC sans\NC \NR
+\NC optima-nova-os       \NC Optima Nova T1         \NC type-ghz \NC 8r, ec, texnansi    \NC sans\NC \NR
+\NC optima-nova-light    \NC Optima Nova T1         \NC type-ghz \NC 8r, ec, texnansi    \NC sans\NC \NR
+\NC optima-nova-medium   \NC Optima Nova T1         \NC type-ghz \NC 8r, ec, texnansi    \NC sans\NC \NR
+\NC palatino             \NC Palatino Nova T1       \NC type-ghz \NC 8r, ec, texnansi    \NC serif\NC \NR
+\NC palatino-nova        \NC Palatino Nova T1       \NC type-ghz \NC 8r, ec, texnansi    \NC serif\NC \NR
+\NC palatino-nova-os     \NC Palatino Nova T1       \NC type-ghz \NC 8r, ec, texnansi    \NC serif\NC \NR
+\NC palatino-nova-light  \NC Palatino Nova T1       \NC type-ghz \NC 8r, ec, texnansi    \NC serif\NC \NR
+\NC palatino-nova-medium \NC Palatino Nova T1       \NC type-ghz \NC 8r, ec, texnansi    \NC serif\NC \NR
+\NC aldus-nova           \NC Aldus Nova T1          \NC type-ghz \NC 8r, ec, texnansi    \NC serif\NC \NR
+\NC melior               \NC Melior T1              \NC type-ghz \NC 8r, ec, texnansi    \NC serif\NC \NR
+\NC verdana              \NC Microsoft Windows      \NC type-msw \NC texnansi            \NC sans\NC \NR
+\NC arial                \NC Microsoft Windows      \NC type-msw \NC texnansi            \NC sans\NC \NR
+\stoptabulate									         
+\stopbuffer									         
+
+\startbuffer[bodyfontsotffree]
+\switchtobodyfont[6pt]
+
+\starttabulate[|l|l|l|p|]
+\NC Identifier                 \NC Needed font package    \NC file     \NC Supported styles \NC \NR
+\NC modern                     \NC Latin Modern           \NC type-otf \NC serif, sans, mono, math, boldmath, bfmath \NC \NR 
+\NC latin-modern               \NC Latin Modern           \NC type-otf \NC serif, sans, mono, math, boldmath, bfmath \NC \NR 
+\NC modern-vari                \NC Latin Modern           \NC type-otf \NC mono \NC \NR 
+\NC latin-modern-vari          \NC Latin Modern           \NC type-otf \NC mono \NC \NR 
+\NC modern-cond                \NC Latin Modern           \NC type-otf \NC mono \NC \NR 
+\NC latin-modern-cond          \NC Latin Modern           \NC type-otf \NC mono \NC \NR 
+\NC computer-modern            \NC Latin Modern           \NC type-otf \NC serif, sans, mono, math, boldmath, bfmath \NC \NR 
+\NC concrete                   \NC -- MF bitmaps --       \NC type-otf \NC serif \NC \NR
+\NC euler                      \NC Euler                  \NC type-otf \NC math, boldmath, bfmath\NC \NR
+\NC ams                        \NC AMS                    \NC type-otf \NC math \NC \NR
+\NC pagella                    \NC TeX Gyre               \NC type-otf \NC serif \NC \NR
+\NC termes                     \NC TeX Gyre               \NC type-otf \NC serif \NC \NR
+\NC bonum                      \NC TeX Gyre               \NC type-otf \NC serif \NC \NR
+\NC schola                     \NC TeX Gyre               \NC type-otf \NC serif \NC \NR
+\NC chorus                     \NC TeX Gyre               \NC type-otf \NC serif \NC \NR
+\NC heros                      \NC TeX Gyre               \NC type-otf \NC sans \NC \NR
+\NC adventor                   \NC TeX Gyre               \NC type-otf \NC sans \NC \NR
+\NC cursor                     \NC TeX Gyre               \NC type-otf \NC sans \NC \NR
+\NC palatino                   \NC TeX Gyre               \NC type-otf \NC serif, math \NC \NR
+\NC times                      \NC TeX Gyre               \NC type-otf \NC serif, math \NC \NR
+\NC bookman                    \NC TeX Gyre               \NC type-otf \NC serif \NC \NR
+\NC schoolbook                 \NC TeX Gyre               \NC type-otf \NC serif \NC \NR
+\NC chancery                   \NC TeX Gyre               \NC type-otf \NC calligraphy \NC \NR
+\NC helvetica                  \NC TeX Gyre               \NC type-otf \NC sans \NC \NR
+\NC courier                    \NC TeX Gyre               \NC type-otf \NC mono \NC \NR
+\NC antykwa-torunska           \NC Antykwa Torunska       \NC type-otf \NC serif, math \NC \NR
+\NC antykwa-torunska-light     \NC Antykwa Torunska       \NC type-otf \NC serif, math \NC \NR
+\NC antykwa-torunska-cond      \NC Antykwa Torunska       \NC type-otf \NC serif, math \NC \NR
+\NC antykwa-torunska-lightcond \NC Antykwa Torunska       \NC type-otf \NC serif, math \NC \NR
+\NC antykwa-poltawskiego       \NC Antykwa Poltawskiego   \NC type-otf \NC serif \NC \NR
+\NC iwona-light                \NC Iwona                  \NC type-otf \NC sans, math \NC \NR
+\NC iwona                      \NC Iwona                  \NC type-otf \NC sans, math \NC \NR
+\NC iwona-medium               \NC Iwona                  \NC type-otf \NC sans, math \NC \NR
+\NC iwona-heavy                \NC Iwona                  \NC type-otf \NC sans, math \NC \NR
+\NC iwona-cond                 \NC Iwona                  \NC type-otf \NC sans \NC \NR
+\NC iwona-light-cond           \NC Iwona                  \NC type-otf \NC sans \NC \NR
+\NC iwona-medium-cond          \NC Iwona                  \NC type-otf \NC sans \NC \NR
+\NC iwona-heavy-cond           \NC Iwona                  \NC type-otf \NC sans \NC \NR
+\NC kurier                     \NC Kurier                 \NC type-otf \NC sans, math \NC \NR
+\NC kurier-light               \NC Kurier                 \NC type-otf \NC sans, math \NC \NR
+\NC kurier-medium              \NC Kurier                 \NC type-otf \NC sans, math \NC \NR
+\NC charter                    \NC Bitstream Charter      \NC type-otf \NC serif \NC \NR
+\NC gentium                    \NC SIL Gentium            \NC type-xtx \NC serif \NC \NR
+\stoptabulate
+\stopbuffer
+
+\startbuffer[bodyfontsotfbuy]
+\switchtobodyfont[6pt]
+
+\starttabulate[|l|l|l|p|]
+\NC Identifier                 \NC Needed font package    \NC file     \NC Supported styles \NC \NR
+\NC zapfino                    \NC Zapfino Pro OTF        \NC type-hgz \NC serif, handwriting\NC \NR
+\NC optima-nova                \NC Optima Nova OTF        \NC type-hgz \NC sans\NC \NR
+\NC optima-nova-os             \NC Optima Nova OTF        \NC type-hgz \NC sans\NC \NR
+\NC optima-nova-light          \NC Optima Nova OTF        \NC type-hgz \NC sans\NC \NR
+\NC optima-nova-medium         \NC Optima Nova OTF        \NC type-hgz \NC sans\NC \NR
+\NC palatino-nova              \NC Palatino Nova OTF      \NC type-hgz \NC serif\NC \NR
+\NC palatino-nova-os           \NC Palatino Nova OTF      \NC type-hgz \NC serif\NC \NR
+\NC palatino-nova-light        \NC Palatino Nova OTF      \NC type-hgz \NC serif\NC \NR
+\NC palatino-nova-medium       \NC Palatino Nova OTF      \NC type-hgz \NC serif\NC \NR
+\NC palatino-sans              \NC Palatino Nova OTF      \NC type-hgz \NC sans\NC \NR
+\NC palatino-informal          \NC Palatino Nova OTF      \NC type-hgz \NC sans\NC \NR
+\NC melior                     \NC Melior OTF             \NC type-hgz \NC serif\NC \NR
+\NC -- all four-variant fonts -- \NC -- any OTF vendor -- \NC type-xtx \NC Xserif \NC \NR
+\NC -- all four-variant fonts -- \NC -- any OTF vendor -- \NC type-xtx \NC Xsans \NC \NR
+\NC -- all four-variant fonts -- \NC -- any OTF vendor -- \NC type-xtx \NC Xmono \NC \NR
+\NC times                      \NC MacOSX                 \NC type-xtx \NC serif \NC \NR
+\NC palatino                   \NC MacOSX (Book Antiqua)  \NC type-xtx \NC serif \NC \NR
+\NC helvetica                  \NC MacOSX (Helvetica Neue)\NC type-xtx \NC sans \NC \NR
+\NC courier                    \NC MacOSX                 \NC type-xtx \NC mono \NC \NR
+\NC hoefler                    \NC MacOSX                 \NC type-xtx \NC serif \NC \NR
+\NC lucidagrande               \NC MacOSX                 \NC type-xtx \NC sans \NC \NR
+\NC optima                     \NC MacOSX                 \NC type-xtx \NC sans \NC \NR
+\NC gillsans                   \NC MacOSX                 \NC type-xtx \NC sans \NC \NR
+\NC gillsanslt                 \NC MacOSX                 \NC type-xtx \NC sans \NC \NR
+\NC zapfino                    \NC MacOSX                 \NC type-xtx \NC handwriting, serif \NC \NR
+\NC applechancery              \NC MacOSX                 \NC type-xtx \NC calligraphy, serif \NC \NR
+\NC timesnewroman              \NC MS Office              \NC type-xtx \NC serif \NC \NR
+\NC arial                      \NC MS Office              \NC type-xtx \NC sans \NC \NR
+\NC lucida                     \NC MS Office              \NC type-xtx \NC serif, sans, mono, handwriting, calligraphy, fax\NC \NR
+\stoptabulate
+\stopbuffer
+
+\placetable
+  [here]
+  [tab:body font names]
+  {The predefined body font identifiers for free Type~1 and \METAFONT\ fonts}
+  {\getbuffer[bodyfontst1free]}
+
+
+\placetable
+  [here]
+  [tab:body font names]
+  {The predefined body font identifiers for commercial Type~1 fonts}
+  {\getbuffer[bodyfontst1buy]}
+
+\placetable
+  [here]
+  [tab:body font names]
+  {The predefined body font identifiers for free Unicode (Opentype) fonts}
+  {\getbuffer[bodyfontsotffree]}
+
+
+\placetable
+  [here]
+  [tab:body font names]
+  {The predefined body font identifiers for commercial Unicode (Opentype) fonts}
+  {\getbuffer[bodyfontsotfbuy]}
+
+
+
 
 
 \section[font switching]{Font switching}
@@ -351,19 +628,17 @@ were not automatically adapted.
 \index{old style}
 \index{medaeval numbers}
 
-The mechanism to switch from one style to another is rather
-complex and therefore hard to explain. To begin with, the
-terminology is a bit fuzzy. We call a collection of font
-shapes, like Lucida or Computer Modern Roman a family.
-Within such a family, the members can be grouped according
-to characteristics. Such a group is called a style. Examples
-of styles within a family are: {\rmtf roman}, {\sstf sans
-serif} and {\tttf teletype}. We already saw that there can
-be alternative classifications, but they all refer to the
-pressence of serifs and the glyphs having equal widths. In
-some cases handwritten and|/|or calligraphic styles are also
-available. Within a style there can be alternatives, like
-{\bf boldface} and {\sl slanted}.
+The mechanism to switch from one style to another is rather complex
+and therefore hard to explain. To begin with, the terminology is a bit
+fuzzy. We call a collection of font shapes, like Lucida or Computer
+Modern Roman a family.  Within such a family, the members can be
+grouped according to characteristics. Such a group is called a
+style. Examples of styles within a family are: {\rmtf roman}, {\sstf
+sans serif} and {\tttf teletype}. We already saw that there can be
+alternative classifications, but they all refer to the pressence of
+serifs and the glyphs having equal widths. In some cases handwritten
+and|/|or calligraphic styles are also available. Within a style there
+can be alternatives, like {\bf boldface} and {\sl slanted}.
 
 There are different ways to change into a new a style or
 alternative. You can use \type {\ss} to switch to a sans
