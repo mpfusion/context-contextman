@@ -327,7 +327,7 @@ bodyfont. Consider this input:
 \stopexample
 
 The actual \CONTEXT\ behaviour is shown below on the left. On the
-right you can see what would have happened if when the interline space
+right you can see what would have happened if the interline space
 were not automatically adapted.
 
 \startlinecorrection
@@ -338,6 +338,8 @@ were not automatically adapted.
 \stoplinecorrection
 
 \subsection{Body font identifiers}
+
+\macros{\tex{usetypescript}}
 
 In the definition block of \type{setupbodyfont} there was a list of
 words given besides the special marker \type{IDENTIFIER}. These words
@@ -368,12 +370,74 @@ your own font support files (see the next chapter on how to do that).
 We will see later that there are other and easier ways to switch the
 font style, so if \type{\setupbodyfont} could only be used for this
 purpose it would be not all that useful. But luckily there is more:
-the identifier can also be a font collection identifier that has been
-defined in a font support file. \CONTEXT\ expects that you will define
-your own font collections |<|which is why there are no extra keywords
-listed in the macro syntax definition|>| but luckily there are a
-number of predefined identifiers that come with \CONTEXT; these are listed 
-in~\in{table}[tab:body font names] etc.
+the optional \type{IDENTIFIER} can be a font collection name that has been
+defined in a font support file. \CONTEXT\ expects you to define
+your own font collections, but there are a few examples predefined. 
+
+Because some extra work needs to be done for font collections (b.t.w.,
+a font collection identifier is called a
+\quote{typescript}\index{typescript}); you almost always need to have
+an extra line with \type{\usetypescript} immediately before the
+\type{\setupbodyfont} command to prepare the \CONTEXT\ internals. We
+will get back to \type{\usetypescript} later.
+
+A typical input sequence for selecting the predefined \quote{palatino}
+font set in \MKII\ will look like this:
+
+\starttyping
+\usetypescript[palatino][texnansi]
+\setupbodyfont[palatino,12pt]
+\stoptyping
+
+This first prepares and then selects the predefined font collection
+named \type{palatino} that will actually make \PDFTEX\ load the free
+Type~1 font URW Palladio, in Y\&Y's \type{texnansi} font encoding.
+URW Palladio is a font that looks a lot like the commercial font 
+Linotype Palatino by Hermann Zapf.
+
+In \XETEX\ and \MKIV\ the situation is a little bit different because
+fonts are reencoded to match Unicode whenever that is possible. That
+in turn means that \XETEX\ and \MKIV\ prefer to use OpenType fonts
+over Type~1 fonts, so different typescript definitions are used behind
+the scenes, and the second argument to \type{\usetypescript} becomes
+optional. 
+
+For example,
+
+\starttyping
+\usetypescript[palatino]
+\setupbodyfont[palatino,12pt]
+\stoptyping
+
+will make \XETEX\ and \LUATEX\ load the OpenType font Pagella a free
+font from the \TeX\ Gyre project, that also looks just like the
+commercial font Linotype Palatino. You may as well leave the second
+argument in place: while it will always be ignored by \LUATEX, 
+\XETEX\ will actually use that encoding if the typescript uses Type~1
+fonts instead of the more modern OpenType or TrueType font formats. 
+%TH Note: I think so, at least
+
+A typescript attaches meaning to some or all of the five font styles,
+so you can e.g. do this:
+
+\starttyping
+\usetypescript[times][texnansi]
+\setupbodyfont[times,sans,12pt]
+\stoptyping
+
+and end up using the OpenType font \TeX\ Gyre Heros or the Type~1 font
+URW Nimbus Sans~L, both very similar in appearance to Linotype
+Helvetica.
+
+\subsection{Combining fonts into font collections (typescripts)}
+
+\macros{\tex{starttypescript}}
+\macros{\tex{definetypeface}}
+
+There are quite a few predefined typeface identifiers that come with
+\CONTEXT; these are listed in the ~\in{four tables}[tab:body font names 1],
+\in{four tables}[tab:body font names 2], \in{four tables}[tab:body font names 3], 
+and \in{four tables}[tab:body font names 4].
 
 % TH notes: 
 % I decided not to document the junk in type-pre and type-akb
@@ -589,27 +653,27 @@ in~\in{table}[tab:body font names] etc.
 
 \placetable
   [here]
-  [tab:body font names]
+  [tab:body font names 1]
   {The predefined body font identifiers for free Type~1 and \METAFONT\ fonts}
   {\getbuffer[bodyfontst1free]}
 
 
 \placetable
   [here]
-  [tab:body font names]
+  [tab:body font names 2]
   {The predefined body font identifiers for commercial Type~1 fonts}
   {\getbuffer[bodyfontst1buy]}
 
 \placetable
   [here]
-  [tab:body font names]
+  [tab:body font names 3]
   {The predefined body font identifiers for free Unicode (Opentype) fonts}
   {\getbuffer[bodyfontsotffree]}
 
 
 \placetable
   [here]
-  [tab:body font names]
+  [tab:body font names 4]
   {The predefined body font identifiers for commercial Unicode (Opentype) fonts}
   {\getbuffer[bodyfontsotfbuy]}
 
