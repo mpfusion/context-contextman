@@ -339,61 +339,85 @@ were not automatically adapted.
 
 \subsection{Body font identifiers}
 
-\macros{\tex{usetypescript}}
+\macro{\tex{usetypescript}}
 
 In the definition block of \type{setupbodyfont} there was a list of
 words given besides the special marker \type{IDENTIFIER}. These words
-are the \CONTEXT\ names for the font styles that we ran into earlier,
-with a few aliases. Here are the defined font styles in \CONTEXT\ in
-table format:
+are the symbolic \CONTEXT\ names for the font styles that we ran into
+earlier, with a few aliases conforming to~\in {table} [tab:font
+triplets] so that you do not have to worry about the actual naming
+convention used. The symbolic names are mapped to two-letter internal
+style abbreviations that are used internally.
+
+Here is a table of the defined font styles in \CONTEXT:
 
 \starttabulate[|l|p|]
-\NC Identifier                \NC Maps to \NC\NR
+\NC \bf Long name             \NC \bf Internal style\NC\NR
 \NC serif, regular, roman     \NC rm \NC\NR
 \NC sans, support, sansserif  \NC ss \NC\NR
 \NC mono, type, teletype      \NC tt \NC\NR
 \NC handwritten               \NC hw \NC\NR
 \NC calligraphic              \NC cg \NC\NR
+\NC --                        \NC mm \NC\NR
 \stoptabulate
 
-You can see that, apart from being all lowercase, the first lines
-three lines match the identifiers used in~\in {table} [tab:font
-triplets] exactly. 
+Although the macro syntax does not say so, you can use the internal
+style abbreviations in \type{\setupbodyfont} as well as the longer
+names, if you prefer.
 
-The other two extra font styles are defined because they are sometimes
-useful when dealing with really large font families or with very
-elaborate document layout definitions. In the \CONTEXT\ distribution,
-only the Lucida font family uses these styles, and in the default
-Latin Modern font set they are simply ignored.  You could use them in
-your own font support files (see the next chapter on how to do that).
+The \quote{hw} and \quote{cg} extra font styles are sometimes useful
+when dealing with very elaborate document layout definitions. In the
+\CONTEXT\ distribution, only the Lucida font family uses these styles,
+in any other font set they are simply ignored, but you could use them
+in your own font setups easily (see the next chapter for font setup).
+
+The internal style \quote{mm} handles math fonts. It does not make
+sense to use this style directly in a call to \type{\setupbodyfont} so
+there is no symbolic name attached to it, but it is quite important
+internally so it makes sense to introduce it right away.
+
+\blank 
 
 We will see later that there are other and easier ways to switch the
 font style, so if \type{\setupbodyfont} could only be used for this
-purpose it would be not all that useful. But luckily there is more:
-the optional \type{IDENTIFIER} can be a font collection name that has been
-defined in a font support file. \CONTEXT\ expects you to define
-your own font collections, but there are a few examples predefined. 
+purpose it would not be all that useful. But luckily there is more:
+the optional \type{IDENTIFIER} can be a \quote{body font name} (aka
+\quote{typeface}). Such names have to be predefined, perhaps in a font
+support file, or simply on earlier lines in the style definition.
 
-Because some extra work needs to be done for font collections (b.t.w.,
-a font collection identifier is called a
-\quote{typescript}\index{typescript}); you almost always need to have
-an extra line with \type{\usetypescript} immediately before the
-\type{\setupbodyfont} command to prepare the \CONTEXT\ internals. We
-will get back to \type{\usetypescript} later.
+A \quote{typeface} is a symbolic name that links a single font style
+to actual font families. Such symbolic names are often grouped
+together in a definition block that sets up values that link a few of
+the styles to fonts in a \quote{font collection}, and such definition
+blocks are called \quote{typescripts}. 
+
+\CONTEXT\ expects you to define your own font setups, but there 
+are quite a few examples predefined in various typescript files. Not
+all of those are perpetually loaded, so you usually have to execute a
+typescript explicitly to get the typeface names predefined. To this
+end, typescripts {\em themselves\/} also have names. 
+
+Executing a typescript is done by \type{\usetypescript}. We will get
+back to \type{\usetypescript} later because it is in fact a very
+flexible command, but let's discuss simple usage first.
+
+\showsetup{usetypescript} % empty at the moment
 
 A typical input sequence for selecting the predefined \quote{palatino}
-font set in \MKII\ will look like this:
+set of typefaces in \MKII\ will look like this:
 
 \starttyping
 \usetypescript[palatino][texnansi]
 \setupbodyfont[palatino,12pt]
 \stoptyping
 
-This first prepares and then selects the predefined font collection
-named \type{palatino} that will actually make \PDFTEX\ load the free
-Type~1 font URW Palladio, in Y\&Y's \type{texnansi} font encoding.
-URW Palladio is a font that looks a lot like the commercial font 
-Linotype Palatino by Hermann Zapf.
+This example first executes typescript named \type{palatino}, that
+define a set of typefaces named \type{palatino} that use Y\&Y's
+\type{texnansi} font encoding. These are then used by \type{\setupbodyfont}
+and eventually this makes \PDFTEX\ load the free Type~1 font URW Palladio
+in the correct encoding.  URW Palladio is a font that looks a lot like the
+commercial font Linotype Palatino by Hermann Zapf, which explains the
+name of the typescript and typefaces.
 
 In \XETEX\ and \MKIV\ the situation is a little bit different because
 fonts are reencoded to match Unicode whenever that is possible. That
@@ -409,16 +433,15 @@ For example,
 \setupbodyfont[palatino,12pt]
 \stoptyping
 
-will make \XETEX\ and \LUATEX\ load the OpenType font Pagella a free
-font from the \TeX\ Gyre project, that also looks just like the
+will make \XETEX\ and \LUATEX\ load the OpenType font Pagella. This is
+a free font from the \TeX\ Gyre project, that also looks just like the
 commercial font Linotype Palatino. You may as well leave the second
-argument in place: while it will always be ignored by \LUATEX, 
+argument in place: while it will always be ignored by \LUATEX,
 \XETEX\ will actually use that encoding if the typescript uses Type~1
 fonts instead of the more modern OpenType or TrueType font formats. 
-%TH Note: I think so, at least
 
-A typescript attaches meaning to some or all of the five font styles,
-so you can e.g. do this:
+Almost all typescripts attachs meaning to at least the three basic
+font styles, so you can e.g. do this:
 
 \starttyping
 \usetypescript[times][texnansi]
@@ -426,18 +449,191 @@ so you can e.g. do this:
 \stoptyping
 
 and end up using the OpenType font \TeX\ Gyre Heros or the Type~1 font
-URW Nimbus Sans~L, both very similar in appearance to Linotype
-Helvetica.
+URW Nimbus Sans~L. Both fonts are very similar in appearance to
+Linotype Helvetica, by the way.
 
-\subsection{Combining fonts into font collections (typescripts)}
+The typescripts that come with the \CONTEXT\ distribution are placed
+in source files that have names that start with \type{type-}. Some of
+these files are automatically loaded, but most have to be loaded
+explicitly. Here is a list
 
-\macros{\tex{starttypescript}}
-\macros{\tex{definetypeface}}
 
-There are quite a few predefined typeface identifiers that come with
-\CONTEXT; these are listed in the ~\in{four tables}[tab:body font names 1],
-\in{four tables}[tab:body font names 2], \in{four tables}[tab:body font names 3], 
-and \in{four tables}[tab:body font names 4].
+\starttabulate[|l|l|l|l|p|]
+\NC \bf File   \NC \bf Loaded     \NC \bf Loaded     \NC \bf Loaded    \NC \bf Description \NC \NR
+\NC            \NC \bf by \PDFTEX \NC \bf by \XETEX  \NC \bf by \MKIV  \NC                 \NC \FR
+\NC type-buy   \NC no             \NC no             \NC no            \NC Various commercial fonts (Type~1)\NC \NR
+\NC type-cbg   \NC no             \NC no             \NC no            \NC Greek free fonts (Type~1)\NC \NR
+\NC type-cow   \NC no             \NC no             \NC no            \NC The \CONTEXT\ cow font (Type~1)\NC \NR
+\NC type-exp   \NC no             \NC no             \NC no            \NC Commercial Zapf fonts (OpenType), experimental\NC \NR
+\NC type-fsf   \NC no             \NC no             \NC no            \NC Commercial Fontsite 500 fonts (Type~1)\NC \NR
+\NC type-ghz   \NC no             \NC no             \NC no            \NC Commercial Zapf fonts (Type~1)\NC \NR
+\NC type-gyr   \NC no             \NC no             \NC no            \NC The \TeX\ Gyre project fonts (Type~1)\NC \NR
+\NC type-hgz   \NC no             \NC no             \NC no            \NC Commercial Zapf fonts (OpenType)\NC \NR
+\NC type-msw   \NC no             \NC no             \NC no            \NC Fonts that come with Microsoft Windows (Type~1)\NC \NR
+\NC type-omg   \NC no             \NC no             \NC no            \NC Omega free fonts (Type~1)\NC \NR
+\NC type-one   \NC yes            \NC no             \NC no            \NC Various free fonts (Type~1)\NC \NR
+\NC type-otf   \NC no             \NC yes            \NC yes           \NC Various free fonts (OpenType)\NC \NR
+\NC type-xtx   \NC no             \NC yes            \NC no            \NC Fonts that come with MacOSX (OpenType)\NC \NR
+\stoptabulate
+
+Loading one of those files is done via \type{\usetypescriptfile}.
+\macro{\tex{usetypescriptfile}}
+
+\showsetup{usetypescriptfile} % empty at the moment
+
+For example, the following 
+\starttyping
+\usetypescriptfile[type-gyr]
+\usetypescript[palatino][texnansi]
+\setupbodyfont[palatino,12pt]
+\stoptyping
+
+will make \PDFTEX\ load the Type~1 font Pagella from the \TeX\ Gyre
+project instead of the older and less complete URW Palladio, because
+the definition of the typescript \type{palatino} that is in the
+\type{type-gyr} file overwrites the preloaded definition from the
+\type{type-one} file.
+
+The predefined typescripts, the typefaces they define, and the file
+names they are contained in inside the \CONTEXT\ distribution are
+listed in the~\in {tables} [tab:simple typeface names]
+and~\in{}[tab:complex typeface names].  The tables also explain what
+font set each of the styles maps to, what this means exactly will be
+explained in the next section.
+
+
+\startbuffer[simpletypescripts]
+\begingroup
+\switchtobodyfont[7pt]
+\starttabulate[|l|l|l|l|l|l|l|]
+\NC \bf Typescript    \NC \bf Typeface      \NC \bf File           \NC \bf Style rm        \NC \bf Style ss         \NC \bf Style tt \NC \bf Style mm      \NC \FR
+\NC OmegaArab         \NC omarb             \NC type-omg           \NC omega naskh         \NC --                   \NC --           \NC --                \NC \NR
+\NC OmegaLGC          \NC omlgc             \NC type-omg           \NC omega               \NC --                   \NC omega        \NC --                \NC \NR
+\NC antykwa-torunska  \NC antykwa           \NC type-one, type-otf \NC antykwa-torunska    \NC modern               \NC modern       \NC antykwa-torunska  \NC \NR
+\NC cbgreek           \NC cbgreek           \NC type-cbg           \NC cbgreek             \NC cbgreek              \NC cbgreek      \NC --                \NC \NR
+\NC cbgreek-all       \NC cbgreek-all       \NC type-cbg           \NC cbgreek             \NC cbgreek              \NC cbgreek      \NC --                \NC \NR
+\NC cbgreek-medium    \NC cbgreek-medium    \NC type-cbg           \NC cbgreek             \NC cbgreek              \NC cbgreek      \NC --                \NC \NR
+\NC cow               \NC cow               \NC type-cow           \NC cow                 \NC cow serif            \NC modern       \NC cow               \NC \NR
+\NC fallback          \NC --                \NC type-one, type-otf \NC modern              \NC modern               \NC modern       \NC modern            \NC \NR
+\NC fourier           \NC fourier           \NC type-one           \NC fourier             \NC --                   \NC modern       \NC fourier           \NC \NR
+\NC iwona             \NC iwona             \NC type-one, type-otf \NC modern              \NC iwona                \NC modern       \NC iwona             \NC \NR
+\NC iwona-heavy       \NC iwona-heavy       \NC type-one, type-otf \NC modern              \NC iwona-heavy          \NC modern       \NC iwona-heavy       \NC \NR
+\NC iwona-light       \NC iwona-light       \NC type-one, type-otf \NC modern              \NC iwona-light          \NC modern       \NC iwona-light       \NC \NR
+\NC iwona-medium      \NC iwona-medium      \NC type-one, type-otf \NC modern              \NC iwona-medium         \NC modern       \NC iwona-medium      \NC \NR
+\NC modern            \NC modern            \NC type-one, type-otf \NC modern              \NC modern               \NC modern       \NC modern            \NC \NR
+\NC modernvariable    \NC modernvariable    \NC type-one, type-otf \NC simple              \NC modern               \NC modern       \NC modern            \NC \NR
+\NC optima            \NC optima            \NC type-ghz, type-one \NC palatino            \NC optima-nova          \NC modern       \NC palatino          \NC \NR
+\NC optima-nova       \NC optima            \NC type-ghz, type-hgz \NC optima-nova sans    \NC optima-nova          \NC latin-modern \NC latin-modern mono \NC \NR
+\NC optima-nova-os    \NC optima-os         \NC type-ghz, type-hgz \NC optima-nova-os sans \NC optima-nova-os       \NC latin-modern \NC latin-modern mono \NC \NR
+\NC palatino          \NC palatino          \NC type-hgz           \NC palatino-nova       \NC palatino-sans        \NC latin-modern \NC latin-modern      \NC \NR
+\NC palatino          \NC palatino          \NC type-one, type-otf \NC palatino            \NC --                   \NC modern       \NC palatino          \NC \NR
+\NC palatino-informal \NC palatino-informal \NC type-hgz           \NC palatino-nova       \NC palatino-informal    \NC latin-modern \NC latin-modern      \NC \NR
+\NC palatino-light    \NC palatino-light    \NC type-exp           \NC palatino-nova       \NC palatino-sans-light  \NC latin-modern \NC latin-modern mono \NC \NR
+\NC palatino-medium   \NC palatino-medium   \NC type-exp           \NC palatino-nova       \NC palatino-sans-medium \NC latin-modern \NC latin-modern mono \NC \NR
+\NC palatino-normal   \NC palatino-normal   \NC type-exp           \NC palatino-nova       \NC palatino-sans-normal \NC latin-modern \NC latin-modern mono \NC \NR
+\NC palatino-nova     \NC palatino          \NC type-hgz           \NC palatino-nova       \NC palatino-sans        \NC latin-modern \NC latin-modern      \NC \NR
+\NC palatino-sans     \NC palatino          \NC type-hgz           \NC palatino-nova       \NC palatino-sans        \NC latin-modern \NC latin-modern      \NC \NR
+\NC postscript        \NC postscript        \NC type-one, type-otf \NC times               \NC helvetica            \NC courier      \NC times             \NC \NR
+\NC sheep             \NC sheep             \NC type-cow           \NC sheep               \NC sheep serif          \NC modern       \NC sheep             \NC \NR
+\NC times             \NC times             \NC type-one, type-otf \NC times               \NC helvetica            \NC modern       \NC times             \NC \NR
+\stoptabulate
+\endgroup
+\stopbuffer
+
+\placetable
+  [here]
+  [tab:simple typeface names]
+  {The simple typescripts. 
+   Unless stated otherwise, style rm uses serif, style ss uses sans, style tt uses mono, and style mm uses math.
+   A sole -- in a cell means that the typescript does not define that style (it will use the fallback typescript instead).}
+  {\getbuffer[simpletypescripts]}
+
+
+
+\startbuffer[complextypescripts]
+\switchtobodyfont[8pt]
+\starttabulate[|l|l|l|l|l|l|l|l|]
+\NC Typescript        \NC Typeface          \NC file      \NC style \NC definition                \NC \FR
+\NC lucida            \NC lucida            \NC type-buy  \NC rm    \NC lucida serif              \NC \NR
+\NC lucida            \NC lucida            \NC type-buy  \NC ss    \NC lucida sans               \NC \NR
+\NC lucida            \NC lucida            \NC type-buy  \NC tt    \NC lucida mono               \NC \NR
+\NC lucida            \NC lucida            \NC type-buy  \NC mm    \NC lucida math               \NC \NR
+\NC lucida            \NC lucida            \NC type-buy  \NC hw    \NC lucida handwriting        \NC \NR
+\NC lucida            \NC lucida            \NC type-buy  \NC cg    \NC lucida calligraphy        \NC \NR
+\NC lucidabfm         \NC lucidabfm         \NC type-buy  \NC rm    \NC lucida serif              \NC \NR
+\NC lucidabfm         \NC lucidabfm         \NC type-buy  \NC ss    \NC lucida sans               \NC \NR
+\NC lucidabfm         \NC lucidabfm         \NC type-buy  \NC tt    \NC lucida mono               \NC \NR
+\NC lucidabfm         \NC lucidabfm         \NC type-buy  \NC hw    \NC lucida handwriting        \NC \NR
+\NC lucidabfm         \NC lucidabfm         \NC type-buy  \NC cg    \NC lucida calligraphy        \NC \NR
+\NC lucidabfm         \NC lucida            \NC type-buy  \NC mm    \NC lucida bfmath             \NC \NR
+\NC lucidabfm         \NC lucidaboldmath    \NC type-buy  \NC mm    \NC lucida bfmath             \NC \NR
+\NC lucidaboldmath    \NC lucidaboldmath    \NC type-buy  \NC rm    \NC lucida serif              \NC \NR
+\NC lucidaboldmath    \NC lucidaboldmath    \NC type-buy  \NC ss    \NC lucida sans               \NC \NR
+\NC lucidaboldmath    \NC lucidaboldmath    \NC type-buy  \NC tt    \NC lucida mono               \NC \NR
+\NC lucidaboldmath    \NC lucidaboldmath    \NC type-buy  \NC mm    \NC lucida bfmath             \NC \NR
+\NC lucidaboldmath    \NC lucida            \NC type-buy  \NC mm    \NC lucida bfmath             \NC \NR
+\NC modern-base       \NC modern            \NC type-one  \NC rm    \NC modern serif              \NC \NR
+\NC modern-base       \NC modern            \NC type-one  \NC ss    \NC modern sans               \NC \NR
+\NC modern-base       \NC modern            \NC type-one  \NC tt    \NC modern mono               \NC \NR
+\NC modern-base       \NC modern            \NC type-one  \NC mm    \NC modern math               \NC \NR
+\NC modern-base       \NC modern            \NC type-one  \NC rm    \NC computer-modern serif     \NC \NR
+\NC modern-base       \NC modern            \NC type-one  \NC ss    \NC computer-modern sans      \NC \NR
+\NC modern-base       \NC modern            \NC type-one  \NC tt    \NC computer-modern mono      \NC \NR
+\NC modern-base       \NC modern            \NC type-one  \NC mm    \NC computer-modern math      \NC \NR
+\NC modern-base       \NC modern            \NC type-otf  \NC rm    \NC modern serif              \NC \NR
+\NC modern-base       \NC modern            \NC type-otf  \NC ss    \NC modern sans               \NC \NR
+\NC modern-base       \NC modern            \NC type-otf  \NC tt    \NC modern mono               \NC \NR
+\NC modern-base       \NC modern            \NC type-otf  \NC mm    \NC modern math               \NC \NR
+\stoptabulate
+\stopbuffer
+
+
+\placetable
+  [here]
+  [tab:complex typeface names]
+  {The typescripts that define variant typeface names. The various lucida typescripts are different 
+   because they define the extra styles hw and cg and also because of the bold math support. The modern-base 
+   typescripts are worth mentioning because the Type~1 version falls back to Computer modern for some font 
+   encodings: t2a, t2b, t2c, and x2.}
+  {\getbuffer[complextypescripts]}
+
+
+\subsection{Typeface definitions}
+
+\macro{\tex{starttypescript}}
+\macro{\tex{definetypeface}}
+
+Defining a typeface goes like this:
+
+\starttyping
+\starttypescript [palatino] [texnansi,ec,qx,t5,default]
+  \definetypeface [palatino] [rm] [serif] [palatino] [default]
+  \definetypeface [palatino] [ss] [sans]  [modern]   [default]
+  \definetypeface [palatino] [tt] [mono]  [modern]   [default] [rscale=1.075]
+  \definetypeface [palatino] [mm] [math]  [palatino] [default]
+\stoptypescript
+\stoptyping
+
+This defines a typescript named \type{palatino} in four different
+encodings as well as in the \type{default} encoding. The \type{default} encoding
+is normally~\type{ec}, but can be changed by the user as explained in~\in{section}[fontencodings].
+
+\showsetup{definetypeface} % empty at the moment
+
+The four \type{\definetypeface} lines connect (define, if you prefer)
+the typeface name \type{palatino} to four different font styles:
+\type{rm}, \type{ss}, \type{tt}, and \type{mm}.  The third and fourth arguments 
+are pointers to font sets, these are defined elsewhere. The fifth
+argument specifies any specific font size setups, these will be
+covered in~\in{section}[typefacesizes]. The optional sixth argument is 
+used for tweaking font settings (see~\in{section}[typefacesettings]), including
+the specification of font features (see~\in{section}[fotfeatures]).
+
+How to define your own font sets will be explained in the nexct chapter,
+but there are quite a few predefined font sets that come with \CONTEXT;
+these are all listed in the four tables~\in{}[tab:body font names 1],
+\in{}[tab:body font names 2], \in{}[tab:body font names 3], 
+and \in{}[tab:body font names 4].
 
 % TH notes: 
 % I decided not to document the junk in type-pre and type-akb
@@ -676,8 +872,6 @@ and \in{four tables}[tab:body font names 4].
   [tab:body font names 4]
   {The predefined body font identifiers for commercial Unicode (Opentype) fonts}
   {\getbuffer[bodyfontsotfbuy]}
-
-
 
 
 
