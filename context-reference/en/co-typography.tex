@@ -185,11 +185,12 @@ of font styles that are often found together in a single document.
   {Some ways of classifying the styles in a font.}
   {\getbuffer[styles]}
 
-The top two series are normally used by typographers, but in
-\CONTEXT\ we use the bottom series because that is what was
-traditionally used in plain \TEX. The command \type {\rm} is used to
-switch to a roman|/|serif|/|regular style, and \type {\tt} for
-switching to mono spaced or typewriter style.
+The top two series are normally used by typographers, the bottom
+series is what was traditionally used in plain \TEX. In \CONTEXT\ all
+three series of terms can be used because they are remapped to the
+same set of internal commands. As we will see, the command \type {\rm}
+is used to switch to a roman|/|serif|/|regular style, and \type {\tt}
+for switching to mono spaced or typewriter style, etcetera.
 
 In the next sections we will go into switching of font styles and
 fonts in your documents. Be warned that the font switching mechanism
@@ -216,7 +217,7 @@ mechanism:
       means switching to: roman (serif, regular), sans serif
       (support), teletype (or monospaced) etc. (\type {\rm},
       \type {\ss}, \type {\tt} etc.)
-\item More than one {\em variations} of glyphs shapes must be
+\item More than one {\em alternative} set of glyphs shapes must be
       available like slanted and bold (\type {\sl} and \type {\bf}).
 \item Different font {\em families} like Latin Modern Roman 
       and Lucida Bright must be supported.
@@ -256,17 +257,16 @@ and {\em display}.
 \index{old style}
 \index{medaeval numbers}
 
-The mechanism to switch from one style to another is rather complex
-and therefore hard to explain. To begin with, the terminology is a bit
-fuzzy. We call a collection of font shapes, like Lucida or Computer
-Modern Roman a family.  Within such a family, the members can be
-grouped according to characteristics. Such a group is called a
-style. Examples of styles within a family are: {\rmtf roman}, {\sstf
-sans serif} and {\tttf teletype}. We already saw that there can be
-alternative classifications, but they all refer to the pressence of
-serifs and the glyphs having equal widths. In some cases handwritten
-and|/|or calligraphic styles are also available. Within a style there
-can be alternatives, like {\bf boldface} and {\sl slanted}.
+The mechanism to switch from one style to another is somewhat complex,
+not in the least because the terminology is a bit fuzzy.  A quick
+recap: we call a collection of fonts, like Lucida or Computer Modern
+Roman, a {\em family}.  Within such a family, the members can be
+grouped according to characteristics. Such a group is called a {\em
+style}. Examples of styles within a family are: \quote{roman},
+\quote{sans serif} and \quote{teletype}. We saw that there can
+be alternative classifications, but they all refer to the presence of
+serifs and the glyphs having equal widths. Within a style there
+can be {\em alternatives}, like \quote{boldface} and \quote{slanted}.
 
 There are different ways to change into a new a style or
 alternative. You can use \type {\ss} to switch to a sans
@@ -275,70 +275,102 @@ When a different style is chosen, the alternatives adapt
 themselves to this style. Often we will typeset the document
 in one family and style. This is called the bodyfont.
 
-A consequent use of commands like \type {\bf} and \type
+Consistent use of commands like \type {\bf} and \type
 {\sl} in the text will automatically result in the desired
 bold and slanted altermatives when you change the family or
-style in the setup area of your input file. A somewhat
-faster way of style switching is done by \type {\ssbf},
-\type {\sssl}, etc. but this should be used with care, since
-far less housekeeping takes place.
+style in the setup area of your input file. 
 
-The alternatives within a style are given below. The
-abbreviation \type {\sl} means {\sl slanted}, \type {\it}
-means {\it italic} and \type {\bf} means {\bf boldface}.
-Sometimes \type {\bs} and \type {\bi} are also available,
-meaning {\bs bold slanted} and {\bi bold italic}. When an
-alternative is not known, \CONTEXT\ will choose a suitable
-replacement automatically.
+Switching to another font style is done by one of five 
+two-letter commands that are listed in~\in{table}[tab:style switches].
+
+\startbuffer[styleswitch]
+\starttabulate[|l|l|]
+\NC \bf style  \NC \bf Long names and aliases    \NC\NR
+\NC \type{\rm} \NC serif, regular, roman, rm     \NC\NR
+\NC \type{\ss} \NC sans, support, sansserif, ss  \NC\NR
+\NC \type{\tt} \NC mono, type, teletype, tt      \NC\NR
+\NC \type{\hw} \NC handwritten, hw               \NC\NR
+\NC \type{\cg} \NC calligraphic, cg              \NC\NR
+\NC --         \NC mm                            \NC\NR
+\stoptabulate
+\stopbuffer
+
+\placetable
+  [here]
+  [tab:style switches]
+  {Font style switching commands}
+  {\getbuffer[styleswitch]}
+
+The \quote{handwritten} and \quote{calligraphic} font styles are
+sometimes useful when dealing with very elaborate document layout
+definitions. In the \CONTEXT\ distribution, only the Lucida font
+family uses these styles, in any other font set they are simply
+ignored. You could use them in your own font setups if you so desire
+(see the next chapter for font setup definitions).
+
+There is a sixth internal style that is only ever referenced as
+\quote{mm}. This style handles math fonts. It does not make sense to
+use this style directly so there is no command attached to it, but it
+is quite important internally so it makes sense to introduce it right
+away.
+
+The alternatives within a style are given below. The abbreviation
+\type {\sl} means {\sl slanted}, \type {\it} means {\it italic} and
+\type {\bf} means {\bf boldface}.   Sometimes \type {\bs} and \type
+{\bi} are also available, meaning {\bs bold slanted} and {\bi bold
+italic}. 
 
 With \type {\os} we tell \CONTEXT\ that we prefer mediaeval or
 old||style numbers {\os 139} over {\rm 139}. The \type {\sc}
-generates {\sc Small Caps}. With an \type {x} we switch to
-smaller font size, with \type {a}, \type {b}, \type {c} and
-\type {d} to a bigger one. The actual font style is stated
-by \type {\tf} or typeface.
+generates {\sc Small Caps}. The base font style (upright) 
+is selected by the command \type {\tf}.
+
+Not all fonts have both italic and slanted or the bold alternatives of
+each. Some other fonts do not have small caps or only one set of
+digits.  When an alternative is not known, \CONTEXT\ will attempt to
+choose a suitable replacement automatically. For instance, the italic
+alternative may be used for if slanted is not available or vice versa.
+
+\startexample
+\starttyping
+\bf \sl \it \bs \bi \sc \os \tf
+\stoptyping
+\stopexample
+
+Besides these two-letter commands, there is a series of font selector
+commands with a suffix attached. Some examples of that are:
 
 \startexample
 \starttyping
 \tfa \tfb \tfc \tfd
-\tfx \bfx \slx \itx
-\bf \sl \it \bs \bi \sc \os
+\tfx \bfx \slx \itx \tfxx
 \stoptyping
 \stopexample
 
-It depends on the completeness of the font definition files
-whether alternatives like \type {\bfa}, \type {\bfb}, etc.
-are available. Not all fonts have for instance italic and
-slanted or both their bold alternatives. In such situations,
-slanted and italic are threated as equivalents.
+Each of the ordered alphabetic suffixes \type{a}, \type{b}, \dots\
+select a somewhat larger actual font than the previous one. The
+\type{x} and \type{xx} suffixes select a smaller version.
 
-Switching to a smaller font is accomplished by \type {\tfx},
-\type {\bfx}, \type {\slx}, etc., which adapt themselves to
-the actual alternative. An even more general downscaling is
-achieved by \type {\tx}, which adapts itself to the style
-and alernative. This command is rather handy when one wants
-to write macros that act like a chameleon. Going one more
-step smaller, is possible too: \type {\txx}. Using \type
-{\tx} when \type {\tx} is already given, is equivalent to
-\type {\txx}.
+It depends on the completeness of the font definition files whether
+all alternatives like \type {\ita}, \type {\bfx}, \type {\bfa}, etc.
+are available. For the core \CONTEXT\ fonts, you can count on at least
+\type{\tfa}, \type{\tfb}, \type{\tfc}, \type{\tfd}, \type{\tfx}, 
+and \type{\tfxx} being defined. For the others, just try and see what
+happens.
 
-Frequent font switching leads to longer processing times.
-When no sub- or superscripts are used and you are very
-certain what font you want to use, you can perform fast font
-switches with: \type {\rmsl}, \type {\ssbf}, \type {\tttf},
-etc.
-
-Switching to another font style is done by:
+A more generic downscaling command is also available:
 
 \startexample
 \starttyping
-\rm \ss \tt \hw \cg
+\tx \txx
 \stoptyping
 \stopexample
 
-When \type {\rm} is chosen \CONTEXT\ will interpret the
-command \type {\tfd} as \type {\rmd}. All default font
-setups use \type {tf}||setups and will adapt automatically.
+The command \type {\tx} adapts itself to both the style and the
+alternative. This command is rather handy when one wants to write
+macros that act like a chameleon. Going one more step smaller, is
+possible too: \type {\txx}. Using \type {\tx} when \type {\tx} is
+already given, is equivalent to \type {\txx}.
 
 The various commands will adapt themselves to the actual
 setup of font and size. For example:
@@ -360,12 +392,17 @@ will result in:
 \stoplines
 \stopreality
 
-When a character is not available the most acceptable
-alternative is chosen.
+When the \type {\rm} style is active, \CONTEXT\ will interpret the
+command \type {\tfd} as if it was \type {\rmd}, when the style
+\type{\ss} is active, \type {\tfd} as is treated as \type {\ssd}. 
+All default font setups use \type {tf}||setups so they will
+automatically adapt to the current font style.
 
-We will not go into the typographical sins of underlining.
-These commands are discussed in \in {section} [underline]
-(\over [underline]).
+Frequent font switching leads to longer processing times.
+When no sub- or superscripts are used and you are very
+certain what font you want to use, you can perform fast font
+switches with: \type {\rmsl}, \type {\ssbf}, \type {\tttf},
+etc.
 
 \todo{The next par may need more explaining }
 
@@ -395,6 +432,228 @@ parameter \type {style} you can type \type {bold} and \type
 switching commands like \type {12ptrmbf} are permitted. This
 is fast but requires some insight in macros behind this
 mechanism.
+
+
+\section[emphasize]{Emphasize}
+\index{emphasize}
+\index{slanted}
+\index{italic}
+\macro{\tex{em}}
+
+Within most macropackages the command \type {\em} is
+available. This command behaves like a chameleon which means
+that it will adapt to the actual typeface. In \CONTEXT\
+\type {\em} has the following characteristics:
+
+\startitemize[packed]
+\item a switch to {\sl slanted} or {\it
+      italic} is possible
+\item a switch within \type {\bf} results in {\bs bold
+      slanted} or {\bi bold italic} (when available)
+\item a so called {\em italic correction} is performed
+      automatically (\type {\/})
+\stopitemize
+
+The bold italic or bold slanted characters are supported only
+when \type {\bs} and \type {\bi} are available.
+
+\startbuffer
+The mnemonic {\em em} means {\em emphasis}.
+{\em The mnemonic {\em em} means {\em emphasis}.}
+{\bf The mnemonic {\em em} means {\em emphasis}.}
+{\em \bf The mnemonic {\em em} {\em emphasis}.}
+{\it The mnemonic em {\em means \bf emphasis}.}
+{\sl The mnemonic em {\em means \bf emphasis}.}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This results in:
+
+\startlines
+\getbuffer
+\stoplines
+
+The advantage of the use of \type {\em} over \type {\it}
+and|/|or \type {\sl} is that consistent typesetting is
+enforced.
+
+By default emphasis is set at {\em slanted}, but in this text
+it is set at {\em italic}. The setting is made by:
+
+\startexample
+\starttyping
+\setupbodyfontenvironment[default][em=italic]
+\stoptyping
+\stopexample
+
+\section[capitals]{Capitals}
+\index{capital characters}
+\index{capitals}
+\index{small capitals}
+\index{small||caps}
+\macro{\tex{setupcapitals}}
+\macro{\tex{CAP}}
+\macro{\tex{Cap}}
+\macro{\tex{cap}}
+\macro{\tex{nocap}}
+\macro{\tex{Caps}}
+\macro{\tex{Words}}
+\macro{\tex{WORDS}}
+\macro{\tex{Word}}
+\macro{\tex{characters}}
+
+Words and abbreviations can be typeset in capitals. Both
+small and big characters are converted into capitals. When
+\type {\cap} is used to typeset a capital the size is that
+of an \type {\tx}. When we switch to slanted (\type {\sl}),
+bold (\type {\bf}), etc. the capital letter will also
+change. Since \type {\cap} has a specific meaning in math
+mode, the format implementation is called \type {\cap}.
+However in text mode one can use \type {\cap}.
+
+\showsetup{kap}
+
+\showsetup{Cap}
+
+\showsetup{CAP}
+
+\showsetup{Caps}
+
+The first command converts all letters to a capital. We
+advise you not to type capital letters in your source file
+because real small caps distinguishes between small and big
+letters.
+
+\startbuffer
+Capitals for \cap {UK} are \cap {OK} and capitals for \cap {USA} are
+okay. But what about capitals in \cap {Y2K}.
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+this results in:
+
+\startreality
+\getbuffer
+\stopreality
+
+A \type {\cap} within a \type {\cap} will not lead to any
+problems:
+
+\startbuffer
+\cap {People that have gathered their \cap {capital} at the cost of other
+people are not seldom \nocap {decapitated} in revolutionary times.}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+or:
+
+\startreality
+\getbuffer
+\stopreality
+
+In this example we see that \type {\cap} can be temporarily
+revoked by \type {\nocap}.
+
+\showsetup{nocap}
+
+The command \type {\Cap} changes the first character of a
+word into a capital and \type {\CAP} changes letters that
+are preceded by \type {\\} into capital letters. With \type
+{\Caps} you can change the first character of several words
+into a capital letter.
+
+\showsetup{setupcapitals}
+
+With this command the capital mechanism can be set up. The
+key \type {sc=yes} switches to real {\sc Small Caps}. With
+\type {title} we determine whether capitals in titles are
+changed.
+
+Next to the former \type {\cap}||commands we have:
+
+\showsetup{Word}
+
+and
+
+\showsetup{Words}
+
+These commands switch the first characters of words into
+capitals. All characters in a word are changed with:
+
+\showsetup{WORD}
+
+We end this section with real small capitals. When these are
+available the real small caps \type {\sc} are preferred over
+the pseudo||capital in abbreviations and logos.
+
+\startbuffer
+In a manual on \TeX\ and Con\TeX t  there is always the question whether to
+type \cap{\TeX} and \cap{Con\TeX t} or {\sc \TeX} and {\sc Con\TeX t}. Both
+are defined as a logo in the style definition so we type \type {\TEX} and
+\type {\CONTEXT}, which come out as \TEX\ and \CONTEXT.
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+Results in:
+
+\startreality
+\getbuffer
+\stopreality
+
+{\sc It is always possible to typeset text in small
+capitals. However, realize that lower case characters
+discriminate more and make for an easier read.}
+
+An important difference between \type {\cap} and \type {\sc}
+is that the last command is used for a specific designed
+font type. The command \type {\cap} on the other hand adapts
+itself to the actual typeface: {\sl \cap {kap}}, {\bf \cap
+{kap}}, {\bs \cap {kap}}, etc.
+
+Some typesetting packages stretch words (inter character
+spacing) to reach an acceptable alignment. In \CONTEXT\
+this not supported. On purpose! Words in titles can be
+stretched by:
+
+\showsetup{stretched}
+
+\startbuffer
+\hbox to \hsize {\stretched{there\\is\\much\\stretch\\in ...}}
+\hbox to 20em   {\stretched{... and\\here\\somewhat\\less}}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+With \type {\\} we enforce a space (\type {{}} is also
+allowed).
+
+\startreality
+\leavevmode\getbuffer
+\stopreality
+
+These typographically non permitted actions are only allowed
+in heads. The macros that take care of stretching do this
+by processing the text character by character.
+
+
+We will not go into the typographical sins of underlining.
+These commands are discussed in \in {section} [underline]
+(\over [underline]).
+
 
 \section[bodyfontswitch]{Selecting bodyfonts}
 \index{bodyfont}
@@ -446,7 +705,6 @@ size automatically.  While doing so, \CONTEXT\ normally works with a
 precision of 1~decimal to prevent unnecessary loading of fontsizes
 with only small size differences.
 
-
 Be warned that in this case, the results may be a less than ideal. The
 reason is that \CONTEXT\ not just has to load the actual font, but it
 also has to guess at the various other settings like the relative font
@@ -494,41 +752,18 @@ were not automatically adapted.
 In the definition block of \type{setupbodyfont} there was a list of
 words given besides the special marker \type{IDENTIFIER}. These words
 are the symbolic \CONTEXT\ names for the font styles that we ran into
-earlier, with a few aliases conforming to~\in {table} [tab:font
-triplets] so that you do not have to worry about the actual naming
-convention used. The symbolic names are mapped to two-letter internal
-style abbreviations that are used internally.
+earlier, with a few aliases so that you do not have to worry about the
+actual naming convention used. The symbolic names are mapped to
+two-letter internal style abbreviations that are used internally,
+see~\in{table}[tab:style switches] for an overview.
 
-Here is a table of the defined font styles in \CONTEXT:
-
-\starttabulate[|l|p|]
-\NC \bf Long name             \NC \bf Internal style\NC\NR
-\NC serif, regular, roman     \NC rm \NC\NR
-\NC sans, support, sansserif  \NC ss \NC\NR
-\NC mono, type, teletype      \NC tt \NC\NR
-\NC handwritten               \NC hw \NC\NR
-\NC calligraphic              \NC cg \NC\NR
-\NC --                        \NC mm \NC\NR
-\stoptabulate
-
-Although the macro syntax does not say so, you can use the internal
-style abbreviations in \type{\setupbodyfont} as well as the longer
-names, if you prefer.
-
-The \quote{hw} and \quote{cg} extra font styles are sometimes useful
-when dealing with very elaborate document layout definitions. In the
-\CONTEXT\ distribution, only the Lucida font family uses these styles,
-in any other font set they are simply ignored, but you could use them
-in your own font setups easily (see the next chapter for font setup).
-
-The internal style \quote{mm} handles math fonts. It does not make
-sense to use this style directly in a call to \type{\setupbodyfont} so
-there is no symbolic name attached to it, but it is quite important
-internally so it makes sense to introduce it right away.
+Although the macro syntax does not say so, you can use two-letter
+internal style abbreviations (\type{ss}, \type{rm}) as well as the
+longer names, if you prefer.
 
 \blank 
 
-We will see later that there are other and easier ways to switch the
+We have seen already that there are other and easier ways to switch the
 font style, so if \type{\setupbodyfont} could only be used for this
 purpose it would not be all that useful. But luckily there is more:
 the optional \type{IDENTIFIER} can be a \quote{body font name} (aka
@@ -536,10 +771,11 @@ the optional \type{IDENTIFIER} can be a \quote{body font name} (aka
 support file, or simply on earlier lines in the style definition.
 
 A \quote{typeface} is a symbolic name that links a single font style
-to actual font families. Such symbolic names are often grouped
-together in a definition block that sets up values that link a few of
-the styles to fonts in a \quote{font collection}, and such definition
-blocks are called \quote{typescripts}. 
+to actual font families. Such symbolic names are typically grouped
+together in a definition block that sets up values that link the four
+styles \type{\rm}, \type{\ss}, \type{\tt} and \type{\mm} to fonts in a
+\quote{font collection}, and such definition blocks are called
+\quote{typescripts}.
 
 \CONTEXT\ expects you to define your own font setups, but there 
 are quite a few examples predefined in various typescript files. Not
@@ -590,8 +826,8 @@ argument in place: while it will always be ignored by \LUATEX,
 \XETEX\ will actually use that encoding if the typescript uses Type~1
 fonts instead of the more modern OpenType or TrueType font formats. 
 
-Almost all typescripts attachs meaning to at least the three basic
-font styles, so you can e.g. do this:
+All predefined typescripts attach meaning to (at least) the three basic
+text font styles, so you can e.g. do this:
 
 \starttyping
 \usetypescript[times][texnansi]
@@ -614,7 +850,7 @@ explicitly. Here is a list
 \NC type-buy   \NC no             \NC no            \NC no           \NC Various commercial fonts (Type~1)\NC \NR
 \NC type-cbg   \NC no             \NC no            \NC no           \NC Greek free fonts (Type~1)\NC \NR
 \NC type-cow   \NC no             \NC no            \NC no           \NC The \CONTEXT\ cow font (Type~1)\NC \NR
-\NC type-exp   \NC no             \NC no            \NC no           \NC Commercial Zapf fonts (OpenType), experimental\NC \NR
+\NC type-exp   \NC no             \NC no            \NC no           \NC Commercial Zapf fonts (OpenType)\NC \NR
 \NC type-fsf   \NC no             \NC no            \NC no           \NC Commercial Fontsite 500 fonts (Type~1)\NC \NR
 \NC type-ghz   \NC no             \NC no            \NC no           \NC Commercial Zapf fonts (Type~1)\NC \NR
 \NC type-gyr   \NC no             \NC no            \NC no           \NC The \TeX\ Gyre project fonts (Type~1)\NC \NR
@@ -626,126 +862,149 @@ explicitly. Here is a list
 \NC type-xtx   \NC no             \NC yes           \NC no           \NC Fonts that come with MacOSX (OpenType)\NC \NR
 \stoptabulate
 
-Loading one of those files is done via \type{\usetypescriptfile}.
+Explicit loading one of those files is done via the macro \type{\usetypescriptfile}.
 \macro{\tex{usetypescriptfile}}
 
-\showsetup{usetypescriptfile} % empty at the moment
-
-For example, the following 
-\starttyping
-\usetypescriptfile[type-gyr]
-\usetypescript[palatino][texnansi]
-\setupbodyfont[palatino,12pt]
-\stoptyping
-
-will make \PDFTEX\ load the Type~1 font Pagella from the \TeX\ Gyre
-project instead of the older and less complete URW Palladio, because
-the definition of the typescript \type{palatino} that is in the
-\type{type-gyr} file overwrites the preloaded definition from the
-\type{type-one} file.
-
-The predefined typescripts, the typefaces they define, and the file
-names they are contained in inside the \CONTEXT\ distribution are
-listed in the~\in {tables} [tab:simple typeface names]
-and~\in{}[tab:complex typeface names].  The tables also explain what
-font set each of the styles maps to, what this means exactly will be
-explained in the next section.
-
-
-\startbuffer[simpletypescripts]
+\startbuffer[typescripts]
 \begingroup
-\switchtobodyfont[7pt]
-\starttabulate[|l|l|l|l|l|l|l|]
-\NC \bf Typescript    \NC \bf Typeface      \NC \bf File           \NC \bf Style rm        \NC \bf Style ss         \NC \bf Style tt \NC \bf Style mm      \NC \FR
-\NC OmegaArab         \NC omarb             \NC type-omg           \NC omega naskh         \NC --                   \NC --           \NC --                \NC \NR
-\NC OmegaLGC          \NC omlgc             \NC type-omg           \NC omega               \NC --                   \NC omega        \NC --                \NC \NR
-\NC antykwa-torunska  \NC antykwa           \NC type-one, type-otf \NC antykwa-torunska    \NC modern               \NC modern       \NC antykwa-torunska  \NC \NR
-\NC cbgreek           \NC cbgreek           \NC type-cbg           \NC cbgreek             \NC cbgreek              \NC cbgreek      \NC --                \NC \NR
-\NC cbgreek-all       \NC cbgreek-all       \NC type-cbg           \NC cbgreek             \NC cbgreek              \NC cbgreek      \NC --                \NC \NR
-\NC cbgreek-medium    \NC cbgreek-medium    \NC type-cbg           \NC cbgreek             \NC cbgreek              \NC cbgreek      \NC --                \NC \NR
-\NC cow               \NC cow               \NC type-cow           \NC cow                 \NC cow serif            \NC modern       \NC cow               \NC \NR
-\NC fallback          \NC --                \NC type-one, type-otf \NC modern              \NC modern               \NC modern       \NC modern            \NC \NR
-\NC fourier           \NC fourier           \NC type-one           \NC fourier             \NC --                   \NC modern       \NC fourier           \NC \NR
-\NC iwona             \NC iwona             \NC type-one, type-otf \NC modern              \NC iwona                \NC modern       \NC iwona             \NC \NR
-\NC iwona-heavy       \NC iwona-heavy       \NC type-one, type-otf \NC modern              \NC iwona-heavy          \NC modern       \NC iwona-heavy       \NC \NR
-\NC iwona-light       \NC iwona-light       \NC type-one, type-otf \NC modern              \NC iwona-light          \NC modern       \NC iwona-light       \NC \NR
-\NC iwona-medium      \NC iwona-medium      \NC type-one, type-otf \NC modern              \NC iwona-medium         \NC modern       \NC iwona-medium      \NC \NR
-\NC modern            \NC modern            \NC type-one, type-otf \NC modern              \NC modern               \NC modern       \NC modern            \NC \NR
-\NC modernvariable    \NC modernvariable    \NC type-one, type-otf \NC simple              \NC modern               \NC modern       \NC modern            \NC \NR
-\NC optima            \NC optima            \NC type-ghz, type-one \NC palatino            \NC optima-nova          \NC modern       \NC palatino          \NC \NR
-\NC optima-nova       \NC optima            \NC type-ghz, type-hgz \NC optima-nova sans    \NC optima-nova          \NC latin-modern \NC latin-modern mono \NC \NR
-\NC optima-nova-os    \NC optima-os         \NC type-ghz, type-hgz \NC optima-nova-os sans \NC optima-nova-os       \NC latin-modern \NC latin-modern mono \NC \NR
-\NC palatino          \NC palatino          \NC type-hgz           \NC palatino-nova       \NC palatino-sans        \NC latin-modern \NC latin-modern      \NC \NR
-\NC palatino          \NC palatino          \NC type-one, type-otf \NC palatino            \NC --                   \NC modern       \NC palatino          \NC \NR
-\NC palatino-informal \NC palatino-informal \NC type-hgz           \NC palatino-nova       \NC palatino-informal    \NC latin-modern \NC latin-modern      \NC \NR
-\NC palatino-light    \NC palatino-light    \NC type-exp           \NC palatino-nova       \NC palatino-sans-light  \NC latin-modern \NC latin-modern mono \NC \NR
-\NC palatino-medium   \NC palatino-medium   \NC type-exp           \NC palatino-nova       \NC palatino-sans-medium \NC latin-modern \NC latin-modern mono \NC \NR
-\NC palatino-normal   \NC palatino-normal   \NC type-exp           \NC palatino-nova       \NC palatino-sans-normal \NC latin-modern \NC latin-modern mono \NC \NR
-\NC palatino-nova     \NC palatino          \NC type-hgz           \NC palatino-nova       \NC palatino-sans        \NC latin-modern \NC latin-modern      \NC \NR
-\NC palatino-sans     \NC palatino          \NC type-hgz           \NC palatino-nova       \NC palatino-sans        \NC latin-modern \NC latin-modern      \NC \NR
-\NC postscript        \NC postscript        \NC type-one, type-otf \NC times               \NC helvetica            \NC courier      \NC times             \NC \NR
-\NC sheep             \NC sheep             \NC type-cow           \NC sheep               \NC sheep serif          \NC modern       \NC sheep             \NC \NR
-\NC times             \NC times             \NC type-one, type-otf \NC times               \NC helvetica            \NC modern       \NC times             \NC \NR
+\switchtobodyfont[9pt]
+\def\*#1{{\color[darkred]#1}}
+\starttabulate[|l|l|l|l|]
+\NC \bf Typescript        \NC \bf Typeface      \NC \bf File           \NC \bf Encodings                           \NC \FR
+\NC OmegaArab             \NC omarb             \NC type-omg           \NC (unspecified)                           \NC \NR
+\NC OmegaLGC              \NC omlgc             \NC type-omg           \NC (unspecified)                           \NC \NR
+\NC antykwa-torunska      \NC antykwa           \NC type-one, type-otf \NC texnansi,ec,8r,uc,t2a                   \NC \NR
+\NC cbgreek               \NC cbgreek           \NC type-cbg           \NC (unspecified)                           \NC \NR
+\NC cbgreek-all           \NC cbgreek-all       \NC type-cbg           \NC (unspecified)                           \NC \NR
+\NC cbgreek-medium        \NC cbgreek-medium    \NC type-cbg           \NC (unspecified)                           \NC \NR
+\NC cow                   \NC cow               \NC type-cow           \NC default                                 \NC \NR
+\NC fourier               \NC fourier           \NC type-one           \NC ec                                      \NC \NR
+\NC iwona                 \NC iwona             \NC type-one, type-otf \NC texnansi,ec,8r,uc,t2a                   \NC \NR
+\NC iwona-heavy           \NC iwona-heavy       \NC type-one, type-otf \NC texnansi,ec,8r,uc,t2a                   \NC \NR
+\NC iwona-light           \NC iwona-light       \NC type-one, type-otf \NC texnansi,ec,8r,uc,t2a                   \NC \NR
+\NC iwona-medium          \NC iwona-medium      \NC type-one, type-otf \NC texnansi,ec,8r,uc,t2a                   \NC \NR
+\NC \*{lucida}            \NC lucida            \NC type-buy           \NC texnansi,ec,8r,uc                       \NC \NR
+\NC \*{lucidabfm}         \NC lucida            \NC type-buy           \NC texnansi,ec,8r,uc                       \NC \NR
+\NC \*{lucidabfm}         \NC lucidabfm         \NC type-buy           \NC texnansi,ec,8r,uc                       \NC \NR
+\NC \*{lucidaboldmath}    \NC lucida            \NC type-buy           \NC texnansi,ec,8r,uc                       \NC \NR
+\NC \*{lucidaboldmath}    \NC lucidaboldmath    \NC type-buy           \NC texnansi,ec,8r,uc                       \NC \NR
+\NC modern                \NC modern            \NC type-one, type-otf \NC texnansi,ec,qx,t5,default               \NC \NR
+\NC modern-base           \NC modern            \NC type-one, type-otf \NC texnansi,ec,qx,t5,default,t2a,t2b,t2c,x2\NC \NR
+\NC modernvariable        \NC modernvariable    \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5                    \NC \NR
+\NC \*{optima}            \NC optima            \NC type-one           \NC texnansi,ec,qx                          \NC \NR
+\NC \*{optima}            \NC optima            \NC type-ghz           \NC texnansi,ec,qx                          \NC \NR
+\NC \*{optima-nova}       \NC optima            \NC type-ghz, type-hgz \NC texnansi,ec                             \NC \NR
+\NC \*{optima-nova-os}    \NC optima-os         \NC type-ghz, type-hgz \NC texnansi,ec                             \NC \NR
+\NC \*{palatino}          \NC palatino          \NC type-hgz           \NC (cannot be used in \MKII)               \NC \NR
+\NC \*{palatino}          \NC palatino          \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5,uc                 \NC \NR
+\NC \*{palatino-informal} \NC palatino-informal \NC type-hgz           \NC (cannot be used in \MKII)               \NC \NR
+\NC \*{palatino-light}    \NC palatino-light    \NC type-exp           \NC (cannot be used in \MKII)               \NC \NR
+\NC \*{palatino-medium}   \NC palatino-medium   \NC type-exp           \NC (cannot be used in \MKII)               \NC \NR
+\NC \*{palatino-normal}   \NC palatino-normal   \NC type-exp           \NC (cannot be used in \MKII)               \NC \NR
+\NC \*{palatino-nova}     \NC palatino          \NC type-hgz           \NC (cannot be used in \MKII)               \NC \NR
+\NC \*{palatino-sans}     \NC palatino          \NC type-hgz           \NC (cannot be used in \MKII)               \NC \NR
+\NC postscript            \NC postscript        \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5,uc                 \NC \NR
+\NC sheep                 \NC sheep             \NC type-cow           \NC default                                 \NC \NR
+\NC times                 \NC times             \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5,uc                 \NC \NR
 \stoptabulate
 \endgroup
 \stopbuffer
 
 \placetable
   [here]
-  [tab:simple typeface names]
-  {The simple typescripts. 
-   Unless stated otherwise, style rm uses serif, style ss uses sans, style tt uses mono, and style mm uses math.
-   A sole -- in a cell means that the typescript does not define that style (it will use the fallback typescript instead).}
-  {\getbuffer[simpletypescripts]}
+  [tab:typescripts and typefaces]
+  {The typescripts. Typescripts that use commercial fonts are marked red. }
+  {\getbuffer[typescripts]}
 
+The predefined typescripts, the typefaces they define, the files
+they are contained in inside the \CONTEXT\ distribution, and the
+encodings they support in \MKII\ mode are listed in~\in {table}
+[tab:typescripts and typefaces].
 
+\showsetup{usetypescriptfile} % empty at the moment
 
-\startbuffer[complextypescripts]
+For example, the following 
+\starttyping
+\usetypescriptfile[type-buy]
+\usetypescript[lucida][texnansi]
+\setupbodyfont[lucida,12pt]
+\stoptyping
+
+will make \PDFTEX\ use the Lucida Bright font family. Because this is a commercial 
+font, this only works correctly if you have actually bought and installed the fonts.
+
+This is the best moment to explain a little trick: because the various \type{type-xxx}
+files define the building blocks for typescripts as well as the actual typescripts, 
+it is sometimes possible to alter the effect of a typescript by
+loading an extra typescript file. For example,
+
+\starttyping
+\usetypescriptfile[type-gyr]
+\usetypescript[palatino][texnansi]
+\setupbodyfont[palatino,12pt]
+\stoptyping
+
+will result in \PDFTEX\ using the Type~1 font Pagella from the \TeX\ Gyr projecte instead 
+of the older and less complete URW Palladio, because the definition of the building blocks
+for the \type{palatino} typescript that is in the \type{type-gyr} file overwrites the 
+preloaded definition from the \type{type-one} file.
+
+In the next section there is a table (\in {}[tab:typeface names]) that explains for each typescript
+what font set it matches each of the styles to.
+
+\startbuffer[simpletypescripts]
+\begingroup
 \switchtobodyfont[8pt]
-\starttabulate[|l|l|l|l|l|l|l|l|]
-\NC Typescript        \NC Typeface          \NC file      \NC style \NC definition                \NC \FR
-\NC lucida            \NC lucida            \NC type-buy  \NC rm    \NC lucida serif              \NC \NR
-\NC lucida            \NC lucida            \NC type-buy  \NC ss    \NC lucida sans               \NC \NR
-\NC lucida            \NC lucida            \NC type-buy  \NC tt    \NC lucida mono               \NC \NR
-\NC lucida            \NC lucida            \NC type-buy  \NC mm    \NC lucida math               \NC \NR
-\NC lucida            \NC lucida            \NC type-buy  \NC hw    \NC lucida handwriting        \NC \NR
-\NC lucida            \NC lucida            \NC type-buy  \NC cg    \NC lucida calligraphy        \NC \NR
-\NC lucidabfm         \NC lucidabfm         \NC type-buy  \NC rm    \NC lucida serif              \NC \NR
-\NC lucidabfm         \NC lucidabfm         \NC type-buy  \NC ss    \NC lucida sans               \NC \NR
-\NC lucidabfm         \NC lucidabfm         \NC type-buy  \NC tt    \NC lucida mono               \NC \NR
-\NC lucidabfm         \NC lucidabfm         \NC type-buy  \NC hw    \NC lucida handwriting        \NC \NR
-\NC lucidabfm         \NC lucidabfm         \NC type-buy  \NC cg    \NC lucida calligraphy        \NC \NR
-\NC lucidabfm         \NC lucida            \NC type-buy  \NC mm    \NC lucida bfmath             \NC \NR
-\NC lucidabfm         \NC lucidaboldmath    \NC type-buy  \NC mm    \NC lucida bfmath             \NC \NR
-\NC lucidaboldmath    \NC lucidaboldmath    \NC type-buy  \NC rm    \NC lucida serif              \NC \NR
-\NC lucidaboldmath    \NC lucidaboldmath    \NC type-buy  \NC ss    \NC lucida sans               \NC \NR
-\NC lucidaboldmath    \NC lucidaboldmath    \NC type-buy  \NC tt    \NC lucida mono               \NC \NR
-\NC lucidaboldmath    \NC lucidaboldmath    \NC type-buy  \NC mm    \NC lucida bfmath             \NC \NR
-\NC lucidaboldmath    \NC lucida            \NC type-buy  \NC mm    \NC lucida bfmath             \NC \NR
-\NC modern-base       \NC modern            \NC type-one  \NC rm    \NC modern serif              \NC \NR
-\NC modern-base       \NC modern            \NC type-one  \NC ss    \NC modern sans               \NC \NR
-\NC modern-base       \NC modern            \NC type-one  \NC tt    \NC modern mono               \NC \NR
-\NC modern-base       \NC modern            \NC type-one  \NC mm    \NC modern math               \NC \NR
-\NC modern-base       \NC modern            \NC type-one  \NC rm    \NC computer-modern serif     \NC \NR
-\NC modern-base       \NC modern            \NC type-one  \NC ss    \NC computer-modern sans      \NC \NR
-\NC modern-base       \NC modern            \NC type-one  \NC tt    \NC computer-modern mono      \NC \NR
-\NC modern-base       \NC modern            \NC type-one  \NC mm    \NC computer-modern math      \NC \NR
-\NC modern-base       \NC modern            \NC type-otf  \NC rm    \NC modern serif              \NC \NR
-\NC modern-base       \NC modern            \NC type-otf  \NC ss    \NC modern sans               \NC \NR
-\NC modern-base       \NC modern            \NC type-otf  \NC tt    \NC modern mono               \NC \NR
-\NC modern-base       \NC modern            \NC type-otf  \NC mm    \NC modern math               \NC \NR
+\starttabulate[|l||l|l|l|l|]
+\NC {\bf Typescript  }\NC {\bf Style rm    }  \NC {\bf Style ss }      \NC {\bf Style tt}     \NC  {\bf Style mm }  \NC \FR
+\NC OmegaArab         \NC omega naskh         \NC --                   \NC --                 \NC --                \NC \NR
+\NC OmegaLGC          \NC omega               \NC --                   \NC omega              \NC --                \NC \NR
+\NC antykwa-torunska  \NC antykwa-torunska    \NC modern               \NC modern             \NC antykwa-torunska  \NC \NR
+\NC cbgreek           \NC cbgreek             \NC cbgreek              \NC cbgreek            \NC --                \NC \NR
+\NC cbgreek-all       \NC cbgreek             \NC cbgreek              \NC cbgreek            \NC --                \NC \NR
+\NC cbgreek-medium    \NC cbgreek             \NC cbgreek              \NC cbgreek            \NC --                \NC \NR
+\NC cow               \NC cow                 \NC cow serif            \NC modern             \NC cow               \NC \NR
+\NC fallback          \NC modern              \NC modern               \NC modern             \NC modern            \NC \NR
+\NC fourier           \NC fourier             \NC modern               \NC modern             \NC fourier           \NC \NR
+\NC iwona             \NC modern              \NC iwona                \NC modern             \NC iwona             \NC \NR
+\NC iwona-heavy       \NC modern              \NC iwona-heavy          \NC modern             \NC iwona-heavy       \NC \NR
+\NC iwona-light       \NC modern              \NC iwona-light          \NC modern             \NC iwona-light       \NC \NR
+\NC iwona-medium      \NC modern              \NC iwona-medium         \NC modern             \NC iwona-medium      \NC \NR
+\NC lucida            \NC lucida              \NC lucida               \NC lucida             \NC lucida            \NC \NR
+\NC lucidabfm         \NC lucida              \NC lucida               \NC lucida             \NC lucida bfmath     \NC \NR
+\NC lucidaboldmath    \NC lucida              \NC lucida               \NC lucida             \NC lucida boldmath   \NC \NR
+\NC modern            \NC modern              \NC modern               \NC modern             \NC modern            \NC \NR
+\NC modern-base       \NC (computer-)modern   \NC (computer-)modern    \NC (computer-)modern  \NC (computer-)modern \NC \NR
+\NC modernvariable    \NC simple              \NC modern               \NC modern             \NC modern            \NC \NR
+\NC optima            \NC palatino            \NC optima-nova          \NC modern             \NC palatino          \NC \NR
+\NC optima-nova       \NC optima-nova sans    \NC optima-nova          \NC latin-modern       \NC latin-modern      \NC \NR
+\NC optima-nova-os    \NC optima-nova-os sans \NC optima-nova-os       \NC latin-modern       \NC latin-modern      \NC \NR
+\NC palatino          \NC palatino-nova       \NC palatino-sans        \NC latin-modern       \NC latin-modern      \NC \NR
+\NC palatino          \NC palatino            \NC modern               \NC modern             \NC palatino          \NC \NR
+\NC palatino-informal \NC palatino-nova       \NC palatino-informal    \NC latin-modern       \NC latin-modern      \NC \NR
+\NC palatino-light    \NC palatino-nova       \NC palatino-sans-light  \NC latin-modern       \NC latin-modern      \NC \NR
+\NC palatino-medium   \NC palatino-nova       \NC palatino-sans-medium \NC latin-modern       \NC latin-modern      \NC \NR
+\NC palatino-normal   \NC palatino-nova       \NC palatino-sans-normal \NC latin-modern       \NC latin-modern      \NC \NR
+\NC palatino-nova     \NC palatino-nova       \NC palatino-sans        \NC latin-modern       \NC latin-modern      \NC \NR
+\NC palatino-sans     \NC palatino-nova       \NC palatino-sans        \NC latin-modern       \NC latin-modern      \NC \NR
+\NC postscript        \NC times               \NC helvetica            \NC courier            \NC times             \NC \NR
+\NC sheep             \NC sheep               \NC sheep serif          \NC modern             \NC sheep             \NC \NR
+\NC times             \NC times               \NC helvetica            \NC modern             \NC times             \NC \NR
 \stoptabulate
+\endgroup
 \stopbuffer
-
 
 \placetable
   [here]
-  [tab:complex typeface names]
-  {The typescripts that define variant typeface names. The various lucida typescripts are different 
-   because they define the extra styles hw and cg and also because of the bold math support. The modern-base 
-   typescripts are worth mentioning because the Type~1 version falls back to Computer modern for some font 
-   encodings: t2a, t2b, t2c, and x2.}
-  {\getbuffer[complextypescripts]}
+  [tab:typeface names]
+  {The typescripts.\crlf 
+   Unless stated otherwise, style {\bf rm} uses serif, style {\bf ss} uses sans, style {\bf tt} uses
+   mono, and style {\bf mm} uses math.
+   A single dash in a cell means that the typescript does not define that style, you should refrain from using the style.
+   The lucida, lucidabfm, and lucidaboldmath typescripts also define {\bf hw} and {\bf cg} as \quote{lucida handwring} 
+   and \quote{lucida calligraphy}.
+   The modern-base typescript switches back to computer-modern for a few legacy encodings: t2a, t2b, t2c, and x2.}
+  {\getbuffer[simpletypescripts]}
 
 
 \subsection{Typeface definitions}
@@ -1071,221 +1330,6 @@ A last remark. When you have chosen a larger charactersize,
 for example \type {\tfb}, then \type {\tf} equals \type {\tfb},
 \type {\bf} equals \type {\bfb}, etc. This method is
 preferable over returning to the original character size.
-
-\section[emphasize]{Emphasize}
-\index{emphasize}
-\index{slanted}
-\index{italic}
-\macro{\tex{em}}
-
-Within most macropackages the command \type {\em} is
-available. This command behaves like a chameleon which means
-that it will adapt to the actual typeface. In \CONTEXT\
-\type {\em} has the following characteristics:
-
-\startitemize[packed]
-\item a switch to {\sl slanted} or {\it
-      italic} is possible
-\item a switch within \type {\bf} results in {\bs bold
-      slanted} or {\bi bold italic} (when available)
-\item a so called {\em italic correction} is performed
-      automatically (\type {\/})
-\stopitemize
-
-The bold italic or bold slanted characters are supported only
-when \type {\bs} and \type {\bi} are available.
-
-\startbuffer
-The mnemonic {\em em} means {\em emphasis}.
-{\em The mnemonic {\em em} means {\em emphasis}.}
-{\bf The mnemonic {\em em} means {\em emphasis}.}
-{\em \bf The mnemonic {\em em} {\em emphasis}.}
-{\it The mnemonic em {\em means \bf emphasis}.}
-{\sl The mnemonic em {\em means \bf emphasis}.}
-\stopbuffer
-
-\startexample
-\typebuffer
-\stopexample
-
-This results in:
-
-\startlines
-\getbuffer
-\stoplines
-
-The advantage of the use of \type {\em} over \type {\it}
-and|/|or \type {\sl} is that consistent typesetting is
-enforced.
-
-By default emphasis is set at {\em slanted}, but in this text
-it is set at {\em italic}. The setting is made by:
-
-\startexample
-\starttyping
-\setupbodyfontenvironment[default][em=italic]
-\stoptyping
-\stopexample
-
-\section[capitals]{Capitals}
-\index{capital characters}
-\index{capitals}
-\index{small capitals}
-\index{small||caps}
-\macro{\tex{setupcapitals}}
-\macro{\tex{CAP}}
-\macro{\tex{Cap}}
-\macro{\tex{cap}}
-\macro{\tex{nocap}}
-\macro{\tex{Caps}}
-\macro{\tex{Words}}
-\macro{\tex{WORDS}}
-\macro{\tex{Word}}
-\macro{\tex{characters}}
-
-Words and abbreviations can be typeset in capitals. Both
-small and big characters are converted into capitals. When
-\type {\cap} is used to typeset a capital the size is that
-of an \type {\tx}. When we switch to slanted (\type {\sl}),
-bold (\type {\bf}), etc. the capital letter will also
-change. Since \type {\cap} has a specific meaning in math
-mode, the format implementation is called \type {\cap}.
-However in text mode one can use \type {\cap}.
-
-\showsetup{kap}
-
-\showsetup{Cap}
-
-\showsetup{CAP}
-
-\showsetup{Caps}
-
-The first command converts all letters to a capital. We
-advise you not to type capital letters in your source file
-because real small caps distinguishes between small and big
-letters.
-
-\startbuffer
-Capitals for \cap {UK} are \cap {OK} and capitals for \cap {USA} are
-okay. But what about capitals in \cap {Y2K}.
-\stopbuffer
-
-\startexample
-\typebuffer
-\stopexample
-
-this results in:
-
-\startreality
-\getbuffer
-\stopreality
-
-A \type {\cap} within a \type {\cap} will not lead to any
-problems:
-
-\startbuffer
-\cap {People that have gathered their \cap {capital} at the cost of other
-people are not seldom \nocap {decapitated} in revolutionary times.}
-\stopbuffer
-
-\startexample
-\typebuffer
-\stopexample
-
-or:
-
-\startreality
-\getbuffer
-\stopreality
-
-In this example we see that \type {\cap} can be temporarily
-revoked by \type {\nocap}.
-
-\showsetup{nocap}
-
-The command \type {\Cap} changes the first character of a
-word into a capital and \type {\CAP} changes letters that
-are preceded by \type {\\} into capital letters. With \type
-{\Caps} you can change the first character of several words
-into a capital letter.
-
-\showsetup{setupcapitals}
-
-With this command the capital mechanism can be set up. The
-key \type {sc=yes} switches to real {\sc Small Caps}. With
-\type {title} we determine whether capitals in titles are
-changed.
-
-Next to the former \type {\cap}||commands we have:
-
-\showsetup{Word}
-
-and
-
-\showsetup{Words}
-
-These commands switch the first characters of words into
-capitals. All characters in a word are changed with:
-
-\showsetup{WORD}
-
-We end this section with real small capitals. When these are
-available the real small caps \type {\sc} are preferred over
-the pseudo||capital in abbreviations and logos.
-
-\startbuffer
-In a manual on \TeX\ and Con\TeX t  there is always the question whether to
-type \cap{\TeX} and \cap{Con\TeX t} or {\sc \TeX} and {\sc Con\TeX t}. Both
-are defined as a logo in the style definition so we type \type {\TEX} and
-\type {\CONTEXT}, which come out as \TEX\ and \CONTEXT.
-\stopbuffer
-
-\startexample
-\typebuffer
-\stopexample
-
-Results in:
-
-\startreality
-\getbuffer
-\stopreality
-
-{\sc It is always possible to typeset text in small
-capitals. However, realize that lower case characters
-discriminate more and make for an easier read.}
-
-An important difference between \type {\cap} and \type {\sc}
-is that the last command is used for a specific designed
-font type. The command \type {\cap} on the other hand adapts
-itself to the actual typeface: {\sl \cap {kap}}, {\bf \cap
-{kap}}, {\bs \cap {kap}}, etc.
-
-Some typesetting packages stretch words (inter character
-spacing) to reach an acceptable alignment. In \CONTEXT\
-this not supported. On purpose! Words in titles can be
-stretched by:
-
-\showsetup{stretched}
-
-\startbuffer
-\hbox to \hsize {\stretched{there\\is\\much\\stretch\\in ...}}
-\hbox to 20em   {\stretched{... and\\here\\somewhat\\less}}
-\stopbuffer
-
-\startexample
-\typebuffer
-\stopexample
-
-With \type {\\} we enforce a space (\type {{}} is also
-allowed).
-
-\startreality
-\leavevmode\getbuffer
-\stopreality
-
-These typographically non permitted actions are only allowed
-in heads. The macros that take care of stretching do this
-by processing the text character by character.
 
 
 \section{Math fonts}
