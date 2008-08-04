@@ -49,10 +49,10 @@ font are called \definition{glyphs}.
    \definefont[test][AntykwaTorunska-Regular at 60pt]\test gap\hss}
 \stoplinecorrection
 
-From left to right we see a Computer Modern font, a Helvetica clone, a
-Times Roman clone and an Antiqua Torunska font, all scaled to 60pt.
+From left to right we see a Computer Modern font, a Helvetica lookalike, a
+Times Roman lookalike and the Antiqua Torunska font, all scaled to 60pt.
 As you can see, quite some variation is possible and when intermixed,
-the result is not always pleasing. The term \definition{fonts collection}
+the result is not always pleasing to look at. The term \definition{fonts collection}
 refers to a set of fonts combined together in such a way that the
 overall appearance on a page looks good and reading is as comfortable
 as possible.
@@ -67,11 +67,11 @@ as possible.
 \stoplinecorrection
 
 Even within a single font design there can be variations. In the
-example above we see a light, a bold, an italic, and a bold
-italic alternative of a font. Such a set of fonts with the same basic
-design is known as a \definition{font family}. 
+example above we see a light, a bold, an italic, and a bold italic
+\definition{alternative} of a single font. Such a set of fonts with 
+the same basic design is known as a \definition{font family}.
 
-The distance between the individual glyphs in a word depend
+The distance between the individual glyphs in a word depends
 on the combinations of these glyphs. In the next sample, the
 gap between the~b and the~o as well as the distance between
 the~o and the~x is slightly altered. This is called kerning.
@@ -95,11 +95,11 @@ font is designed by Donald Knuth. The Computer Modern has many kerning
 pairs, while the Palatino||like font that is used for most of the text
 in this manual has only a few.
 
-This form of micro||typography is not to be altered by the user, it is
-part of the font design and the required data is stored inside the
-font file, together with the drawing routines for the actual
-pictures. It {\em is\/} possible for the user to alter fonts and
-interline spacing and some more aspects on the level of
+Micro||typography like kerning pairs are not to be altered by the
+user, it is part of the font design and the required data is stored
+inside the font file, together with the drawing routines for the
+actual pictures. It {\em is\/} possible for the user to alter fonts
+and interline spacing and some more aspects on the level of
 macro||typography. The choice of font is the main topic of this
 chapter.
 
@@ -201,13 +201,9 @@ peculiarities.
 
 
 \section[bodyfont]{The mechanism}
-\index{bodyfont}
-\index{font size}
 \index{roman}
 \index{sans serif}
 \index{typewriter}
-\macro{\tex{setupbodyfont}}
-\macro{\tex{switchtobodyfont}}
 
 Font switching is one of the eldest features of \CONTEXT\ because font
 switching is indispensable in a macro package.  During the years
@@ -249,8 +245,162 @@ have a single design size of 10 points, or small set of sizes with
 names indicating their proposed use, like {\em caption}, {\em text},
 and {\em display}.
 
-\blank
-\goodbreak
+\section[font switching]{Font switching}
+\index{fonts}
+\index{roman}
+\index{slanted}
+\index{boldface}
+\index{italic}
+\index{typewriter}
+\index{sans serif}
+\index{old style}
+\index{medaeval numbers}
+
+The mechanism to switch from one style to another is rather complex
+and therefore hard to explain. To begin with, the terminology is a bit
+fuzzy. We call a collection of font shapes, like Lucida or Computer
+Modern Roman a family.  Within such a family, the members can be
+grouped according to characteristics. Such a group is called a
+style. Examples of styles within a family are: {\rmtf roman}, {\sstf
+sans serif} and {\tttf teletype}. We already saw that there can be
+alternative classifications, but they all refer to the pressence of
+serifs and the glyphs having equal widths. In some cases handwritten
+and|/|or calligraphic styles are also available. Within a style there
+can be alternatives, like {\bf boldface} and {\sl slanted}.
+
+There are different ways to change into a new a style or
+alternative. You can use \type {\ss} to switch to a sans
+serif font style and \type {\bf} to get a bold alternative.
+When a different style is chosen, the alternatives adapt
+themselves to this style. Often we will typeset the document
+in one family and style. This is called the bodyfont.
+
+A consequent use of commands like \type {\bf} and \type
+{\sl} in the text will automatically result in the desired
+bold and slanted altermatives when you change the family or
+style in the setup area of your input file. A somewhat
+faster way of style switching is done by \type {\ssbf},
+\type {\sssl}, etc. but this should be used with care, since
+far less housekeeping takes place.
+
+The alternatives within a style are given below. The
+abbreviation \type {\sl} means {\sl slanted}, \type {\it}
+means {\it italic} and \type {\bf} means {\bf boldface}.
+Sometimes \type {\bs} and \type {\bi} are also available,
+meaning {\bs bold slanted} and {\bi bold italic}. When an
+alternative is not known, \CONTEXT\ will choose a suitable
+replacement automatically.
+
+With \type {\os} we tell \CONTEXT\ that we prefer mediaeval or
+old||style numbers {\os 139} over {\rm 139}. The \type {\sc}
+generates {\sc Small Caps}. With an \type {x} we switch to
+smaller font size, with \type {a}, \type {b}, \type {c} and
+\type {d} to a bigger one. The actual font style is stated
+by \type {\tf} or typeface.
+
+\startexample
+\starttyping
+\tfa \tfb \tfc \tfd
+\tfx \bfx \slx \itx
+\bf \sl \it \bs \bi \sc \os
+\stoptyping
+\stopexample
+
+It depends on the completeness of the font definition files
+whether alternatives like \type {\bfa}, \type {\bfb}, etc.
+are available. Not all fonts have for instance italic and
+slanted or both their bold alternatives. In such situations,
+slanted and italic are threated as equivalents.
+
+Switching to a smaller font is accomplished by \type {\tfx},
+\type {\bfx}, \type {\slx}, etc., which adapt themselves to
+the actual alternative. An even more general downscaling is
+achieved by \type {\tx}, which adapts itself to the style
+and alernative. This command is rather handy when one wants
+to write macros that act like a chameleon. Going one more
+step smaller, is possible too: \type {\txx}. Using \type
+{\tx} when \type {\tx} is already given, is equivalent to
+\type {\txx}.
+
+Frequent font switching leads to longer processing times.
+When no sub- or superscripts are used and you are very
+certain what font you want to use, you can perform fast font
+switches with: \type {\rmsl}, \type {\ssbf}, \type {\tttf},
+etc.
+
+Switching to another font style is done by:
+
+\startexample
+\starttyping
+\rm \ss \tt \hw \cg
+\stoptyping
+\stopexample
+
+When \type {\rm} is chosen \CONTEXT\ will interpret the
+command \type {\tfd} as \type {\rmd}. All default font
+setups use \type {tf}||setups and will adapt automatically.
+
+The various commands will adapt themselves to the actual
+setup of font and size. For example:
+
+\startbuffer
+{\rm test {\sl test} {\bf test} \tfc test {\tx test} {\bf test}}
+{\ss test {\sl test \tx test} {\bf test \tx test}}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+will result in:
+
+\startreality
+\startlines
+\getbuffer
+\stoplines
+\stopreality
+
+When a character is not available the most acceptable
+alternative is chosen.
+
+We will not go into the typographical sins of underlining.
+These commands are discussed in \in {section} [underline]
+(\over [underline]).
+
+\todo{The next par may need more explaining }
+
+Note: the plain \TeX\ compatible font switches \type {\vi}, \type
+{\vii}, \type {\viii}, \type {\ix}, \type {\x},
+and \type {\xii} are also still defined, these have local effects
+like \type{\tfx} and \type{\tfa}. 
+
+\section[character]{Characters}
+\index{\type{character}}
+
+A number of commands use the parameter \type {style} to set
+up the font style and size. You can use commands like
+\type {\sl} or \type {\rma} or keywords like:
+
+\startexample
+\starttyping
+normal  bold  slanted  boldslanted  italic  bolditalic  type
+small  smallbold  smallslanted  ...  smallitalic  ...  smalltype
+capital
+\stoptyping
+\stopexample
+
+The parameter mechanism is rather flexible so with the
+parameter \type {style} you can type \type {bold} and \type
+{\bf} or \type {bf}. Even the most low level kind of font
+switching commands like \type {12ptrmbf} are permitted. This
+is fast but requires some insight in macros behind this
+mechanism.
+
+\section[bodyfontswitch]{Selecting bodyfonts}
+\index{bodyfont}
+\index{font size}
+\macro{\tex{setupbodyfont}}
+\macro{\tex{switchtobodyfont}}
 
 The bodyfont (main font), font style and size is set up with:
 
@@ -459,21 +609,21 @@ explicitly. Here is a list
 
 
 \starttabulate[|l|l|l|l|p|]
-\NC \bf File   \NC \bf Loaded     \NC \bf Loaded     \NC \bf Loaded    \NC \bf Description \NC \NR
-\NC            \NC \bf by \PDFTEX \NC \bf by \XETEX  \NC \bf by \MKIV  \NC                 \NC \FR
-\NC type-buy   \NC no             \NC no             \NC no            \NC Various commercial fonts (Type~1)\NC \NR
-\NC type-cbg   \NC no             \NC no             \NC no            \NC Greek free fonts (Type~1)\NC \NR
-\NC type-cow   \NC no             \NC no             \NC no            \NC The \CONTEXT\ cow font (Type~1)\NC \NR
-\NC type-exp   \NC no             \NC no             \NC no            \NC Commercial Zapf fonts (OpenType), experimental\NC \NR
-\NC type-fsf   \NC no             \NC no             \NC no            \NC Commercial Fontsite 500 fonts (Type~1)\NC \NR
-\NC type-ghz   \NC no             \NC no             \NC no            \NC Commercial Zapf fonts (Type~1)\NC \NR
-\NC type-gyr   \NC no             \NC no             \NC no            \NC The \TeX\ Gyre project fonts (Type~1)\NC \NR
-\NC type-hgz   \NC no             \NC no             \NC no            \NC Commercial Zapf fonts (OpenType)\NC \NR
-\NC type-msw   \NC no             \NC no             \NC no            \NC Fonts that come with Microsoft Windows (Type~1)\NC \NR
-\NC type-omg   \NC no             \NC no             \NC no            \NC Omega free fonts (Type~1)\NC \NR
-\NC type-one   \NC yes            \NC no             \NC no            \NC Various free fonts (Type~1)\NC \NR
-\NC type-otf   \NC no             \NC yes            \NC yes           \NC Various free fonts (OpenType)\NC \NR
-\NC type-xtx   \NC no             \NC yes            \NC no            \NC Fonts that come with MacOSX (OpenType)\NC \NR
+\NC \bf File   \NC \bf Loaded     \NC \bf Loaded    \NC \bf Loaded   \NC \bf Description \NC \NR
+\NC            \NC \bf by \PDFTEX \NC \bf by \XETEX \NC \bf by \MKIV \NC                 \NC \FR
+\NC type-buy   \NC no             \NC no            \NC no           \NC Various commercial fonts (Type~1)\NC \NR
+\NC type-cbg   \NC no             \NC no            \NC no           \NC Greek free fonts (Type~1)\NC \NR
+\NC type-cow   \NC no             \NC no            \NC no           \NC The \CONTEXT\ cow font (Type~1)\NC \NR
+\NC type-exp   \NC no             \NC no            \NC no           \NC Commercial Zapf fonts (OpenType), experimental\NC \NR
+\NC type-fsf   \NC no             \NC no            \NC no           \NC Commercial Fontsite 500 fonts (Type~1)\NC \NR
+\NC type-ghz   \NC no             \NC no            \NC no           \NC Commercial Zapf fonts (Type~1)\NC \NR
+\NC type-gyr   \NC no             \NC no            \NC no           \NC The \TeX\ Gyre project fonts (Type~1)\NC \NR
+\NC type-hgz   \NC no             \NC no            \NC no           \NC Commercial Zapf fonts (OpenType)\NC \NR
+\NC type-msw   \NC no             \NC no            \NC no           \NC Fonts that come with Microsoft Windows (Type~1)\NC \NR
+\NC type-omg   \NC no             \NC no            \NC no           \NC Omega free fonts (Type~1)\NC \NR
+\NC type-one   \NC yes            \NC no            \NC no           \NC Various free fonts (Type~1)\NC \NR
+\NC type-otf   \NC no             \NC yes           \NC yes          \NC Various free fonts (OpenType)\NC \NR
+\NC type-xtx   \NC no             \NC yes           \NC no           \NC Fonts that come with MacOSX (OpenType)\NC \NR
 \stoptabulate
 
 Loading one of those files is done via \type{\usetypescriptfile}.
@@ -874,158 +1024,6 @@ and \in{}[tab:body font names 4].
   {\getbuffer[bodyfontsotfbuy]}
 
 
-
-\section[font switching]{Font switching}
-\index{fonts}
-\index{roman}
-\index{slanted}
-\index{boldface}
-\index{italic}
-\index{typewriter}
-\index{sans serif}
-\index{old style}
-\index{medaeval numbers}
-
-The mechanism to switch from one style to another is rather complex
-and therefore hard to explain. To begin with, the terminology is a bit
-fuzzy. We call a collection of font shapes, like Lucida or Computer
-Modern Roman a family.  Within such a family, the members can be
-grouped according to characteristics. Such a group is called a
-style. Examples of styles within a family are: {\rmtf roman}, {\sstf
-sans serif} and {\tttf teletype}. We already saw that there can be
-alternative classifications, but they all refer to the pressence of
-serifs and the glyphs having equal widths. In some cases handwritten
-and|/|or calligraphic styles are also available. Within a style there
-can be alternatives, like {\bf boldface} and {\sl slanted}.
-
-There are different ways to change into a new a style or
-alternative. You can use \type {\ss} to switch to a sans
-serif font style and \type {\bf} to get a bold alternative.
-When a different style is chosen, the alternatives adapt
-themselves to this style. Often we will typeset the document
-in one family and style. This is called the bodyfont.
-
-A consequent use of commands like \type {\bf} and \type
-{\sl} in the text will automatically result in the desired
-bold and slanted altermatives when you change the family or
-style in the setup area of your input file. A somewhat
-faster way of style switching is done by \type {\ssbf},
-\type {\sssl}, etc. but this should be used with care, since
-far less housekeeping takes place.
-
-The alternatives within a style are given below. The
-abbreviation \type {\sl} means {\sl slanted}, \type {\it}
-means {\it italic} and \type {\bf} means {\bf boldface}.
-Sometimes \type {\bs} and \type {\bi} are also available,
-meaning {\bs bold slanted} and {\bi bold italic}. When an
-alternative is not known, \CONTEXT\ will choose a suitable
-replacement automatically.
-
-With \type {\os} we tell \CONTEXT\ that we prefer mediaeval or
-old||style numbers {\os 139} over {\rm 139}. The \type {\sc}
-generates {\sc Small Caps}. With an \type {x} we switch to
-smaller font size, with \type {a}, \type {b}, \type {c} and
-\type {d} to a bigger one. The actual font style is stated
-by \type {\tf} or typeface.
-
-\startexample
-\starttyping
-\tfa \tfb \tfc \tfd
-\tfx \bfx \slx \itx
-\bf \sl \it \bs \bi \sc \os
-\stoptyping
-\stopexample
-
-It depends on the completeness of the font definition files
-whether alternatives like \type {\bfa}, \type {\bfb}, etc.
-are available. Not all fonts have for instance italic and
-slanted or both their bold alternatives. In such situations,
-slanted and italic are threated as equivalents.
-
-Switching to a smaller font is accomplished by \type {\tfx},
-\type {\bfx}, \type {\slx}, etc., which adapt themselves to
-the actual alternative. An even more general downscaling is
-achieved by \type {\tx}, which adapts itself to the style
-and alernative. This command is rather handy when one wants
-to write macros that act like a chameleon. Going one more
-step smaller, is possible too: \type {\txx}. Using \type
-{\tx} when \type {\tx} is already given, is equivalent to
-\type {\txx}.
-
-Frequent font switching leads to longer processing times.
-When no sub- or superscripts are used and you are very
-certain what font you want to use, you can perform fast font
-switches with: \type {\rmsl}, \type {\ssbf}, \type {\tttf},
-etc.
-
-Switching to another font style is done by:
-
-\startexample
-\starttyping
-\rm \ss \tt \hw \cg
-\stoptyping
-\stopexample
-
-When \type {\rm} is chosen \CONTEXT\ will interpret the
-command \type {\tfd} as \type {\rmd}. All default font
-setups use \type {tf}||setups and will adapt automatically.
-
-The various commands will adapt themselves to the actual
-setup of font and size. For example:
-
-\startbuffer
-{\rm test {\sl test} {\bf test} \tfc test {\tx test} {\bf test}}
-{\ss test {\sl test \tx test} {\bf test \tx test}}
-\stopbuffer
-
-\startexample
-\typebuffer
-\stopexample
-
-will result in:
-
-\startreality
-\startlines
-\getbuffer
-\stoplines
-\stopreality
-
-When a character is not available the most acceptable
-alternative is chosen.
-
-We will not go into the typographical sins of underlining.
-These commands are discussed in \in {section} [underline]
-(\over [underline]).
-
-\todo{The next par may need more explaining }
-
-Note: the plain \TeX\ compatible font switches \type {\vi}, \type
-{\vii}, \type {\viii}, \type {\ix}, \type {\x},
-and \type {\xii} are also still defined, these have local effects
-like \type{\tfx} and \type{\tfa}. 
-
-\section[character]{Characters}
-\index{\type{character}}
-
-A number of commands use the parameter \type {style} to set
-up the font style and size. You can use commands like
-\type {\sl} or \type {\rma} or keywords like:
-
-\startexample
-\starttyping
-normal  bold  slanted  boldslanted  italic  bolditalic  type
-small  smallbold  smallslanted  ...  smallitalic  ...  smalltype
-capital
-\stoptyping
-\stopexample
-
-The parameter mechanism is rather flexible so with the
-parameter \type {style} you can type \type {bold} and \type
-{\bf} or \type {bf}. Even the most low level kind of font
-switching commands like \type {12ptrmbf} are permitted. This
-is fast but requires some insight in macros behind this
-mechanism.
-
 \section[fonts]{Available alternatives}
 \index{\type{cmr}}
 \index{\type{eul}}
@@ -1551,5 +1549,5 @@ while we use Knuth's Sans Serif in the caption.
   [fig:helvetica]
   {\ss The use of fonts in pictures.}
   {\externalfigure[bor0129]}
-
+
 \stopcomponent
