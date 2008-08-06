@@ -1602,9 +1602,10 @@ while we use Knuth's Sans Serif in the caption.
   {\ss The use of fonts in pictures.}
   {\externalfigure[bor0129]}
 
+\section [sec:encodings]{Encodings and mappings}
 
-
-\section [sec:encoidngs]{Encodings and mappings}
+This paragraph only applies to \PDFTEX. If you are using 
+\XETEX\ or \MKIV, you can safely ignore the following text.
 
 Not every language uses the (western) latin alphabet. Although
 in most languages the basic 26 characters are somehow used,
@@ -1627,14 +1628,19 @@ such encodings, each suited for a subset of languages.
 \HL
 \NC \bf encoding \NC \bf usage \NC \bf status \NC \NR
 \HL
+\NC ec        \NC the prefered encoding of \TEX\ distributions                \NC okay     \NC \NR
 \NC texnansi  \NC a combination of \TEX\ and Adobe standard encoding          \NC okay     \NC \NR
 \NC qx        \NC an encoding that covers most eastern european languages     \NC okay     \NC \NR
 \NC t5        \NC an encoding dedicated to vietnamese (many (double) accents) \NC okay     \NC \NR
-\NC ec        \NC the prefered encoding of \TEX\ distributions                \NC okay     \NC \NR
-\NC 8r        \NC a (strange) mixture of encodings                            \NC useless  \NC \NR
+\NC t2a       \NC a cyrillic \TEX\ font encoding                              \NC ?        \NC \NR
+\NC t2b       \NC another cyrillic \TEX\ font encoding                        \NC ?        \NC \NR
+\NC t2c       \NC another another cyrillic \TEX\ font encoding                \NC ?        \NC \NR
+\NC x2        \NC another another another cyrillic \TEX\ font encoding        \NC ?        \NC \NR
 \NC default   \NC the 7 bit \ASCII\ encoding as used by plain \TEX            \NC obsolete \NC \NR
 \NC il2       \NC iso latin 2 encoding as needed for Czech and Slovak         \NC obsolete \NC \NR
 \NC pl0       \NC a native Polish encoding                                    \NC obsolete \NC \NR
+\NC uc        \NC a 16-bit encoding that can fake the Unicode base plane      \NC obsolete \NC \NR
+\NC 8r        \NC a (strange) mixture of encodings                            \NC useless  \NC \NR
 \HL
 \stoptabulate
 
