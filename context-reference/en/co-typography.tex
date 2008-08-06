@@ -1492,10 +1492,54 @@ with a small magnification, this evens out the visual heights of the font styles
 
 \macro{\tex{setupbodyfontenvironment}}
 \macro{\tex{definebodyfontenvironment}}
+\macro{\tex{showbodyfontenvironment}}
 
-\todo{fill this section}
+Earlier we have seen that within a font family there are
+different font sizes. The relations between these sizes
+are defined with commands like this:
+
+\startexample
+\setuptyping[option=commands]
+\starttyping
+\definebodyfontenvironment
+  [12pt]
+  [        text=12pt,    <</Roman Math dimensions: normal dimensions,>>
+         script=9pt,     <</Roman super- and subscripts and>>
+   scriptscript=7pt,     <</Roman supersuper- and subsubscripts.>>
+              x=10pt,    <</Roman Pseudo caps and >>
+             xx=8pt,     <</Roman nested pseudo caps.>>
+            big=12pt,    <</Roman In case we switch to/tt big>>
+          small=10pt]    <</Roman or/tt small.>>
+\stoptyping
+\stopexample
+
+When you want to have a somewhat bigger fontsize you can type:
+
+\startexample
+\starttyping
+\definebodyfontenvironment [24pt]
+\switchtobodyfont[24pt]
+\stoptyping
+\stopexample
+
+An overview of the different fontsizes within a family can be
+summoned with:
+
+\showsetup{showbodyfontenvironment}
+
+For the current family of fonts this is:
+
+\showbodyfontenvironment[palatino]
+
+For all regular fontsizes environments are predefined
+that fulfill their purpose adequately. However when you want
+to do some extra defining yourself there is:
+
+\todo{describe the arguments, and make sure they are all mentioned}
 
 \showsetup{definebodyfontenvironment}
+
+And to tweak already defined sizes, there is an accompagnying setup command:
 
 \showsetup{setupbodyfontenvironment}
 

@@ -272,59 +272,6 @@ encodings. For these issues we refer to the examples in the
 source code and the files \type {font-<<xxx>>} and \type
 {enco-<<xxx>>}}.
 
-Earlier we have seen that within a font family there are
-different font sizes. The relations between these sizes
-are defined with:
-
-\startexample
-\setuptyping[option=commands]
-\starttyping
-\definebodyfontenvironment
-  [12pt]
-  [        text=12pt,    <</Roman Math dimensions: normal dimensions,>>
-         script=9pt,     <</Roman super- and subscripts and>>
-   scriptscript=7pt,     <</Roman supersuper- and subsubscripts.>>
-              x=10pt,    <</Roman Pseudo caps and >>
-             xx=8pt,     <</Roman nested pseudo caps.>>
-            big=12pt,    <</Roman In case we switch to/tt big>>
-          small=10pt]    <</Roman or/tt small.>>
-\stoptyping
-\stopexample
-
-When we use a fontsize that is not predefined in this way
-\CONTEXT\ applies the same proportions anyhow. You can alter
-this definition by specifying the parameter \type {default}.
-When you want to have a somewhat bigger fontsize you can
-type:
-
-\startexample
-\starttyping
-\definebodyfontenvironment [24pt]
-\stoptyping
-\stopexample
-
-You can switch to a 12.4 environment, without any specific
-actions. Within a group these fontdefinitions are temporary.
-When you use the definitions several times in your document
-you should type the definitions in the setup area of your
-source file (style definition) since this can save much
-runtime.
-
-An overview of the different fontsizes within a family can be
-summoned with:
-
-\showsetup{showbodyfontenvironment}
-
-For the \type {lbr} family of fonts this is:
-
-\showbodyfontenvironment[lbr]
-
-For all regular fontsizes environments are predefined
-that fulfill their purpose adequately. However when you want
-to do some extra defining yourself there is:
-
-\showsetup{setupbodyfontenvironment}
-
 The real definitions, i.e. the coupling of commands to the
 font files, can be done in different ways. The most
 transparant is the font file \type {font-phv}.
