@@ -7,10 +7,8 @@
 
 % this chapter needs lots of typescripts
 
-\usetypescriptfile[type-buy]
-\usetypescriptfile[type-gyr]
 \usetypescript[map,sans,mono,handwriting,calligraphy,serif]
-              [helvetica,schoolbook,times,antykwa-torunska]
+              [helvetica,schoolbook,times,antykwa-torunska,modern]
 
 
 \chapter[typography]{Typography}
@@ -357,6 +355,12 @@ are available. For the core \CONTEXT\ fonts, you can count on at least
 \type{\tfa}, \type{\tfb}, \type{\tfc}, \type{\tfd}, \type{\tfx}, 
 and \type{\tfxx} being defined. For the others, just try and see what
 happens.
+
+When you have chosen a larger charactersize,
+for example \type {\tfb}, then \type {\tf} equals \type {\tfb},
+\type {\bf} equals \type {\bfb}, etc. This method is almost always
+preferable over returning to the original character size, but it 
+may catch you off-guard.
 
 A more generic downscaling command is also available:
 
@@ -1478,10 +1482,33 @@ with a small magnification, this evens out the visual heights of the font styles
 
 
 \section[fonts]{Available alternatives}
-\index{\type{cmr}}
-\index{\type{eul}}
-\index{\type{con}}
-\index{\type{lbr}}
+
+\fixme
+  {The definition of \type {\showbodyfont} is outdated: it only loads \type{type-pre}, 
+   which is simply always wrong. While awaiting a fix in the core, I decided it best to have
+   the manual source correct and the output wrong (if you want it the other way around, 
+   see the manual source)}
+
+With the command \type {\showbodyfont} an overview is generated of the available characters.
+
+\showsetup{showbodyfont}
+
+Below the 12pt||body
+font Latin Modern Roman (\type {modern}) is shown. The close
+reader will note that not all alternatives are available by
+default.
+
+\showbodyfont[modern,12pt] % [cmr,12pt]
+
+Here is another overview, using the three most well known PostScript fonts:
+
+\showbodyfont[postscript,12pt] % [pos,12pt]
+
+\section{Math fonts}
+\index{math fonts}
+\macro{\tex{mf}}
+\macro{\tex{enablembox}}
+\macro{\tex{definebodyfont}}
 
 There are only a few font families that can handle math. There
 is the Computer Modern Roman, the very beautiful Lucida
@@ -1496,41 +1523,6 @@ design there are a few variations called Euler and Concrete.
 outstanding book from the perspective of typography and
 didactically.}
 
-The Computer Modern Roman contains 70~charactertypes and
-sizes. Because a number of charactersizes are not defined
-the 11~point characters are defined as scaled 9~and
-10~point characters under the option \type {cmr}. With
-\type {eul} and \type {con} we obtain a Computer Modern.
-
-\showsetup{showbodyfont}
-
-With the command \type {\showbodyfont} an overview is
-generated of the available characters. Below the 12pt||body
-font Computer Modern Roman (\type {cmr}) is shown. The close
-reader will note that not all alternatives are available by
-default.
-
-\showbodyfont[cmr,12pt]
-
-We can see that the 12pt Lucida Bright (\type {lbr}) is
-somewhat bigger than the 12pt Computer Modern Roman. An
-\type {x}||character for example \type {\bfx} is 2pts smaller
-than the actual typeface. The bigger characters are scaled
-by \TEX's \type {\magstep}.
-
-\showbodyfont[lbr,12pt]
-
-A last remark. When you have chosen a larger charactersize,
-for example \type {\tfb}, then \type {\tf} equals \type {\tfb},
-\type {\bf} equals \type {\bfb}, etc. This method is
-preferable over returning to the original character size.
-
-
-\section{Math fonts}
-\index{math fonts}
-\macro{\tex{mf}}
-\macro{\tex{enablembox}}
-\macro{\tex{definebodyfont}}
 
 
 \startbuffer[math-1]
