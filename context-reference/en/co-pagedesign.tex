@@ -421,7 +421,47 @@ width.
 
 When one chooses another paper format than \type{A4}, the
 default settings are scaled to fit the new size.
-
+
+\section{Page texts}
+\index{headers}
+\index{footers}
+\index{menus}
+
+Page texts are texts that are placed in the headers,
+footers, margins and edges of the so called pagebody. This
+sentence is for instance typeset in the bodyfont in the
+running text. The fonts of the page texts are set up by
+means of different commands. The values of the parameters
+may be something like \type {style=bold} but
+\type {style=\ss\bf} is also allowed. Setups like
+\type {style=\ssbf} are less obvious because commands like
+\type {\cap} will not behave the way you expect.
+
+Switching to a new font style (\type {\ss}) will cost some
+time. Usually this is no problem but in interactive documents
+where we may use interactive menus with dozens of
+items and related font switches the effect can be
+considerable. In that case a more efficient font switching
+is:
+
+\startexample
+\starttyping
+\setuplayout[style=\ss]
+\stoptyping
+\stopexample
+
+Border texts are setup by its command and the related key.
+For example footers may be set up with the key
+\type {letter}:
+
+\startexample
+\starttyping
+\setupfooter[style=bold]
+\stoptyping
+\stopexample
+
+
+
 \section[margins]{Page composition}
 \index{margins}
 \index{layout}
