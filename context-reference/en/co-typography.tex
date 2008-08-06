@@ -13,6 +13,10 @@
 
 \chapter[typography]{Typography}
 
+\todo{Rationale for this chapter: it should contain everything you 
+need to know about {\bf using} fonts, the title may change later. The following 
+chapter will be about {\bf defining} fonts.}
+
 \section{Introduction}
 \index{typography}
 
@@ -717,7 +721,7 @@ the nearest smaller body font environment is that is already defined.
 
 You can extend the list of predefined body font environments and even
 alter the precision in body font matching. See
-the~\in{section}[bodyfontsizes] for detailed information about how to
+the~\in{section}[sec:bodyfontenvironment] for detailed information about how to
 tweak or define your own body font sizes.
 
 \blank
@@ -1480,6 +1484,21 @@ optional argument is used for tweaking font settings like the specification of f
 or adjusting parameters. In this case, the two \type{modern} font sets are loaded 
 with a small magnification, this evens out the visual heights of the font styles.
 
+\todo{Document the sixth argument to \type{\definetypeface}}
+
+\todo{Explain that \type{\definetypeface} can also come in a four- and even three-arugment form.}
+
+\subsection[sec:bodyfontenvironment]{Body font environments}
+
+\macro{\tex{setupbodyfontenvironment}}
+\macro{\tex{definebodyfontenvironment}}
+
+\todo{fill this section}
+
+\showsetup{definebodyfontenvironment}
+
+\showsetup{setupbodyfontenvironment}
+
 
 \section[fonts]{Available alternatives}
 
@@ -1508,7 +1527,8 @@ Here is another overview, using the three most well known PostScript fonts:
 \index{math fonts}
 \macro{\tex{mf}}
 \macro{\tex{enablembox}}
-\macro{\tex{definebodyfont}}
+
+\fixme{This is paragraph is a mess}
 
 There are only a few font families that can handle math. There
 is the Computer Modern Roman, the very beautiful Lucida
