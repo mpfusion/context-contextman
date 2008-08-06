@@ -1369,25 +1369,6 @@ $\bf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = \mf 6x^2$
 $\bf x^2 + \hbox{whatever} + \sin(2x)$
 \stopbuffer
 
-\startbuffer[math-5]
-\definebodyfont [12pt] [mm]
-  [ex=cmex10 at 12pt,
-   mi=cmmi12,
-   sy=cmsy10 at 12pt]
-\stopbuffer
-
-\startbuffer[math-6]
-\definebodyfont [10pt,11pt,12pt] [mm]
-  [tf=Sans          sa 1,
-   bf=SansBold      sa 1,
-   sl=SansItalic    sa 1,
-   ex=MathExtension sa 1,
-   mi=MathItalic    sa 1,
-   sy=MathSymbol    sa 1]
-
-\setupbodyfont
-\stopbuffer
-
 Many \TEX\ users have chosen \TEX\ for its superb math type
 setting. The math oriented character of \TEX\ has also
 influenced the font mechanism. We will not go into any
@@ -1444,23 +1425,6 @@ Unlike plain \TEX, the $\bf\sin$ is also set bold.
 \getbuffer[math-4]
 
 
-\fixme{the following bits are in the wrong place  for sure, and may
-be incorrect besides}
-
-In \CONTEXT\ the 12pt math (Computer Modern) fonts are
-defined with:
-
-\typebuffer[math-5]
-
-It is possible to use \type {\tf}, \type {\bf}, etc. within
-math mode.
-
-\typebuffer[math-6]
-
-The example we used before would become:
-
-{\enablembox\getbuffer[math-6]\getbuffer[math-4]}
-
 \section{Em and Ex}
 \index[em]{\type{em}}
 \index[ex]{\type{ex}}
