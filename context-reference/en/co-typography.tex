@@ -922,7 +922,10 @@ in source files that have names that start with \type{type-}. Some of
 these files are automatically loaded, but most have to be loaded
 explicitly. Here is a list
 
-
+\startbuffer[typefiles]
+\begingroup
+%\switchtobodyfont[9pt]
+\vskip 1ex
 \starttabulate[|l|l|l|l|p|]
 \NC \bf File   \NC \bf Loaded     \NC \bf Loaded    \NC \bf Loaded   \NC \bf Description \NC \NR
 \NC            \NC \bf by \PDFTEX \NC \bf by \XETEX \NC \bf by \MKIV \NC                 \NC \FR
@@ -941,6 +944,11 @@ explicitly. Here is a list
 \NC type-otf   \NC no             \NC yes           \NC yes          \NC Various free fonts (OpenType)\NC \NR
 \NC type-xtx   \NC no             \NC yes           \NC no           \NC Fonts that come with MacOSX (OpenType)\NC \NR
 \stoptabulate
+\vskip 1ex
+\endgroup
+\stopbuffer
+
+\getbuffer[typefiles]
 
 Explicit loading one of those files is done via the macro \type{\usetypescriptfile}.
 \macro{\tex{usetypescriptfile}}
@@ -949,49 +957,51 @@ Explicit loading one of those files is done via the macro \type{\usetypescriptfi
 \begingroup
 \switchtobodyfont[9pt]
 \def\*#1{{\bf#1}}
+\vskip 1ex
 \starttabulate[|l|l|l|l|]
-\NC \bf Typescript        \NC \bf Typeface      \NC \bf File           \NC \bf Encodings                           \NC \FR
-\NC OmegaArab             \NC omarb             \NC type-omg           \NC (unspecified)                           \NC \NR
-\NC OmegaLGC              \NC omlgc             \NC type-omg           \NC (unspecified)                           \NC \NR
-\NC antykwa-torunska      \NC antykwa           \NC type-one, type-otf \NC texnansi,ec,8r,uc,t2a                   \NC \NR
-\NC cbgreek               \NC cbgreek           \NC type-cbg           \NC (unspecified)                           \NC \NR
-\NC cbgreek-all           \NC cbgreek-all       \NC type-cbg           \NC (unspecified)                           \NC \NR
-\NC cbgreek-medium        \NC cbgreek-medium    \NC type-cbg           \NC (unspecified)                           \NC \NR
-\NC cow                   \NC cow               \NC type-cow           \NC default                                 \NC \NR
-\NC fourier               \NC fourier           \NC type-one           \NC ec                                      \NC \NR
-\NC iwona                 \NC iwona             \NC type-one, type-otf \NC texnansi,ec,8r,uc,t2a                   \NC \NR
-\NC iwona-heavy           \NC iwona-heavy       \NC type-one, type-otf \NC texnansi,ec,8r,uc,t2a                   \NC \NR
-\NC iwona-light           \NC iwona-light       \NC type-one, type-otf \NC texnansi,ec,8r,uc,t2a                   \NC \NR
-\NC iwona-medium          \NC iwona-medium      \NC type-one, type-otf \NC texnansi,ec,8r,uc,t2a                   \NC \NR
-\NC \*{lucida}            \NC lucida            \NC type-buy           \NC texnansi,ec,8r,uc                       \NC \NR
-\NC \*{lucidabfm}         \NC lucida            \NC type-buy           \NC texnansi,ec,8r,uc                       \NC \NR
-\NC \*{lucidabfm}         \NC lucidabfm         \NC type-buy           \NC texnansi,ec,8r,uc                       \NC \NR
-\NC \*{lucidaboldmath}    \NC lucida            \NC type-buy           \NC texnansi,ec,8r,uc                       \NC \NR
-\NC \*{lucidaboldmath}    \NC lucidaboldmath    \NC type-buy           \NC texnansi,ec,8r,uc                       \NC \NR
-\NC modern                \NC modern            \NC type-one, type-otf \NC texnansi,ec,qx,t5,default               \NC \NR
-\NC modern-base           \NC modern            \NC type-one, type-otf \NC texnansi,ec,qx,t5,default,t2a,t2b,t2c,x2\NC \NR
-\NC modernvariable        \NC modernvariable    \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5                    \NC \NR
-\NC \*{optima}            \NC optima            \NC type-one           \NC texnansi,ec,qx                          \NC \NR
-\NC \*{optima}            \NC optima            \NC type-ghz           \NC texnansi,ec,qx                          \NC \NR
-\NC \*{optima-nova}       \NC optima            \NC type-ghz, type-hgz \NC texnansi,ec                             \NC \NR
-\NC \*{optima-nova-os}    \NC optima-os         \NC type-ghz, type-hgz \NC texnansi,ec                             \NC \NR
-\NC \*{palatino}          \NC palatino          \NC type-hgz           \NC (cannot be used in \MKII)               \NC \NR
-\NC \*{palatino}          \NC palatino          \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5,uc                 \NC \NR
-\NC \*{palatino-informal} \NC palatino-informal \NC type-hgz           \NC (cannot be used in \MKII)               \NC \NR
-\NC \*{palatino-light}    \NC palatino-light    \NC type-exp           \NC (cannot be used in \MKII)               \NC \NR
-\NC \*{palatino-medium}   \NC palatino-medium   \NC type-exp           \NC (cannot be used in \MKII)               \NC \NR
-\NC \*{palatino-normal}   \NC palatino-normal   \NC type-exp           \NC (cannot be used in \MKII)               \NC \NR
-\NC \*{palatino-nova}     \NC palatino          \NC type-hgz           \NC (cannot be used in \MKII)               \NC \NR
-\NC \*{palatino-sans}     \NC palatino          \NC type-hgz           \NC (cannot be used in \MKII)               \NC \NR
-\NC postscript            \NC postscript        \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5,uc                 \NC \NR
-\NC sheep                 \NC sheep             \NC type-cow           \NC default                                 \NC \NR
-\NC times                 \NC times             \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5,uc                 \NC \NR
+\NC \bf Typescript        \NC \bf Typeface      \NC \bf File           \NC \bf Encodings                     \NC \FR
+\NC OmegaArab             \NC omarb             \NC type-omg           \NC (unspecified)                     \NC \NR
+\NC OmegaLGC              \NC omlgc             \NC type-omg           \NC (unspecified)                     \NC \NR
+\NC antykwa-torunska      \NC antykwa           \NC type-one, type-otf \NC texnansi,ec,8r,t2a                \NC \NR
+\NC cbgreek               \NC cbgreek           \NC type-cbg           \NC (unspecified)                     \NC \NR
+\NC cbgreek-all           \NC cbgreek-all       \NC type-cbg           \NC (unspecified)                     \NC \NR
+\NC cbgreek-medium        \NC cbgreek-medium    \NC type-cbg           \NC (unspecified)                     \NC \NR
+\NC cow                   \NC cow               \NC type-cow           \NC default                           \NC \NR
+\NC fourier               \NC fourier           \NC type-one           \NC ec                                \NC \NR
+\NC iwona                 \NC iwona             \NC type-one, type-otf \NC texnansi,ec,8r,t2a                \NC \NR
+\NC iwona-heavy           \NC iwona-heavy       \NC type-one, type-otf \NC texnansi,ec,8r,t2a                \NC \NR
+\NC iwona-light           \NC iwona-light       \NC type-one, type-otf \NC texnansi,ec,8r,t2a                \NC \NR
+\NC iwona-medium          \NC iwona-medium      \NC type-one, type-otf \NC texnansi,ec,8r,t2a                \NC \NR
+\NC \*{lucida}            \NC lucida            \NC type-buy           \NC texnansi,ec,8r                    \NC \NR
+\NC \*{lucidabfm}         \NC lucida            \NC type-buy           \NC texnansi,ec,8r                    \NC \NR
+\NC \*{lucidabfm}         \NC lucidabfm         \NC type-buy           \NC texnansi,ec,8r                    \NC \NR
+\NC \*{lucidaboldmath}    \NC lucida            \NC type-buy           \NC texnansi,ec,8r                    \NC \NR
+\NC \*{lucidaboldmath}    \NC lucidaboldmath    \NC type-buy           \NC texnansi,ec,8r                    \NC \NR
+\NC modern                \NC modern            \NC type-one, type-otf \NC texnansi,ec,qx,t5,default         \NC \NR
+\NC modern-base           \NC modern            \NC type-one, type-otf \NC texnansi,ec,qx,t5,default,t2a/b/c \NC \NR
+\NC modernvariable        \NC modernvariable    \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5              \NC \NR
+\NC \*{optima}            \NC optima            \NC type-one           \NC texnansi,ec,qx                    \NC \NR
+\NC \*{optima}            \NC optima            \NC type-ghz           \NC texnansi,ec,qx                    \NC \NR
+\NC \*{optima-nova}       \NC optima            \NC type-ghz, type-hgz \NC texnansi,ec                       \NC \NR
+\NC \*{optima-nova-os}    \NC optima-os         \NC type-ghz, type-hgz \NC texnansi,ec                       \NC \NR
+\NC \*{palatino}          \NC palatino          \NC type-hgz           \NC (cannot be used in \MKII)         \NC \NR
+\NC \*{palatino}          \NC palatino          \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5              \NC \NR
+\NC \*{palatino-informal} \NC palatino-informal \NC type-hgz           \NC (cannot be used in \MKII)         \NC \NR
+\NC \*{palatino-light}    \NC palatino-light    \NC type-exp           \NC (cannot be used in \MKII)         \NC \NR
+\NC \*{palatino-medium}   \NC palatino-medium   \NC type-exp           \NC (cannot be used in \MKII)         \NC \NR
+\NC \*{palatino-normal}   \NC palatino-normal   \NC type-exp           \NC (cannot be used in \MKII)         \NC \NR
+\NC \*{palatino-nova}     \NC palatino          \NC type-hgz           \NC (cannot be used in \MKII)         \NC \NR
+\NC \*{palatino-sans}     \NC palatino          \NC type-hgz           \NC (cannot be used in \MKII)         \NC \NR
+\NC postscript            \NC postscript        \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5              \NC \NR
+\NC sheep                 \NC sheep             \NC type-cow           \NC default                           \NC \NR
+\NC times                 \NC times             \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5              \NC \NR
 \stoptabulate
+\vskip 1ex
 \endgroup
 \stopbuffer
 
 \placetable
-  [here]
+  [page]
   [tab:typescripts and typefaces]
   {The typescripts. Typescripts that use commercial fonts are typeset in bold. }
   {\getbuffer[typescripts]}
@@ -1144,7 +1154,7 @@ the same, but there can be (and are) different names altogether.
    A single dash in a cell means that the typescript does not define that style, you should refrain from using the style.
    The lucida, lucidabfm, and lucidaboldmath typescripts also define {\bf hw} and {\bf cg} as \quote{lucida handwring} 
    and \quote{lucida calligraphy}.
-   The modern-base typescript switches back to computer-modern for a few legacy encodings: t2a, t2b, t2c, and x2.}
+   The modern-base typescript switches back to computer-modern for a few legacy encodings: t2a, t2b, and t2c.}
   {\getbuffer[simpletypescripts]}
 
 How to define your own font sets will be explained in the next chapter,
@@ -1166,8 +1176,8 @@ loaded with a small magnification, this evens out the visual heights of the font
 
 \startbuffer
 \vskip 1ex
-\starttabulate[|l|l|p|]
-\NC \bf key \NC \bf default value        \NC explanation                             \NC \FR
+\starttabulate[|lT|l|p|]
+\NC \rm\bf key \NC \bf default value        \NC explanation                             \NC \FR
 \NC rscale   \NC 1                       \NC a scaling factor for this typescript
                                              relative to the selected body font size \NC \NR
 \NC encoding \NC \type{\defaultencoding} \NC the encoding for the typeface, normally
@@ -1190,13 +1200,13 @@ to be \type{default}, then the fifth argument can be omitted as well.
 
 \startbuffer[bodyfontst1free]
 \switchtobodyfont[9pt]
-\starttabulate[|l|l|p|p|]
-\NC Identifier                 \NC file      \NC Encodings                   \NC Supported styles \NC \NR
-\NC modern                     \NC type-one  \NC ec, qx, texnansi, t5, uc    \NC serif, sans, mono, math, \crlf
+\starttabulate[|l|l|l|p(3.5cm)|]
+\NC \bf Identifier             \NC \bf file  \NC \bf Encodings               \NC \bf Supported styles \NC \FR
+\NC modern                     \NC type-one  \NC ec, qx, texnansi, t5        \NC serif, sans, mono, math, \crlf
                                                                                  boldmath, bfmath \NC \NR 
-\NC latin-modern               \NC type-one  \NC ec, qx, texnansi, t5, uc    \NC serif, sans, mono, math, \crlf 
+\NC latin-modern               \NC type-one  \NC ec, qx, texnansi, t5        \NC serif, sans, mono, math, \crlf 
                                                                                  boldmath, bfmath \NC \NR 
-\NC computer-modern            \NC type-one  \NC cyr, lcy, t2a, t2b, t2c, x2 \NC serif, sans, mono, math, \crlf
+\NC computer-modern            \NC type-one  \NC t2a/b/c                     \NC serif, sans, mono, math, \crlf %removed lcy,cyr,x2
                                                                                  boldmath, bfmath \NC \NR 
 \NC simple                     \NC type-one  \NC -- synonyms only --         \NC serif \NC \NR 
 \NC concrete                   \NC type-one  \NC -- hardcoded --             \NC serif \NC \NR
@@ -1205,17 +1215,17 @@ to be \type{default}, then the fifth argument can be omitted as well.
 \NC fourier                    \NC type-one  \NC ec                          \NC math, serif \NC \NR
 \NC courier                    \NC type-one  \NC 8r, ec, qx, texnansi, t5    \NC mono \NC \NR
 \NC helvetica                  \NC type-one  \NC 8r, ec, qx, texnansi, t5    \NC sans \NC \NR
-\NC times                      \NC type-one  \NC 8r, ec, qx, texnansi, t5, uc\NC serif, math \NC \NR
-\NC palatino                   \NC type-one  \NC 8r, ec, qx, texnansi, t5, uc\NC serif, math \NC \NR
+\NC times                      \NC type-one  \NC 8r, ec, qx, texnansi, t5    \NC serif, math \NC \NR
+\NC palatino                   \NC type-one  \NC 8r, ec, qx, texnansi, t5    \NC serif, math \NC \NR
 \NC bookman                    \NC type-one  \NC 8r, ec, qx, texnansi, t5    \NC serif \NC \NR
 \NC schoolbook                 \NC type-one  \NC 8r, ec, texnansi, t5        \NC serif \NC \NR
 \NC chancery                   \NC type-one  \NC 8r, ec, qx, texnansi        \NC calligraphy \NC \NR
 \NC charter                    \NC type-one  \NC 8r, ec, texnansi            \NC serif \NC \NR
 \NC utopia                     \NC type-one  \NC ec, texnansi                \NC serif \NC \NR
-\NC antykwa-torunska           \NC type-one  \NC texnansi, qx, t5, ec, t2a/b/c, greek \NC serif, math \NR
-\NC antykwa-torunska-light     \NC type-one  \NC texnansi, qx, t5, ec, t2a/b/c, greek \NC serif, math \NR
-\NC antykwa-torunska-cond      \NC type-one  \NC texnansi, qx, t5, ec, t2a/b/c, greek \NC serif, math \NR
-\NC antykwa-torunska-lightcond \NC type-one  \NC texnansi, qx, t5, ec, t2a/b/c, greek \NC serif, math \NR
+\NC antykwa-torunska           \NC type-one  \NC ec, qx, texnansi, t5, t2a/b/c, greek \NC serif, math \NR
+\NC antykwa-torunska-light     \NC type-one  \NC ec, qx, texnansi, t5, t2a/b/c, greek \NC serif, math \NR
+\NC antykwa-torunska-cond      \NC type-one  \NC ec, qx, texnansi, t5, t2a/b/c, greek \NC serif, math \NR
+\NC antykwa-torunska-lightcond \NC type-one  \NC ec, qx, texnansi, t5, t2a/b/c, greek \NC serif, math \NR
 \NC antykwa-poltawskiego       \NC type-one  \NC 8r, ec, texnansi                   \NC serif \NR
 \NC iwona                      \NC type-one  \NC ec, qx, texnansi, t5               \NC sans, math \NC \NR
 \NC iwona-light                \NC type-one  \NC ec, qx, texnansi, t5               \NC sans, math \NC \NR
@@ -1228,19 +1238,19 @@ to be \type{default}, then the fifth argument can be omitted as well.
 \NC kurier                     \NC type-one  \NC ec, qx, texnansi, t5               \NC sans, math \NC \NR
 \NC kurier-light               \NC type-one  \NC ec, qx, texnansi, t5               \NC sans, math \NC \NR
 \NC kurier-medium              \NC type-one  \NC ec, qx, texnansi, t5               \NC sans, math \NC \NR
-\NC pagella                    \NC type-gyr  \NC ec, texnansi, qx, t5, t2a/b/c, l7x \NC serif\NC \NR % removed encs: rm, el, ec, cs
-\NC palatino                   \NC type-gyr  \NC ec, texnansi, qx, t5, t2a/b/c, l7x \NC serif\NC \NR
-\NC termes                     \NC type-gyr  \NC ec, texnansi, qx, t5, t2a/b/c, l7x \NC serif\NC \NR
-\NC times                      \NC type-gyr  \NC ec, texnansi, qx, t5, t2a/b/c, l7x \NC serif\NC \NR
-\NC bonum                      \NC type-gyr  \NC ec, texnansi, qx, t5, t2a/b/c, l7x \NC serif\NC \NR
-\NC bookman                    \NC type-gyr  \NC ec, texnansi, qx, t5, t2a/b/c, l7x \NC serif\NC \NR
-\NC schola                     \NC type-gyr  \NC ec, texnansi, qx, t5, t2a/b/c, l7x \NC serif\NC \NR
-\NC schoolbook                 \NC type-gyr  \NC ec, texnansi, qx, t5, t2a/b/c, l7x \NC serif\NC \NR
-\NC heros                      \NC type-gyr  \NC ec, texnansi, qx, t5, t2a/b/c, l7x \NC sans\NC \NR
-\NC helvetica                  \NC type-gyr  \NC ec, texnansi, qx, t5, t2a/b/c, l7x \NC sans\NC \NR
-\NC adventor                   \NC type-gyr  \NC ec, texnansi, qx, t5, t2a/b/c, l7x \NC sans\NC \NR
-\NC cursor                     \NC type-gyr  \NC ec, texnansi, qx, t5, t2a/b/c, l7x \NC mono\NC \NR
-\NC courier                    \NC type-gyr  \NC ec, texnansi, qx, t5, t2a/b/c, l7x \NC mono\NC \NR
+\NC pagella                    \NC type-gyr  \NC ec, qx, texnansi, t5, t2a/b/c      \NC serif\NC \NR % removed encs: rm,el, ec, cs, l7x
+\NC palatino                   \NC type-gyr  \NC ec, qx, texnansi, t5, t2a/b/c      \NC serif\NC \NR
+\NC termes                     \NC type-gyr  \NC ec, qx, texnansi, t5, t2a/b/c      \NC serif\NC \NR
+\NC times                      \NC type-gyr  \NC ec, qx, texnansi, t5, t2a/b/c      \NC serif\NC \NR
+\NC bonum                      \NC type-gyr  \NC ec, qx, texnansi, t5, t2a/b/c      \NC serif\NC \NR
+\NC bookman                    \NC type-gyr  \NC ec, qx, texnansi, t5, t2a/b/c      \NC serif\NC \NR
+\NC schola                     \NC type-gyr  \NC ec, qx, texnansi, t5, t2a/b/c      \NC serif\NC \NR
+\NC schoolbook                 \NC type-gyr  \NC ec, qx, texnansi, t5, t2a/b/c      \NC serif\NC \NR
+\NC heros                      \NC type-gyr  \NC ec, qx, texnansi, t5, t2a/b/c      \NC sans\NC \NR
+\NC helvetica                  \NC type-gyr  \NC ec, qx, texnansi, t5, t2a/b/c      \NC sans\NC \NR
+\NC adventor                   \NC type-gyr  \NC ec, qx, texnansi, t5, t2a/b/c      \NC sans\NC \NR
+\NC cursor                     \NC type-gyr  \NC ec, qx, texnansi, t5, t2a/b/c      \NC mono\NC \NR
+\NC courier                    \NC type-gyr  \NC ec, qx, texnansi, t5, t2a/b/c      \NC mono\NC \NR
 \NC omega                      \NC type-omg  \NC -- hardcoded --                    \NC naskh, serif, mono\NC \NR
 \NC cbgreek                    \NC type-cbg  \NC -- hardcoded --                    \NC serif, sans, mono \NC \NR
 \NC cbgreek-medium             \NC type-cbg  \NC -- hardcoded --                    \NC serif, sans, mono \NC \NR
@@ -1294,11 +1304,11 @@ to be \type{default}, then the fifth argument can be omitted as well.
 
 \startbuffer[bodyfontst1buy]
 \switchtobodyfont[9pt]
-\starttabulate[|l|l|l|p|]
-\NC Identifier           \NC file      \NC Encodings           \NC Supported styles \NC \NR
-\NC lucida               \NC type-buy  \NC 8r, ec, texnansi, uc\NC serif, sans, mono, handwriting,\crlf 
-                                                                   calligraphy, math, boldmath, \crlf
-                                                                   bfmath, casual, fax \NC \NR
+\starttabulate[|l|l|l|p(4.5cm)|]
+\NC \bf Identifier       \NC \bf file  \NC \bf Encodings      \NC \bf Supported styles \NC \FR
+\NC lucida               \NC type-buy  \NC 8r, ec, texnansi   \NC serif, sans, mono, handwriting,\crlf 
+                                                                  calligraphy, math, boldmath, \crlf
+                                                                  bfmath, casual, fax \NC \NR
 \NC informal             \NC type-buy \NC -- hardcoded --     \NC casual, math\NC \NR
 \NC officina             \NC type-buy \NC 8r, ec, texnansi    \NC serif, sans\NC \NR
 \NC meta                 \NC type-buy \NC 8r, ec, texnansi    \NC serif, sans, expert \NC \NR
@@ -1388,7 +1398,7 @@ to be \type{default}, then the fifth argument can be omitted as well.
 \startbuffer[bodyfontsotffree]
 \switchtobodyfont[9pt]
 \starttabulate[|l|l|l|]
-\NC Identifier                 \NC file     \NC Supported styles \NC \NR
+\NC \bf Identifier             \NC \bf file \NC \bf Supported styles \NC \FR
 \NC modern                     \NC type-otf \NC serif, sans, mono, math, boldmath, bfmath \NC \NR 
 \NC latin-modern               \NC type-otf \NC serif, sans, mono, math, boldmath, bfmath \NC \NR 
 \NC modern-vari                \NC type-otf \NC mono \NC \NR 
@@ -1475,7 +1485,7 @@ to be \type{default}, then the fifth argument can be omitted as well.
 \switchtobodyfont[9pt]
 
 \starttabulate[|l|l|l|]
-\NC Identifier                     \NC file     \NC Supported styles \NC \NR
+\NC \bf Identifier                 \NC \bf file \NC \bf Supported styles \NC \FR
 \NC zapfino                        \NC type-hgz \NC serif, handwriting\NC \NR
 \NC optima-nova                    \NC type-hgz \NC sans\NC \NR
 \NC optima-nova-os                 \NC type-hgz \NC sans\NC \NR
@@ -1606,7 +1616,7 @@ The third argument once again is optional, and contains the actual settings
 as key-value pairs. If it is missing, defaults will be guessed at
 by \CONTEXT\ itself.
 
-\starttabulate[|l|p|]
+\starttabulate[|lT|p|]
 \NC text           \NC Math text size\NC \NR
 \NC script         \NC Math script size\NC \NR
 \NC scriptscript   \NC Math scriptscript size\NC \NR
@@ -1694,7 +1704,7 @@ as e.g. the argument to the \type{features} key of \type{\definetypeface}.
 As you can probably guess, the first argument is the symbolic name that is being
 defined. The second argument is a mix of a-hoc settings and OpenType font features.
 
-\starttabulate[|l|p|]
+\starttabulate[|lT|p|]
 \NC script              \NC An OpenType script identifier \NC \NR
 \NC language            \NC An OpenType script language identifier \NC \NR
 \NC tlig, texligatures  \NC A virtual feature for legacy (\TEX-style) automatic ligatures\NC \NR
@@ -2055,20 +2065,16 @@ such encodings, each suited for a subset of languages.
 \HL
 \NC \bf encoding \NC \bf usage \NC \bf status \NC \NR
 \HL
+\NC 8r        \NC a (strange) mixture of encodings                            \NC useless  \NC \NR
+\NC default   \NC the 7 bit \ASCII\ encoding as used by plain \TEX            \NC obsolete \NC \NR
 \NC ec        \NC the prefered encoding of \TEX\ distributions                \NC okay     \NC \NR
-\NC texnansi  \NC a combination of \TEX\ and Adobe standard encoding          \NC okay     \NC \NR
+\NC greek     \NC an encoding for modern greek                                \NC okay     \NC \NR
 \NC qx        \NC an encoding that covers most eastern european languages     \NC okay     \NC \NR
-\NC t5        \NC an encoding dedicated to vietnamese (many (double) accents) \NC okay     \NC \NR
 \NC t2a       \NC a cyrillic \TEX\ font encoding                              \NC ?        \NC \NR
 \NC t2b       \NC another cyrillic \TEX\ font encoding                        \NC ?        \NC \NR
 \NC t2c       \NC another another cyrillic \TEX\ font encoding                \NC ?        \NC \NR
-\NC x2        \NC another another another cyrillic \TEX\ font encoding        \NC ?        \NC \NR
-\NC default   \NC the 7 bit \ASCII\ encoding as used by plain \TEX            \NC obsolete \NC \NR
-\NC il2       \NC iso latin 2 encoding as needed for Czech and Slovak         \NC obsolete \NC \NR
-\NC pl0       \NC a native Polish encoding                                    \NC obsolete \NC \NR
-\NC uc        \NC a 16-bit encoding that can fake the Unicode base plane      \NC obsolete \NC \NR
-\NC 8r        \NC a (strange) mixture of encodings                            \NC useless  \NC \NR
-\NC l7x       \NC ?                                                           \NC ?        \NC \NR
+\NC t5        \NC an encoding dedicated to vietnamese (many (double) accents) \NC okay     \NC \NR
+\NC texnansi  \NC a combination of \TEX\ and Adobe standard encoding          \NC okay     \NC \NR
 \HL
 \stoptabulate
 
