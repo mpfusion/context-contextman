@@ -194,6 +194,14 @@ same set of internal commands. As we will see, the command \type {\rm}
 is used to switch to a roman|/|serif|/|regular style, and \type {\tt}
 for switching to mono spaced or typewriter style, etcetera.
 
+Text can be typeset in different font sizes. We often use the unit
+\type {pt} to specify the size. The availability of these font sizes
+are defined in definition files.  Traditionally font designers used to
+design a glyph collection for each font size, but nowadays most fonts
+have a single design size of 10 points, or small set of sizes with
+names indicating their proposed use, like {\em caption}, {\em text},
+and {\em display}.
+
 In the next sections we will go into switching of font styles and
 fonts in your documents. Be warned that the font switching mechanism
 is rather complex. This is caused by the different modes like math
@@ -201,7 +209,6 @@ mode and text mode in \CONTEXT. If you want to be understand the
 mechanism fully, you will have to acquaint yourself with the concept
 of encoding vectors and obtain some knowledge on fonts and their
 peculiarities.
-
 
 \section[bodyfont]{The mechanism}
 \index{roman}
@@ -239,14 +246,6 @@ Before reading further, please stop for a moment to make sure you
 thoroughly comprehend the above paragraphs. \CONTEXT's terminology
 probably differs from what you are accustomed to, especially if you
 were previously a \LATEX\ user.
-
-Text can be typeset in different font sizes. We often use the unit
-\type {pt} to specify the size. The availability of these font sizes
-are defined in definition files.  Traditionally font designers used to
-design a glyph collection for each font size, but nowadays most fonts
-have a single design size of 10 points, or small set of sizes with
-names indicating their proposed use, like {\em caption}, {\em text},
-and {\em display}.
 
 \section[font switching]{Font switching}
 \index{fonts}
