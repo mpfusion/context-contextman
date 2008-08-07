@@ -1654,7 +1654,166 @@ parameter conventions:
 
 \macro{\tex{definefontfeature}}
 
-\todo{fill this in}
+As we have seen already, some fonts contain extra information besides the actual glyph
+shapes. In traditional \TEX\ fonts, the extra information is roughly limited to kerning
+pairs and ligature information, and both of these \quote{features} are automatically
+applied to the text that is being typeset.  In the odd case where one of the two needs to
+be suppressed, a little bit of macro trickery can do the job without too many
+complicating factors.
+
+But with the new OpenType font format that is used by \XETEX\ and \LUATEX, the list of
+possible features is increased enormously. OpenType fonts have not just kerning
+information and ligature information, but there can also be other features like optional
+oldstyle figures, caps and smallcaps glyphs, decorative swashes, etc.  all inside a 
+single font file. 
+
+Not only that, but some of these features are not even supposed to be active all the
+time. Certain features should only be activated if the user asks for it, other features
+depend on the script and language that is in use for the text that is being typeset.
+
+This is a big step forward in that there are now far fewer fonts needed to achieve the
+same level of quality than before, all that extra font information also poses a big
+challenge for macro writers. And add to that the fact that at the core, the two engines 
+(\XETEX\ and  \LUATEX) handle OpenType fonts completely different from each other.
+
+\CONTEXT\ has a new subsystem called \quote{font features} to create order in this forest
+of features. The most important command is \type{\definefontfeature}. This command can be
+used to group various font features under a single symbolic name, that can then be used
+as e.g. the argument to the \type{features} key of \type{\definetypeface}.
+
+\showsetup{definefontfeature} % still empty
+
+\startexample
+\starttyping
+\definefontfeature
+   [default-base]
+   [script=latn,language=dflt,liga=yes,kern=yes,tlig=yes,trep=yes]
+\stoptyping
+\stopexample
+
+As you can probably guess, the first argument is the symbolic name that is being
+defined. The second argument is a mix of a-hoc settings and OpenType font features.
+
+\starttabulate[|l|p|]
+\NC script              \NC An OpenType script identifier \NC \NR
+\NC language            \NC An OpenType script language identifier \NC \NR
+\NC tlig, texligatures  \NC A virtual feature for legacy (\TEX-style) automatic ligatures\NC \NR
+\NC trep, texquotes     \NC A virtual feature for legacy (\TEX-style) automatic ligatures
+                            (only works in \MKIV)\NC \NR
+\NC mode                \NC Processing mode for \MKIV. 
+                            \type{node} and \type{base} allowed, \type{node} is default\NC \NR
+\NC <tag>               \NC Any OpenType feature tag is acceptable, but in \MKIV\
+                            only a \quote{known} subset actually has any effect, and then
+                            only in \type{node} mode. 
+                            This list is given in~\in{table}[tab:mkivfeatures].
+                            In \XETEX, processing depends on the internal subengine that
+                            is used by \XETEX, and that is outside of \CONTEXT's control. \NC \NR
+\stoptabulate
+
+A few fontfeatures are predefined by context:
+
+\starttabulate[|l|l|]
+\NC  default  \NC liga=yes,kern=yes,tlig=yes,trep=yes          \NC \NR
+\NC smallcaps \NC liga=yes,kern=yes,tlig=yes,trep=yes,smcp=yes \NC \NR
+\NC oldstyle  \NC liga=yes,kern=yes,tlig=yes,trep=yes,onum=yes \NC \NR
+\stoptabulate
+
+
+\startbuffer[mkivfeatures]
+\begingroup
+\def\*#1#2#3#4{\ctxlua{tex.sprint(tex.vrbcatcodes,fonts.otf.tables.features["#1#2#3#4"])}}
+\startsimplecolumns
+\starttabulate[|l|l|p|]
+\NC aalt\NC \*aalt\NC \NC \NR
+\NC abvm\NC \*abvm\NC \NC \NR
+\NC afrc\NC \*afrc\NC \NC \NR
+\NC akhn\NC \*akhn\NC \NC \NR
+\NC blwm\NC \*blwm\NC \NC \NR
+\NC c2pc\NC \*c2pc\NC \NC \NR
+\NC c2sc\NC \*c2sc\NC \NC \NR
+\NC calt\NC \*calt\NC \NC \NR
+\NC case\NC \*case\NC \NC \NR
+\NC ccmp\NC \*ccmp\NC \NC \NR
+\NC clig\NC \*clig\NC \NC \NR
+\NC cpsp\NC \*cpsp\NC \NC \NR
+\NC cswh\NC \*cswh\NC \NC \NR
+\NC curs\NC \*curs\NC \NC \NR
+\NC dlig\NC \*dlig\NC \NC \NR
+\NC dnom\NC \*dnom\NC \NC \NR
+\NC expt\NC \*expt\NC \NC \NR
+\NC fina\NC \*fina\NC \NC \NR
+\NC fin2\NC \*fin2\NC \NC \NR
+\NC fin3\NC \*fin3\NC \NC \NR
+\NC frac\NC \*frac\NC \NC \NR
+\NC fwid\NC \*fwid\NC \NC \NR
+\NC haln\NC \*haln\NC \NC \NR
+\NC hist\NC \*hist\NC \NC \NR
+\NC hkna\NC \*hkna\NC \NC \NR
+\NC hlig\NC \*hlig\NC \NC \NR
+\NC hngl\NC \*hngl\NC \NC \NR
+\NC hwid\NC \*hwid\NC \NC \NR
+\NC init\NC \*init\NC \NC \NR
+\NC isol\NC \*isol\NC \NC \NR
+\NC ital\NC \*ital\NC \NC \NR
+\NC jp78\NC \*jp78\NC \NC \NR
+\NC jp83\NC \*jp83\NC \NC \NR
+\NC jp90\NC \*jp90\NC \NC \NR
+\NC kern\NC \*kern\NC \NC \NR
+\NC liga\NC \*liga\NC \NC \NR
+\NC lnum\NC \*lnum\NC \NC \NR
+\NC locl\NC \*locl\NC \NC \NR
+\NC mark\NC \*mark\NC \NC \NR
+\NC medi\NC \*medi\NC \NC \NR
+\NC med2\NC \*med2\NC \NC \NR
+\NC mgrk\NC \*mgrk\NC \NC \NR
+\NC mkmk\NC \*mkmk\NC \NC \NR
+\NC nalt\NC \*nalt\NC \NC \NR
+\NC nlck\NC \*nlck\NC \NC \NR
+\NC nukt\NC \*nukt\NC \NC \NR
+\NC numr\NC \*numr\NC \NC \NR
+\NC onum\NC \*onum\NC \NC \NR
+\NC ordn\NC \*ordn\NC \NC \NR
+\NC ornm\NC \*ornm\NC \NC \NR
+\NC pnum\NC \*pnum\NC \NC \NR
+\NC pref\NC \*pref\NC \NC \NR
+\NC pres\NC \*pres\NC \NC \NR
+\NC pstf\NC \*pstf\NC \NC \NR
+\NC rlig\NC \*rlig\NC \NC \NR
+\NC rphf\NC \*rphf\NC \NC \NR
+\NC rtla\NC \*rtla\NC \NC \NR
+\NC salt\NC \*salt\NC \NC \NR
+\NC sinf\NC \*sinf\NC \NC \NR
+\NC smcp\NC \*smcp\NC \NC \NR
+\NC smpl\NC \*smpl\NC \NC \NR
+\NC ss01\NC \*ss01\NC \NC \NR
+\NC ss02\NC \*ss02\NC \NC \NR
+\NC ss03\NC \*ss03\NC \NC \NR
+\NC ss04\NC \*ss04\NC \NC \NR
+\NC ss05\NC \*ss05\NC \NC \NR
+\NC ss06\NC \*ss06\NC \NC \NR
+\NC ss07\NC \*ss07\NC \NC \NR
+\NC ss08\NC \*ss08\NC \NC \NR
+\NC ss09\NC \*ss09\NC \NC \NR
+\NC subs\NC \*subs\NC \NC \NR
+\NC sups\NC \*sups\NC \NC \NR
+\NC swsh\NC \*swsh\NC \NC \NR
+\NC titl\NC \*titl\NC \NC \NR
+\NC tnam\NC \*tnam\NC \NC \NR
+\NC tnum\NC \*tnum\NC \NC \NR
+\NC trad\NC \*trad\NC \NC \NR
+\NC unic\NC \*unic\NC \NC \NR
+\NC zero\NC \*zero\NC \NC \NR
+\stoptabulate
+\stopsimplecolumns
+\endgroup
+\stopbuffer
+
+\placetable
+  [here]
+  [tab:mkivfeatures]
+  {The OpenType features that are understood by \MKIV\ in \type{mode=node} processing mode}
+  {\getbuffer[mkivfeatures]}
+
 
 \section{Displaying the current font setup}
 
