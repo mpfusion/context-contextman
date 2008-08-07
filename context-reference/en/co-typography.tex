@@ -1557,7 +1557,6 @@ with a small magnification, this evens out the visual heights of the font styles
 
 \macro{\tex{setupbodyfontenvironment}}
 \macro{\tex{definebodyfontenvironment}}
-\macro{\tex{showbodyfontenvironment}}
 
 Earlier we have seen that within a font family there are
 different font sizes. The relations between these sizes
@@ -1587,15 +1586,6 @@ When you want to have a somewhat bigger fontsize you can type:
 \stoptyping
 \stopexample
 
-An overview of the different fontsizes within a family can be
-summoned with:
-
-\showsetup{showbodyfontenvironment}
-
-For the current family of fonts this is:
-
-\showbodyfontenvironment[palatino]
-
 For all regular fontsizes environments are predefined
 that fulfill their purpose adequately. However when you want
 to do some extra defining yourself there is:
@@ -1609,28 +1599,33 @@ And to tweak already defined sizes, there is an accompagnying setup command:
 \showsetup{setupbodyfontenvironment}
 
 
-\section[fonts]{Available alternatives}
+\section[font]{Displaying the current font setup}
 
-\fixme
-  {The definition of \type {\showbodyfont} is outdated: it only loads \type{type-pre}, 
-   which is simply always wrong. While awaiting a fix in the core, I decided it best to have
-   the manual source correct and the output wrong (if you want it the other way around, 
-   see the manual source)}
+\macro{\tex{showbodyfont}}
+\macro{\tex{showbodyfontenvironment}}
 
-With the command \type {\showbodyfont} an overview is generated of the available characters.
+With the command \type {\showbodyfont} an overview is generated of the available 
+characters, and an overview of the different fontsizes within a family can be
+summoned with \type{\showbodyfontenvironment}.
 
 \showsetup{showbodyfont}
 
-Below the 12pt||body
-font Latin Modern Roman (\type {modern}) is shown. The close
-reader will note that not all alternatives are available by
-default.
+\showsetup{showbodyfontenvironment}
 
-\showbodyfont[modern,12pt] % [cmr,12pt]
 
-Here is another overview, using the three most well known PostScript fonts:
+Specifiying actual \type{IDENTIFIER}s to these commands is currently unreliable 
+because they internally are still counting on an older system of body font 
+definitions, but you can safely use a size argument to get the information 
+for the current font set.
 
-\showbodyfont[postscript,12pt] % [pos,12pt]
+Below an example of the possible output is shown, for \type{\showbodyfont[12pt]}  
+
+\showbodyfont[12pt]
+
+And the output of \type{\showbodyfontenvironment[12pt]} is:
+
+\showbodyfontenvironment[12pt]
+
 
 \section{Math fonts}
 \index{math fonts}
