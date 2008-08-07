@@ -349,7 +349,7 @@ alternative may be used for if slanted is not available or vice versa.
   [tab:alternative switches]
   {Font alternative switching commands and their keyword equivalents.
    With \type {\os} we tell \CONTEXT\ that we prefer mediaeval or
-   old||style numbers {\os 139} over {\rm 139}.}
+   old||style numbers as in {\os 139} over~{\rm 139}.}
 {\getbuffer[alternativeswitch]}
 
 Besides these two-letter commands, there is a series of font selector
@@ -865,10 +865,12 @@ flexible command, but let's discuss simple usage first.
 A typical input sequence for selecting the predefined \quote{palatino}
 set of typefaces in \MKII\ will look like this:
 
+\startexample
 \starttyping
 \usetypescript[palatino][ec]
 \setupbodyfont[palatino,12pt]
 \stoptyping
+\stopexample
 
 In this example the typescript named \type{palatino} is asked for in
 the \type{ec} font encoding, and that defines a set of typefaces under
@@ -893,10 +895,12 @@ optional.
 
 For example,
 
+\startexample
 \starttyping
 \usetypescript[palatino]
 \setupbodyfont[palatino,12pt]
 \stoptyping
+\stopexample
 
 will make \XETEX\ and \LUATEX\ load the OpenType font Pagella. This is
 a free font from the \TeX\ Gyre project, that also looks just like the
@@ -908,10 +912,12 @@ fonts instead of the more modern OpenType or TrueType font formats.
 All predefined typescripts attach meaning to (at least) the three basic
 text font styles, so you can e.g. do this:
 
+\startexample
 \starttyping
-\usetypescript[times][texnansi]
+\usetypescript[times][ec]
 \setupbodyfont[times,sans,12pt]
 \stoptyping
+\stopexample
 
 and end up using the OpenType font \TeX\ Gyre Heros or the Type~1 font
 URW Nimbus Sans~L. Both fonts are very similar in appearance to
@@ -920,13 +926,13 @@ Linotype Helvetica, by the way.
 The typescripts that come with the \CONTEXT\ distribution are placed
 in source files that have names that start with \type{type-}. Some of
 these files are automatically loaded, but most have to be loaded
-explicitly. Here is a list
+explicitly. There is a list in~\in{table}[tab:typescript files]
 
 \startbuffer[typefiles]
 \begingroup
-%\switchtobodyfont[9pt]
+\switchtobodyfont[9pt]
 \vskip 1ex
-\starttabulate[|l|l|l|l|p|]
+\starttabulate[|l|l|l|l|l|]
 \NC \bf File   \NC \bf Loaded     \NC \bf Loaded    \NC \bf Loaded   \NC \bf Description \NC \NR
 \NC            \NC \bf by \PDFTEX \NC \bf by \XETEX \NC \bf by \MKIV \NC                 \NC \FR
 \NC type-akb   \NC no             \NC no            \NC no           \NC PostScript fonts using psnfss names (Type~1)\NC \NR
@@ -948,7 +954,11 @@ explicitly. Here is a list
 \endgroup
 \stopbuffer
 
-\getbuffer[typefiles]
+\placetable
+  [here]
+  [tab:typescript files]
+  {The typescript source files that are part of \CONTEXT.}
+  {\getbuffer[typefiles]}
 
 Explicit loading one of those files is done via the macro \type{\usetypescriptfile}.
 \macro{\tex{usetypescriptfile}}
@@ -1001,7 +1011,7 @@ Explicit loading one of those files is done via the macro \type{\usetypescriptfi
 \stopbuffer
 
 \placetable
-  [page]
+  [here]
   [tab:typescripts and typefaces]
   {The typescripts. Typescripts that use commercial fonts are typeset in bold. }
   {\getbuffer[typescripts]}
@@ -1016,11 +1026,14 @@ what font set it attaches to each of the font styles.
 \showsetup{usetypescriptfile} % empty at the moment
 
 For example, the following 
+
+\startexample
 \starttyping
 \usetypescriptfile[type-buy]
 \usetypescript[lucida][texnansi]
 \setupbodyfont[lucida,12pt]
 \stoptyping
+\stopexample
 
 will make \PDFTEX\ use the Lucida Bright font family. Because this is a commercial 
 font, this only works correctly if you have actually bought and installed the fonts. 
@@ -1055,12 +1068,15 @@ maps the same names to the commercial Adobe fonts.
 \stopitemize
 For the defintions in the second file to work, you also need to execute an extra typescript:
 
+\startexample
 \starttyping
-\usetypescriptfile[type-akb]
-\usetypescript[adobekb][ec]
-\usetypescript[palatino][ec]
+\usetypescriptfile [type-akb]
+\usetypescript [adobekb] [ec]
+
+\usetypescript [palatino] [ec]
 \setupbodyfont[palatino,12pt]
 \stoptyping
+\stopexample
 
 \subsection{Typeface definitions}
 
@@ -1069,16 +1085,18 @@ For the defintions in the second file to work, you also need to execute an extra
 
 Defining a typeface goes like this:
 
+\startexample
 \starttyping
 \starttypescript [palatino] [texnansi,ec,qx,t5,default]
 
-\definetypeface[palatino] [rm] [serif] [palatino] [default]
-\definetypeface[palatino] [ss] [sans]  [modern]   [default] [rscale=1.075]
-\definetypeface[palatino] [tt] [mono]  [modern]   [default] [rscale=1.075]
-\definetypeface[palatino] [mm] [math]  [palatino] [default]
+\definetypeface[palatino] [rm] [serif][palatino] [default]
+\definetypeface[palatino] [ss] [sans] [modern]   [default] [rscale=1.075]
+\definetypeface[palatino] [tt] [mono] [modern]   [default] [rscale=1.075]
+\definetypeface[palatino] [mm] [math] [palatino] [default]
 
 \stoptypescript
 \stoptyping
+\stopexample
 
 This defines a typescript named \type{palatino} in five different encodings.
 When this typescript is executed via \type{\usetypescript}, it will define
@@ -1577,6 +1595,7 @@ To call the typescripts, it's most convenient to define a typeface that uses the
 display name of the Regular alternative (not the family name) of the font in question.  For example, you could have the
 following mix:
 
+\startexample
 \starttyping
 \starttypescript[myface]
 \definetypeface[myface][rm][Xserif][Baskerville]   [default]
@@ -1584,6 +1603,7 @@ following mix:
 \definetypeface[myface][ss][Xsans] [Optima Regular][default]
 \stoptypescript
 \stoptyping
+\stopexample
 
 As you can see, you can activate relative scaling of face sizes. The above definitions look very much like any other typeface
 definition, except that the serif/sans/mono identifier is preceded with X, and that there is no underlying "Optima Regular" defined
@@ -1722,18 +1742,24 @@ defined. The second argument is a mix of a-hoc settings and OpenType font featur
 
 A few fontfeatures are predefined by context:
 
-\starttabulate[|l|l|]
+\startbuffer[predeffeatures]
+\vskip 1ex
+\starttabulate[|lT|lT|]
 \NC  default  \NC liga=yes,kern=yes,tlig=yes,trep=yes          \NC \NR
 \NC smallcaps \NC liga=yes,kern=yes,tlig=yes,trep=yes,smcp=yes \NC \NR
 \NC oldstyle  \NC liga=yes,kern=yes,tlig=yes,trep=yes,onum=yes \NC \NR
 \stoptabulate
+\vskip 1ex
+\stopbuffer
 
+\getbuffer[predeffeatures]
 
 \startbuffer[mkivfeatures]
 \begingroup
 \def\*#1#2#3#4{\ctxlua{tex.sprint(tex.vrbcatcodes,fonts.otf.tables.features["#1#2#3#4"])}}
 \startsimplecolumns
-\starttabulate[|l|l|p|]
+\switchtobodyfont[9pt]
+\starttabulate[|l|l|l|]
 \NC aalt\NC \*aalt\NC \NC \NR
 \NC abvm\NC \*abvm\NC \NC \NR
 \NC afrc\NC \*afrc\NC \NC \NR
