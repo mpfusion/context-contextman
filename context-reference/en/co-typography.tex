@@ -168,15 +168,15 @@ of font styles that are often found together in a single document.
 
 \vskip1ex
 \startcombination[3*3]
-  {\rmtfc\setupinterlinespace    Serif\end} {}
-  {\sstfc\setupinterlinespace     Sans\end} {}
-  {\tttfc\setupinterlinespace     Mono\end} {}
-  {\rmtfc\setupinterlinespace  Regular\end} {}
-  {\sstfc\setupinterlinespace  Support\end} {}
-  {\tttfc\setupinterlinespace TeleType\end} {}
-  {\rmtfc\setupinterlinespace    Roman\end} {}
-  {\sstfc\setupinterlinespace     Sans\end} {}
-  {\tttfc\setupinterlinespace     Type\end} {}
+  {\rmtfc\setupinterlinespace    Serif\strut \end} {}
+  {\sstfc\setupinterlinespace     Sans\strut \end} {}
+  {\tttfc\setupinterlinespace     Mono\strut \end} {}
+  {\rmtfc\setupinterlinespace  Regular\strut \end} {}
+  {\sstfc\setupinterlinespace  Support\strut \end} {}
+  {\tttfc\setupinterlinespace TeleType\strut \end} {}
+  {\rmtfc\setupinterlinespace    Roman\strut \end} {}
+  {\sstfc\setupinterlinespace     Sans\strut \end} {}
+  {\tttfc\setupinterlinespace     Type\strut \end} {}
 \stopcombination
 \vskip1ex
 
@@ -224,7 +224,7 @@ mechanism:
 \startitemize[packed]
 \item To change a {\em style} must be easy, this
       means switching to: roman (serif, regular), sans serif
-      (support), teletype (or monospaced) etc. (\type {\rm},
+      (support), teletype (monospaced) etc. (\type {\rm},
       \type {\ss}, \type {\tt} etc.)
 \item More than one {\em alternative} set of glyphs shapes must be
       available like slanted and bold (\type {\sl} and \type {\bf}).
@@ -281,12 +281,15 @@ Consistent use of commands like \type {\bf} and \type
 bold and slanted altermatives when you change the family or
 style in the setup area of your input file. 
 
+\subsection[font style switching]{Font style switching}
+
 Switching to another font style is done by one of five 
 two-letter commands that are listed in~\in{table}[tab:style switches].
 
 \startbuffer[styleswitch]
+\vskip 1ex
 \starttabulate[|l|l|]
-\NC \bf style  \NC \bf Long names and aliases    \NC\NR
+%\NC \bf style  \NC \bf Long names and aliases    \NC\NR
 \NC \type{\rm} \NC serif, regular, roman, rm     \NC\NR
 \NC \type{\ss} \NC sans, support, sansserif, ss  \NC\NR
 \NC \type{\tt} \NC mono, type, teletype, tt      \NC\NR
@@ -294,13 +297,14 @@ two-letter commands that are listed in~\in{table}[tab:style switches].
 \NC \type{\cg} \NC calligraphic, cg              \NC\NR
 \NC --         \NC mm                            \NC\NR
 \stoptabulate
+\vskip 1ex
 \stopbuffer
 
 \placetable
   [here]
   [tab:style switches]
   {Font style switching commands}
-  {\getbuffer[styleswitch]}
+{\getbuffer[styleswitch]}
 
 The \quote{handwritten} and \quote{calligraphic} font styles are
 sometimes useful when dealing with very elaborate document layout
@@ -315,49 +319,81 @@ use this style directly so there is no command attached to it, but it
 is quite important internally so it makes sense to introduce it right
 away.
 
-The alternatives within a style are given below. The abbreviation
-\type {\sl} means {\sl slanted}, \type {\it} means {\it italic} and
-\type {\bf} means {\bf boldface}.   Sometimes \type {\bs} and \type
-{\bi} are also available, meaning {\bs bold slanted} and {\bi bold
-italic}. 
+\subsection[font alternative switching]{Font alternative switching}
 
-With \type {\os} we tell \CONTEXT\ that we prefer mediaeval or
-old||style numbers {\os 139} over {\rm 139}. The \type {\sc}
-generates {\sc Small Caps}. The base font style (upright) 
-is selected by the command \type {\tf}.
-
+The alternatives within a style are given in~\in{table}[tab:alternative switches]. 
 Not all fonts have both italic and slanted or the bold alternatives of
 each. Some other fonts do not have small caps or only one set of
 digits.  When an alternative is not known, \CONTEXT\ will attempt to
 choose a suitable replacement automatically. For instance, the italic
 alternative may be used for if slanted is not available or vice versa.
 
-\startexample
-\starttyping
-\bf \sl \it \bs \bi \sc \os \tf
-\stoptyping
-\stopexample
+
+\startbuffer[alternativeswitch]
+\vskip 1ex
+\starttabulate[|l|l|]
+\NC \type{\bf} \NC bold                          \NC\NR
+\NC \type{\sl} \NC slanted                       \NC\NR
+\NC \type{\it} \NC italic                        \NC\NR
+\NC \type{\bs} \NC boldslanted, slantedbold      \NC\NR
+\NC \type{\bi} \NC bolditalic, italicbold        \NC\NR
+\NC \type{\sc} \NC smallcaps                     \NC\NR
+\NC \type{\os} \NC mediaeval                     \NC\NR
+\NC \type{\tf} \NC normal                        \NC\NR
+\stoptabulate
+\vskip 1ex
+\stopbuffer
+
+\placetable
+  [here]
+  [tab:alternative switches]
+  {Font alternative switching commands and their keyword equivalents.
+   With \type {\os} we tell \CONTEXT\ that we prefer mediaeval or
+   old||style numbers {\os 139} over {\rm 139}.}
+{\getbuffer[alternativeswitch]}
 
 Besides these two-letter commands, there is a series of font selector
 commands with a suffix attached. Some examples of that are:
 
 \startexample
 \starttyping
-\tfa \tfb \tfc \tfd
-\tfx \bfx \slx \itx \tfxx
+\tfx \bfx \slx \itx
+\tfa \tfb \tfc \tfd \tfxx
 \stoptyping
 \stopexample
 
 Each of the ordered alphabetic suffixes \type{a}, \type{b}, \dots\
 select a somewhat larger actual font than the previous one. The
-\type{x} and \type{xx} suffixes select a smaller version.
+\type{x} and \type{xx} suffixes select smaller and yet smaller 
+versions.
 
-It depends on the completeness of the font definition files whether
-all alternatives like \type {\ita}, \type {\bfx}, \type {\bfa}, etc.
+
+\startbuffer[xalternativeswitch]
+\vskip 1ex
+\starttabulate[|l|l|]
+\NC \type{\bfx} \NC smallbold                           \NC\NR
+\NC \type{\slx} \NC smallslanted                        \NC\NR
+\NC \type{\itx} \NC smallitalic                         \NC\NR
+\NC \type{\bsx} \NC smallboldslanted, smallslantedbold  \NC\NR
+\NC \type{\bix} \NC smallbolditalic, smallitalicbold    \NC\NR
+\NC \type{\tfx} \NC small, smallnormal                  \NC\NR
+\stoptabulate
+\vskip 1ex
+\stopbuffer
+
+\placetable
+  [here]
+  [tab:small alternative switches]
+  {Small alternative switching commands and their keyword equivalents.}
+{\getbuffer[xalternativeswitch]}
+
+Besides the \quote{small} switches that are mentioned 
+in~\in{table}[tab:small alternative switches],
+it depends on the completeness of the font definition files whether
+commands like \type {\ita}, \type {\bfxx}, \type {\bfc}, etc.
 are available. For the core \CONTEXT\ fonts, you can count on at least
-\type{\tfa}, \type{\tfb}, \type{\tfc}, \type{\tfd}, \type{\tfx}, 
-and \type{\tfxx} being defined. For the others, just try and see what
-happens.
+\type{\tfa}, \type{\tfb}, \type{\tfc}, \type{\tfd}, and \type{\tfxx} 
+being defined. For the others, just try and see what happens.
 
 When you have chosen a larger charactersize,
 for example \type {\tfb}, then \type {\tf} equals \type {\tfb},
@@ -365,11 +401,12 @@ for example \type {\tfb}, then \type {\tf} equals \type {\tfb},
 preferable over returning to the original character size, but it 
 may catch you off-guard.
 
-A more generic downscaling command is also available:
+More generic font scaling commands are also available:
 
 \startexample
 \starttyping
 \tx \txx
+\setsmallbodyfont \setbigbodyfont
 \stoptyping
 \stopexample
 
@@ -378,6 +415,9 @@ alternative. This command is rather handy when one wants to write
 macros that act like a chameleon. Going one more step smaller, is
 possible too: \type {\txx}. Using \type {\tx} when \type {\tx} is
 already given, is equivalent to \type {\txx}.
+
+The commands \type{\setsmallbodyfont} and \type{\setbigbodyfont} behave similar to 
+\type{\switchtobodyfont[small]} and \type{\switchtobodyfont[big]}.
 
 The various commands will adapt themselves to the actual
 setup of font and size. For example:
@@ -411,20 +451,18 @@ certain what font you want to use, you can perform fast font
 switches with: \type {\rmsl}, \type {\ssbf}, \type {\tttf},
 etc.
 
-\todo{The next par may need more explaining }
+For completeness only: the plain \TeX\ compatible font switches 
+\type {\vi}, \type {\vii}, \type {\viii}, \type {\ix}, \type {\x}, and 
+\type {\xii} are also defined, these have local effects 
+like \type{\tfx} and \type{\tfa}. Use of these commands is deprecated.
 
-Note: the plain \TeX\ compatible font switches \type {\vi}, \type
-{\vii}, \type {\viii}, \type {\ix}, \type {\x},
-and \type {\xii} are also still defined, these have local effects
-like \type{\tfx} and \type{\tfa}. 
+\subsection{Switching font styles in setup commands}
 
-\section[character]{Characters}
-\index{\type{character}}
-
-A number of commands use the parameter \type {style} to set
-up the font style and size. You can use commands like
-\type {\sl} or \type {\rma} or keywords like:
-
+A number of \CONTEXT\ commands use the parameter \type {style} to set
+the used font.  The parameter mechanism is rather flexible so that 
+within the parameter \type {style} you can use any of the font switching 
+commands like {\bf} or \type {bf} or \type{\switchtobodyfont}, 
+but also a number of keywords like
 \startexample
 \starttyping
 normal  bold  slanted  boldslanted  italic  bolditalic  type
@@ -433,13 +471,33 @@ capital
 \stoptyping
 \stopexample
 
-The parameter mechanism is rather flexible so with the
-parameter \type {style} you can type \type {bold} and \type
-{\bf} or \type {bf}. Even the most low level kind of font
-switching commands like \type {12ptrmbf} are permitted. This
-is fast but requires some insight in macros behind this
-mechanism.
+Most of these keywords have alread been listed in the tables \in{}[tab:alternative switches]
+and \in{} [tab:small alternative switches], but a few predefined ones are still missing. 
+These are displayed in~\in{table}[tab:last alternative switches], together with the commands
+they execute. As is normal in \CONTEXT, you can extend the list of accepted keywords by 
+defining your own. This will be  explained in\in~{section}[sec:definealternativestyle] 
+in the next chapter.
 
+\startbuffer[lastalternativeswitch]
+\vskip 1ex
+\starttabulate[|l|l|]
+\NC \type{\tt}               \NC type, mono      \NC\NR
+\NC \type{\ttx}              \NC smalltype       \NC\NR
+\NC \type{\ss}               \NC sans, sansserif \NC\NR
+\NC \type{\ss\bf}            \NC sansbold        \NC\NR
+\NC \type{\setsmallbodyfont} \NC smallbodyfont   \NC\NR
+\NC \type{\setbigbodyfont}   \NC bigbodyfont     \NC\NR
+\NC \type{\smallcapped}      \NC cap, capital    \NC\NR
+\NC \type{\WORD}             \NC WORD            \NC\NR
+\stoptabulate
+\vskip 1ex
+\stopbuffer
+
+\placetable
+  [here]
+  [tab:last alternative switches]
+  {Remaining font alternative keywords.}
+{\getbuffer[lastalternativeswitch]}
 
 \section[emphasize]{Emphasize}
 \index{emphasize}
@@ -505,6 +563,7 @@ it is set at {\em italic}. The setting is made by:
 \macro{\tex{CAP}}
 \macro{\tex{Cap}}
 \macro{\tex{cap}}
+\macro{\tex{smallcapped}}
 \macro{\tex{nocap}}
 \macro{\tex{Caps}}
 \macro{\tex{Words}}
@@ -518,10 +577,10 @@ small and big characters are converted into capitals. When
 of an \type {\tx}. When we switch to slanted (\type {\sl}),
 bold (\type {\bf}), etc. the capital letter will also
 change. Since \type {\cap} has a specific meaning in math
-mode, the format implementation is called \type {\cap}.
+mode, the formal implementation is called \type {\smallcapped}.
 However in text mode one can use \type {\cap}.
 
-\showsetup{kap}
+\showsetup{cap}
 
 \showsetup{Cap}
 
@@ -603,10 +662,10 @@ available the real small caps \type {\sc} are preferred over
 the pseudo||capital in abbreviations and logos.
 
 \startbuffer
-In a manual on \TeX\ and Con\TeX t  there is always the question whether to
-type \cap{\TeX} and \cap{Con\TeX t} or {\sc \TeX} and {\sc Con\TeX t}. Both
-are defined as a logo in the style definition so we type \type {\TEX} and
-\type {\CONTEXT}, which come out as \TEX\ and \CONTEXT.
+In a manual on \TeX\ and Con\TeX t  there is always the question whether 
+to type \cap{\TeX} and \cap{Con\TeX t} or {\sc \TeX} and {\sc Con\TeX t}. 
+Both are defined as a logo in the style definition so we type \type {\TEX} 
+and \type {\CONTEXT}, which come out as \TEX\ and \CONTEXT.
 \stopbuffer
 
 \startexample
