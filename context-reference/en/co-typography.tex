@@ -948,7 +948,7 @@ Explicit loading one of those files is done via the macro \type{\usetypescriptfi
 \startbuffer[typescripts]
 \begingroup
 \switchtobodyfont[9pt]
-\def\*#1{{\color[darkred]#1}}
+\def\*#1{{\bf#1}}
 \starttabulate[|l|l|l|l|]
 \NC \bf Typescript        \NC \bf Typeface      \NC \bf File           \NC \bf Encodings                           \NC \FR
 \NC OmegaArab             \NC omarb             \NC type-omg           \NC (unspecified)                           \NC \NR
@@ -993,7 +993,7 @@ Explicit loading one of those files is done via the macro \type{\usetypescriptfi
 \placetable
   [here]
   [tab:typescripts and typefaces]
-  {The typescripts. Typescripts that use commercial fonts are marked red. }
+  {The typescripts. Typescripts that use commercial fonts are typeset in bold. }
   {\getbuffer[typescripts]}
 
 The predefined typescripts, the typefaces they define, the files
@@ -1034,12 +1034,16 @@ for the \type{palatino} typescript that is in the \type{type-gyr} file overwrite
 preloaded definition from the \type{type-one} file.
 
 Two of the files in the \CONTEXT\ distribution exist precisely for this reason: 
-\startitemize
-\sym {\type{type-gyr.tex}} maps the typical PostScript font names for the free URW fonts 
+\startitemize[packed]
+\sym {\type{type-gyr.tex}} 
+
+maps the typical PostScript font names for the free URW fonts 
 to the \TeX\ Gyre set;
-\sym {\type{type-akb.tex}} maps the same names to the commercial Adobe fonts. 
+\sym {\type{type-akb.tex}} 
+
+maps the same names to the commercial Adobe fonts. 
 \stopitemize
-For the second one, you also need to load an extra typescript:
+For the defintions in the second file to work, you also need to execute an extra typescript:
 
 \starttyping
 \usetypescriptfile[type-akb]
@@ -1057,10 +1061,12 @@ Defining a typeface goes like this:
 
 \starttyping
 \starttypescript [palatino] [texnansi,ec,qx,t5,default]
-  \definetypeface [palatino] [rm] [serif] [palatino] [default]
-  \definetypeface [palatino] [ss] [sans]  [modern]   [default] [rscale=1.075]
-  \definetypeface [palatino] [tt] [mono]  [modern]   [default] [rscale=1.075]
-  \definetypeface [palatino] [mm] [math]  [palatino] [default]
+
+\definetypeface[palatino] [rm] [serif] [palatino] [default]
+\definetypeface[palatino] [ss] [sans]  [modern]   [default] [rscale=1.075]
+\definetypeface[palatino] [tt] [mono]  [modern]   [default] [rscale=1.075]
+\definetypeface[palatino] [mm] [math]  [palatino] [default]
+
 \stoptypescript
 \stoptyping
 
@@ -1086,6 +1092,7 @@ identical to the official style keywords, just as the typescript and typeface na
 the same, but there can be (and are) different names altogether.
 
 \startbuffer[simpletypescripts]
+\vskip 1ex
 \begingroup
 \switchtobodyfont[9pt]
 \starttabulate[|l||l|l|l|l|]
@@ -1125,6 +1132,7 @@ the same, but there can be (and are) different names altogether.
 \NC times             \NC times               \NC helvetica            \NC modern             \NC times             \NC \NR
 \stoptabulate
 \endgroup
+\vskip 1ex
 \stopbuffer
 
 \placetable
@@ -1146,9 +1154,39 @@ these are all listed in the four tables~\in{}[tab:body font names 1],
 and \in{}[tab:body font names 4]. 
 
 For everything to work properly in \MKII, the predefined font sets also have to have an
-encoding attached, so you can see that in the table as well. 
+encoding attached, you can look those up in the relevant tables as well. 
+
+The fifth argument to \type{\definetypeface} specifies specific font size setups (if any), 
+these will be covered in~\in{section}[typefacesizes] in the next chapter. Almost always,
+specifying \type{default} will suffice.
+
+The optional sixth argument is used for tweaking font settings like the specification of
+font features or adjusting parameters. In this case, the two \type{modern} font sets are
+loaded with a small magnification, this evens out the visual heights of the font styles.
+
+\startbuffer
+\vskip 1ex
+\starttabulate[|l|l|p|]
+\NC \bf key \NC \bf default value        \NC explanation                             \NC \FR
+\NC rscale   \NC 1                       \NC a scaling factor for this typescript
+                                             relative to the selected body font size \NC \NR
+\NC encoding \NC \type{\defaultencoding} \NC the encoding for the typeface, normally
+                                             inherited from the typescript
+                                             automatically                           \NC \NR
+\NC features \NC                         \NC this applies a predefined font feature set 
+                                             (see~\in{section}[sec:font features])   \NC \NR
+\NC text     \NC                         \NC sets up the forced math text style      \NC \NR
+\stoptabulate 
+\vskip 1ex
+\stopbuffer
 
 
+There are four possible keys in the sixth argument:
+
+\getbuffer
+
+A note for the lazy: if the sixth argument is not given and the fifth argument happens
+to be \type{default}, then the fifth argument can be omitted as well.
 
 \startbuffer[bodyfontst1free]
 \switchtobodyfont[9pt]
@@ -1510,8 +1548,6 @@ encoding attached, so you can see that in the table as well.
   {\getbuffer[bodyfontsotffree]}
 
 
-\doflushfloats
-
 \placetable
   [here]
   [tab:body font names 4]
@@ -1543,16 +1579,6 @@ As you can see, you can activate relative scaling of face sizes. The above defin
 definition, except that the serif/sans/mono identifier is preceded with X, and that there is no underlying "Optima Regular" defined
 anywhere. Those missing bits of the definitions are handled by typescript and \XETEX\ magic.
 
-The fifth argument to \type{\definetypeface} specifies specific font size setups (if any), 
-these will be covered in~\in{section}[typefacesizes] in the next chapter. The sixth and
-optional argument is used for tweaking font settings like the specification of font features 
-or adjusting parameters. In this case, the two \type{modern} font sets are loaded 
-with a small magnification, this evens out the visual heights of the font styles.
-
-\todo{Document the sixth argument to \type{\definetypeface}}
-
-\todo{Explain that \type{\definetypeface} can also come in a four- and even three-arugment form.}
-
 \subsection[sec:body font environment]{Body font environments}
 
 \macro{\tex{setupbodyfontenvironment}}
@@ -1560,24 +1586,40 @@ with a small magnification, this evens out the visual heights of the font styles
 
 Earlier we have seen that within a font family there are
 different font sizes. The relations between these sizes
-are defined with commands like this:
+are defined by {\em body font environments}.
 
-\startexample
-\setuptyping[option=commands]
-\starttyping
-\definebodyfontenvironment
-  [12pt]
-  [        text=12pt,    <</Roman Math dimensions: normal dimensions,>>
-         script=9pt,     <</Roman super- and subscripts and>>
-   scriptscript=7pt,     <</Roman supersuper- and subsubscripts.>>
-              x=10pt,    <</Roman Pseudo caps and >>
-             xx=8pt,     <</Roman nested pseudo caps.>>
-            big=12pt,    <</Roman In case we switch to/tt big>>
-          small=10pt]    <</Roman or/tt small.>>
-\stoptyping
-\stopexample
+For all regular font sizes, environments are predefined
+that fulfill their purpose adequately. However when you want
+to do some extra defining yourself there is:
 
-When you want to have a somewhat bigger fontsize you can type:
+\showsetup{definebodyfontenvironment}
+
+
+The first argument is optional, and specifier the typeface identifier 
+that this particular body font environment setup is for.
+It defaults to the current typeface.
+
+The second argument is the size of the body font environment that is being defined.  This
+argument is not really optional, the macro syntax description is a little misleading.
+
+The third argument once again is optional, and contains the actual settings
+as key-value pairs. If it is missing, defaults will be guessed at
+by \CONTEXT\ itself.
+
+\starttabulate[|l|p|]
+\NC text           \NC Math text size\NC \NR
+\NC script         \NC Math script size\NC \NR
+\NC scriptscript   \NC Math scriptscript size\NC \NR
+\NC x              \NC The size used for the \type{\tfx} etc. commands\NC \NR
+\NC xx             \NC The size used for the \type{\tfxx} command\NC \NR
+\NC big            \NC The \quote{larger} font size\NC \NR
+\NC small          \NC The \quote{smaller} font size\NC \NR
+\NC interlinespace \NC Distance between lines in a paragraph, can be ignored
+                       because a reasonable default is always set up\NC \NR
+\stoptabulate 
+
+So, when you want to have a somewhat bigger fontsize for 
+just a few words (e.g. for a book title) you can type:
 
 \startexample
 \starttyping
@@ -1586,20 +1628,35 @@ When you want to have a somewhat bigger fontsize you can type:
 \stoptyping
 \stopexample
 
-For all regular fontsizes environments are predefined
-that fulfill their purpose adequately. However when you want
-to do some extra defining yourself there is:
+but longer stretches of text, you will need to set up most of the values, using 
+something like this 
 
-\todo{describe the arguments, and make sure they are all mentioned}
+\startexample
+\starttyping
+\definebodyfontenvironment
+  [22pt]
+  [        text=22pt,
+         script=17.3pt,
+   scriptscript=14.4pt,
+              x=17.3pt,
+             xx=14.4pt,
+            big=28pt,
+          small=17.3pt]
+\stoptyping
+\stopexample
 
-\showsetup{definebodyfontenvironment}
-
-And to tweak already defined sizes, there is an accompagnying setup command:
+To tweak already defined sizes, there is an accompagnying setup command with the same
+parameter conventions:
 
 \showsetup{setupbodyfontenvironment}
 
+\section[sec:font features]{Font feature sets}
 
-\section[font]{Displaying the current font setup}
+\macro{\tex{definefontfeature}}
+
+\todo{fill this in}
+
+\section{Displaying the current font setup}
 
 \macro{\tex{showbodyfont}}
 \macro{\tex{showbodyfontenvironment}}
