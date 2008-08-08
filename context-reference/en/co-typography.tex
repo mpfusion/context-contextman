@@ -3,6 +3,8 @@
 \environment contextref-env
 \product contextref
 
+\definefontfeature[default][default][protrusion=pure,expansion=quality,mode=node,script=latn]
+
 \def\definition#1{{\it #1}}
 
 \def\FakeLine#1%
@@ -35,8 +37,11 @@
 
 % this chapter needs lots of typescripts
 
-\usetypescript[map,sans,mono,handwriting,calligraphy,serif]
-              [helvetica,schoolbook,times,antykwa-torunska,modern]
+\usetypescript
+   [map,sans,mono,handwriting,calligraphy,serif]
+   [helvetica,schoolbook,times,antykwa-torunska,modern]
+
+\usetypescript[modern]
 
 
 \chapter[typography]{Typography}
@@ -1968,7 +1973,12 @@ As you can probably guess, the first argument is the symbolic name that is being
 defined. The second argument is a mix of a-hoc settings and OpenType font features.
 
 \starttabulate[|lT|p|]
-\NC compose   \NC Use fallback composition in \MKIV \NC \NR
+\NC compose   \NC Use fallback composition in \MKIV\ 
+                  (see~\in{section}[sec:font fallbacks]) \NC \NR
+\NC protrusion\NC Character protrusion in \MKIV\
+                  (see~\in{section}[sec:font handling]) \NC \NR
+\NC expansion \NC Character expansion in \MKIV\
+                  (see~\in{section}[sec:font handling]) \NC \NR
 \NC script    \NC An OpenType script identifier \NC \NR
 \NC language  \NC An OpenType script language identifier \NC \NR
 \NC tlig      \NC A virtual feature for legacy (\TEX-style) automatic ligatures 
@@ -2296,14 +2306,66 @@ lowercase~x.
   {\getbuffer[em-ex-2]}
 
 
-\section {Font handling}
+\section [sec:font handling]{Font handling}
 
-In the following fake paragraph, you can see a hyphenation
-point, a secondary sentence, separated by a comma, and a
-last sentence, ending with a period. Miraculously, this
-paragraph fits into lines. Although exaggerated, these lines
-demonstrate that visually the hyphen and punctuation
-characters make the margin look ragged.
+
+Almost all users of typesetting systems based on \TEX\ do so because
+of the quality of the output it produces. \PDFTEX\ (and through
+inheritance \LUATEX\ as well) contains a few extensions to the
+typesetting engine that make the output even better than the results
+achieved by Knuth's original \TEX.  Although the extensiosn are made
+available by \PDFTEX, they are not limited to the \PDF\ output, they
+will work with the \DVI\ backend just as well. And when the
+extensions are defined but not enabled, then the typeset output is
+100\% identical to when the feature is not present at all.
+
+Before we go into the details of the actual extensions, let's see
+what is provided by \CONTEXT\ as the user||level interface.  The
+\CONTEXT\ interface to those new features is through a subsystem
+called \quote{font handling}, and at the top that subsystem is
+seamlessly integrated into the normal alignment macros.
+
+For example, assuming the system is set up already to support
+protrusion, you can simply say
+
+\startexample
+\starttyping
+\setupalign[hanging]
+\stoptyping
+\stopexample
+
+to turn protrusion on. However, this will only work correctly if a
+number of special setups have taken place internally. The command
+\type{\setupalign} only toggles a switch, and the required setups
+have to be done elsewhere. 
+
+The list of font handling||related keys for \type{\setupalign} is:
+
+\starttabulate[|l|l|]
+\NC hanging    \NC turns on character protrusion (see the next section)\NC \NR
+\NC nohanging  \NC turns off character protrusion\NC \NR
+\NC hz         \NC turns on font expansion (see~\in{section}[sec:hz])\NC \NR
+\NC nohz       \NC turns off font expansion \NC \NR
+\NC spacing    \NC turns on special spacing rules (see~\in{section}[sec:otherhandling])\NC \NR
+\NC nospacing  \NC turns off special spacing\NC \NR
+\stoptabulate
+
+Now, let's move on to how to set up the system for font handling
+properly. The underlying features of \PDFTEX\ can not {\em just\/} be
+turned on or off, it is possible to tweak the machinery on the font
+as well as on the individual glyph level. You can define those
+settings all on your own, but \CONTEXT\ comes with a handy set of
+predefined values.
+
+
+\subsection [sec:protrusion]{Character protrusion}
+
+
+In the following fake paragraph, you can see a hyphenation point, a
+secondary sentence, separated by a comma, and a last sentence, ending
+with a period. Miraculously, this paragraph fits into lines. Although
+exaggerated, these lines demonstrate that visually the hyphen and
+punctuation characters make the margin look ragged.
 
 \FakeParagraph\hbox\relax
 
@@ -2323,26 +2385,17 @@ right. In such cases, we need to compromise.
 
 \FakeParagraph{\hbox to .2ex}\rlap
 
-\PDFTEX\ (and \LUATEX\ inherits this feature) has provisions 
-to move characters into the margin 
-when they end up at the end of a line. Such characters are
-called protruding characters. \PDFTEX\ takes protruding
-into account when breaking a paragraph. 
-%\footnote {One can
-%also protrude characters without interference with the
-%breaking routines, but since we consider this less good,
-%\CONTEXT\ simply does not support it.}
+\PDFTEX\ (and \LUATEX, that has inherited this feature) has provisions 
+to move characters into the margin when they end up at the end of a
+line. Such characters are called protruding characters. \PDFTEX\
+takes protruding into account when breaking a paragraph.
 
-We demonstrate protruding using a quote from Hermann Zapf's
+We will demonstrate protruding using a quote from Hermann Zapf's
 article \quotation {About micro||typography and the {\sl
 hz}||program} in Electronic Publishing, vol~6~(3), 1993.
 
-%\bgroup
-%\switchtobodyfont[modern,9pt] \noindent \input zapf \par
-%\egroup
-
 \startnarrower
-\switchtobodyfont[modern,9pt] 
+\switchtobodyfont[9pt] 
 \typefile{zapf}
 \stopnarrower
 
@@ -2382,19 +2435,19 @@ is occupied by boxes, glue and penalties, or in more common
 language: (parts of) words, stretchable white space, and more
 or less preferred breakpoints.
 
-
-\fixme{either there is no protrusion in \MKIV\ yet and these examples 
-have to changed into external figures, or \MKIV\ uses a different
-syntax that I do not know}
-
 \blank
+
+%TH Source note:
+% I left the \setupfontsynonyms in because they are 
+% needed in mkii mode.
 
 \bgroup
 \def\postprocesscolumnbox#1{\hbox{\AltColor\ruledhbox{\black\box#1}}}
 \startcolumns[n=3]
-\setupfontsynonym [Serif] [handling=normal] % [pure]
+\setupfontsynonym [Serif] [handling=normal] 
+\switchtobodyfont[modern,9pt] 
 \setupalign[verytolerant,stretch,hanging]
-\switchtobodyfont[modern,9pt] \noindent \input zapf \par
+\noindent \input zapf \par
 \stopcolumns
 \egroup
 
@@ -2417,7 +2470,7 @@ examples we will stick to two columns.
 
 \blank
 
-In this first example we just typeset the text in the
+In this first example the text was typeset in the
 traditional way. The hyphens and punctuation fit into the
 margin.
 
@@ -2431,7 +2484,7 @@ margin.
 
 \blank
 
-In this example, the protruding machinery is put to labour.
+In this example, the protruding machinery is put to work.
 The hyphens and punctuation may now stick into the margin
 completely. The next two examples shows what happens when we
 limit the protruding to 75\% and 50\% respectively.
@@ -2456,24 +2509,19 @@ limit the protruding to 75\% and 50\% respectively.
 
 \blank
 
-Although available in \PDFTEX, this feature is not limited
-to \PDF\ output. If this may comfort you: when protruding
-is not enabled the output is 100\% identical.
+Also because of this tight connection with the font itself, the
+method of setting up the support at the font level is a little
+different between \PDFTEX\ and \MKIV.
 
-
-\fixme{In \CONTEXT\ \MKIV, font handling is merged with font features,
-so the rest of this section seems to only apply to \PDFTEX}
-
-Since protruding is related to the shape of the font, in
-\PDFTEX\ setting it up takes place in a similar way as encoding, like so:
+IN \PDFTEX, setting up the \type{handling} takes place in a similar 
+way as encoding, like so:
 
 \starttyping
 \definefontsynonym
   [myfont] [Serif] [handling=pure]
 \stoptyping
 
-We can also specify a handler at a higher level of
-abstraction:
+But you can also specify a handler at a higher level of abstraction:
 
 \starttyping
 \setupfontsynonym [Lucida-Bright] [handling=pure]
@@ -2485,28 +2533,107 @@ Or even:
 \setupfontsynonym [Serif] [handling=pure]
 \stoptyping
 
+In \MKIV, font handling is merged with font the features (because
+these already have a low-level connection to the font), so you can
+set up the font-side of things with the sixth argument 
+of \type{\definetypeface}, or by redefining the feature set 
+that is used by the typescript you are using and then (re-)executing 
+the typescript, like so:
 
-The values that \THANH\ mentions in his thesis, are
-available under the names \type {punctuation} and \type
-{alpha}:
+\startexample
+\starttyping
+\definefontfeature
+    [default] [default]
+    [protrusion=pure,mode=node,script=latn]
+\usetypescript[modern]
+\stoptyping
+\stopexample
 
-\starttabulate[|lT|l|]
+So far we have used so-called \type{pure} protrusion, this extends
+the punctuation and hyphenation characters into the margin completely.
+The settings that \THANH\ mentions in his thesis for protrusion are
+available under the names \type {punctuation} and \type {alpha}:
+
+\starttabulate[|lT|p|]
 \HL
 \NC \rm\bf vector \NC \bf protruding character set \NC \NR
 \HL
-\NC punctuation \NC hyphenation and punctuation characters \NC \NR
+\NC punctuation \NC hyphenation and punctuation characters, but using
+                    a more subtle approach than \type{pure} 
+                    (characters stick out by specific percentages)\NC \NR
 \NC alpha       \NC the latin alphabet characters          \NC \NR
 \NC extended    \NC the other characters                   \NC \NR
 \HL
 \stoptabulate
 
-The \type {extended} category maps the special characters onto the
+The \type {extended} category maps the special (latin) characters onto the
 base 26 ones, and thereby honors the font encoding vector. This
 mapping vector can be used to enhance other handling vectors with
 support for accented characters (in most cases \aacute, \agrave,
 etc.\ need a treatment similar to~a).
 
-The default punctuation vector looks like this:
+\todo{this is vague}
+
+Font protruding is turned off automatically in some particular
+situations, more control over that will be added eventually. 
+
+\subsection [sec:hz]{Font expansion}
+
+In typesetting the two characters hz are tightly connected to Hermann
+Zapf and the next couple of pages we will discuss a method for
+optimizing the look and feel of a paragraph using a mechanism that is
+inspired on his work. Although official qualified in \PDFTEX\ as
+font adjusting, we will use the short qualification hz since this is
+how it is called in the \PDFTEX\ community.
+
+First, here is again the same example text that was used in the
+previous section, typeset using normal \TEX||comptibale font settings:
+
+\startcolumns[n=2]
+\setupalign[verytolerant,stretch]
+\switchtobodyfont[modern,9pt] \noindent \input zapf \par
+\stopcolumns
+
+The Example below shows hz in action. This paragraph is typeset with
+hz enabled and has a more even spacing than the text above.
+
+\startcolumns[n=2]
+\setupfontsynonym [Serif] [handling=hz]
+\setupfonthandling [hz] [min=50,max=50,step=10]
+\setupalign[normal,hz]
+\switchtobodyfont[modern,9pt] \noindent \input zapf \par
+\stopcolumns
+
+The average reader will not notice the trick, but those sensitive to
+character shapes will see that some glyphs are widened slightly and
+others are narrowed slightly.  Ideally the programs that built the
+glyph should be defined in such a way that this goes unnoticed, but
+in practice glyph programs are not that clever and so a brute force
+horizontal scaling is applied. As long as the used percentage is
+small, the distortion will go unnoticed and the paragraph will look
+slightly better because the whitespace distribution is more even.
+
+
+\subsection [sec:otherhandling]{Other font handlings}
+
+In addition to the two handlings documented in the previous
+pararaphs (protruding and hz), \CONTEXT\ also provides the \type
+{noligs} handling (handy when one processes \XML), \type
+{flexspacing} and \type {prespacing} (meant for languages like French
+that need spacing around for instance \type {:} and~\type {;}). These
+handlings are somewhat experimental.
+
+
+\subsection {Defining font handlings}
+
+\macro{\tex{startfonthandling}}
+\macro{\tex{definefonthandling}}
+\macro{\tex{usefonthandling}}
+\macro{\tex{defineprotrudefactor}}
+\macro{\tex{inheritprotrudefactor}}
+
+At the lowest level, the font handling definitions look like this 
+(here showing the default \type{punctuation} handling):
 
 \starttyping
 \startfonthandling[punctuation]
@@ -2518,7 +2645,7 @@ The default punctuation vector looks like this:
 \stopfonthandling
 \stoptyping
 
-Equaly valid are definitions like:
+Equally valid are definitions like:
 
 \starttyping
 \defineprotrudefactor hyphen 0 .7
@@ -2537,42 +2664,33 @@ values from their parents.
 \inheritprotrudefactor Acircumflex A
 \stoptyping
 
-Instead of using numbers (like the 700 in the previous
-definition), we use fractions, one for the left and one for the
-right shift. There are a few more vectors defined, like \type
-{defalph} for characters, where we only apply very small shifts.
+The two fractional arguments are a proportion of the width of the
+glyph, one for the left shift and one for the right shift. There are
+a few more vectors defined, like \type {defalph} for characters,
+where only very small shifts are applied.
 
-A combination of such vectors is packaged in a font handler
-using the following command:
+A combination of such vectors is then packaged to become a font 
+handler using the following command:
 
 \starttyping
 \definefonthandling [normal] [punctuation,alpha]
 \stoptyping
 
-These definitions depend on the encoding, they are
-loaded with the \type {\usehandling} command. You can for
-instance load the default definitions with: :
+and such definitions are then loaded with the \type {\usehandling}
+command. You could for instance load the default definitions with:
 
 \starttyping
 \usehandling[def]
 \stoptyping
 
-Since this vector is already preloaded in \CONTEXT, you
-normally don't have to provide this command.
+But since this handling vector is already preloaded in \CONTEXT\
+(just like all the others that were mentioned so far), you
+normally don't have to provide this command yourself.
 
-In \CONTEXT\ we have integrated protruding characters
-(hanging punctuation) into the normal alignment macros.
-
-\starttyping
-\setupalign[hanging]
-\stoptyping
-
-Font protruding is turned off automatically in controlled
-situations, and more control will be added in due time. We
-already mentioned that the amount of protruding depends on
-the shape, which is why we may need different values for
-slanted and bold shapes. One way of using the same vector for
-different shapes, is changing the strength of the protruding:
+As already mentioned, the amount of protruding depends on the shape,
+which is why different values may be needed for slanted or bold
+shapes. One way of using the same vector for different shapes, is
+changing the strength of the protruding:
 
 \starttyping
 \definefonthandling [slanted] [punctuation] [right=1.5]
@@ -2580,28 +2698,8 @@ different shapes, is changing the strength of the protruding:
 
 Here, because a slanted glyph already sticks into the
 margin, we limit protruding to punctuation. You may expect
-more (probably incompatible) fine tuning in the future. For
-the moment, when you want to play safe, the most simple way
-to enable hanging punctuation is to use the predefined
-typescript:
+more (probably incompatible) fine tuning in the future. 
 
-\starttyping
-\usetypescript [serif,sans,mono] [hanging] [pure]
-\setupalign[hanging]
-\stoptyping
-
-or even:
-
-\starttyping
-\setupfontsynonym [handling=pure] \setupalign[hanging]
-\stoptyping
-
-In addition to these two handlings (hz and protruding) \CONTEXT\
-also provides the \type {noligs} handling (handy when one
-processes \XML), \type {flexspacing} and \type {prespacing}
-(meant for languages like French that need spacing around for
-instance \type {:} and~\type {;}). These handlings are somewhat
-experimental.
 
 
 \section [sec:encodings]{Encodings and mappings}
