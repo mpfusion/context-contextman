@@ -5,6 +5,34 @@
 
 \def\definition#1{{\it #1}}
 
+\def\FakeLine#1%
+  {\hbox to \hsize
+     {\strut
+      \hbox to \hsize
+        {\startcolor[AltColor]%
+         \leaders
+         \hrule height .8\ht\strutbox depth  .6\dp\strutbox
+         \hfil
+         \stopcolor
+         #1}%
+      \hskip-\hsize
+      \hbox to \hsize
+        {\startcolor[white]%
+         \leaders
+         \hrule height .25pt depth .25pt
+         \hfil
+         \stopcolor
+         \hphantom{#1}}%
+      \hss}%
+   \par}
+
+\def\FakeParagraph#1#2%
+ {\startlinecorrection[blank]
+  \FakeLine{}\FakeLine{#1{#2{-}}}
+  \FakeLine{}\FakeLine{#1{#2{,}}}
+  \FakeLine{}\FakeLine{#1{#2{.}}}
+  \stoplinecorrection}
+
 % this chapter needs lots of typescripts
 
 \usetypescript[map,sans,mono,handwriting,calligraphy,serif]
@@ -12,10 +40,6 @@
 
 
 \chapter[typography]{Typography}
-
-\todo{Rationale for this chapter: it should contain everything you 
-need to know about {\bf using} fonts, the title may change later. The following 
-chapter will be about {\bf defining} fonts.}
 
 \section{Introduction}
 \index{typography}
@@ -51,7 +75,7 @@ font are called \definition{glyphs}.
    \definefont[test][AntykwaTorunska-Regular at 60pt]\test gap\hss}
 \stoplinecorrection
 
-From left to right we see a Computer Modern font, a Helvetica lookalike, a
+From left to right you see a Computer Modern font, a Helvetica lookalike, a
 Times Roman lookalike and the Antiqua Torunska font, all scaled to 60pt.
 As you can see, quite some variation is possible and when intermixed,
 the result is not always pleasing to look at. The term \definition{fonts collection}
@@ -69,18 +93,20 @@ as possible.
 \stoplinecorrection
 
 Even within a single font design there can be variations. In the
-example above we see a light, a bold, an italic, and a bold italic
+example above there are a light, a bold, an italic, and a bold italic
 \definition{alternative} of a single font. Such a set of fonts with 
 the same basic design is known as a \definition{font family}.
 
-The distance between the individual glyphs in a word depends
-on the combinations of these glyphs. In the next sample, the
-gap between the~b and the~o as well as the distance between
-the~o and the~x is slightly altered. This is called kerning.
+The distance between the individual glyphs in a word and the actual
+glyphs that are used depends on the combinations of these glyphs.  In
+the top line of the next sample, the gap between the~b and the~o as
+well as the distance between the~o and the~x is slightly altered.
+This is called kerning. Further, the separate glyphs for the~f and
+the~i have been combined into a single one. This is called ligaturing.
 
 \startlinecorrection
-\vbox
-  {\forgetall
+\hbox to \hsize{\hss\vbox
+  {\forgetall \hsize=5cm
    \vfill
    \definefont[test][ComputerModern at 48pt]\test
    \hbox{box}
@@ -90,15 +116,30 @@ the~o and the~x is slightly altered. This is called kerning.
       \bottomrulefalse
       \ruledhbox{\vrule width 0pt height 72pt#1}}
    \hbox{\\b\\o\\x}}
+\kern 2cm
+\vbox
+  {\forgetall  \hsize=5cm
+   \vfill
+   \definefont[test][ComputerModern at 48pt]\test
+   \hbox{file}
+   \vskip-36pt
+   \def\\#1%
+     {%\toprulefalse
+      %\bottomrulefalse
+      \hbox{\vrule width 0pt height 72pt#1}}
+   \hbox{\\f\\i\\l\\e}}
+\hss}
 \stoplinecorrection
 
 The font shown here is Computer Modern, the default \TEX\ font. This
-font is designed by Donald Knuth. The Computer Modern has many kerning
-pairs, while the Palatino||like font that is used for most of the text
-in this manual has only a few.
+font is designed by Donald Knuth. The Computer Modern has many
+kerning pairs, while the Palatino||like font that is used for most of
+the text in this manual has only a few, while both have essentially
+the same list of ligatures.
 
-Micro||typography like kerning pairs are not to be altered by the
-user, it is part of the font design and the required data is stored
+
+Micro||typography like kerning pairs and ligatures are not to be altered 
+by the user, they are part of the font design and the required data is stored
 inside the font file, together with the drawing routines for the
 actual pictures. It {\em is\/} possible for the user to alter fonts
 and interline spacing and some more aspects on the level of
@@ -142,7 +183,7 @@ typeset with Knuth's original fonts.
    \definefont[test][LMTypewriterVarWd-Regular at 48pt]\test ok\hss}
 \stoplinecorrection
 
-In this example we see five font styles of Latin Modern: the Roman,
+In this example you see five font styles of Latin Modern: the Roman,
 Sans, Typewriter, Smallcaps and Variable Typewriter. Computer Modern
 is one of the few font families that comes with dedicated design
 sizes.  The example below shows the differences of a 5, 7, 9, 12 and
@@ -161,7 +202,7 @@ seldom seen these days.
 
 As explained earlier, the general appearance of a font style can be
 classified according to many schemes. 
-In \in {table} [tab:font triplets] we see some examples of the naming
+In \in {table} [tab:font triplets] you can see some examples of the naming
 of font styles that are often found together in a single document.
 
 \startbuffer[styles]
@@ -190,19 +231,19 @@ of font styles that are often found together in a single document.
 The top two series are normally used by typographers, the bottom
 series is what was traditionally used in plain \TEX. In \CONTEXT\ all
 three series of terms can be used because they are remapped to the
-same set of internal commands. As we will see, the command \type {\rm}
+same set of internal commands. As will be explained later, the command \type {\rm}
 is used to switch to a roman|/|serif|/|regular style, and \type {\tt}
 for switching to mono spaced or typewriter style, etcetera.
 
-Text can be typeset in different font sizes. We often use the unit
-\type {pt} to specify the size. The availability of these font sizes
+Text can be typeset in different font sizes. The unit \type {pt} is
+often used to specify the size. The availability of these font sizes
 are defined in definition files.  Traditionally font designers used to
 design a glyph collection for each font size, but nowadays most fonts
 have a single design size of 10 points, or small set of sizes with
 names indicating their proposed use, like {\em caption}, {\em text},
 and {\em display}.
 
-In the next sections we will go into switching of font styles and
+The next sections will go into the details of switching of font styles and
 fonts in your documents. Be warned that the font switching mechanism
 is rather complex. This is caused by the different modes like math
 mode and text mode in \CONTEXT. If you want to be understand the
@@ -217,8 +258,8 @@ peculiarities.
 
 Font switching is one of the eldest features of \CONTEXT\ because font
 switching is indispensable in a macro package.  During the years
-extensions to the font switching mechanism were inevitable. We have
-chosen the following starting points during the development of this
+extensions to the font switching mechanism were inevitable. The
+following starting points have been chosesn during the development of this
 mechanism:
 
 \startitemize[packed]
@@ -237,7 +278,7 @@ mechanism:
       switching of family, style and alternative.
 \item It should be possible to combine all of these requirements
       into a single definition unit called a {\em body font}.
-\item Changing the global font collection as wel as the size must 
+\item Changing the global font collection as well as the size must 
       also be easy, and so sizes between 8pt and 14.4pt must be
       available by default.
 \stopitemize
@@ -264,7 +305,7 @@ recap: we call a collection of fonts, like Lucida or Computer Modern
 Roman, a {\em family}.  Within such a family, the members can be
 grouped according to characteristics. Such a group is called a {\em
 style}. Examples of styles within a family are: \quote{roman},
-\quote{sans serif} and \quote{teletype}. We saw that there can
+\quote{sans serif} and \quote{teletype}. We saw already that there can
 be alternative classifications, but they all refer to the presence of
 serifs and the glyphs having equal widths. Within a style there
 can be {\em alternatives}, like \quote{boldface} and \quote{slanted}.
@@ -273,8 +314,9 @@ There are different ways to change into a new a style or
 alternative. You can use \type {\ss} to switch to a sans
 serif font style and \type {\bf} to get a bold alternative.
 When a different style is chosen, the alternatives adapt
-themselves to this style. Often we will typeset the document
-in one family and style. This is called the bodyfont.
+themselves to this style. Often a document will be typeset 
+using just one combination of family and style. 
+This is called the bodyfont.
 
 Consistent use of commands like \type {\bf} and \type
 {\sl} in the text will automatically result in the desired
@@ -332,14 +374,14 @@ alternative may be used for if slanted is not available or vice versa.
 \startbuffer[alternativeswitch]
 \vskip 1ex
 \starttabulate[|l|l|]
-\NC \type{\bf} \NC bold                          \NC\NR
-\NC \type{\sl} \NC slanted                       \NC\NR
-\NC \type{\it} \NC italic                        \NC\NR
-\NC \type{\bs} \NC boldslanted, slantedbold      \NC\NR
-\NC \type{\bi} \NC bolditalic, italicbold        \NC\NR
-\NC \type{\sc} \NC smallcaps                     \NC\NR
-\NC \type{\os} \NC mediaeval                     \NC\NR
-\NC \type{\tf} \NC normal                        \NC\NR
+\NC \type{\bf} \NC bold                                \NC\NR
+\NC \type{\sl} \NC slanted                             \NC\NR
+\NC \type{\it} \NC italic                              \NC\NR
+\NC \type{\bs} \NC boldslanted, slantedbold            \NC\NR
+\NC \type{\bi} \NC bolditalic, italicbold              \NC\NR
+\NC \type{\sc} \NC smallcaps                           \NC\NR
+\NC \type{\os} \NC mediaeval (from {\em oldstyle}) \NC\NR
+\NC \type{\tf} \NC normal (from {\em typeface})    \NC\NR
 \stoptabulate
 \vskip 1ex
 \stopbuffer
@@ -348,7 +390,7 @@ alternative may be used for if slanted is not available or vice versa.
   [here]
   [tab:alternative switches]
   {Font alternative switching commands and their keyword equivalents.
-   With \type {\os} we tell \CONTEXT\ that we prefer mediaeval or
+   With \type {\os} you tell \CONTEXT\ that you prefer mediaeval or
    old||style numbers as in {\os 139} over~{\rm 139}.}
 {\getbuffer[alternativeswitch]}
 
@@ -504,6 +546,189 @@ in the next chapter.
   {Remaining font alternative keywords.}
 {\getbuffer[lastalternativeswitch]}
 
+
+\section[linespacing]{Line spacing}
+\index{linespacing}
+\index{baselines}
+\index{whitespacing}
+\index{spacing}
+\macro{\tex{setupinterlinespace}}
+
+In \TEX\ linespacing is determined by a number of variable
+dimensions like \type {\topskip}, \type {\parskip} and \type
+{\baselineskip}. However, in \CONTEXT\ these variables are
+related to the bodyfont size.
+
+A line has a height and a depth. The distance between two
+lines is normally equal to the sum of the maximum height and
+maximum depth:
+
+\leavevmode
+\blackrule[height=max,depth=0pt] +
+\blackrule[height=0pt,depth=max] =
+\blackrule[height=max,depth=max]
+
+This sum is in \CONTEXT\ equal to 2.8ex, so almost three
+times the height of an~x. This is about $1.2 \times$ the
+bodyfont height. The proportion between maximum height and
+depth is default .72~:~.28. Linespacing alters when a new
+bodyfont is used or when linespacing is defined explicitly
+by:
+
+\starttyping
+\bfd \setupinterlinespace Now, the interline spacing is larger ... \par
+\stoptyping
+
+One has to consider the fact that \TEX\ operates on
+paragraphs and within a group one has to close the paragraph
+explicitly with an empty line or \type {\par}. However, in
+most cases \CONTEXT\ will take care of this.
+
+Sometimes a line does not have the maximum height or depth.
+The next example illustrates this:
+
+\def\somecharacter#1%
+  {\setbox0=\hbox{#1}%
+   \blackrule[width=\wd0,height=\ht0,depth=\dp0]}
+
+\def\someline%
+  {\noindent \processtokens\somecharacter\somecharacter\relax\space
+     {The height and depth of lines differs.}}
+
+\someline
+
+It says:
+
+\startbaselinecorrection
+\ruledhbox{The height and depth of lines differs.}
+\stopbaselinecorrection
+
+When we put two of these lines above each other we will get:
+
+\someline \crlf \someline
+
+You can see that the distance is somewhat bigger that the
+sum of the height and depth of each separate line. This
+distance is called the baseline distance (\type
+{\baselineskip}) and is in this document \the \baselineskip.
+If we add some extra height to the line we see this:
+
+\someline \blackrule[height=2ex,depth=2ex] \crlf \someline
+
+To prevent the lines from touching \TEX\ adds a \type
+{\lineskip}, in our example {\the\lineskip}. In a similar
+way \TEX\ is taking care of the first line of a page to have
+at least a height of \type {\topskip} (here \the\topskip).
+
+Linespacing is set up by:
+
+\showsetup{setupinterlinespace}
+
+Linespacing adapts to the size of the actual bodyfont
+automatically. This means that the user can leave this
+command untouched, unless a different linespacing is wanted.
+Instead of a factor one of the predetermined values \type
+{small} (1.0), \type {medium} (1.25) or \type {big} (1.5)
+can be given. Below an example is given of a text with a
+linespacing of 1.25: \type{\setupinterlinespace[medium]}.
+
+\startreality
+\startnarrower
+\setupinterlinespace[1.25]
+Whenever it comes to my mind that \quotation {everything that comes in
+quantities, will somehow survive}, I also got the feeling that in a few
+hundred years people will draw the saddening conclusion that all those
+top||ten hits produced by computers represent the summum of todays
+musical and instrumental abilities. Isn't it true that archeologists can
+spend a lifetime on speculating about some old coins from the first century?
+On the other hand, the mere fact that one can have success with this type
+of non||music success of some top||hit musicians demonstrates both the
+listeners inability to rate the product and the lack of self criticism of
+the performers. In principle the future archeologist will therefore draw
+the right conclusion. \par
+\stopnarrower
+\stopreality
+
+When you make a fontswitch the linespacing is adapted when you give
+the command \hbox{\type {\setupinterlinespace}} without any setup
+parameters and also when you add the key \type {reset}, for example
+
+\startexample
+\starttyping
+\setupinterlinespace[reset,medium]
+\stoptyping
+\stopexample
+
+The text below is typeset in the fontsize \type {\tfa}, using
+the following input:
+
+\startexample
+\starttyping
+\start \tfa \setupinterlinespace 
+In books meant for children we often find
+a somewhat ... when needed. \par \stop
+\stoptyping
+\stopexample
+
+In this example the \type {\par} is necessary because
+otherwise \TEX\ will have forgotten the linespacing before
+the paragraph is finished (in that case, the paragraph is
+ended by the empty line after the \type {\stop}).
+
+
+\start 
+\startnarrower
+\tfa \setupinterlinespace In books meant for children
+we often find a somewhat bigger typeface, for instance
+because we are convinced that this enables them to read the
+book themselves. On the other hand, I can also imagine that
+it is a cheap way to increase the number of pages.
+Unfortunately scaling up will also uncover the lack of
+quality of the typesetting used and|/|or the lack of
+typographic knowledge of the user of such a system. The
+interline space sometimes differs on a line by line basis,
+and depends on the {\tfd height} of the current line.
+Therefore, when changing the style, something that should
+only be done on purpose, also change the baseline distance
+when needed. \par 
+\stopnarrower 
+\stop
+
+Instead of a keyword, one can pass a key||value pair to
+define the characteristics of a line. 
+
+\showsetup{setupinterlinespace2}
+
+The default settings are:
+
+\starttyping
+\setupinterlinespace
+  [height=.72,
+   depth=.28,
+   top=1.0,
+   bottom=0.4,
+   line=2.8ex]
+\stoptyping
+
+The \type {height} and \type {depth} determine the ratio
+between the height and depth of a line. The baseline
+distance is set to 2.8ex. The parameters \type {top} and
+\type {bottom} specify the relation between the bodyfont
+size and the height of the first line and the depth of the
+last line on a page. The last two quantities are related to
+\TEX's \type {\topskip} and \type {\maxdepth}.
+
+We will see later that instead of setting the spacing at the document
+level, i.e.\ for each font, you can set the spacing per body font
+environment:
+
+\starttyping
+\setupbodyfontenvironment
+  [modern] [12pt]
+  [interlinespace=14pt]
+\stoptyping
+
+
 \section[emphasize]{Emphasize}
 \index{emphasize}
 \index{slanted}
@@ -557,7 +782,9 @@ see~\in{section}[sec:body font environment] for more details:
 
 \startexample
 \starttyping
-\setupbodyfontenvironment[default][em=italic]
+\setupbodyfontenvironment
+   [default]
+   [em=italic]
 \stoptyping
 \stopexample
 
@@ -581,7 +808,7 @@ see~\in{section}[sec:body font environment] for more details:
 Words and abbreviations can be typeset in capitals. Both
 small and big characters are converted into capitals. When
 \type {\cap} is used to typeset a capital the size is that
-of an \type {\tx}. When we switch to slanted (\type {\sl}),
+of an \type {\tx}. When you switch to slanted (\type {\sl}),
 bold (\type {\bf}), etc. the capital letter will also
 change. Since \type {\cap} has a specific meaning in math
 mode, the formal implementation is called \type {\smallcapped}.
@@ -595,8 +822,8 @@ However in text mode one can use \type {\cap}.
 
 \showsetup{Caps}
 
-The first command converts all letters to a capital. We
-advise you not to type capital letters in your source file
+The first command converts all letters to a capital. You are
+advised not to type capital letters in your source file
 because real small caps distinguishes between small and big
 letters.
 
@@ -633,7 +860,7 @@ or:
 \getbuffer
 \stopreality
 
-In this example we see that \type {\cap} can be temporarily
+In this example you can see that \type {\cap} can be temporarily
 revoked by \type {\nocap}.
 
 \showsetup{nocap}
@@ -647,11 +874,10 @@ into a capital letter.
 \showsetup{setupcapitals}
 
 With this command the capital mechanism can be set up. The
-key \type {sc=yes} switches to real {\sc Small Caps}. With
-\type {title} we determine whether capitals in titles are
-changed.
+key \type {sc=yes} switches to real {\sc Small Caps}. The key
+\type {title} determines whether capitals in titles are changed.
 
-Next to the former \type {\cap}||commands we have:
+Next to the former \type {\cap}||commands there are also:
 
 \showsetup{Word}
 
@@ -659,17 +885,17 @@ and
 
 \showsetup{Words}
 
-These commands switch the first characters of words into
+These commands switch the first characters of a word or words into
 capitals. All characters in a word are changed with:
 
 \showsetup{WORD}
 
-We end this section with real small capitals. When these are
+Let's end this section with real small capitals. When these are
 available the real small caps \type {\sc} are preferred over
 the pseudo||capital in abbreviations and logos.
 
 \startbuffer
-In a manual on \TeX\ and Con\TeX t  there is always the question whether 
+In a manual on \TeX\ and Con\TeX t there is always the question whether 
 to type \cap{\TeX} and \cap{Con\TeX t} or {\sc \TeX} and {\sc Con\TeX t}. 
 Both are defined as a logo in the style definition so we type \type {\TEX} 
 and \type {\CONTEXT}, which come out as \TEX\ and \CONTEXT.
@@ -711,7 +937,7 @@ stretched by:
 \typebuffer
 \stopexample
 
-With \type {\\} we enforce a space (\type {{}} is also
+With \type {\\} you can enforce a space (\type {{}} is also
 allowed).
 
 \startreality
@@ -723,9 +949,10 @@ in heads. The macros that take care of stretching do this
 by processing the text character by character.
 
 
-We will not go into the typographical sins of underlining.
-These commands are discussed in \in {section} [underline]
-(\over [underline]).
+This chapter will not go into the details of underlining because
+using underlining for typographical purposes is a bad practice.
+Instead, the commands related to under- and overlining are discussed
+in \in {section} [underline] (\over [underline]).
 
 
 \section[bodyfontswitch]{Selecting bodyfonts}
@@ -737,8 +964,6 @@ These commands are discussed in \in {section} [underline]
 The bodyfont (main font), font style and size is set up with:
 
 \showsetup{setupbodyfont}
-
-The various identifiers 
 
 In a running text a temporary font switch is done with the
 command:
@@ -860,7 +1085,7 @@ Executing a typescript is done by \type{\usetypescript}. We will get
 back to \type{\usetypescript} later because it is in fact a very
 flexible command, but let's discuss simple usage first.
 
-\showsetup{usetypescript} % empty at the moment
+\showsetup{usetypescript}
 
 A typical input sequence for selecting the predefined \quote{palatino}
 set of typefaces in \MKII\ will look like this:
@@ -925,8 +1150,27 @@ Linotype Helvetica, by the way.
 
 The typescripts that come with the \CONTEXT\ distribution are placed
 in source files that have names that start with \type{type-}. Some of
-these files are automatically loaded, but most have to be loaded
+these files are automatically loaded when needed, but most have to be loaded
 explicitly. There is a list in~\in{table}[tab:typescript files]
+
+\macro{\tex{preloadtypescripts}}
+
+Some of the internal building blocks for typescripts are themselves located in
+yet other files (font size and font map file information, for example).
+Normally, when \CONTEXT\ has to load typescript information from files, it will
+try to save memory by only executing the typescript it needs at that moment and
+discarding all other information. If you have enough memory at your disposal, 
+you can speed up typescript use considerably by adding 
+
+\startexample
+\starttyping
+\preloadtypescripts
+\stoptyping
+\stopexample
+
+in your preamble or your \type{cont-usr.tex}. This will make \CONTEXT\ store
+all the typescript information in internal token registers the first (and
+therefore only) time it loads the actual files.
 
 \startbuffer[typefiles]
 \begingroup
@@ -970,7 +1214,6 @@ Explicit loading one of those files is done via the macro \type{\usetypescriptfi
 \vskip 1ex
 \starttabulate[|l|l|l|l|]
 \NC \bf Typescript        \NC \bf Typeface      \NC \bf File           \NC \bf Encodings                     \NC \FR
-\NC OmegaArab             \NC omarb             \NC type-omg           \NC (unspecified)                     \NC \NR
 \NC OmegaLGC              \NC omlgc             \NC type-omg           \NC (unspecified)                     \NC \NR
 \NC antykwa-torunska      \NC antykwa           \NC type-one, type-otf \NC texnansi,ec,8r,t2a                \NC \NR
 \NC cbgreek               \NC cbgreek           \NC type-cbg           \NC (unspecified)                     \NC \NR
@@ -1023,7 +1266,7 @@ encodings they support in \MKII\ mode are listed in~\in {table}
 table (\in {}[tab:typeface names]) that explains for each typescript 
 what font set it attaches to each of the font styles.
 
-\showsetup{usetypescriptfile} % empty at the moment
+\showsetup{usetypescriptfile}
 
 For example, the following 
 
@@ -1125,7 +1368,6 @@ the same, but there can be (and are) different names altogether.
 \switchtobodyfont[9pt]
 \starttabulate[|l||l|l|l|l|]
 \NC {\bf Typescript  }\NC {\bf Style rm    }  \NC {\bf Style ss }      \NC {\bf Style tt}     \NC  {\bf Style mm }  \NC \FR
-\NC OmegaArab         \NC omega naskh         \NC --                   \NC --                 \NC --                \NC \NR
 \NC OmegaLGC          \NC omega               \NC --                   \NC omega              \NC --                \NC \NR
 \NC antykwa-torunska  \NC antykwa-torunska    \NC modern               \NC modern             \NC antykwa-torunska  \NC \NR
 \NC cbgreek           \NC cbgreek             \NC cbgreek              \NC cbgreek            \NC --                \NC \NR
@@ -1646,6 +1888,7 @@ by \CONTEXT\ itself.
 \NC small          \NC The \quote{smaller} font size\NC \NR
 \NC interlinespace \NC Distance between lines in a paragraph, can be ignored
                        because a reasonable default is always set up\NC \NR
+\NC em             \NC The style to use for emphasis (default is \type{slanted})\NC \NR
 \stoptabulate 
 
 So, when you want to have a somewhat bigger fontsize for 
@@ -1684,7 +1927,7 @@ parameter conventions:
 
 \macro{\tex{definefontfeature}}
 
-As we have seen already, some fonts contain extra information besides the actual glyph
+As mentioned already, some fonts contain extra information besides the actual glyph
 shapes. In traditional \TEX\ fonts, the extra information is roughly limited to kerning
 pairs and ligature information, and both of these \quote{features} are automatically
 applied to the text that is being typeset.  In the odd case where one of the two needs to
@@ -1711,7 +1954,7 @@ of features. The most important command is \type{\definefontfeature}. This comma
 used to group various font features under a single symbolic name, that can then be used
 as e.g. the argument to the \type{features} key of \type{\definetypeface}.
 
-\showsetup{definefontfeature} % still empty
+\showsetup{definefontfeature}
 
 \startexample
 \starttyping
@@ -1725,19 +1968,23 @@ As you can probably guess, the first argument is the symbolic name that is being
 defined. The second argument is a mix of a-hoc settings and OpenType font features.
 
 \starttabulate[|lT|p|]
-\NC script              \NC An OpenType script identifier \NC \NR
-\NC language            \NC An OpenType script language identifier \NC \NR
-\NC tlig, texligatures  \NC A virtual feature for legacy (\TEX-style) automatic ligatures\NC \NR
-\NC trep, texquotes     \NC A virtual feature for legacy (\TEX-style) automatic ligatures
-                            (only works in \MKIV)\NC \NR
-\NC mode                \NC Processing mode for \MKIV. 
-                            \type{node} and \type{base} allowed, \type{node} is default\NC \NR
-\NC <tag>               \NC Any OpenType feature tag is acceptable, but in \MKIV\
-                            only a \quote{known} subset actually has any effect, and then
-                            only in \type{node} mode. 
-                            This list is given in~\in{table}[tab:mkivfeatures].
-                            In \XETEX, processing depends on the internal subengine that
-                            is used by \XETEX, and that is outside of \CONTEXT's control. \NC \NR
+\NC compose   \NC Use fallback composition in \MKIV \NC \NR
+\NC script    \NC An OpenType script identifier \NC \NR
+\NC language  \NC An OpenType script language identifier \NC \NR
+\NC tlig      \NC A virtual feature for legacy (\TEX-style) automatic ligatures 
+                 (for compatibility, there is an alias for this key called
+                  \type{texligatures})\NC \NR
+\NC trep      \NC A virtual feature for legacy (\TEX-style) automatic ligatures
+                  (for compatibility, there is an alias for this key called \type{texquotes})
+                  (only works in \MKIV) \NC \NR
+\NC mode      \NC Processing mode for \MKIV. 
+                  \type{node} and \type{base} allowed, \type{base} is default\NC \NR
+\NC <tag>     \NC Any OpenType feature tag is acceptable, but in \MKIV\
+                  only a \quote{known} subset actually has any effect, and then
+                  only in \type{node} mode. 
+                  This list is given in~\in{table}[tab:mkivfeatures].
+                  In \XETEX, processing depends on the internal subengine that
+                  is used by \XETEX, and that is outside of \CONTEXT's control. \NC \NR
 \stoptabulate
 
 A few fontfeatures are predefined by context:
@@ -1753,6 +2000,9 @@ A few fontfeatures are predefined by context:
 \stopbuffer
 
 \getbuffer[predeffeatures]
+
+At the moment, \type {smallcaps} and \type{oldstyle} only work in \XETEX\ 
+(in \MKIV, it would need an extra \type{mode=node} pair).
 
 \startbuffer[mkivfeatures]
 \begingroup
@@ -1882,24 +2132,6 @@ And the output of \type{\showbodyfontenvironment[12pt]} is:
 \section{Math fonts}
 \index{math fonts}
 \macro{\tex{mf}}
-\macro{\tex{enablembox}}
-
-\fixme{This is paragraph is a mess}
-
-There are only a few font families that can handle math. There
-is the Computer Modern Roman, the very beautiful Lucida
-Bright that we prefer in electronic documents, and of course
-one can use the \quote {prefered by publishers font} Times.
-These fonts carry a complete set of characters and symbols
-for mathematical typesetting. Among these, the Computer
-Modern Roman distinguishes itself by its many design sizes,
-which pays off when typesetting complicate math. On this
-design there are a few variations called Euler and Concrete.
-\footnote {See Concrete Mathematics by Knuth cs., an
-outstanding book from the perspective of typography and
-didactically.}
-
-
 
 \startbuffer[math-1]
 $\tf x^2+\bf x^2+\sl x^2+\it x^2+\bs x^2+ \bi x^2 =\rm 6x^2$
@@ -1921,20 +2153,24 @@ $\bi\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
 $\bf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = \mf 6x^2$
 \stopbuffer
 
-\startbuffer[math-4]
-$\bf x^2 + \hbox{whatever} + \sin(2x)$
-\stopbuffer
+There are only a few font families in existance that can handle math
+properly because such fonts have to carry a complete set of characters and
+symbols for mathematical typesetting.  Among these, the Computer
+Modern Roman distinguishes itself by its many design sizes; that
+really pays off when typesetting complicated math formulas. 
 
-Many \TEX\ users have chosen \TEX\ for its superb math type
-setting. The math oriented character of \TEX\ has also
-influenced the font mechanism. We will not go into any
-details but the central key is the {\em family}. There is a
-font family for \type {\bf}, \type {\it}, etc. Within a
-family we distinguish three members: text, script and
-scriptscript, or a normal, smaller and smallest font. The
-normal font size is used for running text and the smaller
-ones for sub and superscripts. The next example will show
-what the members of a font family can do.
+
+Many \TEX\ users have chosen \TEX\ for its superb math typesetting. 
+
+This chapter will not go into any details but in math mode, the
+central concept is the {\em math family} (not to be confused with the
+{\em font families} discussed earlier). There are math families for
+\type {\bf}, \type {\it}, etc. as well as for the special math
+symbols. Within each family, there are always exactly three member
+fonts: \type{text}, \type{script} and \type{scriptscript}, or a
+normal, smaller and smallest font. The normal font size is used for
+running text and the smaller ones for sub and superscripts. The next
+example will show what the members of a math family can do.
 
 \typebuffer[math-1]
 
@@ -1944,42 +2180,36 @@ When this is typeset you see this:
 \getbuffer[math-1]
 \stoplines
 
-We can see that the characters adapt but that the
-symbols are typeset in the same font. Technically this
-means that the symbols are set in font family~0 (there are
-16~families) and in this case that is default \type {\tf}.
+As you can see, the alphabetic characters adapt to the selected font
+family but the symbols are all typeset in the same font
+regardless. Technically this means that the symbols are set in the
+fixed font family~0 whereas the alphabetic characters are typeset
+using variable family numbers.
 
-It can also be done somewhat differently as we will see in
-the next example. A new command is used: \type {\mf}, which
-stands for {\em math font}. This command takes care of the
-symbols in such a way that they are set in the actual
-font.\footnote{We also see a strange visual effect. It seems
-as if the lines are sloped.}
+Typeseting math formulas can also be done somewhat differently, as we
+will see in the next example.
+
+\typebuffer[math-2]
+
+A new command is used: \type {\mf}, which stands for {\em math
+font}. This command takes care of the symbols in such a way that they
+are also set in the actually selected font, just like the characters.
 
 \startlines
 \getbuffer[math-2]
 \stoplines
 
-You should take into account that \TEX\ typesets a formula
-as a whole. In some cases this means that setups at the end
-of the formula have effect at the beginning.
+You should take into account that \TEX\ typesets a formula as a
+whole. In some cases this means that setups at the end of the formula
+have an effect that starts already at the beginning of the fomula.
 
-\typebuffer[math-2]
-
-The exact location of \type {\mf} is not that important.
+For example, the exact location of \type {\mf} is not that important.
 We also could have typed:
 
 \typebuffer[math-3]
 
-One other aspect of fonts in math mode is the way reserved
-names like \type {\sin} and \type {\cos} are typeset.
-
-\typebuffer[math-4]
-
-Unlike plain \TEX, the $\bf\sin$ is also set bold.
-
-\getbuffer[math-4]
-
+There is much more to be said about math, but it is better to do that
+in~\in{chapter}[chap:math], about math.
 
 \section{Em and Ex}
 \index[em]{\type{em}}
@@ -2065,6 +2295,315 @@ lowercase~x.
   {The height of an \type{ex}.}
   {\getbuffer[em-ex-2]}
 
+
+\section {Font handling}
+
+In the following fake paragraph, you can see a hyphenation
+point, a secondary sentence, separated by a comma, and a
+last sentence, ending with a period. Miraculously, this
+paragraph fits into lines. Although exaggerated, these lines
+demonstrate that visually the hyphen and punctuation
+characters make the margin look ragged.
+
+\FakeParagraph\hbox\relax
+
+Before computers started to take over the traditional
+typesetter's job, it was common practice to move hyphens and
+punctuation into the margin, like in:
+
+\FakeParagraph\rlap\relax
+
+In this alternative, the margin looks less ragged, and this
+becomes more noticable once you get aware of this phenomenon.
+
+Sometimes, shifting the characters completely into the
+margin is too much for the sensitive eye, for instance with
+a slanted font, where the characters already hang to the
+right. In such cases, we need to compromise.
+
+\FakeParagraph{\hbox to .2ex}\rlap
+
+\PDFTEX\ (and \LUATEX\ inherits this feature) has provisions 
+to move characters into the margin 
+when they end up at the end of a line. Such characters are
+called protruding characters. \PDFTEX\ takes protruding
+into account when breaking a paragraph. 
+%\footnote {One can
+%also protrude characters without interference with the
+%breaking routines, but since we consider this less good,
+%\CONTEXT\ simply does not support it.}
+
+We demonstrate protruding using a quote from Hermann Zapf's
+article \quotation {About micro||typography and the {\sl
+hz}||program} in Electronic Publishing, vol~6~(3), 1993.
+
+%\bgroup
+%\switchtobodyfont[modern,9pt] \noindent \input zapf \par
+%\egroup
+
+\startnarrower
+\switchtobodyfont[modern,9pt] 
+\typefile{zapf}
+\stopnarrower
+
+After \TEX\ has typeset this paragraph (using a specific font size
+and line width) it may have constructed the following lines.
+
+\blank
+
+\beginofshapebox
+\switchtobodyfont[modern,9pt] \noindent \input zapf \par
+\endofshapebox
+\reshapebox{\hbox{\AltColor\ruledhbox{\black\box\shapebox}}}
+\flushshapebox
+
+\blank
+
+As you can see, the height and depth of the lines depend on
+the characters, but their width equals what \TEX\ calls
+\type {\hsize}. However, the natural width of the lines may
+differ from \type {\hsize}.
+
+\blank
+
+\beginofshapebox
+\switchtobodyfont[modern,9pt] \noindent \input zapf \par
+\endofshapebox
+\reshapebox{\hbox{\AltColor\ruledhbox{\black\unhbox\shapebox}}}
+\flushshapebox
+
+\blank
+
+Here the inter||word space is fixed to what \TEX\ considers
+to be a space. This example also demonstrates that \TEX\
+does not have spaces, but stretches the white area between
+words to suit its demands. When breaking lines, \TEX's mind
+is occupied by boxes, glue and penalties, or in more common
+language: (parts of) words, stretchable white space, and more
+or less preferred breakpoints.
+
+
+\fixme{either there is no protrusion in \MKIV\ yet and these examples 
+have to changed into external figures, or \MKIV\ uses a different
+syntax that I do not know}
+
+\blank
+
+\bgroup
+\def\postprocesscolumnbox#1{\hbox{\AltColor\ruledhbox{\black\box#1}}}
+\startcolumns[n=3]
+\setupfontsynonym [Serif] [handling=normal] % [pure]
+\setupalign[verytolerant,stretch,hanging]
+\switchtobodyfont[modern,9pt] \noindent \input zapf \par
+\stopcolumns
+\egroup
+
+\blank
+
+This time we have enabled \PDFTEX's protruding mechanism.
+The characters that stick into the margin are taken into
+account when breaking the paragraph into lines, but in the
+final result, they do not count in the width. Here we used
+an ugly three column layout so that we got a few more
+hyphens to illustrate the principle, but in the next
+examples we will stick to two columns.
+
+\blank
+
+\startcolumns[n=2]
+\setupalign[verytolerant,stretch]
+\switchtobodyfont[modern,9pt] \noindent \input zapf \par
+\stopcolumns
+
+\blank
+
+In this first example we just typeset the text in the
+traditional way. The hyphens and punctuation fit into the
+margin.
+
+\blank
+
+\startcolumns[n=2]
+\setupfontsynonym [Serif] [handling=pure]
+\setupalign[verytolerant,stretch,hanging]
+\switchtobodyfont[modern,9pt] \noindent \input zapf \par
+\stopcolumns
+
+\blank
+
+In this example, the protruding machinery is put to labour.
+The hyphens and punctuation may now stick into the margin
+completely. The next two examples shows what happens when we
+limit the protruding to 75\% and 50\% respectively.
+
+\blank
+
+\startcolumns[n=2]
+\setupfontsynonym [Serif] [handling=pure]
+\setupfonthandling[normal][left=.75,right=.75]
+\setupalign[verytolerant,stretch,hanging]
+\switchtobodyfont[modern,9pt] \noindent \input zapf \par
+\stopcolumns
+
+\blank
+
+\startcolumns[n=2]
+\setupfontsynonym [Serif] [handling=pure]
+\setupfonthandling[normal][left=.5,right=.5]
+\setupalign[verytolerant,stretch,hanging]
+\switchtobodyfont[modern,9pt] \noindent \input zapf \par
+\stopcolumns
+
+\blank
+
+Although available in \PDFTEX, this feature is not limited
+to \PDF\ output. If this may comfort you: when protruding
+is not enabled the output is 100\% identical.
+
+
+\fixme{In \CONTEXT\ \MKIV, font handling is merged with font features,
+so the rest of this section seems to only apply to \PDFTEX}
+
+Since protruding is related to the shape of the font, in
+\PDFTEX\ setting it up takes place in a similar way as encoding, like so:
+
+\starttyping
+\definefontsynonym
+  [myfont] [Serif] [handling=pure]
+\stoptyping
+
+We can also specify a handler at a higher level of
+abstraction:
+
+\starttyping
+\setupfontsynonym [Lucida-Bright] [handling=pure]
+\stoptyping
+
+Or even:
+
+\starttyping
+\setupfontsynonym [Serif] [handling=pure]
+\stoptyping
+
+
+The values that \THANH\ mentions in his thesis, are
+available under the names \type {punctuation} and \type
+{alpha}:
+
+\starttabulate[|lT|l|]
+\HL
+\NC \rm\bf vector \NC \bf protruding character set \NC \NR
+\HL
+\NC punctuation \NC hyphenation and punctuation characters \NC \NR
+\NC alpha       \NC the latin alphabet characters          \NC \NR
+\NC extended    \NC the other characters                   \NC \NR
+\HL
+\stoptabulate
+
+The \type {extended} category maps the special characters onto the
+base 26 ones, and thereby honors the font encoding vector. This
+mapping vector can be used to enhance other handling vectors with
+support for accented characters (in most cases \aacute, \agrave,
+etc.\ need a treatment similar to~a).
+
+The default punctuation vector looks like this:
+
+\starttyping
+\startfonthandling[punctuation]
+  \defineprotrudefactor ,  0  .7
+  \defineprotrudefactor .  0  .7
+  \defineprotrudefactor :  0  .5
+  \defineprotrudefactor ;  0  .5
+  .....
+\stopfonthandling
+\stoptyping
+
+Equaly valid are definitions like:
+
+\starttyping
+\defineprotrudefactor hyphen 0 .7
+\stoptyping
+
+Any character can protrude:
+
+\starttyping
+\defineprotrudefactor A .05 .05
+\stoptyping
+
+For convenience we let composed characters inherit the
+values from their parents.
+
+\starttyping
+\inheritprotrudefactor Acircumflex A
+\stoptyping
+
+Instead of using numbers (like the 700 in the previous
+definition), we use fractions, one for the left and one for the
+right shift. There are a few more vectors defined, like \type
+{defalph} for characters, where we only apply very small shifts.
+
+A combination of such vectors is packaged in a font handler
+using the following command:
+
+\starttyping
+\definefonthandling [normal] [punctuation,alpha]
+\stoptyping
+
+These definitions depend on the encoding, they are
+loaded with the \type {\usehandling} command. You can for
+instance load the default definitions with: :
+
+\starttyping
+\usehandling[def]
+\stoptyping
+
+Since this vector is already preloaded in \CONTEXT, you
+normally don't have to provide this command.
+
+In \CONTEXT\ we have integrated protruding characters
+(hanging punctuation) into the normal alignment macros.
+
+\starttyping
+\setupalign[hanging]
+\stoptyping
+
+Font protruding is turned off automatically in controlled
+situations, and more control will be added in due time. We
+already mentioned that the amount of protruding depends on
+the shape, which is why we may need different values for
+slanted and bold shapes. One way of using the same vector for
+different shapes, is changing the strength of the protruding:
+
+\starttyping
+\definefonthandling [slanted] [punctuation] [right=1.5]
+\stoptyping
+
+Here, because a slanted glyph already sticks into the
+margin, we limit protruding to punctuation. You may expect
+more (probably incompatible) fine tuning in the future. For
+the moment, when you want to play safe, the most simple way
+to enable hanging punctuation is to use the predefined
+typescript:
+
+\starttyping
+\usetypescript [serif,sans,mono] [hanging] [pure]
+\setupalign[hanging]
+\stoptyping
+
+or even:
+
+\starttyping
+\setupfontsynonym [handling=pure] \setupalign[hanging]
+\stoptyping
+
+In addition to these two handlings (hz and protruding) \CONTEXT\
+also provides the \type {noligs} handling (handy when one
+processes \XML), \type {flexspacing} and \type {prespacing}
+(meant for languages like French that need spacing around for
+instance \type {:} and~\type {;}). These handlings are somewhat
+experimental.
+
+
 \section [sec:encodings]{Encodings and mappings}
 
 This paragraph only applies to \PDFTEX. If you are exclusively using
@@ -2087,9 +2626,10 @@ In practice this means that the meaning of \type {\eacute}
 depends on the font and font encoding used. There are many
 such encodings, each suited for a subset of languages.
 
+\vskip 1ex
 \starttabulate [|lT|p|l|]
 \HL
-\NC \bf encoding \NC \bf usage \NC \bf status \NC \NR
+\NC \rm\bf encoding \NC \bf usage \NC \bf status \NC \NR
 \HL
 \NC 8r        \NC a (strange) mixture of encodings                            \NC useless  \NC \NR
 \NC default   \NC the 7 bit \ASCII\ encoding as used by plain \TEX            \NC obsolete \NC \NR
@@ -2103,6 +2643,7 @@ such encodings, each suited for a subset of languages.
 \NC texnansi  \NC a combination of \TEX\ and Adobe standard encoding          \NC okay     \NC \NR
 \HL
 \stoptabulate
+\vskip 1ex
 
 These encodings are font related as is demonstrated in \in
 {figure} [fig:font a], \in{}[fig:font b],  \in{}[fig:font c], \in
