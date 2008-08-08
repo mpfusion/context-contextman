@@ -217,34 +217,6 @@
 
 \getbuffer[funny,nojoke,joke,whow]
 
-\def\FakeLine#1%
-  {\hbox to \hsize
-     {\strut
-      \hbox to \hsize
-        {\startcolor[AltColor]%
-         \leaders
-         \hrule height .8\ht\strutbox depth  .6\dp\strutbox
-         \hfil
-         \stopcolor
-         #1}%
-      \hskip-\hsize
-      \hbox to \hsize
-        {\startcolor[white]%
-         \leaders
-         \hrule height .25pt depth .25pt
-         \hfil
-         \stopcolor
-         \hphantom{#1}}%
-      \hss}%
-   \par}
-
-\def\FakeParagraph#1#2%
- {\startlinecorrection[blank]
-  \FakeLine{}\FakeLine{#1{#2{-}}}
-  \FakeLine{}\FakeLine{#1{#2{,}}}
-  \FakeLine{}\FakeLine{#1{#2{.}}}
-  \stoplinecorrection}
-
 \fixme{start of Typography text}
 
 \section[encoding]{Definitions}
