@@ -1856,7 +1856,7 @@ As you can see, you can activate relative scaling of face sizes. The above defin
 definition, except that the serif/sans/mono identifier is preceded with X, and that there is no underlying "Optima Regular" defined
 anywhere. Those missing bits of the definitions are handled by typescript and \XETEX\ magic.
 
-\subsection[sec:body font environment]{Body font environments}
+\section[sec:body font environment]{Body font environments}
 
 \macro{\tex{setupbodyfontenvironment}}
 \macro{\tex{definebodyfontenvironment}}
@@ -2319,45 +2319,6 @@ will work with the \DVI\ backend just as well. And when the
 extensions are defined but not enabled, then the typeset output is
 100\% identical to when the feature is not present at all.
 
-Before we go into the details of the actual extensions, let's see
-what is provided by \CONTEXT\ as the user||level interface.  The
-\CONTEXT\ interface to those new features is through a subsystem
-called \quote{font handling}, and at the top that subsystem is
-seamlessly integrated into the normal alignment macros.
-
-For example, assuming the system is set up already to support
-protrusion, you can simply say
-
-\startexample
-\starttyping
-\setupalign[hanging]
-\stoptyping
-\stopexample
-
-to turn protrusion on. However, this will only work correctly if a
-number of special setups have taken place internally. The command
-\type{\setupalign} only toggles a switch, and the required setups
-have to be done elsewhere. 
-
-The list of font handling||related keys for \type{\setupalign} is:
-
-\starttabulate[|l|l|]
-\NC hanging    \NC turns on character protrusion (see the next section)\NC \NR
-\NC nohanging  \NC turns off character protrusion\NC \NR
-\NC hz         \NC turns on font expansion (see~\in{section}[sec:hz])\NC \NR
-\NC nohz       \NC turns off font expansion \NC \NR
-\NC spacing    \NC turns on special spacing rules (see~\in{section}[sec:otherhandling])\NC \NR
-\NC nospacing  \NC turns off special spacing\NC \NR
-\stoptabulate
-
-Now, let's move on to how to set up the system for font handling
-properly. The underlying features of \PDFTEX\ can not {\em just\/} be
-turned on or off, it is possible to tweak the machinery on the font
-as well as on the individual glyph level. You can define those
-settings all on your own, but \CONTEXT\ comes with a handy set of
-predefined values.
-
-
 \subsection [sec:protrusion]{Character protrusion}
 
 
@@ -2463,10 +2424,10 @@ examples we will stick to two columns.
 
 \blank
 
-\startcolumns[n=2]
+\startsimplecolumns[n=2]
 \setupalign[verytolerant,stretch]
 \switchtobodyfont[modern,9pt] \noindent \input zapf \par
-\stopcolumns
+\stopsimplecolumns
 
 \blank
 
@@ -2476,14 +2437,16 @@ margin.
 
 \blank
 
-\startcolumns[n=2]
+\startsimplecolumns[n=2]
 \setupfontsynonym [Serif] [handling=pure]
 \setupalign[verytolerant,stretch,hanging]
 \switchtobodyfont[modern,9pt] \noindent \input zapf \par
-\stopcolumns
+\stopsimplecolumns
 
 \blank
 
+\iffalse
+% this is pdftex-only.
 In this example, the protruding machinery is put to work.
 The hyphens and punctuation may now stick into the margin
 completely. The next two examples shows what happens when we
@@ -2491,91 +2454,25 @@ limit the protruding to 75\% and 50\% respectively.
 
 \blank
 
-\startcolumns[n=2]
+\startsimplecolumns[n=2]
 \setupfontsynonym [Serif] [handling=pure]
 \setupfonthandling[normal][left=.75,right=.75]
 \setupalign[verytolerant,stretch,hanging]
 \switchtobodyfont[modern,9pt] \noindent \input zapf \par
-\stopcolumns
+\stopsimplecolumns
 
 \blank
 
-\startcolumns[n=2]
+\startsimplecolumns[n=2]
 \setupfontsynonym [Serif] [handling=pure]
 \setupfonthandling[normal][left=.5,right=.5]
 \setupalign[verytolerant,stretch,hanging]
 \switchtobodyfont[modern,9pt] \noindent \input zapf \par
-\stopcolumns
+\stopsimplecolumns
 
 \blank
+\fi
 
-Also because of this tight connection with the font itself, the
-method of setting up the support at the font level is a little
-different between \PDFTEX\ and \MKIV.
-
-IN \PDFTEX, setting up the \type{handling} takes place in a similar 
-way as encoding, like so:
-
-\starttyping
-\definefontsynonym
-  [myfont] [Serif] [handling=pure]
-\stoptyping
-
-But you can also specify a handler at a higher level of abstraction:
-
-\starttyping
-\setupfontsynonym [Lucida-Bright] [handling=pure]
-\stoptyping
-
-Or even:
-
-\starttyping
-\setupfontsynonym [Serif] [handling=pure]
-\stoptyping
-
-In \MKIV, font handling is merged with font the features (because
-these already have a low-level connection to the font), so you can
-set up the font-side of things with the sixth argument 
-of \type{\definetypeface}, or by redefining the feature set 
-that is used by the typescript you are using and then (re-)executing 
-the typescript, like so:
-
-\startexample
-\starttyping
-\definefontfeature
-    [default] [default]
-    [protrusion=pure,mode=node,script=latn]
-\usetypescript[modern]
-\stoptyping
-\stopexample
-
-So far we have used so-called \type{pure} protrusion, this extends
-the punctuation and hyphenation characters into the margin completely.
-The settings that \THANH\ mentions in his thesis for protrusion are
-available under the names \type {punctuation} and \type {alpha}:
-
-\starttabulate[|lT|p|]
-\HL
-\NC \rm\bf vector \NC \bf protruding character set \NC \NR
-\HL
-\NC punctuation \NC hyphenation and punctuation characters, but using
-                    a more subtle approach than \type{pure} 
-                    (characters stick out by specific percentages)\NC \NR
-\NC alpha       \NC the latin alphabet characters          \NC \NR
-\NC extended    \NC the other characters                   \NC \NR
-\HL
-\stoptabulate
-
-The \type {extended} category maps the special (latin) characters onto the
-base 26 ones, and thereby honors the font encoding vector. This
-mapping vector can be used to enhance other handling vectors with
-support for accented characters (in most cases \aacute, \agrave,
-etc.\ need a treatment similar to~a).
-
-\todo{this is vague}
-
-Font protruding is turned off automatically in some particular
-situations, more control over that will be added eventually. 
 
 \subsection [sec:hz]{Font expansion}
 
@@ -2589,20 +2486,28 @@ how it is called in the \PDFTEX\ community.
 First, here is again the same example text that was used in the
 previous section, typeset using normal \TEX||comptibale font settings:
 
-\startcolumns[n=2]
+\blank
+
+\startsimplecolumns[n=2]
 \setupalign[verytolerant,stretch]
 \switchtobodyfont[modern,9pt] \noindent \input zapf \par
-\stopcolumns
+\stopsimplecolumns
 
-The Example below shows hz in action. This paragraph is typeset with
+\blank
+
+The example below shows hz in action. This paragraph is typeset with
 hz enabled and has a more even spacing than the text above.
 
-\startcolumns[n=2]
+\blank
+
+\startsimplecolumns[n=2]
 \setupfontsynonym [Serif] [handling=hz]
 \setupfonthandling [hz] [min=50,max=50,step=10]
-\setupalign[normal,hz]
+\setupalign[hanging,hz]
 \switchtobodyfont[modern,9pt] \noindent \input zapf \par
-\stopcolumns
+\stopsimplecolumns
+
+\blank
 
 The average reader will not notice the trick, but those sensitive to
 character shapes will see that some glyphs are widened slightly and
@@ -2613,7 +2518,6 @@ horizontal scaling is applied. As long as the used percentage is
 small, the distortion will go unnoticed and the paragraph will look
 slightly better because the whitespace distribution is more even.
 
-
 \subsection [sec:otherhandling]{Other font handlings}
 
 In addition to the two handlings documented in the previous
@@ -2621,86 +2525,373 @@ pararaphs (protruding and hz), \CONTEXT\ also provides the \type
 {noligs} handling (handy when one processes \XML), \type
 {flexspacing} and \type {prespacing} (meant for languages like French
 that need spacing around for instance \type {:} and~\type {;}). These
-handlings are somewhat experimental.
+handlings are experimental.
 
 
-\subsection {Defining font handlings}
+\subsection{How to use font handlings}
 
-\macro{\tex{startfonthandling}}
-\macro{\tex{definefonthandling}}
-\macro{\tex{usefonthandling}}
-\macro{\tex{defineprotrudefactor}}
-\macro{\tex{inheritprotrudefactor}}
+Before we go into the details of the actual extensions, let's see
+what is provided by \CONTEXT\ as the user||level interface.  The
+\CONTEXT\ interface to those new features is through a subsystem
+called \quote{font handling}, and at the top that subsystem is
+seamlessly integrated into the normal alignment macros.
 
-At the lowest level, the font handling definitions look like this 
-(here showing the default \type{punctuation} handling):
+For example, assuming the system is set up already to support
+protrusion, you can simply say
+
+\startexample
+\starttyping
+\setupalign[hanging]
+\stoptyping
+\stopexample
+
+to turn protrusion on. However, this will only work correctly if a
+number of special setups have taken place internally. The command
+\type{\setupalign} only toggles a switch, and the required setups
+have to be done elsewhere. 
+
+The list of font handling||related keys for \type{\setupalign} is:
+
+\starttabulate[|lT|l|]
+\NC hanging    \NC turns on character protrusion\NC \NR
+\NC nohanging  \NC turns off character protrusion\NC \NR
+\NC hz         \NC turns on font expansion\NC \NR
+\NC nohz       \NC turns off font expansion\NC \NR
+\NC spacing    \NC turns on special spacing rules\NC \NR
+\NC nospacing  \NC turns off special spacing\NC \NR
+\stoptabulate
+
+Largely because of the tight connection with the font itself, the
+method of defining and setting font handling is a little different
+between \PDFTEX\ and \MKIV.
+
+\subsection{Setting up font handlings in \MKII}
+
+Now, let's move on to how to set up the system for font handling
+properly. Most of the underlying features of \PDFTEX\ can not {\em
+just\/} be turned on or off, it is possible to tweak the machinery on
+the font as well as on the individual glyph level. You can define
+those settings all on your own, but \CONTEXT\ comes with a handy set
+of predefined values.
+
+\starttabulate[|lT|lT|p|]
+\NC \rm\bf name \NC \bf \tex{setupalign}\NC \bf description \NC \NR
+\NC pure 	\NC hanging         \NC full protrusion of only selected punctuation \NC \NR
+\NC normal 	\NC hanging         \NC partial protrusion of punctuation and some asymmetrical letters \NC \NR
+\NC hz 	        \NC hz              \NC variable correction of character widths\NC \NR
+\NC quality 	\NC hanging,hz      \NC combination of hz and pure \NC \NR
+\NC highquality \NC hanging,hz      \NC combination of hz and normal \NC \NR
+\NC flexspacing \NC spacing         \NC automatic extra spacing around various punctuation characters \NC \NR
+\NC prespacing  \NC spacing         \NC like flexspacing, but ignoring . and , and with smaller effects\NC \NR
+\NC noligs      \NC --              \NC suppresses ligatures; because this is irreversible it is not 
+                                        controlled via \type{\setupalign}\NC \NR
+\stoptabulate
+
+You need to be aware of the fact that at the moment that you actually
+define a font, you need to tell what handling you want to apply. 
+
+Note: setting up font handling involves a few low-level font definition
+commands, so you may want to read the chapter about font definitions
+first.
+
+Say that we want to hang only the serif fonts and say that we use
+Palatino as main typeface.
+
+\startexample
+\starttyping
+\setupfontsynonym [Serif] [handling=pure]
+\definetypeface [palatino] [rm] [serif] [palatino] [default]
+\stoptyping
+\stopexample
+
+In the above example, the font loader is instructed to treat fonts
+with the virtual name \type{Serif} in a special way by applying the
+font handling named \type {pure}. After that, the typeface collection
+\type {palatino} is (re)defined and by that process the font tagged
+as \type {Serif} will get the \quote{hanging} settings attached it.
+
+Now enable this typeface collection can be enabled by:
+
+\startexample
+\starttyping
+\setupbodyfont [palatino]
+\stoptyping
+\stopexample
+
+and finally, don't forget to turn on hanging by:
+
+\startexample
+\starttyping
+\setupalign [hanging]
+\stoptyping
+\stopexample
+
+However, this only takes care of the \type{Serif} font. Normally, that
+is the virtual name for the combination {\rm\tf}. If you also want the
+bold variants to hang, you have to add an extra line:
+
+\startexample
+\starttyping
+\setupfontsynonym [SerifBold] [handling=pure]
+\stoptyping
+\stopexample
+
+And so on for all the alternatives. This is tedious, so \CONTEXT\
+provides a shortcut. If you want to set all serif weights at once, you
+can call on a predefined typescript component before defining the
+typeface:
+
+\startexample
+\starttyping
+\usetypescript [serif] [handling] [pure]
+\stoptyping
+\stopexample
+
+for hanging punctuation, or for all characters:
 
 \starttyping
-\startfonthandling[punctuation]
-  \defineprotrudefactor ,  0  .7
-  \defineprotrudefactor .  0  .7
-  \defineprotrudefactor :  0  .5
-  \defineprotrudefactor ;  0  .5
-  .....
+\usetypescript [serif] [handling] [normal]
+\stoptyping
+
+The full example then becomes:
+
+\startexample
+\starttyping
+\usetypescript [serif] [handling] [pure]
+\definetypeface [palatino] [rm] [serif] [palatino] [default]
+\setupbodyfont [palatino]
+\setupalign [hanging]
+\stoptyping
+\stopexample
+
+The first argument can be one of three named typescript groups:
+\type{serif} (for the virtual font synonyms whose names begin with \type{Serif}), 
+\type{sans} (for \type{Sans}), or \type{mono}  (for \type{Mono}). The second 
+argument should always be \type{handling}. The third argument has to
+be one of named font handlings that are listed in the table at the
+start of this section.
+
+The typescripts that are used in these examples work by altering the
+font synonyms for virtualized symbolic font names like \type{Serif}
+and \type{SerifBold} en block. They will even work with your own
+typescripts if (but only if) these typescripts use the same font
+naming conventions as the \CONTEXT\ core.
+
+\blank
+
+The definition of font handlings is actually a two-step process.  A
+named font handling consists of one or more handling vectors that have
+to be defined first, those are then combined under a single name.
+
+This is not the right place to describe how to define the low-level
+vector definitions in detail, for that you are referred to the
+documented source of the main handling definition file \type
+{hand-def.tex}. But to give you an idea of what it looks like, here is
+a small excerpt of that file. The \type{pure} handling vector is
+defined as:
+
+\starttyping
+\startfonthandling [pure]
+
+  \defineprotrudefactor , 0 1
+  \defineprotrudefactor . 0 1
+  \defineprotrudefactor : 0 1
+  \defineprotrudefactor ; 0 1
+  \defineprotrudefactor - 0 1
+
+  \defineprotrudefactor hyphen 0 1
+  \defineprotrudefactor endash 0 .5
+  \defineprotrudefactor emdash 0 .33 % .5
+
 \stopfonthandling
 \stoptyping
 
-Equally valid are definitions like:
+The \type{pure} font handling itself is then defined as follows:
 
 \starttyping
-\defineprotrudefactor hyphen 0 .7
+\definefonthandling [pure] [pure] [type=hanging]
 \stoptyping
 
-Any character can protrude:
+The \type{hz} setup runs along the same lines. First here is a vector:
 
 \starttyping
-\defineprotrudefactor A .05 .05
+\startfonthandling [hz]
+
+  \defineadjustfactor A .5
+  \defineadjustfactor B .7
+  \defineadjustfactor C .7
+  ...
+
+\stopfonthandling
 \stoptyping
 
-For convenience we let composed characters inherit the
-values from their parents.
+And then the definition of the hz handling is as follows:
 
 \starttyping
-\inheritprotrudefactor Acircumflex A
+\definefonthandling [hz] [hz,extended] [type=hz]
 \stoptyping
 
-The two fractional arguments are a proportion of the width of the
-glyph, one for the left shift and one for the right shift. There are
-a few more vectors defined, like \type {defalph} for characters,
-where only very small shifts are applied.
+To wrap this up, here is the macro syntax for the font handling
+definition and setup.
 
-A combination of such vectors is then packaged to become a font 
-handler using the following command:
+\showsetup{definefonthandling}
+
+As you can see, the \type{\definefonthandling} command accepts three
+arguments.  The first is the handling to be defined, the second is a
+list of handling vectors to be used, and the third sets up a number of
+settings. 
+
+\starttabulate[|lT|p|]
+\NC type    \NC the type of this font handling feature, for use by \type{\setupalign} \NC \NR
+\NC right   \NC used by \type{type=hanging}, default 1  \NC \NR
+\NC left    \NC used by \type{type=hanging}, default 1  \NC \NR
+\NC factor  \NC used by \type{type=spacing}, default 1  \NC \NR
+\NC min     \NC used by \type{type=hz}, default 20      \NC \NR
+\NC max     \NC used by \type{type=hz}, default 20      \NC \NR
+\NC step    \NC used by \type{type=hz}, default 5       \NC \NR
+\stoptabulate
+
+On top of the list at the beginning of this paragraph, a few
+more elaborate font handlings are also predefined:
 
 \starttyping
-\definefonthandling [normal] [punctuation,alpha]
+\definefonthandling [purebold]        [pure] [type=hanging]
+\definefonthandling [pureslanted]     [pure] [type=hanging,right=1.5]
+\definefonthandling [pureitalic]      [pure] [type=hanging,right=1.5]
+\definefonthandling [pureboldslanted] [pure] [type=hanging,right=1.5]
+\definefonthandling [purebolditalic]  [pure] [type=hanging,right=1.5]
 \stoptyping
 
-and such definitions are then loaded with the \type {\usehandling}
-command. You could for instance load the default definitions with:
+The \type {right} parameter (there is also \type {left}) is a
+multiplication factor that is applied to the values in the associated
+vector. Such definitions can be more extensive, like:
 
 \starttyping
-\usehandling[def]
+\definefonthandling
+  [normalitalic]
+  [punctuation,alpha,extended]
+  [type=hanging,right=1.5]
 \stoptyping
 
-But since this handling vector is already preloaded in \CONTEXT\
-(just like all the others that were mentioned so far), you
-normally don't have to provide this command yourself.
+Here we have combined three vectors into one handling. For these
+extended font handlings, there are no predefined typescripts, so you
+either have to use the font synonyms directly, or define your own
+typescripts.  Now, if you think this is overly complicated, you are
+probably right. Normally you will just invoke protruding handlings
+defined previously, but the mechanisms are there to fine||tune the
+handlings to your precise wishes.
 
-As already mentioned, the amount of protruding depends on the shape,
-which is why different values may be needed for slanted or bold
-shapes. One way of using the same vector for different shapes, is
-changing the strength of the protruding:
+In case you want to alter some of the settings of an already defined
+font handling, there is
 
+\showsetup{setupfonthandling}
+
+The first argument is the handling to be altered, the second sets up 
+the settings.
+
+\subsection{Setting up font handlings in \MKIV}
+
+In \MKIV, font handling is merged with the font features (because
+these already have a low-level connection to the font), so you can
+set up the font-side of things with the sixth argument 
+of \type{\definetypeface}, like so:
+
+\startexample
 \starttyping
-\definefonthandling [slanted] [punctuation] [right=1.5]
+\definefontfeature
+    [hz] [default]
+    [protrusion=pure, mode=node, script=latn]
+\definetypeface [palatino] [rm] [serif] [palatino] [default] [features=hz]
+\setupbodyfont [palatino]
+\setupalign [hanging]
 \stoptyping
+\stopexample
 
-Here, because a slanted glyph already sticks into the
-margin, we limit protruding to punctuation. You may expect
-more (probably incompatible) fine tuning in the future. 
+or by redefining the feature set that is used by the typescript you
+are using and then (re-)executing the typescript, like so:
 
+\startexample
+\starttyping
+\definefontfeature
+    [default] [default]
+    [protrusion=pure, expansion=quality, mode=node, script=latn]
+\usetypescript[palatino]
+\setupbodyfont [palatino]
+\setupalign [hanging]
+\stoptyping
+\stopexample
 
+There is a list of predefined font handling feature values that you can use:
+
+For protrusion, there is:
+
+\starttabulate[|lT|lT|p|]
+\NC \rm\bf name \NC \bf \tex{setupalign}\NC \bf description \NC \NR
+\NC pure 	\NC hanging         \NC full protrusion of only selected punctuation \NC \NR
+\NC punctuation \NC hanging         \NC partial protrusion of punctuation \NC \NR
+\NC alpha       \NC hanging         \NC partial of some asymmetrical letters \NC \NR
+\NC quality     \NC hanging         \NC the combination of \type{punctuation} and \type{alpha}\NC \NR
+\stoptabulate
+
+For expansion, there is:
+
+\starttabulate[|lT|lT|p|]
+\NC \rm\bf name \NC \bf \tex{setupalign}\NC \bf description \NC \NR
+\NC quality     \NC hz              \NC variable correction of character widths\NC \NR
+\stoptabulate
+
+These are defined in the file \type{font-ext.lua}. The low||level definitions look like
+
+\startLUA
+fonts.protrusions.vectors['pure'] = {
+    [0x002C] = { 0, 1    }, -- comma
+    [0x002E] = { 0, 1    }, -- period
+    [0x003A] = { 0, 1    }, -- colon
+    [0x003B] = { 0, 1    }, -- semicolon
+    [0x002D] = { 0, 1    }, -- hyphen
+    [0x2013] = { 0, 0.50 }, -- endash
+    [0x2014] = { 0, 0.33 }, -- emdash
+}
+fonts.protrusions.classes['pure'] = {
+    vector = 'pure', factor = 1
+}
+\stopLUA
+
+That was the complete definition of \type{protrusion=pure}.  The key
+\type{classes} has the same function as the macro call
+\type{\definefonthandling} in \MKII.  It references the named vector 
+\type{pure} and sets up a parameter.  
+
+For \type{protrusion}, there is only the one parameter \type{factor},
+but for \type{expansion} there are a few more:
+
+\startLUA
+fonts.expansions.classes['quality'] = {
+    stretch = 2, shrink = 2, step = .5, vector = 'default', factor = 1
+}
+fonts.expansions.vectors['default'] = {
+    [byte('A')] = 0.5, 
+    [byte('B')] = 0.7, 
+    ... -- many more characters follow
+}
+\stopLUA
+
+As you can see, the definition order of vector vs. class is not
+important, and the format of the vector is a little different. The use of 
+\type{byte()} is just so that that keying in hex numbers can be avoided. 
+The values are bare numbers instead of hashes because there is only
+one per-character parameter involved with character expansion. 
+
+Also note that the values for the parameters \type{stretch},
+\type{shrink} and \type{step} are divided by a factor 10 compared to
+the \MKII\ definition.
+
+IN \MKIV, there is no support for the \type{spacing} key to
+\type{\setupalign} yet. That is because the low||level features in
+\PDFTEX\ are not present in \LUATEX, and there is no replacement yet.
+The font handling \type{noligs} is, of course, replaced by the
+OpenType font feature tags for ligatures: simply leave all of the
+relevant font features turned off.
 
 \section [sec:encodings]{Encodings and mappings}
 

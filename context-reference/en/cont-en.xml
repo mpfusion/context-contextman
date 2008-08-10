@@ -10023,5 +10023,59 @@
     </cd:arguments>
   </cd:command>
 
+  <cd:command name="definefonthandling" file="hand-ini.mkii"> 
+    <cd:sequence>
+      <cd:string value="definefonthandling"/>
+    </cd:sequence>
+    <cd:arguments>
+      <cd:keywords n="1">
+        <cd:constant type="cd:name"/>
+      </cd:keywords>
+      <cd:keywords n="2">
+        <cd:constant type="cd:name" list="yes"/>
+      </cd:keywords>
+      <cd:assignments n="3">
+        <cd:parameter name="type">
+          <cd:constant type="hanging" default="yes"/>
+          <cd:constant type="hz"/>
+          <cd:constant type="spacing"/>
+          <cd:constant type="tag"/>
+        </cd:parameter>
+        <cd:parameter name="right">
+          <cd:constant type="cd:number"/>
+        </cd:parameter>
+        <cd:parameter name="left">
+          <cd:constant type="cd:number"/>
+        </cd:parameter>
+        <cd:parameter name="factor">
+          <cd:constant type="cd:number"/>
+        </cd:parameter>
+        <cd:parameter name="min">
+          <cd:constant type="cd:number"/>
+        </cd:parameter>
+        <cd:parameter name="max">
+          <cd:constant type="cd:number"/>
+        </cd:parameter>
+        <cd:parameter name="step">
+          <cd:constant type="cd:number"/>
+        </cd:parameter>
+      </cd:assignments>
+    </cd:arguments>
+  </cd:command>
+
+  <cd:command name="setupfonthandling" file="hand-ini.mkii"> 
+    <cd:sequence>
+      <cd:string value="setupfonthandling"/>
+    </cd:sequence>
+    <cd:arguments>
+      <cd:keywords n="1">
+        <cd:constant type="cd:name"/>
+      </cd:keywords>
+      <cd:assignments n="2">
+        <cd:inherit name="definefonthandling" n="2"/>
+      </cd:assignments>
+    </cd:arguments>
+  </cd:command>
+
 
 </cd:interface>
