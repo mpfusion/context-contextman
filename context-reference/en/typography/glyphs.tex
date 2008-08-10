@@ -1,0 +1,29 @@
+% engine=luatex
+
+\environment contextref-env
+
+\usetypescript
+   [map,sans,mono,handwriting,calligraphy,serif]
+   [helvetica,schoolbook,times,antykwa-torunska,modern]
+\starttext
+
+\startTEXpage
+\ruledhbox to \hsize
+  {\hss
+   \definefont[test][ComputerModern          at 60pt]\test gap\setstrut\strut\hss
+   \definefont[test][Helvetica               at 60pt]\test gap\hss
+   \definefont[test][Times-Roman             at 60pt]\test gap\hss
+   \definefont[test][AntykwaTorunska-Regular at 60pt]\test gap\hss}
+\stopTEXpage
+
+\startTEXpage
+\ruledhbox to \hsize
+  {\hss
+   \definefont[test][Schoolbook-Roman      at 48pt]\test lap\setstrut\strut\hss
+   \definefont[test][Schoolbook-Bold       at 48pt]\test lap\hss
+   \definefont[test][Schoolbook-Italic     at 48pt]\test lap\hss
+   \definefont[test][Schoolbook-BoldItalic at 48pt]\test lap\hss}
+\stopTEXpage
+
+\stoptext
+

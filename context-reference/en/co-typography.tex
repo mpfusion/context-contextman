@@ -3,9 +3,23 @@
 \environment contextref-env
 \product contextref
 
-\definefontfeature[default][default][protrusion=pure,expansion=quality,mode=node,script=latn]
+% this chapter runs in mkii and mkiv modes now, but the output 
+% is not always the same.
+
+% needed for mkiv:
+
+\definefontfeature[default][default]
+     [protrusion=pure,expansion=quality,mode=node,script=latn]
+
+% needed for mkii:
+
+\loadmapfile[lm-texnansi.map]
+\loadmapfile[lm-qx.map]
+\loadmapfile[lm-t5.map]
 
 \def\definition#1{{\it #1}}
+
+% this doesnt work properly in mkiv ? lines are black instead of gray
 
 \def\FakeLine#1%
   {\hbox to \hsize
@@ -41,9 +55,6 @@
    [map,sans,mono,handwriting,calligraphy,serif]
    [helvetica,schoolbook,times,antykwa-torunska,modern]
 
-\usetypescript[modern]
-
-
 \chapter[typography]{Typography}
 
 \section{Introduction}
@@ -72,12 +83,7 @@ character shapes is called a \definition{font}, and the pictures in a
 font are called \definition{glyphs}.
 
 \startlinecorrection
-\ruledhbox to \hsize
-  {\hss
-   \definefont[test][ComputerModern          at 60pt]\test gap\setstrut\strut\hss
-   \definefont[test][Helvetica               at 60pt]\test gap\hss
-   \definefont[test][Times-Roman             at 60pt]\test gap\hss
-   \definefont[test][AntykwaTorunska-Regular at 60pt]\test gap\hss}
+\externalfigure[typography/glyphs.pdf][page=1]
 \stoplinecorrection
 
 From left to right you see a Computer Modern font, a Helvetica lookalike, a
@@ -89,12 +95,7 @@ overall appearance on a page looks good and reading is as comfortable
 as possible.
 
 \startlinecorrection
-\ruledhbox to \hsize
-  {\hss
-   \definefont[test][Schoolbook-Roman      at 48pt]\test lap\setstrut\strut\hss
-   \definefont[test][Schoolbook-Bold       at 48pt]\test lap\hss
-   \definefont[test][Schoolbook-Italic     at 48pt]\test lap\hss
-   \definefont[test][Schoolbook-BoldItalic at 48pt]\test lap\hss}
+\externalfigure[typography/glyphs.pdf][page=2]
 \stoplinecorrection
 
 Even within a single font design there can be variations. In the
@@ -2567,7 +2568,10 @@ hz enabled and has a more even spacing than the text above.
 
 \startsimplecolumns[n=2]
 \setupfontsynonym [Serif] [handling=hz]
-\setupfonthandling [hz] [min=50,max=50,step=10]
+% the next line can't be used, or the font encoding tables at the end of
+% the chapter will fail with a `was expanded with different values'-error
+% in mkii.
+% \setupfonthandling [hz] [min=50,max=50,step=10]
 \setupalign[hanging,hz]
 \switchtobodyfont[modern,9pt] \noindent \input zapf \par
 \stopsimplecolumns

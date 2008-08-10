@@ -22,19 +22,10 @@
    \c!margin=2.5cm,
    \c!height=\v!middle]
 
-% have to insert a sans font, not provided by type-otf
 
-%\starttypescript [palatino]
-%    \definetypeface [palatino] [rm] [serif] [palatino] [default]
-%    \definetypeface [palatino] [ss] [sans]  [modern]   [default]
-%    \definetypeface [palatino] [tt] [mono]  [modern]   [default] [rscale=1.075]
-%    \definetypeface [palatino] [mm] [math]  [palatino] [default]
-%    \quittypescriptscanning
-%\stoptypescript
+\usetypescript[palatino][ec]
 
-\usetypescript[palatino]
-
-\switchtobodyfont[palatino,11pt]
+\setupbodyfont[palatino,11pt]
 
 \definefontsynonym[chapternumberfont][RegularBold]
 \definefontsynonym[chaptertextfont]  [RegularBold]
@@ -104,17 +95,16 @@
 
 \definecolor[maincolor][g=.6]
 \definecolor[textcolor][r=.6]
-
 \definecolor[pagecolor][s=.6]
 \definecolor[darkcolor][s=.2]
+
+\definecolor[GrayColor]     [s=.95]
+\definecolor[AltColor]      [s=.5]
 
 \definecolor[PageColor]     [white]
 \definecolor[PlusColor]     [black]
 \definecolor[FrameColor]    [maincolor] % [r=.5,g=.6,b=.7]
 \definecolor[OtherColor]    [textcolor] % [r=.7,g=.6,b=.5]
-\definecolor[GrayColor]     [s=.95]
-\definecolor[AltColor]      [s=.5]
-
 
 \definecolor[NoteColor]      [g=1,r=.25,b=.25]
 \definecolor[WarnColor]      [r=1,g=.25,b=.25]
