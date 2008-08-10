@@ -1435,34 +1435,6 @@ The fifth argument to \type{\definetypeface} specifies specific font size setups
 these will be covered in~\in{section}[typefacesizes] in the next chapter. Almost always,
 specifying \type{default} will suffice.
 
-The optional sixth argument is used for tweaking font settings like the specification of
-font features or adjusting parameters. In this case, the two \type{modern} font sets are
-loaded with a small magnification, this evens out the visual heights of the font styles.
-
-\startbuffer
-\vskip 1ex
-\starttabulate[|lT|l|p|]
-\NC \rm\bf key \NC \bf default value        \NC explanation                             \NC \FR
-\NC rscale   \NC 1                       \NC a scaling factor for this typescript
-                                             relative to the selected body font size \NC \NR
-\NC encoding \NC \type{\defaultencoding} \NC the encoding for the typeface, normally
-                                             inherited from the typescript
-                                             automatically                           \NC \NR
-\NC features \NC                         \NC this applies a predefined font feature set 
-                                             (see~\in{section}[sec:font features])   \NC \NR
-\NC text     \NC                         \NC sets up the forced math text style      \NC \NR
-\stoptabulate 
-\vskip 1ex
-\stopbuffer
-
-
-There are four possible keys in the sixth argument:
-
-\getbuffer
-
-A note for the lazy: if the sixth argument is not given and the fifth argument happens
-to be \type{default}, then the fifth argument can be omitted as well.
-
 \startbuffer[bodyfontst1free]
 \switchtobodyfont[9pt]
 \starttabulate[|l|l|l|p(3.5cm)|]
@@ -1661,8 +1633,9 @@ to be \type{default}, then the fifth argument can be omitted as well.
 
 
 \startbuffer[bodyfontsotffree]
+\startsimplecolumns
 \switchtobodyfont[9pt]
-\starttabulate[|l|l|l|]
+\starttabulate[|l|l|p|]
 \NC \bf Identifier             \NC \bf file \NC \bf Supported styles \NC \FR
 \NC modern                     \NC type-otf \NC serif, sans, mono, math, boldmath, bfmath \NC \NR 
 \NC latin-modern               \NC type-otf \NC serif, sans, mono, math, boldmath, bfmath \NC \NR 
@@ -1681,7 +1654,10 @@ to be \type{default}, then the fifth argument can be omitted as well.
 \NC chorus                     \NC type-otf \NC serif \NC \NR
 \NC heros                      \NC type-otf \NC sans \NC \NR
 \NC adventor                   \NC type-otf \NC sans \NC \NR
-\NC cursor                     \NC type-otf \NC sans \NC \NR
+\NC \rlap{cursor}\hphantom{antykwa-torunska-lightcond}\NC type-otf \NC sans \NC \NR
+\stoptabulate
+\starttabulate[|l|l|p|]
+\NC \bf Identifier             \NC \bf file \NC \bf Supported styles \NC \FR
 \NC palatino                   \NC type-otf \NC serif, math \NC \NR
 \NC times                      \NC type-otf \NC serif, math \NC \NR
 \NC bookman                    \NC type-otf \NC serif \NC \NR
@@ -1708,6 +1684,7 @@ to be \type{default}, then the fifth argument can be omitted as well.
 \NC charter                    \NC type-otf \NC serif \NC \NR
 \NC gentium                    \NC type-xtx \NC serif \NC \NR
 \stoptabulate
+\stopsimplecolumns
 \stopbuffer
 
 %\NC Identifier                 \NC Needed font package    \NC \NR
@@ -1747,8 +1724,8 @@ to be \type{default}, then the fifth argument can be omitted as well.
 %\NC gentium                    \NC SIL Gentium            \NC \NR
 
 \startbuffer[bodyfontsotfbuy]
+\startsimplecolumns
 \switchtobodyfont[9pt]
-
 \starttabulate[|l|l|l|]
 \NC \bf Identifier                 \NC \bf file \NC \bf Supported styles \NC \FR
 \NC zapfino                        \NC type-hgz \NC serif, handwriting\NC \NR
@@ -1766,7 +1743,10 @@ to be \type{default}, then the fifth argument can be omitted as well.
 \NC -- all four-variant fonts --   \NC type-xtx \NC Xserif \NC \NR
 \NC -- all four-variant fonts --   \NC type-xtx \NC Xsans \NC \NR
 \NC -- all four-variant fonts --   \NC type-xtx \NC Xmono \NC \NR
-\NC times                          \NC type-xtx \NC serif \NC \NR
+\stoptabulate
+\starttabulate[|l|l|l|]
+\NC \bf Identifier                 \NC \bf file \NC \bf Supported styles \NC \FR
+\NC \rlap{times}\hphantom{-- all four-variant fonts --}\NC type-xtx \NC serif \NC \NR
 \NC palatino                       \NC type-xtx \NC serif \NC \NR
 \NC helvetica                      \NC type-xtx \NC sans \NC \NR
 \NC courier                        \NC type-xtx \NC mono \NC \NR
@@ -1779,8 +1759,11 @@ to be \type{default}, then the fifth argument can be omitted as well.
 \NC applechancery                  \NC type-xtx \NC calligraphy, serif \NC \NR
 \NC timesnewroman                  \NC type-xtx \NC serif \NC \NR
 \NC arial                          \NC type-xtx \NC sans \NC \NR
-\NC lucida                         \NC type-xtx \NC serif, sans, mono, handwriting, calligraphy, fax\NC \NR
+\NC lucida                         \NC type-xtx \NC serif, sans, mono,\NC \NR
+\NC                                \NC          \NC handwriting, fax, \NC \NR
+\NC                                \NC          \NC calligraphy       \NC \NR
 \stoptabulate
+\stopsimplecolumns
 \stopbuffer
 
 %\NC Identifier                 \NC Needed font package    \NC \NR
@@ -1829,9 +1812,35 @@ to be \type{default}, then the fifth argument can be omitted as well.
   {The predefined body font identifiers for commercial Unicode (Opentype) fonts}
   {\getbuffer[bodyfontsotfbuy]}
 
+The optional sixth argument is used for tweaking font settings like the specification of
+font features or adjusting parameters. In this case, the two \type{modern} font sets are
+loaded with a small magnification, this evens out the visual heights of the font styles.
 
-In~\in{table}[tab:body font names 4] you will see three very special items: \type{Xserif},  \type{Xsans} and \type{Xmono}. These
-belong to a special \XETEX-only trick called \quote{wildcard typescripts}.
+A note for the lazy: if the sixth argument is not given and the fifth argument happens
+to be \type{default}, then the fifth argument can be omitted as well.
+
+\startbuffer
+\starttabulate[|lT|l|p|]
+\NC \rm\bf key \NC \bf default value        \NC explanation                             \NC \FR
+\NC rscale   \NC 1                       \NC a scaling factor for this typescript
+                                             relative to the selected body font size \NC \NR
+\NC encoding \NC \type{\defaultencoding} \NC the encoding for the typeface, normally
+                                             inherited from the typescript
+                                             automatically                           \NC \NR
+\NC features \NC                         \NC this applies a predefined font feature set 
+                                             (see~\in{section}[sec:font features])   \NC \NR
+\NC text     \NC                         \NC sets up the forced math text style      \NC \NR
+\stoptabulate 
+\stopbuffer
+
+There are four possible keys in the sixth argument:
+
+\getbuffer
+
+If you look closely, in~\in{table}[tab:body font names 4] you will
+notice three very special items: \type{Xserif}, \type{Xsans} and
+\type{Xmono}. These belong to a special \XETEX-only trick called
+\quote{wildcard typescripts}.
 
 \XETEX\ offers some nice features in terms of automatically finding related fonts in a family, namely the italic, bold, and
 bolditalic alternatives. To take advantage of that, there's a set of wildcard typescripts that take an arbitrary Macintosh font
@@ -2015,97 +2024,153 @@ At the moment, \type {smallcaps} and \type{oldstyle} only work in \XETEX\
 (in \MKIV, it would need an extra \type{mode=node} pair).
 
 \startbuffer[mkivfeatures]
+% rough \TEX\ source generated by:
+% \startluacode
+%  for k,v in pairs(fonts.otf.tables.features) do
+%    print (string.format('\\NC %s \\NC %s \\NC \\NR', k, v))
+%  end
+% \stopluacode
 \begingroup
-\def\*#1#2#3#4{\ctxlua{tex.sprint(tex.vrbcatcodes,fonts.otf.tables.features["#1#2#3#4"])}}
-\startsimplecolumns
+\startsimplecolumns[n=3]
 \switchtobodyfont[9pt]
-\starttabulate[|l|l|l|]
-\NC aalt\NC \*aalt\NC \NC \NR
-\NC abvm\NC \*abvm\NC \NC \NR
-\NC afrc\NC \*afrc\NC \NC \NR
-\NC akhn\NC \*akhn\NC \NC \NR
-\NC blwm\NC \*blwm\NC \NC \NR
-\NC c2pc\NC \*c2pc\NC \NC \NR
-\NC c2sc\NC \*c2sc\NC \NC \NR
-\NC calt\NC \*calt\NC \NC \NR
-\NC case\NC \*case\NC \NC \NR
-\NC ccmp\NC \*ccmp\NC \NC \NR
-\NC clig\NC \*clig\NC \NC \NR
-\NC cpsp\NC \*cpsp\NC \NC \NR
-\NC cswh\NC \*cswh\NC \NC \NR
-\NC curs\NC \*curs\NC \NC \NR
-\NC dlig\NC \*dlig\NC \NC \NR
-\NC dnom\NC \*dnom\NC \NC \NR
-\NC expt\NC \*expt\NC \NC \NR
-\NC fina\NC \*fina\NC \NC \NR
-\NC fin2\NC \*fin2\NC \NC \NR
-\NC fin3\NC \*fin3\NC \NC \NR
-\NC frac\NC \*frac\NC \NC \NR
-\NC fwid\NC \*fwid\NC \NC \NR
-\NC haln\NC \*haln\NC \NC \NR
-\NC hist\NC \*hist\NC \NC \NR
-\NC hkna\NC \*hkna\NC \NC \NR
-\NC hlig\NC \*hlig\NC \NC \NR
-\NC hngl\NC \*hngl\NC \NC \NR
-\NC hwid\NC \*hwid\NC \NC \NR
-\NC init\NC \*init\NC \NC \NR
-\NC isol\NC \*isol\NC \NC \NR
-\NC ital\NC \*ital\NC \NC \NR
-\NC jp78\NC \*jp78\NC \NC \NR
-\NC jp83\NC \*jp83\NC \NC \NR
-\NC jp90\NC \*jp90\NC \NC \NR
-\NC kern\NC \*kern\NC \NC \NR
-\NC liga\NC \*liga\NC \NC \NR
-\NC lnum\NC \*lnum\NC \NC \NR
-\NC locl\NC \*locl\NC \NC \NR
-\NC mark\NC \*mark\NC \NC \NR
-\NC medi\NC \*medi\NC \NC \NR
-\NC med2\NC \*med2\NC \NC \NR
-\NC mgrk\NC \*mgrk\NC \NC \NR
-\NC mkmk\NC \*mkmk\NC \NC \NR
-\NC nalt\NC \*nalt\NC \NC \NR
-\NC nlck\NC \*nlck\NC \NC \NR
-\NC nukt\NC \*nukt\NC \NC \NR
-\NC numr\NC \*numr\NC \NC \NR
-\NC onum\NC \*onum\NC \NC \NR
-\NC ordn\NC \*ordn\NC \NC \NR
-\NC ornm\NC \*ornm\NC \NC \NR
-\NC pnum\NC \*pnum\NC \NC \NR
-\NC pref\NC \*pref\NC \NC \NR
-\NC pres\NC \*pres\NC \NC \NR
-\NC pstf\NC \*pstf\NC \NC \NR
-\NC rlig\NC \*rlig\NC \NC \NR
-\NC rphf\NC \*rphf\NC \NC \NR
-\NC rtla\NC \*rtla\NC \NC \NR
-\NC salt\NC \*salt\NC \NC \NR
-\NC sinf\NC \*sinf\NC \NC \NR
-\NC smcp\NC \*smcp\NC \NC \NR
-\NC smpl\NC \*smpl\NC \NC \NR
-\NC ss01\NC \*ss01\NC \NC \NR
-\NC ss02\NC \*ss02\NC \NC \NR
-\NC ss03\NC \*ss03\NC \NC \NR
-\NC ss04\NC \*ss04\NC \NC \NR
-\NC ss05\NC \*ss05\NC \NC \NR
-\NC ss06\NC \*ss06\NC \NC \NR
-\NC ss07\NC \*ss07\NC \NC \NR
-\NC ss08\NC \*ss08\NC \NC \NR
-\NC ss09\NC \*ss09\NC \NC \NR
-\NC subs\NC \*subs\NC \NC \NR
-\NC sups\NC \*sups\NC \NC \NR
-\NC swsh\NC \*swsh\NC \NC \NR
-\NC titl\NC \*titl\NC \NC \NR
-\NC tnam\NC \*tnam\NC \NC \NR
-\NC tnum\NC \*tnum\NC \NC \NR
-\NC trad\NC \*trad\NC \NC \NR
-\NC unic\NC \*unic\NC \NC \NR
-\NC zero\NC \*zero\NC \NC \NR
+\starttabulate[|lT|p|]
+\NC aalt \NC Access All Alternates \NC \NR
+\NC abvf \NC Above-Base Forms \NC \NR
+\NC abvm \NC Above-Base Mark Positioning \NC \NR
+\NC abvs \NC Above-Base Substitutions \NC \NR
+\NC afrc \NC Alternative Fractions \NC \NR
+\NC akhn \NC Akhands \NC \NR
+\NC blwf \NC Below-Base Forms \NC \NR
+\NC blwm \NC Below-Base Mark Positioning \NC \NR
+\NC blws \NC Below-Base Substitutions \NC \NR
+\NC c2pc \NC Petite Capitals From Capitals \NC \NR
+\NC c2sc \NC Small Capitals From Capitals \NC \NR
+\NC calt \NC Contextual Alternates \NC \NR
+\NC case \NC Case-Sensitive Forms \NC \NR
+\NC ccmp \NC Glyph Composition/Decomposition \NC \NR
+\NC cjct \NC Conjunct Forms \NC \NR
+\NC clig \NC Contextual Ligatures \NC \NR
+\NC cpsp \NC Capital Spacing \NC \NR
+\NC cswh \NC Contextual Swash \NC \NR
+\NC curs \NC Cursive Positioning \NC \NR
+\NC dflt \NC Default Processing \NC \NR
+\NC dist \NC Distances \NC \NR
+\NC dlig \NC Discretionary Ligatures \NC \NR
+\NC dnom \NC Denominators \NC \NR
+\NC expt \NC Expert Forms \NC \NR
+\NC falt \NC Final glyph Alternates \NC \NR
+\NC fina \NC Terminal Forms \NC \NR
+\NC fin2 \NC Terminal Forms \#2 \NC \NR
+\NC fin3 \NC Terminal Forms \#3 \NC \NR
+\NC frac \NC Fractions \NC \NR
+\NC fwid \NC Full Width \NC \NR
+\NC half \NC Half Forms \NC \NR
+\NC haln \NC Halant Forms \NC \NR
+\NC halt \NC Alternate Half Width \NC \NR
+\NC hist \NC Historical Forms \NC \NR
+\NC hkna \NC Horizontal Kana Alternates \NC \NR
+\NC hlig \NC Historical Ligatures \NC \NR
+\NC hngl \NC Hangul \NC \NR
+\NC hojo \NC Hojo Kanji Forms \NC \NR
+\NC hwid \NC Half Width \NC \NR
+\NC init \NC Initial Forms \NC \NR
+\NC isol \NC Isolated Forms \NC \NR
+\NC ital \NC Italics \NC \NR
+\NC jalt \NC Justification Alternatives \NC \NR
+\NC jp04 \NC JIS2004 Forms \NC \NR
+\NC jp78 \NC JIS78 Forms \NC \NR
+\NC jp83 \NC JIS83 Forms \NC \NR
+\NC jp90 \NC JIS90 Forms \NC \NR
+\NC kern \NC Kerning \NC \NR
+\NC lfbd \NC Left Bounds \NC \NR
+\NC liga \NC Standard Ligatures \NC \NR
+\NC ljmo \NC Leading Jamo Forms \NC \NR
+\NC lnum \NC Lining Figures \NC \NR
+\NC locl \NC Localized Forms \NC \NR
+\NC mark \NC Mark Positioning \NC \NR
+\NC medi \NC Medial Forms \NC \NR
+\NC med2 \NC Medial Forms \#2 \NC \NR
+\NC mgrk \NC Mathematical Greek \NC \NR
+\NC mkmk \NC Mark to Mark Positioning \NC \NR
+\NC mset \NC Mark Positioning via Substitution \NC \NR
+\NC nalt \NC Alternate Annotation Forms \NC \NR
+\NC nlck \NC NLC Kanji Forms \NC \NR
+\NC nukt \NC Nukta Forms \NC \NR
+\NC numr \NC Numerators \NC \NR
+\NC onum \NC Old Style Figures \NC \NR
+\NC opbd \NC Optical Bounds \NC \NR
+\NC ordn \NC Ordinals \NC \NR
+\NC ornm \NC Ornaments \NC \NR
+\NC palt \NC Proportional Alternate Width \NC \NR
+\NC pcap \NC Petite Capitals \NC \NR
+\NC pnum \NC Proportional Figures \NC \NR
+\NC pref \NC Pre-base Forms \NC \NR
+\NC pres \NC Pre-base Substitutions \NC \NR
+\NC pstf \NC Post-base Forms \NC \NR
+\NC psts \NC Post-base Substitutions \NC \NR
+\NC pwid \NC Proportional Widths \NC \NR
+\NC qwid \NC Quarter Widths \NC \NR
+\NC rand \NC Randomize \NC \NR
+\NC rkrf \NC Rakar Forms \NC \NR
+\NC rlig \NC Required Ligatures \NC \NR
+\NC rphf \NC Reph Form \NC \NR
+\NC rtbd \NC Right Bounds \NC \NR
+\NC rtla \NC Right-To-Left Alternates \NC \NR
+\NC ruby \NC Ruby Notation Forms \NC \NR
+\NC salt \NC Stylistic Alternates \NC \NR
+\NC sinf \NC Scientific Inferiors \NC \NR
+\NC size \NC Optical Size \NC \NR
+\NC smcp \NC Small Capitals \NC \NR
+\NC smpl \NC Simplified Forms \NC \NR
+\NC ss01 \NC Stylistic Set 1 \NC \NR
+\NC ss02 \NC Stylistic Set 2 \NC \NR
+\NC ss03 \NC Stylistic Set 3 \NC \NR
+\NC ss04 \NC Stylistic Set 4 \NC \NR
+\NC ss05 \NC Stylistic Set 5 \NC \NR
+\NC ss06 \NC Stylistic Set 6 \NC \NR
+\NC ss07 \NC Stylistic Set 7 \NC \NR
+\NC ss08 \NC Stylistic Set 8 \NC \NR
+\NC ss09 \NC Stylistic Set 9 \NC \NR
+\NC ss10 \NC Stylistic Set 10 \NC \NR
+\NC ss11 \NC Stylistic Set 11 \NC \NR
+\NC ss12 \NC Stylistic Set 12 \NC \NR
+\NC ss13 \NC Stylistic Set 13 \NC \NR
+\NC ss14 \NC Stylistic Set 14 \NC \NR
+\NC ss15 \NC Stylistic Set 15 \NC \NR
+\NC ss16 \NC Stylistic Set 16 \NC \NR
+\NC ss17 \NC Stylistic Set 17 \NC \NR
+\NC ss18 \NC Stylistic Set 18 \NC \NR
+\NC ss19 \NC Stylistic Set 19 \NC \NR
+\NC ss20 \NC Stylistic Set 20 \NC \NR
+\NC subs \NC Subscript \NC \NR
+\NC sups \NC Superscript \NC \NR
+\NC swsh \NC Swash \NC \NR
+\NC titl \NC Titling \NC \NR
+\NC tjmo \NC Trailing Jamo Forms \NC \NR
+%\NC tlig \NC TeX Ligatures \NC \NR
+\NC tnam \NC Traditional Name Forms \NC \NR
+\NC tnum \NC Tabular Figures \NC \NR
+\NC trad \NC Traditional Forms \NC \NR
+%\NC trep \NC TeX Replacements \NC \NR
+\NC twid \NC Third Widths \NC \NR
+\NC unic \NC Unicase \NC \NR
+\NC valt \NC Alternate Vertical Metrics \NC \NR
+\NC vatu \NC Vattu Variants \NC \NR
+\NC vert \NC Vertical Writing \NC \NR
+\NC vhal \NC Alternate Vertical Half Metrics \NC \NR
+\NC vjmo \NC Vowel Jamo Forms \NC \NR
+\NC vkna \NC Vertical Kana Alternates \NC \NR
+\NC vkrn \NC Vertical Kerning \NC \NR
+\NC vpal \NC Proportional Alternate Vertical Metrics \NC \NR
+\NC vrt2 \NC Vertical Rotation \NC \NR
+\NC zero \NC Slashed Zero \NC \NR
 \stoptabulate
 \stopsimplecolumns
 \endgroup
 \stopbuffer
 
 \placetable
-  [here]
+  [page]
   [tab:mkivfeatures]
   {The OpenType features that are understood by \MKIV\ in \type{mode=node} processing mode}
   {\getbuffer[mkivfeatures]}
