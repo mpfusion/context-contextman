@@ -1,157 +1,14 @@
 \startcomponent co-fonts
-
-\environment contextref-env
-\product contextref
-
-
-\startbuffer[font-5]
-\definebodyfont [default] [rm]
-  [ tf=Serif        sa 1,
-   tfa=Serif        sa a,
-      ...
-    sl=SerifSlanted sa 1,
-   sla=SerifSlanted sa a,
-      ...]
-\stopbuffer
-
-\startbuffer[font-6]
-\definebodyfont [12pt] [rm]
-  [ tf=cmr12,
-   tfa=cmr12 scaled \magstep1,
-   tfb=cmr12 scaled \magstep2,
-   tfc=cmr12 scaled \magstep3,
-   tfd=cmr12 scaled \magstep4,
-    bf=cmbx12,
-    it=cmti12,
-    sl=cmsl12,
-    bi=cmbxti10 at 12pt,
-    bs=cmbxsl10 at 12pt,
-    sc=cmcsc10 at 12pt]
-\stopbuffer
-
-\startbuffer[font-7]
-\definebodyfont [12pt,11pt,10pt,9pt,8pt] [ss]
-  [tf=hv  sa 1.000,
-   bf=hvb sa 1.000,
-   it=hvo sa 1.000,
-   sl=hvo sa 1.000,
-  tfa=hv  sa 1.200,
-  tfb=hv  sa 1.440,
-  tfc=hv  sa 1.728,
-  tfd=hv  sa 2.074,
-   sc=hv  sa 1.000]
-\stopbuffer
-
-\startbuffer[font-8]
-\definebodyfont [12pt,11pt,10pt,9pt,8pt] [ss]
-  [tf=hv sa 1, tfa=hv sa a, tfb=hv sa b, tfc=hv sa c, tfd=hv sa d]
-\stopbuffer
-
-\startbuffer[enco-1]
-\startmapping[texnansi]
-  \definecasemap 228 228 196  \definecasemap 196 228 196
-  \definecasemap 235 235 203  \definecasemap 203 235 203
-  \definecasemap 239 239 207  \definecasemap 207 239 207
-  \definecasemap 246 246 214  \definecasemap 214 246 214
-  \definecasemap 252 252 220  \definecasemap 220 252 220
-  \definecasemap 255 255 159  \definecasemap 159 255 159
-\stopmapping
-\stopbuffer
-
-\startbuffer[enco-2]
-\startencoding[texnansi]
-  \defineaccent " a 228
-  \defineaccent " e 235
-  \defineaccent " i 239
-  \defineaccent " o 246
-  \defineaccent " u 252
-  \defineaccent " y 255
-\stopencoding
-\stopbuffer
-
-\startbuffer[enco-3]
-\startencoding[texnansi]
-  \definecharacter ae 230
-  \definecharacter oe 156
-  \definecharacter o  248
-  \definecharacter AE 198
-\stopencoding
-\stopbuffer
-
-\startbuffer[font-10]
-\definefontsynonym [twelvepoint] [12pt]
-\definefontsynonym [xii]         [12pt]
-\stopbuffer
-
-\startbuffer[font-11]
-\definefontstyle [rm,roman,serif,regular]    [rm]
-\definefontstyle [ss,sansserif,sans,support] [ss]
-\definefontstyle [tt,teletype,type,mono]     [tt]
-\definefontstyle [hw,handwritten]            [hw]
-\definefontstyle [cg,calligraphic]           [cg]
-\stopbuffer
-
-\startbuffer[font-12]
-\definestyle [normal]                  [\tf]  []
-\definestyle [bold]                    [\bf]  []
-\definestyle [type]                    [\tt]  []
-\definestyle [italic]                  [\it]  []
-\definestyle [slanted]                 [\sl]  []
-\definestyle [bolditalic,italicbold]   [\bs]  []
-\definestyle [boldslanted,slantedbold] [\bs]  []
-\definestyle [small,smallnormal]       [\tfx] []
-\stopbuffer
-
-\startbuffer[font-13]
-\definefontsynonym [OldStyle] [MathItalic]
-\stopbuffer
-
-\startbuffer[fontfil]
-\starttable[|Tl|l|]
-\HL
-\NC font-cmr \NC Computer Modern Roman        \NC\AR
-\NC font-csr \NC Computer Slavik Roman (?)    \NC\AR
-\NC font-con \NC Concrete Roman               \NC\AR
-\NC font-eul \NC Euler                        \NC\AR
-\NC font-ams \NC American Mathematics Society \NC\AR
-\HL
-\NC font-ant \NC Antykwa Torunska             \NC\AR
-\HL
-\NC font-lbr \NC Lucida Bright                \NC\AR
-\HL
-\NC font-pos \NC Base PostScript Fonts        \NC\AR
-\NC font-ptm \NC Times Roman                  \NC\AR
-\NC font-phv \NC Helvetica                    \NC\AR
-\NC font-pcr \NC Courier                      \NC\AR
-\HL
-\NC font-fil \NC Standard Filenames           \NC\AR
-\NC font-ber \NC Karl Berry FileNames         \NC\AR
-\HL
-\stoptable
-\stopbuffer
-
-\startbuffer[encofil]
-\starttable[|Tl|l|]
-\HL
-\NC enco-ans \NC TeXnansi                     \NC\AR
-\NC enco-ec  \NC European Computer            \NC\AR
-\NC enco-il2 \NC ISO Latin 2                  \NC\AR
-\NC enco-plr \NC Polish Roman                 \NC\AR
-\HL
-\NC enco-ibm \NC default IBM PC code page     \NC\AR
-\NC enco-win \NC default MS Windows code page \NC\AR
-\HL
-\stoptable
-\stopbuffer
-
-
 % we assume that there are fontfiles demofont.afm/pfb
 %
 % runtools mfonts.rb
 
 % \loadmapfile[texnansi-test-test.map]
 
-% examples
+\environment contextref-env
+\product contextref
+
+% some typescript examples
 
 \startbuffer[funny]
 \definetypeface [funny] [rm] [serif] [palatino] [default] [encoding=texnansi]
@@ -390,6 +247,16 @@ names. So, one can comfortably say:
 
 The default serif fonts are defined with:
 
+\startbuffer[font-5]
+\definebodyfont [default] [rm]
+  [ tf=Serif        sa 1,
+   tfa=Serif        sa a,
+      ...
+    sl=SerifSlanted sa 1,
+   sla=SerifSlanted sa a,
+      ...]
+\stopbuffer
+
 \typebuffer[font-5]
 
 We saw that \type {\tf} is the default font. Here \type
@@ -409,6 +276,21 @@ Modern Roman fonts. Since these fonts have specific design
 sizes \CONTEXT\ supports accurate definitions. See the file
 \type {font-cmr}:
 
+\startbuffer[font-6]
+\definebodyfont [12pt] [rm]
+  [ tf=cmr12,
+   tfa=cmr12 scaled \magstep1,
+   tfb=cmr12 scaled \magstep2,
+   tfc=cmr12 scaled \magstep3,
+   tfd=cmr12 scaled \magstep4,
+    bf=cmbx12,
+    it=cmti12,
+    sl=cmsl12,
+    bi=cmbxti10 at 12pt,
+    bs=cmbxsl10 at 12pt,
+    sc=cmcsc10 at 12pt]
+\stopbuffer
+
 \typebuffer[font-6]
 
 We use here the available \TEX||specifications \type
@@ -416,6 +298,19 @@ We use here the available \TEX||specifications \type
 combination of both: \type {sa} (scaled at). For example if
 we do not want to use the default Helvetica definition we
 define:
+
+\startbuffer[font-7]
+\definebodyfont [12pt,11pt,10pt,9pt,8pt] [ss]
+  [tf=hv  sa 1.000,
+   bf=hvb sa 1.000,
+   it=hvo sa 1.000,
+   sl=hvo sa 1.000,
+  tfa=hv  sa 1.200,
+  tfb=hv  sa 1.440,
+  tfc=hv  sa 1.728,
+  tfd=hv  sa 2.074,
+   sc=hv  sa 1.000]
+\stopbuffer
 
 \typebuffer[font-7]
 
@@ -426,6 +321,11 @@ analogy with \TEX's \type {\magstep} we can use \type
 tiresome so we replace \type {1.200} by \type {a}, etc. The
 relations between \type {a} and \type {1.200} can be set up
 in the bodyfont environment.
+
+\startbuffer[font-8]
+\definebodyfont [12pt,11pt,10pt,9pt,8pt] [ss]
+  [tf=hv sa 1, tfa=hv sa a, tfb=hv sa b, tfc=hv sa c, tfd=hv sa d]
+\stopbuffer
 
 \typebuffer[font-8]
 
@@ -925,9 +825,22 @@ is done with commands like \type {\xii} or \type
 {\twelvepoint}, which is comparable to the way it is done in
 plain \TEX. These commands are defined with:
 
+\startbuffer[font-10]
+\definefontsynonym [twelvepoint] [12pt]
+\definefontsynonym [xii]         [12pt]
+\stopbuffer
+
 \typebuffer[font-10]
 
 The keys in \type {\setupbodyfont} are defined in terms of:
+
+\startbuffer[font-11]
+\definefontstyle [rm,roman,serif,regular]    [rm]
+\definefontstyle [ss,sansserif,sans,support] [ss]
+\definefontstyle [tt,teletype,type,mono]     [tt]
+\definefontstyle [hw,handwritten]            [hw]
+\definefontstyle [cg,calligraphic]           [cg]
+\stopbuffer
 
 \typebuffer[font-11]
 
@@ -938,12 +851,28 @@ argument is only of importance in chapter and section
 titles, where, apart from \type {\cap}, we want to obey the
 font used there.
 
+\startbuffer[font-12]
+\definestyle [normal]                  [\tf]  []
+\definestyle [bold]                    [\bf]  []
+\definestyle [type]                    [\tt]  []
+\definestyle [italic]                  [\it]  []
+\definestyle [slanted]                 [\sl]  []
+\definestyle [bolditalic,italicbold]   [\bs]  []
+\definestyle [boldslanted,slantedbold] [\bs]  []
+\definestyle [small,smallnormal]       [\tfx] []
+\stopbuffer
+
 \typebuffer[font-12]
 
 In \in{section}[emphasize] we have already explained how
 {\em emphasizing} is defined. With oldstyle digits this is
 somewhat different. We cannot on the forehand in what font
 these can be found. By default we have the setup:
+
+
+\startbuffer[font-13]
+\definefontsynonym [OldStyle] [MathItalic]
+\stopbuffer
 
 \typebuffer[font-13]
 
@@ -1017,6 +946,18 @@ small print to capital print and vice versa.
 
 Below you see an example of the \type {texnansi} mapping:
 
+
+\startbuffer[enco-1]
+\startmapping[texnansi]
+  \definecasemap 228 228 196  \definecasemap 196 228 196
+  \definecasemap 235 235 203  \definecasemap 203 235 203
+  \definecasemap 239 239 207  \definecasemap 207 239 207
+  \definecasemap 246 246 214  \definecasemap 214 246 214
+  \definecasemap 252 252 220  \definecasemap 220 252 220
+  \definecasemap 255 255 159  \definecasemap 159 255 159
+\stopmapping
+\stopbuffer
+
 \typebuffer[enco-1]
 
 This means so much as: in case of a capital the character
@@ -1025,6 +966,27 @@ print the character becomes character 196.
 
 These definitions can be found in \type {enco-ans}. In this
 file we can also see:
+
+
+\startbuffer[enco-2]
+\startencoding[texnansi]
+  \defineaccent " a 228
+  \defineaccent " e 235
+  \defineaccent " i 239
+  \defineaccent " o 246
+  \defineaccent " u 252
+  \defineaccent " y 255
+\stopencoding
+\stopbuffer
+
+\startbuffer[enco-3]
+\startencoding[texnansi]
+  \definecharacter ae 230
+  \definecharacter oe 156
+  \definecharacter o  248
+  \definecharacter AE 198
+\stopencoding
+\stopbuffer
 
 \typebuffer[enco-2]
 
