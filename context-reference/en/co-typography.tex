@@ -227,7 +227,7 @@ found together within a single book design (like for a software manual).
 
 \placetable
   [here][tab:font triplets]
-  {Some ways of identifying the font styles in a document.}
+  {Some ways of identifying the font styles in a document design.}
   {\getbuffer[styles]}
 
 The leftmost two series of names are normally used by typographers and
@@ -238,11 +238,13 @@ will be explained later, the command \type {\rm} is used to switch to
 a roman|/|serif|/|regular style, and \type {\tt} for switching to
 mono spaced or typewriter style, etcetera.
 
-Text can be typeset in different font sizes. The unit \type {pt} is
-often used to specify the size. The availability of these font sizes
-are defined in definition files.  Traditionally font designers used to
-design a glyph collection for each font size, but nowadays most fonts
-have a single design size of 10 points, or small set of sizes with
+Text can be typeset in different font sizes. The unit \type {pt},
+short for \quote{printer's point}, is normally used to specify the
+size of a font. There are a little over 72 points per inch (or a
+little under 2.85 points per millimeter, if you prefer ISO
+units). Traditionally font designers used to design a glyph
+collection for each point size, but nowadays most fonts have only a
+single design size of 10 points, or at most a small set of sizes with
 names indicating their proposed use, like {\em caption}, {\em text},
 and {\em display}.
 
