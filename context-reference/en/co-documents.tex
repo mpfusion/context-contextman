@@ -979,6 +979,70 @@ being typeset (processed).
 
 \stopswitch
 
+\section {Regimes}
+
+When you key in an english document, a normal \kap {QWERTY}
+keyboard combined with the standard \ASCII\ character set
+will do. However, in many countries dedicated keyboards and
+corresponding input encodings are used. This means that
+certain keystrokes correspond to non||standard \ASCII\
+characters and these need to be mapped onto the characters
+present in the font. Unless the input encoding matches the
+output (font) encoding, intermediate steps are needed to
+take care of the right mapping. For instance, input
+code~145 can become command \type {\eacute} which can
+result in character~123 of a certain font.
+
+Although all kind of intermediate, direct or indirect,
+mappings are possible, in \CONTEXT\ the preferred method is
+to go by named glyphs. The advantage of this method is that
+we can rather comfortably convert the input stream into
+different output streams as needed for typesetting text (the
+normal \TEX\ process) and embedding information in the file
+(like annotations or font vectors needed for searching
+documents).
+
+The conversion from input characters into named glyphs is
+handled by regimes. While further mapping is done
+automatically and is triggered by internal processes,
+regimes need to be chosen explicitly. This is because only
+the user knows what he has input.
+
+Most encodings (like \type {il2}) have an associated regime. You
+can get some insight in what a regime involves by showing it:
+
+\starttyping
+\showregime[il2]
+\stoptyping
+
+In addition there are a couple of platform dependent ones:
+
+\starttabulate[|lT|lp|]
+\HL
+\NC \bf regime \NC \bf platform \NC \NR
+\HL
+\NC ibm \NC the old standard \MSDOS\ code page       \NC \NR
+\NC win \NC the western europe \MSWINDOWS\ code page \NC \NR
+\HL
+\stoptabulate
+
+If you want to know what regimes are available, you can take a
+look at the \type {regi-*.tex} files. A regime that becomes more
+and more popular is the utf-8 regime. If you want some insight in
+what vectors provide, you can use commands like:
+
+\starttyping
+\showunicodevector[001]
+\stoptyping
+
+and
+
+\starttyping
+\showunicodetable[001]
+\stoptyping
+
+where the last one produces a rather large table.
+
 
 \stopcomponent
 
