@@ -231,7 +231,6 @@
 \macro{\tex{definefont}}
 \macro{\tex{definebodyfontenvironment}}
 \macro{\tex{setupbodyfontenvironment}}
-\macro{\tex{showbodyfontenvironment}}
 \macro{\tex{definefontsynonym}}
 \macro{\tex{definestyle}}
 
@@ -622,21 +621,6 @@ one (type {sa 1}):
 \definebodyfont [10pt,11pt,12pt] [rm] [default]
 \stoptyping
 
-The default relations between sizes are determined by the
-body font environment. You can get some insight in this by
-typesetting this environment as shown in \in {figure}
-[fig:environment].
-
-\startbuffer
-\showbodyfontenvironment % [lbr]
-\stopbuffer
-
-\typebuffer
-
-\placefigure
-  [here][fig:environment]
-  {The current bodyfont environment.}
-  {\getbuffer}
 
 Because the font names (may) depend on the encoding vector, we
 can use the previously discussed method for mapping symbolic
@@ -717,27 +701,6 @@ following commands.
 \switchtobodyfont[lbr]
 \switchtobodyfont[pos]
 \stoptyping
-
-With \type {\showbodyfont[...]} we can get a summary of such a
-font collection.
-
-\starttyping
-\showbodyfont[cmr]
-\showbodyfont[lbr]
-\showbodyfont[pos]
-\stoptyping
-
-\placefigure
-  {Computer Modern Roman.}
-  {\showbodyfont[cmr]}
-
-\placefigure
-  {Lucida Bright.}
-  {\showbodyfont[lbr]}
-
-\placefigure
-  {Times Roman, Helvetica \& Courier.}
-  {\showbodyfont[postscript]}
 
 This way of switching fonts has been part of \CONTEXT\ from
 the beginning, but as more complicated designs started to
