@@ -208,39 +208,35 @@ seldom seen these days.
 \stoplinecorrection
 
 As explained earlier, the general appearance of a font style can be
-classified according to many schemes. 
-In \in {table} [tab:font triplets] you can see some examples of the naming
-of font styles that are often found together in a single document.
+classified according to many schemes, and the exact terminology used
+depends on the background of the user.  In \in {table}[tab:font
+triplets] you can see some examples of the terms that are used by
+various people to identify the three font styles that are most often
+found together within a single book design (like for a software manual).
 
 \startbuffer[styles]
-
 \vskip1ex
-\startcombination[3*3]
-  {\rmtfc\setupinterlinespace    Serif\strut \end} {}
-  {\sstfc\setupinterlinespace     Sans\strut \end} {}
-  {\tttfc\setupinterlinespace     Mono\strut \end} {}
-  {\rmtfc\setupinterlinespace  Regular\strut \end} {}
-  {\sstfc\setupinterlinespace  Support\strut \end} {}
-  {\tttfc\setupinterlinespace TeleType\strut \end} {}
-  {\rmtfc\setupinterlinespace    Roman\strut \end} {}
-  {\sstfc\setupinterlinespace     Sans\strut \end} {}
-  {\tttfc\setupinterlinespace     Type\strut \end} {}
-\stopcombination
+\starttabulate[|l|l|l|l|l|l|]
+\NC \bf \rlap{identifier(s)} \NC \NC   \NC \qquad \NC \bf example        \NC \NR
+\NC serif \NC regular  \NC roman       \NC \NC \rmtf main text          \NC \NR
+\NC sans  \NC support  \NC sans        \NC \NC \sstf section headings   \NC \NR
+\NC mono  \NC teletype \NC type        \NC \NC \tttf code examples      \NC \NR
+\stoptabulate
 \vskip1ex
-
 \stopbuffer
 
 \placetable
   [here][tab:font triplets]
-  {Some ways of classifying the styles in a font.}
+  {Some ways of identifying the font styles in a document.}
   {\getbuffer[styles]}
 
-The top two series are normally used by typographers, the bottom
-series is what was traditionally used in plain \TEX. In \CONTEXT\ all
-three series of terms can be used because they are remapped to the
-same set of internal commands. As will be explained later, the command \type {\rm}
-is used to switch to a roman|/|serif|/|regular style, and \type {\tt}
-for switching to mono spaced or typewriter style, etcetera.
+The leftmost two series of names are normally used by typographers and
+book designers, the third series is what was traditionally used in
+plain \TEX. In \CONTEXT\ all three series of terms can be used
+because they are remapped to the same set of internal commands. As
+will be explained later, the command \type {\rm} is used to switch to
+a roman|/|serif|/|regular style, and \type {\tt} for switching to
+mono spaced or typewriter style, etcetera.
 
 Text can be typeset in different font sizes. The unit \type {pt} is
 often used to specify the size. The availability of these font sizes
