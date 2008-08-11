@@ -459,7 +459,23 @@
     </cd:sequence>
     <cd:arguments>
       <cd:keywords n="1" list="yes">
-        <cd:resolve name="bodyfont"/>
+        <cd:constant type="cd:name"/>
+        <cd:constant type="serif"/>
+        <cd:constant type="regular"/>
+        <cd:constant type="roman"/>
+        <cd:constant type="sans"/>
+        <cd:constant type="support"/>
+        <cd:constant type="sansserif"/>
+        <cd:constant type="mono"/>
+        <cd:constant type="type"/>
+        <cd:constant type="teletype"/>
+        <cd:constant type="handwritten"/>
+        <cd:constant type="calligraphic"/>
+        <cd:constant type="5pt"/>
+        <cd:constant type="..."/>
+        <cd:constant type="12pt"/>
+        <cd:constant type="small"/>
+        <cd:constant type="big"/>
       </cd:keywords>
     </cd:arguments>
   </cd:command>
