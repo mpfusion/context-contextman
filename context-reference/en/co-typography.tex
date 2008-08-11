@@ -1801,14 +1801,14 @@ specifying \type{default} will suffice.
 \placetable
   [here]
   [tab:body font names 3]
-  {The predefined body font identifiers for free Unicode (Opentype) fonts}
+  {The predefined body font identifiers for free Opentype fonts}
   {\getbuffer[bodyfontsotffree]}
 
 
 \placetable
   [here]
   [tab:body font names 4]
-  {The predefined body font identifiers for commercial Unicode (Opentype) fonts}
+  {The predefined body font identifiers for commercial Opentype fonts}
   {\getbuffer[bodyfontsotfbuy]}
 
 The optional sixth argument is used for tweaking font settings like the specification of
@@ -1841,14 +1841,19 @@ notice three very special items: \type{Xserif}, \type{Xsans} and
 \type{Xmono}. These belong to a special \XETEX-only trick called
 \quote{wildcard typescripts}.
 
-\XETEX\ offers some nice features in terms of automatically finding related fonts in a family, namely the italic, bold, and
-bolditalic alternatives. To take advantage of that, there's a set of wildcard typescripts that take an arbitrary Macintosh font
-name as input, and provide as many of the alternatives it can find. To set these typescripts (and the calling conventions) apart
-from the familiar ones, the typescripts are identified with \type{Xserif}, \type{Xsans}, and \type{Xmono}. 
+\XETEX\ offers some nice features in terms of automatically finding 
+related fonts in a family, namely the italic, bold, and
+bolditalic alternatives. To take advantage of that, there's a set of
+wildcard typescripts that take an arbitrary Macintosh font name as
+input, and provide as many of the alternatives it can find. To set
+these typescripts (and the calling conventions) apart from the
+familiar ones, the typescripts are identified with \type{Xserif},
+\type{Xsans}, and \type{Xmono}.
 
-To call the typescripts, it's most convenient to define a typeface that uses these features. The named font slot should contain the
-display name of the Regular alternative (not the family name) of the font in question.  For example, you could have the
-following mix:
+To call these sepcial typescripts, it's most convenient to define a
+typeface that uses these features. The named font slot should contain
+the display name of the Regular alternative (not the family name) of
+the font in question.  For example, you could have the following mix:
 
 \startexample
 \starttyping
@@ -1869,9 +1874,10 @@ anywhere. Those missing bits of the definitions are handled by typescript and \X
 \macro{\tex{setupbodyfontenvironment}}
 \macro{\tex{definebodyfontenvironment}}
 
-Earlier we have seen that within a font family there are
-different font sizes. The relations between these sizes
-are defined by {\em body font environments}.
+Earlier we have seen that within a single body font there are in fact
+different font sizes for example for super|-| and subscripts. The
+relations between these sizes are defined by {\em body font
+environments}.
 
 For all regular font sizes, environments are predefined
 that fulfill their purpose adequately. However when you want
