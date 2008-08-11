@@ -22,6 +22,15 @@
    \c!margin=2.5cm,
    \c!height=\v!middle]
 
+% re-defined because the default rscale=1.075 for modern doesn't 
+% look right
+
+\starttypescript [palatino]
+\definetypeface [palatino] [rm] [serif] [palatino] [default]
+\definetypeface [palatino] [ss] [sans]  [modern]   [default]
+\definetypeface [palatino] [tt] [mono]  [modern]   [default]
+\definetypeface [palatino] [mm] [math]  [palatino] [default]
+\stoptypescript
 
 \usetypescript[palatino][ec]
 
