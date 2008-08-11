@@ -275,7 +275,7 @@ mechanism:
       (support), teletype (monospaced) etc. (\type {\rm},
       \type {\ss}, \type {\tt} etc.)
 \item More than one {\em alternative} set of glyphs shapes must be
-      available like slanted and bold (\type {\sl} and \type {\bf}).
+      available like italic and bold (\type {\it} and \type {\bf}).
 \item Different font {\em families} like Latin Modern Roman 
       and Lucida Bright must be supported.
 \item It must be possbile to combine different families into font
@@ -315,7 +315,7 @@ style}. Examples of styles within a family are: \quote{roman},
 \quote{sans serif} and \quote{teletype}. We saw already that there can
 be alternative classifications, but they all refer to the presence of
 serifs and the glyphs having equal widths. Within a style there
-can be {\em alternatives}, like \quote{boldface} and \quote{slanted}.
+can be {\em alternatives}, like \quote{boldface} and \quote{italic}.
 
 There are different ways to change into a new a style or
 alternative. You can use \type {\ss} to switch to a sans
@@ -326,8 +326,8 @@ using just one combination of family and style.
 This is called the bodyfont.
 
 Consistent use of commands like \type {\bf} and \type
-{\sl} in the text will automatically result in the desired
-bold and slanted altermatives when you change the family or
+{\it} in the text will automatically result in the desired
+bold and italic altermatives when you change the family or
 style in the setup area of your input file. 
 
 \subsection[font style switching]{Font style switching}
@@ -382,10 +382,10 @@ alternative may be used for if slanted is not available or vice versa.
 \vskip 1ex
 \starttabulate[|l|l|]
 \NC \type{\bf} \NC bold                                \NC\NR
-\NC \type{\sl} \NC slanted                             \NC\NR
 \NC \type{\it} \NC italic                              \NC\NR
-\NC \type{\bs} \NC boldslanted, slantedbold            \NC\NR
 \NC \type{\bi} \NC bolditalic, italicbold              \NC\NR
+\NC \type{\sl} \NC slanted                             \NC\NR
+\NC \type{\bs} \NC boldslanted, slantedbold            \NC\NR
 \NC \type{\sc} \NC smallcaps                           \NC\NR
 \NC \type{\os} \NC mediaeval (from {\em oldstyle}) \NC\NR
 \NC \type{\tf} \NC normal (from {\em typeface})    \NC\NR
@@ -421,10 +421,10 @@ versions.
 \vskip 1ex
 \starttabulate[|l|l|]
 \NC \type{\bfx} \NC smallbold                           \NC\NR
-\NC \type{\slx} \NC smallslanted                        \NC\NR
 \NC \type{\itx} \NC smallitalic                         \NC\NR
-\NC \type{\bsx} \NC smallboldslanted, smallslantedbold  \NC\NR
 \NC \type{\bix} \NC smallbolditalic, smallitalicbold    \NC\NR
+\NC \type{\slx} \NC smallslanted                        \NC\NR
+\NC \type{\bsx} \NC smallboldslanted, smallslantedbold  \NC\NR
 \NC \type{\tfx} \NC small, smallnormal                  \NC\NR
 \stoptabulate
 \vskip 1ex
@@ -519,8 +519,8 @@ commands like {\bf} or \type {bf} or \type{\switchtobodyfont},
 but also a number of keywords like
 \startexample
 \starttyping
-normal  bold  slanted  boldslanted  italic  bolditalic  type
-small  smallbold  smallslanted  ...  smallitalic  ...  smalltype
+normal  bold  italic  bolditalic  slanted  boldslanted  type
+small  smallbold  smallitalic  ...  smallslanted  ...  smalltype
 capital
 \stoptyping
 \stopexample
@@ -748,10 +748,9 @@ that it will adapt to the actual typeface. In \CONTEXT\
 \type {\em} has the following characteristics:
 
 \startitemize[packed]
-\item a switch to {\sl slanted} or {\it
-      italic} is possible
-\item a switch within \type {\bf} results in {\bs bold
-      slanted} or {\bi bold italic} (when available)
+\item a switch to {\it italic} or {\sl slanted} is possible
+\item a switch within \type {\bf} results in {\bi bold italic}  or 
+      {\bs bold slanted} (when available)
 \item a so called {\em italic correction} is performed
       automatically (\type {\/})
 \stopitemize
@@ -815,7 +814,7 @@ see~\in{section}[sec:body font environment] for more details:
 Words and abbreviations can be typeset in capitals. Both
 small and big characters are converted into capitals. When
 \type {\cap} is used to typeset a capital the size is that
-of an \type {\tx}. When you switch to slanted (\type {\sl}),
+of an \type {\tx}. When you switch to italic (\type {\it}),
 bold (\type {\bf}), etc. the capital letter will also
 change. Since \type {\cap} has a specific meaning in math
 mode, the formal implementation is called \type {\smallcapped}.
@@ -2408,7 +2407,7 @@ becomes more noticable once you get aware of this phenomenon.
 
 Sometimes, shifting the characters completely into the
 margin is too much for the sensitive eye, for instance with
-a slanted font, where the characters already hang to the
+an italic font, where the characters already hang to the
 right. In such cases, we need to compromise.
 
 \FakeParagraph{\hbox to .2ex}\rlap
@@ -2826,10 +2825,10 @@ more elaborate font handlings are also predefined:
 
 \starttyping
 \definefonthandling [purebold]        [pure] [type=hanging]
-\definefonthandling [pureslanted]     [pure] [type=hanging,right=1.5]
 \definefonthandling [pureitalic]      [pure] [type=hanging,right=1.5]
-\definefonthandling [pureboldslanted] [pure] [type=hanging,right=1.5]
+\definefonthandling [pureslanted]     [pure] [type=hanging,right=1.5]
 \definefonthandling [purebolditalic]  [pure] [type=hanging,right=1.5]
+\definefonthandling [pureboldslanted] [pure] [type=hanging,right=1.5]
 \stoptyping
 
 The \type {right} parameter (there is also \type {left}) is a
