@@ -19,8 +19,10 @@
 
 \startbuffer[joke]
 \definetypeface [joke] [rm] [serif] [times]     [default] [encoding=texnansi]
-\definetypeface [joke] [ss] [sans]  [helvetica] [default] [rscale=.9,encoding=texnansi]
-\definetypeface [joke] [tt] [mono]  [courier]   [default] [rscale=1.1,encoding=texnansi]
+\definetypeface [joke] [ss] [sans]  [helvetica] [default] [rscale=.9,
+                                                           encoding=texnansi]
+\definetypeface [joke] [tt] [mono]  [courier]   [default] [rscale=1.1,
+                                                           encoding=texnansi]
 \definetypeface [joke] [mm] [math]  [times]     [default] [encoding=texnansi]
 \stopbuffer
 
@@ -104,46 +106,143 @@ fonts for you. Also, to help you on your way, we provide
 typescripts for a couple of free fonts.
 
 
-
-
 \section {Font files and synonyms}
 
-In \CONTEXT\ when possible you should use symbolic names for
-fonts. The mapping from these names onto real ones in most
-cases goes unnoticed for the user. This is good since the
-name depends on the encoding and therefore not seldom is
-obscure and hard to remember.
+In \CONTEXT, whenever possible you should define symbolic names for fonts.
+The mapping from such symbolic names onto real font names can be done such
+that it takes place unnoticed for the user. This is good since the name
+depends on the encoding and therefore not seldom is obscure and hard to
+remember. The trick is knowing how to use the \type{\definefontsynonym}
+command.
 
+\showsetup{definefontsynonym}
+
+The first argument is the synonym that is being defined (or, more often,
+redefined). The second argument is the replacement of the synonym.  This
+replacement can be a real font name, but it can also be another synonym.
+The optional third argument can be used for a few font||specific settings.
+
+There is no limit on the number of indirection levels, but the last one in
+the chain has to be a valid font name. Font||specific settings actually
+take place at that level, since they are closely related to specific
+instances of fonts.  Any settings that are defined higher up in the chain
+perculate down unless they are already defined at the lower level.
+
+\startbuffer[synonymargs]
+\vskip 1ex
+\starttabulate[|lT|l|]
+\NC encoding \NC the file encoding for \MKII\ fonts (TFM based) \NC \NR
+\NC handling \NC the font handling for \MKII\ (see  previous chapter)\NC \NR
+\NC features \NC the font handling for \MKIV\ and \XETEX\ (see previous chapter)\NC \NR
+\NC mapping  \NC an obsolete method of specifying \XETEX\ font mappings \NC \NR
+\stoptabulate
+\vskip 1ex
+\stopbuffer
+
+\getbuffer[synonymargs]
+
+Here is an example of the use of font synonyms:
+
+\startexample
 \starttyping
-\definefontsynonym [Serif]    [Palatino]
 \definefontsynonym [Palatino] [uplr8t]   [encoding=ec]
 \stoptyping
+\stopexample
 
-The advantage of using for instance \type {Serif} in
-definitions is, that we can later easily remap this name
-onto another font than \type {Palatino}. In a similar way,
-we can define new names that map onto \type {Serif}.
+In this example, the file \type{uplr8t.tfm} is the real font, and it
+contains the metrics for the Type~1 font URW Palladio L in EC encoding.
+Now the name \type{Palatino} can be used in further font definitions to
+indentify this font, instead of the dreadfully low||level (and hard to
+remember) name \type{uplr8t} and its accompanying encoding.
+
+This is already useful, but \CONTEXT\ goes further than that.
+An extra synonym level is normally defined that maps this font name to a
+generic name like \type{Serif} or \type{Sans}.
+
+\startexample
+\starttyping
+\definefontsynonym [Serif]    [Palatino]
+\stoptyping
+\stopexample
+
+An important other advantage of using names like \type {Serif} in
+definitions is, that we can easily remap this name onto a completely
+different font than \type{Palatino}. This is often useful when you are
+experimenting with a new environment file for a book or when you are
+writing a \CONTEXT\ module.  
+
+In fact, inside an environment file it is useful to go even further and
+define new symbolic names that map onto \type {Serif}.
 
 \starttyping
 \definefontsynonym [TitleFont] [Serif]
 \stoptyping
 
-By using symbolic names in for instance style and macro
-definitions, you can make them independent of a particular
-font and let themselves adapt to the main document fonts,
-which normally are defined in terms of \type {Serif}.
+By using symbolic names in the main document and in style and macro
+definitions, you can make them independent of a particular font and let
+them adapt automatically to the main document fonts. That is of course
+assuming these are indeed defined in terms of \type{Serif}, \type{Sans},
+etcetera. All the \CONTEXT\ predefined typescripts are set up this way, and
+you are very much encouraged to stick to the same logic for your own font
+definitions as well.
 
-There is no limitation on the level of mapping, but the last
-one in the chain has to be a valid font filename. Specific
-font encoding declarations take place at that level, since
-they are closely related to specific instances of fonts. We
-come back to this in later sections.
+The list of \quote{standard} symbolic names is given
+in~\in{table}[tab:symbolic font names]
+
+\startbuffer[symfontnames]
+\vskip 1ex
+\starttabulate[|lT|lT|l|]
+\NC \rm\bf name          \NC \rm \bf style, alternative \NC \rm \bf explanation \NC \NR
+\NC Blackboard           \NC --       \NC Used by the \type{\bbd} macro \NC\NR
+\NC Calligraphic         \NC --       \NC Used by the \type{\cal} macro\NC \NR
+\NC Calligraphy          \NC cg,tf    \NC \NC \NR
+\NC Fraktur              \NC --       \NC Used by the \type{\frak} macro\NC \NR
+\NC Handwriting          \NC hw,tf    \NC \NC \NR
+\NC MPtxtfont            \NC --       \NC The default font for \METAPOST\NC \NR
+\NC MathRoman(Bold)      \NC mm,mr(bf)\NC \NC \NR
+\NC MathItalic(Bold)     \NC mm,mi(bf)\NC \NC \NR
+\NC MathSymbol(Bold)     \NC mm,sy(bf)\NC \NC \NR
+\NC MathExtension(Bold)  \NC mm,ex(bf)\NC \NC \NR
+\NC MathAlpha(Bold)      \NC mm,ma(bf)\NC \NC \NR
+\NC MathBeta(Bold)       \NC mm,mb(bf)\NC \NC \NR
+\NC MathGamma(Bold)      \NC mm,mc(bf)\NC \NC \NR
+\NC MathDelta(Bold)      \NC mm,md(bf)\NC \NC \NR
+\NC Mono                 \NC tt,tf    \NC \NC \NR
+\NC MonoBold             \NC tt,bf    \NC \NC \NR
+\NC MonoItalic           \NC tt,it    \NC \NC \NR
+\NC MonoBoldItalic       \NC tt,bi    \NC \NC \NR
+\NC MonoSlanted          \NC tt,sl    \NC \NC \NR
+\NC MonoBoldSlanted      \NC tt,bs    \NC \NC \NR
+\NC MonoCaps             \NC tt,sc    \NC \NC \NR
+\NC OldStyle             \NC --       \NC Used by the \type{\os} macro \NC \NR
+\NC Sans                 \NC ss,tf    \NC \NC \NR
+\NC SansBold             \NC ss,bf    \NC \NC \NR
+\NC SansItalic           \NC ss,it    \NC \NC \NR
+\NC SansBoldItalic       \NC ss,bi    \NC \NC \NR
+\NC SansSlanted          \NC ss,sl    \NC \NC \NR
+\NC SansBoldSlanted      \NC ss,bs    \NC \NC \NR
+\NC SansCaps             \NC ss,sc    \NC \NC \NR
+\NC Serif                \NC rm,tf    \NC \NC \NR
+\NC SerifBold            \NC rm,bf    \NC \NC \NR
+\NC SerifItalic          \NC rm,it    \NC \NC \NR
+\NC SerifBoldItalic      \NC rm,bi    \NC \NC \NR
+\NC SerifSlanted         \NC rm,sl    \NC \NC \NR
+\NC SerifBoldSlanted     \NC rm,bs    \NC \NC \NR
+\NC SerifCaps            \NC rm,sc    \NC \NC \NR
+\stoptabulate
+\vskip 1ex
+\stopbuffer
+
+\placetable
+  [here]
+  [tab:symbolic font names]
+  {Standard symbolic font names}
+  {\getbuffer[symfontnames]}
 
 \section {Simple font definitions}
 
-The most simple font definition takes place with \type
-{\definefont}. If you want a fixed size, you can define a
-font as follows:
+The most simple font definition takes place with \type {\definefont}. If
+you want a fixed size, you can define a font as follows:
 
 \starttyping
 \definefont [TitleFont] [Serif at 24pt]
