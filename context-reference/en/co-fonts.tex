@@ -4,32 +4,6 @@
 \product contextref
 
 
-
-\startbuffer[font-1]
-\definefontsynonym [Sans]            [Helvetica]
-\definefontsynonym [SansBold]        [Helvetica-Bold]
-\definefontsynonym [SansItalic]      [Helvetica-Oblique]
-\definefontsynonym [SansSlanted]     [Helvetica-Oblique]
-\definefontsynonym [SansBoldItalic]  [Helvetica-BoldOblique]
-\definefontsynonym [SansBoldSlanted] [Helvetica-BoldOblique]
-\definefontsynonym [SansCaps]        [Helvetica]
-
-\definebodyfont [14.4pt,12pt,11pt,10pt,9pt,8pt,7pt,6pt,5pt] [ss] [default]
-\stopbuffer
-
-\startbuffer[font-2]
-\definefontsynonym [Helvetica-Bold] [hvb] [encoding=texnansi]
-\stopbuffer
-
-\startbuffer[font-3]
-\definefontsynonym [Helvetica-Bold] [phvb] [encoding=ec]
-\stopbuffer
-
-\startbuffer[font-4]
-\definefontsynonym [Regular] [Serif]
-\definefontsynonym [Roman]   [Serif]
-\stopbuffer
-
 \startbuffer[font-5]
 \definebodyfont [default] [rm]
   [ tf=Serif        sa 1,
@@ -171,12 +145,6 @@
 \stopbuffer
 
 
-
-\chapter[fonts]{Fonts}
-
-\section{Introduction}
-\index{fonts}
-
 % we assume that there are fontfiles demofont.afm/pfb
 %
 % runtools mfonts.rb
@@ -215,9 +183,7 @@
 
 \getbuffer[funny,nojoke,joke,whow]
 
-\fixme{start of Typography text}
-
-\section[encoding]{Definitions}
+\chapter[fonts]{Fonts}
 \index{font+definition}
 \macro{\tex{startencoding}}
 \macro{\tex{startmapping}}
@@ -225,51 +191,204 @@
 \macro{\tex{defineaccent}}
 \macro{\tex{definecommand}}
 \macro{\tex{definecasemap}}
-\macro{\tex{definefontsynonym}}
 \macro{\tex{definebodyfont}}
-\macro{\tex{definebodyfontenvironment}}
 \macro{\tex{definefont}}
-\macro{\tex{definebodyfontenvironment}}
-\macro{\tex{setupbodyfontenvironment}}
 \macro{\tex{definefontsynonym}}
 \macro{\tex{definestyle}}
 
-{\em This section is meant for curious users or those users
-that want to do some experimenting on defining fonts. We
-will not discuss precise definitions of accents and
-encodings. For these issues we refer to the examples in the
-source code and the files \type {font-<<xxx>>} and \type
-{enco-<<xxx>>}}.
+\section{Introduction}
+\index{fonts}
 
-The real definitions, i.e. the coupling of commands to the
-font files, can be done in different ways. The most
-transparant is the font file \type {font-phv}.
+This chapter will cover the details of defining fonts and collections
+of fonts, called typefaces. We will also spend some words on
+installing fonts. In any case, it helps if you know what a font is,
+and are familiar with the \CONTEXT\ font switching macros.
 
-\typebuffer[font-1]
+The original \CONTEXT\ font model was based on plain \TEX,
+but evolved into a more extensive one primarily aimed at
+consistently typesetting our educational documents. The fact
+that we had to typeset pseudo caps in any font shape in
+normal text as well as superscript mode, has clearly
+determined the design. This model has been relatively stable
+since 1995.
 
-With \type {\definefontsynonym} we couple a logical name,
-like \typ {SansBold} to a font name, like \typ
-{Helvetica-Bold}. The real coupling is done somewhere else,
-by default in the file \type {font-fil}. There you will see:
+Currently there are three layers of font definitions:
 
-\typebuffer[font-2]
+\startitemize
 
-This is the only location where a system dependent setup is
-made. When we work under the naming regime of Karl Berry,
-the next setup would be more obvious (see \type
-{font-ber}):
+\item  simple font definitions: such definitions provide
+       \type {\named} access to a specific font in a
+       predefined size
 
-\typebuffer[font-3]
+\item  body font definitions: these result in a coherent
+       set of fonts (often) from a same type foundry (or
+       designer) that can be used intermixed
 
-Coupling fonts in this way has no real limits. It is
-interesting to look in \type {font-unk} where different
-styles are coupled in such a way that they be used
-interchangeably.
+\item  typeface definitions: they package serif, sans serif,
+       mono spaced and math and other styles in such a way
+       that you can conveniently switch between different
+       combinations
 
-\typebuffer[font-4]
+\stopitemize
 
-We see that the basic specification is \type {Serif}. The
-default serif fonts are defined with:
+These three mechanisms are actually build on top of each
+other and all rely on a low level mapping mechanism
+that is responsible for resolving the real font file name
+and the specific font encoding used.
+
+When \TEX\ users install one of the \TEX\ distributions,
+like \TEX-live, they will have a lot of fonts already on the
+system. Unfortunately it is not that easy to get a clear
+picture of what is there and what is needed to use them.
+Although the \type {texmf} tree is prepared for commercial
+fonts, adding them is not trivial. To compensate this,
+\CONTEXT\ comes with \type {texfont.pl}, that can install
+fonts for you. Also, to help you on your way, we provide
+typescripts for a couple of free fonts.
+
+
+
+
+\section {Font files and synonyms}
+
+In \CONTEXT\ when possible you should use symbolic names for
+fonts. The mapping from these names onto real ones in most
+cases goes unnoticed for the user. This is good since the
+name depends on the encoding and therefore not seldom is
+obscure and hard to remember.
+
+\starttyping
+\definefontsynonym [Serif]    [Palatino]
+\definefontsynonym [Palatino] [uplr8t]   [encoding=ec]
+\stoptyping
+
+The advantage of using for instance \type {Serif} in
+definitions is, that we can later easily remap this name
+onto another font than \type {Palatino}. In a similar way,
+we can define new names that map onto \type {Serif}.
+
+\starttyping
+\definefontsynonym [TitleFont] [Serif]
+\stoptyping
+
+By using symbolic names in for instance style and macro
+definitions, you can make them independent of a particular
+font and let themselves adapt to the main document fonts,
+which normally are defined in terms of \type {Serif}.
+
+There is no limitation on the level of mapping, but the last
+one in the chain has to be a valid font filename. Specific
+font encoding declarations take place at that level, since
+they are closely related to specific instances of fonts. We
+come back to this in later sections.
+
+\section {Simple font definitions}
+
+The most simple font definition takes place with \type
+{\definefont}. If you want a fixed size, you can define a
+font as follows:
+
+\starttyping
+\definefont [TitleFont] [Serif at 24pt]
+\stoptyping
+
+The \type {at} specifier is a natural \TEX\ one, just as
+\type {scaled}. But where \type {at} is useful, \type
+{scaled} is rather useless, since it scales the font
+related to its design size which is often unknown.
+Depending on the design size is especially dangerous when
+you use symbolic names, since different fonts have
+different design sizes, and designers differ in their ideas
+about what a design size is. Compare for instance the 10pt
+instance of a Computer Modern Roman with Lucida Bright
+(which more looks like a 12pt then).
+
+\starttyping
+\definefont [TitleFont] [Serif scaled 2400]
+\stoptyping
+
+Hard codes sizes can be annoying when you want to define
+fonts in such a way that their definitions adapt themselves.
+Therefore we provide an additional way of scaling:
+
+\starttyping
+\definefont [TitleFont] [Serif sa 2.4]
+\stoptyping
+
+The \type {sa} directive means as much as \quote {scaled at
+the body font size}. Therefore this definition will lead to
+a 24pt scaling when the (document) body font size equals
+10pt. Because the definition has a lazy nature, the font
+size will adapt itself to the current body font size.
+
+Instead of a number, you can also use an identifier, as
+defined in the body font environment that specifies related
+dimensions. This scales the font to the \type {b} size,
+being 1.440 by default.
+
+
+\starttyping
+\definefont [TitleFont] [Serif sa b]
+\stoptyping
+
+An alternative to \type {sa} is \type {mo}. Here the size
+maps onto the remapped body font size when given. We will
+not cover this in detail here.
+
+
+\section {Defining body fonts}
+
+The core of this model is the definition command that is used
+as follows:
+
+\starttyping
+\definebodyfont [10pt] [rm] [tf=tir at 10pt]
+\stoptyping
+
+As one can expect, the first implementation of a font model
+in \TEX\ is also determined and thereby complicated by the
+fact that the Computer Modern Roman fonts come in design
+sizes. As a result, definitions can look rather complex and
+because most \TEX\ users start with those fonts, font
+definitions are considered to be complex.
+
+Another complicating factor is that in order to typeset math,
+even more definitions are needed. Add to that the fact that
+sometimes we need to use fonts with mixed encodings, i.e.\
+with the glyphs positioned in different font slots, and you
+can understand why font handling in \TEX\ is often qualified
+as \quote {the font mess}. Flexibility simply has its price.
+
+Many documents have a rather simple design and use only a
+couple of (often related) fonts. For some commonly used
+fonts, this means that one can stick to loading the
+appropriate predefined font definition file. \footnote {The
+original font definition files are replaced by typescripts
+in \type {type-pre}, but font files are still supported for
+upward compatibility reasons.} But font life is seldom
+simple and, in a worst case scenario, one must define
+the fonts in the document style.
+
+Because most fonts come in one design size, we can simplify
+the definitions by using predefined sizes, like the default
+one (type {sa 1}):
+
+\starttyping
+\definebodyfont [10pt,11pt,12pt] [rm] [default]
+\stoptyping
+
+
+Because the font names (may) depend on the encoding vector, we
+can use the previously discussed method for mapping symbolic
+names. So, one can comfortably say:
+
+\starttyping
+\definebodyfont [10pt,11pt,12pt] [rm] [tf=tir         sa 1]
+\definebodyfont [10pt,11pt,12pt] [rm] [tf=Times-Roman sa 1]
+\definebodyfont [10pt,11pt,12pt] [rm] [tf=Serif       sa 1]
+\stoptyping
+
+The default serif fonts are defined with:
 
 \typebuffer[font-5]
 
@@ -367,270 +486,6 @@ For advanced \TEX\ users there is the dimension||register
 \type {\bodyfontsize}. This variable can be used to set
 fontwidths. The number (rounded) points is available in
 \type {\bodyfontpoints}.
-
-Until now we assumed that an~\type {a} will become an~a
-during type setting. However, this is not always the case.
-Take for example~\"a or~\ae. This character is not available
-in every font and certainly not in the Computer Modern
-Typefaces. Often a combination of characters \type {\"a} or a
-command \type {\ae} will be used to produce such a character.
-In some situation \TEX\ will combine characters
-automatically, like in \type {fl} that is combined to fl and
-not \hbox{f}\hbox{l}. Another problem occurs in converting
-small print to capital print and vice versa.
-
-Below you see an example of the \type {texnansi} mapping:
-
-\typebuffer[enco-1]
-
-This means so much as: in case of a capital the character
-with code 228 becomes character 228 and in case of small
-print the character becomes character 196.
-
-These definitions can be found in \type {enco-ans}. In this
-file we can also see:
-
-\typebuffer[enco-2]
-
-and
-
-\typebuffer[enco-3]
-
-As a result of the way accents are placed over characters we
-have to approach accented characters different from normal
-characters. There are two methods: \TEX\ does the accenting
-itself {\em or} prebuild accentd glyphs are used. The
-definitions above take care of both methods. Other
-definitions are sometimes needed. In the documentation of
-the file \type {enco-ini} more information on this can be
-found.
-
-We once again return to font definitions. Fast fontswitching
-is done with commands like \type {\xii} or \type
-{\twelvepoint}, which is comparable to the way it is done in
-plain \TEX. These commands are defined with:
-
-\typebuffer[font-10]
-
-The keys in \type {\setupbodyfont} are defined in terms of:
-
-\typebuffer[font-11]
-
-In many command setups we encounter the parameter \type
-{style}. In those situations we can specify a key. These
-keys are defined with \type {\definestyle}. The third
-argument is only of importance in chapter and section
-titles, where, apart from \type {\cap}, we want to obey the
-font used there.
-
-\typebuffer[font-12]
-
-In \in{section}[emphasize] we have already explained how
-{\em emphasizing} is defined. With oldstyle digits this is
-somewhat different. We cannot on the forehand in what font
-these can be found. By default we have the setup:
-
-\typebuffer[font-13]
-
-As we see they are obtained from the same font as the math
-italic characters.
-
-In addition to these commands there are others, for example
-macros for manipulating accents. These commands are
-discussed in the file \type {font-ini}. More information can
-also be found in the file \type {core-fnt} and specific
-gimmicks in the file \type {supp-fun}. So enjoy yourself.
-
-\fixme{end of Typography text}
-
-\todo{Integrate and resplit this chapter with the Typography chapter}
-
-This manual is no replacement for the reference manual but
-an addendum. Here we will cover some details of defining
-fonts and collections of fonts, called typefaces. We will
-also spend some words on installing fonts. In any case, it
-helps if you know what a font is, and are familiar with the
-\CONTEXT\ font switching macros.
-
-The original \CONTEXT\ font model was based on plain \TEX,
-but evolved into a more extensive one primarily aimed at
-consistently typesetting our educational documents. The fact
-that we had to typeset pseudo caps in any font shape in
-normal text as well as superscript mode, has clearly
-determined the design. This model has been relatively stable
-since 1995.
-
-Currently there are three layers of font definitions:
-
-\startitemize
-
-\item  simple font definitions: such definitions provide
-       \type {\named} access to a specific font in a
-       predefined size
-
-\item  body font definitions: these result in a coherent
-       set of fonts (often) from a same type foundry (or
-       designer) that can be used intermixed
-
-\item  typeface definitions: they package serif, sans serif,
-       mono spaced and math and other styles in such a way
-       that you can conveniently switch between different
-       combinations
-
-\stopitemize
-
-These three mechanisms are actually build on top of each
-other and all rely on a low level mapping mechanism
-that is responsible for resolving the real font file name
-and the specific font encoding used.
-
-When \TEX\ users install one of the \TEX\ distributions,
-like \TEX-live, they will have a lot of fonts already on the
-system. Unfortunately it is not that easy to get a clear
-picture of what is there and what is needed to use them.
-Although the \type {texmf} tree is prepared for commercial
-fonts, adding them is not trivial. To compensate this,
-\CONTEXT\ comes with \type {texfont.pl}, that can install
-fonts for you. Also, to help you on your way, we provide
-typescripts for a couple of free fonts.
-
-\section {Font files and encodings}
-
-In \CONTEXT\ when possible you should use symbolic names for
-fonts. The mapping from these names onto real ones in most
-cases goes unnoticed for the user. This is good since the
-name depends on the encoding and therefore not seldom is
-obscure and hard to remember.
-
-\starttyping
-\definefontsynonym [Serif]    [Palatino]
-\definefontsynonym [Palatino] [uplr8t]   [encoding=ec]
-\stoptyping
-
-The advantage of using for instance \type {Serif} in
-definitions is, that we can later easily remap this name
-onto another font than \type {Palatino}. In a similar way,
-we can define new names that map onto \type {Serif}.
-
-\starttyping
-\definefontsynonym [TitleFont] [Serif]
-\stoptyping
-
-By using symbolic names in for instance style and macro
-definitions, you can make them independent of a particular
-font and let themselves adapt to the main document fonts,
-which normally are defined in terms of \type {Serif}.
-
-There is no limitation on the level of mapping, but the last
-one in the chain has to be a valid font filename. Specific
-font encoding declarations take place at that level, since
-they are closely related to specific instances of fonts. We
-come back to this in later sections.
-
-\section {Simple font definitions}
-
-The most simple font definition takes place with \type
-{\definefont}. If you want a fixed size, you can define a
-font as follows:
-
-\starttyping
-\definefont [TitleFont] [Serif at 24pt]
-\stoptyping
-
-The \type {at} specifier is a natural \TEX\ one, just as
-\type {scaled}. But where \type {at} is useful, \type
-{scaled} is rather useless, since it scales the font
-related to its design size which is often unknown.
-Depending on the design size is especially dangerous when
-you use symbolic names, since different fonts have
-different design sizes, and designers differ in their ideas
-about what a design size is. Compare for instance the 10pt
-instance of a Computer Modern Roman with Lucida Bright
-(which more looks like a 12pt then).
-
-\starttyping
-\definefont [TitleFont] [Serif scaled 2400]
-\stoptyping
-
-Hard codes sizes can be annoying when you want to define
-fonts in such a way that their definitions adapt themselves.
-Therefore we provide an additional way of scaling:
-
-\starttyping
-\definefont [TitleFont] [Serif sa 2.4]
-\stoptyping
-
-The \type {sa} directive means as much as \quote {scaled at
-the body font size}. Therefore this definition will lead to
-a 24pt scaling when the (document) body font size equals
-10pt. Because the definition has a lazy nature, the font
-size will adapt itself to the current body font size.
-
-Instead of a number, you can also use an identifier, as
-defined in the body font environment that specifies related
-dimensions. This scales the font to the \type {b} size,
-being 1.440 by default.
-
-
-\starttyping
-\definefont [TitleFont] [Serif sa b]
-\stoptyping
-
-An alternative to \type {sa} is \type {mo}. Here the size
-maps onto the remapped body font size when given. We will
-not cover this in detail here.
-
-\section {Defining body fonts}
-
-The core of this model is the definition command that is used
-as follows:
-
-\starttyping
-\definebodyfont [10pt] [rm] [tf=tir at 10pt]
-\stoptyping
-
-As one can expect, the first implementation of a font model
-in \TEX\ is also determined and thereby complicated by the
-fact that the Computer Modern Roman fonts come in design
-sizes. As a result, definitions can look rather complex and
-because most \TEX\ users start with those fonts, font
-definitions are considered to be complex.
-
-Another complicating factor is that in order to typeset math,
-even more definitions are needed. Add to that the fact that
-sometimes we need to use fonts with mixed encodings, i.e.\
-with the glyphs positioned in different font slots, and you
-can understand why font handling in \TEX\ is often qualified
-as \quote {the font mess}. Flexibility simply has its price.
-
-Many documents have a rather simple design and use only a
-couple of (often related) fonts. For some commonly used
-fonts, this means that one can stick to loading the
-appropriate predefined font definition file. \footnote {The
-original font definition files are replaced by typescripts
-in \type {type-pre}, but font files are still supported for
-upward compatibility reasons.} But font life is seldom
-simple and, in a worst case scenario, one must define
-the fonts in the document style.
-
-Because most fonts come in one design size, we can simplify
-the definitions by using predefined sizes, like the default
-one (type {sa 1}):
-
-\starttyping
-\definebodyfont [10pt,11pt,12pt] [rm] [default]
-\stoptyping
-
-
-Because the font names (may) depend on the encoding vector, we
-can use the previously discussed method for mapping symbolic
-names. So, one can comfortably say:
-
-\starttyping
-\definebodyfont [10pt,11pt,12pt] [rm] [tf=tir         sa 1]
-\definebodyfont [10pt,11pt,12pt] [rm] [tf=Times-Roman sa 1]
-\definebodyfont [10pt,11pt,12pt] [rm] [tf=Serif       sa 1]
-\stoptyping
 
 As we already pointed out, the mapping from symbolic names
 onto the real file name can be direct or indirect. The
@@ -833,8 +688,6 @@ From this moment, \type {\funny} will enable this specific
 collection of fonts. In a similar way we can define a
 collection \type {\joke}.
 
-
-\fixme{the \type{courier} line whines about Courier-Caps}
 
 \typebuffer[joke]
 
@@ -1065,6 +918,43 @@ defined for a whole document and one can easily define
 more instances. When you redefine it, a frozen font is
 automatically unfrozen.
 
+\section{Predefined font, style and alternative keywords}
+
+We once again return to font definitions. Fast fontswitching
+is done with commands like \type {\xii} or \type
+{\twelvepoint}, which is comparable to the way it is done in
+plain \TEX. These commands are defined with:
+
+\typebuffer[font-10]
+
+The keys in \type {\setupbodyfont} are defined in terms of:
+
+\typebuffer[font-11]
+
+In many command setups we encounter the parameter \type
+{style}. In those situations we can specify a key. These
+keys are defined with \type {\definestyle}. The third
+argument is only of importance in chapter and section
+titles, where, apart from \type {\cap}, we want to obey the
+font used there.
+
+\typebuffer[font-12]
+
+In \in{section}[emphasize] we have already explained how
+{\em emphasizing} is defined. With oldstyle digits this is
+somewhat different. We cannot on the forehand in what font
+these can be found. By default we have the setup:
+
+\typebuffer[font-13]
+
+As we see they are obtained from the same font as the math
+italic characters.
+
+In addition to these commands there are others, for example
+macros for manipulating accents. These commands are
+discussed in the file \type {font-ini}. More information can
+also be found in the file \type {core-fnt} and specific
+gimmicks in the file \type {supp-fun}. So enjoy yourself.
 
 \section {Symbols and glyphs}
 
@@ -1111,6 +1001,45 @@ to the current style. You can now access this symbol with
 More details on defining symbols and symbol sets can be
 found in the reference manual and documentation of the
 symbol modules.
+
+\section{Encodings}
+
+Until now we assumed that an~\type {a} will become an~a
+during type setting. However, this is not always the case.
+Take for example~\"a or~\ae. This character is not available
+in every font and certainly not in the Computer Modern
+Typefaces. Often a combination of characters \type {\"a} or a
+command \type {\ae} will be used to produce such a character.
+In some situation \TEX\ will combine characters
+automatically, like in \type {fl} that is combined to fl and
+not \hbox{f}\hbox{l}. Another problem occurs in converting
+small print to capital print and vice versa.
+
+Below you see an example of the \type {texnansi} mapping:
+
+\typebuffer[enco-1]
+
+This means so much as: in case of a capital the character
+with code 228 becomes character 228 and in case of small
+print the character becomes character 196.
+
+These definitions can be found in \type {enco-ans}. In this
+file we can also see:
+
+\typebuffer[enco-2]
+
+and
+
+\typebuffer[enco-3]
+
+As a result of the way accents are placed over characters we
+have to approach accented characters different from normal
+characters. There are two methods: \TEX\ does the accenting
+itself {\em or} prebuild accentd glyphs are used. The
+definitions above take care of both methods. Other
+definitions are sometimes needed. In the documentation of
+the file \type {enco-ini} more information on this can be
+found.
 
 \section{Map files}
 
