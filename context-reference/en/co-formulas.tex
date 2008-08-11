@@ -656,4 +656,28 @@ results in:
 \getbuffer
 \stopreality
 
+
+\section {Math collection}
+
+Math is a complicated matter and therefore we will not spend
+that many words on the gory details. For the user it is
+enough to know that you can mix different math fonts in a
+comfortable way and that \CONTEXT\ will take care of the
+proper mapping on specific math fonts.
+
+Because the wide range of math symbols can come from
+different fonts, math characters are organized into so
+called math collections. Normally such a collection is
+chosen automatically when you load a font definition, just
+as with font encodings. The \AMS\ math fonts extend the
+default math collection, which gives you a comfortable fall
+back. More information can be found in the documentation of
+the math module.
+
+You can generate a list of the current math character set
+with the command \type {\showmathcharacters}.
+
+\showmathcharacters
+
 \stopcomponent
+
