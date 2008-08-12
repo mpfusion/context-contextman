@@ -377,13 +377,13 @@
       <cd:keywords n="1" list="yes"> <!-- <cd:constant type="default"/> -->
         <cd:resolve name="bodyfont"/> <!-- TODO: check this -->
       </cd:keywords>
-      <cd:keywords n="2">
-        <cd:constant type="rm"/>
+      <cd:keywords n="2" optional="yes">
+        <cd:constant type="rm" default="yes"/>
         <cd:constant type="ss"/>
         <cd:constant type="tt"/>
-        <cd:constant type="mm"/>
         <cd:constant type="hw"/>
         <cd:constant type="cg"/>
+        <cd:constant type="mm"/>
       </cd:keywords>
       <cd:assignments n="3" list="yes">
         <cd:parameter name="tf">
@@ -407,6 +407,9 @@
         <cd:parameter name="sc">
           <cd:constant type="cd:file"/>
         </cd:parameter>
+        <cd:parameter name="mr">
+          <cd:constant type="cd:file"/>
+        </cd:parameter>
         <cd:parameter name="ex">
           <cd:constant type="cd:file"/>
         </cd:parameter>
@@ -425,9 +428,47 @@
         <cd:parameter name="mc">
           <cd:constant type="cd:file"/>
         </cd:parameter>
+        <cd:parameter name="md">
+          <cd:constant type="cd:file"/>
+        </cd:parameter>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
+
+  <cd:command name="definebodyfontDEF" file="font-ini.tex" category="fonts">
+    <cd:sequence>
+      <cd:string value="definebodyfont"/>
+    </cd:sequence>
+    <cd:arguments>
+      <cd:keywords n="1">
+        <cd:constant type="cd:name"/> 
+      </cd:keywords>
+      <cd:keywords n="2">
+        <cd:inherit name="setupbodyfont" n="2"/>
+      </cd:keywords>
+      <cd:keywords n="1"> 
+        <cd:inherit name="setupbodyfont" n="3"/>
+      </cd:keywords>
+    </cd:arguments>
+  </cd:command>
+
+  <cd:command name="definebodyfontREF" file="font-ini.tex" category="fonts">
+    <cd:sequence>
+      <cd:string value="definebodyfont"/>
+    </cd:sequence>
+    <cd:arguments>
+      <cd:keywords n="1">
+        <cd:inherit name="setupbodyfont" n="1"/>
+      </cd:keywords>
+      <cd:keywords n="2">
+        <cd:inherit name="setupbodyfont" n="2"/>
+      </cd:keywords>
+      <cd:keywords n="3"> 
+        <cd:constant type="cd:name"/>
+      </cd:keywords>
+    </cd:arguments>
+  </cd:command>
+
 
   <cd:command name="showbodyfont" file="font-run.tex" category="fonts"> <!-- visual debugging -->
     <cd:sequence>
