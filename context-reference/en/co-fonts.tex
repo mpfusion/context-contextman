@@ -115,7 +115,7 @@ depends on the encoding and therefore not seldom is obscure and hard to
 remember. The trick is knowing how to use the \type{\definefontsynonym}
 command.
 
-\showsetup{definefontsynonym}
+\placefloat[][]{none}{\showsetup{definefontsynonym}}
 
 The first argument is the synonym that is being defined (or, more often,
 redefined). The second argument is the replacement of the synonym.  This
@@ -155,13 +155,40 @@ Now the name \type{Palatino} can be used in further font definitions to
 indentify this font, instead of the dreadfully low||level (and hard to
 remember) name \type{uplr8t} and its accompanying encoding.
 
-This is already useful, but \CONTEXT\ goes further than that.
-An extra synonym level is normally defined that maps this font name to a
-generic name like \type{Serif} or \type{Sans}.
+A note on font names: In \PDFTEX, the real font is the name of the \TEX\
+metrics file, minus the extension, as we saw already. In \XETEX\ and \MKIV\
+a font name is a bit more complex, because in both cases OpenType fonts can
+be accessed directly by their official font name as well as via the disk
+file name.
+
+In these two systems, \CONTEXT\ first attempts to find the font using the
+official font name. If that doesn't work, then it tries to use the font by
+file name as a fallback. Since this is not very efficient and also because
+it may generate harmless but alarming|looking warnings|, it is possible to
+force \CONTEXT\ into one or the other mode by using a prefix, so you will
+most often see synonym definitions like this:
 
 \startexample
 \starttyping
-\definefontsynonym [Serif]    [Palatino]
+\definefontsynonym [MSTimes]       [name:Times New Roman] [features=default]
+\definefontsynonym [Iwona-Regular] [file:Iwona-Regular]   [features=default]
+\stoptyping
+\stopexample
+
+In \XETEX, the \type{file} prefix implies that \XETEX\ will search for an
+OpenType font (with extension \type{otf} or \type{ttf}) and if that fails
+it will try to find a \TEX\ font (with extension \type{tfm}). In \MKIV, the
+list is a little longer: OpenType (\type{otf}, \type{ttf}), Type~1
+(\type{afm}), \OMEGA\ (\type{ofm}), and finally \TEX\ (\type{tfm}).
+
+The use of aliases to hide the complexity of true font names is already
+very useful, but \CONTEXT\ goes further than that.  An extra synonym level
+is normally defined that maps this font name to a generic name like
+\type{Serif} or \type{Sans}.
+
+\startexample
+\starttyping
+\definefontsynonym [Serif] [Palatino]
 \stoptyping
 \stopexample
 
@@ -193,12 +220,14 @@ in~\in{table}[tab:symbolic font names]
 \vskip 1ex
 \starttabulate[|lT|lT|l|]
 \NC \rm\bf name          \NC \rm \bf style, alternative \NC \rm \bf explanation \NC \NR
-\NC Blackboard           \NC --       \NC Used by the \type{\bbd} macro \NC\NR
-\NC Calligraphic         \NC --       \NC Used by the \type{\cal} macro\NC \NR
+\NC Blackboard           \NC --       \NC Used by the \type{\bbd}  macro \NC \NR
+\NC Calligraphic         \NC --       \NC Used by the \type{\cal}  macro \NC \NR
+\NC Fraktur              \NC --       \NC Used by the \type{\frak} macro \NC \NR
+\NC Gothic               \NC --       \NC Used by the \type{\goth} macro \NC \NR
+\NC OldStyle             \NC --       \NC Used by the \type{\os} macro   \NC \NR
+\NC MPtxtfont            \NC --       \NC The default font for \METAPOST \NC \NR
 \NC Calligraphy          \NC cg,tf    \NC \NC \NR
-\NC Fraktur              \NC --       \NC Used by the \type{\frak} macro\NC \NR
 \NC Handwriting          \NC hw,tf    \NC \NC \NR
-\NC MPtxtfont            \NC --       \NC The default font for \METAPOST\NC \NR
 \NC MathRoman(Bold)      \NC mm,mr(bf)\NC \NC \NR
 \NC MathItalic(Bold)     \NC mm,mi(bf)\NC \NC \NR
 \NC MathSymbol(Bold)     \NC mm,sy(bf)\NC \NC \NR
@@ -214,7 +243,6 @@ in~\in{table}[tab:symbolic font names]
 \NC MonoSlanted          \NC tt,sl    \NC \NC \NR
 \NC MonoBoldSlanted      \NC tt,bs    \NC \NC \NR
 \NC MonoCaps             \NC tt,sc    \NC \NC \NR
-\NC OldStyle             \NC --       \NC Used by the \type{\os} macro \NC \NR
 \NC Sans                 \NC ss,tf    \NC \NC \NR
 \NC SansBold             \NC ss,bf    \NC \NC \NR
 \NC SansItalic           \NC ss,it    \NC \NC \NR
@@ -236,28 +264,75 @@ in~\in{table}[tab:symbolic font names]
 \placetable
   [here]
   [tab:symbolic font names]
-  {Standard symbolic font names}
+  {Standard symbolic font names, and the style||alternative pair they belong to.}
   {\getbuffer[symfontnames]}
+
+
+As mentioned earlier, the items in the third argument of
+\type{\definefontsynonym} perculate down the chain of
+synonyms. Occasionally, you may want to splice some settings into that
+chain, and that is where \type{\setupfontsynonym} comes in handy. 
+
+\showsetup{setupfontsynonym}
+
+For example, the predefined \MKII\ typescripts for font handling that we saw in
+the previous chapter contain a sequence of commands like this:
+
+\startexample
+\starttyping
+\setupfontsynonym [Serif]       [handling=pure]
+\setupfontsynonym [SerifBold]   [handling=pure]
+\setupfontsynonym [SerifItalic] [handling=pure]
+....
+\stoptyping
+\stopexample
 
 \section {Simple font definitions}
 
-The most simple font definition takes place with \type {\definefont}. If
-you want a fixed size, you can define a font as follows:
+The most simple font definition takes place with \type {\definefont}. 
+
+\showsetup{definefont}
+
+This macro defines a font with the same name as the first argument, you can
+use it's identifier to select that font. The second argument works in the
+same way as the second argument to \type{\definefontsynonym}: you can use
+either a font synonym or a real font. There is an optional third argument
+that can be either a bare number like \type{1.5 }, or a named setup
+(see~\in{section}[sec:setups]). In case of a bare number, that is a local
+setting for the interline space. In case of a setup, that setup can do
+whatever it wants.
+
+\startbuffer [dingbat]
+\loadmapfile [koeieletters]
+\definefont  [ContextLogo] [koeielogos at 72pt]
+\ContextLogo \char 2
+\stopbuffer
+
+\startexample
+\typebuffer[dingbat]
+\stopexample
+
+will result in 
+
+\startreality
+\getbuffer[dingbat]
+\stopreality
+
+If you want a fixed size font like in the example above, you can define a
+font as follows:
 
 \starttyping
 \definefont [TitleFont] [Serif at 24pt]
 \stoptyping
 
-The \type {at} specifier is a natural \TEX\ one, just as
-\type {scaled}. But where \type {at} is useful, \type
-{scaled} is rather useless, since it scales the font
-related to its design size which is often unknown.
-Depending on the design size is especially dangerous when
-you use symbolic names, since different fonts have
-different design sizes, and designers differ in their ideas
-about what a design size is. Compare for instance the 10pt
-instance of a Computer Modern Roman with Lucida Bright
-(which more looks like a 12pt then).
+The \type {at} specifier is a natural \TEX\ one, just as \type
+{scaled}. But where \type {at} is useful, \type {scaled} is rather useless,
+since it scales the font related to its design size which is often unknown.
+Depending on the design size is especially dangerous when you use symbolic
+names, since different fonts have different design sizes, and designers
+differ in their ideas about what a design size is. Compare for instance the
+10pt instance of a Computer Modern Roman with Lucida Bright (which more
+looks like a 12pt then).
 
 \starttyping
 \definefont [TitleFont] [Serif scaled 2400]
@@ -265,7 +340,7 @@ instance of a Computer Modern Roman with Lucida Bright
 
 Hard codes sizes can be annoying when you want to define
 fonts in such a way that their definitions adapt themselves.
-Therefore we provide an additional way of scaling:
+Therefore \CONTEXT\ provides an additional way of scaling:
 
 \starttyping
 \definefont [TitleFont] [Serif sa 2.4]
@@ -282,14 +357,65 @@ defined in the body font environment that specifies related
 dimensions. This scales the font to the \type {b} size,
 being 1.440 by default.
 
-
 \starttyping
 \definefont [TitleFont] [Serif sa b]
 \stoptyping
 
-An alternative to \type {sa} is \type {mo}. Here the size
-maps onto the remapped body font size when given. We will
-not cover this in detail here.
+In fact, if you use a bare name like in 
+
+\starttyping
+\definefont [TitleFont] [Serif]
+\stoptyping
+
+that will internally be converted to
+
+\starttyping
+\definefont [TitleFont] [Serif sa *]
+\stoptyping
+
+which in turn expands into the current actual font size, after the
+application of size corrections for super|| and subscripts etc. 
+
+For example
+
+\startbuffer[saex]
+\definefont [TitleFont] [Sans]
+{\TitleFont test } and {\tfc \TitleFont test }
+\stopbuffer
+
+\startexample
+\typebuffer[saex]
+\stopexample
+
+gives
+
+\startreality
+\getbuffer[saex]
+\stopreality
+
+A specialized alternative to \type {sa} is \type {mo}. Here the size maps
+onto an already remapped body font size. Such remappings are defined by the
+macro \type{\mapfontsize}:
+
+\showsetup{mapfontsize}
+
+This remapping a dimension before applying scaling is sometimes handy for
+math fonts, where you may want to use slightly different sizes than the
+ones given in the body font environment. In the \CONTEXT\ distribution,
+this happens only with the Math Times fonts, where the predefined
+typescript contains the following lines:
+
+\starttyping
+\mapfontsize [5pt]    [6.0pt]
+\mapfontsize [6pt]    [6.8pt]
+\mapfontsize [7pt]    [7.6pt]
+\mapfontsize [8pt]    [8.4pt]
+\mapfontsize [9pt]    [9.2pt]
+\mapfontsize [10pt]   [10pt]
+\mapfontsize [11pt]   [10.8pt]
+\mapfontsize [12pt]   [11.6pt]
+\mapfontsize [14.4pt] [13.2pt]
+\stoptyping
 
 
 \section {Defining body fonts}

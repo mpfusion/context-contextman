@@ -10150,4 +10150,18 @@
     </cd:arguments>
   </cd:command>
 
+  <cd:command name="mapfontsize" file="font-ini.tex" category="fonts">
+    <cd:sequence>
+      <cd:string value="mapfontsize"/>
+    </cd:sequence>
+    <cd:arguments>
+      <cd:keywords n="1"> 
+        <cd:constant type="cd:dimension"/>
+      </cd:keywords>
+      <cd:keywords n="2">
+        <cd:constant type="cd:dimension"/>
+      </cd:keywords>
+    </cd:arguments>
+  </cd:command>
+
 </cd:interface>
