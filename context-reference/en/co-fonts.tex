@@ -131,10 +131,12 @@ perculate down unless they are already defined at the lower level.
 \startbuffer[synonymargs]
 \vskip 1ex
 \starttabulate[|lT|l|]
-\NC encoding \NC the file encoding for \MKII\ fonts (TFM based) \NC \NR
-\NC handling \NC the font handling for \MKII\ (see  previous chapter)\NC \NR
-\NC features \NC the font handling for \MKIV\ and \XETEX\ (see previous chapter)\NC \NR
-\NC mapping  \NC an obsolete method of specifying \XETEX\ font mappings \NC \NR
+\NC encoding \NC the file encoding for \MKII\ fonts (TFM based).\NC \NR
+\NC handling \NC the font handling for \MKII\ (see  previous chapter).\NC \NR
+\NC features \NC the font handling for \MKIV\ and \XETEX\ (see previous chapter).\NC \NR
+\NC mapping  \NC letter case change mapping for \MKII\ that may be used in special
+                 cases; never actually used in the \CONTEXT\ core. 
+                 See~\in{chapter}[languages] on languages for details.\NC \NR
 \stoptabulate
 \vskip 1ex
 \stopbuffer
@@ -164,7 +166,7 @@ file name.
 In these two systems, \CONTEXT\ first attempts to find the font using the
 official font name. If that doesn't work, then it tries to use the font by
 file name as a fallback. Since this is not very efficient and also because
-it may generate harmless but alarming|looking warnings|, it is possible to
+it may generate |<|harmless but alarming looking|>| warnings it is possible to
 force \CONTEXT\ into one or the other mode by using a prefix, so you will
 most often see synonym definitions like this:
 
@@ -380,7 +382,7 @@ For example
 
 \startbuffer[saex]
 \definefont [TitleFont] [Sans]
-{\TitleFont test } and {\tfc \TitleFont test }
+{\TitleFont test} and {\tfc \TitleFont test}
 \stopbuffer
 
 \startexample
