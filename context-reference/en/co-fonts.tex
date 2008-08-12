@@ -417,6 +417,16 @@ typescript contains the following lines:
 \mapfontsize [14.4pt] [13.2pt]
 \stoptyping
 
+As we have seen, \type{\definefont} creates a macro name for a font
+switch. For ease of use, there is also a direct method to access a 
+font:
+
+\showsetup{definedfont}
+
+Where the argument has exactly the same syntax as the second argument to
+\type{\definefont}. In fact, this macro executes \type{\definefont} 
+internally, and then immediately switches to the defined font.
+
 
 \section {Defining body fonts}
 

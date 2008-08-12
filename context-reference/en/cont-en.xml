@@ -10164,4 +10164,15 @@
     </cd:arguments>
   </cd:command>
 
+  <cd:command name="definedfont" file="font-ini.tex" category="fonts">
+    <cd:sequence>
+      <cd:string value="definedfont"/>
+    </cd:sequence>
+    <cd:arguments>
+      <cd:keywords n="1">
+        <cd:inherit name="definefont" n="2"/>
+      </cd:keywords>
+    </cd:arguments>
+  </cd:command>
+
 </cd:interface>
