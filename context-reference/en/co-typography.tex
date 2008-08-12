@@ -1895,23 +1895,29 @@ argument is not really optional, the macro syntax description is a little mislea
 
 The third argument once again is optional, and contains the actual settings
 as key-value pairs. If it is missing, defaults will be guessed at
-by \CONTEXT\ itself.
+by \CONTEXT\ itself. Allthough the macro syntax says the type is
+\type{DIMENSION},  floating point numbers are also acceptable. Such numbers are
+multipliers that are applied to the font size when the body font environment is
+applied.
 
 \starttabulate[|lT|p|]
-\NC text           \NC Math text size\NC \NR
-\NC script         \NC Math script size\NC \NR
-\NC scriptscript   \NC Math scriptscript size\NC \NR
-\NC x              \NC The size used for the \type{\tfx} etc. commands\NC \NR
-\NC xx             \NC The size used for the \type{\tfxx} command\NC \NR
-\NC big            \NC The \quote{larger} font size\NC \NR
-\NC small          \NC The \quote{smaller} font size\NC \NR
-\NC interlinespace \NC Distance between lines in a paragraph, can be ignored
-                       because a reasonable default is always set up\NC \NR
+\NC text           \NC Math text size or multiplier (default is \type{1.0})\NC \NR
+\NC script         \NC Math script size (default is \type{0.7})\NC \NR
+\NC scriptscript   \NC Math scriptscript size (default  is \type{0.5})\NC \NR
+\NC x              \NC The size used for commands like \type{\tfx} (default is \type{0.8})\NC \NR
+\NC xx             \NC The size used for the \type{\tfxx} command (default is \type{0.6})\NC\NR
+\NC a              \NC The size for commands like \type{\tfa}  (default is \type{1.200})\NC \NR
+\NC b              \NC The size for commands like \type{\tfb}  (default is \type{1.440})\NC \NR
+\NC c              \NC The size for commands like \type{\tfa}  (default is \type{1.728})\NC \NR
+\NC d              \NC The size for commands like \type{\tfd}  (default is \type{2.074})\NC \NR
+\NC big            \NC The \quote{larger} font size (default is \type{1.2})\NC \NR
+\NC small          \NC The \quote{smaller} font size (default is \type{0.8})\NC \NR
+\NC interlinespace \NC Distance between lines in a paragraph (default is \type{2.8ex})\NC \NR
 \NC em             \NC The style to use for emphasis (default is \type{slanted})\NC \NR
 \stoptabulate 
 
-So, when you want to have a somewhat bigger fontsize for 
-just a few words (e.g. for a book title) you can type:
+So, when you want to have a somewhat bigger fontsize for just a few words
+(e.g. for a book title) you can type:
 
 \startexample
 \starttyping
@@ -1920,8 +1926,8 @@ just a few words (e.g. for a book title) you can type:
 \stoptyping
 \stopexample
 
-but longer stretches of text, you will need to set up most of the values, using 
-something like this 
+but longer stretches of text, you will probably want to set up most of the
+values explicitly, using something like this
 
 \startexample
 \starttyping

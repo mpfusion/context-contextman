@@ -313,6 +313,18 @@
         <cd:parameter name="xx">
           <cd:constant type="cd:dimension"/>
         </cd:parameter>
+        <cd:parameter name="a">
+          <cd:constant type="cd:dimension"/>
+        </cd:parameter>
+        <cd:parameter name="b">
+          <cd:constant type="cd:dimension"/>
+        </cd:parameter>
+        <cd:parameter name="c">
+          <cd:constant type="cd:dimension"/>
+        </cd:parameter>
+        <cd:parameter name="d">
+          <cd:constant type="cd:dimension"/>
+        </cd:parameter>
         <cd:parameter name="small">
           <cd:constant type="cd:dimension"/>
         </cd:parameter>
@@ -490,6 +502,9 @@
       </cd:keywords>
       <cd:keywords n="2">
         <cd:constant type="cd:file"/>
+      </cd:keywords>
+      <cd:keywords n="3" optional="yes">
+        <cd:constant type="cd:text"/>
       </cd:keywords>
     </cd:arguments>
   </cd:command>
@@ -10117,6 +10132,20 @@
         <cd:parameter name="mapping">
           <cd:constant type="cd:name"/>
         </cd:parameter>
+      </cd:assignments>
+    </cd:arguments>
+  </cd:command>
+
+  <cd:command name="setupfontsynonym" file="font-ini.tex"> 
+    <cd:sequence>
+      <cd:string value="setupfontsynonym"/>
+    </cd:sequence>
+    <cd:arguments>
+      <cd:keywords n="1">
+        <cd:constant type="cd:name"/>
+      </cd:keywords>
+      <cd:assignments n="2">
+        <cd:inherit name="definefontsynonym" n="3"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
