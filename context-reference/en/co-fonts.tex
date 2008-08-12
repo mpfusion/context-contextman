@@ -435,8 +435,18 @@ internally, and then immediately switches to the defined font.
 In older versions of \CONTEXT, the model for defining fonts that is
 described in this section was the top||level user interface.  These days,
 typescripts are used at the top||level, and the body font definitions are
-wrapped inside of those.  Still, you will need to know about body font
-definitions if you want to create your own typescripts, so \dots
+wrapped inside of those. Most commercial fonts have only one design size,
+and when you create a typescript for such fonts, you can simply reuse the
+predefined size definitions. Later on we will see that this means you can
+just refer to a \type{default} definition.
+
+Still, you may need (or want) to know the details of body font definitions
+if you create your own typescripts, especially if the fonts are not all
+that standard.  For example, because Latin Modern comes in design sizes,
+there was a need to associate a specific font with each bodyfont size.  You
+may find yourself in a similar situation when you attempt to create a
+typescript for a \quote{professional} commercial font set.
+
 
 The core of this intermediate model is the definition command that is used
 as follows:
@@ -641,13 +651,13 @@ This was used in the default serif font defintion shown above: the first
 argument to \type{\definebodyfont} was the identifier \type{default}
 because these definitions were to be used from within other definitions.  
 
-A concrete size will be provided by the commands at the top||level in the
+An actual size will be provided by the commands at the top||level in the
 calling chain, the third argument in that \type{\definebodyfont} call will
 also be \type{default} instead of actually specifying settings.
 
 \showsetup{definebodyfontREF}
 
-The use of the \type{delault} actually happens deep inside \CONTEXT\ so
+The use of the \type{default} actually happens deep inside \CONTEXT\ so
 there is clear code that can be shown, but if it was written out, a call
 would for example look like this:
 
