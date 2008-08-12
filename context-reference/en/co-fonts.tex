@@ -430,112 +430,75 @@ internally, and then immediately switches to the defined font.
 
 \section {Defining body fonts}
 
-The core of this model is the definition command that is used
+In older versions of \CONTEXT, the model for defining fonts that is
+described in this section was the top||level user interface.  These days,
+typescripts are used at the top||level, and the body font definitions are
+wrapped inside of those.  Still, you will need to know about body font
+definitions if you want to create your own typescripts, so \dots
+
+The core of this intermediate model is the definition command that is used
 as follows:
 
 \starttyping
 \definebodyfont [10pt] [rm] [tf=tir at 10pt]
 \stoptyping
 
-As one can expect, the first implementation of a font model
-in \TEX\ is also determined and thereby complicated by the
-fact that the Computer Modern Roman fonts come in design
-sizes. As a result, definitions can look rather complex and
-because most \TEX\ users start with those fonts, font
+As one can expect, the first implementation of a font model in \TEX\ is
+also determined and thereby complicated by the fact that the Computer
+Modern Roman fonts come in design sizes. As a result, definitions can look
+rather complex and because most \TEX\ users start with those fonts, font
 definitions are considered to be complex.
 
-Another complicating factor is that in order to typeset math,
-even more definitions are needed. Add to that the fact that
-sometimes we need to use fonts with mixed encodings, i.e.\
-with the glyphs positioned in different font slots, and you
-can understand why font handling in \TEX\ is often qualified
-as \quote {the font mess}. Flexibility simply has its price.
+Another complicating factor is that in order to typeset math, even more
+definitions are needed. Add to that the fact that sometimes fonts with
+mixed encodings have to be used, i.e.\ with the glyphs positioned in
+different font slots, and you can understand why font handling in \TEX\ is
+often qualified as \quote {the font mess}. Flexibility simply has its
+price.
 
-Many documents have a rather simple design and use only a
-couple of (often related) fonts. For some commonly used
-fonts, this means that one can stick to loading the
-appropriate predefined font definition file. \footnote {The
-original font definition files are replaced by typescripts
-in \type {type-pre}, but font files are still supported for
-upward compatibility reasons.} But font life is seldom
-simple and, in a worst case scenario, one must define
-the fonts in the document style.
+Many documents have a rather simple design and use only a couple of (often
+related) fonts. For some commonly used fonts, this means that one can stick
+to loading the appropriate predefined font definition file. \footnote {The
+original font definition files are replaced by typescripts in \type
+{type-pre}, but font files are still supported for upward compatibility
+reasons.} But font life is seldom simple and, in a worst case scenario, one
+must define the fonts in the document style.
 
-Because most fonts come in one design size, we can simplify
-the definitions by using predefined sizes, like the default
-one (type {sa 1}):
-
-\starttyping
-\definebodyfont [10pt,11pt,12pt] [rm] [default]
-\stoptyping
-
-
-Because the font names (may) depend on the encoding vector, we
-can use the previously discussed method for mapping symbolic
-names. So, one can comfortably say:
-
-\starttyping
-\definebodyfont [10pt,11pt,12pt] [rm] [tf=tir         sa 1]
-\definebodyfont [10pt,11pt,12pt] [rm] [tf=Times-Roman sa 1]
-\definebodyfont [10pt,11pt,12pt] [rm] [tf=Serif       sa 1]
-\stoptyping
-
-The default serif fonts are defined with:
-
-\startbuffer[font-5]
-\definebodyfont [default] [rm]
-  [ tf=Serif        sa 1,
-   tfa=Serif        sa a,
-      ...
-    sl=SerifSlanted sa 1,
-   sla=SerifSlanted sa a,
-      ...]
-\stopbuffer
-
-\typebuffer[font-5]
-
-We saw that \type {\tf} is the default font. Here \type
-{\tf} is defined as \typ{Serif sa 1} which means that it is
-a serif font, scaled to a normal font size. This \type
-{Serif} is projected elsewhere on for example \typ
-{LucidaBright} which in turn is projected on the filename
-\type {lbr}.
-
-The kind of all||in||one definitions as shown previously for
-Helvetica use the \type {default} settings and enable easy
-font definitions. This is okay for fonts that come in one
-design size.
-
-We, like other \TEX\ users, started with the use of Computer
-Modern Roman fonts. Since these fonts have specific design
-sizes \CONTEXT\ supports accurate definitions. See the file
-\type {font-cmr}:
+Like most other \TEX\ users, Hans Hagen started out using the Computer
+Modern Roman fonts. Since these fonts have specific design sizes \CONTEXT\
+supports accurate definitions with specific font names and sizes for
+each combination. The following is an example of that:
 
 \startbuffer[font-6]
 \definebodyfont [12pt] [rm]
-  [ tf=cmr12,
-   tfa=cmr12 scaled \magstep1,
-   tfb=cmr12 scaled \magstep2,
-   tfc=cmr12 scaled \magstep3,
-   tfd=cmr12 scaled \magstep4,
-    bf=cmbx12,
-    it=cmti12,
-    sl=cmsl12,
-    bi=cmbxti10 at 12pt,
-    bs=cmbxsl10 at 12pt,
-    sc=cmcsc10 at 12pt]
+    [ tf=cmr12,
+     tfa=cmr12 scaled \magstep1,
+     tfb=cmr12 scaled \magstep2,
+     tfc=cmr12 scaled \magstep3,
+     tfd=cmr12 scaled \magstep4,
+      bf=cmbx12,
+      it=cmti12,
+      sl=cmsl12,
+      bi=cmbxti10 at 12pt,
+      bs=cmbxsl10 at 12pt,
+      sc=cmcsc10 at 12pt]
 \stopbuffer
 
 \typebuffer[font-6]
 
-We use here the available \TEX||specifications \type
-{scaled} and \type {at}, but \CONTEXT\ also supports a
-combination of both: \type {sa} (scaled at). For example if
-we do not want to use the default Helvetica definition we
-define:
+It should be clear to you that for fonts with design sizes, similar
+\type{\definebodyfont} commands will have to be written for each of the
+requested body font sizes. But many commercial fonts do not come in 
+design sizes at all.
+
+The previous example used the available \TEX||specifications \type {scaled}
+and \type {at}, but (as we say already) \CONTEXT\ supports special keyword
+that is a combination of both: \type {sa} (scaled at).
+
+For example, for the Helvetica Type~1 font definition we could define:
 
 \startbuffer[font-7]
-\definebodyfont [12pt,11pt,10pt,9pt,8pt] [ss]
+\definebodyfont [12pt] [ss]
   [tf=hv  sa 1.000,
    bf=hvb sa 1.000,
    it=hvo sa 1.000,
@@ -557,34 +520,63 @@ tiresome so we replace \type {1.200} by \type {a}, etc. The
 relations between \type {a} and \type {1.200} can be set up
 in the bodyfont environment.
 
-\startbuffer[font-8]
+Because there are no more sizes in the definition any more, we can just as
+well combine all of the requested sizes in a single \type{\definebodyfont}
+by using a list of sizes as the first argument. This means exactly the same
+as repeating that whole list five (or more) times, but saves a lot of typing:
+
+\starttyping
 \definebodyfont [12pt,11pt,10pt,9pt,8pt] [ss]
-  [tf=hv sa 1, tfa=hv sa a, tfb=hv sa b, tfc=hv sa c, tfd=hv sa d]
+  [tf=hv  sa 1.000,
+  ...
+\stoptyping
+
+Because the font names (may) depend on the encoding vector, we had better
+use the previously discussed method for mapping symbolic names. So, any one
+of the three following lines can be used, but the third one is best:
+
+\starttyping
+\definebodyfont [10pt,11pt,12pt] [rm] [tf=tir         sa 1]
+\definebodyfont [10pt,11pt,12pt] [rm] [tf=Times-Roman sa 1]
+\definebodyfont [10pt,11pt,12pt] [rm] [tf=Serif       sa 1]
+\stoptyping
+
+and the default serif fonts are in fact defined with:
+
+\startbuffer[font-5]
+\definebodyfont [default] [rm]
+  [ tf=Serif        sa 1,
+   tfa=Serif        sa a,
+      ...
+    sl=SerifSlanted sa 1,
+   sla=SerifSlanted sa a,
+      ...]
 \stopbuffer
 
-\typebuffer[font-8]
+\typebuffer[font-5]
 
-Since font files are used in all interfaces we use English
-commands. The definitions take place in files with the name
-\type {font-<<xxx>>.tex}, see for example the file \type
-{font-cmr.tex}.
+We saw that \type {\tf} is the default font. Here \type {\tf} is defined as
+\typ{Serif sa 1} which means that it is a serif font, scaled to a normal
+font size. This \type {Serif} is mapped elsewhere on for example \typ
+{Palatino} which in turn is mapped on the actual filename \type {uplr8t},
+as explained earlier.
 
 \showsetup{definebodyfont}
 
-The setups \type {ex}, \type {mi}, \type {sy}, \type {ms},
-\type {mb} and \type {mc} relate to the math charactersets.
-The first three we can also find in plain \TEX, the last
-three are necessary in other font families. The symbols and
-characters in \AMSTEX\ can also be used in \CONTEXT: \type
-{\definebodyfont [ams]}. These can be found in \type {ma}
-and \type {mb}.
+The macro syntax for \type{\definebodyfont} is a bit abbreviated. Besides
+the two||letter keys that are listed for the third argument, it is also
+possible to assign values to font identifiers with the alphabetic suffixes
+\type{a} through \type{d} like \type{tfa} as well as the ones with an
+\type{x} or \type{xx} suffix like \type{bfx}. You can even define totally new
+keywords, if you want that.
 
-The \type {a}||\type {d} are not mandatory. As an example we
-will define a bigger fontsize of \type {\tf}:
+As an example we will define a bigger fontsize of \type {\tf}:
 
 \startbuffer
-\definebodyfont [10pt,11pt,12pt] [rm] [tfe=Regular at 48pt]
-\tfe Big Words.
+\definebodyfont [10pt,11pt,12pt] [rm] 
+    [tfe=Serif at 48pt,
+     ite=SerifItalic at 48pt]
+\tfe Big {\it Words}.
 \stopbuffer
 
 \startexample
@@ -599,100 +591,79 @@ This becomes:
 \stoplinecorrection
 \stopreality
 
-This definition brings us to other definitions. It is
-possible to define a bodyfont in a several ways. We can use
-classifications like \type {Regular}, or abstract names like
-\type {TimesRoman}, or filenames, like \type {tir}, or even
-fancy names like \type {HeadLetter}.
+Note that there is a small trick here: the assignment to \type{ite} is
+needed for the command \type{\it} to work properly. Without that, the 
+command \type{\it} would run the \quote{normal} version of \type{it} and
+that has a size of 11pt.
 
+
+The keywords \type{mr}, \type {ex}, \type {mi}, \type {sy}, \type {ma},
+\type {mb},\type {mc} and \type{md} all relate to math families. As was
+already hinted at in~\in{table}[tab:symbolic font names], these have
+extended relatives suffixed by \type{bf} for use within bold math
+environments. The first four are required in all math setups just to do
+basic formula typesetting, the other four (\type{ma} ... \type{md}) can be
+left undefined and are normally used for fonts with special symbols or
+alphabets like the AMS symbol fonts \type{msam} and \type{msbm}.
+
+Here is what a setup for a fairly standard \type{mm} could look like:
+
+\startexample
 \starttyping
-\definebodyfont[HeadLetter][Regular sa 1.2]
+\definebodyfont [10pt] [mm]
+    [mr=cmr10,
+     ex=cmex10,
+     mi=cmmi10,
+     sy=cmsy10]
+
+\definebodyfont [17.3pt,14.4pt,12pt,11pt,10pt,9pt] [mm]
+    [ma=msam10 sa 1,
+     mb=msbm10 sa 1]
 \stoptyping
+\stopexample
 
-After these definitions we can use \type {\HeadLetter} to
-switch fonts. It may be necessary to adapt the interline
-spacing with \type {\setupinterlinespace} like this:
+The keys \type{mc} and \type{md} are left undefined. This example
+explicitly shows how multiple \type{\definebodyfont}s are combined by
+\CONTEXT\ automatically and that there is no need to do everything 
+within a single definition (in fact this was already implied by the
+\type{tfe} trick above.)
 
+Apart from the calling convention as given in the macro syntax that has
+already been shown, there are a few alternative forms of
+\type{\definebodyfont} that can be used to defined and call body fonts by
+name:
+
+\showsetup{definebodyfontDEF}
+
+This was used in the default serif font defintion shown above: the first
+argument to \type{\definebodyfont} was the identifier \type{default}
+because these definitions were to be used from within other definitions.  
+
+A concrete size will be provided by the commands at the top||level in the
+calling chain, the third argument in that \type{\definebodyfont} call will
+also be \type{default} instead of actually specifying settings.
+
+\showsetup{definebodyfontREF}
+
+The use of the \type{delault} actually happens deep inside \CONTEXT\ so
+there is clear code that can be shown, but if it was written out, a call
+would for example look like this:
+
+\startexample
 \starttyping
-\HeadLetter \setupinterlinespace text \par
+\definebodyfont
+  [17.3pt,14.4pt,12pt,11pt,10pt,9pt,8pt,7pt,6pt,5pt,4pt]
+  [rm,ss,tt,mm]
+  [default]
 \stoptyping
+\stopexample
 
-For advanced \TEX\ users there is the dimension||register
-\type {\bodyfontsize}. This variable can be used to set
-fontwidths. The number (rounded) points is available in
-\type {\bodyfontpoints}.
+To end this section: for advanced \TEX\ users there is the
+dimension||register \type {\bodyfontsize}. This variable can be used to set
+fontwidths. The number (rounded) points is available in \type
+{\bodyfontpoints}.
 
-As we already pointed out, the mapping from symbolic names
-onto the real file name can be direct or indirect. The
-indirect method has the advantage that one can also use the
-more abstract name (\type {Serif}) as well as the real name
-(\type {Times-Roman}), but can leave the file name
-untouched. Document styles thereby can be defined in such a
-way that they are independent of font file names. This
-means that the previous definition can become:
-
-\starttyping
-\definebodyfont    [10pt,11pt,12pt] [rm] [tf=Serif sa 1]
-\definefontsynonym [Serif] [Times-Roman]
-\definefontsynonym [Times-Roman] [tir] [encoding=texnansi]
-\stoptyping
-
-These commands permit you to combine fonts in any way in
-any size, but when documents have a more complicated
-design, there may be many \type {Serif}'s and multiple math
-fonts used. Of course this can be handled, but only by
-redefining fonts on the spot and this is not only
-cumbersome, but also undesirable from the perspective of
-document source management.
-
-\startbuffer[sample]
-Who is {\it fond} of fonts?
-Who claims that $t+e+x+t=m+a+t+h$?
-Who {\ss can see} {\tt the difference} here?
-\stopbuffer
-
-Consider the following text:
-
-\typebuffer[sample]
-
-In Computer Modern Roman fonts, this looks like:
-
-\bgroup
-  \switchtobodyfont[cmr]
-  \startlines
-  \getbuffer[sample]
-  \stoplines
-\egroup
-
-While in Lucida it shows up as:
-
-\bgroup
-  \switchtobodyfont[lbr]
-  \startlines
-  \getbuffer[sample]
-  \stoplines
-\egroup
-
-The standard \POSTSCRIPT\ font have yet another look and feel:
-
-\bgroup
-  \switchtobodyfont[pos]
-  \startlines
-  \getbuffer[sample]
-  \stoplines
-\egroup
-
-As you can notice, there are differences in size and shape.
-The switch between those fonts was done by issuing the
-following commands.
-
-\starttyping
-\switchtobodyfont[cmr]
-\switchtobodyfont[lbr]
-\switchtobodyfont[pos]
-\stoptyping
-
-This way of switching fonts has been part of \CONTEXT\ from
+This way of defining fonts has been part of \CONTEXT\ from
 the beginning, but as more complicated designs started to
 show up, we felt the need for a more versatile mechanism.
 
@@ -830,8 +801,21 @@ And the familiar Computer Modern Roman as \type {\whow}:
 
 \typebuffer[whow]
 
+
+\startbuffer[sample]
+Who is {\it fond} of fonts?
+Who claims that $t+e+x+t=m+a+t+h$?
+Who {\ss can see} {\tt the difference} here?
+\stopbuffer
+
+Here is a sample of some text and a little bit of math:
+
+\startexample
+\typebuffer[sample]
+\stopexample
+
 When typeset in \type {\funny}, \type {\joke}, and \type
-{whow}, the samples now look like:
+{whow}, the samples look like:
 
 \startlines
 {\funny \getbuffer[sample]}
