@@ -688,35 +688,130 @@ containers. The original font definition files have been
 regrouped into such typescripts thereby reducing the number
 of files involved.
 
-Typescripts are in fact just organized definitions. The
-previously shown Lucida Bright font collection can be
-defined as follows. First we map some symbolic names onto
-Lucida names; the mapping to encoding specific filenames
-takes place somewhere else.
+As we saw earlier, \quote{using} a typescript is done via the a call to the
+macro \type{\usetypescript}. Here is the macro syntax setup again:
+
+\showsetup{usetypescript}
+
+
+Typescripts are in fact just organized definitions, and \quote{using} a
+typescript therefore actually means nothing more than executing the set of
+definitions that is contained within a particular typescript.
+
+The main defining command for typescripts is a start||stop pair that wraps
+the actual macro definitions. 
 
 \starttyping
-\definefontsynonym [Serif]         [LucidaBright]
-\definefontsynonym [SerifBold]     [LucidaBright-Demi]
-....
-\definefontsynonym [Sans]          [LucidaSans]
-\definefontsynonym [SansBold]      [LucidaSans-Demi]
-....
-\definefontsynonym [Mono]          [LucidaSans-Typewriter]
-\definefontsynonym [MonoBold]      [LucidaSans-TypewriterBold]
-....
-\definefontsynonym [MathRoman]     [LucidaBright]
-\definefontsynonym [MathExtension] [LucidaNewMath-Extension]
+\starttypescript [...] [...] [...]
+   ....
+\stoptypescript
 \stoptyping
 
-Because no design sizes are involved, we can define the
-sizes in a rather fast way.
+As with \type{\usetypescript}, there can be up to three arguments, and
+these two sets of arguments are linked to eachother: the values of the 
+first and second argument in the call to \type{\starttypescript} of
+
+\startexample
+\starttyping
+\starttypescript [palatino] [texnansi,ec,qx,t5,default]
+  ...
+\stoptypescript
+\stoptyping
+\stopexample
+
+are what make the \MKII-style call to \type{\usetypescript}
+
+\startexample
+\starttyping
+\usetypescript [palatino] [ec]
+...
+\stoptyping
+\stopexample
+
+
+possible and meaningful: the first argument in both cases is the same so
+that this matches, and the second argument of \type{\usetypescript} appears
+in the list that is the second argument of \type{\starttypescript}, so this
+also matches. \CONTEXT\ will execute all matching blocks it knows about:
+there may be more than one.
+
+To perform the actual matching, \CONTEXT\ scans through the list of known
+\type{\starttypescript} blocks for each of the combinations of items in 
+the specified arguments of \type{\usetypescript}. These blocks can be
+preloaded definitions in \TEX's memory, or they may come from a file
+(either declared by \type{\usetypescriptfile} or one of the automatically
+loaded files).
+
+Extra arguments to \type{\usetypescript} are ignored, and that is why that
+same two-argument call to \type{\usetypescript} works correctly in \MKIV\
+as well, even tough the typescript itself uses only a single argument:
+
+\startexample
+\starttyping
+\starttypescript [palatino]
+  ...
+\stoptypescript
+\stoptyping
+\stopexample
+
+Extra arguments to \type{\starttypescript} are not ignored. However, you
+can force any key at all to match by using the special keyword \type{all}.
+We will see later that this is sometimes handy.
+
+We have to step back for a moment to the macro \type{\definetypeface}, and
+especially to the third, fourth and fifth argument:
+
+\startexample
+\starttyping
+\starttypescript [palatino] [texnansi,ec,qx,t5,default]
+\definetypeface[palatino] [rm] [serif] [palatino] [default]
+...
+\stoptyping
+\stopexample
+
+Remember how in the previous chapter there were the tables that listed all
+the predefined combinations? It was said there that these \quote{are
+nothing more than convenience names that are attached to a group of fonts
+by the person that wrote the font definition}. 
+
+Here is how that works: these arguments of \type{\definetypeface} are
+actually used as parts of  \type{\usetypescript} calls. Inside the macro
+definition of \type{\definetypeface}, there are the following lines:
+
+\startexample
+\starttyping
+\usetypescript[#3,map][#4][name,default,\typefaceencoding,special]
+\usetypescript[#3][#5][size]
+\stoptyping
+\stopexample
+
+The \type{\typefaceencoding} is inherited from the calling
+\type{\usetypescript}, so that the \type{\definetypeface} in our example
+expands into:
 
 \starttyping
-\definebodyfont
-  [17.3pt,14.4pt,12pt,11pt,10pt,9pt,8pt,7pt,6pt,5pt,4pt]
-  [rm,ss,tt,mm]
-  [default]
+\usetypescript[serif,map][palatino] [name,default,ec,special]
+\usetypescript[serif][default][size]
 \stoptyping
+
+not all of these typescript blocks are indeed present in the list of files that
+have to be scanned, but quite some are, and some even more than once:
+
+\todo{check execution order}
+
+\starttabulate[|l|l|l|l|]
+\NC type-syn.tex \NC serif \NC palatino \NC name                     \NC\NR
+\NC type-syn.tex \NC serif \NC palatino \NC name                     \NC\NR
+\NC type-enc.tex \NC serif \NC palatino \NC texnansi,ec,8r,t5        \NC\NR
+\NC type-enc.tex \NC serif \NC palatino \NC ec,texnansi,8r           \NC\NR
+\NC type-one.tex \NC serif \NC palatino \NC texnansi,ec,8r,t5        \NC\NR
+\NC type-one.tex \NC serif \NC palatino \NC ec,texnansi,8r           \NC\NR
+\NC type-map.tex \NC map   \NC palatino \NC default,ec,texnansi,t5,8r\NC\NR
+\NC type-map.tex \NC map   \NC palatino \NC ec,texnansi,t5,8r        \NC\NR
+\NC type-siz.tex \NC serif \NC default  \NC size                     \NC\NR
+\stoptabulate
+
+\todo{end of new text}
 
 As you can see here, these definitions define the \type
 {serif}, \type {sans}, \type {mono} and \type {math} shapes
