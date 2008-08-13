@@ -130,7 +130,7 @@ perculate down unless they are already defined at the lower level.
 
 \startbuffer[synonymargs]
 \vskip 1ex
-\starttabulate[|lT|l|]
+\starttabulate[|lT|p|]
 \NC encoding \NC the file encoding for \MKII\ fonts (TFM based).\NC \NR
 \NC handling \NC the font handling for \MKII\ (see  previous chapter).\NC \NR
 \NC features \NC the font handling for \MKIV\ and \XETEX\ (see previous chapter).\NC \NR
@@ -157,10 +157,10 @@ Now the name \type{Palatino} can be used in further font definitions to
 indentify this font, instead of the dreadfully low||level (and hard to
 remember) name \type{uplr8t} and its accompanying encoding.
 
-A note on font names: In \PDFTEX, the real font is the name of the \TEX\
-metrics file, minus the extension, as we saw already. In \XETEX\ and \MKIV\
-a font name is a bit more complex, because in both cases OpenType fonts can
-be accessed directly by their official font name as well as via the disk
+A note on font names: In \PDFTEX, the real font is the name of the \TEX\ metrics file,
+minus the extension, as we saw already. In \XETEX\ and \MKIV\ a font name is a bit
+more complex, because in both cases OpenType fonts can be accessed directly by their
+official font name (but with any embedded spaces stripped out) as well as via the disk
 file name.
 
 In these two systems, \CONTEXT\ first attempts to find the font using the
@@ -172,8 +172,8 @@ most often see synonym definitions like this:
 
 \startexample
 \starttyping
-\definefontsynonym [MSTimes]       [name:Times New Roman] [features=default]
-\definefontsynonym [Iwona-Regular] [file:Iwona-Regular]   [features=default]
+\definefontsynonym [MSTimes]       [name:TimesNewRoman] [features=default]
+\definefontsynonym [Iwona-Regular] [file:Iwona-Regular] [features=default]
 \stoptyping
 \stopexample
 
@@ -738,9 +738,25 @@ there may be more than one.
 To perform the actual matching, \CONTEXT\ scans through the list of known
 \type{\starttypescript} blocks for each of the combinations of items in 
 the specified arguments of \type{\usetypescript}. These blocks can be
-preloaded definitions in \TEX's memory, or they may come from a file
-(either declared by \type{\usetypescriptfile} or one of the automatically
-loaded files).
+preloaded definitions in \TEX's memory, or they may come from a file.
+
+There is a small list of typescript files that is tried always,
+and you can add extra ones at the end of the list by using
+\type{\usetypescriptfile}.
+
+The automatically loaded files for the three possible engines are, 
+in first to last order:
+
+\starttabulate[|lT|lT|lT|p|]
+\NC \rmbf pdftex \NC \rmbf xetex \NC \rmbf luatex  \NC \rmbf explanation \NC \FR
+\NC type-tmf     \NC type-tmf    \NC type-tmf      \NC Core \TEX\ community fonts\NC \NR
+\NC type-siz     \NC type-siz    \NC type-siz      \NC Font size setups\NC \NR
+\NC type-one     \NC             \NC               \NC Type~1 free fonts\NC \NR
+\NC              \NC type-otf    \NC type-otf      \NC OpenType free fonts\NC \NR
+\NC              \NC type-xtx    \NC               \NC MacOSX font support\NC \NR
+\NC type-akb     \NC             \NC               \NC Basic Adobe Type~1 mappings\NC \NR
+\NC type-loc     \NC type-loc    \NC type-loc      \NC A user configuration file\NC \NR
+\stoptabulate
 
 Extra arguments to \type{\usetypescript} are ignored, and that is why that
 same two-argument call to \type{\usetypescript} works correctly in \MKIV\
@@ -754,9 +770,9 @@ as well, even tough the typescript itself uses only a single argument:
 \stoptyping
 \stopexample
 
-Extra arguments to \type{\starttypescript} are not ignored. However, you
-can force any key at all to match by using the special keyword \type{all}.
-We will see later that this is sometimes handy.
+Extra arguments to \type{\starttypescript} are not ignored. However, you can force any
+key at all to match by using the special keyword \type{all} in your
+\type{\usetypescript}.  We will see later that this is sometimes handy.
 
 We have to step back for a moment to the macro \type{\definetypeface}, and
 especially to the third, fourth and fifth argument:
@@ -795,63 +811,133 @@ expands into:
 \stoptyping
 
 not all of these typescript blocks are indeed present in the list of files that
-have to be scanned, but quite some are, and some even more than once:
+have to be scanned, but a few are, and some apparently even more than once:
 
-\todo{check execution order}
-
-\starttabulate[|l|l|l|l|]
-\NC type-syn.tex \NC serif \NC palatino \NC name                     \NC\NR
-\NC type-syn.tex \NC serif \NC palatino \NC name                     \NC\NR
-\NC type-enc.tex \NC serif \NC palatino \NC texnansi,ec,8r,t5        \NC\NR
-\NC type-enc.tex \NC serif \NC palatino \NC ec,texnansi,8r           \NC\NR
+\starttabulate[|lT|l|l|l|]
+\NC type-tmf.tex \NC serif \NC palatino \NC name                     \NC\NR
 \NC type-one.tex \NC serif \NC palatino \NC texnansi,ec,8r,t5        \NC\NR
 \NC type-one.tex \NC serif \NC palatino \NC ec,texnansi,8r           \NC\NR
-\NC type-map.tex \NC map   \NC palatino \NC default,ec,texnansi,t5,8r\NC\NR
-\NC type-map.tex \NC map   \NC palatino \NC ec,texnansi,t5,8r        \NC\NR
+\NC type-one.tex \NC map   \NC all      \NC --                       \NC\NR
 \NC type-siz.tex \NC serif \NC default  \NC size                     \NC\NR
 \stoptabulate
 
-\todo{end of new text}
-
-As you can see here, these definitions define the \type
-{serif}, \type {sans}, \type {mono} and \type {math} shapes
-together. In the typescript layer, these definitions are
-split:
+All of the found blocks are executed, so let's look at them in order
 
 \starttyping
-\starttypescript [serif] [lucida] [name]
-  \definefontsynonym [Serif]     [LucidaBright]
-  \definefontsynonym [SerifBold] [LucidaBright-Demi]
-  ....
+\starttypescript [serif] [palatino] [name]
+    \definefontsynonym [Serif]            [Palatino]
+    \definefontsynonym [SerifBold]        [Palatino-Bold]
+    \definefontsynonym [SerifItalic]      [Palatino-Italic]
+    \definefontsynonym [SerifSlanted]     [Palatino-Slanted]
+    \definefontsynonym [SerifBoldItalic]  [Palatino-BoldItalic]
+    \definefontsynonym [SerifBoldSlanted] [Palatino-BoldSlanted]
+    \definefontsynonym [SerifCaps]        [Palatino-Caps]
 \stoptypescript
 \stoptyping
 
-In a similar way the sizes have become typescripts:
+This one maps the standard symbolic names to names in the \quote{Palatino} family.
+
+\starttyping
+\starttypescript [serif] [palatino] [texnansi,ec,8r,t5]
+\definefontsynonym [Palatino]             
+    [\typescriptthree-uplr8a]  [encoding=\typescriptthree]
+\definefontsynonym [Palatino-Italic]      
+    [\typescriptthree-uplri8a] [encoding=\typescriptthree]
+\definefontsynonym [Palatino-Bold]        
+    [\typescriptthree-uplb8a]  [encoding=\typescriptthree]
+\definefontsynonym [Palatino-BoldItalic]  
+    [\typescriptthree-uplbi8a] [encoding=\typescriptthree]
+\definefontsynonym [Palatino-Slanted]     
+    [\typescriptthree-uplr8a-slanted-167] [encoding=\typescriptthree]
+\definefontsynonym [Palatino-BoldSlanted]
+    [\typescriptthree-uplb8a-slanted-167] [encoding=\typescriptthree]
+\definefontsynonym [Palatino-Caps]        
+    [\typescriptthree-uplr8a-capitalized-800] [encoding=\typescriptthree]
+
+\loadmapfile[\typescriptthree-urw-palatino.map]
+\stoptypescript
+\stoptyping
+
+This maps the Palatino names onto actual font files. Some further processing is taking
+place here: the calling \type{\usetypescript} that was called from within the
+\type{\definetypeface} knows that it wants \type{ec} encoding. Because this is the
+third argument, it becomes the replacement of \type{\typescriptthree}. The body of the
+typescript therefore reduces to:
+
+\starttyping
+\definefontsynonym[Palatino]            [ec-uplr8a]                [encoding=ec]
+\definefontsynonym[Palatino-Italic]     [ec-uplri8a]               [encoding=ec]
+\definefontsynonym[Palatino-Bold]       [ec-uplb8a]                [encoding=ec]
+\definefontsynonym[Palatino-BoldItalic] [ec-uplbi8a]               [encoding=ec]
+\definefontsynonym[Palatino-Slanted]    [ec-uplr8a-slanted-167]    [encoding=ec]
+\definefontsynonym[Palatino-BoldSlanted][ec-uplb8a-slanted-167]    [encoding=ec]
+\definefontsynonym[Palatino-Caps]       [ec-uplr8a-capitalized-800][encoding=ec]
+
+\loadmapfile[ec-urw-palatino.map]
+\stoptyping
+
+Incidentally, this also loads a font map file.  In earlier versions of \CONTEXT, this
+was done by separate typescripts in the file \type{type-map.tex}, but nowadays all map
+loading is combined with the definition of the synonyms that link to the true fonts on
+the harddisk. This way, there is a smaller chance of errors creeping in.
+
+The third match is a block that sets sets up \quote{TeXPalladioL} font synonyms. These
+will not actually be used, but it is a match so it will be executed.
+
+\starttyping
+\starttypescript [serif] [palatino] [ec,texnansi,8r]
+\definefontsynonym[TeXPalladioL-BoldItalicOsF]
+    [\typescriptthree-fplbij8a][encoding=\typescriptthree]
+...
+\stoptypescript
+\stoptyping
+
+The next matched entry loads the font map files for the default fonts:
+
+\starttyping
+\starttypescript [map] [all]
+    \loadmapfile[original-base.map]
+    \loadmapfile[original-ams-base.map]
+\stoptypescript
+\stoptyping
+
+this will not really be needed for the palatino \type{\rm} typescript, but it ensures
+that even if there is something horribly wrong with the used typescripts, at least 
+\PDFTEX\ will be able to find the Latin Modern (the default font set) on the
+harddisk.
+
+The last match is the missing piece of the font setup: 
 
 \starttyping
 \starttypescript [serif] [default] [size]
   \definebodyfont
-    [17.3pt,14.4pt,12pt,11pt,10pt,9pt,8pt,7pt,6pt,5pt,4pt]
+    [4pt,5pt,6pt,7pt,8pt,9pt,10pt,11pt,12pt,14.4pt,17.3pt]
     [rm] [default]
 \stoptypescript
 \stoptyping
 
-The definition of the Lucida Bright font collection can now
-be simplified to:
+as explained earlier, this runs a named \type{\definebodyfont} that is defined in
+\type{type-unk.tex}:
 
 \starttyping
-\starttypescript [lbr]
-  \usetypescript [all] [lucida]  [name]
-  \usetypescript [all] [default] [size]
-\stoptypescript
+\definebodyfont [default] [rm]
+  [tf=Serif sa 1,
+   bf=SerifBold sa 1,
+   it=SerifItalic sa 1,
+   sl=SerifSlanted sa 1,
+   bi=SerifBoldItalic sa 1,
+   bs=SerifBoldSlanted sa 1,
+   sc=SerifCaps sa 1]
 \stoptyping
 
-Typescripts and its invocations have up to three specifiers.
-An invocation matches the script specification when the three
-arguments have common keywords. The special keyword \type
-{all} is equivalent to any match. Although any keyword is
-permitted, the current definitions have some reserved
-(advised) keys, like:
+and now the typescript is complete.
+
+As we saw already, typescripts and its invocations have up to three specifiers.  An
+invocation matches the script specification when the three arguments have common
+keywords, and the special keyword \type {all} is equivalent to any match.
+
+Although any keyword is permitted in any of the three arguments, the current
+definitions have some reserved (advised) keys:
 
 \starttabulate[|lT|p|]
 \HL
@@ -864,43 +950,28 @@ permitted, the current definitions have some reserved
 \NC [*] [*] [size]    \NC size specification      \NC \NR
 \NC [*] [*] [name]    \NC symbolic name mapping   \NC \NR
 \NC [*] [*] [special] \NC special settings        \NC \NR
-\NC [*] [*] [special] \NC special settings        \NC \NR
 \NC [*] [default] [*] \NC default case(s)         \NC \NR
 \NC [map] [*] [*]     \NC map file specifications \NC \NR
 \HL
 \stoptabulate
 
-In many cases the font class or encoding is part of the
-specification. These are variable.
+When you take a close look at the actual files in the distribution you will notice a
+couple of more keywords.  One in particular is worth mentioning: instead of the
+predefined sizes in \type {default}, you can use the \type {dtp} size scripts with their
+associated body font environments by 
 
-\starttabulate[|lT|p|]
-\HL
-\NC \bf pattern \NC \bf application \NC \NR
-\HL
-\NC [*] [class] [*]    \NC a specific font class    \NC \NR
-\NC [*] [*] [encoding] \NC a specific font encoding \NC \NR
-\HL
-\stoptabulate
+\starttyping
+\usetypescript [size] [dtp] [all]
+\stoptyping
 
-When you take a close look at the files you will notice a
-couple of more keywords, but we will not discuss them here.
-Instead of the predefined size \type {default}, you can use
-the \type {dtp} size scripts with their associated body font
-environments.
-
-In the example of the Lucida Bright definition, we still
-treat the font as a whole: \type {serif}, \type {sans},
-\type {mono} and \type {math} come from one family of
-fonts. Instead of defining the font this way, we could have
-created a so called typeface collection. Such a definition
-looks as follows:
+In the top||level typescript for the palatino, we had a bunch of
+\type{\definetypeface} commands, as follows:
 
 \typebuffer[funny]
 
-From this moment, \type {\funny} will enable this specific
-collection of fonts. In a similar way we can define a
-collection \type {\joke}.
-
+Once these commands are executed (wether or not as part of a typescript), \type
+{\funny} will enable this specific collection of fonts. In a similar way we can 
+define a collection \type {\joke}.
 
 \typebuffer[joke]
 
@@ -915,6 +986,7 @@ Who claims that $t+e+x+t=m+a+t+h$?
 Who {\ss can see} {\tt the difference} here?
 \stopbuffer
 
+Now has become possible to switch between these three font collections at will.  
 Here is a sample of some text and a little bit of math:
 
 \startexample
@@ -962,23 +1034,6 @@ between the non scaled and the scaled alternatives.
 {\joke   \getbuffer[sample]}
 \stoplines
 
-In due time \CONTEXT\ will come with more predefined typeface
-collections. One of the currently predefined typefaces is
-Computer Modern Roman:
-
-\starttyping
-\usetypescript[modern][ec]       % western european languages
-\usetypescript[modern][texnansi] % western european languages
-\usetypescript[modern][qx]       % eastern european languages
-\usetypescript[modern][t5]       % vietnamese users
-\stoptyping
-
-Another set is made up by Adobe's standard 15 fonts:
-
-\starttyping
-\usetypescript[postscript][texnansi] % our prefered encoding
-\usetypescript[postscript][ec]       % another popular one
-\stoptyping
 
 It may not be clear from the previous examples, but a big
 difference between using typeface definitions and the old
@@ -1003,33 +1058,7 @@ shape, here \type {\funny}, \type {\joke} and \type {\whow}.
 {\whow  \getbuffer[big]}
 \stoplines
 
-The option to define relative font sizes using the \type
-{rscale} parameter permits fine tuning of font sizes.
-Fine tuning of the sizes \type {x}, \type {xx}, \type {a},
-\type {b}, \unknown\ as well as interline spacing is handled
-by the bodyfont environment. This command normally takes two
-arguments, but accepts an optional (first) one denoting a
-class. You can use this command to tailor the environment for
-a specific typeface.
-
-\startbuffer
-\definebodyfontenvironment
-  [joke] [11pt]
-  [interlinespace=20pt]
-\stopbuffer
-
-\bgroup \joke Although the default interline space is quite
-well tuned to the average font, you may want to change it
-using this command. The defaults used to typeset this
-paragraph are related to the x||height of the font. \par
-\egroup
-
-\typebuffer
-
-\bgroup \getbuffer \joke However, keep in mind that when you
-change the dimensions for one size, you also need to change
-them for other sizes in order to get a consistent look and
-feel when switching to a smaller or larger size. \par \egroup
+\subsection{A bit more about math}
 
 Math is kind of special in the sense that it has its own set
 of fonts, either or not related to the main text font. By
@@ -1069,10 +1098,9 @@ Bold math looks like this:
 \funny \getbuffer[math]
 \stoplines
 
-The definitions are given on the next page. Such definitions
-are normally collected in the project bound file, for
-instance called \type {typeface.tex}. You can add a filename
-to the list of typescript files yourself:
+The definitions are given on the next page. Such definitions are normally collected in
+the project bound file, for instance called \type {typeface.tex}, that is then manually
+added to the list of typescript files:
 
 \starttyping
 \usetypescriptfile[typeface] % project scripts
@@ -1146,17 +1174,37 @@ automatically unfrozen.
 
 \section{Predefined font, style and alternative keywords}
 
-We once again return to font definitions. Fast fontswitching
-is done with commands like \type {\xii} or \type
-{\twelvepoint}, which is comparable to the way it is done in
+Some of the internal commands are worth mentioning because they define keywords and
+you may want to add to the list.
+
+Font size switching is done with keywords like \type{twelvepoint} and commands like
+\type {\twelvepoint} or \type {\xii}, which is comparable to the way it is done in
 plain \TEX. These commands are defined with:
 
+
 \startbuffer[font-10]
-\definefontsynonym [twelvepoint] [12pt]
-\definefontsynonym [xii]         [12pt]
+\definebodyfontswitch [fourteenpointfour] [14.4pt]
+\definebodyfontswitch [twelvepoint]       [12pt]
+\definebodyfontswitch [elevenpoint]       [11pt]
+\definebodyfontswitch [tenpoint]          [10pt]
+\definebodyfontswitch [ninepoint]         [9pt]
+\definebodyfontswitch [eightpoint]        [8pt]
+\definebodyfontswitch [sevenpoint]        [7pt]
+\definebodyfontswitch [sixpoint]          [6pt]
+\definebodyfontswitch [fivepoint]         [5pt]
+\definebodyfontswitch [fourpoint]         [4pt]
+\definebodyfontswitch [xii]  [12pt]
+\definebodyfontswitch [xi]   [11pt]
+\definebodyfontswitch [x]    [10pt]
+\definebodyfontswitch [ix]   [9pt]
+\definebodyfontswitch [viii] [8pt]
+\definebodyfontswitch [vii]  [7pt]
+\definebodyfontswitch [vi]   [6pt]
 \stopbuffer
 
 \typebuffer[font-10]
+
+But be warned that  \type{\xi} is later redefined as a greek symbol.
 
 The keys in \type {\setupbodyfont} are defined in terms of:
 
@@ -1170,22 +1218,41 @@ The keys in \type {\setupbodyfont} are defined in terms of:
 
 \typebuffer[font-11]
 
-In many command setups we encounter the parameter \type
-{style}. In those situations we can specify a key. These
-keys are defined with \type {\definestyle}. The third
-argument is only of importance in chapter and section
-titles, where, apart from \type {\cap}, we want to obey the
-font used there.
+In many command setups we encounter the parameter \type {style}. In those situations
+we can specify a key. These keys are defined with \type {\definealternativestyle}. The
+third argument is only of importance in chapter and section titles, where, apart from
+\type {\cap}, we want to obey the font used there.
 
 \startbuffer[font-12]
-\definestyle [normal]                  [\tf]  []
-\definestyle [bold]                    [\bf]  []
-\definestyle [type]                    [\tt]  []
-\definestyle [italic]                  [\it]  []
-\definestyle [slanted]                 [\sl]  []
-\definestyle [bolditalic,italicbold]   [\bs]  []
-\definestyle [boldslanted,slantedbold] [\bs]  []
-\definestyle [small,smallnormal]       [\tfx] []
+\definealternativestyle [mediaeval]         [\os]               []
+\definealternativestyle [normal]            [\tf]               []
+\definealternativestyle [bold]              [\bf]               []
+\definealternativestyle [type]              [\tt]               []
+\definealternativestyle [mono]              [\tt]               []
+\definealternativestyle [slanted]           [\sl]               []
+\definealternativestyle [italic]            [\it]               []
+\definealternativestyle [boldslanted,
+                         slantedbold]       [\bs]               []
+\definealternativestyle [bolditalic,
+                         italicbold]        [\bi]               []
+\definealternativestyle [small,
+                         smallnormal]       [\tfx]              []
+\definealternativestyle [smallbold]         [\bfx]              []
+\definealternativestyle [smalltype]         [\ttx]              []
+\definealternativestyle [smallslanted]      [\slx]              []
+\definealternativestyle [smallboldslanted,
+                         smallslantedbold]  [\bsx]              []
+\definealternativestyle [smallbolditalic,
+                         smallitalicbold]   [\bix]              []
+\definealternativestyle [sans,
+                         sansserif]         [\ss]               []
+\definealternativestyle [sansbold]          [\ss\bf]            []
+\definealternativestyle [smallbodyfont]     [\setsmallbodyfont] []
+\definealternativestyle [bigbodyfont]       [\setbigbodyfont]   []
+\definealternativestyle [cap,
+                         capital]           [\smallcapped]      [\smallcapped]
+\definealternativestyle [smallcaps]         [\sc]               [\sc]
+\definealternativestyle [WORD]              [\WORD]             [\WORD]
 \stopbuffer
 
 \typebuffer[font-12]
@@ -1202,14 +1269,24 @@ these can be found. By default we have the setup:
 
 \typebuffer[font-13]
 
-As we see they are obtained from the same font as the math
-italic characters.
+As we see they are obtained from the same font as the math italic characters. The
+macro \type{\os} fetches the runtime setting by executing
+\type{\symbolicfont{OldStyle}}, which is just a low-level version of
+\type{\definedfont[OldStyle sa *]}. A few other macros behave just like that:
 
-In addition to these commands there are others, for example
-macros for manipulating accents. These commands are
-discussed in the file \type {font-ini}. More information can
-also be found in the file \type {core-fnt} and specific
-gimmicks in the file \type {supp-fun}. So enjoy yourself.
+\starttabulate[|lT|l|l|]
+\NC \rm\bf macro  \NC \bf synonym     \NC \bf default value   \NC \NR
+\NC \tex{os}      \NC OldStyle        \NC MathItalic (lmmi10) \NC \NR
+\NC \tex{frak}    \NC Fraktur         \NC eufm10              \NC \NR
+\NC \tex{goth}    \NC Gothic          \NC eufm10              \NC \NR
+\NC \tex{cal}     \NC Calligraphic    \NC cmsy10 (lmsy10)     \NC \NR
+\NC \tex{bbd}     \NC Blackboard      \NC msbm10              \NC \NR
+\stoptabulate
+
+In addition to all the alrady mentioned commands there are others, for example macros
+for manipulating accents. These commands are discussed in the file \type
+{font-ini}. More information can also be found in the file \type {core-fnt} and
+specific gimmicks in the file \type {supp-fun}. So enjoy yourself.
 
 \section {Symbols and glyphs}
 
@@ -1367,34 +1444,13 @@ something:
 \setupencoding [default=texnansi]
 \stoptyping
 
-If you want the default berry names:
-
-\starttyping
-\usetypescript [berry] [\defaultencoding]
-\stoptyping
-
-If you run into missing font metrics kind of problems,
-you may want to add:
-
-\starttyping
-\usetypescript[adobekb] [\defaultencoding]
-\stoptyping
-
-Beware: if you use an other encoding afterwards, change this
-into:
-
-\starttyping
-\usetypescript[berry]   [all]
-\usetypescript[adobekb] [all]
-\stoptyping
-
 You can let \CONTEXT\ load the map files for \PDFTEX:
 
 \starttyping
 \autoloadmapfilestrue
 \stoptyping
 
-The following lines will remove exiting references to map
+The following lines will remove existing references to map
 files and load a few defaults.
 
 \starttyping
