@@ -1,0 +1,7218 @@
+
+
+\usemodule[abr-01]
+\setupbodyfont[10pt]
+
+\def\module#1[#2]%
+  {\relax\getparameters[module][file=,title=,subtitle=,description=,#2]
+   \expanded{\NC \modulefile \NC \moduletitle \NC \modulesubtitle \NC \moduledescription\NC \NR }}
+
+\starttext
+
+\starttabulate[|lT|l|l|p|]
+\module
+   [       file=attr-ini.tex,
+        version=2007.06.06,
+          title=Attribute Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA-ADE]
+
+ \module
+   [       file=char-def.tex,
+        version=2005.04.25,
+          title=Lua Macros,
+       subtitle=Unicode Support,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=char-ini.tex,
+        version=2006.08.20,
+          title=Character Macros,
+       subtitle=Character Support (Initialization),
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=char-utf.tex,
+        version=2006.12.05,
+          title=Lua Macros,
+       subtitle=Unicode Support (UTF),
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=colo-ema.tex,
+        version=2003.03.20,
+          title=Color Macros,
+       subtitle=Emacs Colors,
+         author=Peter Rolf,
+           date=,
+      copyright=PRAGMA ADE]
+
+
+
+
+ \module
+   [       file=colo-ext.tex, % mostof thsi code used to be in colo-ini.tex
+        version=1997.04.01,
+          title=Color Macros,
+       subtitle=Extras,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=colo-hex.tex,
+        version=2004.06.23,
+          title=Color Macros,
+       subtitle=Hex Colors,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=colo-ini.tex,
+        version=1997.04.01,
+          title=Color Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=colo-new.tex,
+        version=2007.08.08,
+          title=Color Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=colo-rgb.tex,
+        version=1995.01.01,
+          title=Color Macros,
+       subtitle=RGB,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=colo-run.tex,
+        version=1997.04.01,
+          title=Color Macros,
+       subtitle=Runtime loaded commands,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=colo-xwi.tex,
+        version=1995.01.01,
+          title=Color Macros,
+       subtitle=X Windows,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=cont-cs.tex,
+        version=1998.12.02,
+          title=Context,
+       subtitle=Czech Format Generation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=cont-cz.tex,
+        version=1998.12.02,
+          title=Context,
+       subtitle=Czech Format Generation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=cont-de.tex,
+        version=1997.08.19,
+          title=Context,
+       subtitle=German Format Generation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=cont-en.tex,
+        version=1997.08.19,
+          title=Context,
+       subtitle=English Format Generation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=cont-err.tex,
+        version=2003.08.12,
+          title=System Files,
+       subtitle=Just A warning,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=cont-fil.tex,
+        version=1997.11.15,
+          title=Miscellaneous Macros,
+       subtitle=File Synonyms,
+         author=J. Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=cont-fr.tex,
+        version=1997.08.19,
+          title=Context,
+       subtitle=German Format Generation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=cont-gb.tex,
+        version=1997.08.19,
+          title=Context,
+       subtitle=English Format Generation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=cont-it.tex,
+        version=1997.08.19,
+          title=Context,
+       subtitle=Italian Format Generation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=cont-log.tex,
+        version=1995.10.10,
+          title=Miscellaneous Macros,
+       subtitle=\TEX\ Logos,
+         author=J. Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=cont-mtx.tex,
+        version=2006.01.01, % no date -)
+          title=Miscellaneous Macros,
+       subtitle=Experimental MetaTeX Macros,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=cont-new.tex,
+        version=1995.10.10,
+          title=Miscellaneous Macros,
+       subtitle=New Macros,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=cont-nl.tex,
+        version=1997.08.19,
+          title=Context,
+       subtitle=Dutch Format Generation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=cont-old.tex,
+        version=1995.10.10,
+          title=Miscellaneous Macros,
+       subtitle=Old Macros,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=cont-ro.tex,
+        version=2000.01.09,
+          title=Context,
+       subtitle=Romanian Format Generation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=cont-uk.tex,
+        version=1997.08.19,
+          title=Context,
+       subtitle=English Format Generation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=context.tex,
+        version=1995.10.10,
+          title=Context,
+       subtitle=Format Generation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-bar.tex,
+        version=2003.03.16,
+          title=Core Macros,
+       subtitle=Margin Bars and alike,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=core-blk.tex, % split off core-buf.tex
+        version=2000.01.05,
+          title=Core Macros,
+       subtitle=Blockmoves,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-box.tex,
+        version=2002.04.12,
+          title=Core Macros,
+       subtitle=Boxes,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-buf.tex, % blocks are moved to core-blk
+        version=2000.01.05,
+          title=Core Macros,
+       subtitle=Buffers,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-con.tex,
+        version=1997.26.08,
+          title=Core Macros,
+       subtitle=Conversion Macros,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-ctx.tex,
+        version=2006.08.16, % old stuff
+          title=Core Macros,
+       subtitle=Job Control,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-dat.tex,                 % was core-02a,
+        version=1999.08.10,               % 1997.03.31,
+          title=Core Macros,
+       subtitle=Database Support,         % 2A
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-def.tex,
+        version=2002.05.07,
+          title=Core Macros,
+       subtitle=Defaults,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-des.tex,
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=Descriptions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-fig.tex,
+        version=2006.08.26, % overhaul of 1997.03.31
+          title=Core Macros,
+       subtitle=Figure Inclusion,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-fil.tex,
+        version=1997.11.15,
+          title=Core Macros,
+       subtitle=File Support,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-fld.tex,
+        version=1997.05.18,
+          title=Core Macros,
+       subtitle=Fill in fields,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-fnt.tex,
+        version=1995.10.10,
+          title=Core Macros,
+       subtitle=Font Support,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-gen.tex,
+        version=1995.10.10,
+          title=Core Macros,
+       subtitle=General,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-grd.tex,
+        version=1998.03.10,
+          title=Core Macros,
+       subtitle=Grid Snapping (Experimental),
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-hlp.tex,
+        version=1998.10.10,
+          title=Core Macros,
+       subtitle=Help (Experimental),
+         author={Hans Hagen and Ton Otten},
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-inc.tex, % moved from core-fig
+        version=2006.08.26, % overhaul of 1997.03.31
+          title=Core Macros,
+       subtitle=Figure Inclusion,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-ini.tex,
+        version=2003.12.01,
+          title=Core Macros,
+       subtitle=Additional Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-ins.tex,
+        version=2002.04.16,
+          title=Insertion Macros,
+       subtitle=Insertions, 
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-int.tex,
+        version=1995.01.01,
+          title=Core Macros,
+       subtitle=Interaction,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-itm.tex, % updated
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=itemgroups,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-job.tex, % copied from main-001,
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=Job Handling,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-lme.tex,
+        version=2006.08.14,
+          title=Core Macros,
+       subtitle=LAst Minute Extensions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-lnt.tex,
+        version=2002.05.10,
+          title=Core Macros,
+       subtitle=Line Notes,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-lst.tex,
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=Lists,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-ltb.tex,
+        version=2002.10.31,
+          title=Core Macros,
+       subtitle=Line Tables,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-mak.tex,
+        version=1997.10.05,
+          title=Core Macros,
+       subtitle=General Makeup Commands,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-mar.tex,
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=Markings,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-mat.tex,
+        version=2006.03.27, % 1998.12.07
+          title=Core Macros,
+       subtitle=Math Fundamentals,
+         author={Hans Hagen, Taco Hoekwater and Aditya Mahajan},
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=core-mis.tex,
+        version=1998.01.29,
+          title=Core Macros,
+       subtitle=Miscelaneous,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-nav.tex,
+        version=1998.01.15,
+          title=Core Macros,
+       subtitle=Navigation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-new.tex,
+        version=1995.01.01,
+          title=Core Macros,
+       subtitle=New ones,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-not.tex,
+        version=2002.05.10,    % 1997.09.15
+          title=Core Macros,
+       subtitle=Note Handling, % Footnote Handling
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-ntb.tex,
+        version=2000.04.18,
+          title=Core Macros,
+       subtitle=Natural Tables,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-num.tex,
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=Numbering,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-obj.tex,
+        version=1998.01.15,
+          title=Core Macros,
+       subtitle=Object Handling,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-par.tex,
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=Paragraph Tricks,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-pgr.tex, % split off core-pos
+        version=1999.08.01,
+          title=Core Macros,
+       subtitle=Positioning Support,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-pos.tex,
+        version=1999.08.01,
+          title=Core Macros,
+       subtitle=Positioning Support,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-ref.tex,
+        version=1998.01.15,
+          title=Core Macros,
+       subtitle=Cross Referencing,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-reg.tex,
+        version=1999.12.27,
+          title=Core Macros,
+       subtitle=Register Management,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-rul.tex,
+        version=1998.10.16,
+          title=Core Macros,
+       subtitle=Ruled Stuff Handling,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-sec.tex,
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=Sectioning,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-snc.tex,
+        version=2003.12.01,
+          title=Core Macros,
+       subtitle=Synchronization Support,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-spa.tex,
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=Spacing,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-stg.tex,
+        version=2006.08.16,
+          title=Core Macros,
+       subtitle=Strategies,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-swd.tex,
+        version=2007.08.14,
+          title=Core Macros,
+       subtitle=Section Worlds,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-syn.tex,
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=Synonyms and Sorts,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-sys.tex, % moved from main-001
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=System,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-tab.tex,
+        version=1997.10.10,
+          title=Core Macros,
+       subtitle=\TABLE\ Embedding,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-tbl.tex,
+        version=1998.11.03,
+          title=Core Macros,
+       subtitle=Text Flow Tabulation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-trf.tex,
+        version=2006.08.26, % overhaul/split of 1997.03.31 core-fig
+          title=Core Macros,
+       subtitle=Transformations,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-tsp.tex,
+        version=2000.10.20,
+          title=Core Macros,
+       subtitle=Splitting Tables,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-two.tex, % moved from core-uti
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=Two Pass Data,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-uti.tex,
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=Utility File Handling,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-var.tex,
+        version=1998.02.21,
+          title=Core Macros,
+       subtitle=Variables,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-ver.tex,
+        version=2000.05.09,
+          title=Core Macros,
+       subtitle=Verbatim,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=core-vis.tex,
+        version=1996.06.01,
+          title=Core Macros,
+       subtitle=Visualization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [     file=enco-032.tex,
+      version=2006.03.30,
+        title=Encoding Macros,
+     subtitle=Unicode Goodies,
+       author={Taco Hoekwater},
+         date=,
+    copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=enco-037.tex,
+        version=2006.02.13,
+          title=Unicode Macros,
+       subtitle=Encoding for vector 37,
+         author=Luigi Scarso,
+           date=,
+      copyright={PRAGMA}]
+
+
+
+
+ \module
+   [     file=enco-acc.tex,
+      version=2000.20.12, % split from base file
+        title=Encoding Macros,
+     subtitle=Composed Characters Commands,
+       author=Hans Hagen,
+         date=,
+    copyright=Hans Hagen and Ton Otten]
+
+
+
+
+ \module
+   [       file=enco-agr.tex,
+        version=2005.02.20,
+          title=Unicode Macros,
+       subtitle=Ancient Greek,
+         author=Thomas A. Schmitz,
+           date=]
+
+ \module
+   [     file=enco-ans.tex,
+      version=2000.05.07, % 1995.01.01,
+        title=Encoding Macros,
+     subtitle=YandY texnansi Encoding,
+       author={Patrick Gundlach, Hans Hagen},
+         date=,
+    copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [     file=enco-cas.tex,
+      version=2005.08.23,
+        title=Encoding Macros,
+     subtitle=Named Glyph Case Mapping,
+       author=Hans Hagen,
+         date=,
+    copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [     file=enco-chi.tex,
+      version=1999.12.02,
+        title=Encoding Macros,
+     subtitle=Traditional and Simplified Chinese,
+       author={Wang Lei and Hans Hagen},
+         date=,
+    copyright=Hans Hagen]
+
+
+
+
+ \module
+   [     file=enco-com.tex,
+      version=2000.20.12, % split from base file 
+        title=Encoding Macros,
+     subtitle=Composed Characters Commands,
+       author=Hans Hagen,
+         date=,
+    copyright=Hans Hagen and Ton Otten]
+
+
+
+
+ \module
+   [       file=enco-cyr.tex,
+        version=2003.01.24,
+          title=Encoding Macros,
+       subtitle=Cyrillic,
+         author=...,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [     file=enco-def.tex,
+      version=2000.05.07, % 2000.20.12, % split from less verbose base file
+        title=Encoding Macros,
+     subtitle=Default Character Definitions,
+       author=Hans Hagen,
+         date=,
+    copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [     file=enco-ec.tex,
+      version=2000.05.07, % 1999.16.07,
+        title=Encoding Macros,
+     subtitle=\LATEX\ EC Encoding,
+       author={Patrick Gundlach, Hans Hagen, Taco Hoekwater, Mojca Miklavec},
+         date=,
+    copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [     file=enco-ecm.tex,
+      version=2000.05.07, 
+        title=Encoding Macros,
+     subtitle=Glyphs that may not be present in EC,  
+       author=Hans Hagen,
+         date=,
+    copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [     file=enco-el.tex,
+      version=2005.08.24,
+        title=Encoding Macros,
+     subtitle=EuroLetter,
+       author={Several Users},
+         date=,
+    copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [     file=enco-fde.tex,
+      version=2000.08.20,
+        title=Encoding Macros,
+     subtitle=German Input Filter,
+       author=Hans Hagen,
+         date=,
+    copyright=Hans Hagen]
+
+
+
+
+ \module
+   [     file=enco-ffr.tex,
+      version=2002.05.07,
+        title=Encoding Macros,
+     subtitle=French Input Filter,
+       author=Hans Hagen,
+         date=,
+    copyright=Hans Hagen]
+
+
+
+
+ \module
+   [     file=enco-fpl.tex,
+      version=2000.08.20,
+        title=Encoding Macros,
+     subtitle=Polish Input Filter,
+       author=Hans Hagen,
+         date=,
+    copyright=Hans Hagen]
+
+
+
+
+ \module
+   [     file=enco-fro.tex,
+      version=2000.08.20,
+        title=Encoding Macros,
+     subtitle=Romanian Input Filter,
+       author=Hans Hagen,
+         date=,
+    copyright=Hans Hagen]
+
+
+
+
+ \module
+   [     file=enco-fsl.tex,
+      version=2005.08.17,
+        title=Encoding Macros,
+     subtitle=Slovenian Specialities,
+       author={Hans Hagen, Mojka Miklavec},
+         date=,
+    copyright=Hans Hagen]
+
+
+
+
+ \module
+   [       file=enco-grk.tex,
+        version=2003.03.01,
+          title=Encoding Macros,
+       subtitle=Greek,
+         author=Apostolos Syropoulos,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=enco-heb.tex,
+        version=2005.01.27,
+          title=Encoding Macros,
+       subtitle=Hebrew,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA-ADE]
+
+ \module
+   [       file=enco-ibm.tex,
+        version=2005.01.27,
+          title=Encoding Macros,
+       subtitle=Hebrew,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA-ADE]
+
+ \module
+   [     file=enco-ibm.tex,
+      version=1999.12.12,
+        title=Backward Compatibility,
+     subtitle=IBM (DOS) Regime,
+       author=Hans Hagen,
+         date=,
+    copyright=PRAGMA]
+
+
+ \module
+   [     file=enco-il2.tex,
+      version=2000.05.07, % 1998.12.01,
+        title=Encoding Macros,
+     subtitle=Czech and Slovak ISO Latin 2 Encoding,
+       author=Hans Hagen,
+         date=,
+    copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=enco-ini.tex,
+        version=2000.12.27, % 1998.12.03,
+          title=Encoding Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [     file=enco-lat.tex,
+      version=1999.12.12,
+        title=Backward Compatibility,
+     subtitle=Latin2 Regime,
+       author=Hans Hagen,
+         date=,
+    copyright=PRAGMA]
+
+
+ \module
+   [       file=enco-mis.tex,
+        version=2000.05.07, % 1999.11.11,
+          title=Encoding Macros,
+       subtitle=Missing Glyphs,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [     file=enco-pdf.tex,
+      version=1995.01.01,
+        title=Encoding Macros,
+     subtitle=YandY texnansi Encoding,
+       author=Hans Hagen,
+         date=,
+    copyright=Hans Hagen]
+
+
+
+
+ \module
+   [       file=enco-pfr.tex,
+        version=2000.12.10, % adapted 2005.08.14 to more delayed loading
+          title=Encoding Macros,
+       subtitle=PDF Font Resource Inclusion,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [     file=enco-pol.tex,
+      version=2000.05.07, % 1999.28.8,
+        title=Encoding Macros,
+     subtitle=Polish Mixed Encoding,
+       author={Taco Hoekwater and Hans Hagen},
+         date=,
+    copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [     file=enco-qx.tex,
+      version=2004.04.03,
+        title=Encoding Macros,
+     subtitle=Polish QX Encoding,
+       author=Hans Hagen,
+         date=,
+    copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [     file=enco-raw.tex,
+      version=2007.01.28, 
+        title=Encoding Macros,
+     subtitle=plain ASCII Encoding,
+       author=Hans Hagen,
+         date=,
+    copyright=Hans Hagen and Ton Otten]
+
+
+
+ \module
+   [     file=enco-run.tex,
+      version=2000.27.12, % moved to runtime module
+        title=Encoding Macros,
+     subtitle=Runtime Macros,
+       author=Hans Hagen,
+         date=,
+    copyright=Hans Hagen and Ton Otten]
+
+
+
+
+ \module
+   [     file=enco-t5.tex,
+      version=2004.11.16,
+        title=Encoding Macros,
+     subtitle=New Vietnamese Encoding,
+       author=Hans Hagen and Adam Lindsay,
+         date=,
+    copyright=PRAGMA and Adam Lindsay]
+
+
+
+
+ \module
+   [     file=enco-tbo.tex,
+      version=2000.05.07, % 2001.8.4,
+        title=Encoding Macros,
+     subtitle=TeXBaseOne Encoding,
+       author={Patrick Gundlach, Hans Hagen},
+         date=,
+    copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [     file=enco-uc.tex,
+      version=2000.xx.xx, % and later
+        title=Encoding Macros,
+     subtitle=Unicode (backwards mapping),
+       author={Adam Lindsay and Hans Hagen},
+         date=,
+    copyright=PRAGMA ADE]
+
+
+
+
+
+ \module
+   [     file=enco-utf.tex,
+      version=2008.05.03,
+        title=Encoding Macros,
+     subtitle=UTF-* Encoding,
+       author=Hans Hagen,
+         date=,
+    copyright=PRAGMA ADE]
+
+
+
+
+ \module
+   [     file=enco-vis.tex,
+      version=1999.12.12,
+        title=Backward Compatibility,
+     subtitle=Vietnamese Regime,
+       author=Hans Hagen,
+         date=,
+    copyright=PRAGMA]
+
+
+ \module
+   [     file=enco-vna.tex,
+      version=1999.12.12,
+        title=Encoding Macros,
+     subtitle=Vietnamese Accents,
+       author=Han The Thanh and Adam Lindsay and Hans Hagen,
+         date=,
+    copyright=PRAGMA]
+
+
+
+
+ \module
+   [     file=enco-win.tex,
+      version=1999.12.12,
+        title=Backward Compatibility,
+     subtitle=Windows Regime,
+       author=Hans Hagen,
+         date=,
+    copyright=PRAGMA]
+
+
+ \module
+   [     file=enco-x5.tex,
+      version=1999.12.12,
+        title=Encoding Macros,
+     subtitle=Vietnamese Encoding,
+       author=Hans Hagen,
+         date=,
+    copyright=Hans Hagen]
+
+
+
+
+ \module
+   [       file=filt-bas.tex,
+        version=2000.09.19,
+          title=Filter Macros,
+       subtitle=A Base Collection,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=filt-ini.tex,
+        version=2000.09.19,
+          title=Filter Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [     file=font-arb.tex,
+      version=1999.12.12,
+        title=Backward Compatibility,
+     subtitle=Old arabtex loader,
+       author=Hans Hagen,
+         date=,
+    copyright=PRAGMA]
+
+
+ \module
+   [       file=font-bfm.tex,
+        version=2003.11.25,
+          title=Font Macros,
+       subtitle=Mixed Normal and Bold Math,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=font-chi.tex,
+        version=1999.10.10,
+          title=Font Macros,
+       subtitle=Chinese,
+         author=Hans Hagen,
+           date=,
+    suggestions=Wang Lei,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [       file=font-col.tex,
+        version=2008.06.11,
+          title=Font Macros,
+       subtitle=Fallbacks (collections),
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [     file=font-heb.tex,
+      version=1999.12.12,
+        title=Backward Compatibility,
+     subtitle=Old arabtex loader,
+       author=Hans Hagen,
+         date=,
+    copyright=PRAGMA]
+
+
+ \module
+   [       file=font-ini.tex,
+        version=1998.09.11, % (second)
+        version=2001.02.20, % (third)
+          title=Font Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [       file=font-jap.tex,
+        version=2006.01.13,
+          title=Font Macros,
+       subtitle=Japanese,
+         author=Hans Hagen,
+           date=,
+    suggestions=Wang Lei,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [       file=font-run.tex,
+        version=1998.09.11, % (second)
+        version=2001.02.20, % (third)
+          title=Font Macros,
+       subtitle=Runtime Macros,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [       file=font-set.tex,
+        version=2007.01.06,
+          title=Lua Macros,
+       subtitle=Font Loading Support,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=font-uni.tex,
+        version=1999.10.10,
+          title=Font Macros,
+       subtitle=Unicode Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=font-unk.tex,
+        version=1998.09.10,
+          title=Font Macros,
+       subtitle=Unknown Defaults,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [     file=hand-def.tex, % was enco-pro
+      version=2000.29.09,
+        title=Handling Macros,
+     subtitle=Default Protruding Factors,
+       author=Hans Hagen,
+         date=,
+    copyright=Hans Hagen]
+
+
+
+
+ \module
+   [       file=hand-ini.tex, % moved from enco-ini / pro
+        version=2000.12.27, % 1998.12.03,
+          title=Handling Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [       file=java-ans.tex,
+        version=1998.06.01,
+          title=JavaScript Macros,
+       subtitle=Answer Analization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=java-exa.tex,
+        version=2002.??.??,
+          title=JavaScript Macros,
+       subtitle=Example Support,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=java-fil.tex,
+        version=1998.06.01,
+          title=JavaScript Macros,
+       subtitle=Filing and Printing,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=java-fld.tex,
+        version=1998.05.20,
+          title=JavaScript Macros,
+       subtitle=Field Support,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=java-ini.tex,
+        version=1998.01.30,
+          title=JavaScript Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=java-stp.tex,
+        version=2004.03.15,
+          title=JavaScript Macros,
+       subtitle=Stepping,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-alt.tex,
+        version=1997.09.03,
+          title=Language Macros,
+       subtitle=Altaic Languages,
+         author=Hans Hagen / Tobias Burnus,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-ana.tex,
+        version=1997.09.03,
+          title=Language Macros,
+       subtitle=Anatolian Languages,
+         author=Hans Hagen / Tobias Burnus,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-ara.tex,
+        version=2008.06.20,
+          title=Language Macros,
+       subtitle=Arabic Languages,
+         author=Khaled Hosny,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=lang--art.tex,
+        version=1997.09.03,
+          title=Language Macros,
+       subtitle=Artificial Languages,
+         author=Hans Hagen / Tobias Burnus,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang--bal.tex,
+        version=1997.09.03,
+          title=Language Macros,
+       subtitle=Baltic Languages,
+         author=Hans Hagen / Tobias Burnus,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-cel.tex,
+        version=1997.09.03,
+          title=Language Macros,
+       subtitle=Celtic Languages,
+         author=Hans Hagen / Tobias Burnus,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-chi.tex,
+        version=2002.06.25, % 1998.10.10,
+          title=Language Macros,
+       subtitle=Chinese,
+         author={Hans Hagen and Wang Lei},
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-ctx.tex,
+        version=2005.02.12,
+          title=Language Macros,
+       subtitle=Generic Patterns,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-cyr.tex,
+        version=2003.01.24,
+          title=Language Macros,
+       subtitle=Cyrillic Languages,
+         author=see below,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-dis.tex,
+        version=2005.02.12,
+          title=Language Macros,
+       subtitle=Distribution Patterns,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-frd.tex,
+        version=2004.01.15,
+          title=Language Macros,
+       subtitle=Language Frequency Table Data,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-frq.tex,
+        version=2004.01.15,
+          title=Language Macros,
+       subtitle=Language Frequency Table Support,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-ger.tex,
+        version=1997.09.03,
+          title=Language Macros,
+       subtitle=Germanic Languages,
+         author=Hans Hagen / Tobias Burnus,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-grk.tex,
+        version=2003.04.01,
+          title=Language Macros,
+       subtitle=Uralic Languages,
+         author=Apostolos Syropoulos
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang--ind.tex,
+        version=1997.09.03,
+          title=Language Macros,
+       subtitle=Indo Iranian Languages,
+         author=Hans Hagen / Tobias Burnus,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-ini.tex,
+        version=1996.01.25,
+          title=Language Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-ita.tex,
+        version=1997.09.03,
+          title=Language Macros,
+       subtitle=Italic Languages,
+         author=Hans Hagen / Tobias Burnus,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-jap.tex,
+        version=2006.01.13,
+          title=Language Macros,
+       subtitle=Japanese,
+         author={Richard Gabriel},
+           date=,
+      copyright={PRAGMA / RG}]
+
+
+
+
+ \module
+   [       file=lang-lab.tex,
+        version=1997.08.27,
+          title=Language Macros,
+       subtitle=Language Head and Label Texts,
+         author=Hans Hagen / Tobias Burnus,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-mis.tex,
+        version=1997.03.20, % used to be supp-lan.tex
+          title=Language Macros,
+       subtitle=Language Options,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-run.tex,
+        version=2005.09.08,
+          title=Language Macros,
+       subtitle=Runtime Macros,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-sla.tex,
+        version=1999.09.13, % 1997.09.03
+          title=Language Macros,
+       subtitle=Slavic Languages,
+         author=Hans Hagen / Tobias Burnus,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-spa.tex,
+        version=2002.04.17,
+          title=Language Macros,
+       subtitle=Spacing,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-spe.tex,
+        version=2002.05.07, % 1996.01.25,
+          title=Language Macros,
+       subtitle=Specifics,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-sla.tex,
+        version=1997.09.03,
+          title=Language Macros,
+       subtitle=Uralic Languages,
+         author=Hans Hagen / Tobias Burnus,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-url.tex,
+        version=2008.01.22, % used to be lang-mis
+          title=Language Macros,
+       subtitle=Language Options,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=lang-vn.tex,
+        version=2004.11.22, % 1999.12.12,
+          title=Language Macros,
+       subtitle=Vietnamese,
+         author={Han The Thanh and Adam Lindsay and Hans Hagen},
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+ \module
+   [       file=luat-deb.tex,
+        version=2005.11.06,
+          title=Communication Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=luat-env.tex,
+        version=2005.05.26,
+          title=Lua Macros,
+       subtitle=ConTeXt features,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=luat-ini.tex,
+        version=2005.08.11,
+          title=Lua Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=luat-lib.tex,
+        version=2006.09.11,
+          title=Lua Macros,
+       subtitle=Unicode Support,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=luat-lmx.tex,
+        version=2005.09.02,
+          title=Lua Macros,
+       subtitle=LMX Support,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+ \module
+   [       file=luat-log.tex,
+        version=2005.09.02,
+          title=Lua Macros,
+       subtitle=LOGO Support,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+ \module
+   [       file=luat-uni.tex,
+        version=2006.04.25,
+          title=Lua Macros,
+       subtitle=Unicode Support,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+ \module
+   [       file=lxml-ini.tex,
+        version=2007.08.17,
+          title=\LUA\ based \XML\ Support,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=m-arabtex.tex,  % was font-arb,
+        version=2003.02.22, % 1999.11.06,
+          title=Modules,
+       subtitle=Arabic,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [       file=x-calcmath.mkiv,
+        version=2006.04.24, % 1999.11.06,
+          title=Modules,
+       subtitle=Calculator Math,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+ \module
+   [       file=m-chart.tex,
+        version=1998.10.10,
+          title=Modules,
+       subtitle=Flow Charts,
+         author={Hans Hagen and Ton Otten},
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=ppchtex (m-chemic).tex,
+        version=1997.03.19,
+          title=Extra Modules,
+       subtitle=\PPCHTEX\ (Plain Pictex Context cHemie \TEX),
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten},
+    suggestions={Tobias Burnus, Dirk Kuypers and Ton Otten}]
+
+
+
+ \module
+   [       file=m-cweb.tex,
+        version=1997.01.15,
+          title=Extra Modules,
+       subtitle=\CWEB\ Pretty Printing Macros,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=m-database.tex,
+        version=2006.04.23,
+          title=Modules,
+       subtitle=Database Thingies,
+         author=Hans Hagenand Taco Hoekwater,
+           date=,
+      copyright=PRAGMA
+ ]
+
+
+
+ \module
+   [       file=m-dratex.tex,
+        version=2005.11.25,
+          title=Extra Modules,
+       subtitle=DRATEX Loading Macros,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=m-editsnc.tex,
+        version=2003.12.23,
+          title=Modules,
+       subtitle=Editor Synchronization,
+         author={Hans Hagen and Ton Otten},
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=m-educat.tex,
+        version=2003.03.05,
+          title=Extra Modules,
+       subtitle=Educational Extras,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=m-gamma.tex,
+        version=2002.05.15,
+          title=Extra Modules,
+       subtitle=Basic \OMEGA\ Support,
+         author={Idris Samawi Hamid, Hans Hagen},
+           date=,
+      copyright={PRAGMA-ADE, Idris Samawi Hamid}]
+
+
+
+
+ \module
+   [       file=m-gnuplot.tex,
+        version=2006.01.04,
+          title=Extra Modules,
+       subtitle=\GNUPLOT\ Inclusion,
+         author={Tobias Burnus, Hans Hagen, Taco Hoekwater, Mojca Miklavec},
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+ \module
+   [       file=m-graph.tex,
+        version=2000.08.06,
+          title=Extra Modules,
+       subtitle=\METAPOST\ graph module support,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=m-layout.tex,
+        version=2004.01.16,
+          title=Modules,
+       subtitle=Additional Layouts,
+         author={Hans Hagen and Ton Otten},
+           date=,
+      copyright={PRAGMA ADE/ Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=level.tex,
+        version=2002.10.20,
+          title=Extra Modules,
+       subtitle=Catching Nesting Errors,
+         author=Hans Hagen,
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+ \module
+   [       file=m-narrowtt.tex,
+        version=2005.09.08,
+          title=Modules,
+       subtitle=Narrow Verbatim,
+         author={Hans Hagen and Ton Otten},
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=m-newmat.tex,
+        version=2000.11.16,
+          title=Math Module,
+       subtitle=AMS-like math extensions,
+         author={Taco Hoekwater and Hans Hagen},
+           date=,
+      copyright={PRAGMA / Taco Hoekwater}]
+
+
+
+
+ \module
+   [       file=m-pdfsnc.tex,
+        version=2003.12.23,
+          title=Modules,
+       subtitle=Editor Synchronization,
+         author={Hans Hagen and Ton Otten},
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=m-pictex.tex,
+        version=1997.01.15,
+          title=Extra Modules,
+       subtitle=\PICTEX\ Loading Macros,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=m-plus.tex,
+        version=2003.03.16,
+          title=Extra Modules,
+       subtitle=Loading extra features,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=m-pstricks.tex,
+        version=1997.01.15,
+          title=Extra Modules,
+       subtitle=\PSTRICKS\ Connections,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=m-invull.tex,
+        version=1995.01.10,
+          title=Extra Modules,
+       subtitle=Exercise,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=m-r.tex,
+        version=2006.06.06,
+          title=Modules,
+       subtitle=R Support,
+         author={Johan Sandblom and Hans Hagen},
+           date=,
+      copyright={PRAGMA / Johan Sandblom}]
+
+
+
+
+ \module
+   [       file=m-steps.tex,
+        version=2001.05.28,
+          title=Modules,
+       subtitle=Step Charts and Tables,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA ADE / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=m-streams.tex,
+        version=2006.03.21,
+          title=Modules,
+       subtitle=Streams,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=m-subsub.tex,
+        version=2000.12.14,
+          title=Private Modules,
+       subtitle=More Section Levels,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+
+ \module
+   [       file=m-tex4ht.tex,
+        version=2000.12.14,
+          title=Private Modules,
+       subtitle=Preliminary tex4ht support,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [       file=m-timing.tex,
+        version=2007.12.23,
+          title=Modules,
+       subtitle=Timing,
+         author=Hans Hagen,
+           date=,
+      copyright=Hans Hagen]
+
+
+
+
+ \module
+   [       file=m-tryout.tex,
+        version=2002.05.10,
+          title=Extra Modules,
+       subtitle=Tryout Features,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=m-units.tex,
+        version=1997.03.19,
+          title=Extra Modules,
+       subtitle=Scientific Units,
+         author={Hans Hagen and Ton Otten},
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=m-visual.tex,
+        version=2000.01.10,
+          title=Extra Modules,
+       subtitle=Visualization and Faking,
+         author={Hans Hagen and Ton Otten},
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=math-ams.tex,
+        version=2001.04.12,
+          title=Math Macros,
+       subtitle=AMS Specials,
+         author={Hans Hagen and Taco Hoekwater},
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+ \module
+   [       file=math-cow.tex,
+        version=2006.06.23,
+          title=Math Macros,
+       subtitle=Cow Math,
+         author={Hans Hagen and Taco Hoekwater},
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+ \module
+   [       file=math-eul.tex,
+        version=2003.02.03,
+          title=Math Macros,
+       subtitle=Virtual Euler Specials,
+         author={Hans Hagen and Taco Hoekwater and Adam Lindsay},
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+ \module
+   [       file=math-ext.tex,
+        version=2007.07.19,
+          title=Math Macros,
+       subtitle=Extra Macros,
+         author={Hans Hagen and Taco Hoekwater and Aditya Mahajan},
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+ \module
+   [       file=math-fou.tex,
+        version=2001.04.12,
+          title=Math Macros,
+       subtitle=Fourier Specials,
+         author={Michel Biovani and Hans Hagen},
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+ \module
+   [       file=math-ini.tex,
+        version=2001.04.12,
+          title=Math Macros,
+       subtitle=Basic Macros,
+         author={Hans Hagen and Taco Hoekwater},
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+ \module
+   [       file=math-lbr.tex,
+        version=2001.04.12,
+          title=Math Macros,
+       subtitle=Lucida Specials,
+         author={Hans Hagen and Taco Hoekwater},
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+ \module
+   [       file=math-mis.tex,
+        version=2001.04.12,
+          title=Math Macros,
+       subtitle=Miscelaneous Symbols,
+         author=Hans Hagen,
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+ \module
+   [       file=math-pln.tex,
+        version=2001.11.16,
+          title=System Macros,
+       subtitle=Efficient \PLAIN\ \TEX\ loading,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [     file=math-run.tex,
+      version=2001.23.04,
+        title=Math Macros,
+     subtitle=Runtime Macros,
+       author=Hans Hagen,
+         date=,
+    copyright=Hans Hagen and Ton Otten]
+
+
+
+
+ \module
+   [       file=math-tex.tex,
+        version=2001.04.12,
+       subtitle=Plain Specials,
+         author={Hans Hagen, Taco Hoekwater and Aditya Mahajan},
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+
+ \module
+   [       file=math-tim.tex,
+        version=2001.04.12, 
+          title=Math Macros,
+       subtitle=Mathtime Specials,
+         author={Hans Hagen and Taco Hoekwater},
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+ \module
+   [       file=math-uni.tex,
+        version=2005.06.11,
+          title=Math Macros,
+       subtitle=unicode support,
+         author={Nikolai Weibull and Taco Hoekwater},
+           date=,
+      copyright=PRAGMA]
+
+
+
+ \module
+   [       file=meta-clp.tex,
+        version=2000.07.06,
+          title=\METAPOST\ Graphics,
+       subtitle=Clipping,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=meta-dum.tex,
+        version=2003.03.21,
+          title=\METAPOST\ Graphics,
+       subtitle=Dummy (External) Graphics,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=meta-fig.tex,
+        version=2000.09.07,
+          title=\METAPOST\ Graphics,
+       subtitle=Stand Alone Graphics,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=meta-ini.tex,
+        version=1999.07.10,
+          title=\METAPOST\ Graphics,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=meta-mis.tex,
+        version=2006.06.06,
+          title=\METAPOST\ Graphics,
+       subtitle=Misc Test Graphics,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=meta-nav.tex,
+        version=2003.03.28,
+          title=\METAPOST\ Graphics,
+       subtitle=Navigational Graphics,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=meta-pag.tex,
+        version=1999.07.10,
+          title=\METAPOST\ Graphics,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=meta-pdf.tex,
+        version=2006.06.07,
+          title=Support Macros,
+       subtitle=\METAPOST\ to \PDF\ conversion,
+         author=Hans Hagen and others (see text),
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+ \module
+   [       file=meta-pre.tex,
+        version=2001.03.21,
+          title=\METAPOST\ Graphics, 
+       subtitle=Predefined Goodies, 
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=meta-tex.tex,
+        version=2006.06.07,
+          title=Support Macros,
+       subtitle=\METAPOST\ fast text insertion,
+         author=Hans Hagen,
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+ \module
+   [       file=meta-txt.tex,
+        version=2000.07.06,
+          title=\METAPOST\ Graphics,
+       subtitle=Text Tricks,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=meta-xml.tex,
+        version=2002.11.27,
+          title=\METAPOST\ Graphics,
+       subtitle=XML Hacks,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=mlib-ctx.tex,
+        version=2008.03.25,
+          title=\METAPOST\ Integrated Graphics,
+       subtitle=Basics,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=mlib-pdf.tex,
+        version=2008.03.25,
+          title=\METAPOST\ Integrated Graphics,
+       subtitle=Conversion to PDF,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=mlib-pps.tex,
+        version=2008.03.25,
+          title=\METAPOST\ Integrated Graphics,
+       subtitle=Basics,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=mult-com.tex,
+        version=1996.06.01,
+          title=Multilingual Macros,
+       subtitle=Commands,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=mult-con.tex,
+        version=2000.09.12,
+          title=Multilingual Macros,
+       subtitle=Constants,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=mult-fst.tex,
+        version=2006.08.16,
+          title=Multilingual Macros,
+       subtitle=Speed Up,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=mult-ini.tex,
+        version=1996.06.01,
+          title=Multilingual Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=mult-sys.tex,
+        version=1996.06.01,
+          title=Multilingual Macros,
+       subtitle=System,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=node-ini.tex,
+        version=2006.08.20,
+          title=Character Macros,
+       subtitle=Node Support (Initialization),
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=page-app.tex, % from meta-fig
+        version=1998.01.15,
+          title=Core Macros,
+       subtitle=Independent page building,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-bck.tex, % copied from main-001
+        version=1997.03.31,
+          title=Page Macros,
+       subtitle=Backgrounds,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-flt.tex,
+        version=2000.10.20,
+          title=OTR Macros,
+       subtitle=Floating Bodies,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-flw.tex,
+        version=2003.04.19, % from test-002 (1997) profile experiment
+          title=OTR Macros,
+       subtitle=Text Flows,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA ADE]
+
+
+
+
+ \module
+   [       file=page-imp.tex, % was: core-pag,
+        version=1998.01.15,
+          title=Core Macros,
+       subtitle=Pagebody Building (Imposition),
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-ini.tex,
+        version=2000.10.20,
+          title=Page Macros,
+       subtitle=Initializations,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-lay.tex,
+        version=2000.10.20, % copied from main-001
+          title=Page Macros,
+       subtitle=Layout Specification,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-lin.tex, % copied from main-001
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=Line Numbering,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-log.tex, % moved here from main-001
+        version=1997.03.31,
+          title=Page Macros,
+       subtitle=Logos,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-lyr.tex,
+        version=2000.10.20,
+          title=Page Macros,
+       subtitle=Layers,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-mak.tex, % copied from main-001,
+        version=1997.03.31,
+          title=Page Macros,
+       subtitle=Simple MakeUp,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-mar.tex, % moved here from main-001
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=Marginal Things,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-mul.tex, % was: core-mul
+        version=1998.03.15,
+          title=OTR Macros,
+       subtitle=Multi Column Output,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-new.tex,
+        version=2000.10.20,
+          title=Page Macros,
+       subtitle=Page New,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-nnt.tex,
+        version=2002.04.16,
+          title=Page Macros,
+       subtitle=Footnotes,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-num.tex, % moved here from main-001
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=Numbering,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-one.tex,
+        version=2000.10.20,
+          title=OTR Macros,
+       subtitle=Default Routine,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-par.tex, % copied from page-lin
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=Line Numbering,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-pls.tex,
+        version=2003.03.16,
+          title=Core Macros,
+       subtitle=Page Setup,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=page-run.tex,
+        version=2000.10.20,
+          title=Page Macros,
+       subtitle=Runtime Macros,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-set.tex,
+        version=2000.10.20,
+          title=OTR Macros,
+       subtitle=Column Sets,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-sid.tex,
+        version=2000.10.20,
+          title=OTR Macros,
+       subtitle=Side Floats,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-spr.tex,
+        version=2002.11.11,
+          title=Page Macros,
+       subtitle=Spreading,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-str.tex,
+        version=2006.03.21,
+          title=Core Macros,
+       subtitle=Page Streams,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=page-txt.tex, % copied from main-001,
+        version=1997.03.31,
+          title=Page Macros,
+       subtitle=Texts,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+
+ \module
+   [       file=pdfr-def.tex,
+        version=2008.12.12,
+          title=PDF Font Resources,
+       subtitle=Character definitions (autogenerated),
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [       file=pdfr-ec.tex,
+        version=2005.07.27,
+          title=PDF Font Resources,
+       subtitle=EC encoding,
+         author={Vladimir Volovich / Taco Hoekwater},
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=ppchtex (m-chemie).tex,
+        version=1997.03.19,
+          title=Extra Modules,
+       subtitle=\PPCHTEX\ (Plain Pictex Context cHemie \TEX),
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten},
+    suggestions={Tobias Burnus, Dirk Kuypers and Ton Otten}]
+
+
+
+ \module
+   [       file=prop-ini.tex,
+        version=2003.04.20,
+          title=Property Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=prop-lay.tex,
+        version=2003.04.20,
+          title=Property Macros,
+       subtitle=Layers,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=prop-mis.tex,
+        version=2004.05.29, % some code moved from private modules
+          title=Property Macros,
+       subtitle=Miscelaneous,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=prop-run.tex,
+        version=2003.04.20,
+          title=Property Macros,
+       subtitle=Runtime Macros,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=regi-8859-1.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=iso-8859-1 (West European),
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-8859-10.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=iso-8859-10 (Nordic),
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-8859-13.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=iso-8859-13 (Baltic),
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-8859-15.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=iso-8859-15 (West European),
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-8859-16.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=iso-8859-16 (Romanian),
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-8859-2.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=iso-8859-2 (East European),
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-8859-3.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=iso-8859-3 (South European),
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-8859-4.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=iso-8859-4 (North European),
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-8859-5.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=iso-8859-5 (Cyrillic),
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-8859-7.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=iso-8859-7 (Greek),
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+\module [
+     file=regi-8859-11.lua,
+    title=Encoding Macros,
+ subtitle=iso-8859-11,
+  author=Hans Hagen]
+
+\module [
+    file=regi-8859-14.lua,
+    title=Encoding Macros,
+ subtitle=iso-8859-14,
+  author=Hans Hagen]
+
+\module [
+    file=regi-8859-6.lua,
+    title=Encoding Macros,
+ subtitle=iso-8859-6,
+  author=Hans Hagen]
+
+\module [
+    file=regi-8859-8.lua,
+    title=Encoding Macros,
+ subtitle=iso-8859-8,
+  author=Hans Hagen]
+
+
+\module [
+    file=regi-cp1255.lua,
+    title=Encoding Macros,
+ subtitle=code page 1255,
+  author=Hans Hagen]
+
+\module [
+    file=regi-cp1256.lua,
+    title=Encoding Macros,
+ subtitle=code page 1256,
+  author=Hans Hagen]
+
+
+\module [
+    file=regi-cp1258.lua,
+    title=Encoding Macros,
+ subtitle=code page 1258,
+  author=Hans Hagen]
+
+
+ \module
+   [       file=regi-8859-9.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=iso-8859-9 (Turkish),
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-cp1250.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=cp1250 (East European),
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-cp1251.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=cp1251 (Cyrillic),
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-cp1252.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=cp1252 (West European),
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-cp1253.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=cp1253 (Greek),
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-cp1254.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=cp1254 (Turkish),
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-cp1257.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=cp1257 (Windows Baltic),
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-cyp.tex,
+        version=2003.01.24,
+          title=Encoding Macros,
+       subtitle=Cyrillic Plus,
+         author=...,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=regi-cyr.tex,
+        version=2003.01.24,
+          title=Encoding Macros,
+       subtitle=Cyrillic,
+         author=...,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [     file=regi-def.tex,
+      version=2000.20.12, % split from less verbose base file 
+        title=Regime Macros,
+     subtitle=Default Character Definitions, 
+       author=Hans Hagen,
+         date=,
+    copyright=Hans Hagen and Ton Otten]
+
+
+
+
+ \module
+   [       file=regi-ibm.tex,
+        version=1995.01.01,
+          title=Encoding Macros,
+       subtitle=The Good Old MSDOS IBM codepage,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-ini.tex,
+        version=2000.12.27, % 1998.12.03,
+          title=Regime Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=regi-mac.tex,
+        version=2001.03.18,
+          title=Encoding Macros,
+       subtitle=Mac Encoding, 
+         author={Michel Bovani and Adam Lindsay and Hans Hagen},
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-syn.tex,
+        version=2006.04.04,
+          title=Regime Macros,
+       subtitle=Synonyms,
+         author=Mojca Miklavec and Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=enco-uni.tex,
+        version=1998.10.18,
+          title=Encoding Macros,
+       subtitle=Unicode,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=regi-utf.tex,
+        version=2002.12.03,
+          title=Encoding Macros,
+       subtitle=UTF-8,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=regi-vis.tex,
+        version=2005.12.26,
+          title=Encoding Macros,
+       subtitle=viscii,
+         author=script-generated,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [      file=s-abr-01.tex,
+        version=1996.01.01,
+          title=Style File,
+       subtitle=General Abbreviations 1,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-abr-02.tex,
+        version=1996.01.01,
+          title=Style File,
+       subtitle=General Abbreviations 2,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-abr-03.tex,
+        version=1998.08.10,
+          title=Style File,
+       subtitle=General Abbreviations 3,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-cdr-01.tex,
+        version=2001.2.07, % maybe earlier
+          title=Style File,
+       subtitle=CDROM Cover,
+         author=Hans Hagen,
+           date=,
+      copyright=Hans Hagen]
+
+
+
+
+ \module
+   [       file=s-chi-00.tex,
+        version=1999.12.21,
+          title=Style File,
+       subtitle=Basic Chinese Style,
+         author=Hans Hagen,
+           date=,
+    suggestions=Wang Lei,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [      file=s-faq-00.tex,
+        version=1997.21.08,
+          title=Style File,
+       subtitle=FAQ Common Macros,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-faq-01.tex,
+        version=1997.21.08,
+          title=Style File,
+       subtitle=FAQ Interactive Version,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-faq-02.tex,
+        version=1997.21.08,
+          title=Style File,
+       subtitle=FAQ Paper Version,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-faq-03.tex,
+        version=1997.21.08,
+          title=Style File,
+       subtitle=FAQ General Framework,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-fnt-01.tex,
+        version=2001.08.22,
+          title=Style File,
+       subtitle=Font Environment 1,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+
+ \module
+   [      file=s-fnt-02.tex,
+        version=2001.08.22,
+          title=Style File,
+       subtitle=Font Environment 2,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-fnt-10.tex,
+        version=2001.08.22,
+          title=Style File,
+       subtitle=Font Environment definitions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [      file=s-grk-00.tex,
+        version=2004.08.23,
+          title=Style File,
+       subtitle=CB Greek Support,
+         author=Hans Hagen,
+           date=,
+    suggestions=Giuseppe Bilotta,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [       file=s-jap-00.tex,
+        version=2006.01.19,
+          title=Style File,
+       subtitle=Basic Japanese Style,
+         author=Hans Hagen,
+           date=,
+    suggestions=Richard Gabriel,
+      copyright=\PRAGMA]
+
+
+
+ \module
+   [      file=s-mag-01.tex,
+        version=2002.12.14,
+          title=Style File,
+       subtitle=Magazine Base Style,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+\module [
+  file=s-map-se.tex,
+  version=2005.02.03,
+  title=Style File,
+  subtitle=\MAPS\ basis stijl,
+  author={Hans Hagen, Taco Hoekwater and Siep Kroonenberg},
+  date=,
+  copyright={NTG / MAPS}%
+]
+
+
+
+ \module
+   [      file=s-mod-00.tex,
+        version=very-old,
+          title=Style File,
+       subtitle=Documentation Base Environment,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-mod-01.tex,
+        version=very-old,
+          title=Style File,
+       subtitle=Documentation Paper Environment,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-mod-02.tex,
+        version=very-old,
+          title=Style File,
+       subtitle=Documentation Screen Environment,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-00.tex,
+        version=1997.07.22,
+          title=Style File,
+       subtitle=Presentation Environment 0,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-01.tex,
+        version=1997.07.22,
+          title=Style File,
+       subtitle=Presentation Environment 1,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-02.tex,
+        version=1998.04.21,
+          title=Style File,
+       subtitle=Presentation Environment 2,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-03.tex,
+        version=1998.09.06,
+          title=Style File,
+       subtitle=Presentation Environment 3,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-04.tex,
+        version=1998.09.06,
+          title=Style File,
+       subtitle=Presentation Environment 4,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-05.tex,
+        version=1998.12.12,
+          title=Style File,
+       subtitle=Presentation Environment 5,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-06.tex,
+        version=1999.04.28,
+          title=Style File,
+       subtitle=Presentation Environment 6,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-07.tex,
+        version=1999.08.20,
+          title=Style File,
+       subtitle=Presentation Environment 7,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-08.tex,
+        version=1999.09.01,
+          title=Style File,
+       subtitle=Presentation Environment 8,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-09.tex,
+        version=unknown,
+          title=Style File,
+       subtitle=Presentation Environment 9,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-10.tex,
+        version=unknown,
+          title=Style File,
+       subtitle=Presentation Environment 10,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-13.tex,
+        version=1999.08.20,
+          title=Style File,
+       subtitle=Presentation Environment 13,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-14.tex,
+        version=1999.08.20,
+          title=Style File,
+       subtitle=Presentation Environment 14,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-15.tex,
+        version=1999.09.01, 
+          title=Style File,
+       subtitle=Presentation Environment 15,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-16.tex,
+        version=1999.09.01, 
+          title=Style File,
+       subtitle=Presentation Environment 16,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-19.tex,
+        version=2000.07.31,
+          title=Style File,
+       subtitle=Presentation Environment 19,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-22.tex,
+        version=2000.08.07,
+          title=Style File,
+       subtitle=Presentation Environment 22,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-20.tex,
+        version=2000.08.07,
+          title=Style File,
+       subtitle=Presentation Environment 20,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-30.tex,
+        version=2006.04.25,
+          title=Style File,
+       subtitle=Presentation Environment 30,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [      file=s-pre-50.tex,
+        version=2003.01.26,
+          title=Style File,
+       subtitle=Presentation Environment 50,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-60.tex,
+        version=2004.03.15,
+          title=Style File,
+       subtitle=Presentation Environment 60,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-61.tex,
+        version=2004.03.15,
+          title=Style File,
+       subtitle=Presentation Environment 61,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-62.tex,
+        version=2005.03.04,
+          title=Style File,
+       subtitle=Presentation Environment 62,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-63.tex,
+        version=2006.05.11,
+          title=Style File,
+       subtitle=Presentation Environment 63,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-pre-64.tex,
+        version=2006.05.11,
+          title=Style File,
+       subtitle=Presentation Environment 64,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=s-ptj-01.tex,
+        version=2006.11.28,
+          title=Style File,
+       subtitle=PracTeX Journal Style,
+         author=Aditya Mahajan,
+          email=adityam at umich dot edu,
+           date=,
+      copyright=2006 Aditya Mahajan]
+
+
+
+ \module
+   [      file=s-syn-01.tex,
+        version=0000.00.00,
+          title=Style File,
+       subtitle=Preliminary Syntax Stuff,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+
+ \module
+   [      file=s-sys-01.tex,
+        version=2008.03.32,
+          title=Style File,
+       subtitle=Generate List of Math Symbol,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [       file=sort-def.tex,
+        version=2005.08.08,
+          title=Sort Macros,
+       subtitle=Defaults,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=sort-ini.tex,
+        version=2005.08.08,
+          title=Sort Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=sort-lan.tex,
+        version=2005.08.08,
+          title=Sort Macros,
+       subtitle=Language Definitions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=spec-def.tex,
+        version=1996.01.25,
+          title=Special Macros,
+       subtitle=Definitions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=spec-dpm.tex,
+        version=1998.11.24,
+          title=Special Macros,
+       subtitle=DVIPDFM support,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=spec-dpx.tex,
+        version=2005.08.12,
+          title=Special Macros,
+       subtitle=DVIPDFMx support,
+         author=Jin-Hwan Cho,
+           date=,
+      copyright={Jin-Hwan Cho and Hans Hagen}]
+
+
+
+
+ \module
+   [       file=spec-dvi.tex,
+        version=1996.01.25,
+          title=Special Macros,
+       subtitle=Generic \TEX\ Solutions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=spec-fdf.tex,
+        version=1998.05.18,
+          title=\PDF\ Macros,
+       subtitle=Support Macros,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=spec-ini.tex,
+        version=1996.01.25,
+          title=Special Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=spec-mis.tex,
+        version=1997.04.01,
+          title=Special Macros,
+       subtitle=Miscellaneous Macros,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=spec-pdf.tex,
+        version=1997.09.20,
+          title=Special Macros,
+       subtitle=Adobe \ACROBAT\ version 2.1,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=spec-ps.tex,
+        version=1996.01.25,
+          title=Special Macros,
+       subtitle=Adobe PostScript,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=spec-tpd.tex,
+        version=1996.01.25,
+          title=Special Macros,
+       subtitle=\PDFTEX,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=spec-tr.tex,
+        version=1996.01.25,
+          title=Special Macros,
+       subtitle=Thomas Rokicki's DVIPS,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=spec-tst.tex,
+        version=2002.12.08,
+          title=PDF Macros,
+       subtitle=Special Test Macro,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=spec-var.tex,
+        version=2003.10.10,
+          title=Special Macros,
+       subtitle=Variables,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=spec-win.tex,
+        version=1996.01.25,
+          title=Special Macros,
+       subtitle=YandY's DIWINDO,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=spec-xtx.tex,
+        version=2004.11.08,
+          title=Special Macros,
+       subtitle=\XETEX\ support,
+         author={Adam Lindsay and Hans Hagen and \unknown},
+           date=,
+      copyright={Adam Lindsay and Hans Hagen}]
+
+\unprotect
+
+
+ \module
+   [       file=spec-xtx.tex,
+        version=2004.11.08,
+          title=Special Macros,
+       subtitle=\XETEX\ support,
+         author={Adam Lindsay and Hans Hagen and \unknown},
+           date=,
+      copyright={Adam Lindsay and Hans Hagen}]
+
+\unprotect
+
+
+ \module
+   [       file=spec-yy.tex,
+        version=1996.01.25,
+          title=Special Macros,
+       subtitle=YandY's DVIPSONE and DVIWINDO,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-ali.tex,
+        version=2000.04.17,
+          title=Support Macros,
+       subtitle=Alignment,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-box.tex,
+        version=1995.10.10,
+          title=Support Macros,
+       subtitle=Boxes,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-dir.tex,
+        version=2004.11.11,
+          title=Support Macros,
+       subtitle=Directional Things,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-emp.tex,
+        version=2000.08.09,
+          title=Support Macros,
+       subtitle=\EMTEX\ specials to \PDF\ conversion,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-eps.tex,
+        version=1998.05.06,
+          title=Support Macros,
+       subtitle=\EPS\ tools,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-fil.tex,
+        version=1995.10.10,
+          title=Support Macros,
+       subtitle=Files,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-fun.tex,
+        version=1995.10.10,
+          title=Support Macros,
+       subtitle=Fun Stuff,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-ini.tex,
+        version=1995.10.10,
+          title=Support ystem Macros,
+       subtitle=Initializations,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-lan.tex,
+        version=1997.03.20,
+          title=Support Macros,
+       subtitle=Language Options,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-mat.tex,
+        version=1998.09.10,
+          title=Support Macros,
+       subtitle=Math,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-mis.tex,
+        version=2004.10.26, % 1997.01.04,
+          title=Support Macros,
+       subtitle=Missing (For Generic Use),
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-mpe.tex,
+        version=1999.07.10,
+          title=Support Macros,
+       subtitle=METAPOST Special Extensions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-mps.tex,
+        version=1997.07.05,
+          title=Support Macros,
+       subtitle=\METAPOST\ Inclusion,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-mrk.tex,
+        version=1995.10.10,
+          title=Support Macros,
+       subtitle=Marks,
+         author=Jim Fox / Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-num.tex,
+        version=1998.05.15,
+          title=Support Macros,
+       subtitle=Number (Digit) Handling,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-pat.tex,
+        version=2005.02.12,
+          title=Language Macros,
+       subtitle=Loading (Generic) Patterns,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-pdf.tex,
+        version=2006.09.02, % 2004.12.16,
+          title=Support Macros,
+       subtitle=\METAPOST\ to \PDF\ conversion,
+         author=Hans Hagen and others (see text),
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+ \module
+   [       file=supp-ran.tex,
+        version=1998.01.21,
+          title=Support Macros,
+       subtitle=Random Number Generation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-spe.tex,
+        version=1997.07.05,
+          title=Support Macros,
+       subtitle=Specials,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-tpi.tex,
+        version=1997.07.05,
+          title=Support Macros,
+       subtitle=\TPIC\ Conversion,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=supp-vis.tex,
+        version=1996.10.21,
+          title=Support Macros,
+       subtitle=Visualization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=symb-cow.tex,
+        version=2006.06.23,
+          title=Symbol Libraries,
+       subtitle=Cow Symbols,
+         author=Hans Hagen,
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+ \module
+   [       file=symb-eur.tex,
+        version=2000.06.22,
+          title=Symbol Libraries,
+       subtitle=Adobe Euro Symbols,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=symb-glm.tex,
+        version=2002.05.07,
+          title=Symbol Libraries,
+       subtitle=Guillemots,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=symb-ini.tex,
+        version=1998.07.20,
+          title=Symbol Libraries,
+       subtitle=Basic Symbols Commands,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=symb-jmn.tex,
+        version=2004.08.02,
+          title=Symbol Libraries,
+       subtitle=Special Navigational Symbols,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA ADE]
+
+
+
+
+ \module
+   [       file=symb-mis.tex,
+        version=2002.05.07,
+          title=Symbol Libraries,
+       subtitle=Miscelaneous,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=symb-mvs.tex,
+        version=2000.03.30,
+          title=Symbol Libraries,
+       subtitle=Martin Vogels Symbole,
+         author=Tobias Burnus and Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=symb-nav.tex,
+        version=1998.07.20,
+          title=Symbol Libraries,
+       subtitle=Navigational Symbols,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=symb-run.tex, % code moved from symb-ini
+        version=1998.07.20,
+          title=Symbol Libraries,
+       subtitle=Runtime Macros,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=symb-uni.tex,
+        version=2004.11.15,
+          title=Symbol Libraries,
+       subtitle=Unicode Symbols,
+         author=Adam T. Lindsay,
+           date=,
+      copyright={Adam T. Lindsay / PRAGMA}]
+
+
+
+
+ \module
+   [       file=symb-was.tex,
+        version=2005.10.15,
+          title=Symbol Libraries,
+       subtitle=Roland Waldi's Symbols (wasy-2),
+         author=Henning Hraban Ramm,
+           date=,
+      copyright={public domain}]
+
+
+
+
+ \module
+   [       file=syst-cat.tex,
+        version=2006.09.18,
+          title=System Macros,
+       subtitle=Catcode Handling,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=syst-chr.tex,
+        version=1997.01.03, % moved code
+          title=System Macros,
+       subtitle=Character Related Things,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=syst-con.tex,
+        version=2000.12.10, % actually very old -)
+          title=System Macros,
+       subtitle=Conversions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=syst-etx.tex,
+        version=1999.03.17, % some time ...
+          title=System Macros,
+       subtitle=Efficient \PLAIN\ \TEX\ loading,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=syst-ext.tex,
+        version=1995.10.10,
+          title=System Macros,
+       subtitle=Extras,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=syst-fnt.tex,
+        version=2006.08.11,
+          title=System Macros,
+       subtitle=Font Things,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=syst-gen.tex,
+        version=1996.03.20,
+          title=System Macros,
+       subtitle=General,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=syst-mtx.tex,
+        version=2006.08.11,
+          title=System Macros,
+       subtitle=\METATEX\ specifics,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=syst-new.tex,
+        version=1997.01.03,
+          title=Support Macros,
+       subtitle=New Ones,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=syst-omg.tex,
+        version=2000.09.09,
+          title=System Macros,
+       subtitle=A couple of Omega goodies,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=syst-pdt.tex,
+        version=2006.08.11,
+          title=System Macros,
+       subtitle=\PDFTEX\ specifics,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=syst-pln.tex,
+        version=2001.11.16, % 1999.03.17,  % an oldie: 1995.10.10
+          title=System Macros,
+       subtitle=Efficient \PLAIN\ \TEX\ loading,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=syst-prm.tex,
+        version=1999.03.17,
+          title=System Macros,
+       subtitle=Primitive Behavior,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=syst-rtp.tex, % copied from core-job
+        version=1997.03.31,
+          title=Core Macros,
+       subtitle=Run Time Processes,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=syst-str.tex,
+        version=2006.09.18,
+          title=System Macros,
+       subtitle=String Processing,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=syst-tex.tex,
+        version=1999.03.17,  % an oldie: 1995.10.10
+          title=System Macros,
+       subtitle=Efficient \PLAIN\ \TEX\ loading,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=syst-var.tex,
+        version=2005.07.04, % moved code
+          title=System Macros,
+       subtitle=Variables,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=syst-xtx.tex,
+        version=2004.09.11,
+          title=System Macros,
+       subtitle=\XETEX\ specifics,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=thrd-pic.tex,
+        version=2004.09.11,
+          title=Third party macros,
+       subtitle=PicTeX,
+         author=Michael Wichura,
+           date=]
+
+
+
+ \module
+   [       file=thrd-ran.tex,
+        version=2004.09.11,
+          title=Third party macros,
+       subtitle=Randomizer,
+         author=Donald Arsenau,
+           date=]
+
+
+
+
+ \module
+   [       file=thrd-tab.tex,
+        version=2004.09.11,
+          title=Third party macros,
+       subtitle=TaBlE,
+         author=Michael Wichura,
+           date=]
+
+
+
+ \module
+   [       file=thrd-trg.tex,
+        version=2004.09.11,
+          title=Third party macros,
+       subtitle=Trigonometry,
+         author=David Carlisle,
+           date=]
+
+
+
+
+ \module
+   [       file=todo-mkii.tex,
+        version=2008.01.17,
+          title=TODO list,
+       subtitle=MKII,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [       file=todo-mkiv.tex,
+        version=2008.01.17,
+          title=TODO list,
+       subtitle=MKIV,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [       file=toks-ini.tex,
+        version=2007.03.03,
+          title=Character Macros,
+       subtitle=Token Support (Initialization),
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=type-akb.tex,
+        version=2001.07.08,
+          title=Typescript Macros,
+       subtitle=Adobe's Famous Gang of Fonts,
+         author=Patrick Gundlach,
+           date=,
+      copyright={Patrick Gundlach / PRAGMA}]
+
+
+
+
+ \module
+   [       file=type-buy.tex,
+        version=2003.07.08, % 2001.04.12,
+          title=Typescript Macros,
+       subtitle=A Few Commercial Fonts,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-cbg.tex,
+        version=2004.08.23,
+          title=Typescript Macros,
+       subtitle=CB Greek,
+         author={Giuseppe Bilotta, Hans Hagen},
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=type-cow.tex,
+        version=2006.06.23,
+          title=Typescript Macros,
+       subtitle=Cow Fonts,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=type-def.tex,
+        version=2005.02.04,
+          title=Typescript Macros,
+       subtitle=Default Definitions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-dis.tex,
+        version=2005.01.26, % moved from type-enc.tex 2001.04.12,
+          title=Typescript Macros,
+       subtitle=Distribution scripts,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-enc.tex,
+        version=2001.04.12,
+          title=Typescript Macros,
+       subtitle=Encoding scripts,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-exa.tex,
+        version=2001.04.12,
+          title=Typescript Macros,
+       subtitle=Example scripts,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-exp.tex,
+        version=2007.01.28,
+          title=Typescript Macros,
+       subtitle=Experimental Definitions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=page-new.tex,
+        version=2000.10.20,
+          title=Page Macros,
+       subtitle=Fontsite 500,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-ghz.tex,
+        version=2005.06.07,
+          title=Typescript Macros,
+       subtitle=Hermann Zapf's Fonts,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-gyr.tex,
+        version=2006.06.28,
+          title=Typescript Macros,
+       subtitle=TeXGyre Collection,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA]
+
+
+
+
+ \module
+   [       file=type-hgz.tex, % variant of ghz
+        version=2005.06.07,
+          title=Typescript Macros,
+       subtitle=Hermann Zapf's Fonts,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-ini.tex,
+        version=2001.03.05,
+          title=Typescript Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-map.tex,
+        version=2001.04.12,
+          title=Typescript Macros,
+       subtitle=Mapfile scripts,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-msw.tex,
+        version=2005.02.04,
+          title=Typescript Macros,
+       subtitle=Microsoft Windows Fonts,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-old.tex,
+        version=2005.09.07, % moved from type-*.tex
+          title=Typescript Macros,
+       subtitle=Ghosts from the Past,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-omg.tex,
+        version=2002.05.15,
+          title=Typescript Macros,
+       subtitle=Basic \OMEGA\ Gamma Definitions,
+         author={Idris Samawi Hamid, Hans Hagen},
+           date=,
+      copyright={PRAGMA-ADE, Idris Samawi Hamid}]
+%
+
+
+
+ \module
+   [       file=type-one.tex,
+        version=2007.07.30,
+          title=Typescript Macros,
+       subtitle=Type One Definitions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-otf.tex,
+        version=2007.07.30,
+          title=Typescript Macros,
+       subtitle=Opentype Definitions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-pre.tex,
+        version=2001.04.12,
+          title=Typescript Macros,
+       subtitle=Compatibility scripts,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-run.tex,
+        version=2001.04.20,
+          title=Typescript Macros,
+       subtitle=Runtime Macros,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-siz.tex,
+        version=2001.04.12,
+          title=Typescript Macros,
+       subtitle=Sizing scripts,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-spe.tex,
+        version=2001.04.12,
+          title=Typescript Macros,
+       subtitle=Special scripts,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-syn.tex,
+        version=2001.04.12,
+          title=Typescript Macros,
+       subtitle=Filename scripts,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-tmf.tex,
+        version=2007.07.30,
+          title=Typescript Macros,
+       subtitle=Core \TEX\ Fonts,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=type-xtx.tex,
+        version=2004.11.15, % prereleased earlier
+          title=Typescript Macros,
+       subtitle=\XETEX's font treasures,
+         author=Adam T. Lindsay,
+           date=,
+      copyright={Adam T. Lindsay / PRAGMA}]
+
+
+
+
+ \module
+   [       file=typo-ini.tex,
+        version=2000.16.09,
+          title=Typographic Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=unic-000.tex,
+        version=2002.12.03,
+          title=Unicode Macros,
+       subtitle=Vector 0,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=unic-001.tex,
+        version=2002.12.03,
+          title=Unicode Macros,
+       subtitle=Vector 1,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=unic-002.tex,
+        version=2006.08.02,
+          title=Unicode Macros,
+       subtitle=Vector 2,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=unic-003.tex,
+        version=2005.01.26,
+          title=Unicode Macros,
+       subtitle=Vector 3,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=unic-004.tex,
+        version=2005.01.27,
+          title=Unicode Macros,
+       subtitle=Vector 4,
+         author=Mikael Persson and Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=unic-005.tex,
+        version=2005.01.27,
+          title=Unicode Macros,
+       subtitle=Vector 5,
+         author=Adam Lindsay,
+           date=,
+      copyright=\PRAGMA]
+
+
+
+
+ \module
+   [       file=unic-030.tex,
+        version=2004.11.18,
+          title=Unicode Macros,
+       subtitle=Vector 30,
+         author=Adam Lindsay,
+           date=,
+      copyright={PRAGMA / Adam Lindsay}]
+
+
+
+
+ \module
+   [       file=unic-031.tex,
+        version=2005.02.20,
+          title=Unicode Macros,
+       subtitle=Vector 31,
+         author=Thomas A. Schmitz,
+           date=]
+
+\unprotect
+
+
+
+ \module
+   [       file=unic-032.tex,
+        version=2006.03.30,
+          title=Unicode Macros,
+       subtitle=Vector 32,
+         author={Hans Hagen and Taco Hoekwater},
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=unic-033.tex,
+        version=2006.03.29,
+          title=Unicode Macros,
+       subtitle=Vector 33,
+         author={Nikolai Weibull and Hans Hagen and Taco Hoekwater},
+           date=,
+      copyright={PRAGMA / Nikolai Weibull}]
+
+
+
+ \module
+   [       file=unic-034.tex,
+        version=2005.06.11,
+          title=Unicode Macros,
+       subtitle=Vector 34,
+         author=Nikolai Weibull,
+           date=,
+      copyright={PRAGMA / Nikolai Weibull}]
+
+\unprotect
+
+
+ \module
+   [       file=unic-037.tex,
+        version=2006.02.13,
+          title=Unicode Macros,
+       subtitle=Vector 37,
+         author=Luigi Scarso,
+           date=,
+      copyright={PRAGMA}]
+
+
+
+
+ \module
+   [       file=unic-039.tex,
+        version=2005.06.16,
+          title=Unicode Macros,
+       subtitle=Vector 39,
+         author=Nikolai Weibull,
+           date=,
+      copyright={PRAGMA / Nikolai Weibull}]
+
+
+
+
+ \module
+   [       file=unic-251.tex,
+        version=2006.04.20,
+          title=Unicode Macros,
+       subtitle=Vector 251,
+         author=Hans Hagen,
+           date=,
+      copyright=PRAGMA-ADE]
+
+
+
+
+ \module
+   [       file=unic-cjk.tex,
+        version=2005.12.14,
+          title=Unicode Macros,
+       subtitle=CJK Vectors,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA}]
+
+
+
+
+ \module
+   [       file=unic-exp.tex,
+        version=2002.12.05,
+          title=Unicode Support,
+       subtitle=Unicode vector expansion,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=unic-ini.tex,
+        version=2002.12.03,
+          title=Unicode Support,
+       subtitle=Unicode and UTF-8 support,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=unic-run.tex,
+        version=2005.06.22,
+          title=Unicode Support,
+       subtitle=Goodies,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=verb-c.tex,
+        version=2006.04.17,
+          title=Verbatim Macros,
+       subtitle=Pretty C Verbatim,
+         author=Nikolai Weibull,
+           date=,
+      copyright={PRAGMA ADE}]
+
+
+
+
+ \module
+   [       file=verb-eif.tex,
+        version=2000.08.23,
+          title=Verbatim Macros,
+       subtitle=Pretty Eiffel Verbatim,
+         author={Berend de Boer and Hans Hagen},
+           date=,
+      copyright={Berend de Boer and Hans Hagen}]
+
+
+
+
+ \module
+   [       file=verb-ini.tex,
+        version=1997.12.22,
+          title=Verbatim Macros,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=verb-js.tex,
+        version=1998.02.07,
+          title=Verbatim Macros,
+       subtitle=Pretty \JAVASCRIPT\ Verbatim,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=verb-jv.tex,
+        version=2002.02.27,
+          title=Verbatim Macros,
+       subtitle=Pretty \JAVA\ Verbatim,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=verb-mp.tex,
+        version=1997.12.22,
+          title=Verbatim Macros,
+       subtitle=Pretty \METAPOST\ Verbatim,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=verb-pas.tex,
+        version=1999.12.09,
+          title=Verbatim Macros,
+       subtitle=Pretty \PASCAL\ and \MODULA\ Verbatim,
+         author=Berend de Boer,
+           date=,
+      copyright={Berend de Boer and Hans Hagen}]
+
+
+
+
+ \module
+   [       file=verb-pl.tex,
+        version=1997.12.22,
+          title=Verbatim Macros,
+       subtitle=Pretty \PERL\ Verbatim,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [       file=verb-raw.tex,
+        version=2000.05.09,
+          title=Verbatim Macros,
+       subtitle=RAW,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+ \module
+   [       file=verb-sql.tex,
+        version=2000.05.09,
+          title=Verbatim Macros,
+       subtitle=Pretty \SQL\ Verbatim,
+         author={Berend de Boer and Hans Hagen},
+           date=,
+      copyright={Berend de Boer and Hans Hagen}]
+
+
+
+
+ \module
+   [       file=verb-tex.tex,
+        version=1997.12.22,
+          title=Verbatim Macros,
+       subtitle=Pretty \TEX\ verbatim,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=verb-xml.tex,
+        version=2000.05.09,
+          title=Verbatim Macros,
+       subtitle=Pretty XML verbatim,
+         author=Berend de Boer,
+           date=2000.05.08,
+      copyright={Berend de Boer and Hans Hagen}]
+
+
+
+
+ \module
+   [       file=x-chemml.tex,
+        version=2001.09.12,
+          title=XML Modules,
+       subtitle=Loading CHEMML Filters,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA ADE / Hans Hagen and Ton Otten}]
+
+
+
+
+
+ \module
+   [       file=x-contml.tex,
+        version=mid 2001,
+          title=XML Support,
+       subtitle=Basic Context commands,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [       file=x-corres.tex,
+        version=2003.12.15, % replaces keep-02a cum suis
+          title=XML Modules,
+       subtitle=Handling Correspondence Base,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA ADE / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-dir-01.tex,
+        version=2003.05.10, % around that time -)
+          title=Directory Handling,
+       subtitle=Overview (1),
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=x-fdf-00.tex,
+        version=2003.12.15, % replaces keep-02a cum suis
+          title=XML Modules,
+       subtitle=FDF support,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA ADE / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [      file=x-fe.tex,
+        version=2004.03.12, % based on earlier experiments
+          title=\FOXET,
+       subtitle=Simple Extensions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA ADE / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-fig-00.tex,
+        version=2001.03.21,
+          title=Style File,
+       subtitle=Figure Base Loading,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-fig-01.tex,
+        version=2001.03.21,
+          title=Style File,
+       subtitle=Figure Base Generation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-fig-02.tex,
+        version=2001.03.21,
+          title=Style File,
+       subtitle=Figure Base Inclusion (I),
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-fig-03.tex,
+        version=2001.03.21,
+          title=Style File,
+       subtitle=Figure Base Inclusion (II),
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-fo.tex,
+        version=2004.03.12, % based on earlier experiments
+          title=\FOXET,
+       subtitle=Formatting Objects,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA ADE / Hans Hagen and Ton Otten}]
+
+
+
+
+
+ \module
+   [      file=x-foxet.tex,
+        version=2004.03.12, % based on earlier experiments
+          title=\FOXET,
+       subtitle=Main \FOXET\ loader,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA ADE / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [       file=x-ldx.tex,
+        version=2003.12.15, 
+          title=XML Modules,
+       subtitle=LDX support,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA ADE / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [       file=x-mathml.tex,
+        version=1999.12.20,
+          title=XML Modules,
+       subtitle=Loading \MATHML\ Filters,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA ADE / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=x-newmml.tex,
+        version=2006.04.09, % reimplementation
+          title=XML Modules,
+       subtitle=ChemML renderer,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA ADE}]
+
+
+
+
+ \module
+   [       file=m-newmme.tex,
+        version=2005.06.10, % 1999.12.20,
+          title=XML Modules,
+       subtitle=MathML Entities,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA ADE}]
+
+
+
+
+ \module
+   [       file=x-newmml.tex,
+        version=2005.06.10, % 1999.12.20,
+          title=XML Modules,
+       subtitle=MathML Renderer,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA ADE}]
+
+
+
+
+ \module
+   [       file=x-newmmo.tex,
+        version=2006.05.17,
+          title=XML Modules,
+       subtitle=MathML Renderer/Open Math Extensions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA ADE}]
+
+
+
+
+ \module
+   [       file=x-newpml.tex,
+        version=2001.06.10,
+          title=XML Support,
+       subtitle=Units,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+
+ \module
+   [       file=xtag-pml.tex,
+        version=2001.06.10,
+          title=XML Support,
+       subtitle=OpenMath,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [       file=m-physml.tex,
+        version=2001.09.04,
+          title=XML Modules,
+       subtitle=Loading PHYSML Filters,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA ADE / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [      file=x-res-00.tex,
+        version=2001.03.21,
+          title=Style File,
+       subtitle=Resource Libraries,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-fig-01.tex,
+        version=2001.03.21,
+          title=Style File,
+       subtitle=Figure Base Generation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-res-02.tex,
+        version=2001.03.21,
+          title=Style File,
+       subtitle=Figure Base Inclusion (I),
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-fig-03.tex,
+        version=2001.03.21,
+          title=Style File,
+       subtitle=Figure Base Inclusion (II),
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-fig-04.tex,
+        version=2001.03.21,
+          title=Style File,
+       subtitle=Figure Base Loading,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-fig-08.tex,
+        version=2002.06.27,
+          title=Style File,
+       subtitle=Resource Reporting,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-fig-09.tex,
+        version=2002.06.27,
+          title=Style File,
+       subtitle=Resource Reporting (2),
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-fig-10.tex,
+        version=2003.08.02,
+          title=Style File,
+       subtitle=Resource Dummy Generation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-fig-11.tex,
+        version=2003.02.08,
+          title=Style File,
+       subtitle=Resource Reporting (3),
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-fig-12.tex,
+        version=2005.05.05,
+          title=Style File,
+       subtitle=Resource Checking,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-res-20.tex,
+        version=2006.08.20,
+          title=Style File,
+       subtitle=Figure Lists,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-res-50.tex,
+        version=2004.02.18,
+          title=Style File,
+       subtitle=Multimedia Presentation,
+         author=Hans Hagen,
+           date=,
+      copyright={\PRAGMA\ / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-sch-00.tex,
+        version=2001.10.02,
+          title=Style File,
+       subtitle=XML Schema Basics,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-sch-01.tex,
+        version=2001.10.04,
+          title=Style File,
+       subtitle=XML Schema Presentation,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=x-set-01.tex,
+        version=2004.10.31,
+         remark=setupx.tex: 1998.07.20 and later,
+          title=Setup Mappings,
+       subtitle=Macro Definitions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [       file=x-set-02.tex,
+        version=2004.10.31,
+         remark=setupx.tex: 1998.07.20 and later,
+          title=Setup Mappings,
+       subtitle=Macro Definitions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [       file=x-set-11.tex,
+        version=2004.10.31,
+         remark=setupx.tex: 1998.07.20 and later,
+          title=Setup Definitions,
+       subtitle=Macro Definitions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [       file=x-set-12.tex,
+        version=2004.10.31,
+         remark=setupx.tex: 1998.07.20 and later,
+          title=Setup Definitions,
+       subtitle=Macro Definitions,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [      file=x-xml-01.tex,
+        version=2001.10.10,
+          title=XML Style File,
+       subtitle=Formatting X?? files,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-xml-02.tex,
+        version=2001.10.10,
+          title=XML Style File,
+       subtitle=Pretty Printing,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [      file=x-xml-11.tex,
+        version=2004.09.16,
+          title=XML Style File,
+       subtitle=Formatting X?? files,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+
+ \module
+   [      file=x-xml-11.tex,
+        version=2004.09.16,
+          title=XML macros,
+       subtitle=ChemML,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [       file=xtag-ent.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=A bunch of Entities,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-exp.tex,
+        version=2001.08.20,
+          title=XML Support,
+       subtitle=Expansion Related Things,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-ext.tex,
+        version=2001.03.21,
+          title=XML Support,
+       subtitle=Extra Macros,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-hyp.tex,
+        version=2003.11.24,
+          title=XML Support,
+       subtitle=hyphenation support,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-ini.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=Initialization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-map.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=Remapping,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+
+ \module
+   [       file=xtag-mea.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=ISOAMSA entities,
+         author=Hans Hagen / Patrick Ion,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-meb.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=ISOAMSB entities,
+         author=Hans Hagen / Patrick Ion,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [       file=xtag-mec.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=ISOAMSC entities,
+         author=Hans Hagen / Patrick Ion,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-meh.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=ISOTECH entities,
+         author=Hans Hagen / Patrick Ion,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-men.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=ISOAMSN entities,
+         author=Hans Hagen / Patrick Ion,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-meo.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=ISOAMSO entities,
+         author=Hans Hagen / Patrick Ion,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-mer.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=ISOAMSR entities,
+         author=Hans Hagen / Patrick Ion,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [       file=xtag-mmc.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=Math ML,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-mml.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=Math ML,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-mmp.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=Math ML,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-mxa.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=MathML ISOAMSA Entity aliases,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [       file=xtag-mxb.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=MathML ISOAMSB Entity aliases,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [       file=xtag-mxc.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=MathML ISOAMSC Entity aliases,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [       file=xtag-mxh.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=MathML ISOTECH Entity aliases,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [       file=xtag-mxn.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=MathML ISOAMSN Entity aliases,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [       file=xtag-mxo.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=MathML ISOAMSO Entity aliases,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [       file=xtag-mxr.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=MathML ISOAMSR Entity aliases,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+ \module
+   [       file=xtag-pml.tex,
+        version=2001.09.04,
+          title=XML Support,
+       subtitle=Physics ML,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-pmu.tex,
+        version=2001.06.10,
+          title=XML Support,
+       subtitle=Units,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-pre.tex,
+        version=2000.12.20,
+          title=XML Support,
+       subtitle=Predefined Things,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-prs.tex,
+        version=2004.08.18,
+          title=XML Support,
+       subtitle=Parsing,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-raw.tex,
+        version=2002.03.21,
+          title=XML Support,
+       subtitle=reducing specials,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-rng.tex,
+        version=2002.10.29,
+          title=XML Support,
+       subtitle=Relax NG, 
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-run.tex,
+        version=2001.01.10,
+          title=XML Support,
+       subtitle=Visualization,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-exp.tex,
+        version=2006.01.19,
+          title=XML Support,
+       subtitle=Stacking Data,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-utf.tex,
+        version=2002.06.24,
+          title=XML Support,
+       subtitle=UTF-8 support,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+
+ \module
+   [       file=xtag-xsd.tex,
+        version=2001.10.04,
+          title=XML Support,
+       subtitle=Schemas, 
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+
+ \module
+   [       file=xtag-xsl.tex,
+        version=2002.03.07,
+          title=XML Support,
+       subtitle=XSLT processing,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+\module
+  [       file=cont-sys.ori,
+       version=1995.10.10,
+         title=Miscellaneous Macros,
+      subtitle=System Specific Setups,
+        author=Hans Hagen,
+          date=,
+     copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+\module
+  [       file=cont-usr.ori,
+       version=1997.10.05,
+         title=User Format Specifications,
+      subtitle=System Specific Setups,
+        author=Hans Hagen,
+          date=,
+     copyright={PRAGMA / Hans Hagen and Ton Otten}]
+
+
+\module 
+  [ file=context-characters.lmx,
+    title=Lua-enabled html pages,
+    subtitle=companion to comm-xml.tex,
+    author=Hans Hagen]
+
+
+\module 
+  [ file=context-debug.lmx,
+    title=Lua-enabled html pages,
+    subtitle=companion to comm-xml.tex,
+    author=Hans Hagen]
+
+
+\module 
+  [ file=context-error.lmx,
+    title=Lua-enabled html pages,
+    subtitle=companion to comm-xml.tex,
+    author=Hans Hagen]
+
+\module 
+  [ file=context.css,
+    title=Lua-enabled html pages,
+    subtitle=CSS setups,
+    author=Hans Hagen]
+
+\module 
+  [ file=lang-all.xml,
+    title=XML databases,
+    subtitle=Language data,
+    author=Willy Egger]
+
+\module 
+  [ file=rlxcache.rlx,
+    title=RLX files,
+    subtitle=Cache,
+    author=Hans Hagen]
+
+\module 
+  [ file=rlxtools.rlx,
+    title=RLX files,
+    subtitle=Tools,
+    author=Hans Hagen]
+
+\module 
+  [ file=x-chemml.xsd,
+    title=XML Schemas,
+    subtitle=ChemML (XSD),
+    author=Hans Hagen]
+
+
+\module 
+  [ file=x-contml.xsd,
+    title=XML Schemas,
+    subtitle=ML (XSD),
+    author=Hans Hagen]
+
+\module 
+  [ file=x-corres.rng,
+    title=XML Schemas,
+    subtitle=Coresspondence (Relax NG),
+    author=Hans Hagen]
+
+\module 
+  [ file=x-fig-00.dtd,
+    title=XML Schemas,
+    subtitle=Figure databases (DTD),
+    author=Taco Hoekwater / Hans Hagen]
+
+
+\module 
+  [ file=x-fig-00.xsd,
+    title=XML Schemas,
+    subtitle=Figure databases (XSD),
+    author=Hans Hagen]
+
+\module 
+  [ file=x-ldx.ctx,
+    title=CTX process files,
+    subtitle=Lua Documentation Generator,
+    author=Hans Hagen]
+
+
+\module 
+  [ file=x-mathml.xsd,
+    title=XML Schemas,
+    subtitle=MathML (XSD),
+    author=Hans Hagen]
+
+\module 
+  [ file=x-om2cml.xsl,
+    title=XSL Transformations,
+    subtitle=OpenMath to MathML,
+    author=Hans Hagen]
+
+\module 
+  [ file=x-openmath.xsl,
+    title=XSL Transformations,
+    subtitle=OpenMath,
+    author=Hans Hagen]
+
+\module 
+  [ file=x-physml.xsd,
+    title=XML Schemas,
+    subtitle=PhysML (XSD),
+    author=Hans Hagen]
+
+\module 
+  [ file=x-sm2om.xsl,
+    title=XSL Transformations,
+    subtitle=SimpleMath to OpenMath,
+    author=Hans Hagen]
+
+\module
+  [     file=regi-run.mkii,
+     version=2003.03.12,
+       title=Regime Macros,
+    subtitle=Runtime Macros,
+      author=Hans Hagen,
+        date=,
+   copyright=Hans Hagen and Ton Otten]
+
+\module
+  [       file=x-cals.mkiv,
+       version=2007.09.05,
+         title=XML Modules,
+      subtitle=Cals table renderer,
+        author=Hans Hagen,
+          date=,
+     copyright={PRAGMA ADE}]
+
+ \module
+   [       file=x-ct.xml,
+        version=2007.09.05,
+          title=XML Modules,
+       subtitle=Structures,
+         author=Hans Hagen,
+           date=,
+      copyright={PRAGMA ADE}]
+
+\module [
+ file=char-act.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=char-cmp.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=char-map.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=char-mth.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=char-syn.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=char-tok.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=ctx-fonts.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=font-afm.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=font-def.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=font-enc.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=font-ext.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=font-fbk.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=font-map.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=font-old.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=font-otf.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=font-syn.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=font-tfm.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=font-vf.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-aux.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-boolean.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-dimen.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-dir.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-file.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-io.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-lpeg.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-math.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-md5.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-number.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-os.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-set.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-string.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-table.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-tex.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-unicode.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-url.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-utils.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-xml.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-xml-edu.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=l-xmlctx.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=lang-tst.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=luat-cbk.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=luat-crl.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=luat-exe.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=luat-inp.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=luat-iop.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=luat-kps.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=luat-lua.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=luat-rmp.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=luat-sta.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=luat-tex.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=luat-tmp.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=luat-tra.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=luat-tre.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=luat-zip.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=luatools.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=math-def.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=math-ent.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=meta-lib.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=mlib-run.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=test-attributes.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\module [
+ file=verb-lua.lua,
+ title=LUA files,
+ author=Hans Hagen]
+
+\stoptabulate
+\stoptext
+
+
