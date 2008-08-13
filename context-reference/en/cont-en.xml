@@ -9991,8 +9991,8 @@
       <cd:string value="usetypescriptfile"/>
     </cd:sequence>
     <cd:arguments>
-      <cd:keywords n="1">
-        <cd:constant type="cd:name"/>
+      <cd:keywords n="1"  list="yes">
+        <cd:constant type="cd:file"/>
       </cd:keywords>
     </cd:arguments>
   </cd:command>
@@ -10002,10 +10002,13 @@
       <cd:string value="usetypescript"/>
     </cd:sequence>
     <cd:arguments>
-      <cd:keywords n="1">
+      <cd:keywords n="1" list="yes">
         <cd:constant type="cd:name"/>
       </cd:keywords>
-      <cd:keywords n="2" optional="yes">
+      <cd:keywords n="2" optional="yes" list="yes">
+        <cd:constant type="cd:name"/>
+      </cd:keywords>
+      <cd:keywords n="3" optional="yes" list="yes">
         <cd:constant type="cd:name"/>
       </cd:keywords>
     </cd:arguments>
