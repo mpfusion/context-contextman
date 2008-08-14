@@ -44,32 +44,18 @@
 
 \chapter[fonts]{Fonts}
 \index{font+definition}
-\macro{\tex{startencoding}}
-\macro{\tex{startmapping}}
-\macro{\tex{definecharacter}}
-\macro{\tex{defineaccent}}
-\macro{\tex{definecommand}}
-\macro{\tex{definecasemap}}
-\macro{\tex{definebodyfont}}
-\macro{\tex{definefont}}
-\macro{\tex{definefontsynonym}}
-\macro{\tex{definestyle}}
-
 \section{Introduction}
 \index{fonts}
 
-This chapter will cover the details of defining fonts and collections
-of fonts, called typefaces. We will also spend some words on
-installing fonts. In any case, it helps if you know what a font is,
-and are familiar with the \CONTEXT\ font switching macros.
+This chapter will cover the details of defining fonts and collections of fonts, and it
+will explain how to go about installing fonts in both \MKII\ and \MKIV. It helps if
+you know what a font is, and are familiar with the \CONTEXT\ font switching macros.
 
-The original \CONTEXT\ font model was based on plain \TEX,
-but evolved into a more extensive one primarily aimed at
-consistently typesetting our educational documents. The fact
-that we had to typeset pseudo caps in any font shape in
-normal text as well as superscript mode, has clearly
-determined the design. This model has been relatively stable
-since 1995.
+The original \CONTEXT\ font model was based on plain \TEX, but evolved into a more
+extensive one primarily aimed at consistently typesetting \PRAGMA's educational
+documents. The fact that pseudo caps had to be typeset in any font shape in the
+running text as well as superscripts, has clearly determined the design. The font
+model has been relatively stable since 1995.
 
 Currently there are three layers of font definitions:
 
@@ -80,10 +66,10 @@ Currently there are three layers of font definitions:
        predefined size
 
 \item  body font definitions: these result in a coherent
-       set of fonts (often) from a same type foundry (or
-       designer) that can be used intermixed
+       set of fonts, often from a same type foundry or 
+       designer, that can be used intermixed as a \quote{style}
 
-\item  typeface definitions: they package serif, sans serif,
+\item  typescript definitions: these package serif, sans serif,
        mono spaced and math and other styles in such a way
        that you can conveniently switch between different
        combinations
@@ -95,18 +81,20 @@ other and all rely on a low level mapping mechanism
 that is responsible for resolving the real font file name
 and the specific font encoding used.
 
-When \TEX\ users install one of the \TEX\ distributions,
-like \TEX-live, they will have a lot of fonts already on the
-system. Unfortunately it is not that easy to get a clear
-picture of what is there and what is needed to use them.
-Although the \type {texmf} tree is prepared for commercial
-fonts, adding them is not trivial. To compensate this,
-\CONTEXT\ comes with \type {texfont.pl}, that can install
-fonts for you. Also, to help you on your way, we provide
-typescripts for a couple of free fonts.
-
+When \TEX\ users install one of the \TEX\ distributions, like \TEX-live,
+automatically a lot of fonts will be installed on their system.
+Unfortunately it is not that easy to get a clear picture of what fonts
+are there and what is needed to use them.  And although the \type {texmf}
+tree is prepared for commercial fonts, adding newly bought fonts is not
+trivial. To compensate this, \CONTEXT\ \MKII\ comes with
+\type{texfont.pl}, a program that can install fonts for you. And if the
+global setup is done correctly, \MKIV\ and \XETEX\ can use the fonts
+installed in your operation system without the need for extra
+installation work.
 
 \section {Font files and synonyms}
+\macro{\tex{definefontsynonym}}
+
 
 In \CONTEXT, whenever possible you should define symbolic names for fonts.
 The mapping from such symbolic names onto real font names can be done such
@@ -117,23 +105,27 @@ command.
 
 \placefloat[][]{none}{\showsetup{definefontsynonym}}
 
-The first argument is the synonym that is being defined (or, more often,
-redefined). The second argument is the replacement of the synonym.  This
-replacement can be a real font name, but it can also be another synonym.
-The optional third argument can be used for a few font||specific settings.
+The first argument is the synonym that is being defined or redefined.
+Redefinition is not only allowed but often very useful. The second
+argument is the replacement of the synonym.  This replacement can be a
+real font name, but it can also be another synonym.  The optional third
+argument can be used for to specify font settings.
 
-There is no limit on the number of indirection levels, but the last one in
-the chain has to be a valid font name. Font||specific settings actually
-take place at that level, since they are closely related to specific
-instances of fonts.  Any settings that are defined higher up in the chain
-perculate down unless they are already defined at the lower level.
+There is no limit on the number of indirection levels, but the last one
+in the chain has to be a valid font name. \CONTEXT\ knows it has reached
+the bottom level when there is no longer any replacement possible. 
+
+Font settings actually take place at the bottom level, since they are
+closely related to specific instances of fonts.  Any settings that are
+defined higher up in the chain perculate down, unless they are already
+defined at the lower level.
 
 \startbuffer[synonymargs]
 \vskip 1ex
 \starttabulate[|lT|p|]
-\NC encoding \NC the file encoding for \MKII\ fonts (TFM based).\NC \NR
-\NC handling \NC the font handling for \MKII\ (see  previous chapter).\NC \NR
-\NC features \NC the font handling for \MKIV\ and \XETEX\ (see previous chapter).\NC \NR
+\NC encoding \NC The font file encoding for \TFM-based (\MKII) fonts.\NC \NR
+\NC handling \NC The font handling for \MKII\ (see  previous chapter).\NC \NR
+\NC features \NC The font handling for \MKIV\ and \XETEX\ (see previous chapter).\NC \NR
 \NC mapping  \NC letter case change mapping for \MKII\ that may be used in special
                  cases; never actually used in the \CONTEXT\ core. 
                  See~\in{chapter}[languages] on languages for details.\NC \NR
@@ -151,11 +143,13 @@ Here is an example of the use of font synonyms:
 \stoptyping
 \stopexample
 
-In this example, the file \type{uplr8t.tfm} is the real font, and it
-contains the metrics for the Type~1 font URW Palladio L in EC encoding.
-Now the name \type{Palatino} can be used in further font definitions to
-indentify this font, instead of the dreadfully low||level (and hard to
-remember) name \type{uplr8t} and its accompanying encoding.
+In this example, the argumnet \type{uplr8t} is the real font (the actual
+file name is \type{uplr8t.tfm}, but file extensions are normally
+omitted), and it contains the metrics for the Type~1 font URW Palladio L
+in EC encoding.  From now on, the name \type{Palatino} can be used in
+further font definitions to identify this font, instead of the
+dreadfully low||level (and hard to remember) name \type{uplr8t} and its
+accompanying encoding.
 
 A note on font names: In \PDFTEX, the real font is the name of the \TEX\ metrics file,
 minus the extension, as we saw already. In \XETEX\ and \MKIV\ a font name is a bit
@@ -166,7 +160,7 @@ file name.
 In these two systems, \CONTEXT\ first attempts to find the font using the
 official font name. If that doesn't work, then it tries to use the font by
 file name as a fallback. Since this is not very efficient and also because
-it may generate |<|harmless but alarming looking|>| warnings it is possible to
+it may generate |<|harmless, but alarming looking|>| warnings it is possible to
 force \CONTEXT\ into one or the other mode by using a prefix, so you will
 most often see synonym definitions like this:
 
@@ -185,7 +179,7 @@ list is a little longer: OpenType (\type{otf}, \type{ttf}), Type~1
 
 The use of aliases to hide the complexity of true font names is already
 very useful, but \CONTEXT\ goes further than that.  An extra synonym level
-is normally defined that maps this font name to a generic name like
+is normally defined that attaches this font name to a generic name like
 \type{Serif} or \type{Sans}.
 
 \startexample
@@ -194,11 +188,11 @@ is normally defined that maps this font name to a generic name like
 \stoptyping
 \stopexample
 
-An important other advantage of using names like \type {Serif} in
-definitions is, that we can easily remap this name onto a completely
+An important advantage of using names like \type {Serif} in macro and
+style definitions is that it can easily be remapped onto a completely
 different font than \type{Palatino}. This is often useful when you are
 experimenting with a new environment file for a book or when you are
-writing a \CONTEXT\ module.  
+writing a \CONTEXT\ module.
 
 In fact, inside an environment file it is useful to go even further and
 define new symbolic names that map onto \type {Serif}.
@@ -290,16 +284,19 @@ the previous chapter contain a sequence of commands like this:
 \stopexample
 
 \section {Simple font definitions}
+\macro{\tex{definefont}}
+\macro{\tex{definedfont}}
 
 The most simple font definition takes place with \type {\definefont}. 
 
 \showsetup{definefont}
 
-This macro defines a font with the same name as the first argument, you can
-use it's identifier to select that font. The second argument works in the
-same way as the second argument to \type{\definefontsynonym}: you can use
-either a font synonym or a real font. There is an optional third argument
-that can be either a bare number like \type{1.5 }, or a named setup
+This macro defines a font with the same name as the first argument and
+you can use its name as an identifier to select that font. The second
+argument works in the same way as the second argument to
+\type{\definefontsynonym}: you can use either a font synonym or a real
+font. There is an optional third argument that can be either a bare
+number like \type{1.5 }, or a named setup
 (see~\in{section}[sec:setups]). In case of a bare number, that is a local
 setting for the interline space. In case of a setup, that setup can do
 whatever it wants.
@@ -309,6 +306,8 @@ whatever it wants.
 \definefont  [ContextLogo] [koeielogos at 72pt]
 \ContextLogo \char 2
 \stopbuffer
+
+For instance:
 
 \startexample
 \typebuffer[dingbat]
@@ -321,28 +320,24 @@ will result in
 \stopreality
 
 If you want a fixed size font like in the example above, you can define a
-font as follows:
+font using the primitive \TEX\ \type {at} or \type {scaled} modifiers.
 
-\starttyping
-\definefont [TitleFont] [Serif at 24pt]
-\stoptyping
-
-The \type {at} specifier is a natural \TEX\ one, just as \type
-{scaled}. But where \type {at} is useful, \type {scaled} is rather useless,
-since it scales the font related to its design size which is often unknown.
-Depending on the design size is especially dangerous when you use symbolic
-names, since different fonts have different design sizes, and designers
-differ in their ideas about what a design size is. Compare for instance the
-10pt instance of a Computer Modern Roman with Lucida Bright (which more
-looks like a 12pt then).
+Be warned that \type {at} is often useful, but \type {scaled} is somewhat
+unreliable since it scales the font related to its internal design size,
+and that is often unknown.  Depending on the design size is especially
+dangerous when you use symbolic names, since different fonts have
+different design sizes, and designers differ in their ideas about what a
+design size is. Compare for instance the 10pt instance of a Computer
+Modern Roman with Lucida Bright (which more looks like a 12pt then).
 
 \starttyping
 \definefont [TitleFont] [Serif scaled 2400]
 \stoptyping
 
-Hard codes sizes can be annoying when you want to define
-fonts in such a way that their definitions adapt themselves.
-Therefore \CONTEXT\ provides an additional way of scaling:
+Hardcoded sizes can be useful in many situations, but they can be
+annoying when you want to define fonts in such a way that their
+definitions adapt themselves to their surroundings.  That is why
+\CONTEXT\ provides an additional way of scaling:
 
 \starttyping
 \definefont [TitleFont] [Serif sa 2.4]
@@ -354,10 +349,11 @@ a 24pt scaling when the (document) body font size equals
 10pt. Because the definition has a lazy nature, the font
 size will adapt itself to the current body font size.
 
-Instead of a number, you can also use an identifier, as
-defined in the body font environment that specifies related
-dimensions. This scales the font to the \type {b} size,
-being 1.440 by default.
+There is an extra benefit to using \type{sa} instead of \type{at}.
+Instead of a numeric multiplier, you can also use the identifiers that
+were defined in the body font environment that specified the related
+dimensions. For example, this scales the font to the \type {b} size,
+being 1.440 by default:
 
 \starttyping
 \definefont [TitleFont] [Serif sa b]
@@ -369,7 +365,7 @@ In fact, if you use a bare name like in
 \definefont [TitleFont] [Serif]
 \stoptyping
 
-that will internally be converted to
+it will internally be converted to
 
 \starttyping
 \definefont [TitleFont] [Serif sa *]
@@ -395,17 +391,18 @@ gives
 \getbuffer[saex]
 \stopreality
 
-A specialized alternative to \type {sa} is \type {mo}. Here the size maps
-onto an already remapped body font size. Such remappings are defined by the
+A specialized alternative to \type {sa} that is sometimes useful is \type
+{mo}. Here the size maps onto to body font size only after it has passed
+through an optional size remapping. Such remappings are defined by the
 macro \type{\mapfontsize}:
 
 \showsetup{mapfontsize}
 
-This remapping a dimension before applying scaling is sometimes handy for
-math fonts, where you may want to use slightly different sizes than the
-ones given in the body font environment. In the \CONTEXT\ distribution,
-this happens only with the Math Times fonts, where the predefined
-typescript contains the following lines:
+Such remapping before applying scaling is sometimes handy for math fonts,
+where you may want to use slightly different sizes than the ones given in
+the body font environment. In the \CONTEXT\ distribution, this happens
+only with the Math Times fonts, where the predefined typescript contains
+the following lines:
 
 \starttyping
 \mapfontsize [5pt]    [6.0pt]
@@ -431,14 +428,18 @@ internally, and then immediately switches to the defined font.
 
 
 \section {Defining body fonts}
+\macro{\tex{definebodyfont}}
 
-In older versions of \CONTEXT, the model for defining fonts that is
+
+In older versions of \CONTEXT, the model for defining fonts that will be
 described in this section was the top||level user interface.  These days,
 typescripts are used at the top||level, and the body font definitions are
-wrapped inside of those. Most commercial fonts have only one design size,
-and when you create a typescript for such fonts, you can simply reuse the
-predefined size definitions. Later on we will see that this means you can
-just refer to a \type{default} definition.
+wrapped inside of those. 
+
+Most commercial fonts have only one design size, and when you create a
+typescript for such fonts, you can simply reuse the predefined size
+definitions. Later on we will see that this means you can just refer to a
+\type{default} definition.
 
 Still, you may need (or want) to know the details of body font definitions
 if you create your own typescripts, especially if the fonts are not all
@@ -447,39 +448,36 @@ there was a need to associate a specific font with each bodyfont size.  You
 may find yourself in a similar situation when you attempt to create a
 typescript for a \quote{professional} commercial font set.
 
-
-The core of this intermediate model is the definition command that is used
-as follows:
+The core of this intermediate model is the \type{\definebodyfont} command
+that is used as follows:
 
 \starttyping
 \definebodyfont [10pt] [rm] [tf=tir at 10pt]
 \stoptyping
 
+This single line actually defines two font switches \type{\tf} for use
+after a \type{\rm} command, and \type{\rmtf} for direct access.
+
+\blank
+
 As one can expect, the first implementation of a font model in \TEX\ is
 also determined and thereby complicated by the fact that the Computer
 Modern Roman fonts come in design sizes. As a result, definitions can look
 rather complex and because most \TEX\ users start with those fonts, font
-definitions are considered to be complex.
+definitions are considered to be complex. 
 
 Another complicating factor is that in order to typeset math, even more
-definitions are needed. Add to that the fact that sometimes fonts with
-mixed encodings have to be used, i.e.\ with the glyphs positioned in
-different font slots, and you can understand why font handling in \TEX\ is
-often qualified as \quote {the font mess}. Flexibility simply has its
+(font) definitions are needed. Add to that the fact that sometimes fonts
+with mixed encodings have to be used, i.e.\ with the glyphs positioned in
+different font slots, and you can understand why font handling in \TEX\
+is often qualified as \quote {the font mess}. Flexibility simply has its
 price.
 
-Many documents have a rather simple design and use only a couple of (often
-related) fonts. For some commonly used fonts, this means that one can stick
-to loading the appropriate predefined font definition file. \footnote {The
-original font definition files are replaced by typescripts in \type
-{type-pre}, but font files are still supported for upward compatibility
-reasons.} But font life is seldom simple and, in a worst case scenario, one
-must define the fonts in the document style.
-
 Like most other \TEX\ users, Hans Hagen started out using the Computer
-Modern Roman fonts. Since these fonts have specific design sizes \CONTEXT\
-supports accurate definitions with specific font names and sizes for
-each combination. The following is an example of that:
+Modern Roman fonts. Since these fonts have specific design sizes,
+\CONTEXT\ supports extremely accurate \type{\definebodyfont} definitions with
+specific font names and sizes for each combination. The following is an
+example of that:
 
 \startbuffer[font-6]
 \definebodyfont [12pt] [rm]
@@ -500,8 +498,9 @@ each combination. The following is an example of that:
 
 It should be clear to you that for fonts with design sizes, similar
 \type{\definebodyfont} commands will have to be written for each of the
-requested body font sizes. But many commercial fonts do not come in 
-design sizes at all.
+requested body font sizes. But many commercial fonts do not come in
+design sizes at all.  In fact, many documents have a rather simple design
+and use only a couple of fonts for all sizes.
 
 The previous example used the available \TEX||specifications \type {scaled}
 and \type {at}, but (as we say already) \CONTEXT\ supports special keyword
@@ -524,23 +523,41 @@ For example, for the Helvetica Type~1 font definition we could define:
 
 \typebuffer[font-7]
 
-The scaling is done in relation to the bodyfont size. In
-analogy with \TEX's \type {\magstep} we can use \type
-{\magfactor}: instead of \type {sa 1.440} we specify \type
-{sa \magfactor2}. Because typing all these numbers is rather
-tiresome so we replace \type {1.200} by \type {a}, etc. The
-relations between \type {a} and \type {1.200} can be set up
-in the bodyfont environment.
+The scaling is done in relation to the bodyfont size. In analogy with
+\TEX's \type {\magstep} we can use \type {\magfactor}: instead of \type
+{sa 1.440} we could specify \type {sa \magfactor2}. 
 
-Because there are no more sizes in the definition any more, we can just as
-well combine all of the requested sizes in a single \type{\definebodyfont}
-by using a list of sizes as the first argument. This means exactly the same
-as repeating that whole list five (or more) times, but saves a lot of typing:
+If you are happy with the relative sizes as defined in the body font
+environment (and there is no reason not to), the \type{\definebodyfont}
+can be four lines shorter. That is because \CONTEXT\ predeclares a whole
+collection of names that combine the styles \type{rm}, \type{ss}, \type{tt},
+\type{tf}, \type{hw} and \type{cg} with the alternatives \type{bf}, 
+\type{it}, \type{sl}, \type{bi}, \type{bs}, and  \type{sc} with the
+postfixes \type{a}, \type{b}, \type{c}, \type{d}, \type{x} and \type{xx}.
+
+For the combination of \type{ss} and \type{sl}, the following identifiers
+are predeclared: 
+
+\starttyping
+\ss    \ssa   \ssb   \ssc   \ssd    \ssx  \ssxx
+\sl   \sla  \slb  \slc  \sld   \slx \slxx
+\sssl  \sssla \ssslb \ssslc \sssld 
+\stoptyping
+
+
+And because there are no more sizes in the definition any more, we can
+just as well combine all of the requested sizes in a single
+\type{\definebodyfont} by using a list of sizes as the first
+argument. This means exactly the same as repeating that whole list five
+(or more) times, but saves a lot of typing:
 
 \starttyping
 \definebodyfont [12pt,11pt,10pt,9pt,8pt] [ss]
   [tf=hv  sa 1.000,
-  ...
+   bf=hvb sa 1.000,
+   it=hvo sa 1.000,
+   sl=hvo sa 1.000,
+   sc=hv  sa 1.000]
 \stoptyping
 
 Because the font names (may) depend on the encoding vector, we had better
@@ -548,21 +565,21 @@ use the previously discussed method for mapping symbolic names. So, any one
 of the three following lines can be used, but the third one is best:
 
 \starttyping
-\definebodyfont [10pt,11pt,12pt] [rm] [tf=tir         sa 1]
-\definebodyfont [10pt,11pt,12pt] [rm] [tf=Times-Roman sa 1]
-\definebodyfont [10pt,11pt,12pt] [rm] [tf=Serif       sa 1]
+\definebodyfont [10pt,11pt,12pt] [ss] [tf=hv        sa 1.000]
+\definebodyfont [10pt,11pt,12pt] [ss] [tf=Helvetica sa 1.000]
+\definebodyfont [10pt,11pt,12pt] [ss] [tf=Sans      sa 1.000]
 \stoptyping
 
-and the default serif fonts are in fact defined with:
+
+And in the actual \CONTEXT\ core, the default body fonts are in fact
+defined with commands like this:
 
 \startbuffer[font-5]
 \definebodyfont [default] [rm]
-  [ tf=Serif        sa 1,
-   tfa=Serif        sa a,
-      ...
-    sl=SerifSlanted sa 1,
-   sla=SerifSlanted sa a,
-      ...]
+  [ tf=Serif       sa 1,
+    ...
+    it=SerifItalic sa 1,
+    ... ]
 \stopbuffer
 
 \typebuffer[font-5]
@@ -571,7 +588,7 @@ We saw that \type {\tf} is the default font. Here \type {\tf} is defined as
 \typ{Serif sa 1} which means that it is a serif font, scaled to a normal
 font size. This \type {Serif} is mapped elsewhere on for example \typ
 {Palatino} which in turn is mapped on the actual filename \type {uplr8t},
-as explained earlier.
+as demonstrated earlier.
 
 \showsetup{definebodyfont}
 
@@ -613,10 +630,15 @@ The keywords \type{mr}, \type {ex}, \type {mi}, \type {sy}, \type {ma},
 \type {mb},\type {mc} and \type{md} all relate to math families. As was
 already hinted at in~\in{table}[tab:symbolic font names], these have
 extended relatives suffixed by \type{bf} for use within bold math
-environments. The first four are required in all math setups just to do
-basic formula typesetting, the other four (\type{ma} ... \type{md}) can be
-left undefined and are normally used for fonts with special symbols or
-alphabets like the AMS symbol fonts \type{msam} and \type{msbm}.
+environments. 
+
+Calls of \type{\definebodyfont} for the \type{mm} style look quite
+different from the other styles, because they set up these special
+keywords, and nothing else.  The first four keys are required in all math
+setups just to do basic formula typesetting, the other four (\type{ma}
+\dots \type{md}) can be left undefined. Those are normally used for fonts
+with special symbols or alphabets like the AMS symbol fonts \type{msam}
+and \type{msbm}.
 
 Here is what a setup for a fairly standard \type{mm} could look like:
 
@@ -681,18 +703,21 @@ show up, we felt the need for a more versatile mechanism.
 
 \section {Typescripts and typefaces}
 
-On top of the existing (but extended) traditional font
-module, we now provide a more abstract layer of typescripts
-and building blocks for definitions and typefaces as font
-containers. The original font definition files have been
-regrouped into such typescripts thereby reducing the number
-of files involved.
+\macro{\tex{usetypescript}}
+\macro{\tex{usetypescriptfile}}
+\macro{\tex{starttypescript}}
+\macro{\tex{definetypeface}}
+
+On top of the existing traditional font module, \CONTEXT\ now provides a
+more abstract layer of typescripts and building blocks for definitions
+and typefaces as font containers. The original font definition files have
+been regrouped into such typescripts thereby reducing the number of files
+involved.
 
 As we saw earlier, \quote{using} a typescript is done via the a call to the
 macro \type{\usetypescript}. Here is the macro syntax setup again:
 
 \showsetup{usetypescript}
-
 
 Typescripts are in fact just organized definitions, and \quote{using} a
 typescript therefore actually means nothing more than executing the set of
@@ -728,7 +753,6 @@ are what make the \MKII-style call to \type{\usetypescript}
 \stoptyping
 \stopexample
 
-
 possible and meaningful: the first argument in both cases is the same so
 that this matches, and the second argument of \type{\usetypescript} appears
 in the list that is the second argument of \type{\starttypescript}, so this
@@ -740,9 +764,9 @@ To perform the actual matching, \CONTEXT\ scans through the list of known
 the specified arguments of \type{\usetypescript}. These blocks can be
 preloaded definitions in \TEX's memory, or they may come from a file.
 
-There is a small list of typescript files that is tried always,
-and you can add extra ones at the end of the list by using
-\type{\usetypescriptfile}.
+There is a small list of typescript files that is tried always, and by
+using \type{\usetypescriptfile} you actually add extra ones at the end of
+this list.
 
 The automatically loaded files for the three possible engines are, 
 in first to last order:
@@ -770,12 +794,23 @@ as well, even tough the typescript itself uses only a single argument:
 \stoptyping
 \stopexample
 
-Extra arguments to \type{\starttypescript} are not ignored. However, you can force any
-key at all to match by using the special keyword \type{all} in your
-\type{\usetypescript}.  We will see later that this is sometimes handy.
+On the other hand, extra arguments to \type{\starttypescript} are not
+ignored: a \type{\starttypescript} with two specified arguments will not
+be matched by a \type{\usetypescript} that has only one specified
+argument. 
 
-We have to step back for a moment to the macro \type{\definetypeface}, and
-especially to the third, fourth and fifth argument:
+However, you can force any key at all to match by using the special
+keyword \type{all} in your \type{\usetypescript} or
+\type{\starttypescript}.   We will see later that this use of a 
+wildcard is sometimes handy.
+
+
+\subsection{A typescript in action}
+
+Before we can go on and explain how to write \type{\starttypescript}
+blocks, we have to step back for a moment to the macro
+\type{\definetypeface}, and especially to the third, fourth and fifth
+argument:
 
 \startexample
 \starttyping
@@ -786,32 +821,45 @@ especially to the third, fourth and fifth argument:
 \stopexample
 
 Remember how in the previous chapter there were the tables that listed all
-the predefined combinations? It was said there that these \quote{are
+the predefined combinations? It was said there that these \quote{\dots are
 nothing more than convenience names that are attached to a group of fonts
 by the person that wrote the font definition}. 
 
 Here is how that works: these arguments of \type{\definetypeface} are
-actually used as parts of  \type{\usetypescript} calls. Inside the macro
-definition of \type{\definetypeface}, there are the following lines:
+actually used as parts of \type{\usetypescript} calls. To be preciese,
+inside the macro definition of \type{\definetypeface}, there are the
+following lines:
 
 \startexample
 \starttyping
-\usetypescript[#3,map][#4][name,default,\typefaceencoding,special]
-\usetypescript[#3][#5][size]
+\def\definetypeface 
+  ...
+  \usetypescript[#3,map][#4][name,default,\typefaceencoding,special]
+  \usetypescript[#3][#5][size]
+  ...
 \stoptyping
 \stopexample
 
-The \type{\typefaceencoding} is inherited from the calling
-\type{\usetypescript}, so that the \type{\definetypeface} in our example
-expands into:
+In our example \type{#3} is \type{serif}, \type{#4} is \type{palatino},
+and \type{#5} is default. The value of \type{\typefaceencoding} is
+inherited from the calling \type{\usetypescript}. That means that the two
+lines expand into:
 
 \starttyping
 \usetypescript[serif,map][palatino] [name,default,ec,special]
 \usetypescript[serif][default][size]
 \stoptyping
 
-not all of these typescript blocks are indeed present in the list of files that
-have to be scanned, but a few are, and some apparently even more than once:
+And those typescripts will be searched for. This example is using \MKII,
+so the list of typescript files is \type{type-tmf}, \type{type-siz}, 
+\type{type-one}, \type{type-akb}, and \type{type-loc}. The first two 
+arguments of \type{\usetypescript} are handled depth first, so first all
+\quote{serif} typescripts are tried against all the files in the list and
+then all the \quote{map} typescripts.
+
+Not all of the seached typescript blocks are indeed present in the list
+of files that have to be scanned, but a few are, and one apparently even
+more than once:
 
 \starttabulate[|lT|l|l|l|]
 \NC type-tmf.tex \NC serif \NC palatino \NC name                     \NC\NR
@@ -835,7 +883,9 @@ All of the found blocks are executed, so let's look at them in order
 \stoptypescript
 \stoptyping
 
-This one maps the standard symbolic names to names in the \quote{Palatino} family.
+This block has mapped the standard symbolic names to names in the
+\quote{Palatino} family, one of the standard font synonym actions as
+explained in the beginning of this chapter.
 
 \starttyping
 \starttypescript [serif] [palatino] [texnansi,ec,8r,t5]
@@ -858,12 +908,15 @@ This one maps the standard symbolic names to names in the \quote{Palatino} famil
 \stoptypescript
 \stoptyping
 
-This maps the Palatino names onto actual font files. Some further processing is taking
-place here: the calling \type{\usetypescript} that was called from within the
-\type{\definetypeface} knows that it wants \type{ec} encoding. Because this is the
-third argument, it becomes the replacement of \type{\typescriptthree}. The body of the
-typescript therefore reduces to:
+This maps the Palatino names onto the actual font files. Some further
+processing is taking place here: the calling \type{\usetypescript} that
+was called from within the \type{\definetypeface} knows that it wants
+\type{ec} encoding. Because this is the third argument, it becomes the
+replacement of \type{\typescriptthree}. The body of the typescript
+therefore reduces to:
 
+\begingroup
+\hfuzz10pt
 \starttyping
 \definefontsynonym[Palatino]            [ec-uplr8a]                [encoding=ec]
 \definefontsynonym[Palatino-Italic]     [ec-uplri8a]               [encoding=ec]
@@ -875,14 +928,16 @@ typescript therefore reduces to:
 
 \loadmapfile[ec-urw-palatino.map]
 \stoptyping
+\endgroup
 
 Incidentally, this also loads a font map file.  In earlier versions of \CONTEXT, this
 was done by separate typescripts in the file \type{type-map.tex}, but nowadays all map
 loading is combined with the definition of the synonyms that link to the true fonts on
-the harddisk. This way, there is a smaller chance of errors creeping in.
+the harddisk. This way, there is a smaller chance of errors creeping
+in. See~\in{section}[sec:map files] for more details on font map files.
 
 The third match is a block that sets sets up \quote{TeXPalladioL} font synonyms. These
-will not actually be used, but it is a match so it will be executed.
+will not actually be used, but it is a match so it will be executed anyway.
 
 \starttyping
 \starttypescript [serif] [palatino] [ec,texnansi,8r]
@@ -916,8 +971,10 @@ The last match is the missing piece of the font setup:
 \stoptypescript
 \stoptyping
 
-as explained earlier, this runs a named \type{\definebodyfont} that is defined in
-\type{type-unk.tex}:
+and now the typescript is complete.  
+
+As explained earlier, that last block references a named
+\type{\definebodyfont} that is defined in \type{type-unk.tex}:
 
 \starttyping
 \definebodyfont [default] [rm]
@@ -930,14 +987,21 @@ as explained earlier, this runs a named \type{\definebodyfont} that is defined i
    sc=SerifCaps sa 1]
 \stoptyping
 
-and now the typescript is complete.
+similar \type{default} blocks are defined for the other five font styles also.
+
+Looking back, you can see that the Palatino-specific typescripts did
+actually do anything except definining font synonyms, loading a map file,
+and calling a predefined \type{bodyfont}. 
+
+\subsection{Some more information}
 
 As we saw already, typescripts and its invocations have up to three specifiers.  An
 invocation matches the script specification when the three arguments have common
 keywords, and the special keyword \type {all} is equivalent to any match.
 
-Although any keyword is permitted in any of the three arguments, the current
-definitions have some reserved (advised) keys:
+Although any keyword is permitted in any of the three arguments, the
+current definitions (and macros like \type{\definetypeface}) make heavy
+use of some keys in particular:
 
 \starttabulate[|lT|p|]
 \HL
@@ -947,22 +1011,31 @@ definitions have some reserved (advised) keys:
 \NC [sans] [*] [*]    \NC sans serif fonts        \NC \NR
 \NC [mono] [*] [*]    \NC mono spaced fonts       \NC \NR
 \NC [math] [*] [*]    \NC math fonts              \NC \NR
-\NC [*] [*] [size]    \NC size specification      \NC \NR
+\NC [*] [*] [size]    \NC size specifications     \NC \NR
 \NC [*] [*] [name]    \NC symbolic name mapping   \NC \NR
 \NC [*] [*] [special] \NC special settings        \NC \NR
-\NC [*] [default] [*] \NC default case(s)         \NC \NR
+\NC [*] [all] [*]     \NC default case(s)         \NC \NR
 \NC [map] [*] [*]     \NC map file specifications \NC \NR
 \HL
 \stoptabulate
 
-When you take a close look at the actual files in the distribution you will notice a
-couple of more keywords.  One in particular is worth mentioning: instead of the
-predefined sizes in \type {default}, you can use the \type {dtp} size scripts with their
-associated body font environments by 
+When you take a close look at the actual files in the distribution you
+will notice a quite a few other keywords.  One in particular is worth
+mentioning: instead of the predefined sizes in \type {default}, you can
+use the \type {dtp} size scripts with their associated body font
+environments by using
 
 \starttyping
-\usetypescript [size] [dtp] [all]
+\usetypescript [all] [dtp] [size]
 \stoptyping
+
+or 
+
+\starttyping
+\definetypeface[palatino] [rm] [serif] [palatino] [dtp]
+\stoptyping
+
+\blank
 
 In the top||level typescript for the palatino, we had a bunch of
 \type{\definetypeface} commands, as follows:
@@ -993,8 +1066,7 @@ Here is a sample of some text and a little bit of math:
 \typebuffer[sample]
 \stopexample
 
-When typeset in \type {\funny}, \type {\joke}, and \type
-{whow}, the samples look like:
+When typeset in \type {\funny}, \type {\joke}, and \type{whow}, the samples look like:
 
 \startlines
 {\funny \getbuffer[sample]}
@@ -1035,13 +1107,12 @@ between the non scaled and the scaled alternatives.
 \stoplines
 
 
-It may not be clear from the previous examples, but a big
-difference between using typeface definitions and the old
-method of redefining over and over again, is that the new
-method uses more resources. This is because each typeface
-gets its own name space assigned. As an intentional side
-effect, the symbolic names also follow the typeface. This
-means that for instance:
+It may not be immediately clear from the previous examples, but a big
+difference between using typeface definitions and the old method of
+redefining over and over again, is that the new method uses more
+resources. This is because each typeface gets its own name space
+assigned. As an intentional side effect, the symbolic names also follow
+the typeface. This means that for instance:
 
 \startbuffer[big]
 \definefont[MyBigFont][Serif sa 1.5] \MyBigFont A bit larger!
@@ -1080,14 +1151,14 @@ The difference between these four lines is as follows:
 \funny \getbuffer[math]
 \stoplines
 
-In order to get a bold $\alpha$ symbol, we need to define
-bold math fonts. \footnote {Bold math is already prepared in
-the core modules, so normally one can do with less code} The
-most convenient way of doing this is the following:
+In order to get a bold $\alpha$ symbol, we need to define bold math
+fonts. \footnote {Bold math is already prepared in the core modules, so
+normally one can do with less code} Assuming the font's typescripts
+support bold math, the most convenient way of doing this is the following:
 
 \startbuffer
-\definetypeface [funny] [mm]
-  [math,boldmath] [palatino] [default] [encoding=texnansi]
+\definetypeface [whow] [mm]
+  [math,boldmath] [modern] [default] [encoding=texnansi]
 \stopbuffer
 
 \typebuffer \getbuffer
@@ -1095,7 +1166,7 @@ most convenient way of doing this is the following:
 Bold math looks like this:
 
 \startlines
-\funny \getbuffer[math]
+\whow \getbuffer[math]
 \stoplines
 
 The definitions are given on the next page. Such definitions are normally collected in
@@ -1106,11 +1177,11 @@ added to the list of typescript files:
 \usetypescriptfile[typeface] % project scripts
 \stoptyping
 
-An example of such a file is shown below:
+%An example of such a file is shown below:
 
-\start
-\switchtobodyfont[9pt] \typefile{typeface}
-\stop
+%\start
+%\switchtobodyfont[9pt] \typefile{typeface}
+%\stop
 
 It is also possible to avoid typescripts. When definitions are
 used only once, it makes sense to use a more direct method.
@@ -1173,6 +1244,9 @@ more instances. When you redefine it, a frozen font is
 automatically unfrozen.
 
 \section{Predefined font, style and alternative keywords}
+\macro{\tex{definebodyfontswitch}}
+\macro{\tex{definefontstyle}}
+\macro{\tex{definealternativestyle}}
 
 Some of the internal commands are worth mentioning because they define keywords and
 you may want to add to the list.
@@ -1331,10 +1405,17 @@ to the current style. You can now access this symbol with
 \stoptabulate
 
 More details on defining symbols and symbol sets can be
-found in the reference manual and documentation of the
-symbol modules.
+found in the documentation of the symbol modules.
 
 \section{Encodings}
+\macro{\tex{startencoding}}
+\macro{\tex{startmapping}}
+\macro{\tex{definecharacter}}
+\macro{\tex{defineaccent}}
+\macro{\tex{definecommand}}
+\macro{\tex{definecasemap}}
+
+\todo{Add macro syntax definition blocks}
 
 Until now we assumed that an~\type {a} will become an~a
 during type setting. However, this is not always the case.
@@ -1406,7 +1487,11 @@ definitions are sometimes needed. In the documentation of
 the file \type {enco-ini} more information on this can be
 found.
 
-\section{Map files}
+\section[sec:map files]{Map files}
+\macro{\tex{loadmapfile}}
+\macro{\tex{setupencoding}}
+
+\todo{This section is too informal}
 
 If you're already sick of reading about fonts, you probably
 don't want read this section. But alas, \DVI\ post processors
@@ -1463,6 +1548,8 @@ files and load a few defaults.
 As said, map files are a delicate matter.
 
 \section{Installing fonts}
+
+\todo{Document use of \MKIV and \XETEX\ and in particular OSFONTDIR}
 
 Most \TEX\ distributions come with a couple of fonts, most
 noticeably the Computer Modern Roman typefaces. In order to
@@ -1687,39 +1774,7 @@ is handy from the perspective of consistency.
 
 \section {Getting started}
 
-This is the most tricky section to write, since fonts are
-probably the most complicated aspect of \TEX. If you are not
-sure that you have the latest \CONTEXT, fetch the zipped
-archive \type {cont-tmf.zip} from the main site or one of
-the mirrors. Unzip the archive in the path \type {texmf-local}
-(or similar):
-
-\starttyping
-unzip cont-tmf.zip
-\stoptyping
-
-Run \type {mktexlsr} afterwards. In order to prevent
-unwanted interference, you may want to remove old copies
-of \CONTEXT. Removing the \type {base} paths is enough.
-
-Next, take a look at \type {cont-sys.rme} for options that
-you can set. You need to copy this file into one with the
-suffix \type {tex} and put it in the \CONTEXT\ user path. If
-you already have such a file, make sure that you bring it up
-to date. Choose a default encoding and preload the map files
-that \PDFTEX\ needs. If you want to use the default
-filenames, load the \type {berry} typescript too, but if you
-are going to install your own fonts, you may use the more
-verbose naming scheme (which is what we do at \PRAGMA).
-
-Again, make sure that you run \type {mktexlsr} after each
-file that you add to the system.
-
-We already discussed \type {texfont} and if you have a
-couple of megabytes left, you can now generate font
-metrics. If you want to isolate your fonts from the main
-trees, which is a good idea if you also want to install your
-own fonts.
+\todo{This section needs to be modernized}
 
 The way \TEX\ searches for files (we're talking \WEBC\ now)
 is determined by the configuration file to which the \type
