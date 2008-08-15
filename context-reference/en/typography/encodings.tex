@@ -1,0 +1,32 @@
+% engine=pdftex
+
+\environment contextref-env
+
+\definefontsynonym [TestA] [ec-lmr10]       [encoding=ec]
+\definefontsynonym [TestB] [texnansi-lmr10] [encoding=texnansi]
+\definefontsynonym [TestC] [qx-lmr10]       [encoding=qx]
+\definefontsynonym [TestD] [t5-lmr10]       [encoding=t5]
+
+
+\starttext
+\startTEXpage
+\scale[width=\textwidth]{\showfont[TestA]}
+\stopTEXpage
+
+\startTEXpage
+\scale[width=\textwidth]{\showfont[TestB]}
+\stopTEXpage
+
+\startTEXpage
+\scale[width=\textwidth]{\showfont[TestC]}
+\stopTEXpage
+
+\startTEXpage
+\scale[width=\textwidth]{\showfont[TestD]}
+\stopTEXpage
+
+\startTEXpage
+\showaccents
+\stopTEXpage
+
+\stoptext

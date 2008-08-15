@@ -8,10 +8,23 @@
 
 % needed for mkiv:
 
+\startmode[mkiv]
+
 \definefontfeature[default][default]
      [protrusion=pure,expansion=quality,mode=node,script=latn]
 \usetypescript[modern][ec]
 
+% the next hack shortens the font name (in mkiv, the \fontname is the
+% full path to the disk file)
+
+\input enco-run
+\unexpanded\gdef\visualizecharacterslegend
+  {\hbox
+     {\edef\banner{\currentencoding\space\ctxlua{tex.sprint(file.basename('\fontname\font'))}}%
+      \tttf\banner:\space
+      {\blue composed}\space{\red bottom}\space{\green char}\space raw}}
+
+\stopmode
 % needed for mkii:
 
 \loadmapfile[lm-texnansi.map]
@@ -3017,30 +3030,25 @@ These encodings are font related as is demonstrated in \in
 {figure} [fig:font a], \in{}[fig:font b],  \in{}[fig:font c], \in
 {and} [fig:font d]. Here we used the \type {\showfont} command.
 
-\definefontsynonym [TestA] [ec-lmr10]       [encoding=ec]
-\definefontsynonym [TestB] [texnansi-lmr10] [encoding=texnansi]
-\definefontsynonym [TestC] [qx-lmr10]       [encoding=qx]
-\definefontsynonym [TestD] [t5-lmr10]       [encoding=t5]
-
 \placefigure
   [here][fig:font a]
   {The Latin Modern Roman font in ec encoding.}
-  {\scale[width=\textwidth]{\showfont[TestA]}}
+  {\externalfigure[typography/encodings.pdf][page=1]}
 
 \placefigure
   [here][fig:font b]
   {The Latin Modern Roman font in texnansi encoding.}
-  {\scale[width=\textwidth]{\showfont[TestB]}}
+  {\externalfigure[typography/encodings.pdf][page=2]}
 
 \placefigure
   [here][fig:font c]
   {The Latin Modern Roman font in qx encoding.}
-  {\scale[width=\textwidth]{\showfont[TestC]}}
+  {\externalfigure[typography/encodings.pdf][page=3]}
 
 \placefigure
   [here][fig:font d]
   {The Latin Modern Roman font in t5 encoding.}
-  {\scale[width=\textwidth]{\showfont[TestD]}}
+  {\externalfigure[typography/encodings.pdf][page=4]}
 
 The situation is even more complicated than it looks, since
 the font may be virtual, that is, built from several fonts.
@@ -3066,21 +3074,25 @@ have consequences for the language specific hyphenation
 patterns. Fortunately \CONTEXT\ handles this for you
 automatically.
 
+\doflushfloats
+\page
+
 If you want to know to what extent a font is complete and
 characters need to be composed on the fly, you can typeset a
 a couple of tables. The (current) composition is shown by
-\type {\showaccents}:
+\type {\showaccents}, as shown in~\in{figure}[fig:show accents]
 
-\showaccents
+\placefigure
+  [here][fig:show accents]
+  {Output of \type{\showaccents} for the current (palatino) font in \PDFTEX}
+  {\externalfigure[typography/encodings.pdf][page=5]}
 
-with \type {\showcharacters}, you get a list of named
-characters (and glyphs) as known to the system.
+\page
+
+With \type {\showcharacters}, you get a list of named characters (and
+glyphs) as known to the system. Note: the following table will look
+different in each of the three typesetting engines. 
 
 \showcharacters
-
-If you want to know what patterns are used, you can try to
-hyphenate a word with \type {\showhyphenations}.
-
-\showhyphenations{abracadabra}
 
 \stopcomponent
