@@ -88,6 +88,9 @@ clean:
 	texutil --purgeall
 	rm -f contextref-mp.{mpy,pdf,tex}
 
+clear: clean
+	rm -f contextref.pdf
+
 co-tables.tex: tables/registers-buffer.tex
 	touch co-tables.tex
 
