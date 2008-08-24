@@ -45,13 +45,13 @@ dimensions may of may not be known by the document designer.
 
 \startlinecorrection
 \startcombination[4*1]
-  {\externalfigure[koe][scale=300,frame=on]}
+  {\externalfigure[cow][scale=300,frame=on]}
      {natural dimension}
-  {\externalfigure[koe][scale=225,frame=on]}
+  {\externalfigure[cow][scale=225,frame=on]}
      {scaled to 25\%}
-  {\externalfigure[koe][height=2cm,frame=on]}
+  {\externalfigure[cow][height=2cm,frame=on]}
      {a height of 2~cm}
-  {\externalfigure[koe][height=2cm,width=3cm,frame=on]}
+  {\externalfigure[cow][height=2cm,width=3cm,frame=on]}
      {a height of 2~cm and a width 3~cm}
 \stopcombination
 \stoplinecorrection
@@ -218,7 +218,7 @@ An external figure is summoned by the command \type
 {\externalfigure}. The cow is recalled with:
 
 \starttyping
-\externalfigure[koe][width=2cm]
+\externalfigure[cow][width=2cm]
 \stoptyping
 
 For reasons of maintenance it is better to specify all
@@ -316,22 +316,22 @@ A figure is recalled with the command:
 
 For reasons of downward compatibility a figure can also be
 recalled with a command that equals the figure name. In the
-example below we also could have used \type {\akoe} and
-\type {\bkoe}, unless they are already defined. Using \type
+example below we also could have used \type {\acow} and
+\type {\bcow}, unless they are already defined. Using \type
 {\externalfigure} instead is more safe, since it has its own
 namespace.
 
 \startbuffer
-\useexternalfigure[akoe][koetje][factor=10]
-\useexternalfigure[bkoe][koetje][factor=20]
+\useexternalfigure[acow][cow][factor=10]
+\useexternalfigure[bcow][cow][factor=20]
 
-\placefigure[left]{none}{\externalfigure[bkoe]}
+\placefigure[left]{none}{\externalfigure[bcow]}
 
-The \hbox {\externalfigure[akoe]} is a very well known animal in the Dutch
-landscape. But for environmental reasons the \hbox {\externalfigure[akoe]}
+The \hbox {\externalfigure[acow]} is a very well known animal in the Dutch
+landscape. But for environmental reasons the \hbox {\externalfigure[acow]}
 is slowly disappearing. In the near future the cow will fulfil a marginal
-\inleft {\externalfigure[bkoe]} role in the Netherlands. That is the
-reason why we would like to write the word \hbox {\externalfigure[bkoe]}
+\inleft {\externalfigure[bcow]} role in the Netherlands. That is the
+reason why we would like to write the word \hbox {\externalfigure[bcow]}
 in big print.
 \stopbuffer
 
@@ -339,7 +339,7 @@ in big print.
 \typebuffer
 \stopexample
 
-Here we see how \type {akoe} and \type {bkoe} are reused.
+Here we see how \type {acow} and \type {bcow} are reused.
 This code will result in:
 
 \getbuffer
@@ -526,7 +526,7 @@ go unnoticed.
 case when you use:
 
 \starttyping
-\externalfigure[koe]
+\externalfigure[cow]
 \stoptyping
 
 Sometimes however, as we already explained, the user may
@@ -534,8 +534,8 @@ want to force the format for some reason. This can be done
 by:
 
 \starttyping
-\externalfigure[koe.eps]
-\externalfigure[koe][type=eps]
+\externalfigure[cow.eps]
+\externalfigure[cow][type=eps]
 \stoptyping
 
 In special cases you can specify in which way figure
@@ -615,7 +615,7 @@ reader: a green screen).
 \startbuffer
 \def\showacow#1%
   {\externalfigure
-     [koe]
+     [cow]
      [hfactor=80,background=screen,backgroundscreen=#1]}
 
 \def\showascreen#1%
@@ -652,7 +652,7 @@ reader: a green screen).
    backgroundcolor=green,
    backgroundoffset=3pt]
 
-\useexternalfigure [koe]
+\useexternalfigure [cow]
   [hfactor=80,
    background=screen,
    backgroundscreen=0.75]
