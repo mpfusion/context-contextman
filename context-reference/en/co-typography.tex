@@ -1231,40 +1231,41 @@ Explicit loading one of those files is done via the macro \type{\usetypescriptfi
 \vskip 1ex
 \starttabulate[|l|l|l|l|]
 \NC \bf Typescript        \NC \bf Typeface      \NC \bf File           \NC \bf Encodings                     \NC \FR
-\NC OmegaLGC              \NC omlgc             \NC type-omg           \NC (unspecified)                     \NC \NR
 \NC antykwa-torunska      \NC antykwa           \NC type-one, type-otf \NC texnansi,ec,8r,t2a                \NC \NR
-\NC cbgreek               \NC cbgreek           \NC type-cbg           \NC (unspecified)                     \NC \NR
-\NC cbgreek-all           \NC cbgreek-all       \NC type-cbg           \NC (unspecified)                     \NC \NR
-\NC cbgreek-medium        \NC cbgreek-medium    \NC type-cbg           \NC (unspecified)                     \NC \NR
-\NC cow                   \NC cow               \NC type-cow           \NC default                           \NC \NR
 \NC fourier               \NC fourier           \NC type-one           \NC ec                                \NC \NR
 \NC iwona                 \NC iwona             \NC type-one, type-otf \NC texnansi,ec,8r,t2a                \NC \NR
 \NC iwona-heavy           \NC iwona-heavy       \NC type-one, type-otf \NC texnansi,ec,8r,t2a                \NC \NR
 \NC iwona-light           \NC iwona-light       \NC type-one, type-otf \NC texnansi,ec,8r,t2a                \NC \NR
 \NC iwona-medium          \NC iwona-medium      \NC type-one, type-otf \NC texnansi,ec,8r,t2a                \NC \NR
+\NC modern                \NC modern            \NC type-one, type-otf \NC texnansi,ec,qx,t5,default         \NC \NR
+\NC modern-base           \NC modern            \NC type-one, type-otf \NC texnansi,ec,qx,t5,default,t2a/b/c \NC \NR
+\NC modernvariable        \NC modernvariable    \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5              \NC \NR
+\NC palatino              \NC palatino          \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5              \NC \NR
+\NC postscript            \NC postscript        \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5              \NC \NR
+\NC times                 \NC times             \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5              \NC \NR
+\HL
+\NC OmegaLGC              \NC omlgc             \NC type-omg           \NC (unspecified)                     \NC \NR
+\NC cbgreek               \NC cbgreek           \NC type-cbg           \NC (unspecified)                     \NC \NR
+\NC cbgreek-all           \NC cbgreek-all       \NC type-cbg           \NC (unspecified)                     \NC \NR
+\NC cbgreek-medium        \NC cbgreek-medium    \NC type-cbg           \NC (unspecified)                     \NC \NR
+\NC cow                   \NC cow               \NC type-cow           \NC default                           \NC \NR
+\NC sheep                 \NC sheep             \NC type-cow           \NC default                           \NC \NR
 \NC \*{lucida}            \NC lucida            \NC type-buy           \NC texnansi,ec,8r                    \NC \NR
 \NC \*{lucidabfm}         \NC lucida            \NC type-buy           \NC texnansi,ec,8r                    \NC \NR
 \NC \*{lucidabfm}         \NC lucidabfm         \NC type-buy           \NC texnansi,ec,8r                    \NC \NR
 \NC \*{lucidaboldmath}    \NC lucida            \NC type-buy           \NC texnansi,ec,8r                    \NC \NR
 \NC \*{lucidaboldmath}    \NC lucidaboldmath    \NC type-buy           \NC texnansi,ec,8r                    \NC \NR
-\NC modern                \NC modern            \NC type-one, type-otf \NC texnansi,ec,qx,t5,default         \NC \NR
-\NC modern-base           \NC modern            \NC type-one, type-otf \NC texnansi,ec,qx,t5,default,t2a/b/c \NC \NR
-\NC modernvariable        \NC modernvariable    \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5              \NC \NR
 \NC \*{optima}            \NC optima            \NC type-one           \NC texnansi,ec,qx                    \NC \NR
 \NC \*{optima}            \NC optima            \NC type-ghz           \NC texnansi,ec,qx                    \NC \NR
 \NC \*{optima-nova}       \NC optima            \NC type-ghz, type-hgz \NC texnansi,ec                       \NC \NR
 \NC \*{optima-nova-os}    \NC optima-os         \NC type-ghz, type-hgz \NC texnansi,ec                       \NC \NR
 \NC \*{palatino}          \NC palatino          \NC type-hgz           \NC (cannot be used in \MKII)         \NC \NR
-\NC \*{palatino}          \NC palatino          \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5              \NC \NR
 \NC \*{palatino-informal} \NC palatino-informal \NC type-hgz           \NC (cannot be used in \MKII)         \NC \NR
 \NC \*{palatino-light}    \NC palatino-light    \NC type-exp           \NC (cannot be used in \MKII)         \NC \NR
 \NC \*{palatino-medium}   \NC palatino-medium   \NC type-exp           \NC (cannot be used in \MKII)         \NC \NR
 \NC \*{palatino-normal}   \NC palatino-normal   \NC type-exp           \NC (cannot be used in \MKII)         \NC \NR
 \NC \*{palatino-nova}     \NC palatino          \NC type-hgz           \NC (cannot be used in \MKII)         \NC \NR
 \NC \*{palatino-sans}     \NC palatino          \NC type-hgz           \NC (cannot be used in \MKII)         \NC \NR
-\NC postscript            \NC postscript        \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5              \NC \NR
-\NC sheep                 \NC sheep             \NC type-cow           \NC default                           \NC \NR
-\NC times                 \NC times             \NC type-one, type-otf \NC texnansi,ec,qx,8r,t5              \NC \NR
 \stoptabulate
 \vskip 1ex
 \endgroup
@@ -1273,7 +1274,7 @@ Explicit loading one of those files is done via the macro \type{\usetypescriptfi
 \placetable
   [here]
   [tab:typescripts and typefaces]
-  {The typescripts. Typescripts that use commercial fonts are typeset in bold. }
+  {The typescripts. Typescripts that use commercial fonts are typeset in bold. Typescripts above the horizontal line are preloaded.}
   {\getbuffer[typescripts]}
 
 The predefined typescripts, the typefaces they define, the files
