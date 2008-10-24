@@ -1,0 +1,836 @@
+\startcomponent ma-cb-vi-tables
+\project ma-cb
+\product ma-cb-vi
+\environment ma-cb-env-vi
+
+%\chapter[tables]{Tables}
+\chapter[tables]{Bảng}
+
+%\index{tables}
+%\index{floating blocks}
+\index{bảng}
+\index{khối thay đổi}
+
+\Command{\tex{placetable}}
+\Command{\tex{setuptables}}
+\Command{\tex{starttable}}
+\Command{\tex{startcombination}}
+\Command{\tex{setupfloats}}
+\Command{\tex{setupcaptions}}
+\Command{\tex{NR}}
+\Command{\tex{FR}}
+\Command{\tex{LR}}
+\Command{\tex{MR}}
+\Command{\tex{SR}}
+\Command{\tex{VL}}
+\Command{\tex{NC}}
+\Command{\tex{HL}}
+\Command{\tex{DL}}
+\Command{\tex{DC}}
+\Command{\tex{DR}}
+\Command{\tex{LOW}}
+\Command{\tex{TWO}}
+\Command{\tex{THREE}}
+
+%{\em In general, a table consists of columns which may be
+%independently left adjusted, centered, right adjusted, or
+%aligned on decimal points. Headings may be placed over single
+%columns or groups of columns. Table entries may contain
+%equations or several rows of text. Horizontal and vertical
+%lines may be drawn wholly or partially across the table.}
+{\em Tổng quát, một bảng chứa cột có thể độc lập canh trái, canh giữa, canh
+phải hoặc gióng hàng theo các số thập phân. Đề mục có thể được đặt trên một
+cột hoặc một nhóm cột. Các mục của bảng có thể chứa các phương trình hay vài
+hàng văn bản. Các đường kẻ ngang và dọc có thể được vẽ toàn bộ hoặc không
+hoàn chỉnh.}
+
+%% This is what Michael J. Wichura wrote in the preface of the
+%% manual of \TABLE\ (\TABLE\ manual, 1988.). Michael Wichura
+%% is also the author of the \TABLE\ macros \CONTEXT\ is
+%% relying on when processing tables. A few \CONTEXT\ macros
+%% were added to take care of consistent line spacing and to
+%% make the interface a little less cryptic.\footnote{\CONTEXT\
+%% was developed for non||technical users in the \cap{WYSIWYG}
+%% era. Therefore a user friendly interface and easy file and
+%% command handling were needed, and cryptic commands,
+%% programming and logical reasoning had to be avoided.}
+Trên đây là những gì Michael J. Wichura đã vvieesttrong lời tựa của sổ tay
+\TABLE\ (\TABLE\ manual, 1988.). Michael Wichura cũng là tác giả của macro
+\TABLE\ mà \CONTEXT\ dựa vào khi thực thi tạo bảng. Một vài macro \CONTEXT\
+được thêm vào để xem xét độ rộng đường kẻ phù hợp và cũng để tạo giao diện bớt
+khó hiểu hơn.\footnote{\CONTEXT\ được phát triển cho những người dùng không
+thành thạo kĩ thuật trong thời đại \cap{WYSIWYG}. Do vậy, một giao diện thân
+thiện người dùng, sự dễ dàng trong cách tạo tập tin và trình bày câu lệnh là
+điều mong muốn. Còn lại, các câu lệnh khó hiểu, các lý luận hợp logic và lập
+trình đều được loại bỏ.}
+
+%For placing a table the command \type{\placetable} is used
+%which is a predefined example of:
+Để đặt một bảng, bạn dùng lệnh \type{\placetable} như ví dụ cho trước:
+
+\shortsetup{placetable}
+
+%For defining the table you use:
+Để định nghĩa bảng, bạn dùng:
+
+\shortsetup{starttable}
+
+%The definition of a table could look something like this:
+Cách định nghĩa bảng có thể trông như thế này:
+
+%% \startbuffer
+%% \placetable[here][tab:ships]{Ships that moored at Hasselt.}
+%% \starttable[|c|c|]
+%% \HL
+%% \NC \bf Year \NC \bf Number of ships \NC\SR
+%% \HL
+%% \NC 1645     \NC 450                 \NC\FR
+%% \NC 1671     \NC 480                 \NC\MR
+%% \NC 1676     \NC 500                 \NC\MR
+%% \NC 1695     \NC 930                 \NC\LR
+%% \HL
+%% \stoptable
+%% \stopbuffer
+\startbuffer
+\placetable[here][tab:tàu]{Số tàu neo tại Hasselt.}
+\starttable[|c|c|]
+\HL
+\NC \bf Năm \NC \bf Số lượng tàu \NC\SR
+\HL
+\NC 1645     \NC 450                 \NC\FR
+\NC 1671     \NC 480                 \NC\MR
+\NC 1676     \NC 500                 \NC\MR
+\NC 1695     \NC 930                 \NC\LR
+\HL
+\stoptable
+\stopbuffer
+
+\typebuffer
+
+%This table is typeset as \in{table}[tab:ships].
+Bảng này được sắp chữ như trong \in{bảng}[tab:tàu].
+
+\getbuffer
+
+%The first command \type{\placetable} has the same function
+%as \type{\placefigure}. It takes care of spacing before and
+%after the table and numbering. Furthermore the floating
+%mechanism is initialized so the table will be placed at the
+%most optimal location of the page.
+Lệnh đầu tiên \type{\placetable} có cùng chức năng như lệnh
+\type{\placefigure}. Nó giữ khoảng trống trước và sau bảng và cách đánh số. Xa
+hơn, cơ chế thay đổi được khởi chạy để mà bảng sẽ được đặt ở vị trí tối ưu
+nhất trong trang.
+
+%The table entries are placed between the \type{\starttable}
+%$\cdots$ \type{\stoptable} pair. Between the bracket pair
+%your can specify the table format with the column separators
+%\type{|} and the format keys (see
+%\in{table}[tab:formatkeys]).
+Các mục trong bảng được đặt giữa hai cặp khóa \type{\starttable} $\cdots$
+\type{stoptable}. Giữa cặp ngoặc vuông, bạn có thể xác định kiểu bảng với dấu
+tách cột \type{|} và các khóa định dạng (xem \in{bảng}[tab:khóa định dạng]).
+
+%% \placetable
+%%   []
+%%   [tab:formatkeys]
+%%   {Table format keys.}
+%% \starttable[|l|l|]
+%% \HL
+%% \NC \bf Key     \NC \bf Meaning                                 \NC\SR
+%% \HL
+%% \NC \type{|}    \NC column separator                            \NC\FR
+%% \NC \type{c}    \NC center                                      \NC\MR
+%% \NC \type{l}    \NC flush left                                  \NC\MR
+%% \NC \type{r}    \NC flush right                                 \NC\MR
+%% \NC \type{s<n>} \NC set intercolumn space at value $n = 0, 1,2$ \NC\MR
+%% \NC \type{w<>}  \NC set minimum column width at specified value \NC\LR
+%% \HL
+%% \stoptable
+\placetable
+  []
+  [tab:khóa định dạng]
+  {Bảng các khóa định dạng.}
+\starttable[|l|l|]
+\HL
+\NC \bf Khóa    \NC \bf Ý nghĩa                                        \NC\SR
+\HL
+\NC \type{|}    \NC dấu tách cột                                       \NC\FR
+\NC \type{c}    \NC canh giữa                                          \NC\MR
+\NC \type{l}    \NC thẳng theo bên trái                                \NC\MR
+\NC \type{r}    \NC thẳng theo bên phải                                \NC\MR
+\NC \type{s<n>} \NC đặt giá trị khoảng trống giữa các cột $n = 0, 1,2$ \NC\MR
+\NC \type{w<>}  \NC đặt giá trị nhỏ nhất cho độ rộng của cột           \NC\LR
+\HL
+\stoptable
+
+%In addition to the format keys there are format commands.
+%\in{Table}[tab:formatcommands] shows a few of the essential
+%commands.
+Thêm vào các khoá định dạng có các lệnh định dạng. \in{Bảng}[tab:lệnh định
+dạng] thể hiện vài lệnh thông dụng.
+
+%\placetable
+%  [here]
+%  [tab:formatcommands]
+%  {Table format commands.}
+%\starttable[|l|l|]
+%\HL
+%\NC \bf Command               \NC \bf Meaning                            \NC\SR
+%\HL
+%\NC \type{\JustLeft}          \NC flush left and suppress column format  \NC\FR
+%\NC \type{\JustRight}         \NC flush right and suppress column format \NC\MR
+%\NC \type{\JustCenter}        \NC center and suppress column format      \NC\MR
+%\NC \type{\SetTableToWidth{}} \NC specify exact table width              \NC\MR
+%\NC \type{\use{n}}            \NC use the space of the next $n$ columns  \NC\LR
+%\HL
+%\stoptable
+\placetable
+  [here]
+  [tab:lệnh định dạng]
+  {Bảng các lệnh định dạng.}
+\starttable[|l|l|]
+\HL
+\NC \bf Lệnh               \NC \bf Ý nghĩa                            \NC\SR
+\HL
+\NC \type{\JustLeft}          \NC thẳng trái và bỏ định dạng cột         \NC\FR
+\NC \type{\JustRight}         \NC thẳng phải và bỏ định dạng cột         \NC\MR
+\NC \type{\JustCenter}        \NC canh giữa và bỏ định dạng cột          \NC\MR
+\NC \type{\SetTableToWidth{}} \NC xác định chính xác độ rộng của bảng    \NC\MR
+\NC \type{\use{n}}            \NC dùng khoảng trắng của cột thứ $n$ kế   \NC\LR
+\HL
+\stoptable
+
+%In the examples you have seen so far a number of
+%\CONTEXT\ formatting commands were used. These commands are
+%somewhat longer than the original and less cryptic but they
+%also handle a lot of table typography. In
+%\in{table}[tab:contextformatcommands] an overview of these
+%commands is given.
+Trong các ví dụ, bảng đã thấy nhiều lệnh định dạng \CONTEXT\ được dùng. Những
+lệnh này dài hơn nguyên mẫu và ít khó hiểu nhưng chúng cũng tạo được nhiều
+kiểu trình bày bảng. Trong \in{bảng}[tab:lệnh định dạng context], bạn sẽ có
+cái nhìn tổng quan hơn về các lệnh này.
+%% \placetable
+%%   [here]
+%%   [tab:formatcommands]
+%%   {\CONTEXT\ table format commands.}
+%% {\setuptables[bodyfont=small]
+%% \starttable[s1|l|l|l|]
+%% \HL
+%% \NC \bf Command       \NC
+%%     \NC \bf Meaning                                \NC\SR
+%% \HL
+%% \NC \type{\NR}        \NC next row
+%%     \NC make row with no vertical space adjustment \NC\FR
+%% \NC \type{\FR}        \NC first row
+%%     \NC make row, adjust upper spacing             \NC\MR
+%% \NC \type{\LR}        \NC last row
+%%     \NC make row, adjust lower spacing             \NC\MR
+%% \NC \type{\MR}        \NC mid row
+%%     \NC make row, adjust upper and lower spacing   \NC\MR
+%% \NC \type{\SR}        \NC separate row
+%%     \NC make row, adjust upper and lower spacing   \NC\MR
+%% \NC \type{\VL}        \NC vertical line
+%%     \NC draw a vertical line, go to next column    \NC\MR
+%% \NC \type{\NC}        \NC next column
+%%     \NC go to next column                          \NC\MR
+%% \NC \type{\HL}        \NC horizontal line
+%%     \NC draw a horizontal line                     \NC\MR
+%% \NC \type{\DL}        \NC division line$^\star$
+%%     \NC draw a division line over the next column  \NC\MR
+%% \NC \type{\DL[n]}     \NC division line$^\star$
+%%     \NC draw a division line over $n$ columns      \NC\MR
+%% \NC \type{\DC}        \NC division column$^\star$
+%%     \NC draw a space over the next column          \NC\MR
+%% \NC \type{\DR} \NC division row$^\star$
+%%     \NC make row, adjust upper and lower spacing   \NC\MR
+%% \NC \type{\LOW{text}} \NC ---
+%%     \NC lower {\em text}                           \NC\MR
+%% \NC \type{\TWO}, \type{\THREE} etc.  \NC ---
+%%     \NC use the space of the next {\em two}, {\em three} columns \NC\LR
+%% \HL
+%% \NC \use3 \JustLeft{$^\star$ \type{\DL, \DC} and \type{\DR}
+%%     are used in combination.}                      \NC\FR
+%% \stoptable}
+\placetable
+  [here]
+  [tab:lệnh định dạng context]
+  {Các lệnh định dạng bảng của \CONTEXT.}
+{\setuptables[bodyfont=small]
+\starttable[s1|l|l|l|]
+\HL
+\NC \bf Lệnh       \NC
+    \NC \bf Ý nghĩa                                  \NC\SR
+\HL
+\NC \type{\NR}        \NC hàng kế
+    \NC tạo hàng nhưng không điều chỉnh khoảng trắng \NC\FR
+\NC \type{\FR}        \NC hàng đầu tiên
+    \NC tạo hàng, điều chỉnh khoảng trắng phía trên       \NC\MR
+\NC \type{\LR}        \NC hàng cuối
+    \NC tạo hàng, điều chỉnh khoảng trắng phía dưới       \NC\MR
+\NC \type{\MR}        \NC hàng giữa
+    \NC tạo hàng, điều chỉnh khoảng trắng trên, dưới      \NC\MR
+\NC \type{\SR}        \NC hàng riêng rẽ
+    \NC tạo hàng, diều chỉnh khoảng trắng trên, dưới   \NC\MR
+\NC \type{\VL}        \NC đường kẻ thẳng
+    \NC vẽ đường kẻ thẳng, chuyển đến cột kế    \NC\MR
+\NC \type{\NC}        \NC cột kế
+    \NC chuyển đến cột kế                          \NC\MR
+\NC \type{\HL}        \NC đường kẻ ngang
+    \NC vẽ đường kẻ ngang                     \NC\MR
+\NC \type{\DL}        \NC đường kẻ phân cách$^\star$
+    \NC vẽ một đường kẻ ngăn cách đến cột kế       \NC\MR
+\NC \type{\DL[n]}     \NC đường kẻ phân cách$^\star$
+    \NC vẽ một đường kẻ ngăn cách đến $n$ cột      \NC\MR
+\NC \type{\DC}        \NC đường kẻ ngăn cách$^\star$
+    \NC vẽ một khoảng trắng đến cột kế         \NC\MR
+\NC \type{\DR} \NC đường kẻ phân cách$^\star$
+    \NC tạo hàng, điều chỉnh khoảng trắng trên, dưới   \NC\MR
+\NC \type{\LOW{văn bản}} \NC ---
+    \NC {\em văn bản} thấp hơn                          \NC\MR
+\NC \type{\TWO}, \type{\THREE} etc.  \NC ---
+    \NC dùng khoảng trắng của {\em hai}, {\em ba} cột kế \NC\LR
+\HL
+\NC \use3 \JustLeft{$^\star$ \type{\DL, \DC} và \type{\DR}
+    được dùng trong dạng kết hợp.}                      \NC\FR
+\stoptable}
+
+%The tables below are shown with their sources. You can
+%always read the \TABLE\ manual by M.J. Wichura for more
+%sophisticated examples.
+Các bảng bên dưới được thể hiện cùng với mã của chúng. Bạn có thể đọc sổ tay
+\TABLE\ của M.J. Wichura để biết thêm các ví dụ phức tạp
+
+%% \startbuffer
+%% \placetable
+%%   [here,force]
+%%   [tab:effects of commands]
+%%   {Effect of formatting commands.}
+%%   {\startcombination[2*1]
+%%      {\starttable[|c|c|]
+%%       \HL
+%%       \VL \bf Year \VL \bf Citizens \VL\SR
+%%       \HL
+%%       \VL 1675     \VL  ~428        \VL\FR
+%%       \VL 1795     \VL  1124        \VL\MR
+%%       \VL 1880     \VL  2405        \VL\MR
+%%       \VL 1995     \VL  7408        \VL\LR
+%%       \HL
+%%       \stoptable}{standard}
+%%      {\starttable[|c|c|]
+%%       \HL
+%%       \VL \bf Year \VL \bf Citizens \VL\NR
+%%       \HL
+%%       \VL 1675     \VL  ~428        \VL\NR
+%%       \VL 1795     \VL  1124        \VL\NR
+%%       \VL 1880     \VL  2405        \VL\NR
+%%       \VL 1995     \VL  7408        \VL\NR
+%%       \HL
+%%       \stoptable}{only \type{\NR}}
+%%    \stopcombination}
+%% \stopbuffer
+\startbuffer
+\placetable
+  [here,force]
+  [tab:tác dụng của lệnh]
+  {Tác dụng của các lệnh định dạng.}
+  {\startcombination[2*1]
+     {\starttable[|c|c|]
+      \HL
+      \VL \bf Năm \VL \bf Số dân \VL\SR
+      \HL
+      \VL 1675     \VL  ~428        \VL\FR
+      \VL 1795     \VL  1124        \VL\MR
+      \VL 1880     \VL  2405        \VL\MR
+      \VL 1995     \VL  7408        \VL\LR
+      \HL
+      \stoptable}{chuẩn}
+     {\starttable[|c|c|]
+      \HL
+      \VL \bf Năm \VL \bf Số dân \VL\NR
+      \HL
+      \VL 1675     \VL  ~428        \VL\NR
+      \VL 1795     \VL  1124        \VL\NR
+      \VL 1880     \VL  2405        \VL\NR
+      \VL 1995     \VL  7408        \VL\NR
+      \HL
+      \stoptable}{chỉ \type{\NR}}
+   \stopcombination}
+\stopbuffer
+
+\typebuffer
+
+%In the example above the first table \type{\SR}, \type{\FR},
+%\type{\MR} and \type{\LR} are used. These commands take care
+%of line spacing within a table. As you can see below
+%the command \type{\NR} only starts a new row.
+Trong ví dụ trên, bảng đầu tiên có \type{\SR}, \type{FR}, \type{MR} và
+\type{LR} được dùng. Những lệnh này giữ khoảng cách trong bảng. Như bạn thấy,
+bảng bên dưới, lệnh \type{NR} chỉ bắt đầu một hàng mới.
+
+\getbuffer
+
+%In the example below column interspacing with the \type{s0}
+%and \type{s1} keys is shown.
+Trong ví dụ bên dưới, khoảng cách các cột được thể hiện với các khóa \type{s0}
+và \type{s1}.
+
+%% \startbuffer[one]
+%% \starttable[|c|c|]
+%% \HL
+%% \VL \bf Year \VL \bf Citizens \VL\SR
+%% \HL
+%% \VL 1675 \VL  ~428 \VL\FR
+%% \VL 1795 \VL  1124 \VL\MR
+%% \VL 1880 \VL  2405 \VL\MR
+%% \VL 1995 \VL  7408 \VL\LR
+%% \HL
+%% \stoptable
+%% \stopbuffer
+
+%% \startbuffer[two]
+%% \starttable[s0 | c | c |]
+%% \HL
+%% \VL \bf Year \VL \bf Citizens \VL\SR
+%% \HL
+%% \VL 1675 \VL  ~428 \VL\FR
+%% \VL 1795 \VL  1124 \VL\MR
+%% \VL 1880 \VL  2405 \VL\MR
+%% \VL 1995 \VL  7408 \VL\LR
+%% \HL
+%% \stoptable
+%% \stopbuffer
+
+%% \startbuffer[three]
+%% \starttable[| s0 c | c |]
+%% \HL
+%% \VL \bf Year \VL \bf Citizens \VL\SR
+%% \HL
+%% \VL 1675 \VL  ~428 \VL\FR
+%% \VL 1795 \VL  1124 \VL\MR
+%% \VL 1880 \VL  2405 \VL\MR
+%% \VL 1995 \VL  7408 \VL\LR
+%% \HL
+%% \stoptable
+%% \stopbuffer
+
+%% \startbuffer[four]
+%% \starttable[| c | s0 c |]
+%% \HL
+%% \VL \bf Year \VL \bf Citizens \VL\SR
+%% \HL
+%% \VL 1675 \VL  ~428 \VL\FR
+%% \VL 1795 \VL  1124 \VL\MR
+%% \VL 1880 \VL  2405 \VL\MR
+%% \VL 1995 \VL  7408 \VL\LR
+%% \HL
+%% \stoptable
+%% \stopbuffer
+
+%% \startbuffer[five]
+%% \starttable[s1 | c | c |]
+%% \HL
+%% \VL \bf Year \VL \bf Citizens \VL\SR
+%% \HL
+%% \VL 1675 \VL  ~428 \VL\FR
+%% \VL 1795 \VL  1124 \VL\MR
+%% \VL 1880 \VL  2405 \VL\MR
+%% \VL 1995 \VL  7408 \VL\LR
+%% \HL
+%% \stoptable
+%% \stopbuffer
+
+%% \placetable
+%%   [here,force]
+%%   [tab:example formatcommands]
+%%   {Effect of formatting commands.}
+%%   {\startcombination[3*2]
+%%     {\getbuffer[one]}   {standard}
+%%     {\getbuffer[two]}   {\type{s0}}
+%%     {\getbuffer[three]} {\type{s0} in column~1}
+%%     {\getbuffer[four]}  {\type{s0} in column~2}
+%%     {\getbuffer[five]}  {\type{s1}}
+%%     {}                  {}
+%%   \stopcombination}
+%% \stopbuffer
+\startbuffer
+\startbuffer[one]
+\starttable[|c|c|]
+\HL
+\VL \bf Năm \VL \bf Số dân \VL\SR
+\HL
+\VL 1675 \VL  ~428 \VL\FR
+\VL 1795 \VL  1124 \VL\MR
+\VL 1880 \VL  2405 \VL\MR
+\VL 1995 \VL  7408 \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\startbuffer[two]
+\starttable[s0 | c | c |]
+\HL
+\VL \bf Năm \VL \bf Số dân \VL\SR
+\HL
+\VL 1675 \VL  ~428 \VL\FR
+\VL 1795 \VL  1124 \VL\MR
+\VL 1880 \VL  2405 \VL\MR
+\VL 1995 \VL  7408 \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\startbuffer[three]
+\starttable[| s0 c | c |]
+\HL
+\VL \bf Năm \VL \bf Số dân \VL\SR
+\HL
+\VL 1675 \VL  ~428 \VL\FR
+\VL 1795 \VL  1124 \VL\MR
+\VL 1880 \VL  2405 \VL\MR
+\VL 1995 \VL  7408 \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\startbuffer[four]
+\starttable[| c | s0 c |]
+\HL
+\VL \bf Năm \VL \bf Số dân \VL\SR
+\HL
+\VL 1675 \VL  ~428 \VL\FR
+\VL 1795 \VL  1124 \VL\MR
+\VL 1880 \VL  2405 \VL\MR
+\VL 1995 \VL  7408 \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\startbuffer[five]
+\starttable[s1 | c | c |]
+\HL
+\VL \bf Năm \VL \bf Số dân \VL\SR
+\HL
+\VL 1675 \VL  ~428 \VL\FR
+\VL 1795 \VL  1124 \VL\MR
+\VL 1880 \VL  2405 \VL\MR
+\VL 1995 \VL  7408 \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\placetable
+  [here,force]
+  [tab:ví dụ về lệnh định dạng]
+  {Tác dụng của các lệnh định dạng.}
+  {\startcombination[3*2]
+    {\getbuffer[one]}   {standard}
+    {\getbuffer[two]}   {\type{s0}}
+    {\getbuffer[three]} {\type{s0} in column~1}
+    {\getbuffer[four]}  {\type{s0} in column~2}
+    {\getbuffer[five]}  {\type{s1}}
+    {}                  {}
+  \stopcombination}
+\stopbuffer
+
+\typebuffer
+
+%After processing these tables come out as
+%\in{table}[tab:example formatcommands]. The default table
+%has a column interspacing of\type{s2}.
+Sau khi thực thi, các bảng này xuất ra như \in{bảng}[tab:ví dụ về lệnh định
+dạng]. Bảng mặc định có khoảng cách một cột là \type{s2}
+
+\getbuffer
+
+%Columns are often separated with a vertical line $|$ and
+%rows by a horizontal line.
+Cột thường được ngăn cách bởi các đường kẻ thẳng $|$ và hàng được ngăn cách
+bởi các đường kẻ ngang.
+
+%% \startbuffer
+%% \placetable
+%%   [here,force]
+%%   [tab:divisions]
+%%   {Effect of options.}
+%% \starttable[|c|c|c|]
+%% \NC Steenwijk  \NC Zwartsluis \NC Hasselt    \NC\SR
+%% \DC            \DL            \DC               \DR
+%% \NC Zwartsluis \VL Hasselt    \VL Steenwijk  \NC\SR
+%% \DC            \DL            \DC               \DR
+%% \NC Hasselt    \NC Steenwijk  \NC Zwartsluis \NC\SR
+%% \stoptable
+%% \stopbuffer
+\startbuffer
+\placetable
+  [here,force]
+  [tab:đường phân cách]
+  {Tác dụng của các tùy chọn.}
+\starttable[|c|c|c|]
+\NC Steenwijk  \NC Zwartsluis \NC Hasselt    \NC\SR
+\DC            \DL            \DC               \DR
+\NC Zwartsluis \VL Hasselt    \VL Steenwijk  \NC\SR
+\DC            \DL            \DC               \DR
+\NC Hasselt    \NC Steenwijk  \NC Zwartsluis \NC\SR
+\stoptable
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+%A more sensible example is given in the
+%\in{table}[tab:example contextcommands].
+Một ví dụ dễ nhận thấy hơn được thể hiện trong \in{bảng}[tab:ví dụ lệnh
+context].
+
+%% \startbuffer
+%% \placetable
+%%   [here,force]
+%%   [tab:example contextcommands]
+%%   {Effect of \CONTEXT\ formatting commands.}
+%% \starttable[|l|c|c|c|c|]
+%% \HL
+%% \VL \FIVE \JustCenter{City council elections in 1994}    \VL\SR
+%% \HL
+%% \VL \LOW{Party} \VL \THREE{Districts}   \VL \LOW{Total} \VL\SR
+%% \DC             \DL[3]                  \DC                \DR
+%% \VL             \VL 1   \VL 2   \VL 3   \VL             \VL\SR
+%% \HL
+%% \VL PvdA        \VL 351 \VL 433 \VL 459 \VL 1243        \VL\FR
+%% \VL CDA         \VL 346 \VL 350 \VL 285 \VL ~981        \VL\MR
+%% \VL VVD         \VL 140 \VL 113 \VL 132 \VL ~385        \VL\MR
+%% \VL HKV/RPF/SGP \VL 348 \VL 261 \VL 158 \VL ~767        \VL\MR
+%% \VL GPV         \VL 117 \VL 192 \VL 291 \VL ~600        \VL\LR
+%% \HL
+%% \stoptable
+%% \stopbuffer
+\startbuffer
+\placetable
+  [here,force]
+  [tab:ví dụ lệnh context]
+  {Tác dụng của các lệnh định dạng trong \CONTEXT.}
+\starttable[|l|c|c|c|c|]
+\HL
+\VL \FIVE \JustCenter{Bầu cử hội đồng thành phố trong năm 1994}    \VL\SR
+\HL
+\VL \LOW{Đảng} \VL \THREE{Quận}   \VL \LOW{Tổng} \VL\SR
+\DC             \DL[3]                  \DC                \DR
+\VL             \VL 1   \VL 2   \VL 3   \VL             \VL\SR
+\HL
+\VL PvdA        \VL 351 \VL 433 \VL 459 \VL 1243        \VL\FR
+\VL CDA         \VL 346 \VL 350 \VL 285 \VL ~981        \VL\MR
+\VL VVD         \VL 140 \VL 113 \VL 132 \VL ~385        \VL\MR
+\VL HKV/RPF/SGP \VL 348 \VL 261 \VL 158 \VL ~767        \VL\MR
+\VL GPV         \VL 117 \VL 192 \VL 291 \VL ~600        \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\typebuffer
+
+%In the last column a \type{~} is used to simulate a four
+%digit number. The \type{~} has the width of a digit.
+Trong cột cuối, một \type{~} được dùng để giả lập một số bốn chữ số. Kí tự
+\type{~} có độ rộng của một chữ số.
+
+\getbuffer
+
+%Sometimes your tables get too big and you want to adjust, for
+%example, the body font or the vertical and/or horizontal spacing
+%around vertical and horizontal lines. This is done by:
+Thỉnh thoảng bảng của bạn nhận được quá lớn và bạn muốn điều chỉnh, ví dụ:
+font chữ phần thân hay khoảng trắng dọc, ngang quanh các đường kẻ. Việc này
+được làm như sau:
+
+\shortsetup{setuptables}
+
+%% \startbuffer
+%% \placetable
+%%   [here,force]
+%%   [tab:setuptable]
+%%   {Use of \type{\setuptables}.}
+%% {\startcombination[1*3]
+%% {\setuptables[bodyfont=10pt]
+%% \starttable[|c|c|c|c|c|c|]
+%% \HL
+%% \VL \use6 \JustCenter{Decline of wealth in
+%%                       Dutch florine (Dfl)} \VL\SR
+%% \HL
+%% \VL Year \VL 1.000--2.000
+%%          \VL 2.000--3.000
+%%          \VL 3.000--5.000
+%%          \VL 5.000--10.000
+%%          \VL   over 10.000 \VL\SR
+%% \HL
+%% \VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
+%% \VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
+%% \VL 1750 \VL 12 \VL 3 \VL 2  \VL 2  \VL -- \VL\MR
+%% \VL 1808 \VL ~9 \VL 2 \VL -- \VL -- \VL -- \VL\LR
+%% \HL
+%% \stoptable}{\tt bodyfont=10pt}
+%% {\setuptables[bodyfont=8pt]
+%% \starttable[|c|c|c|c|c|c|]
+%% \HL
+%% \VL \use6 \JustCenter{Decline of wealth in
+%%                       Dutch florine (Dfl)} \VL\SR
+%% \HL
+%% \VL Year \VL 1.000--2.000
+%%          \VL 2.000--3.000
+%%          \VL 3.000--5.000
+%%          \VL 5.000--10.000
+%%          \VL   over 10.000 \VL\SR
+%% \HL
+%% \VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
+%% \VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
+%% \VL 1750 \VL 12 \VL 3 \VL 2  \VL 2  \VL -- \VL\MR
+%% \VL 1808 \VL ~9 \VL 2 \VL -- \VL -- \VL -- \VL\LR
+%% \HL
+%% \stoptable}{\tt bodyfont=8pt}
+%% {\setuptables[bodyfont=6pt,distance=small]
+%% \starttable[|c|c|c|c|c|c|]
+%% \HL
+%% \VL \use6 \JustCenter{Decline of wealth in
+%%                       Dutch florine (Dfl)} \VL\SR
+%% \HL
+%% \VL Year \VL 1.000--2.000
+%%          \VL 2.000--3.000
+%%          \VL 3.000--5.000
+%%          \VL 5.000--10.000
+%%          \VL   over 10.000 \VL\SR
+%% \HL
+%% \VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
+%% \VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
+%% \VL 1750 \VL 12 \VL 3 \VL 2  \VL 2  \VL -- \VL\MR
+%% \VL 1808 \VL ~9 \VL 2 \VL -- \VL -- \VL -- \VL\LR
+%% \HL
+%% \stoptable}{\tt bodyfont=6pt,distance=small}
+%% \stopcombination}
+%% \stopbuffer
+\startbuffer
+\placetable
+  [here,force]
+  [tab:thiết lập bảng]
+  {Cách dùng \type{\setuptables}.}
+{\startcombination[1*3]
+{\setuptables[bodyfont=10pt]
+\starttable[|c|c|c|c|c|c|]
+\HL
+\VL \use6 \JustCenter{Sự mất giá của đồng tiền Hà Lan (Dfl)} \VL\SR
+\HL
+\VL Năm \VL 1.000--2.000
+         \VL 2.000--3.000
+         \VL 3.000--5.000
+         \VL 5.000--10.000
+         \VL   over 10.000 \VL\SR
+\HL
+\VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
+\VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
+\VL 1750 \VL 12 \VL 3 \VL 2  \VL 2  \VL -- \VL\MR
+\VL 1808 \VL ~9 \VL 2 \VL -- \VL -- \VL -- \VL\LR
+\HL
+\stoptable}{\tt bodyfont=10pt}
+{\setuptables[bodyfont=8pt]
+\starttable[|c|c|c|c|c|c|]
+\HL
+\VL \use6 \JustCenter{Sự mất giá của đồng tiền Hà Lan (Dfl)} \VL\SR
+\HL
+\VL Năm \VL 1.000--2.000
+         \VL 2.000--3.000
+         \VL 3.000--5.000
+         \VL 5.000--10.000
+         \VL   over 10.000 \VL\SR
+\HL
+\VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
+\VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
+\VL 1750 \VL 12 \VL 3 \VL 2  \VL 2  \VL -- \VL\MR
+\VL 1808 \VL ~9 \VL 2 \VL -- \VL -- \VL -- \VL\LR
+\HL
+\stoptable}{\tt bodyfont=8pt}
+{\setuptables[bodyfont=6pt,distance=small]
+\starttable[|c|c|c|c|c|c|]
+\HL
+\VL \use6 \JustCenter{Sự mất giá của đồng tiền Hà Lan (Dfl)} \VL\SR
+\HL
+\VL Năm \VL 1.000--2.000
+         \VL 2.000--3.000
+         \VL 3.000--5.000
+         \VL 5.000--10.000
+         \VL   over 10.000 \VL\SR
+\HL
+\VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
+\VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
+\VL 1750 \VL 12 \VL 3 \VL 2  \VL 2  \VL -- \VL\MR
+\VL 1808 \VL ~9 \VL 2 \VL -- \VL -- \VL -- \VL\LR
+\HL
+\stoptable}{\tt bodyfont=6pt,distance=small}
+\stopcombination}
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+%You can also set up the layout of tables with:
+Bạn cũng có thể thiết lập khung nền của bảng với:
+
+\shortsetup{setupfloats}
+
+%You can set up the numbering and the labels with:
+Bạn có thể thiết lập cách đánh số và đặt nhãn bảng với:
+
+\shortsetup{setupcaptions}
+
+%These  commands are typed in the set up area of your
+%input file and have a global effect on all floating blocks.
+Những lệnh này được nhập vào trong phần thiết lập của tập tin nhập liệu và có
+tác dụng toàn bộ lên tất cả các khối thay đổi.
+
+%% \startbuffer
+%% \setupfloats[location=left]
+%% \setupcaption[style=boldslanted]
+
+%% \placetable[here][tab:opening hours]{Library opening hours.}
+%% \starttable[|l|c|c|]
+%% \HL
+%% \VL \bf Day   \VL \use2 \bf Opening hours           \VL\SR
+%% \HL
+%% \VL Monday    \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\FR
+%% \VL Tuesday   \VL                \VL                \VL\MR
+%% \VL Wednesday \VL 10.00 -- 12.00 \VL 14.00 -- 17.30 \VL\MR
+%% \VL Thursday  \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\MR
+%% \VL Friday    \VL 14.00 -- 17.30 \VL                \VL\MR
+%% \VL Saturday  \VL 10.00 -- 12.30 \VL                \VL\LR
+%% \HL
+%% \stoptable
+%% \stopbuffer
+\startbuffer
+\setupfloats[location=left]
+\setupcaption[style=boldslanted]
+
+\placetable[here][tab:giờ mở cửa]{Giờ mở cửa thư viện.}
+\starttable[|l|c|c|]
+\HL
+\VL \bf Ngày   \VL \use2 \bf Giờ mở cửa           \VL\SR
+\HL
+\VL Thứ Hai    \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\FR
+\VL Thứ Ba     \VL                \VL                \VL\MR
+\VL Thứ Tư     \VL 10.00 -- 12.00 \VL 14.00 -- 17.30 \VL\MR
+\VL Thứ Năm    \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\MR
+\VL Thứ Sáu    \VL 14.00 -- 17.30 \VL                \VL\MR
+\VL Thứ Bảy    \VL 10.00 -- 12.30 \VL                \VL\LR
+\HL
+\stoptable
+\stopbuffer
+
+\typebuffer
+
+%The result is displayed in \in{table}[tab:opening hours].
+Kết quả được hiển thị trong \in{bảng}[tab:giờ mở cửa]
+
+\start
+\getbuffer
+\stop
+
+\stopcomponent

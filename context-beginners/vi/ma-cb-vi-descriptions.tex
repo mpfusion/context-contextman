@@ -1,0 +1,144 @@
+\startcomponent ma-cb-vi-descriptions
+\project ma-cb
+\product ma-cb-vi
+\environment ma-cb-env-vi
+
+%\chapter{Definitions}
+\chapter{Lời định nghĩa}
+
+\index{định nghĩa}
+
+\Command{\tex{definedescription}}
+\Command{\tex{setupdescriptions}}
+
+%If you want to display notions, concepts and ideas in a
+%consistent manner you can use:
+Nếu bạn muốn hiển thị các quan điểm, khái niệm và ý kiến theo một kiểu phù
+hợp, bạn có thể dùng:
+
+\shortsetup{definedescription}
+
+%For example:
+Ví dụ:
+
+% \startbuffer
+% \definedescription
+%   [concept]
+%   [location=serried,headstyle=bold,width=broad]
+
+% \concept{Hasselter juffer} A sort of biscuit made of puff pastry and
+% covered with sugar. It tastes very sweet. \par
+% \stopbuffer
+\startbuffer
+\definedescription
+  [concept]
+  [location=serried,headstyle=bold,width=broad]
+
+\concept{Hasselter juffer} Là một loại bánh bích quy được làm từ bột bánh xốp
+và được phủ đường. Mùi vị của nó rất ngọt. \par
+\stopbuffer
+
+\typebuffer
+
+%It would look like this:
+Nó trông như thế này:
+
+\getbuffer
+
+%But you can also choose other layouts:
+Nhưng bạn có thể chọn một khung nền khác:
+
+% \startbuffer
+% \definedescription
+%   [concept]
+%   [location=top,
+%    headstyle=bold,
+%    width=broad,
+%    style=slanted]
+
+% \concept{Hasselter bitter} A very strong alcoholic drink (up to 40\%)
+% mixed with herbs to give it a special taste. It is sold in a stone
+% flask and it should be served {\em ijskoud} (as cold as ice). \par
+
+% \definedescription
+%   [concept]
+%   [location=inmargin,headstyle=bold,width=broad]
+
+% \concept{Euifeest} A harvest home to celebrate the end of a period of
+% hard work. The festivities take place in the last week of August.
+% \par
+
+% \stopbuffer
+\startbuffer
+\definedescription
+  [concept]
+  [location=top,
+   headstyle=bold,
+   width=broad,
+   style=slanted]
+
+\concept{Hasselter bitter} Một thứ nước uống có độ cồn rất mạnh (lên đến 40\%)
+được pha trộn từ các loại dược thảo cho mùi vị rất đặc biệt. Nó được để trong
+chai bẹt bằng đá (lạnh như nước đá). \par
+
+\definedescription
+  [concept]
+  [location=inmargin,headstyle=bold,width=broad]
+
+\concept{Euifeest} Một chỗ ở thu hoạch để vui chơi vào cuối vụ mùa. Ngày hội
+được tổ chức vào tuần cuối cùng của tháng Tám.
+\par
+
+\stopbuffer
+
+\start
+\getbuffer
+\stop
+
+%If you have more than one paragraph in such a definition you can use
+%a \type{\start...}||\type{\stop...} pair.
+Nếu bạn có nhiều hơn một đoạn văn đặt trong diễn giải, bạn có thể dùng cặp
+\type{\start...}||\type{\stop...}.
+
+% \startbuffer
+% \definedescription
+%   [concept]
+%   [location=right,
+%    headstyle=bold,
+%    width=broad]
+
+% \startconcept{Euifeest} A harvest home to celebrate the end of a
+% period of hard work.
+% This event takes place at the end of August and lasts one week. The
+% city is completely illuminated and the streets are decorated. This
+% feast week ends with a {\em Braderie}.
+% \stopconcept
+% \stopbuffer
+\startbuffer
+\definedescription
+  [concept]
+  [location=right,
+   headstyle=bold,
+   width=broad]
+
+\startconcept{Euifeest} Một chỗ ở thu hoạch để vui chơi vào cuối vụ mùa.
+Ngày hội được tổ chức vào tuần cuối cùng của tháng Tám. Thành phố được treo đèn
+và đường phố được trang trí. Tuần lễ hội này kết thúc với một {\em Baraderie}.
+\stopconcept
+\stopbuffer
+
+\typebuffer
+
+%This would become:
+Sẽ cho ra:
+
+\getbuffer
+
+%Layout is set up within the second bracket pair of
+%\type{\definedescription[][]}. But you can also use:
+Khung nền được thiết lập với cặp ngoặc vuông thứ hai của lệnh
+\type{\definedescription[][]}. Nhưng bạn cũng có thể dùng:
+
+\shortsetup{setupdescriptions}
+
+\stopcomponent

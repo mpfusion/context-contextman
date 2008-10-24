@@ -1,0 +1,83 @@
+\startcomponent ma-cb-vi-units
+\project ma-cb
+\product ma-cb-vi
+\environment ma-cb-env-vi
+
+%\chapter[units]{Units}
+\chapter[units]{Đơn vị đo lường}
+
+%\index{units}
+\index{đơn vị}
+%\index[siunit]{\cap{SI}--unit}
+\index[siunit]{\cap{SI}--unit}
+
+\Command{\tex{unit}}
+\Command{\tex{permille}}
+\Command{\tex{percent}}
+
+%To force yourself to use dimensions and units consistently
+%throughout the document you can make your own list with
+%units. These are specified in the set up area of your
+%input file.
+Để dùng các đơn vị đo lường phù hợp xuyên suốt tài liệu, bạn có thể tự tạo một
+danh sách các đơn vị đo lường. Danh sách này được xác định trong vùng thiết
+lập của tập tin nhập liệu.
+
+%In \CONTEXT\ there is an external module available that
+%contains almost all \SI||units. When this module is loaded
+%with \type{\usemodule[units]} you can call units with:
+Trong \CONTEXT\ có một mođun bên ngoài chứa đựng hầu hết các đơn vị||SI. Khi
+mođun được nạp với lệnh \type{\usemodule[units]} bạn có thể gọi các đơn vị đó
+với các lệnh:
+
+\startbuffer
+\Meter \Per \Square \Meter
+\Cubic \Meter \Per \Sec
+\Square \Milli \Meter \Per \Inch
+\Centi \Liter \Per \Sec
+\Meter \Inverse \Sec
+\Newton \Per \Square \Inch
+\Newton \Times \Meter \Per \Square \Sec
+\stopbuffer
+
+\typebuffer
+
+%It looks like a lot of typing but it does guarantee a
+%consistent use of units. The command \type{\unit} also
+%prevents the separation of value and unit at line breaks,
+%because a number typeset at the end of a line and the unit
+%at the beginning of the next one, is far from perfect.
+%These examples come out as:
+Trông thì thấy phải nhập vào nhiều nhưng nó đảm bảo một sự sử dụng các đơn vị
+đó phù hợp. Lệnh \type{\unit} cũng ngăn ngừa phá vỡ giá trị và đơn vị lúc
+xuống dòng chẳng hạn như một số được sắp tại cuối dòng và đơn vị lại được sắp
+đầu dòng kế tiếp. Đây là cách hiển thị của các lệnh trên:
+
+\startnarrower
+\startlines
+\getbuffer
+\stoplines
+\stopnarrower
+
+%You can define your own units with:
+Bạn có thể định nghĩa các đơn vị đo lường riêng bạn với lệnh:
+
+\starttyping
+\unit[Ounce]{oz}{}
+\stoptyping
+
+\unit[Ounce]{oz}{}
+
+%Later on in the document you can type \type{15.6 \Ounce}
+%that will be displayed as 15.6 \Ounce.
+Sau đó trong tài liệu, bạn có thể nhập vào \type{15.6 \Ounce} sẽ hiển thị 15.6
+\Ounce.
+
+%In order to write \percent\  and \permille\ in a consistent
+%way there are two specific commands:
+Để viết \percent\ và \permille\ bằng cách thích hợp có hai lệnh được xác định:
+
+\type{\percent} \crlf
+\type{\permille}
+
+\stopcomponent

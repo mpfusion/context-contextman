@@ -1,0 +1,105 @@
+% interface=english language=vi modes=screen,bound
+
+\environment ma-cb-env-vi
+
+\startproduct ma-cb-vi
+
+%\project ../generic/ma-cb
+\project ma-cb
+
+\setvariables
+  [document]
+  [translator={Trần Đình Anh Tuấn}]
+
+%\TitlePage
+ % {\ConTeXt\\an excursion}
+ % {English\\Version}
+ % {Ton Otten \& Hans Hagen}
+
+\TitlePage
+  {\ConTeXt\\Một cuộc tham quan}
+  {Phiên bản\\Tiếng Việt}
+  {Ton Otten \& Hans Hagen}
+
+\Copyright
+
+\startfrontmatter
+
+%    \TableOfContents{Table Of Contents}
+    \TableOfContents{Mục Lục}
+%    \Introduction   {Introduction}
+    \Introduction   {Lời nói đầu}
+
+    \component ma-cb-vi-introduction
+
+\stopfrontmatter
+
+\startbodymatter
+%\iffalse
+    \component ma-cb-vi-document		% tạo tài liệu
+    \component ma-cb-vi-gettingstarted		% cách sử dụng \CONTEXT\
+    \component ma-cb-vi-specialcharacters	% kí tự đặc biệt
+    \component ma-cb-vi-structure		% cấu trúc tài liệu
+ %   \component ma-cb-vi-heads
+ %   \component ma-cb-vi-itemizations
+    \component ma-cb-vi-math			% kí tự toán (đơn giản)
+    \component ma-cb-vi-units			% đơn vị đo lường
+    \component ma-cb-vi-figures			% hình ảnh
+    \component ma-cb-vi-tables			% bảng
+    \component ma-cb-vi-tabulations		% định dạng đoạn văn
+    \component ma-cb-vi-columns			% tạo văn bản theo cột
+    \component ma-cb-vi-footnotes		% ghi chú
+    \component ma-cb-vi-descriptions		% diễn giải
+    \component ma-cb-vi-enumerations		% diễn giải có đánh số
+    \component ma-cb-vi-frames			% viền quanh chữ
+    \component ma-cb-vi-framedtexts		% viền quanh đoạn
+    \component ma-cb-vi-margintexts		% đặt chữ vào lề trang
+    \component ma-cb-vi-pages			% định dạng trang
+    \component ma-cb-vi-headers
+    \component ma-cb-vi-tablesofcontent
+    \component ma-cb-vi-registers
+    \component ma-cb-vi-synonyms
+    \component ma-cb-vi-references
+    \component ma-cb-vi-color
+    \component ma-cb-vi-textbackgrounds
+    \component ma-cb-vi-pagebackgrounds
+    \component ma-cb-vi-alignments
+    \component ma-cb-vi-interactivity
+    \component ma-cb-vi-fonts
+    \component ma-cb-vi-composedcharacters
+    \component ma-cb-vi-layout
+    \component ma-cb-vi-paragraphs
+    \component ma-cb-vi-setupcommands
+    \component ma-cb-vi-commands
+    \component ma-cb-vi-whatever
+    \component ma-cb-vi-modules
+    \component ma-cb-vi-metapost
+    \component ma-cb-vi-usersetups
+    \component ma-cb-vi-processingfiles
+    \component ma-cb-vi-runtimefiles
+    \component ma-cb-vi-mathcharacters
+\fi
+\stopbodymatter
+
+\startappendices
+
+%    \CommandList {Command definitions}
+%    \CommandIndex{Command Index}
+%    \NormalIndex {Subject Index}
+    \CommandList {Lệnh và cách định nghĩa}
+    \CommandIndex{Bảng tra Lệnh}
+    \NormalIndex {Bảng tra Chủ đề}
+
+\stopappendices
+
+\Colofon
+
+\startmode[bound]
+
+    \StartBackPage
+        \component ma-cb-vi-backpage
+    \StopBackPage
+
+\stopmode
+
+\stopproduct

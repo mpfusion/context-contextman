@@ -1,0 +1,220 @@
+\startcomponent ma-cb-vi-tabulations
+\project ma-cb
+\product ma-cb-vi
+\environment ma-cb-env-vi
+
+%\chapter[tabulation]{Tabulation / Paragraph formatting}
+\chapter[tabulation]{Định dạng đoạn văn}
+
+%\index{tabulation}
+%\index{tables+running text}
+%\index{columns}
+\index{xếp cột}
+\index{bảng+văn bản liên tục}
+\index{cột}
+
+\Command{\tex{starttabulate}}
+\Command{\tex{definetabulate}}
+\Command{\tex{setuptabulate}}
+\Command{\tex{NR}}
+\Command{\tex{NC}}
+\Command{\tex{startchemical}}
+
+%Sometimes you want to typeset paragraphs in a specific
+%formatted way. This is done with:
+Thỉnh thoảng bạn cần sắp chữ cho đoạn văn theo cách định dạng riêng biệt. Việc
+này được thực hiện với:
+
+\shortsetup{starttabulate}
+
+%The tabulation mechanism is closely related to the
+%table mechanism. You can use the tabulation mechanism
+%in cases you want to type set complete paragraphs within a
+%cell. The tabulation mechanism works fine at a page break.
+Cơ chế xếp cột gần tương tự như cơ chế tạo bảng. Bạn có thể dùng cơ chế xếp
+cột trong trường hợp bạn cần nhập tập hợp các đoạn văn hoàn chỉnh vào trong
+một ô. Cơ chế xếp cột làm việc tốt lúc sang trang.
+
+%% \startbuffer
+%% \starttabulate[|w(1.5cm)B|p(6.0cm)|p|]
+%% \NC 1252
+%%     \NC Hasselt obtains its city charter from bishop Hendrik
+%%         van Vianden.
+%%     \NC Hendrik van Vianden was pressed by other towns not
+%%         to agree with the charter. It took Hasselt a long
+%%         period of time to convince the Bishop. After
+%%         supporting the Bishop in a small war against the
+%%         Drents, the charter was released. \NC\NR
+%% \NC 1350
+%%     \NC Hasselt joins the Hanzepact to protect their
+%%         international trade.
+%%     \NC The Hanzepact was of great importance for merchants
+%%         in Hasselt. In those days trading goods were taxed
+%%         at every city, highway or rivercrossing. After
+%%         joining the Hanzepact duty free routes all over
+%%         Europe became available to Hasselt. However
+%%         important the Hanzepact was, Hasselt always stayed a
+%%         minor member of the pact. \NC\NR
+%% \stoptabulate
+%% \stopbuffer
+\startbuffer
+\starttabulate[|w(1.5cm)B|p(6.0cm)|p|]
+\NC 1252
+    \NC Hasselt đạt được hiến chương thành phố nhờ giám mục Hendrik van Vianden.
+    \NC Hendrik van Vianden bị ép buộc bởi các thị trấn khác không đồng ý với
+        hiến chương. Mất cả môt thời kì dài để nghe theo Giám mục. Sau đó,
+	được sự hỗ trợ của Hội đồng giám mục trong cuộc chiến nhỏ với người
+	Drents, hiến chương được thông qua. \NC\NR
+\NC 1350
+    \NC Hasselt gia nhập Hanzepact để bảo vệ mậu dịch quốc tế của họ.
+    \NC Hanzepact là thế lực lớn nhất trong việc buôn bán ở Hasselt. Trong
+        những ngày này, hàng hóa giao thương bị đánh thuế khắp mọi thành phố,
+	đường cao tốc hay điểm qua sông. Sau khi gia nhập Hanzepact, các tuyến
+	đường miễn thuế toàn Châu Âu đều sẵn sàng với Hasselt. Tuy nhiên, điểm
+	quan trọng là trong Hanzepact, Hasselt luôn là thành viên không quan
+	trọng. \NC\NR
+\stoptabulate
+\stopbuffer
+
+%A tabulate definition could look like this:
+Một định nghĩa cách xếp cột có thể trông như thế này:
+\typebuffer
+
+%In this case the first column is 1.5 \Centi \Meter\ wide and
+%is type set bold (\type{B}). The second column has a width
+%of 6 \Centi \Meter\ and is type set like a paragraph. The
+%remaining horizontal space is used up by the last paragraph.
+Trong trường hợp này, cột đầu tiên rộng 1.5 \Centi \Meter\ và được đặt chữ đậm
+(\type{B}). Cột thứ hai có độ rộng là 6 \Centi \Meter và nhập như một đoạn
+văn. Khoảng trống chiều ngang còn lại được dùng bởi đoạn văn còn lại.
+
+%The example is typeset like this:
+Ví dụ được sắp như sau:
+
+\getbuffer
+
+%Like in the table mechanism a number of formatting commands
+%and keys are used. A list of these commands and keys are
+%shown in \in{table}[tab:tabularformattingcommands].
+Giống như cơ chế tạo bảng, một số các lệnh và khóa định dạng được dùng. Một
+danh sách các lệnh và khóa này được thể hiện trong \in{table}[tab:tabularformattingcommands]
+
+%% \placetable[][tab:tabularformattingcommands]
+%%   {Tabular commands.}
+%% \starttable[|lT|l|lT|l|]
+%% \NC l                 \NC left align
+%% \NC I                 \NC \it italic
+%% \NC \FR
+%% \NC c                 \NC center
+%% \NC R                 \NC \sl roman
+%% \NC \MR
+%% \NC r                 \NC right align
+%% \NC S                 \NC \sl slanted
+%% \NC \MR
+%% \NC i\sl n            \NC spacing left
+%% \NC T                 \NC \tt teletype
+%% \NC \MR
+%% \NC j\sl n            \NC spacing right
+%% \NC m                 \NC in||line math
+%% \NC \MR
+%% \NC k\sl n            \NC spacing around
+%% \NC M                 \NC display  math
+%% \NC \MR
+%% \NC w({\sl d})        \NC 1 line,   fixed width
+%% \NC f\tex{command}    \NC font specification
+%% \NC \MR
+%% \NC p({\sl d})        \NC paragraph, fixed width
+%% \NC b\arg{..}         \NC place \type{..} before the entry
+%% \NC \MR
+%% \NC p                 \NC paragraph, maximum width
+%% \NC a\arg{..}         \NC place \type{..} after the entry
+%% \NC \MR
+%% \NC B                 \NC \bf boldface
+%% \NC h\tex{command}    \NC apply \tex{command} on the entry
+%% \NC \LR
+%% \stoptable
+\placetable[][tab:tabularformattingcommands]
+  {Lệnh xếp cột.}
+\starttable[|lT|l|lT|l|]
+\NC l                 \NC gióng hàng bên trái
+\NC I                 \NC \it chữ nghiêng
+\NC \FR
+\NC c                 \NC canh giữa
+\NC R                 \NC \sl chữ La mã
+\NC \MR
+\NC r                 \NC gióng hàng bên phải
+\NC S                 \NC \sl chữ xiên
+\NC \MR
+\NC i\sl n            \NC khoảng trắng bên trái
+\NC T                 \NC \tt kiểu đánh máy
+\NC \MR
+\NC j\sl n            \NC khoảng trắng bên phải
+\NC m                 \NC in||line math
+\NC \MR
+\NC k\sl n            \NC khoảng trắng xung quanh
+\NC M                 \NC hiển thị kí tự toán
+\NC \MR
+\NC w({\sl d})        \NC 1 dòng, độ rộng cố định
+\NC f\tex{command}    \NC font chữ xác định
+\NC \MR
+\NC p({\sl d})        \NC đoạn văn, độ rộng cố định
+\NC b\arg{..}         \NC đặt \type{..} trước mục
+\NC \MR
+\NC p                 \NC đoạn văn, độ rộng tối đa
+\NC a\arg{..}         \NC đặt \type{..} sau mục
+\NC \MR
+\NC B                 \NC \bf chữ đậm
+\NC h\tex{command}    \NC chấp nhận \tex{command} trong mục
+\NC \LR
+\stoptable
+
+%Another example of paragraph formatting could look like this.
+Một ví dụ khác về định dạng trang:
+
+%% \startbuffer
+%% \definetabulate[ChemPar][|l|p|l|]
+
+%% \startChemPar
+%% \NC Limekilns
+%%     \NC Hasselt has its own limekilns. These were build in 1504
+%%         and produced quick lime up to 1956. Nowadays they are a
+%%         tourist attraction.
+%%     \NC \chemical{CaCO_3,~,GIVES,~,CaO,~,+,~,CO_2} \NC\NR
+%% \stopChemPar
+%% \stopbuffer
+\startbuffer
+\definetabulate[ChemPar][|l|p|l|]
+
+\startChemPar
+\NC Lò vôi
+    \NC Hasselt có các lò vôi riêng. Chúng được xây dựng vào năm 1504 và sản
+        xuất vôi đến năm 1956. Ngày nay, chúng là các điểm du lịch hấp dẫn.
+    \NC \chemical{CaCO_3,~,GIVES,~,CaO,~,+,~,CO_2} \NC\NR
+\stopChemPar
+\stopbuffer
+
+\typebuffer
+
+%And it would come out like this:
+Và nó được xuất ra như thế này:
+
+\getbuffer
+
+%The chemical module is explained in another manual, because
+%not everybody is interested in chemical stuff.
+Mođun hóa học được diễn giải trong một sổ tay khác bởi vì không phải ai cũng
+thích hóa học.
+
+%Here we also introduced the command to define the paragraph
+%layout.
+Ở đây, chúng chúng ta cũng giới thiệu lệnh để định nghĩa khung nền của đoạn
+văn.
+
+\shortsetup{definetabulate}
+
+%and we also have:
+và chúng ta cũng có:
+
+\shortsetup{setuptabulate}
+
+\stopcomponent

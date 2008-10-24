@@ -1,0 +1,85 @@
+\startcomponent ma-cb-vi-frames
+\project ma-cb
+\product ma-cb-vi
+\environment ma-cb-env-vi
+
+%\chapter{Outlined text}
+\chapter{Tạo viền quanh chữ}
+
+%\index{outline+text}
+\index{viền ngoài+chữ}
+
+\Command{\tex{framed}}
+\Command{\tex{setupframed}}
+\Command{\tex{inframed}}
+
+%You can \inframed{outline} a text with \type{\framed}. The
+%command looks like this:
+Bạn có thể \inframed{viền quanh} chữ với lệnh \type{\framed}. Câu lệnh như
+sau:
+
+\shortsetup{framed}
+
+%The bracket pair is optional and contains the set up
+%parameters. The curly braces enclose the text. To be honest,
+%the outlined text in the last paragraph was done with
+%\type{\inframed}. This command takes care of the interline
+%spacing.
+Cặp ngoặc vuông là tùy chọn và chứa các tham số thiết lập. Cặp ngoặc móc chứa
+đoạn chữ. Dòng chữ được viền quanh trong đoạn văn cuối được thực hiện với
+\type{\inframed}. Lệnh này xem xét xét khoảng trắng của đường viền.
+
+%\startbuffer
+%\framed[height=3em,width=fit]{Hasselt needs more space}
+%\stopbuffer
+\startbuffer
+\framed[height=3em,width=fit]{Hasselt cần thêm đất}
+\stopbuffer
+
+\typebuffer
+
+%This becomes:
+Sẽ cho ra:
+
+\startbaselinecorrection
+\getbuffer
+\stopbaselinecorrection
+
+%Some other examples of \type{\framed} and its set up
+%parameters are shown below. This time we use the in||line
+%alternative \type{\inframed}.
+Bên dưới là vài ví dụ khác về \type{\framed} và tham số thiết lập của nó. Lần
+này, chúng ta dùng các kiểu \type{\inframed} xen kẽ nhau.
+
+%\startbuffer
+%\leftaligned
+%  {\inframed[width=fit]{People in Hasselt}}
+%\midaligned
+%  {\inframed[height=1.5cm,frame=off]{have a}}
+%\rightaligned
+%  {\inframed[background=screen]{historic background}}
+%\stopbuffer
+\startbuffer
+\leftaligned
+  {\inframed[width=fit]{Người dân Hasselt}}
+\midaligned
+  {\inframed[height=1.5cm,frame=off]{có một}}
+\rightaligned
+  {\inframed[background=screen]{nền tảng lịch sử}}
+\stopbuffer
+
+\typebuffer
+
+%This leads to:
+Cho ra
+
+\getbuffer
+
+%The \type{\framed} command is very sophisticated and it is
+%used in many macros. The command to set up frames is:
+Lệnh \type{\framed} rất phức tạp và nó được dùng trong nhiều macro. Lệnh thiết
+lập khung là:
+
+\shortsetup{setupframed}
+
+\stopcomponent

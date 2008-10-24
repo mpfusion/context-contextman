@@ -1,0 +1,87 @@
+\startcomponent ma-cb-vi-margintexts
+\project ma-cb
+\product ma-cb-vi
+\environment ma-cb-env-vi
+
+%\chapter{Margin texts}
+\chapter{Đặt chữ vào lề trang}
+
+%\index{margin text}
+\index{lề trang}
+
+\Command{\tex{inmargin}}
+\Command{\tex{inleft}}
+\Command{\tex{inright}}
+\Command{\tex{margintitle}}
+
+%It is very easy to put text in the margin. You just use
+%\type{\inmargin}.
+Thật dễ để đặt chữ vào trong lề trang. Bạn chỉ cần dùng \type{\inmargin}.
+
+\shortsetup{inmargin}
+
+%You may remember one of the earlier examples:
+Bạn có thể nhớ đến một trong các ví dụ trước:
+
+\typebuffer[marginpicture]
+
+%This would result in a figure in the \pagereference
+%[marginpicture]\getbuffer [marginpicture]margin. You
+%can imagine that it looks quite nice in some documents. But
+%be careful. The margin is rather small so the figure could
+%become very marginal.
+Đây là kết quả một hình ảnh nằm ở \pagereference[marginpicture]\getbuffer
+[marginpicture]lề trang.Bạn có thể hình dung ra nó rất đẹp ở một vài tài liệu.
+Nhưng hãy cẩn thận. Lề trang rất nhỏ để hình có thể chèn vào.
+
+%A few other examples are shown in the text below.
+Đoạn bên dưới cho thêm vài ví dụ khác.
+
+%\startbuffer
+%The Ridderstraat (Street of knights) \inmargin{Street of\\Knights}
+%is an obvious name. In the 14th and 15th centuries, nobles and
+%prominent citizens lived in this street. Some of their big houses
+%were later turned into poorhouses \inright{poorhouse}and old
+%peoples homes.
+
+%Up until \inleft[low]{\tfc 1940}1940 there was a synagog in the
+%Ridderstraat. Some 40 Jews gathered there to celebrate their
+%sabbath. During the war all Jews were deported to Westerbork and
+%then to the extermination camps in Germany and Poland. None of
+%the Jewish families returned. The synagog was knocked down in
+%1958.
+%\stopbuffer
+\startbuffer
+Phố Ridderstraat (Phố Kị sĩ) \inmargin{Phố\\Kị sĩ} là cái tên rõ ràng. Vào thế
+kỉ 14 và 15, quí tộc và người nổi tiếng sống ở phố này. Một vài ngôi nhà lớn
+của họ sau này đã trở thành trại tế bần \inright{trại tế bần} và nhà dưỡng
+lão.
+
+Cho đến năm \inlest[low]{\tfc 1940}1940, có một nhà thờ Do Thái ở đây. Khoảng
+40 người Do Thái đã cùng nhau tổ chức kì nghỉ cuối tuần của họ. Trong suốt
+chiến tranh, tất cả người Do Thái bị trục xuất đến Westerbork và sau đó đến
+trại tập trung ở Đức và Ba Lan. Không ai trong số họ trở về. Nhà thờ Do Thái
+bị phá hủy vào năm 1958.
+\stopbuffer
+
+\typebuffer
+
+%The commands \type{\inmargin}, \type{\inleft} and
+%\type{\inright} all have the same function. In a two sided
+%document \type{\inmargin} puts the margin text in the correct
+%margin. The \type{\\} is used for line breaking. The example
+%above would look like this:
+Các lệnh \type{\inmargin}, \type{inleft} và \type{inright} có cùng chức năng.
+Trong tài liệu hai mặt lệnh \type{inmargin} đặt chữ vào chính xác lề của nó.
+\type{\\} dùng để xuống dòng. Ví dụ ở trên trông như thế này:
+
+\getbuffer
+
+%You can set up the margin text with:
+Bạn có thể thiết lập chữ nơi lề với lệnh:
+
+\starttyping
+\setupinmargin
+\stoptyping
+
+\stopcomponent

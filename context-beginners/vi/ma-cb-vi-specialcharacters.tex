@@ -1,0 +1,98 @@
+\startcomponent ma-cb-vi-specialcharacters
+
+\project ma-cb
+\product ma-cb-vi
+\environment ma-cb-env-vi
+
+%% \chapter[special chars]{Special characters}
+\chapter[special chars]{Kí tự đặc biệt}
+
+%\index{special characters}
+\index{kí tự đặc biệt}
+
+%% You have seen that \CONTEXT\ commands are preceded by a
+%% \tex{} (backslash). This means that \tex{} has a
+%% special meaning to \CONTEXT. Aside from \tex{} there are
+%% other characters that need special attention when you want
+%% them to appear in verbatim mode or in text mode.
+%% \in{Table}[tab:specchars] gives an overview of these special
+%% characters and what you have to type to produce them.
+Bạn đã thấy rằng các lệnh \CONTEXT\ theo sau một \tex{} (dấu chéo ngược). Điều
+này nghĩa là \tex{} có một ý nghĩa đặc biệt đối với \CONTEXT. Ngoài \tex{} nói
+riêng, còn có những kí tự đặc biệt khác cần quan tâm đặc biệt khi bạn muốn
+chúng xuất hiện trong nguyên mẫu hoặc trong phương thức văn bản.
+\in{Table}[tab:specchars] cho bạn cái nhìn tổng quan về những kí tự đặc biệt
+này cách bạn nhập để tạo chúng.
+
+\let\normalunderscore=\_
+\let\normaltilde     =\~
+
+%% \placetable[here,force][tab:specchars]
+%%   {Special characters (1).}
+%%   \starttable[|c|c|c|c|c|]
+%%   \HL
+%%   \NC \bf \LOW{Special character} \NC \use2 \bf Verbatim  \NC \use2 \bf Text \NC\FR
+%%   \NC                         \NC \bf Type \NC \bf To produce \NC \bf Type \NC \bf To produce \NC\LR
+%%   \HL
+%%   \NC \type{#} \NC \type{\type{#}} \NC \type{#} \VL \type{\#} \NC \# \NC\FR
+%%   \NC \type{$} \NC \type{\type{$}} \NC \type{$} \VL \type{\$} \NC \$ \NC\MR
+%%   \NC \type{&} \NC \type{\type{&}} \NC \type{&} \VL \type{\&} \NC \& \NC\MR
+%%   \NC \type{%} \NC \type{\type{%}} \NC \type{%} \VL \type{\%} \NC \% \NC\LR
+%%   \HL
+%%   \stoptable
+\placetable[here,force][tab:specchars]
+  {Kí tự đặc biệt (1).}
+  \starttable[|c|c|c|c|c|]
+  \HL
+  \NC \bf \LOW{Kí tự đặc biệt} \NC \use2 \bf Nguyên mẫu  \NC \use2 \bf Văn bản \NC\FR
+  \NC                         \NC \bf Nhập \NC \bf Xuất \NC \bf Nhập \NC \bf Xuất \NC\LR
+  \HL
+  \NC \type{#} \NC \type{\type{#}} \NC \type{#} \VL \type{\#} \NC \# \NC\FR
+  \NC \type{$} \NC \type{\type{$}} \NC \type{$} \VL \type{\$} \NC \$ \NC\MR
+  \NC \type{&} \NC \type{\type{&}} \NC \type{&} \VL \type{\&} \NC \& \NC\MR
+  \NC \type{%} \NC \type{\type{%}} \NC \type{%} \VL \type{\%} \NC \% \NC\LR
+  \HL
+  \stoptable
+
+%% Other special characters have a meaning in typesetting
+%% mathematical expressions and some can be used in
+%% math mode only (see \in{chapter}[formulas]).
+Các kí tự đặc biệt khác được dùng để diễn đạt xếp chữ toán học và một số khác
+chỉ được dùng trong phương thức toán (xem \in{chương}[formulas]).
+
+%% \let\normalbar=|
+%% \placetable
+%%   [here,force]
+%%   [tab:special chars]
+%%   {Special characters (2).}
+%%   \starttable[|c|c|c|c|c|]
+%%   \HL
+%%   \NC \bf \LOW{Special character} \NC \use2 \bf Verbatim  \NC \use2 \bf Text \NC\FR
+%%   \NC                         \NC \bf Type \NC \bf To produce \NC \bf Type \NC \bf To produce \NC\LR
+%%   \HL
+%%   \NC \type{+} \NC \type{\type{+}} \NC \type{+} \VL \type{$+$} \NC $+$ \NC\FR
+%%   \NC \type{-} \NC \type{\type{-}} \NC \type{-} \VL \type{$-$} \NC $-$ \NC\MR
+%%   \NC \type{=} \NC \type{\type{=}} \NC \type{=} \VL \type{$=$} \NC $=$ \NC\MR
+%%   \NC \type{<} \NC \type{\type{<}} \NC \type{<} \VL \type{$<$} \NC $<$ \NC\MR
+%%   \NC \type{>} \NC \type{\type{>}} \NC \type{>} \VL \type{$>$} \NC $>$ \NC\LR
+%%   \HL
+%%   \stoptable
+\let\normalbar=|
+\placetable
+  [here,force]
+  [tab:special chars]
+  {Kí tự đặc biệt (2).}
+  \starttable[|c|c|c|c|c|]
+  \HL
+  \NC \bf \LOW{Kí tự đặc biệt} \NC \use2 \bf Nguyên mẫu  \NC \use2 \bf Văn bản \NC\FR
+  \NC                         \NC \bf Nhập \NC \bf Xuất \NC \bf Nhập \NC \bf Xuất \NC\LR
+  \HL
+  \NC \type{+} \NC \type{\type{+}} \NC \type{+} \VL \type{$+$} \NC $+$ \NC\FR
+  \NC \type{-} \NC \type{\type{-}} \NC \type{-} \VL \type{$-$} \NC $-$ \NC\MR
+  \NC \type{=} \NC \type{\type{=}} \NC \type{=} \VL \type{$=$} \NC $=$ \NC\MR
+  \NC \type{<} \NC \type{\type{<}} \NC \type{<} \VL \type{$<$} \NC $<$ \NC\MR
+  \NC \type{>} \NC \type{\type{>}} \NC \type{>} \VL \type{$>$} \NC $>$ \NC\LR
+  \HL
+  \stoptable
+
+\stopcomponent

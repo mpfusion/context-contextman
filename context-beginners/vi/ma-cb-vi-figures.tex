@@ -1,0 +1,357 @@
+\startcomponent ma-cb-en-figures
+\project ma-cb
+\product ma-cb-en
+\environment ma-cb-env-vi
+
+%\chapter[figures]{Figures}
+\chapter[figures]{Hình Ảnh}
+
+%\index{figure}
+\index{hình ảnh}
+%\seeindex{picture}{figure}
+%\index{floating blocks}
+\index{khối thay đổi}
+
+\Command{\tex{placefigure}}
+\Command{\tex{startfiguretext}}
+\Command{\tex{setupfigures}}
+\Command{\tex{startcombination}}
+\Command{\tex{setupfloats}}
+\Command{\tex{setupcaptions}}
+\Command{\tex{externalfigure}}
+
+%Photographs and pictures can be inserted in your document
+%with the following command:
+Tranh và ảnh có thể được chèn vào tài liệu của bạn với các lệnh sau:
+
+%\startbuffer
+%\placefigure
+%   [][fig:church]
+%   {Stephanus Church.}
+%   {\externalfigure[ma-cb-24][width=.4\textwidth]}
+%\stopbuffer
+\startbuffer
+\placefigure
+   [][fig:nhà thờ]
+   {Nhà thờ Stephanus.}
+   {\externalfigure[ma-cb-24][width=.4\textwidth]}
+\stopbuffer
+
+\typebuffer
+
+%After processing this will come out as
+%\in{figure}[fig:church] at the first available place.
+Sau khi thực thi, lệnh trên sẽ xuất ra như \in{hình}[fig:nhà thờ]
+
+\getbuffer
+
+%The command \type{\placefigure} handles numbering and
+%vertical spacing before and after your figure. Furthermore
+%this command initializes a float mechanism, which means that
+%\CONTEXT\ looks whether there is enough space for your
+%figure on the page. If not the figure will be placed at
+%another location and the text carries on, while the figure
+%floats in your document until the optimal location is found.
+%You can influence this mechanism within the first bracket
+%pair.
+Lệnh \type{\placefigure} đánh số và tạo khoảng trắng trước và sau hình ảnh của
+bạn. Xa hơn, lệnh này khởi chạy một cơ chế thay đổi nghĩa là \CONTEXT\ tìm trong
+trang một khoảng trống đủ cho hình ảnh của bạn. Nếu không có, hình ảnh sẽ được
+đặt ở một vị trí khác trong khi đoạn văn bản vẫn được tiếp tục sắp xếp cho đến
+khi vị trí tốt nhất được tìm thấy. Bạn có thể tác động cơ chế này trong cặp
+ngoặc vuông.
+
+%The command \type{\placefigure} is a predefined example of:
+Lệnh \type{\placefigure} là một ví dụ được xác định trước của:
+
+% VZ (2006-11-13)
+%\shortsetup{placeblock}
+\shortsetup{placefigure}
+
+%The options are described in \in{table}[tab:placefigure].
+Các tùy chọn được diễn giải trong \in{bảng}[tab:placefigure].
+
+%\placetable
+  %[here]
+  %[tab:placefigure]
+  %{Options in \type{\placefigure}.}
+%\starttable[|l|l|]
+%\HL
+%\NC \bf Option \NC \bf Meaning                             \NC\SR
+%\HL
+%\NC here       \NC put figure at this location if possible \NC\FR
+%\NC force      \NC force figure placement here             \NC\MR
+%\NC page       \NC put figure on its own page              \NC\MR
+%\NC top        \NC put the figure at the top of the page   \NC\MR
+%\NC bottom     \NC put the figure at the botom of the page \NC\MR
+%\NC left       \NC place figure at the left margin         \NC\MR
+%\NC right      \NC place figure at the right margin        \NC\MR
+%\NC margin     \NC place figure in the margin              \NC\LR
+%\HL
+%\stoptable
+\placetable
+  [here]
+  [tab:placefigure]
+  {Tùy chọn của lệnh \type{\placefigure}.}
+\starttable[|l|l|]
+\HL
+\NC \bf Tùy chọn \NC \bf Ý nghĩa                             \NC\SR
+\HL
+\NC here       \NC đặt hình ảnh tại vị trí này nếu có thể  \NC\FR
+\NC force      \NC vị trí hình ảnh bắt buộc ở đây          \NC\MR
+\NC page       \NC đặt hình ảnh trong trang riêng của nó   \NC\MR
+\NC top        \NC đặt hình ảnh tại phần trên của trang    \NC\MR
+\NC bottom     \NC đặt hình ảnh tại phần dưới của trang    \NC\MR
+\NC left       \NC đặt hình ảnh tại lề bên trái            \NC\MR
+\NC right      \NC đặt hình ảnh tại lề bên phải            \NC\MR
+\NC margin     \NC đặt hình ảnh tại lề                     \NC\LR
+\HL
+\stoptable
+
+%The second bracket pair is used for cross-referencing. You can
+%refer to this particular figure by typing:
+Cặp ngoặc vuông thứ hai được dùng để tham khảo chéo. Bạn có thể tham khảo đến
+riêng hình ảnh này bằng cách:
+
+%\starttyping
+%\in{figure}[fig:church]
+%\stoptyping
+\starttyping
+\in{hình}[fig:nhà thờ]
+\stoptyping
+
+%The first brace pair is used for the caption. You can type
+%any text you want. If you want no caption and no number, you
+%can type \type{{none}}. The figure labels are set up with
+%\type{\setupcaptions} and the numbering is (re)set by
+%\type{\setupnumbering} (see \in{paragraph}[floatingblocks]).
+Cặp ngoặc móc đầu tiên được dùng để chú thích. Bạn có thể nhập bất cứ chữ nào
+bạn muốn. Nếu bạn muốn không chú thích và đánh số, bạn có thể đặt
+\type{{none}}. Nhãn ảnh được thiết lập với \type{\setupcaptions} và đánh số
+được (tái) thiết lập với \type{\setupnumbering} (xem
+		\in{đoạn}[floatingblocks]).
+
+%The second brace pair is used for defining the figure and
+%addressing the file names of external figures.
+Cặp ngoặc móc thứ hai được dùng xác định đặc điểm để hình ảnh hiển thị và
+thông báo tên tập tin hình ảnh được dùng.
+
+%In the next example you see how
+%\inframed[height=1em]{Hasselt} is defined within the last
+%brace pair to show you the function of \type{\placefigure{}{}}.
+Trong ví dụ kế, chúng ta xem \inframed[height=1em]{Hasselt} được xác định như
+thế nào trong cặp ngoặc móc cuối để bạn thấy được chức năng của
+\type{\placefigure{}{}}.
+
+%\startbuffer
+%\placefigure
+%  {A framed Hasselt.}
+%  {\framed{\tfd Hasselt}}
+%\stopbuffer
+\startbuffer
+\placefigure
+  {Hasselt trong khung.}
+  {\framed{\tfd Hasselt}}
+\stopbuffer
+
+\typebuffer
+
+%This will produce:
+Sẽ cho ra:
+
+\getbuffer
+
+%However, your pictures are often created using programs like
+%Corel Draw or Illustrator and photos are --- after scanning ---
+%improved in packages like PhotoShop. Then the figures are
+%available as files. \CONTEXT\ supports all types that are handled
+%by the backend driver used. If you use \PDFTEX\ you can insert
+%\type {JPG}, \type {PNG} and (pages from) \type {PDF} files as
+%well as \METAPOST\ output (\type {MPS} files). Users normally can
+%trust \CONTEXT\ to find the best possible file type.
+Tuy nhiên, tranh của bạn thường được tạo bởi các chương trình như Corel Draw
+hoặc Illustrator và ảnh --- sau khi scan --- được biên tập bở Photoshop. Khi
+đó, các hình ảnh là các tập tin. \CONTEXT\ hỗ trợ tất cả loại tập tin được sử
+dụng bởi các chương trình điều khiển nền. Nếu bạn dùng \PDFTEX\ bạn có thể
+chèn \type {JPG}, \type {PNG} và (các trang trong) tập tin \type {PDF} cũng
+như kết quả \METAPOST\ (tập tin \type {MPS}). Người dùng bình thường có thể
+tin \CONTEXT\ nhận ra loại tập tin tốt nhất có thể.
+
+%In \in{figure}[fig:canals] you see a photo and a graphic
+%combined into one figure.
+Trong \in{hình}[fig:kênh], bạn thấy một bức ảnh và một bức tranh được lồng vào
+trong một khung hình.
+
+%\startbuffer
+%\placefigure
+%  [here,force]
+%  [fig:canals]
+%  {The Hasselt Canals.}
+%  {\startcombination[2*1]
+%     {\externalfigure[ma-cb-03][width=.4\textwidth]}
+%         {a bitmap picture}
+     %{\externalfigure[gracht][width=.4\textwidth]}
+%     {\externalfigure[ma-cb-00][width=.4\textwidth]}
+%         {a vector graphic}
+%   \stopcombination}
+%\stopbuffer
+\startbuffer
+\placefigure
+  [here,force]
+  [fig:kênh]
+  {Kênh Hasselt.}
+  {\startcombination[2*1]
+     {\externalfigure[ma-cb-03][width=.4\textwidth]}
+         {ảnh bitmap}
+     {\externalfigure[ma-cb-00][width=.4\textwidth]}
+         {tranh vector}
+   \stopcombination}
+\stopbuffer
+
+\getbuffer
+
+%You can produce this figure by typing something like:
+Bạn có thể tạo hình này bằng cách:
+\typebuffer
+
+%In this figure two pictures are combined with:
+Trong hình này, hai bức ảnh được kết hợp lại với:
+
+\shortsetup{startcombination}
+
+%The \type{\startcombination} $\cdots$
+%\type{\stopcombination} pair is used for combining two
+%pictures in one figure. You can type the number of pictures
+%within the bracket pair. If you want to display one picture
+%below the other you would have typed \type{[1*2]}. You can
+%imagine what happens when you combine 6~pictures as
+%\type{[3*2]} (\type{[rows*columns]}).
+Cặp lệnh \type{\startcombination} $\cdots$ \type{\stopcombination} được dùng
+để kết hợp các bức ảnh vào trong một khung hình. Bạn có thể nhập số bức ảnh
+vào cặp ngoặc vuông. Nếu bạn muốn hiển thị ảnh này dưới ảnh kia, bạn nhập vào
+\type{[1*2]}. Bạn có hình dung được chuyện gì khi bạn lồng ghép 6~bức ảnh
+như thế này \type{[3*2]} (\type{hàng*cột]}).
+
+%The examples shown above are enough for creating illustrated
+%documents. Sometimes however you want a more integrated
+%layout of the picture and the text. For that purpose
+%you can use:
+Các ví dụ ở trên đủ để tạo các tài liệu tranh ảnh. Tuy nhiên thỉnh thoảng bạn
+cần một khung nền tích hợp ảnh và chữ. Để thực hiện ý định đó, bạn có thể
+dùng:
+
+\shortsetup{startframedtext}
+
+%Figure and table texts are already predefined:
+Hình và bảng chữ được xác định như sau:
+
+%\startbuffer
+%\startfiguretext
+%  [left]
+%  [fig:citizens]
+%  {none}
+%  {\externalfigure[ma-cb-18][width=.5\makeupwidth]}
+%   Hasselt has always had a varying number of citizens due to
+%   economic events. For example the Dedemsvaart was dug around
+%   1810. This canal runs through Hasselt and therefore trade
+%   flourished. This led to a population growth of almost 40\%
+%   within 10~years. Nowadays the Dedemsvaart has no commercial
+%   value anymore and the canals have become a tourist
+%   attraction. But reminders of these prosperous times can be
+%   found everywhere.
+%\stopfiguretext
+%\stopbuffer
+\startbuffer
+\startfiguretext
+  [left]
+  [fig:kênh]
+  {none}
+  {\externalfigure[ma-cb-18][width=.5\makeupwidth]}
+   Hasselt có số dân luôn biến đổi do các sự kiện kinh tế. Ví dụ kênh
+   Dedemsvaart được đào vào năm 1810. Con kênh này chạy xuyên qua Hasselt và 
+   thúc đẩy giao thương. Việc này đã khiến dân số tăng lên khoảng 40\% trong
+   10~năm. Ngày nay, kênh Dedemsvaart không còn giá trị thương mại nhiều và
+   các con kênh trở thành điểm du lịch hấp dẫn. Nhưng sự gợi nhớ đến thời kì
+   thịnh vượng này có thể tìm thấy mọi nơi.
+\stopfiguretext
+\stopbuffer
+
+\typebuffer
+
+%is shown in the figure below.
+được hiển thị như hình bên dưới.
+
+\start
+\setuptolerance[verytolerant]
+\getbuffer
+\stop
+
+\shortsetup{externalfigure}
+
+%% %The last curly brace pair encloses the command
+%% %\type{\externalfigure}. This command gives you the freedom
+%% %to do anything you want with a figure.
+%% %\type{\externalfigure} has two bracket pairs. The first is
+%% %used for the exact file name without extension, the second
+%% %for file formats and dimensions. It is not difficult to
+%% %guess what happens if you type:\footnote{See
+%% %\at{page}[marginpicture]}.
+Cặp ngoặc móc cuối bao quanh lệnh \type{\externalfigure}. Lệnh này cho bạn sự
+tự do làm bất cứ điều gì bạn muốn với hình. Lệnh \type{\externalfigure} có hai
+cặp ngoặc vuông. Cặp đầu được dùng để chỉ chính xác tên tập tin không cần phần
+mở rộng, cặp thứ hai dùng để định dạng và xác định kích thước tập tin. Không
+khó để đoán chuyện gì nếu bạn nhập vào:\footnote{Xem
+	\at{trang}[marginpicture].}
+
+\startbuffer[marginpicture]
+\inmargin
+  {\externalfigure
+     [ma-cb-23]
+     [width=\marginwidth]}
+\stopbuffer
+
+\typebuffer[marginpicture]
+
+%You can set up the layout of figures with:
+Bạn có thể thiết lập khung nền của hình với:
+
+\shortsetup{setupfloats}
+
+%You can set up the numbering and the labels with:
+Bạn có thể thiết lập cách đánh số và đặt nhãn với:
+
+\shortsetup{setupcaptions}
+
+%These commands are typed in the set up area of your input
+%file and have a global effect on all floating blocks.
+Những lệnh này được nhập trong phần thiết lập của tập tin nhập liệu và có tác
+dụng toàn bộ trên tất cả các khối thay đổi.
+
+%% \startbuffer
+%% \setupfloats
+%%   [location=right]
+%% \setupcaptions
+%%   [location=top,
+%%    style=boldslanted]
+
+%% \placefigure
+%%   {A characteristic view on Hasselt.}
+%%   {\externalfigure[ma-cb-12][width=8cm]}
+%% \stopbuffer
+\startbuffer
+\setupfloats
+  [location=right]
+\setupcaptions
+  [location=top,
+   style=boldslanted]
+
+\placefigure
+  {Một góc nhìn dặc trưng ở Hasselt.}
+  {\externalfigure[ma-cb-12][width=8cm]}
+\stopbuffer
+
+\typebuffer
+
+{\getbuffer}
+
+\stopcomponent

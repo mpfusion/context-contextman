@@ -1,0 +1,143 @@
+\startcomponent ma-cb-vi-gettingstarted
+
+\project ma-cb
+\product ma-cb-vi
+\environment ma-cb-env-vi
+
+%\chapter{How to process a file}
+\chapter{Phương thức thực thi một tập tin}
+
+%\index{input file+processing}
+%\index[dvifile]{\type{dvi}--file}
+%\index[pdffile]{\type{pdf}--file}
+\index{tập tin nhập liệu+quá trình thực thi}
+\index[taptin_dvi]{\type{dvi}--taptin}
+\index[taptin_pdf]{\type{pdf}--taptin}
+
+%If you want to process a \CONTEXT\ input file, you might
+%type at the command line prompt:
+Nếu bạn muốn thực thi một tập tin nhập liệu \CONTEXT,bạn có thể gõ vào cửa sổ
+dòng lệnh:
+
+%\starttyping
+%context filename
+%\stoptyping
+\starttyping
+context ten_tap_tin
+\stoptyping
+
+%The availability of the batch command \type{context} depends
+%on the system you're using. Ask your system administrator
+%the command you use to start \CONTEXT. If your filename is
+%\type{myfile.tex} this can be:
+Lệnh \type{context} có thể phụ thuộc vào hệ thống của bạn đang dùng. Hỏi quản
+trị hệ thống của bạn để biết lệnh bắt đầu \CONTEXT. Nếu tên tập tin của bạn là
+\type{tap_tin.tex} thì bạn có thể dùng:
+
+%\starttyping
+%context myfile
+%\stoptyping
+\starttyping
+context tap_tin
+\stoptyping
+
+%or when \TEXEXEC\ is properly installed:
+hoặc nếu \TEXEXEC\ đã được cài đặt:
+
+%\starttyping
+%texexec --pdf myfile
+%\stoptyping
+\starttyping
+texexec --pdf tap_tin
+\stoptyping
+
+%the extension \type{.tex} is not needed.
+phần mở rộng \type{.tex} không cần thiết.
+
+%After pressing \Enter\ processing will be started. \CONTEXT\
+%will show processing information on your screen. If
+%processing is succesful the command line prompt will return
+%and \CONTEXT\ will produce a \type{dvi} or \type{pdf} file.
+Sau khi nhấn \Enter\ quá trình thực thi sẽ được bắt đầu. \CONTEXT\ sẽ hiện
+hiện thông tin về quá trình thực thi trên màn hình. Nếu quá trình thực thi
+thành công, dấu nhắc dòng lệnh sẽ được trả về và \CONTEXT\ sẽ tạo một tập tin
+\type{dvi} hoặc \type{pdf}.
+
+%If processing is not succesful ---for example because you
+%typed \type{\stptext} instead of \type{\stoptext}---
+%\CONTEXT\ produces a \type{ ? } on your terminal and tells
+%you it has just processed an error. It will give you some
+%basic information on the type of error and the line number
+%where the error becomes effective.
+Nếu quá trình thực thi không thành công ---ví dụ bởi vì bạn đã gõ
+\type{\stptext} thay vì \type{\stoptext}--- \CONTEXT\ hiện một \type{ ? } trên
+trên thiết bị đầu cuối và báo với bạn nó vừa thực thi một lỗi. Nó sẽ đưa ra
+vài thông tin cơ bản về loại lỗi và số dòng nơi lỗi có tác động.
+
+%At the instant of \type{ ? } you can type:
+Tại dấu \type{ ? } bạn có thể:
+
+%\starttabulate[|||]
+%\NC \type{H} \NC for help information on your error \NC\NR
+%\NC \type{I} \NC for inserting the correct \CONTEXT\ command \NC\NR
+%\NC \type{Q} \NC for quiting and entering batch mode \NC\NR
+%\NC \type{X} \NC for exiting the running mode \NC\NR
+%\NC \Enter   \NC for ignoring the error \NC\NR
+%\stoptabulate
+\starttabulate[|||]
+\NC \type{H} \NC thông tin trợ giúp về lỗi \NC\NR
+\NC \type{I} \NC nhập lại lệnh \CONTEXT\ chính xác \NC\NR
+\NC \type{Q} \NC for quiting and entering batch mode \NC\NR
+\NC \type{X} \NC thoát phương thức đang chạy \NC\NR
+\NC \Enter   \NC bỏ qua lỗi \NC\NR
+\stoptabulate
+
+%Most of the time you will type \Enter\ and processing will
+%continue. Then you can edit the input file and fix the error.
+Thông thường bạn sẽ gõ \Enter\ quá trình thực thi sẽ lại tiếp tục. Sau đó, bạn
+có thể chỉnh sửa tập tin nhập liệu và sửa lỗi.
+
+%Some errors will produce a~\type{ * } on your screen and
+%processing will stop. This error is due to a fatal error in
+%your input file. You can't ignore this error and the only
+%option you have is to type \type{\stop} or {\sc Ctrl}~Z. The
+%program will be halted and you can fix the error.
+Một vài lỗi sẽ tạo một dấu~\type{ * } trên màn hình và quá trình thực thi sẽ
+chấm dứt. Lỗi này là do một lỗi nguy hiểm trong tập tin nhập liệu của bạn. Bạn
+không thể bỏ qua mà chỉ có thể gõ \type{\stop} hoặc nhấn {\sc Ctrl}~Z. Chương
+trình sẽ thoát và bạn có thể sửa lỗi.
+
+%During the processing of your input file \CONTEXT\ will also
+%inform you of what it is doing with your document. For
+%example it will show page numbers and information about
+%process steps. Further more it gives warnings. These are of
+%a typographical order and tells you when line breaking is not
+%successful. All information on processing is stored in a
+%\type{log} file that can be used for reviewing warnings and
+%errors and the respective line numbers where they occur in
+%your file.
+Trong suốt quá trình thực thi tập tin nhập liệu của bạn, \CONTEXT\ cũng sẽ
+thông tin cho bạn những gì nó đang làm với tài liệu của bạn. Ví dụ, nó sẽ hiện
+số trang và thông tin về các bước thực thi. Xa hơn nữa nó sẽ đưa ra các
+cảnh báo. Những cảnh báo này thuộc về loại lỗi in và báo cho bạn biết khi
+xuống dòng không thành công. Tất cả về quá trình thực thi được lưu trữ trong
+tập tin \type{log} và bạn có thể xem lại các cảnh báo, các lỗi và các số dòng
+tương ứng nơi chúng xuất hiện trong tập tin nhập liệu của bạn.
+
+%When processing is succesful \CONTEXT\ produces a new file,
+%with the extension \type{.dvi} or \type{.pdf} so the files
+%\type{myfile.dvi} or \type{myfile.pdf} are generated. The
+%abbreviation \type{dvi} stands for Device Indepent. This
+%means that the file can be processed by a suitable
+%PostScript (\PS) printer driver to make the file suitable
+%for printing or viewing. The abbreviation \PDF\ stands for
+%Portable Document Format. This is a platform independent
+%format for printing and viewing.
+Khi quá trình thực thi thành công, \CONTEXT\ tạo một tập tin mới với phần mở
+rộng là \type{.dvi} hoặc \type{.pdf}. Đó là các tập tin \type{tap_tin.dvi}
+hoặc \type{tap_tin.pdf} đã được sinh ra. Từ viết tắt \type{dvi} nghĩa là
+Device Indepent. Tập tin này có thể được in hay xem bởi các máy in PostScript
+(\PS). Từ viết tắt \PDF\ nghĩa là Portable Document Format, là một định dạng
+độc lập nền tảng để in hoặc xem.
+
+\stopcomponent

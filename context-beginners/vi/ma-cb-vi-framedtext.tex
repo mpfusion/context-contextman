@@ -1,0 +1,65 @@
+\startcomponent ma-cb-vi-framedtexts
+\project ma-cb
+\product ma-cb-vi
+\environment ma-cb-env-vi
+
+%\chapter{Outlined paragraphs}
+\chapter{Tạo viền quanh đoạn văn}
+
+%\index{outline+paragraph}
+\index{đường viền+đoạn văn}
+
+\Command{\tex{startframedtext}}
+\Command{\tex{setupframedtext}}
+
+%Complete paragraphs can be outlined with:
+Toàn đoạn văn có thể được viền quanh với:
+
+\shortsetup{startframedtext}
+
+%\startbuffer
+%\definefloat[intermezzo]
+%
+%\placeintermezzo[here][block:bridge]{An intermezzo.}
+%\startframedtext[width=.8\makeupwidth]
+%It was essential for hasselt to have a bridge across the river
+%Zwarte water. The bishop of Utrecht gave Hasselt his consent
+%in 1486.
+%\blank
+%Other cities in the neighbourhood of Hasselt were afraid of the
+%toll money to be paid when crossing this bridge so they
+%prevented the construction for many years.
+%\stopframedtext
+%\stopbuffer
+\startbuffer
+\definefloat[intermezzo]
+
+\placeintermezzo[here][block:bridge]{An intermezzo.}
+\startframedtext[width=.8\makeupwidth]
+Thật cần thiết cho Hasselt để có một cây cầu băng qua sông Zwarte Water. Giám
+mục Utrecht đã chấp thuận việc này vào năm 1486.
+\blank
+Các thành phố khác quanh Hasselt lo sợ phải đóng thuế khi đi qua cây cầu này
+vì vậy họ đã ngăn trở việc xây dựng trong nhiều năm.
+\stopframedtext
+\stopbuffer
+
+\typebuffer
+
+%This example also illustrates the command
+%\type{\definefloat}. You can find more information
+%on this command in \in{paragraph}[textblocks]. The % VZ 2006-11-13
+%on this command in \in{paragraph}[floatingblocks]. The
+%\type{\blank} is necessary to enforce a blank line.
+Ví dụ này cũng minh họa lệnh \type{definefloat}. Bạn có thể tìm thêm thông tin
+về lệnh này trong \in{paragraph}[floatingblocks]. Dòng \type{\blank} để tạo
+một dòng trắng.
+
+\getbuffer
+
+%The outlining can be set up with:
+Đường viền có thể được thiết lập với:
+
+\shortsetup{setupframedtexts}
+
+\stopcomponent

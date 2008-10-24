@@ -1,0 +1,18 @@
+Vocabulary, định nghĩa, cách dịch các từ trong "ConteXt on excursion"
+-------------------------------------------------------------------------
+Table of content			= mục lục
+index					= bảng tra
+setup					= thiết lập
+processing				= quá trình thực thi
+special character			= kí tự đặc biệt
+%% cấu trúc
+hapter					= chương
+section					= mục
+paragraph				= đoạn văn
+appendice				= phụ lục
+floating blocks				= khối thay đổi
+layout					= khung nền
+definition				= cách định nghĩa
+heading					= đề mục
+typeset					= sắp chữ
+

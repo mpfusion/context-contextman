@@ -1,0 +1,88 @@
+\startcomponent ma-cb-vi-structure
+
+\project ma-cb
+\product ma-cb-vi
+\environment ma-cb-env-cz
+
+%% \chapter{Defining a document}
+\chapter{Định nghĩa một tài liệu}
+
+%% Every document is started with \type{\starttext} and closed
+%% with \type{\stoptext}. All textual input is placed between
+%% these two commands and \CONTEXT\ will only process that
+%% information.
+Mỗi tài liệu được bắt đầu bằng \type{\starttext} và được đóng bằng
+\type{\stoptext}. Tất cả nhập liệu nguyên văn được được đặt giữa hai lệnh này
+và \CONTEXT\ sẽ chỉ thực thi thông tin đó.
+
+%% Setup information is placed in the set up area just before
+%% \type{\starttext}.
+Thông tin thiết lập được đặt trong phần thiết lập nằm trước \type{\starttext}.
+
+%% \startbuffer
+%% \setupbodyfont[12pt]
+%% \starttext
+%% This is a one line document.
+%% \stoptext
+%% \stopbuffer
+
+%% \typebuffer
+\startbuffer
+\setupbodyfont[12pt]
+\starttext
+Đây là tài liệu một dòng.
+\stoptext
+\stopbuffer
+
+\typebuffer
+
+%% Within the \type{\starttext} $\cdots$ \type{\stoptext} a
+%% document can be divided into four main divisions:
+Bên trong \type{\starttext} $\cdots$ \type{\stoptext}, một tài liệu có thể
+được chia thành bốn phân đoạn chính:
+
+%% \startitemize[n,packed]
+%% \item front matter
+%% \item body matter
+%% \item back matter
+%% \item appendices
+%% \stopitemize
+\startitemize[n,packed]
+\item phần đầu (front)
+\item phần thân (body)
+\item phần sau (back)
+\item phụ lục (appendices)
+\stopitemize
+
+%% The divisions are defined with:
+Các phân đoạn được định nghĩa bằng:
+
+\starttyping
+\startfrontmatter ... \stopfrontmatter
+\startbodymatter  ... \stopbodymatter
+\startbackmatter  ... \stopbackmatter
+\startappendices  ... \stopappendices
+\stoptyping
+
+%% In the front matter as well as back matter section the
+%% command \type{\chapter} produces an un-numbered header in
+%% the table of contents. This section is mostly used for the
+%% table of contents, the list of figures and tables, the
+%% preface, the acknowledgements etc. This section often
+%% has a roman page numbering.
+Ở phần đầu và phần sau khi dùng lệnh \type{\chapter} sẽ không được đánh số trong
+bảng nội dung. Các phần này thường được dùng cho bảng nội dung, danh sách hình
+ảnh và bảng, lời tựa, lời cảm ơn, ... Các mục này thường được đánh số La Mã.
+
+%% The appendices section is used for (indeed) appendices.
+%% Headers may be typeset in a different way; for example,
+%% \type{\chapter} may be numbered alphabetically.
+Phần phụ lục được dùng cho phụ lục (nghĩa đen). Cách đánh số có thể được sắp xếp
+theo cách khác, ví dụ \type{\chapter} có thể được đánh số theo kí tự alphabe.
+
+%% Section style can be set up with:
+Kiểu mỗi phần có thể được thiết lập bằng:
+
+\shortsetup{setupsectionblock}
+
+\stopcomponent

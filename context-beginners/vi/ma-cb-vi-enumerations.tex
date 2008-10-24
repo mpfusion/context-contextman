@@ -1,0 +1,147 @@
+\startcomponent ma-cb-vi-enumerations
+\project ma-cb
+\product ma-cb-vi
+\environment ma-cb-env-vi
+
+%\chapter{Numbered definitions}
+\chapter{Đánh số các diễn giải}
+
+%\index{numbered definition}
+\index{lời bình}
+
+\Command{\tex{defineenumeration}}
+\Command{\tex{setupenumerations}}
+
+%With \type{\defineenumeration} you can number text elements
+%like remarks or questions. If you want to make numbered
+%remarks in your document you use:
+Với lệnh \type{defineenumeration}, bạn có thể đánh số các phần văn bản giống
+như các lời phê hay các câu hỏi. Nếu bạn muốn đánh số các lời phê trong tài
+liệu, bạn dùng:
+
+\shortsetup{defineenumeration}
+
+%For example:
+Ví dụ:
+
+% \startbuffer[a]
+% \defineenumeration
+%   [remark]
+%   [location=top,
+%    text=Remark,
+%    inbetween=\blank,
+%    after=\blank]
+% \stopbuffer
+\startbuffer[a]
+\defineenumeration
+  [remark]
+  [location=top,
+   text=Lời phê,
+   inbetween=\blank,
+   after=\blank]
+\stopbuffer
+
+\typebuffer[a]
+
+%Now the new commands \type{\remark}, \type{\subremark},
+%\type{\resetremark} and \type{\nextremark} are available and
+%you can type remarks like this:
+Với các lệnh \type{\remark}, \type{\subremark}, \type{resetremark} và
+\type{\nextremark}, bạn có thể tạo các lời phê như thế này:
+
+% \startbuffer[b]
+% \remark In the early medieval times Hasselt was a place of
+% pilgrimage. The {\em Heilige Stede} (Holy Place) was torn down during
+% the Reformation. In 1930, after 300 years the {\em Heilige Stede} was
+% reopened.
+%
+% \subremark Nowadays the {\em Heilige Stede} is closed again but once
+% a year an open air service is held on the same spot. \par
+% \stopbuffer
+\startbuffer[b]
+\remark Vào đầu thời kì trung cổ, Hasselt là nơi hành hương. {\em Heilige Stede}
+(Thánh Địa) bị đóng cửa trong suốt thời kì Cải cách. Vào năm 1930, sau 300 năm
+{\em Heilige Stede} được mở lại.
+
+\subremark Ngày nay, {\em Heilige Stede} bị đóng cửa lần nữa nhưng mỗi năm một
+lần, một triễn lãm hàng không được tổ chức tại cùng nơi đó. \par
+\stopbuffer
+
+\typebuffer[b]
+
+\start
+\getbuffer[a]\getbuffer[b]
+\stop
+
+% You can reset numbering with \type{\resetremark} or
+% \type{\resetsubremark} or increment a number with
+% \type{\nextremark} of \type{\nextsubremark}. This is
+% normally done automatically per chapter, section or
+% whatever.
+Bạn có thể đặt lại cách đánh số với lệnh \type{\resetremark} hay
+\type{\resetsubremark} hoặc tăng số lên với \type{\nextremark} hay
+\type{subnextremark}. Thông thường việc này được làm tự động trong từng
+chương, mục, ...
+
+%You can set up the layout of \type{\defineenumeration} with:
+Bạn có thể thiết đặt khung nền với lệnh:
+
+\shortsetup{setupenumerations}
+
+%You can also vary the layout of {\bf Remark} and {\bf
+%Subremark} in the example above by:
+Bạn cũng có thể biến đổi khung nền của {\bf Lời phê} trong ví dụ trên với:
+
+\starttyping
+\setupenumeration[remark][headstyle=bold]
+\setupenumeration[subremark][headstyle=slanted]
+\stoptyping
+
+%If a number becomes obsolete you can type:
+Nếu không dùng số, bạn có thể dùng
+
+\starttyping
+\remark[-]
+\stoptyping
+
+%If the remark contains more than one paragraph you will
+%have to use the command pair
+%\type{\startremark} $\cdots$ \type{\stopremark} that becomes
+%available after defining {\bf Remark} with
+%\type{\defineenumeration[remark]}.
+Nếu lời phê chứa nhiều hơn một đoạn văn, bạn sẽ phải dùng cặp lệnh
+\type{startremark} $\cdots$ \type{stopremark} sau khi đã định nghĩa với
+\type{\defineenumeration[remark]}.
+
+%So the example above would look like this:
+Vì vậy, ví dụ ở trên sẽ như thế này:
+
+% \startbuffer[c]
+% \startremark
+% In the early medieval times Hasselt was a place of pilgrimage. The
+% {\em Heilige Stede} (Holy Place) was torn down during the
+% Reformation.
+
+% After 300 years in 1930 the {\em Heilige Stede} was reopened.
+% Nowadays the {\em Heilige Stede} is closed again but once a year an
+% open air service is held on the same spot.
+% \stopremark
+% \stopbuffer
+\startbuffer[c]
+\startremark
+Vào đầu thời kì trung cổ, Hasselt là nơi hành hương. {\em Heilige Stede}
+(Thánh Địa) bị đóng cửa trong suốt thời kì Cải cách.
+
+Vào năm 1930, sau 300 năm {\em Heilige Stede} được mở lại. Ngày nay, 
+{\em Heilige Stede} bị đóng cửa lần nữa nhưng mỗi năm một lần, một triễn lãm
+hàng không được tổ chức tại cùng nơi đó.
+\stopremark
+\stopbuffer
+
+\typebuffer[c]
+
+\start
+\getbuffer[a]\getbuffer[c] \par
+\stop
+
+\stopcomponent
