@@ -3,16 +3,16 @@ Vocabulary, định nghĩa, cách dịch các từ trong "ConteXt on excursion"
 Table of content			= mục lục
 index					= bảng tra
 setup					= thiết lập
-processing				= quá trình thực thi
+processing				= quá trình biên dịch
 special character			= kí tự đặc biệt
-%% cấu trúc
 hapter					= chương
-section					= mục
+section					= tiết đoạn
 paragraph				= đoạn văn
 appendice				= phụ lục
 floating blocks				= khối thay đổi
-layout					= khung nền
+layout					= bố trí, cách bố trí
 definition				= cách định nghĩa
 heading					= đề mục
 typeset					= sắp chữ
-
+background				= nền, màu nền
+unit					= đơn vị
