@@ -1,0 +1,125 @@
+\startcomponent ma-cb-vn-columns
+\project ma-cb
+\product ma-cb-vn
+\environment ma-cb-env-vn
+
+%\chapter{Columns}
+\chapter{Tạo cột văn bản}
+
+\index{cột}
+
+\Command{\tex{startcolums}}
+\Command{\tex{setupcolumns}}
+\Command{\tex{column}}
+
+%Simple documents can be typeset in columns. If you
+%preceed a text fragment by \type{\startcolumns} and close
+%the text fragment by \type{\stopcolumns} everything in
+%between will be set in columns.
+Các tài liệu đơn giản có thể sắp chữ theo dạng cột. Nếu bạn đặt các đoạn văn
+bản vào trong cặp lệnh \type{\startcolumns} và \type{stopcolumns} thì mọi thứ
+ở giữa cặp lệnh đó sẽ được sắp theo cột.
+
+\shortsetup{startcolumns}
+
+%% \startbuffer
+%% \startcolumns[n=3,tolerance=verytolerant]
+%% Hasselt is an old Hanseatic City, situated 12~km north of Zwolle at
+%% the river Zwartewater.
+
+%% The city has a long history since obtaining the city charter around
+%% 1252. Part and parcel of this history can be traced back to a large
+%% number of monuments to be admired in the city center.
+
+%% There you will find the St. Stephanus church, a late gothic church
+%% dating back to 1479 with a magnificent organ. The former Municipal
+%% Building is situated on The Market Place. Constituted between 1500
+%% and 1550 it houses a large collection of weapons, amongst which one
+%% of the largest collection of black powder guns (haakhussen) in the
+%% whole world should be mentioned.
+
+%% Furthermore there is a corn windmill `The Swallow', dating back to
+%% 1748 as well as the `Stenendijk', a unique embankment and the last
+%% shell limekiln in Europe still in full operation.
+
+%% The city center with the townmoat adorned by lime-trees, the Van
+%% Stolkspark and the hustle and bustle at the docks are ideally suited
+%% for a stroll.
+
+%% The area around Hasselt is also worth mentioning. In wintertime
+%% polder Mastenbroek harbours large numbers of geese. In summertime the
+%% hamlets Genne, Streukel and Celle\-mui\-den form, together with the very
+%% rare lapwing flowers (Lat. Fritillaria meleagris) found on the banks
+%% of the river Zwatewater, the ideal surroundings for walking or
+%% cycling trips.
+
+%% Hasselt also is a very important center for watersports. The lakes of
+%% northwest Overijssel, the river IJssel, the Overijsselse Vecht and
+%% the Randmeren are within easy reach from the yacht harbour `De
+%% Molenwaard'. Sailing, fishing, swimming and canoeing can be fully
+%% enjoyed in Hasselt.
+
+%% Furthermore some events of special interest should be
+%% mentioned. Every year at the end of August Hasselt celebrates the
+%% `Eui Festival' (hay festival).
+%% \stopcolumns
+%% \stopbuffer
+\startbuffer
+\startcolumns[n=3,tolerance=verytolerant]
+Hasselt là một thành phố thuộc Hội Buôn xưa, nằm gần con sông Zwartewater cách
+Zwolle 12~km về phía bắc.
+
+Thành phố có một lịch sử lâu đời từ khi có được hiến chương của thành phố
+khoảng năm 1252. Phần lịch sử này có thể được tìm thấy trong số lớn các viện
+bảo tàng ở trung tâm thành phố.
+
+Ở đó, bạn sẽ tìm thấy nhà thờ Thánh Stephanus, một nhà thờ kiểu vòm nhọn
+(kiểu gothic) xưa xây dựng năm 1479 tạo âm thanh vang vọng khi nói. Tòa Thị
+Chính cũ nằm tại Khu Thương Mại. Xây dựng khoảng từ năm 1500 đến 1550, nó chứa
+một bộ sưu tập vũ khí lớn, trong số đó là một bộ sưu tập các khẩu súng nhồi
+thuốc màu đen (haakhussen) lớn nhất thế giới.
+
+Xa hơn có một cối xay gió `Chim Nhạn', xây dựng năm 1748 cùng với con đê độc
+đáo `Stenendijk' và cái lò vôi vỏ sò cuối cùng ở Châu Âu vẫn còn hoạt động.
+
+Trung tâm thành phố với đường hào trang điểm bằng các thân cây được quét vôi
+mang tên Van Stolkspark và cái huyên náo, ồn ào nơi các bến cảng là một điều
+thú vị cho một cuộc dạo bộ.
+
+Vùng ngoại ô xung quanh Hasselt cũng đáng để đề cập đến. Vào mùa thu, khu cảng
+lấn biển Mastenbroek là nơi ẩn náu của vô số ngỗng. Vào mùa hè, các làng
+Genne, Streukel và Celle\-mui\-den cùng với ,hoa, chim te te xuất hiện ven con
+sông Zwatewater tạo sự thú vị cho các cuộc đi dạo bằng xe đạp hoặc đi bộ.
+
+Hasselt cũng là một trung tâm thể thao nước rất quan trọng. Các hồ phía tây
+bắc Overijssel, sông IJssel, Overijsselse Vecht và Randmeren đều có thể đi đến
+được từ cảng thuyền buồm `De Molenwaard'. Chèo thuyền, câu cá, bơi lội và lướt
+cano có thể thưởng thức trọn vẹn ở Hasselt.
+
+Ngoài ra, các lễ hội đặc biệt thú vị cũng nên được đề cập. Mỗi năm vào cuối
+tháng Tám, Hasselt tổ chức `Hội Eui' (hội cỏ khô).
+\stopcolumns
+\stopbuffer
+
+\typebuffer
+
+%The result will be a three column text.
+Kết quả sẽ được hiển thị theo ba cột.
+
+{\switchtobodyfont[9pt]\getbuffer}
+
+%If possible a new column can be enforced with \type{\column}.
+%You can set up columns with:
+Nếu có thể, một cột mới có thể được thêm vào với lệnh \type{\column}. Bạn có
+thể thiết lập cột với lệnh:
+
+\shortsetup{setupcolumns}
+
+%In most cases you will obtain a better result by type
+%setting the text on \quote{grid}. This is done by typing
+%\type{grid=yes} in the command \type {\setuplayout}.
+Trong hầu hết các trường hợp, bạn sẽ nhận được kết quả tốt hơn bằng cách nhập
+thiết đặt phần chữ trong \quote{grid}. Việc này được làm với \type{grid=yes}
+trong lệnh \type{\setuplayout}.
+
+\stopcomponent

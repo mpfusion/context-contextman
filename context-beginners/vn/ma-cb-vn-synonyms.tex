@@ -1,0 +1,124 @@
+\startcomponent ma-cb-vn-synonyms
+\project ma-cb
+\product ma-cb-vn
+\environment ma-cb-env-vn
+
+%\chapter[synonyms]{Synonyms}
+\chapter[synonyms]{Từ đồng nghĩa}
+
+\index{từ đồng nghĩa}
+
+\Command{\tex{definesynonyms}}
+\Command{\tex{setupsynonyms}}
+\Command{\tex{abbreviation}}
+\Command{\tex{infull}}
+\Command{\tex{unit}}
+\Command{\tex{loadabbreviations}}
+\Command{\tex{placelistofabbreviations}}
+\Command{\tex{completelistofabbreviations}}
+
+%In many documents people want to use specific words consistently
+%throughout the document. To enforce consistency the command
+%below is available.
+Trong nhiều tài liệu, người ta muốn dùng các từ đặc trưng nhất quán xuyên suốt
+tài liệu. Lệnh sau dùng để thực hiện việc này:
+
+\shortsetup{definesynonyms}
+
+%The first bracket pair contains the singular form of the synonym,
+%and the second contains the plural form. The third bracket pair
+%contains a command.
+Cặp ngoặc vuông đầu tiên chứa dạng đơn của từ đồng nghĩa và cặp thứ hai chứa
+dạng nhiều. Cặp ngoặc vuông thứ ba chứa lệnh
+
+%For example the command \type{\abbreviation} is defined by:
+Ví dụ lệnh \type{abbreviation} được xác định bởi:
+
+\starttyping
+\definesynonyms[abbreviation][abbreviations][\infull]
+\setupsynonyms[style=cap]
+\stoptyping
+
+%Now the command \type{\abbreviation} is available and can be
+%used to state your abbreviations:
+Bây giờ lệnh \type{\abbreviation} có thể được dùng để định các chữ viết tắt
+của bạn:
+
+%\starttyping
+%\abbreviation{ANWB}{Dutch Automobile Association}
+%\abbreviation{VVV}{Bureau of Tourist Information}
+%\abbreviation{NS}{Dutch Railways}
+%\stoptyping
+\starttyping
+\abbreviation{ANWB}{Liên hiệp ô tô Hà Lan}
+\abbreviation{VVV}{Cục Thông Tin Du Lịch}
+\abbreviation{NS}{Công ty đường sắt Hà Lan}
+\stoptyping
+
+%\abbreviation{VVV}{Bureau of Tourist Information}
+\abbreviation{VVV}{Cục Thông Tin Du Lịch}
+
+%If you would type:
+Nếu bạn nhập vào thế này:
+
+%\startbuffer
+%The Dutch \VVV\ (\infull{VVV}) can provide you with the tourist
+%information on Hasselt.
+%\stopbuffer
+\startbuffer
+\VVV\ (\infull{VVV}) của Hà Lan có thể cung cấp cho bạn thông tin du lịch về
+Hasselt.
+\stopbuffer
+
+\typebuffer
+
+%You would obtain something like this:
+Bạn sẽ nhận được thế này:
+
+\getbuffer
+
+%The list of synonyms or abbreviations is best defined in
+%the set up area of your input file for maintenance purposes.
+%You can also store this kind of information in an
+%external file, and load the file (e.g. \type{abbrev.tex}) with:
+Danh sách các từ đồng nghĩa hay viết tắt được xác định trong phần thiết lập
+của tập tin nhập liệu để tiện quản lí. Bạn cũng có thể lưu trữ các dữ liệu này
+trong một tập tin bên ngoài và nạp tập tin đó (ví dụ \type{abbrev.tex}) với
+lệnh:
+
+\starttyping
+\input abbrev.tex
+\stoptyping
+
+%If you want to put a list of the abbreviations used in your
+%document you can type:
+Nếu bạn muốn đặt danh sách các từ viết tắt thường dùng trong tài liệu, bạn có
+thể dùng:
+
+\starttyping
+\placelistofabbreviations
+\stoptyping
+
+%or
+hoặc
+
+\starttyping
+\completelistofabbreviations
+\stoptyping
+
+%A complete and sorted list with abbreviations and their
+%meaning is produced.
+Một danh sách hoàn chỉnh được sắp xếp các từ viết tắt và ý nghĩa của chúng
+được tạo ra.
+
+%The typesetting of synonynms can be influenced with:
+Cách sắp chữ các từ đồng nghĩa có thể được ảnh hưởng với lệnh:
+
+\starttyping
+\setupsynonyms
+\stoptyping
+
+%Look at \in{chapter}[units] for another application of synonyms.
+Hãy xem \in{chương}[units] để biết thêm các ứng dụng về từ đồng nghĩa khác.
+
+\stopcomponent

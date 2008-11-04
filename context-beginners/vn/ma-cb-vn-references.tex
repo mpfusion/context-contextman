@@ -1,0 +1,180 @@
+\startcomponent ma-cb-vn-references
+\project ma-cb
+\product ma-cb-vn
+\environment ma-cb-env-vn
+
+%\chapter{Refering to text elements}
+\chapter{Tham chiếu đến phần văn bản}
+
+%\index{refering}
+%\index{label}
+\index{tham chiếu}
+\index{nhãn}
+
+\Command{\tex{in}}
+\Command{\tex{at}}
+\Command{\tex{pagereference}}
+
+%For referring to one location in a document from another you
+%can use the command:
+Để tham chiếu đến một vị trí trong tài liệu từ một tài liệu khác, bạn dùng
+lệnh:
+
+\shortsetup{in}
+
+%The curly braces contain text, the brackets contain a
+%logical label. If you have written a chapter header like
+%this:
+Cặp ngoặc móc chứa phần văn bản, cặp ngoặc vuông chứa nhãn. nếu bạn viết một
+phần đầu chương thế này:
+
+%\starttyping
+%\chapter[hotel]{Hotels in Hasselt}
+%\stoptyping
+\starttyping
+\chapter[hotel]{Khách sạn ở Hasselt}
+\stoptyping
+
+%then you can refer to this chapter with:
+sau đó bạn có thể tham chiếu đến chương này với lệnh:
+
+%\starttyping
+%\in{chapter}[hotel]
+%\stoptyping
+\starttyping
+\in{chương}[hotel]
+\stoptyping
+
+%After processing the chapter number is available and the
+%reference could look something like: {\em chapter 23}.
+%You can use \type{\in} for any references to text elements
+%like chapters, sections, figures, tables, formulae
+%etc.
+Sau khi thực thi, số chương được tạo và phần tham chiếu trông như thế này:
+{\em chương 23}. Bạn có thể dùng \type{\in} cho bất kì tham chiếu đến phần văn
+bản nào như chương, tiết đoạn, hình, bảng, công thức, ...
+
+%Another example:
+Ví dụ khác:
+
+%\startbuffer
+% There are a number of things you can do in Hasselt:
+
+%\startitemize[n,packed]
+%\item swimming
+%\item sailing
+%\item[hiking] hiking
+%\item biking
+%\stopitemize
+
+% Activities like \in{activity}[hiking] described on \at{page}[hiking]
+% are very tiring.
+%\stopbuffer
+\startbuffer
+Có một vài thứ bạn có thể làm ở Hasselt:
+
+\startitemize[n,packed]
+\item bơi lội
+\item chèo thuyền
+\item[hiking] đi bộ
+\item đạp xe đạp
+\stopitemize
+
+Các hoạt động như \in{hoạt động}[hiking] mô tả trong \at{trang}[hiking] thì
+rất mệt.
+\stopbuffer
+
+\typebuffer
+
+%This would look like this:
+Sẽ xuất ra thê này:
+
+\getbuffer
+
+%As you can see, it is also possible to  refer to pages. This is done with:
+Như bạn thấy, nó có thể được tham chiếu đến trang. Việc này làm với lệnh:
+
+\shortsetup{at}
+
+%For example with:
+Ví dụ:
+
+%\starttyping
+%\at{page}[hiking]
+%\stoptyping
+\starttyping
+\at{trang}[hiking]
+\stoptyping
+
+%This command can be used in combination with:
+Lệnh này có thể dùng kết hợp với:
+
+\shortsetup{pagereference}
+
+%and
+và
+
+\shortsetup{textreference}
+
+%If you want to refer to the chapter {\em Hotels in Hasselt}
+%you could type:
+Nếu bạn muốn tham chiếu đến chương {\em Khách sạn ở Hasselt}, bạn có thể nhập:
+
+%\startbuffer
+%Look in \in{chapter}[hotel] on \at{page}[hotel] for a complete
+%overview of accomodations in \pagereference[accomodation]Hasselt.
+%\stopbuffer
+\startbuffer
+Hãy xem \in{chương}[hotel] tại \at{trang}[hotel] để có cái nhìn hoàn chỉnh về
+các chỗ nghỉ trọ ở \pagereference[accomodation]Hasselt.
+\stopbuffer
+
+\typebuffer
+
+%A chapter number and a page number will be generated when
+%processing the input file. On another spot in the document
+%you can refer to \type{accomodation} with
+%\type{\at{page}[accomodation]}.
+Số chương và số trang sẽ được tạo khi thực thi tập tin nhập liệu. Tại nơi khác
+trong tài liệu, bạn có thể tham chiếu đến \type{accomodation} với
+\type{\at{trang}[accomodation]}.
+
+%You can also define a set of labels separated by commas.
+Bạn cũng có thể một nhóm nhãn được phân cách bằng dấu phẩy.
+
+%\startbuffer
+%\placefigure
+%  [here]
+%  [fig:canals,fig:boats]
+%  {A characteristic picture of Hasselt.}
+%  {\externalfigure[ma-cb-08][width=10cm]}
+%
+%There are many canals in Hasselt (see \in{figure}[fig:canals]).
+%.
+%.
+%.
+%Boats can be moored in the canals of Hasselt (see
+%\in{figure}[fig:boats]).
+%\stopbuffer
+\startbuffer
+\placefigure
+  [here]
+  [fig:canals,fig:boats]
+  {Một hình ảnh đặc trưng của Hasselt.}
+  {\externalfigure[ma-cb-08][width=10cm]}
+
+Có nhiều kênh ở Hasselt (xem \in{figure}[fig:canals]).
+.
+.
+.
+Thuyền có thể được neo đậu trên các kênh ở Hasselt (xem \in{figure}[fig:boats])
+\stopbuffer
+
+\typebuffer
+
+%This might look like this:
+Sẽ xuất ra thế này:
+
+\getbuffer
+
+\stopcomponent

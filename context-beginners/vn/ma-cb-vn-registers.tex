@@ -1,0 +1,107 @@
+\startcomponent ma-cb-vn-registers
+\project ma-cb
+\product ma-cb-vn
+\environment ma-cb-env-vn
+
+%\chapter{Registers}
+\chapter{Tạo ghi nhớ}
+
+\index{ghi nhớ}
+
+\Command{\tex{index}}
+\Command{\tex{placeindex}}
+\Command{\tex{completeindex}}
+\Command{\tex{defineregister}}
+\Command{\tex{placeregister}}
+\Command{\tex{completeregister}}
+\Command{\tex{setupregister}}
+
+%It is possible to generate one or more registers. By default
+%the command \type{\index} is available. If you want to add
+%a word to the index you type:
+Có thể tạo một hay nhiều ghi nhớ. Mặc định, lệnh \type{\index} được dùng. Nếu
+bạn muốn thêm một từ đến bảng tra, bạn dùng:
+
+%\starttyping
+%\index{town hall}
+%\stoptyping
+\starttyping
+\index{hội trường}
+\stoptyping
+
+%The word {\em town hall} will appear as an index entry. An
+%index is sorted in alphabetical order by an auxilliary
+%program. Sometimes the index word does not appear in normal alphabetic
+%order. For example, entries such as symbols have to provide extra
+%sorting information in order to produce a correct alphabetical
+%list:
+Từ {\em hội trường} sẽ hiện như một mục từ trong bảng tra. Một bảng tra được
+sắp xếp theo kí tự alphabe bởi một chương trình phụ. Thỉnh thoảng, bảng tra từ
+không được sắp theo alphabe. Ví dụ các mục từ như các kí hiệu phải được sắp
+xếp đặc biệt để tạo ra danh sách alphabe chính xác:
+
+\starttyping
+\index[minus]{$-$}
+\stoptyping
+
+%Sometimes you have sub- or sub sub entries. These can be
+%defined as follows:
+Thỉnh thoảng, bạn có các mục từ con hoặc thấp hơn. Chúng có thể được xác định
+như sau:
+
+%\starttyping
+%\index{town hall+location}
+%\index{town hall+architecture}
+%\stoptyping
+\starttyping
+\index{hội trường+vị trí}
+\index{hội trường+kiến trúc}
+\stoptyping
+
+%You can generate your indexlist with:
+Bạn có thể tạo danh sách bảng tra với lệnh:
+
+\starttyping
+\placeindex
+\stoptyping
+
+%or
+hoặc
+
+\starttyping
+\completeindex
+\stoptyping
+
+%The command \type{\index} is a predefined \CONTEXT\ command,
+%but of course you can also define your own registers.
+Lệnh \type{\index} là một lệnh \CONTEXT\ được xác định trước nhưng dĩ nhiên
+bạn cũng có thể xác định các ghi nhớ riêng bạn. 
+
+\shortsetup{defineregister}
+
+%For example if you want to make a new register based on the
+%streets in Hasselt you could type:
+Ví dụ nếu bạn muốn tạo một ghi nhớ mới dựa trên các phố ở Hasselt, bạn dùng:
+
+\starttyping
+\defineregister[street][phố]
+\stoptyping
+
+%Now a new register command \type{\street} is available. An
+%new index entry could be \type{\street{Ridderstraat}}. To
+%produce a list of entries you could now use:
+Bây giờ, một lệnh ghi nhớ mới \type{\street} được tạo. Một bảng tra mục từ mới
+có thể là \type{\street{Redderstraat}}. Để tạo một danh sách các mục từ, bây
+giờ bạn có thể dùng:
+
+\starttyping
+\placestreets
+\completestreets
+\stoptyping
+
+%You can alter the display of the registers with:
+Bạn có thể thay đổi cách hiển thị các ghi nhớ với lệnh:
+
+\shortsetup{setupregister}
+
+\stopcomponent

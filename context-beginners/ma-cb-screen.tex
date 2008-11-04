@@ -162,6 +162,23 @@
 
 \stopmode
 
+\startmode[**vn]
+
+  \setupinteractionmenu
+    [\v!right]
+    [  {mục lục[contents]},
+      {bảng tra[subind]},
+          {lệnh[comind]},
+    {định nghĩa[comdefs]},
+    {trang cuối[colofon]},
+            {\vfill},
+         {thoát[\v!CloseDocument]},
+     {\ZoekEnZoek{tìm kiếm}},
+      {quay lại[\v!PreviousJump]},
+        {\HeenEnWeer}]
+
+\stopmode
+
 % This not that \TEX nical definition deals with the two sets
 % of buttons. Someday I'll make a general macro for this.
 

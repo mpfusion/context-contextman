@@ -1,0 +1,67 @@
+\startcomponent ma-cb-vn-alignments
+\project ma-cb
+\product ma-cb-vn
+\environment ma-cb-env-vn
+
+%\chapter{Alignment}
+\chapter{Gióng hàng}
+
+\index{gióng hàng}
+
+\Command{\tex{setupalign}}
+\Command{\tex{setup tolerance}}
+\Command{\tex{rightaligned}}
+\Command{\tex{leftlines}}
+\Command{\tex{midaligned}}
+
+%Horizontal and vertical alignment can be set up with:
+Việc gióng hàng dọc và ngang được làm với lệnh:
+
+\shortsetup{setupalign}
+
+%Single lines can be aligned with:
+Các hàng đơn lẻ có thể được gióng với:
+
+\starttyping
+\rightaligned{}
+\leftaligned{}
+\midaligned{}
+\stoptyping
+
+%\startbuffer
+%\leftaligned  {Hasselt was built on a sandhill.}
+%\midaligned   {Hasselt was built on the crossing of two rivers.}
+%\rightaligned {Hasselt's name stems from hazelwood.}
+%\stopbuffer
+\startbuffer
+\leftaligned  {Thành phố Hasselt được xây dựng trên một đồi cát.}
+\midaligned   {Thành phố Hasselt nằm bắc qua hai con sông.}
+\rightaligned {Hasselt có tên từ thân cây gỗ phỉ.}
+\stopbuffer
+
+
+\typebuffer
+
+%After processing this would look like:
+Ví dụ trên sẽ cho ra thế này
+
+\getbuffer
+
+%Alignment of a paragraph is done with:
+Gióng hàng một đoạn văn được làm với lệnh:
+
+\shortsetup{startalignment}
+
+%In case of alignment you can specify a tolerance and the
+%direction (vertical or horizontal). Normally the tolerance
+%is \type{verystrict}. In colums you could specify
+%\type{verytolerant}. The tolerance in this manual is:
+Khi gióng hàng, bạn có thể xác định phương hướng và mức sai lệch (dọc hay
+ngang). Thông thường mức sai lệch là \type{verystrict}. Trong các cột, bạn có
+thể xác định là \type{verytolerant}. Mức sai lệch trong sổ tay này là:
+
+\starttyping
+\setuptolerance[horizontal,verystrict]
+\stoptyping
+
+\stopcomponent

@@ -1,0 +1,72 @@
+\startcomponent ma-cb-vn-textbackgrounds
+\project ma-cb
+\product ma-cb-vn
+\environment ma-cb-env-vn
+
+%\chapter{Background text}
+\chapter{Tạo màu nền cho chữ}
+
+\index{màu nền+chữ}
+\index{khung nền}
+
+%\Command{\tex{setupbackground}}
+%\Command{\tex{startbackground}}
+\Command{\tex{setuptextbackground}}
+\Command{\tex{starttextbackground}}
+
+%To emphasize a section you can use backgrounds. A
+%background is set with the command pair:
+Để làm nổi bật một tiết đoạn, bạn có thể dùng màu nền. Màu nền được tạo với
+cặp lệnh:
+
+%\shortsetup{startbackground}
+\shortsetup{starttextbackground}
+
+%An example can illustrate the use:
+Một ví dụ minh họa cách dùng:
+
+%% \startbuffer
+%% \setupbackground[background=screen,corner=round]
+
+%% \startbackground
+%% Hasselt has produced a number of well known people. Only recently
+%% it turned out that Kilian van Rensselaer played a prominent role
+%% in the foundation of the State of New York.
+%% \stopbackground
+%\startbuffer
+%\setuptextbackground[corner=round,frame=off,location=paragraph,
+%  leftoffset=.5\bodyfontsize,rightoffset=.5\bodyfontsize]
+%
+%\starttextbackground
+%Hasselt has produced a number of well known people. Only recently
+%it turned out that Kilian van Rensselaer played a prominent role
+%in the foundation of the State of New York.
+%\stoptextbackground
+%\stopbuffer
+\startbuffer
+\setuptextbackground[corner=round,frame=off,location=paragraph,
+  leftoffset=.5\bodyfontsize,rightoffset=.5\bodyfontsize]
+
+\starttextbackground
+Hasselt đã sản sinh ra những con người nổi tiếng. Gần đây, nó đã sinh ra
+Killian van Rensselaer đóng vai trò nổi bật trong nền móng của bang New York.
+\stoptextbackground
+\stopbuffer
+
+\typebuffer
+
+%This would be displayed as:
+Sẽ hiển thị:
+
+\getbuffer
+
+%Backgrounds can span multiple pages. With:
+Màu nền có thể trải ra nhiều trang với lệnh:
+
+%\shortsetup{setupbackground}
+\shortsetup{setuptextbackground}
+
+%you can vary the display of the backgrounds.
+bạn có thể thay đổi cách hiển thị của màu nền.
+
+\stopcomponent

@@ -1,0 +1,105 @@
+% interface=english language=vn modes=screen,bound
+
+\environment ma-cb-env-vn
+
+\startproduct ma-cb-vn
+
+%\project ../generic/ma-cb
+\project ma-cb
+
+\setvariables
+  [document]
+  [translator={Trần Đình Anh Tuấn}]
+
+%\TitlePage
+ % {\ConTeXt\\an excursion}
+ % {English\\Version}
+ % {Ton Otten \& Hans Hagen}
+
+\TitlePage
+  {\ConTeXt\\Một cuộc tham quan}
+  {Phiên bản\\Tiếng vnệt}
+  {Ton Otten \& Hans Hagen}
+
+\Copyright
+
+\startfrontmatter
+
+%    \TableOfContents{Table Of Contents}
+    \TableOfContents{Mục Lục}
+%    \Introduction   {Introduction}
+    \Introduction   {Lời nói đầu}
+
+    \component ma-cb-vn-introduction
+
+\stopfrontmatter
+
+\startbodymatter
+
+    \component ma-cb-vn-document		% tạo tài liệu cơ bản
+    \component ma-cb-vn-gettingstarted		% cách sử dụng \CONTEXT\
+    \component ma-cb-vn-specialcharacters	% kí tự đặc biệt
+    \component ma-cb-vn-structure		% cấu trúc tài liệu
+    \component ma-cb-vn-heads			% tạo chương, tiết đoạn, ...
+    \component ma-cb-vn-itemizations		% tạo danh sách
+    \component ma-cb-vn-math			% kí tự toán
+    \component ma-cb-vn-units			% đơn vị
+    \component ma-cb-vn-figures			% hình ảnh
+    \component ma-cb-vn-tables			% bảng
+    \component ma-cb-vn-tabulations		% định dạng đoạn văn
+    \component ma-cb-vn-columns			% tạo văn bản theo cột
+    \component ma-cb-vn-footnotes		% ghi chú
+    \component ma-cb-vn-descriptions		% diễn giải
+    \component ma-cb-vn-enumerations		% đánh số diễn giải 
+    \component ma-cb-vn-frames			% tạo vnền quanh chữ
+    \component ma-cb-vn-framedtexts		% tạo vnền quanh đoạn
+    \component ma-cb-vn-margintexts		% đặt chữ vào lề trang
+    \component ma-cb-vn-pages			% đánh số trang
+    \component ma-cb-vn-headers			% tạo header và footer
+    \component ma-cb-vn-tablesofcontent		% tạo mục lục
+    \component ma-cb-vn-registers		% đánh chỉ mục
+    \component ma-cb-vn-synonyms		% từ vnết tắt
+    \component ma-cb-vn-references		% tham chiếu văn bản
+    \component ma-cb-vn-color			% màu sắc
+    \component ma-cb-vn-textbackgrounds		% tạo màu nền cho chữ
+    \component ma-cb-vn-pagebackgrounds		% tạo màu nền cho trang
+    \component ma-cb-vn-alignments		% gióng hàng
+    \component ma-cb-vn-interactivnty		% tạo liên kết
+    \component ma-cb-vn-fonts			% font chữ
+    \component ma-cb-vn-composedcharacters
+    \component ma-cb-vn-layout
+    \component ma-cb-vn-paragraphs
+    \component ma-cb-vn-setupcommands
+    \component ma-cb-vn-commands
+    \component ma-cb-vn-whatever
+    \component ma-cb-vn-modules
+    \component ma-cb-vn-metapost
+    \component ma-cb-vn-usersetups
+    \component ma-cb-vn-processingfiles
+    \component ma-cb-vn-runtimefiles
+    \component ma-cb-vn-mathcharacters
+
+\stopbodymatter
+
+\startappendices
+
+%    \CommandList {Command definitions}
+%    \CommandIndex{Command Index}
+%    \NormalIndex {Subject Index}
+    \CommandList {Lệnh và cách định nghĩa}
+    \CommandIndex{Bảng tra Lệnh}
+    \NormalIndex {Bảng tra Chủ đề}
+
+\stopappendices
+
+\Colofon
+
+\startmode[bound]
+
+    \StartBackPage
+        \component ma-cb-vn-backpage
+    \StopBackPage
+
+\stopmode
+
+\stopproduct

@@ -1,0 +1,366 @@
+\startcomponent ma-cb-vn-fonts
+\project ma-cb
+\product ma-cb-vn
+\environment ma-cb-env-vn
+
+%\chapter{Fonts and font switches}
+\chapter{Font chữ và chuyển đổi font chữ}
+
+%\section{Introduction}
+\section{Lời nói đầu}
+
+\index{Computer Modern Roman}
+\index{Lucida Bright}
+\index{AMS}
+\index{\cap{PS}--fonts}
+
+%The default font in \CONTEXT\ is the {\em Computer Modern
+%Roman} (\type{cmr}). You can also use Lucida Bright
+%(\type{lbr}) as a full alternative and symbols of the {\em
+%American Mathematical Society} (\type{ams}). Standard
+%PostScript fonts (\type{pos}) are also available.
+Font chữ mặc định trong \CONTEXT\ là {\em Computer Modern Roman} (\type{cmr}).
+Bạn cũng có thể dùng Lucida Bright (\type{lbr} như một thay thế hoàn chỉnh và
+các kí tự của {\em Hội Toán Học Mĩ} ({\type{ams}). Ngoài ra bạn cũng có thể
+dùng font chữ PostScript (\type{pos}).
+
+%\section{Fontstyle and size}
+\section{Kiểu font và kích cỡ}
+
+\index{font+kiểu}
+\index{font+cỡ}
+
+\Command{\tex{setupbodyfont}}
+\Command{\tex{switchtobodyfont}}
+
+%You select the font family, style and size for a document
+%with:
+Bạn chọn loại font, kiểu và cỡ cho tài liệu với lệnh:
+
+\shortsetup{setupbodyfont}
+
+%If you typed \type{\setupbodyfont[sansserif,9pt]}
+%{\switchtobodyfont[ss,9pt] in the setup area of the input
+%file your text would look something like this.}
+Nếu bạn dùng \type{\setupbodyfont[sansserif,9pt]} {switchbodyfont[ss,9pt]
+trong phần thiết lập của tập tin nhập liệu, tài liệu của bạn sẽ trông như thế
+này.}
+
+%For changes in mid-document and on section level you
+%should use:
+Để thay đổi giữa tài liệu và tại các tiết đoạn, bạn nên dùng:
+
+\shortsetup{switchtobodyfont}
+
+%% \startbuffer
+%% On November 10th (one day before Saint Martensday) the youth of
+%% Hasselt go from door to door to sing a special song and they
+%% accompany themselves with a {\em foekepot}. They won't leave
+%% before you give them some money or sweets. The song goes like this:
+
+%% \startnarrower
+%% \switchtobodyfont[small]
+%% \startlines
+%% Foekepotterij, foekepotterij,
+%% Geef mij een centje dan ga'k voorbij.
+%% Geef mij een alfje dan blijf ik staan,
+%% 'k Zal nog liever naar m'n arrenmoeder gaan.
+%% Hier woont zo'n rieke man, die zo vulle g\egrave ven kan.
+%% G\egrave f wat, old wat, g\egrave f die arme stumpers wat,
+%% 'k Eb zo lange met de foekepot elopen.
+%% 'k Eb gien geld om brood te kopen.
+%% Foekepotterij, foekepotterij,
+%% Geef mij een centje dan ga'k voorbij.
+%% \stoplines
+%% \stopnarrower
+%% \stopbuffer
+\startbuffer
+Vào ngày 10 tháng Mười Một (một ngày trước Saint Martensday), bọn trẻ ở Hasselt
+đi từ nhà này sang nhà khác, hát một bài hát đặc biệt và tự đệm theo bằng một
+{\em foekepot}. Chúng sẽ không bỏ đi nếu bạn không cho chúng kẹo hoặc tiền.
+Chúng hát thế này:
+
+\startnarrower
+\switchtobodyfont[small]
+\startlines
+Foekepotterij, foekepotterij,
+Geef mij een centje dan ga'k voorbij.
+Geef mij een alfje dan blijf ik staan,
+'k Zal nog liever naar m'n arrenmoeder gaan.
+Hier woont zo'n rieke man, die zo vulle g\egrave ven kan.
+G\egrave f wat, old wat, g\egrave f die arme stumpers wat,
+'k Eb zo lange met de foekepot elopen.
+'k Eb gien geld om brood te kopen.
+Foekepotterij, foekepotterij,
+Geef mij een centje dan ga'k voorbij.
+\stoplines
+\stopnarrower
+\stopbuffer
+
+\typebuffer
+
+%Notice that \type{\startnarrower} $\cdots$
+%\type{\stopnarrower} is also used as a begin and end of the
+%fontswitch. The function of \type{\startlines} and
+%\type{\stoplines} in this example is obvious.
+Hãy ghi nhớ rằng \type{\startnarrower} $\cdots$ \type{\stopnarrower} cũng được
+dùng để bắt đầu và kết thúc chuyển đổi font. Chức năng của \type{\startlines}
+và \type{stoplines} trong ví dụ này cũng giống như vậy.
+
+\start
+\getbuffer
+\stop
+
+%If you want an overview of the available font family you can
+%type:
+Nếu bạn muốn xem qua loại font đang có, bạn có thể dùng lệnh:
+
+\startbuffer
+\showbodyfont[cmr]
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+%\section{Style and size switch in commands}
+\section{Chuyển kiểu và cỡ font với lệnh}
+
+%In a number of commands one of the parameters is
+%\type{character} to indicate the desired typestyle. For
+%example:
+Trong một số lệnh, một trong những tham số là \type{character} cho biết kiểu
+font muốn có. Ví dụ:
+
+\startbuffer
+\setuphead[chapter][style=\tfd]
+\stopbuffer
+
+\typebuffer
+
+%In this case the character size for chapters is indicated with
+%a command \type{\tfd}. But instead of a command you could
+%use the predefined options that are related to the actual
+%typeface:
+Trong trường hợp này, cỡ kí tự của chương được cho biết với lệnh \type{\tfd}.
+Nhưng thay vì dùng lệnh, bạn có thể dùng các tùy chọn đã định nghĩa trước:
+
+\startbuffer
+normal  bold  slanted  boldslanted  type  mediaeval
+small  smallbold  smallslanted  smallboldslanted smalltype
+capital cap
+\stopbuffer
+
+\typebuffer
+
+%\section{Local font style and size}
+\section{Kiểu và cỡ font chữ cục bộ}
+
+\Command{\tex{rm}}
+\Command{\tex{ss}}
+\Command{\tex{tt}}
+\Command{\tex{sl}}
+\Command{\tex{bf}}
+\Command{\tex{tfa}}
+\Command{\tex{tfb}}
+\Command{\tex{tfc}}
+\Command{\tex{tfd}}
+
+%In the running text (local) you can change the {\em
+%typestyle} into roman, sans serif and teletype with
+%\type{\rm}, \type{\ss} and \type{\tt}.
+Trong đoạn văn bản đang chạy (cục bộ), bạn có thể chuyển {\em kiểu font} thành
+roman, sans serif và teletype với \type{\rm}, \type{\ss} và \type{\tt}.
+
+%You can change the {\em typeface} like italic and boldface
+%with \type{\sl} and \type{\bf}.
+Bạn có thể chuyển {\em dạng font} thành nghiêng và đậm với \type{\sl} và
+\type{\bf}.
+
+%The {\em typesize} is available from 4pt to 12pt and is
+%changed with \type{\switchtobodyfont}.
+{\em Cỡ font} là từ 4pt đến 12pt và được chuyển với \type{\switchtobodyfont}.
+
+%The actual style is indicated with \type{\tf}. If you want
+%to change into a somewhat greater size you can type
+%\type{\tfa}, \type{\tfb}, \type{\tfc} and \type{\tfd}. An
+%addition of \type{a}, \type{b}, \type{c} and \type{d} to
+%\type{\sl}, \type{\it} and \type{\bf} is also allowed.
+Kiểu thật sự được cho biết với \type{\tf}. Nếu bạn muốn chuyển sang cỡ lớn
+hơn, bạn dùng \type{\tfa}, \type{tfb}, \type{\tfc} và \type{tfd}. Cũng có thể
+thêm một chữ trong các chữ \type{a}, \type{b}, \type{c} và \type{d} đến
+\type{sl}, \type{it} và \type{bf}.
+
+%\startbuffer
+%{\tfc Mintage}
+
+%In the period from {\tt 1404} till {\tt 1585} Hasselt had its own
+%{\sl right of coinage}. This right was challenged by other cities,
+%but the {\switchtobodyfont[7pt] bishops of Utrecht} did not honour
+%these {\slb protests}.
+%\stopbuffer
+\startbuffer
+{\tfc Tiền đúc}
+
+Vào thời kì từ năm {\tt 1404} đến {\tt 1585} Hasselt có {\sl đồng tiền} riêng.
+Đồng tiền này không được các thành phố khác chấp nhận nhưng
+{\switchtobodyfont[7pt] hội đồng giám mục Utrecht} đã không chấp nhận những sự
+{\slb phản đối} này.
+\stopbuffer
+
+\typebuffer
+
+%The curly braces indicate begin and end of style or size
+%switches.
+Dấu ngoặc móc cho biết lúc bắt đầu và kết thúc chuyển kiểu hay cỡ font.
+
+\getbuffer
+
+%\section{Redefining fontsize}
+\section{Định nghĩa lại cỡ font}
+
+%\index{fontsize}
+\index{cỡ font}
+
+\Command{\tex{definebodyfont}}
+
+%For special purposes you can define your own fontsize.
+Bạn có thể định nghĩa lại cỡ font cho các mục đích đặc biệt.
+
+\shortsetup{definebodyfont}
+
+%A definition could look like this:
+Một định nghĩa như thê này
+
+\startbuffer
+\definebodyfont[10pt][rm][tfe=Regular at 36pt]
+
+{\tfe Hasselt!}
+\stopbuffer
+
+\typebuffer
+
+%Now \type{\tfe} will produce 36pt characters saying:
+%{\hbox{\getbuffer}}
+Bây giờ \type{\tfe} sẽ tạo các kí tự 36pt: {\hbox{\getbuffer}}
+
+%\section{Small caps}
+\section{Chữ cái hoa nhỏ}
+
+%\index{small caps}
+\index{chữ cái hoa nhỏ}
+
+%\Command{\tex{kap}}
+\Command{\tex{cap}}
+
+%Abbreviations like \PDF\ (\infull{PDF}) are printed in
+%pseudo small caps. A small capital is somewhat smaller than
+%the capital of the actual typeface. Pseudo small caps are
+%produced with:
+Các từ viết tắt như \PDF\ (\infull{PDF}) được in bằng các chữ cái hoa nhỏ giả.
+Một chữ viết hoa nhỏ thì nhỏ hơn một chữ viết hoa dạng thật. Chữ cái hoa nhỏ
+giả được tạo với lệnh:
+
+%\shortsetup{kap}
+\shortsetup{cap}
+
+%If you compare \type{PDF}, \type{\kap{PDF}} and \type{\sc pdf}:
+Nếu bạn so sánh \type{PDF}, \type{cap{PDF}} và \type{\sc pdf}:
+
+%\midaligned{PDF, \kap{PDF} and {\sc pdf}}
+\midaligned{PDF, \cap{PDF} và {\sc pdf}}
+
+%you can see the difference. The command \type{\sc} shows the
+%real small caps. The reason for using pseudo small caps
+%instead of real small caps is just a matter of taste.
+bạn sẽ thấy sự khác biệt. Lệnh \type{\sc} hiển thị chữ cái hoa thật. Lí do
+dùng chữ cái hoa nhỏ giả chỉ là vấn đề sở thích.
+
+%\section{Emphasized}
+\section{Nhấn mạnh}
+
+%\index{emphasized}
+\index{nhấn mạnh}
+
+\Command{\tex{em}}
+
+%To emphasize words consistently throughout your document
+%you use:
+Để nhấn mạnh một từ, bạn dùng:
+
+\starttyping
+\em
+\stoptyping
+
+%Empasized words appear in a slanted style.
+Từ được nhấn mạnh sẽ xuất hiện theo kiểu xiên.
+
+%\startbuffer
+%If you walk through Hasselt you should {\bf \em watch out} for
+%{\em Amsterdammers}. An {\em Amsterdammer} is {\bf \em not} a
+%person from Amsterdam but a little stone pilar used to separate
+%sidewalk and road. A pedestrian should be protected by these
+%{\em Amsterdammers} against cars but more often people get hurt
+%from tripping over them.
+%\stopbuffer
+\startbuffer
+Nếu bạn đi bộ dọc Hasselt bạn nên {\bf \em xem chừng} {\em Amsterdammer}.
+Một {\em Amsterdammer} {\bf \em không phải} là người từ Amsterdam mà là hàng
+đá nhỏ ngăn cách vỉa hè với đường. Một khách bộ hành sẽ được bảo vệ bởi các
+{\em Amsterdammer} này khỏi xe hơi nhưng thường người ta dễ đau chân khi dạo
+trên chúng.
+\stopbuffer
+
+\typebuffer
+
+\getbuffer
+
+%{\em An emphasize within an emphasize is {\em normal} again
+%and a boldface emphasize looks like {\bf this or \em this}}.
+{\em Một nhấn mạnh nằm trong một nhấn mạnh khác là {\em bình thường} và một
+nhấn mạnh chữ đậm trông như {\bf thế này hoặc \em thế này}}.
+
+%\section{Teletype / verbatim}
+\section{Kiểu đánh máy / Nguyên văn}
+
+%\index{type}
+%\index{verbatim}
+\index{loại}
+\index{nguyên văn}
+
+\Command{\tex{starttyping}}
+\Command{\tex{type}}
+\Command{\tex{setuptyping}}
+\Command{\tex{setuptype}}
+
+%If you want to display typed text and want to keep your
+%line breaking exactly as it is you use:
+Nếu bạn muốn hiển thị chữ đánh máy và muốn xuống dòng chính xác, bạn dùng:
+
+\shortsetup{starttyping}
+
+%In the text you can use:
+Đối với chữ, bạn dùng:
+
+\shortsetup{type}
+
+%The curly braces enclose the text you want in teletype.
+%You have to be careful with \type{\type} because the
+%line breaking mechanism does not work anymore.
+Cặp ngoặc móc chứa chữ bạn cần hiện kiểu đánh máy. Bạn nên cẩn thận với lệnh
+\type{\type} vì xuống dòng sẽ không đúng.
+
+%You can set up the `typing' with:
+Bạn có thể thiết đặt kiểu đánh với:
+
+\shortsetup{setuptyping}
+\shortsetup{setuptype}
+
+\page
+
+%\section{Encodings}
+\section{Bảng mã}
+
+This section is stil to be filled.
+
+\stopcomponent

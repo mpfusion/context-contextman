@@ -1,0 +1,74 @@
+\startcomponent ma-cb-vn-color
+\project ma-cb
+\product ma-cb-vn
+\environment ma-cb-env-vn
+
+%\chapter{Color}
+\chapter{Màu sắc}
+
+\index{màu sắc}
+
+\Command{\tex{setupcolors}}
+\Command{\tex{color}}
+\Command{\tex{definecolor}}
+
+%Text can be set in color.
+Chúng ta có thể tô màu cho chữ bởi lệnh:
+
+\shortsetup{setupcolors}
+
+%The use of colors has to be
+%activated by:
+Cách dùng màu sắc được bắt đầu với lệnh:
+
+\starttyping
+\setupcolors[state=start]
+\stoptyping
+
+%Now the basic colors are available (red, green and blue).
+Bây giờ có thể bắt đầu với các màu cơ bản (đỏ, xanh lá và xanh dương).
+
+%\startbuffer
+%\startcolor[red]
+%Hasselt is a very \color[green]{colorful} town.
+%\stopcolor
+%\stopbuffer
+\startbuffer
+\startcolor[red]
+Hasselt là một thành phố \color[green]{đầy màu sắc}.
+\stopcolor
+\stopbuffer
+\typebuffer
+
+\getbuffer
+
+%On a black and white printer you will see only grey shades.
+%In an electronic document these colors will be as expected.
+Trên các bản in trắng đen, bạn sẽ chỉ thấy các bóng mờ màu xám nhưng trên các
+tài liệu số, những màu này sẽ được hiển thị đầy đủ.
+
+%You can define your own colors with:
+Bạn có thể tự xác định màu với lệnh:
+
+\shortsetup{definecolor}
+
+%For example:
+Ví dụ:
+
+%\startbuffer
+%\definecolor[darkred]   [r=.5,g=.0,b=.0]
+%\definecolor[darkgreen] [r=.0,g=.5,b=.0]
+%\stopbuffer
+\startbuffer
+\definecolor[đỏ_đậm]   [r=.5,g=.0,b=.0]
+\definecolor[xanh_lá_đậm] [r=.0,g=.5,b=.0]
+\stopbuffer
+
+\typebuffer
+
+%Now the colors \type{darkred} and \type{darkgreen} are
+%available.
+Bây giờ, bạn có thể dùng các màu \type{đỏ_đậm} và \type{xanh_lá_đậm} đã định
+trước ở trên.
+
+\stopcomponent

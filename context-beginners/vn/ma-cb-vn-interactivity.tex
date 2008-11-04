@@ -1,0 +1,379 @@
+\startcomponent ma-cb-vn-interactivity
+\project ma-cb
+\product ma-cb-vn
+\environment ma-cb-env-vn
+
+%\chapter{Interactive mode in electronic documents}
+\chapter{Kiểu tương tác trong tài liệu số}
+
+%\section{Introduction}
+\section{Lời nói đầu}
+
+\index[reader]{\READER}
+\index[exchange]{\EXCHANGE}
+\index[distiller]{\DISTILLER}
+
+%Nowadays documents can be made electronically available for
+%consulting on a computer and displaying on a computer screen.
+Ngày nay, tài liệu có thể được số hóa để hiển thị trên màn hình máy vi tính để
+xem và nghiền ngẫm trên đó.
+
+%Interaction means that you can click on active areas and
+%jump to the indicated areas. For example if you consult a
+%register you can click on a (active) page number and you will
+%jump to the corresponding page.
+Sự tương tác có nghĩa là bạn có thể nhấp chuột vào vùng đang xem và được di
+chuyển đến vùng được đánh dấu. Ví dụ nếu bạn tra cứu một chỉ mục, bạn có thể
+nhấp chuột vào số trang và sẽ được đưa đến trang đó.
+
+%Interaction relates to:
+Sự tương tác liên quan đến
+
+%%\startitemize[packed]
+%% \item active chapter numbers in table of content
+%% \item active page numbers in registers
+%% \item active page numbers, chapter numbers and figure numbers in
+%%       internal references to pages, chapters, figures etc.
+%% \item active titles, page numbers, and chapter numbers in
+%%       external references to other interactive documents
+%% \item active menus as navigation tools
+%%\stopitemize
+\startitemize[packed]
+\item số chương trong bảng mục lục.
+\item số trang trong bảng chỉ mục
+\item số trang, số chương và số của hình trong các tham khảo bên trong đến
+	trang, chương, hình,...
+\item các tiêu đề, số trang, số chương trong các tham chiếu đến các tài liệu
+	tương tác bên ngoài khác
+\item các menu như là các công cụ di chuyển (trong tài liệu)
+\stopitemize
+
+%Interactivity depends on the program you use to view the
+%interactive document. We assume that you will use \PDFTEX\
+%for producing a \PDF\ document directly or use \DISTILLER\
+%to convert a \POSTSCRIPT\ file into a \PDF\ one. It is
+%obvious that you will then use \READER, \EXCHANGE, or
+%\GHOSTVIEW\ for viewing.
+Các tác động qua lại dựa vào chương trình bạn dùng để xem tài liệu. Chúng ta
+giả định rằng bạn dùng \PDFTEX\ để tạo tài liệu \PDF\ trực tiếp hoặc dùng
+\DISTILLER\ để chuyển đổi một tập tin \POSTSCRIPT\ sang \PDF. Và hiển nhiên là
+bạn sẽ dùng \READER, \EXCHANGE\ hoặc \GHOSTVIEW\ để xem.
+
+%\CONTEXT\ is a very powerful system for producing electronic
+%or interactive \PDF\ documents. However only a few standard
+%features are described in this chapter. As the authors of
+%this manual are planning to make all \CONTEXT\ related
+%manuals electronically (sources included) available, reverse
+%engineering is one of the options to become more acquainted
+%with the possibilities of \CONTEXT.
+\CONTEXT\ là một hệ thống rất mạnh để tạo ra các tài liệu số hoặc các tài liệu
+\PDF\ tương tác. Tuy nhiên chỉ có một vài chức năng chuẩn được diễn giải trong
+chương này. Các tác giả của sổ tay này đang có kế hoạch số hóa tất cả các tài
+liệu liên quan đến \CONTEXT\ (bao gồm cả mã nguồn), dịch ngược là một tùy chọn
+trở nên quen thuộc với \CONTEXT.
+
+%\section{Interactive mode}
+\section{Kiểu tương tác}
+
+%\index{interactive mode}
+\index{kiểu tương tác}
+
+\Command{\tex{setupinteraction}}
+
+%The interactive mode is activated by:
+Kiểu tương tác được kích hoạt với lệnh:
+
+\shortsetup{setupinteraction}
+
+%For example:
+Ví dụ:
+
+\startbuffer
+\setupinteraction
+  [state=start,
+   color=green,
+   style=bold]
+\stopbuffer
+
+\typebuffer
+
+%The hyper links are now generated automatically and the
+%active words are displayed in bold green.
+Các liên kết bây giờ được tự động tạo và các từ liên kết sẽ được hiển thị màu
+xanh lá và chữ đậm.
+
+%The interactive document is considerably bigger (in MB's)
+%than its paper cousin because hyperlinks consume space. You
+%will also notice that processing time becomes longer.
+%Therefore it is advisable to de-activate the interactive mode
+%as long as your document is under construction.
+Tài liệu liên kết phình ra đáng kể (theo đơn vị MB) hơn người anh em giấy của
+nó vì các liên kết chiếm dụng nhiều khoảng trống. Bạn sẽ để ý thấy rằng thời
+gian biên dịch trở nên lâu hơn. Cho nên, nếu tài liệu của bạn vẫn đang còn
+biên soạn thì nên tắt chức năng tương tác trong tài liệu.
+
+%\section{Interaction within a document}
+\section{Tương tác trong tài liệu}
+
+\index{tương tác+bên trong}
+
+\Command{\tex{in}}
+\Command{\tex{at}}
+\Command{\tex{goto}}
+
+%Earlier you have seen how to make a reference with
+%\type{\in} and \type{\at}. You may have wondered why you had
+%to type \type{\in{chapter}[chap:introduction]}. In the first
+%place {\em chapter} and its corresponding chapter number
+%will not be separated at line breaking. In the second place
+%the word {\em chapter} and its number are typeset
+%differently in the interactive mode. This gives the user a
+%larger clickable area.
+Trong phần đầu, bạn đã học cách tạo một tham chiếu với lệnh \type{\in} và
+\type{\at}. Có thể bạn đã tự hỏi tại sao bạn phải nhập vào
+\type{\in{chương}[chap:introduction]}. Trong phần đầu tiên, {\em chương} và số
+chương của nó sẽ không bị tách ra lúc xuống dòng. Trong phần thứ hai, {\em
+chương} và số chương của nó sẽ được sắp xếp khác biệt trong kiểu tương tác.
+Điều này sẽ tạo một vùng nhấp chuột rộng hơn cho người dùng.
+
+%In interactive mode there is one other command that has
+%little meaning in the paper variant.
+Trong kiểu tương tác, có một lệnh khác có ít ý nghĩa hơn trong dạng định dạng
+giấy.
+
+\shortsetup{goto}
+
+%The curly braces contain text, the brackets contain a
+%reference (logical name, location).
+Cặp ngoặc móc chứa chữ, cặp ngoặc vuông chứa tham chiếu (tên logic, vị trí).
+
+%\startbuffer
+%In \goto{Hasselt}[fig:cityplan] all streets are build in a
+%circular way.
+%\stopbuffer
+\startbuffer
+Ở \goto{Hasselt}[fig:cityplan] các con phố được xây dựng theo một đường vòng.
+\stopbuffer
+
+\typebuffer
+
+%In the interactive document {\em Hasselt} will be green and
+%active. You will jump to a map of Hasselt.
+Trong tài liệu tương tác, {\em Hasselt} sẽ được tô màu xanh lá và nhấp chuột
+được. Bạn sẽ được đưa đến bản đồ của Hasselt.
+
+%\section{Interaction between documents}
+\section{Tương tác giữa các tài liệu}
+
+%\index{interaction+external}
+\index{tương tác+bên ngoài}
+
+\Command{\tex{from}}
+\Command{\tex{useexternaldocument}}
+
+%It is possible to link one document to another. First you
+%have to state that you want to refer to another document.
+%This is done by:
+Có thể liên kết một tài liệu đến một tài liệu khác. Đầu tiên, bạn phải khai
+báo rằng bạn muốn tham chiếu đến tài liệu khác với lệnh:
+
+\shortsetup{useexternaldocument}
+
+%The first bracket pair must contain a logical name of the
+%document, the second pair the file name of the other document
+%and the third pair is used for the title of the document.
+Cặp ngoặc vuông đầu tiên phải chứa một tên logic của tài liệu, cặp thứ hai
+chứa tên tập tin của tài liệu cần tham chiếu và cặp thứ ba chứa tiêu đề của
+tài liệu.
+
+%For refering to these other documents you can use:
+Để tham chiếu đến các tài liệu này, bạn dùng:
+
+\shortsetup{from}
+
+%The curly braces contain text and the brackets contain the
+%reference.
+Cặp ngoặc móc chứa chữ và cặp ngoặc vuông chứa tham chiếu.
+
+%Look at the example below.
+Xem ví dụ bên dưới.
+
+%% \startbuffer
+%% \useexternaldocument[hia][hasbook][Hasselt in August]
+
+%% Most tourist attractions are described in \from[hia]. A description
+%% of the Eui||feest is found in \from[hia::euifeest]. A description
+%% of the \goto{Eui||feest}[hia::euifeest] is found in \from[hia]. The
+%% eui||feest is described on \at{page}[hia::euifeest] in \from[hia].
+%% See for more information \in{chapter}[hia::euifeest] in \from[hia].
+%% \stopbuffer
+\startbuffer
+\useexternaldocument[hia][hasbook][Hasselt vào tháng Tám]
+
+Hầu hết các điểm du lịch được mô tả trong \from[hia]. Một mô tả về Eui||feest
+có trong \from[hia::euifeest]. Một mô tả về \goto{Eui||feest}[hia::euifeest]
+có trong \from[hia]. Mục eui||feest được mô tả tại \at{trang}[hia::euifeest]
+trong \from[hia]. Xem thêm thông tin tại \in{chương}[hia::euifeest] trong
+\from[hia].
+\stopbuffer
+
+\typebuffer
+
+%The \type{\useexternaldocument} is usually typed in the
+%set up area of your input file.
+Lệnh \type{\useexternaldocument} luôn được đặt trong phần thiết đặt của tập
+tin nhập liệu.
+
+%After processing your input file (at least two times to get
+%the references right), and the file \type{hasbook.tex},
+%you will have two \PDF\ documents. The references
+%above have the following meaning:
+Sau khi biên dịch tập tin nhập liệu (tối thiểu hai lần để có tham chiếu chính
+xác) và tập tin \type{hasbook.tex}, bạn sẽ có hai tài liệu \PDF. Các tham
+chiếu trên có ý nghiĩ sau:
+
+%%\startitemize[packed]
+%% \item \type{\from[hia]} will produce the active title you gave
+%%       in the third bracket pair of
+%%       \type{\useexternaldocument} and is linked to the
+%%       first page of \type{hasbook.pdf}
+%% \item \type{\from[hia::euifeest]} will produce an active title
+%%       and is linked to the page where chapter Eui||feest
+%%       begins
+%% \item \type{\goto{Eui||feest}[hia::euifeest]} will produce an
+%%       active word {\em Eui||feest} and is linked to the page
+%%       where chapter Eui||feest begins
+%% \item \type{\at{page}[hia::euifeest]} will produce an active
+%%       word {\em page} and page number and is linked to that
+%%       page
+%% \item \type{\in{chapter}[hia::euifeest]} will produce on
+%%       active word {\em chapter} and chapter number and is
+%%       linked to that chapter
+%%\stopitemize
+\startitemize[packed]
+\item \type{\from[hia]} sẽ tạo tiêu đề liên kết bạn đã đặt trong cặp ngoặc
+vuông thứ ba của lệnh \type{useexternaldocument} và được liên kết đến trang
+đầu tiên của \type{hasbook.pdf}.
+\item \type{\from[hia::euifeest]} sẽ tạo một tiêu đề liên kết và được liên kết
+đến trang bắt đầu của chương Eui||feest.
+\item \type{\goto{Eui||feest}[hia::euifeest]} sẽ tạo một từ liên kết {\em
+Eui||feest} và được liên kết đến trang bắt đầu của chương Eui||feest.
+\item \type{\at{page}[hia::euifeest]} sẽ tạo một từ {\em trang} và số trang
+liên kết đến trang đó.
+\item \type{\in{chapter}[hia::euifeest]} sẽ tạo từ liên kết {\em chương} và số
+chương liên kết đến chương đó.
+\stopitemize
+
+%As you can see the \type{::} separates the (logical) file name
+%and the destination in that file.
+Như bạn đã thấy, kí tự \type{::} chia cách tên tập tin (logic) và đích đến
+trong tập tin đó.
+
+%\section{Menus}
+\section{Menu}
+
+%You can define navigation tools with:
+Bạn có thể định nghĩa các công cụ di chuyển (trong tài liệu) với lệnh:
+
+\shortsetup{defineinteractionmenu}
+
+%The first bracket pair is used for a logical name that can
+%be used to recall the menu. The second pair contains the
+%location on the screen. The third pair is used for setting
+%up the menu.
+Cặp ngoặc vuông đầu tiên được dùng cho tên logic để có thể gọi lại menu. Cặp
+ngoặc vuông thứ hai chứa vị trí trên màn hình. Cặp ngoặc vuông thứ ba được
+dùng để thiết đặt menu.
+
+%A typical menu definition might look like this:
+Một định nghĩa menu đặc trưng có thể trông như thế này:
+
+%% \startbuffer
+%% \setupcolors
+%%   [state=start]
+
+%% \setupinteraction
+%%   [state=start,
+%%    menu=on]
+
+%% \defineinteractionmenu
+%%   [mymenu]
+%%   [right]
+%%   [state=start,
+%%    align=middle,
+%%    background=screen,
+%%    frame=on,
+%%    width=\marginwidth,
+%%    style=smallbold,
+%%    color=]
+
+%% \setupinteractionmenu
+%%   [mymenu]
+%%   [{Content[content]},
+%%    {Index[index]},
+%%    {\vfill},
+%%    {Stop[ExitViewer]}]
+%% \stopbuffer
+\startbuffer
+\setupcolors
+  [state=start]
+
+\setupinteraction
+  [state=start,
+   menu=on]
+
+\defineinteractionmenu
+  [mymenu]
+  [right]
+  [state=start,
+   align=middle,
+   background=screen,
+   frame=on,
+   width=\marginwidth,
+   style=smallbold,
+   color=]
+
+\startinteractionmenu[mymenu]
+  \but [content] Nội dung \\
+  \but [index] Bảng tra \\
+  \vfill \\
+  \but [ExitViewer] Thoát \\
+\stopinteractionmenu
+
+\setupheadertexts[{\interactionmenu[mymenu]}]
+\stopbuffer
+
+\typebuffer
+
+%This will produce a menu on the right hand side of every
+%screen. The menu buttons contain the text {\em Content}, {\em
+%Index} and {\em Stop} with respectively the following
+%functions: jump to the table of contents, jump to the index
+%and leave the viewer. The labels to obvious destinations
+%like \type{content} and \type{index} are predefined. Other
+%predefined destinations are \type{FirstPage},
+%\type{LastPage}, \type{NextPage} and
+%\type{PreviousPage}.
+Ví dụ trên sẽ tạo một menu phía tay phải mỗi khung hình. Các nút trên menu
+chứa các chữ {\em Nội dung}, {\em Bảng tra} và {\em Thoát} thực hiện các chức
+năng: di chuyển đến bảng mục lục, di chuyển đến bảng tra và thoát khỏi chương
+trình xem tài liệu. Các nhãn đến các đích như \type{content} và \type{index}
+được định nghĩa trước. Các đích đến được đinh nghĩa trước khác là
+\type{FirstPage}, \type{LastPage}, \type{NextPage} và \type{PreviousPage}.
+
+%An action like \type{ExitViewer} is necessary to make an
+%electronic document self containing. Other predefined
+%actions you can use are \type{PrintDocument},
+%\type{SearchDocument} and \type{PreviousJump}. The meaning of
+%these actions is obvious.
+Một hành động như \type{Thoát} là cần thiết mà một tài liệu số nên có. Các
+hành động khác bạn có thể dùng là \type{PrintDocument}, \type{SearchDocument}
+và \type{PreviousJump}. Ý nghĩa của các hành động này rất rõ ràng.
+
+%Menus are set up with:
+Menu được thiết lập với lệnh:
+
+%\shortsetup{setupinteractionmenu}
+\shortsetup{startinteractionmenu}
+
+\stopcomponent

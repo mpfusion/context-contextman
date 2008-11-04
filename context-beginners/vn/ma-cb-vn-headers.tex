@@ -1,0 +1,72 @@
+\startcomponent ma-cb-vn-headers
+\project ma-cb
+\product ma-cb-vn
+\environment ma-cb-env-vn
+
+%\chapter{Page headers and footers}
+\chapter{Phần đầu và phần chân trang}
+
+%\index{page header}
+%\index{pagefooter}
+\index{phần đầu trang}
+\index{phần chân trang}
+
+\Command{\tex{setupfootertexts}}
+\Command{\tex{setupheadertexts}}
+\Command{\tex{setupheader}}
+\Command{\tex{setupfooter}}
+\Command{\tex{noheaderandfooterlines}}
+
+%In some cases you want to give your document a page header
+%and footer. The commands to do this are:
+Trong một vài trường hợp, bạn muốn đặt vào tài liệu của bạn một phần chân
+trang và phần đầu trang. Các lệnh sau làm việc này:
+
+\shortsetup{setupfootertexts}
+\shortsetup{setupheadertexts}
+
+%The first bracket pair is used for the location of the
+%footer or header (\type{text}, \type{edge} etc). Footer and
+%header are placed within the second and third bracket pairs.
+%In a double sided document a fourth and fifth bracket
+%pair is used for footer and header on the left-hand side
+%page and the right-hand side page. In most cases you can omit
+%these last two bracket pairs.
+Cặp ngoặc vuông đầu tiên được dùng để định vị trí của phần đầu và phần chân
+(\type{text}, \type{edge} ...). Phần chân và phần đầu được đặt trong cặp ngoặc
+vuông thứ hai và thứ ba. Trong tài liệu hai mặt, cặp ngoặc vuông thứ hai và
+thứ ba được dùng cho phần chân và phần đầu trên trang mặt trái và mặt phải.
+Trong hầu hết trường hợp, bạn có thể bỏ qua hai cặp ngoặc vuông cuối này.
+
+%\startbuffer
+%\setupfootertexts[Manual][section]
+%\stopbuffer
+\startbuffer
+\setupfootertexts[Sổ tay][section]
+\stopbuffer
+
+\typebuffer
+
+%In this case the text {\em Manual} will appear in the
+%left-hand side corner and the title of the actual section on
+%the right-hand side of the page. This footer will change with
+%the beginning of a new section.
+Trong trường hợp này, chữ {\em Sổ tay} sẽ xuất hiện ở góc mặt trái và tiêu đề
+của tiết đoạn nằm ở mặt phải của trang. Phần chân này sẽ thay đổi khi bắt đầu
+một tiết đoạn mới.
+
+%You can set up the head- and footline with:
+Bạn có thể thiết lập phần đầu và phần chân với các lệnh:
+
+\shortsetup{setupheader}
+\shortsetup{setupfooter}
+
+%If you want to leave out the page header and footer you can
+%type:
+Nếu bạn muốn bỏ đi phần chân và phần đầu, bạn có thể dùng lệnh:
+
+\starttyping
+\noheaderandfooterlines
+\stoptyping
+
+\stopcomponent
