@@ -2368,9 +2368,8 @@ an em wide.
   {\getbuffer[em-ex-1]}
 
 In most cases we use \type{em} for specifying width and
-\type {ex} for height. \in {Table} [exes] shows some
-examples. We see that the height equals the height of a
-lowercase~x.
+\type {ex} for height. An \type {ex} equals the height of 
+a lowercase~x. \in {Table} [exes] shows some examples. 
 
 \startbuffer[em-ex-2]
 
@@ -2527,7 +2526,7 @@ examples we will stick to two columns.
 
 \blank
 
-In this first example the text was typeset in the
+In this previous example the text was typeset in the
 traditional way. The hyphens and punctuation fit into the
 margin.
 
@@ -2575,7 +2574,7 @@ limit the protruding to 75\% and 50\% respectively.
 In typesetting the two characters hz are tightly connected to Hermann
 Zapf and the next couple of pages we will discuss a method for
 optimizing the look and feel of a paragraph using a mechanism that is
-inspired on his work. Although official qualified in \PDFTEX\ as
+inspired by his work. Although official qualified in \PDFTEX\ as
 font adjusting, we will use the short qualification hz since this is
 how it is called in the \PDFTEX\ community.
 
@@ -2667,8 +2666,8 @@ between \PDFTEX\ and \MKIV.
 \subsection{Setting up font handlings in \MKII}
 
 Now, let's move on to how to set up the system for font handling
-properly. Most of the underlying features of \PDFTEX\ can not {\em
-just\/} be turned on or off, it is possible to tweak the machinery on
+properly. Most of the underlying features of \PDFTEX\ cannot be turned 
+{\em merely} on or off, it is possible to tweak the machinery on
 the font as well as on the individual glyph level. You can define
 those settings all on your own, but \CONTEXT\ comes with a handy set
 of predefined values.
@@ -2726,7 +2725,7 @@ and finally, don't forget to turn on hanging by:
 \stopexample
 
 However, this only takes care of the \type{Serif} font. Normally, that
-is the virtual name for the combination {\rm\tf}. If you also want the
+is the virtual name for the combination \type {\rm\tf}. If you also want the
 bold variants to hang, you have to add an extra line:
 
 \startexample
@@ -2772,7 +2771,7 @@ start of this section.
 
 The typescripts that are used in these examples work by altering the
 font synonyms for virtual symbolic font names like \type{Serif}
-and \type{SerifBold} en block. They will even work with your own
+and \type{SerifBold} en bloc. They will even work with your own
 typescripts if (but only if) these typescripts use the same font
 naming conventions as the \CONTEXT\ core.
 
@@ -2985,7 +2984,7 @@ Also note that the values for the parameters \type{stretch},
 \type{shrink} and \type{step} are divided by a factor 10 compared to
 the \MKII\ definition.
 
-IN \MKIV, there is no support for the \type{spacing} key to
+In \MKIV, there is no support for the \type{spacing} key to
 \type{\setupalign} yet. That is because the low||level features in
 \PDFTEX\ are not present in \LUATEX, and there is no replacement yet.
 The font handling \type{noligs} is, of course, replaced by the
