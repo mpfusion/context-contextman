@@ -826,14 +826,9 @@ environment:
 \macro{\tex{Word}}
 \macro{\tex{characters}}
 
-Words and abbreviations can be typeset in capitals. Both
-small and big characters are converted into capitals. When
-\type {\cap} is used to typeset a capital the size is that
-of an \type {\tx}. When you switch to italic (\type {\it}),
-bold (\type {\bf}), etc. the capital letter will also
-change. Since \type {\cap} has a specific meaning in math
-mode, the formal implementation is called \type {\smallcapped}.
-However in text mode one can use \type {\cap}.
+Some words and abbreviations are typeset in capitals (uppercase). \CONTEXT\
+provides the following commands for changing both upper|| and lowercase
+characters into capitals.
 
 \showsetup{cap}
 
@@ -843,10 +838,18 @@ However in text mode one can use \type {\cap}.
 
 \showsetup{Caps}
 
-The first command converts all letters to a capital. You are
-advised not to type capital letters in your source file
-because real small caps distinguishes between small and big
-letters.
+The command \type {\cap} converts all letters to capitals at
+the size of \type {\tx}. If you switch to italic (\type
+{\it}), bold (\type {\bf}), etc. the capital letter will
+also change. Since \type {\cap} has a specific meaning in
+math mode, the formal implementation is called \type
+{\smallcapped}. However in text mode one can use \type
+{\cap}.
+
+
+% You are advised not to type capital letters in your source
+% file because real small caps distinguishes between small
+% and big letters.
 
 \startbuffer
 Capitals for \cap {UK} are \cap {OK} and capitals for \cap {USA} are
@@ -937,7 +940,7 @@ capitals. However, realize that lower case characters
 discriminate more and make for an easier read.}
 
 An important difference between \type {\cap} and \type {\sc}
-is that the last command is used for a specific designed
+is that the latter command is used for a specific designed
 font type. The command \type {\cap} on the other hand adapts
 itself to the actual typeface: {\sl \cap {kap}}, {\bf \cap
 {kap}}, {\bs \cap {kap}}, etc.
