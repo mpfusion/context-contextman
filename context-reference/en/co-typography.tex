@@ -1005,23 +1005,22 @@ that may lead to some rather strange but legitimate effects.
 
 \subsection{Body font sizes}
 
-Body font sizes actually consist of two components. Of course if you
-specify a size it directly specifies the size at which the main font
-is loaded, but a number of indirect parameters have to taken care of
-as well. Think of things like the font size used in headers, footers,
+Body font sizes actually consist of two components: the
+font size and a number of indirect parameters.
+Think of things like the font size used in headers, footers,
 footnotes, sub|| and superscripts, as well as the interline space and
 a few others. 
 
 This is why in \CONTEXT\ there is the concept of a {\em body font
 environment} (expressed as a dimension), and that is what you pass as
 an argument to \type{\setupbodyfont} or \type{\switchtobodyfont}. The
-definitions as presented above use the indication \type{5pt ... 12pt}
+definitions as presented above indicate \type{5pt ... 12pt}
 for the body font environment, but actually any dimension is
 acceptable. 
 
 The most frequently used sizes are predefined as body font
 environments: 4pt \dots\ 12pt, 14.4pt, and 17.3pt. But when you use a
-different, not-yet-defined size specification |<|for example for a
+different, not-yet-defined size specification |<|for example in a
 title page|>| \CONTEXT\ will define a body font environment for that
 size automatically.  While doing so, \CONTEXT\ normally works with a
 precision of 1~decimal to prevent unnecessary loading of fontsizes
@@ -1034,8 +1033,8 @@ sizes and the interline space.  It does so by using the values from
 the nearest smaller body font environment is that is already defined.
 
 You can extend the list of predefined body font environments and even
-alter the precision in body font matching. See
-the~\in{section}[sec:body font environment] for detailed information about how to
+alter the precision in body font matching. 
+See~\in{section}[sec:body font environment] for detailed information about how to
 tweak or define your own body font sizes.
 
 \blank
@@ -1076,8 +1075,8 @@ words given besides the special marker \type{IDENTIFIER}. These words
 are the symbolic \CONTEXT\ names for the font styles that we ran into
 earlier, with a few aliases so that you do not have to worry about the
 actual naming convention used. The symbolic names are mapped to
-two-letter internal style abbreviations that are used internally,
-see~\in{table}[tab:style switches] for an overview.
+two-letter internal style abbreviations that are used internally.
+See~\in{table}[tab:style switches] for an overview.
 
 Although the macro syntax does not say so, you can use two-letter
 internal style abbreviations (\type{ss}, \type{rm}) as well as the
@@ -1159,7 +1158,7 @@ argument in place: while it will always be ignored by \LUATEX,
 fonts instead of the more modern OpenType or TrueType font formats. 
 
 All predefined typescripts attach meaning to (at least) the three basic
-text font styles, so you can e.g. do this:
+text font styles(serif, sans, and mono), so you can e.g. do this:
 
 \startexample
 \starttyping
@@ -1285,11 +1284,11 @@ Explicit loading one of those files is done via the macro \type{\usetypescriptfi
   {\getbuffer[typescripts]}
 
 The predefined typescripts, the typefaces they define, the files
-they are contained in inside the \CONTEXT\ distribution, and the
+in which they are contained in the \CONTEXT\ distribution, and the
 encodings they support in \MKII\ mode are listed in~\in {table}
 [tab:typescripts and typefaces]. In the following section there is a 
-table (\in {}[tab:typeface names]) that explains for each typescript 
-what font set it attaches to each of the font styles.
+table (\in {}[tab:typeface names]) that explains 
+what font set each typescript attaches to each of the font styles.
 
 \showsetup{usetypescriptfile}
 
@@ -1373,7 +1372,7 @@ four typefaces, one of each of the four basic styles \type{rm}, \type{ss}, \type
 \showsetup{definetypeface} % empty at the moment
 
 The third and fourth arguments to \type{\definetypeface} are pointers to already
-declared font sets, these are defined elsewhere. \in{Table}[tab:typeface names] 
+declared font sets; these are defined elsewhere. \in{Table}[tab:typeface names] 
 gives the full list of predefined typescripts (the first argument of \type{\starttypescript}) 
 and font sets  that are attached to the styles (the third and fourth argument of 
 each \type{\definetypeface}). 
@@ -1385,7 +1384,7 @@ were keywords that were internally remapped to one of the two-letter internal st
 group of fonts by the person that wrote the font definition. They only reflect a grouping
 that the person believed that could be a single font style.  Oftentimes, these names are
 identical to the official style keywords, just as the typescript and typeface names are often 
-the same, but there can be (and are) different names altogether.
+the same, but there can be (and sometimes are) different names altogether.
 
 \startbuffer[simpletypescripts]
 \vskip 1ex
@@ -1436,7 +1435,7 @@ the same, but there can be (and are) different names altogether.
   {The typescripts.\crlf 
    Unless stated otherwise, style {\bf rm} uses a group named serif, style {\bf ss} uses sans, style {\bf tt} uses
    mono, and style {\bf mm} uses math.
-   A single dash in a cell means that the typescript does not define that style, you should refrain from using the style.
+   A single dash in a cell means that the typescript does not define that style; you should refrain from using the style.
    The lucida, lucidabfm, and lucidaboldmath typescripts also define {\bf hw} and {\bf cg} as \quote{lucida handwring} 
    and \quote{lucida calligraphy}.
    The modern-base typescript switches back to computer-modern for a few legacy encodings: t2a, t2b, and t2c.}
@@ -1895,7 +1894,7 @@ anywhere. Those missing bits of the definitions are handled by typescript and \X
 \macro{\tex{setupbodyfontenvironment}}
 \macro{\tex{definebodyfontenvironment}}
 
-Earlier we have seen that within a single body font there are in fact
+Earlier we saw that within a single body font there are in fact
 different font sizes for example for super|-| and subscripts. The
 relations between these sizes are defined by {\em body font
 environments}.
