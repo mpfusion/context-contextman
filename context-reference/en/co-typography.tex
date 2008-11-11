@@ -589,12 +589,13 @@ maximum depth:
 \blackrule[height=max,depth=max]
 
 This sum is in \CONTEXT\ equal to 2.8ex, so almost three
-times the height of an~x. This is about $1.2 \times$ the
+times the height of an~x. This is about $1.2$ times the
 bodyfont height. The proportion between maximum height and
-depth is default .72~:~.28. Linespacing alters when a new
+depth is .72~:~.28 by default. Linespacing alters when a new
 bodyfont is used or when linespacing is defined explicitly
-by:
+by \type {\setupinterlinespace} (which is explained later):
 
+\starthiding
 \starttyping
 \bfd \setupinterlinespace Now, the interline spacing is larger ... \par
 \stoptyping
@@ -603,6 +604,7 @@ One has to consider the fact that \TEX\ operates on
 paragraphs and within a group one has to close the paragraph
 explicitly with an empty line or \type {\par}. However, in
 most cases \CONTEXT\ will take care of this.
+\stophiding
 
 Sometimes a line does not have the maximum height or depth.
 The next example illustrates this:
@@ -735,7 +737,7 @@ between the height and depth of a line. The baseline
 distance is set to 2.8ex. The parameters \type {top} and
 \type {bottom} specify the relation between the bodyfont
 size and the height of the first line and the depth of the
-last line on a page. The last two quantities are related to
+last line on a page. They are related to
 \TEX's \type {\topskip} and \type {\maxdepth}.
 
 We will see later that instead of setting the spacing at the document
