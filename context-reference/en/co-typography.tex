@@ -173,7 +173,7 @@ the font application, like a newspaper or a book. Often, classification
 systems mix these characteristics up to some point.
 
 For example, the Computer Modern family can be classified as a
-\quote{modern} font. This is a classication that primarily indicates
+\quote{modern} font. This is a classification that primarily indicates
 a period (late 18\high{th} century), but it also implies a particular
 shape: \quote{modern} fonts have a high contrast between thick and
 thin strokes, and their stress axis is perfectly vertical.
@@ -186,7 +186,7 @@ end), \quote{sans serif} (shapes end abruptly), or \quote{monospaced}
 The Computer Modern family is in fact inspired by one font in particular:
 \quote{Modern 8a} by the Monotype corporation. Knuth implemented
 Computer Modern in \METAFONT\ using parameters so that he could
-generate a whole collection of fonts all closely matching eachother in
+generate a whole collection of fonts all closely matching each other in
 style. In \CONTEXT\ you will normally use a reimplementation of
 Computer Modern using a more modern file format (Type~1 or OpenType).
 This new version is called \quote{Latin Modern}, and also features an
@@ -277,7 +277,7 @@ peculiarities.
 Font switching is one of the eldest features of \CONTEXT\ because font
 switching is indispensable in a macro package.  During the years
 extensions to the font switching mechanism were inevitable. The
-following starting points have been chosesn during the development of this
+following starting points have been chosen during the development of this
 mechanism:
 
 \startitemize[packed]
@@ -289,7 +289,7 @@ mechanism:
       available like italic and bold (\type {\it} and \type {\bf}).
 \item Different font {\em families} like Latin Modern Roman 
       and Lucida Bright must be supported.
-\item It must be possbile to combine different families into font
+\item It must be possible to combine different families into font
       {\em collections}.
 \item Different sub|| and superscripts must be
       available. These script sizes have to be retained across the
@@ -338,7 +338,7 @@ This is called the bodyfont.
 
 Consistent use of commands like \type {\bf} and \type
 {\it} in the text will automatically result in the desired
-bold and italic altermatives when you change the family or
+bold and italic alternatives when you change the family or
 style in the setup area of your input file. 
 
 \subsection[font style switching]{Font style switching}
@@ -455,7 +455,7 @@ are available. For the core \CONTEXT\ fonts, you can count on at least
 \type{\tfa}, \type{\tfb}, \type{\tfc}, \type{\tfd}, and \type{\tfxx} 
 being defined. For the others, just try and see what happens.
 
-When you have chosen a larger charactersize,
+When you have chosen a larger character size,
 for example \type {\tfb}, then \type {\tf} equals \type {\tfb},
 \type {\bf} equals \type {\bfb}, etc. This method is almost always
 preferable over returning to the original character size, but it 
@@ -536,7 +536,7 @@ capital
 \stoptyping
 \stopexample
 
-Most of these keywords have alread been listed in the tables \in{}[tab:alternative switches]
+Most of these keywords have already been listed in the tables \in{}[tab:alternative switches]
 and \in{} [tab:small alternative switches], but a few predefined ones are still missing. 
 These are displayed in~\in{table}[tab:last alternative switches], together with the commands
 they execute. As is normal in \CONTEXT, you can extend the list of accepted keywords by 
@@ -656,18 +656,18 @@ linespacing of 1.25: \type{\setupinterlinespace[medium]}.
 Whenever it comes to my mind that \quotation {everything that comes in
 quantities, will somehow survive}, I also got the feeling that in a few
 hundred years people will draw the saddening conclusion that all those
-top||ten hits produced by computers represent the summum of todays
-musical and instrumental abilities. Isn't it true that archeologists can
+top||ten hits produced by computers represent the some of todays
+musical and instrumental abilities. Isn't it true that archaeologists can
 spend a lifetime on speculating about some old coins from the first century?
 On the other hand, the mere fact that one can have success with this type
 of non||music success of some top||hit musicians demonstrates both the
 listeners inability to rate the product and the lack of self criticism of
-the performers. In principle the future archeologist will therefore draw
+the performers. In principle the future archaeologist will therefore draw
 the right conclusion. \par
 \stopnarrower
 \stopreality
 
-When you make a fontswitch the linespacing is adapted when you give
+When you make a font switch the linespacing is adapted when you give
 the command \hbox{\type {\setupinterlinespace}} without any setup
 parameters and also when you add the key \type {reset}, for example
 
@@ -753,7 +753,7 @@ environment:
 \index{italic}
 \macro{\tex{em}}
 
-Within most macropackages the command \type {\em} is
+Within most macro||packages the command \type {\em} is
 available. This command behaves like a chameleon which means
 that it will adapt to the actual typeface. In \CONTEXT\
 \type {\em} has the following characteristics:
@@ -968,7 +968,7 @@ by processing the text character by character.
 
 This chapter will not go into the details of underlining because
 using underlining for typographical purposes is a bad practice.
-Instead, the commands related to under- and overlining are discussed
+Instead, the commands related to under- and over-lining are discussed
 in \in {section} [underline] (\over [underline]).
 
 
@@ -1015,7 +1015,7 @@ acceptable.
 The most frequently used sizes are predefined as body font
 environments: 4pt \dots\ 12pt, 14.4pt, and 17.3pt. But when you use a
 different, not-yet-defined size specification |<|for example for a
-titlepage|>| \CONTEXT\ will define a body font environment for that
+title page|>| \CONTEXT\ will define a body font environment for that
 size automatically.  While doing so, \CONTEXT\ normally works with a
 precision of 1~decimal to prevent unnecessary loading of fontsizes
 with only small size differences.
@@ -1041,7 +1041,7 @@ bodyfont. Consider this input:
 {\switchtobodyfont[14.4pt] with these commands \par}
 {\switchtobodyfont[12pt]   for font switching  \par}
 {\switchtobodyfont[10pt]   it is possible to   \par}
-{\switchtobodyfont[8pt]    produce an eyetest: \par}
+{\switchtobodyfont[8pt]    produce an eye test: \par}
 {\switchtobodyfont[6pt]    a x c e u i w m q p \par}
 \stopbuffer
 
@@ -1327,7 +1327,7 @@ to the \TeX\ Gyre set;
 
 maps the same names to the commercial Adobe fonts. 
 \stopitemize
-For the defintions in the second file to work, you also need to execute an extra typescript:
+For the definitions in the second file to work, you also need to execute an extra typescript:
 
 \startexample
 \starttyping
@@ -1864,7 +1864,7 @@ these typescripts (and the calling conventions) apart from the
 familiar ones, the typescripts are identified with \type{Xserif},
 \type{Xsans}, and \type{Xmono}.
 
-To call these sepcial typescripts, it's most convenient to define a
+To call these special typescripts, it's most convenient to define a
 typeface that uses these features. The named font slot should contain
 the display name of the Regular alternative (not the family name) of
 the font in question.  For example, you could have the following mix:
@@ -1909,7 +1909,7 @@ argument is not really optional, the macro syntax description is a little mislea
 
 The third argument once again is optional, and contains the actual settings
 as key-value pairs. If it is missing, defaults will be guessed at
-by \CONTEXT\ itself. Allthough the macro syntax says the type is
+by \CONTEXT\ itself. Although the macro syntax says the type is
 \type{DIMENSION},  floating point numbers are also acceptable. Such numbers are
 multipliers that are applied to the font size when the body font environment is
 applied.
@@ -1957,7 +1957,7 @@ values explicitly, using something like this
 \stoptyping
 \stopexample
 
-To tweak already defined sizes, there is an accompagnying setup command with the same
+To tweak already defined sizes, there is an accompanying setup command with the same
 parameter conventions:
 
 \showsetup{setupbodyfontenvironment}
@@ -2215,7 +2215,7 @@ summoned with \type{\showbodyfontenvironment}.
 \showsetup{showbodyfontenvironment}
 
 
-Specifiying actual \type{IDENTIFIER}s to these commands is currently unreliable 
+Specifying actual \type{IDENTIFIER}s to these commands is currently unreliable 
 because they internally are still counting on an older system of body font 
 definitions, but you can safely use a size argument to get the information 
 for the current font set.
@@ -2253,7 +2253,7 @@ $\bi\mf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = 6x^2$
 $\bf x^2 + x^2 + x^2 + x^2 + x^2 + x^2 = \mf 6x^2$
 \stopbuffer
 
-There are only a few font families in existance that can handle math
+There are only a few font families in existence that can handle math
 properly because such fonts have to carry a complete set of characters and
 symbols for mathematical typesetting.  Among these, the Computer
 Modern Roman distinguishes itself by its many design sizes; that
@@ -2286,7 +2286,7 @@ regardless. Technically this means that the symbols are set in the
 fixed font family~0 whereas the alphabetic characters are typeset
 using variable family numbers.
 
-Typeseting math formulas can also be done somewhat differently, as we
+Typesetting math formulas can also be done somewhat differently, as we
 will see in the next example.
 
 \typebuffer[math-2]
@@ -2301,7 +2301,7 @@ are also set in the actually selected font, just like the characters.
 
 You should take into account that \TEX\ typesets a formula as a
 whole. In some cases this means that setups at the end of the formula
-have an effect that starts already at the beginning of the fomula.
+have an effect that starts already at the beginning of the formula.
 
 For example, the exact location of \type {\mf} is not that important.
 We also could have typed:
@@ -2328,7 +2328,7 @@ Some insight in these units does not hurt. The width of an
 em||dash). When this glyph is not available in the font
 another value is used. \in {Table} [ems] shows some
 examples. We see that the width of a digit is about \type
-{.5em}. In Computer Modern Roman a digit is excactly half
+{.5em}. In Computer Modern Roman a digit is exactly half
 an em wide.
 
 \startbuffer[em-ex-1]
@@ -2361,7 +2361,7 @@ an em wide.
   {The width of an \type{em}.}
   {\getbuffer[em-ex-1]}
 
-In most cases we use \type{em} for specifying width and and
+In most cases we use \type{em} for specifying width and
 \type {ex} for height. \in {Table} [exes] shows some
 examples. We see that the height equals the height of a
 lowercase~x.
@@ -2403,7 +2403,7 @@ Almost all users of typesetting systems based on \TEX\ do so because
 of the quality of the output it produces. \PDFTEX\ (and through
 inheritance \LUATEX\ as well) contains a few extensions to the
 typesetting engine that make the output even better than the results
-achieved by Knuth's original \TEX.  Although the extensiosn are made
+achieved by Knuth's original \TEX.  Although the extensions are made
 available by \PDFTEX, they are not limited to the \PDF\ output, they
 will work with the \DVI\ backend just as well. And when the
 extensions are defined but not enabled, then the typeset output is
@@ -2427,7 +2427,7 @@ punctuation into the margin, like in:
 \FakeParagraph\rlap\relax
 
 In this alternative, the margin looks less ragged, and this
-becomes more noticable once you get aware of this phenomenon.
+becomes more noticeable once you get aware of this phenomenon.
 
 Sometimes, shifting the characters completely into the
 margin is too much for the sensitive eye, for instance with
@@ -2614,7 +2614,7 @@ slightly better because the whitespace distribution is more even.
 \subsection [sec:otherhandling]{Other font handlings}
 
 In addition to the two handlings documented in the previous
-pararaphs (protruding and hz), \CONTEXT\ also provides the \type
+paragraphs (protruding and hz), \CONTEXT\ also provides the \type
 {noligs} handling (handy when one processes \XML), \type
 {flexspacing} and \type {prespacing} (meant for languages like French
 that need spacing around for instance \type {:} and~\type {;}). These
@@ -2765,7 +2765,7 @@ be one of named font handlings that are listed in the table at the
 start of this section.
 
 The typescripts that are used in these examples work by altering the
-font synonyms for virtualized symbolic font names like \type{Serif}
+font synonyms for virtual symbolic font names like \type{Serif}
 and \type{SerifBold} en block. They will even work with your own
 typescripts if (but only if) these typescripts use the same font
 naming conventions as the \CONTEXT\ core.
@@ -2969,7 +2969,7 @@ fonts.expansions.vectors['default'] = {
 }
 \stopLUA
 
-As you can see, the definition order of vector vs. class is not
+As you can see, the definition order of vector vs.\ class is not
 important, and the format of the vector is a little different. The use of 
 \type{byte()} is just so that that keying in hex numbers can be avoided. 
 The values are bare numbers instead of hashes because there is only
@@ -2991,7 +2991,7 @@ relevant font features turned off.
 This paragraph only applies to \PDFTEX. If you are exclusively using
 \XETEX\ or \MKIV, you can safely ignore the following text.
 
-Not every language uses the (western) latin alphabet. Although
+Not every language uses the (western) Latin alphabet. Although
 in most languages the basic 26 characters are somehow used,
 they can be combined with a broad range of accents placed in
 any place.
