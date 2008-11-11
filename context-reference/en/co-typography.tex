@@ -566,6 +566,64 @@ in the next chapter.
   {Remaining font alternative keywords.}
 {\getbuffer[lastalternativeswitch]}
 
+\section[emphasize]{Emphasize}
+\index{emphasize}
+\index{slanted}
+\index{italic}
+\macro{\tex{em}}
+
+Within most macro||packages the command \type {\em} is
+available. This command behaves like a chameleon which means
+that it will adapt to the actual typeface. In \CONTEXT\
+\type {\em} has the following characteristics:
+
+\startitemize[packed]
+\item a switch to {\it italic} or {\sl slanted} is possible
+\item a switch within \type {\bf} results in {\bi bold italic}  or 
+      {\bs bold slanted} (when available)
+\item a so called {\em italic correction} is performed
+      automatically (\type {\/})
+\stopitemize
+
+The bold italic or bold slanted characters are supported only
+when \type {\bs} and \type {\bi} are available.
+
+\startbuffer
+The mnemonic {\em em} means {\em emphasis}.
+{\em The mnemonic {\em em} means {\em emphasis}.}
+{\bf The mnemonic {\em em} means {\em emphasis}.}
+{\em \bf The mnemonic {\em em} means {\em emphasis}.}
+{\it The mnemonic em {\em means \bf emphasis}.}
+{\sl The mnemonic em {\em means \bf emphasis}.}
+\stopbuffer
+
+\startexample
+\typebuffer
+\stopexample
+
+This results in:
+
+\startlines
+\getbuffer
+\stoplines
+
+The advantage of the use of \type {\em} over \type {\it}
+and|/|or \type {\sl} is that consistent typesetting is
+enforced.
+
+By default emphasis is set at {\em slanted}, but in this text
+it is set at {\em italic}. This setting is made via 
+\type{\setupbodyfontenvironment}, 
+see~\in{section}[sec:body font environment] for more details:
+
+\startexample
+\starttyping
+\setupbodyfontenvironment
+   [default]
+   [em=italic]
+\stoptyping
+\stopexample
+
 
 \section[linespacing]{Line spacing}
 \index{linespacing}
@@ -750,64 +808,6 @@ environment:
   [interlinespace=14pt]
 \stoptyping
 
-
-\section[emphasize]{Emphasize}
-\index{emphasize}
-\index{slanted}
-\index{italic}
-\macro{\tex{em}}
-
-Within most macro||packages the command \type {\em} is
-available. This command behaves like a chameleon which means
-that it will adapt to the actual typeface. In \CONTEXT\
-\type {\em} has the following characteristics:
-
-\startitemize[packed]
-\item a switch to {\it italic} or {\sl slanted} is possible
-\item a switch within \type {\bf} results in {\bi bold italic}  or 
-      {\bs bold slanted} (when available)
-\item a so called {\em italic correction} is performed
-      automatically (\type {\/})
-\stopitemize
-
-The bold italic or bold slanted characters are supported only
-when \type {\bs} and \type {\bi} are available.
-
-\startbuffer
-The mnemonic {\em em} means {\em emphasis}.
-{\em The mnemonic {\em em} means {\em emphasis}.}
-{\bf The mnemonic {\em em} means {\em emphasis}.}
-{\em \bf The mnemonic {\em em} {\em emphasis}.}
-{\it The mnemonic em {\em means \bf emphasis}.}
-{\sl The mnemonic em {\em means \bf emphasis}.}
-\stopbuffer
-
-\startexample
-\typebuffer
-\stopexample
-
-This results in:
-
-\startlines
-\getbuffer
-\stoplines
-
-The advantage of the use of \type {\em} over \type {\it}
-and|/|or \type {\sl} is that consistent typesetting is
-enforced.
-
-By default emphasis is set at {\em slanted}, but in this text
-it is set at {\em italic}. This setting is made via 
-\type{\setupbodyfontenvironment}, 
-see~\in{section}[sec:body font environment] for more details:
-
-\startexample
-\starttyping
-\setupbodyfontenvironment
-   [default]
-   [em=italic]
-\stoptyping
-\stopexample
 
 \section[capitals]{Capitals}
 \index{capital characters}
