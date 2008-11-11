@@ -332,7 +332,7 @@ There are different ways to change into a new a style or
 alternative. You can use \type {\ss} to switch to a sans
 serif font style and \type {\bf} to get a bold alternative.
 When a different style is chosen, the alternatives adapt
-themselves to this style. Often a document will be typeset 
+themselves to this style. Often a document will be mostly typeset 
 using just one combination of family and style. 
 This is called the bodyfont.
 
@@ -368,12 +368,12 @@ two-letter commands that are listed in~\in{table}[tab:style switches].
 
 The \quote{handwritten} and \quote{calligraphic} font styles are
 sometimes useful when dealing with very elaborate document layout
-definitions. In the \CONTEXT\ distribution, only the Lucida font
-family uses these styles, in any other font set they are simply
-ignored. You could use them in your own font setups if you so desire
-(see the next chapter for font setup definitions).
+definitions. In the \CONTEXT\ distribution only the Lucida font
+family uses these styles; in any other font set they are simply
+ignored. You could use them in your own font setups if you so desire.
+See the next chapter for font setup definitions.
 
-There is a sixth internal style that is only ever referenced as
+There is a sixth internal style that is only ever referred to as
 \quote{mm}. This style handles math fonts. It does not make sense to
 use this style directly so there is no command attached to it, but it
 is quite important internally so it makes sense to introduce it right
@@ -383,7 +383,7 @@ away.
 
 The alternatives within a style are given in~\in{table}[tab:alternative switches]. 
 Not all fonts have both italic and slanted or the bold alternatives of
-each. Some other fonts do not have small caps or only one set of
+each. Some other fonts do not have small caps or have only one set of
 digits.  When an alternative is not known, \CONTEXT\ will attempt to
 choose a suitable replacement automatically. For instance, the italic
 alternative may be used for if slanted is not available or vice versa.
@@ -449,9 +449,10 @@ versions.
 
 Besides the \quote{small} switches that are mentioned 
 in~\in{table}[tab:small alternative switches],
-it depends on the completeness of the font definition files whether
+the availability of 
 commands like \type {\ita}, \type {\bfxx}, \type {\bfc}, etc.
-are available. For the core \CONTEXT\ fonts, you can count on at least
+depends on the completeness of the font definition files. 
+For the core \CONTEXT\ fonts, you can count on at least
 \type{\tfa}, \type{\tfb}, \type{\tfc}, \type{\tfd}, and \type{\tfxx} 
 being defined. For the others, just try and see what happens.
 
@@ -507,7 +508,7 @@ command \type {\tfd} as if it was \type {\rmd}, when the style
 All default font setups use \type {tf}||setups so they will
 automatically adapt to the current font style.
 
-The remainder of this paragraph is for completeness' sake  only.
+The remainder of this section is for the sake of completeness.
 Use of the following commands in new documents is discouraged.
 
 Frequent font switching leads to longer processing times.
@@ -526,7 +527,7 @@ like \type{\tfx} and \type{\tfa}.
 A number of \CONTEXT\ commands use the parameter \type {style} to set
 the used font.  The parameter mechanism is rather flexible so that 
 within the parameter \type {style} you can use any of the font switching 
-commands like {\bf} or \type {bf} or \type{\switchtobodyfont}, 
+commands like \type {\bf} or \type {bf} or \type{\switchtobodyfont}, 
 but also a number of keywords like
 \startexample
 \starttyping
@@ -537,7 +538,8 @@ capital
 \stopexample
 
 Most of these keywords have already been listed in the tables \in{}[tab:alternative switches]
-and \in{} [tab:small alternative switches], but a few predefined ones are still missing. 
+and \in{} [tab:small alternative switches], but a few predefined ones have not
+been mentioned yet.
 These are displayed in~\in{table}[tab:last alternative switches], together with the commands
 they execute. As is normal in \CONTEXT, you can extend the list of accepted keywords by 
 defining your own. This will be  explained in\in~{section}[sec:definealternativestyle] 
