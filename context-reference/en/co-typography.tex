@@ -75,10 +75,10 @@
 \index{typography}
 
 Throughout the millennia humans have developed and adapted methods for
-storing facts and thoughts on a variety of different mediums. A very
-efficient way of doing this is using logograms, like Chinese have done
+storing facts and thoughts on a variety of different media. A very
+efficient way of doing this is using logograms, as the Chinese have done
 for ages. Another method is to represent each syllable in a word by a
-symbol, like the Japanese do when writing telegrams. However, the most
+symbol, as the Japanese do when writing telegrams. However, the most
 common way of storing characters is by using a limited set of shapes
 representing basic sounds (a.k.a. phonemes). Such a collection is
 called an \definition{alphabet}, and the shapes are called
@@ -92,7 +92,7 @@ explained in later chapters.
 
 The shapes representing the characters that make up an alphabet are
 more or less standardized, and thereby can be recognized by readers
-even if their details differ.  A collection of pictures matching
+even if their details differ.  A collection of pictures representing
 character shapes is called a \definition{font}, and the pictures in a
 font are called \definition{glyphs}.
 
@@ -103,7 +103,7 @@ font are called \definition{glyphs}.
 From left to right you see a Computer Modern font, a Helvetica lookalike, a
 Times Roman lookalike and the Antiqua Torunska font, all scaled to 60pt.
 As you can see, quite some variation is possible and when intermixed,
-the result is not always pleasing to look at. The term \definition{fonts collection}
+the result is not always pleasing to look at. The term \definition{font collection}
 refers to a set of fonts combined together in such a way that the
 overall appearance on a page looks good and reading is as comfortable
 as possible.
@@ -159,7 +159,7 @@ the same list of ligatures.
 
 
 Micro||typography like kerning pairs and ligatures are not to be altered 
-by the user, they are part of the font design and the required data is stored
+by the user, but are part of the font design and the required data is stored
 inside the font file, together with the drawing routines for the
 actual pictures. It {\em is\/} possible for the user to alter fonts
 and interline spacing and some more aspects on the level of
@@ -170,7 +170,7 @@ There are many different methods that can be used to classify
 fonts. There are classification systems based on the period in which
 the style was first developed; on the characteristics of the font; or
 the font application, like a newspaper or a book. Often, classification
-systems mix these characteristics up to some point.
+systems mix these characteristics to a certain point.
 
 For example, the Computer Modern family can be classified as a
 \quote{modern} font. This is a classification that primarily indicates
@@ -225,7 +225,7 @@ classified according to many schemes, and the exact terminology used
 depends on the background of the user.  In \in {table}[tab:font
 triplets] you can see some examples of the terms that are used by
 various people to identify the three font styles that are most often
-found together within a single book design (like for a software manual).
+found together within a single book design (such as for a software manual).
 
 \startbuffer[styles]
 \vskip1ex
@@ -248,14 +248,14 @@ book designers, the third series is what was traditionally used in
 plain \TEX. In \CONTEXT\ all three series of terms can be used
 because they are remapped to the same set of internal commands. As
 will be explained later, the command \type {\rm} is used to switch to
-a roman|/|serif|/|regular style, and \type {\tt} for switching to
-mono spaced or typewriter style, etcetera.
+a roman|/|serif|/|regular style, and \type {\tt} to switch to
+monospaced or typewriter style, etcetera.
 
 Text can be typeset in different font sizes. The unit \type {pt},
 short for \quote{printer's point}, is normally used to specify the
 size of a font. There are a little over 72 points per inch (or a
-little under 2.85 points per millimeter, if you prefer ISO
-units). Traditionally font designers used to design a glyph
+little under 2.85 points per millimeter, if you prefer metric
+units). Traditionally, font designers used to design a glyph
 collection for each point size, but nowadays most fonts have only a
 single design size of 10 points, or at most a small set of sizes with
 names indicating their proposed use, like {\em caption}, {\em text},
@@ -263,8 +263,8 @@ and {\em display}.
 
 The next sections will go into the details of switching of font styles and
 fonts in your documents. Be warned that the font switching mechanism
-is rather complex. This is caused by the different modes like math
-mode and text mode in \CONTEXT. If you want to be understand the
+is rather complex. This is due to the different modes like math
+mode and text mode in \CONTEXT. If you want to understand the
 mechanism fully, you will have to acquaint yourself with the concept
 of encoding vectors and obtain some knowledge on fonts and their
 peculiarities.
@@ -274,15 +274,15 @@ peculiarities.
 \index{sans serif}
 \index{typewriter}
 
-Font switching is one of the eldest features of \CONTEXT\ because font
+Font switching is one of the oldest features of \CONTEXT\ because font
 switching is indispensable in a macro package.  During the years
 extensions to the font switching mechanism were inevitable. The
 following starting points have been chosen during the development of this
 mechanism:
 
 \startitemize[packed]
-\item To change a {\em style} must be easy, this
-      means switching to: roman (serif, regular), sans serif
+\item It must be easy to change font {\em styles}, e.g., switching 
+      between roman (serif, regular), sans serif
       (support), teletype (monospaced) etc. (\type {\rm},
       \type {\ss}, \type {\tt} etc.)
 \item More than one {\em alternative} set of glyphs shapes must be
@@ -291,8 +291,8 @@ mechanism:
       and Lucida Bright must be supported.
 \item It must be possible to combine different families into font
       {\em collections}.
-\item Different sub|| and superscripts must be
-      available. These script sizes have to be retained across the
+\item Different sub|| and super||scripts must be
+      available. These script sizes have to be consistent across the
       switching of family, style and alternative.
 \item It should be possible to combine all of these requirements
       into a single definition unit called a {\em body font}.
