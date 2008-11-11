@@ -2963,6 +2963,8 @@ That was the complete definition of \type{protrusion=pure}.  The key
 For \type{protrusion}, there is only the one parameter \type{factor},
 but for \type{expansion} there are a few more:
 
+
+\starttyping
 \startLUA
 fonts.expansions.classes['quality'] = {
     stretch = 2, shrink = 2, step = .5, vector = 'default', factor = 1
@@ -2973,6 +2975,7 @@ fonts.expansions.vectors['default'] = {
     ... -- many more characters follow
 }
 \stopLUA
+\stoptyping
 
 As you can see, the definition order of vector vs.\ class is not
 important, and the format of the vector is a little different. The use of 
@@ -2993,7 +2996,7 @@ relevant font features turned off.
 
 \section [sec:encodings]{Encodings and mappings}
 
-This paragraph only applies to \PDFTEX. If you are exclusively using
+This section only applies to \PDFTEX. If you are exclusively using
 \XETEX\ or \MKIV, you can safely ignore the following text.
 
 Not every language uses the (western) Latin alphabet. Although
@@ -3007,7 +3010,7 @@ it in the input. This is no problem for \type {a..z}, but
 other characters are accessed by name, for instance \type
 {\eacute}. The glyph \eacute\ can be present in the font but when
 it's not there, \TEX\ has to compose the character from a
-letter~e and an accent~\textgrave.
+letter~e and an accent~\textacute.
 
 In practice this means that the meaning of \type {\eacute}
 depends on the font and font encoding used. There are many
