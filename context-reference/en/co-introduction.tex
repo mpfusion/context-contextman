@@ -1,6 +1,6 @@
 % interface=en
 
-\startcomponent co-en-02
+\startcomponent co-introduction
 
 \environment contextref-env
 \product contextref
@@ -32,11 +32,9 @@
 
 \framed
   [\c!width=6cm,\c!height=5cm]
-  {\vfil \ConTeXt \vfil
-   \leavevmode\framed[\c!width=.7\hsize,\c!height=.5\hsize]
-     {\vfil plain\ \TeX \vfil
-      \leavevmode\framed[\c!width=.7\hsize,\c!height=.3\hsize]{\TeX}
-      \vfil\vfil}
+  {\vfil \ConTeXt \vfil \vfil
+   \leavevmode\framed[\c!width=.5\hsize,\c!height=.3\hsize]
+     {\vfil \TeX \vfil }
    \vfil\vfil}
 
 \protect
@@ -50,7 +48,7 @@
 \index[tex]{\TEX}
 \index{Knuth}
 
-\TEX\ was developed at the Stanford University during the
+\TEX\ was developed at Stanford University during the
 seventies. The designer, developer and spiritual father of
 \TEX\ is Donald E. Knuth. Knuth developed \TEX\ to typeset
 his own publications and to give an example of a
@@ -72,6 +70,8 @@ during which typesetting commands are interpreted. Because
 you tell your typesetting intentions to \TEX, the system can
 also be qualified as an intentional typesetting system.
 
+\fixme{Next paragraph is messy, and introduces \CONTEXT\ prematurely}
+
 In most documents one can stick to commands that define the
 structure and leave the typographic details to \CONTEXT. One
 can concentrate on the content, instead of on makeup; the
@@ -89,7 +89,7 @@ and tools.
 \section[context]{\CONTEXT}
 \index[context]{\CONTEXT}
 
-The development of \CONTEXT\ was started in 1990. A number
+The development of \CONTEXT\ started in 1990. A number
 of \TEX\ based macropackages had been used to our
 satisfaction. However, the non||technical users at our
 company were not accustomed to rather complex and non||Dutch
@@ -109,91 +109,147 @@ macropackage there are still a great number of wishes. These
 will be implemented in the spirit of the existing \CONTEXT\
 commands.
 
+\starthiding
 \CONTEXT\ comes with a number of \PERL\ scripts, like
 \TEXUTIL\ and \TEXEXEC. Also a number of modules are
 available, like \PPCHTEX\ for typesetting chemical
 structures.
+\stophiding
+
+\todo{Add some text about recent developments, especially the split between mkii and mkiv}
 
 \section{Commands}
 \index{commands}
 \index{macros}
 \index{brackets}
 
-A \CONTEXT\ document is normally coded in \ASCII. Such a
-document consist of text mixed with \CONTEXT\ commands.
+A \CONTEXT\ document is normally coded in \UTF\ or another plain text encoding like ISO~Latin1. Inside such a file,
+the actual document text is interspersed with \CONTEXT\ commands.
 These commands tell the system how the text should be
-typeset. An example of such a command is \type {\sl}. A
-\CONTEXT\ command begins with a backslash (\type {\}). Most
+typeset. A \CONTEXT\ command begins with a backslash 
+(\type {\}). An example of a command is \type {\sl}. Most
 of the time a command does something with the text that
 comes after the command. The text after the command \type
-{\sl} will be typed {\sl slanted}.
+{\sl} will be typeset {\sl slanted}.
 
-When we use a command like \type{\sl} we are typesetting.
-Typesetting and writing are conflicting activities. As an
-author you would rather spend as little time as possible
-with typesetting. However, you want to indicate that
-something has to happen with the text. An example is a
-command like \type{\em} ({\em emphasis}). Commands like
-\type{\em} enable the typesetter to change the meaning of
-this command without having to edit the text.
+When you use a command like \type{\sl} you acting as a  typesetter,
+and when you are writing paragraps you are acting as an author.
+Typesetting and writing are conflicting activities; as an
+author you would probably rather spend as little time as possible
+typesetting. When you are actually writing text and you have 
+to indicate that something special has to happen with the text, 
+it is therefore best to use generic commands than specific typesetting commands. 
+An example of such a generic command is \type{\em} ({\em emphasis}). 
+By using \type{\em} instead of \type{\sl}, you enable the typesetter (who could also be you) to change the typeset result without him or her having to alter the text.
 
-\placefigure[left][fig:cohesion tex]{}{\getbuffer[fig-cont]}
+{\setupcaption[figure][width=fit]
+\placefigure[right][fig:cohesion tex]
+  {}{\getbuffer[fig-cont]}}
+
 
 A \TEX\ user normally speaks of macros instead of commands.
-A macro is a, often small, program. Although we will use
-both \quote {command} and \quote {macro}, we try to
+A macro is a (normally small) program. Although this manual uses
+both \quote {command} and \quote {macro},  we will try
 consistently use the word command for users and macro for
-programmers.
+programmers. A collection of macros is called a macropackage. 
 
-A collection of macros is called a macropackage. We believe
-\CONTEXT\ is one of the most extensive and complete
-macropackages. One of the advantages of \CONTEXT\ is the
-availability of most of the plain \TEX\ macros.
+A command is often followed by setups and / or 
+argument text. Setups are placed between brackets (\type{[]},
+there may be more than one sets of those).  The scope or range
+of the command (the text acted upon) is placed between curly
+brackets (\type{{}}, there may be more than one of those as well). 
 
-A command is often followed by setups or by text. Setups
-are placed between brackets (\type{[]}). The scope or range
-of the command, the text acted upon, is placed between curly
-brackets (\type{{}}). For example:
+An example of a command with setups and an argument text is
 
 \startbuffer
-\framed[width=2cm,height=1cm]{that's it}
+\framed[width=3cm,height=1cm]{that's it}
 \stopbuffer
 
 \typebuffer
 
-If we process this text and command by \TEX\ we get:
+When this input is processed by \CONTEXT, the result will look like this:
 
 \startbaselinecorrection
-\midaligned{\getbuffer}
+\getbuffer
 \stopbaselinecorrection
 
-Setups in \CONTEXT\ are defined by commands like:
+Setups in \CONTEXT\ come in two possible formats. First, 
+there can be a list of comma-separated key||value pairs 
+like we saw already
 
 \startbuffer
-\setupsomething[variable=value,variable=value,...]
+\setupsomething [variable=value, variable=value, ...]
 \stopbuffer
 
+\typebuffer
+
+Second, there can be a comma-separated list of just values
+
+\startbuffer
+\setupsomething [option, option,...]
+\stopbuffer
+
+\typebuffer
+
+In both cases the setups are placed between \type{[]}.  Spaces, tabs and  even a newline between the command and the opening \type{[} or after any of the separation commas are ignored. But multiple newlines are disallowed, and whitespace before commas, around the equals sign and before the closing~\type{]} is significant. 
+
+Some practical examples of correct command invocations are:
+
+\startbuffer
+\setupwhitespace [big]
+\setupitemize  [packed, columns]
+\setuplayout   [backspace=4cm,
+                topspace=2.5cm]
+\stopbuffer
+
+\typebuffer
+
+Many typographical operations are performed on a text that
+is enclosed within a \type{start-stop} construction:
+
+\startbuffer
+\startsomething
+.............................
+\stopsomething
+\stopbuffer
+
+\typebuffer
+
+And often keywords or key||value pairs can be passed, that inform
+\CONTEXT\ of the users wishes like
+
+\startbuffer
+\startnarrower[2*left,right]
+.............................
+\stopnarrower
+\stopbuffer
 \typebuffer
 
 or
 
 \startbuffer
-\setupsomething[option,option,...]
+\startitemize[n,broad,packed]
+\item .......................
+\item .......................
+\stopitemize
 \stopbuffer
-
 \typebuffer
 
-In both examples the setups are placed between \type{[]}.
-Several setups are defined in a comma list. A number of
-examples are:
+The simplest \CONTEXT\ document is
 
 \startbuffer
-\setupwhitespace[big]
-\setupitemize[packed,columns]
-\setuplayout[backspace=4cm,topspace=2.5cm]
+\starttext
+Hello World!
+\stoptext
 \stopbuffer
 
 \typebuffer
+
+\section {Running \CONTEXT}
+
+\todo{Explain basic use of \type{texexec} and \type{context} here, maybe from a text editor or environment like texworks. }
+
+\section{Advanced commands}
 
 There are also commands that are used to define new commands.
 For example:
@@ -262,38 +318,6 @@ from the predefined command \type {\section}. The last
 command alters the characteristics of the newly defined
 head. Later we will discuss these commands in more detail.
 
-Many typographical operations are performed on a text that
-is enclosed within a \type{start-stop} construction:
-
-\startbuffer
-\startsomething
-.............................
-\stopsomething
-\stopbuffer
-
-\typebuffer
-
-Often keywords or key||value pairs can be passed, that inform
-\CONTEXT\ on the users wishes:
-
-\startbuffer
-\startnarrower[2*left,right]
-.............................
-\stopnarrower
-\stopbuffer
-
-\typebuffer
-
-or
-
-\startbuffer
-\startitemize[n,broad,packed]
-\item .............................
-\item .............................
-\stopitemize
-\stopbuffer
-
-\typebuffer
 
 We use \type{begin-end} constructions to mark textblocks.
 Marked textblocks can be typeset, hidden, replaced or
@@ -363,7 +387,7 @@ document otherwise. When the \CONTEXT\ commands in this
 manual are discussed they are displayed in the following
 way:
 
-% \repeatsetup{setupfootertexts}
+\showsetup{setupfootertexts}
 
 The command \type{\setupfootertexts}, which we will discuss
 in detail in a later chapter, has three arguments of which
