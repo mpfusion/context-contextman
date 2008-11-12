@@ -4096,8 +4096,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupinterlinespace2" variant="2" file="core-spa.tex"> 
-     <!-- attached a 2 to make this definition usable with \showsetup -->
+  <cd:command name="setupinterlinespace" variant="2" file="core-spa.tex"> 
     <cd:sequence>
       <cd:string value="setupinterlinespace"/>
     </cd:sequence>
