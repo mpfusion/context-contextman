@@ -96,26 +96,28 @@ even if their details differ.  A collection of pictures representing
 character shapes is called a \definition{font}, and the pictures in a
 font are called \definition{glyphs}.
 
+The example below shows (from left to right) a Computer Modern font, a Helvetica lookalike, a Times Roman lookalike and the Antiqua Torunska font, all scaled to 48pt.
+
 \startlinecorrection
 \externalfigure[typography/glyphs.pdf][page=1]
 \stoplinecorrection
 
-From left to right you see a Computer Modern font, a Helvetica lookalike, a
-Times Roman lookalike and the Antiqua Torunska font, all scaled to 60pt.
-As you can see, quite some variation is possible and when intermixed,
-the result is not always pleasing to look at. The term \definition{font collection}
-refers to a set of fonts combined together in such a way that the
-overall appearance on a page looks good and reading is as comfortable
-as possible.
+As you can see, quite some design variation is possible. It follows that when fonts from different sources (designers) are intermixed, the result is not always pleasing to look at. The term \definition{font collection} refers to a set of fonts combined together in such a way that the overall appearance on a page looks good and reading is as comfortable as possible.  
+
+The next example shows an attempt at such a font collection:  the fonts were picked such that the glyph sizes and the line thicknesses are roughly the same.
+
+\startlinecorrection
+\externalfigure[typography/glyphs.pdf][page=3]
+\stoplinecorrection
+
+Fonts from a single source often already come in a few variations that are 
+intended to be used together.  Such a set of fonts with  the same basic design is known as a \definition{font family}. In the example below there are a normal, a bold, an italic, and a bold italic \definition{alternative} of a font. 
 
 \startlinecorrection
 \externalfigure[typography/glyphs.pdf][page=2]
 \stoplinecorrection
 
-Even within a single font design there can be variations. In the
-example above there are a light, a bold, an italic, and a bold italic
-\definition{alternative} of a single font. Such a set of fonts with 
-the same basic design is known as a \definition{font family}.
+
 
 The distance between the individual glyphs in a word and the actual
 glyphs that are used depends on the combinations of these glyphs.  In
@@ -229,11 +231,11 @@ found together within a single book design (such as for a software manual).
 
 \startbuffer[styles]
 \vskip1ex
-\starttabulate[|l|l|l|l|l|l|]
-\NC \bf \rlap{identifier(s)} \NC \NC   \NC \qquad \NC \bf example        \NC \NR
-\NC serif \NC regular  \NC roman       \NC \NC \rmtf main text          \NC \NR
-\NC sans  \NC support  \NC sans        \NC \NC \sstf section headings   \NC \NR
-\NC mono  \NC teletype \NC type        \NC \NC \tttf code examples      \NC \NR
+\starttabulate[|l|l|l|]
+\NC \bf \rlap{terms}  \NC \qquad \NC \bf example        \NC \NR
+\NC regular, serif, roman   \NC            \NC \rmtf main text          \NC \NR
+\NC support, sans            \NC             \NC \sstf section headings   \NC \NR
+\NC teletype, mono, type \NC          \NC \tttf code examples      \NC \NR
 \stoptabulate
 \vskip1ex
 \stopbuffer
@@ -243,10 +245,10 @@ found together within a single book design (such as for a software manual).
   {Some ways of identifying the font styles in a document design.}
   {\getbuffer[styles]}
 
-The leftmost two series of names are normally used by typographers and
-book designers, the third series is what was traditionally used in
-plain \TEX. In \CONTEXT\ all three series of terms can be used
-because they are remapped to the same set of internal commands. As
+Within the lists of terms, the earlier names are normally used by
+typographers and book designers, the later ones are commonly used in
+\TEX. In \CONTEXT\ all of these terms can be used intermixed
+because they are all remapped to the same set of internal commands. As
 will be explained later, the command \type {\rm} is used to switch to
 a roman|/|serif|/|regular style, and \type {\tt} to switch to
 monospaced or typewriter style, etcetera.
@@ -267,7 +269,7 @@ is rather complex. This is due to the different modes like math
 mode and text mode in \CONTEXT. If you want to understand the
 mechanism fully, you will have to acquaint yourself with the concept
 of encoding vectors and obtain some knowledge on fonts and their
-peculiarities.
+peculiarities.  See the next chapter for more information.
 
 \section[bodyfont]{The mechanism}
 \index{roman}
@@ -447,9 +449,10 @@ versions.
   {Small alternative switching commands and their keyword equivalents.}
 {\getbuffer[xalternativeswitch]}
 
-Besides the \quote{small} switches that are mentioned 
-in~\in{table}[tab:small alternative switches],
-the availability of 
+
+The \quote{small} switches mentioned 
+in~\in{table}[tab:small alternative switches] are always available. 
+The availability of other
 commands like \type {\ita}, \type {\bfxx}, \type {\bfc}, etc.
 depends on the completeness of the font definition files. 
 For the core \CONTEXT\ fonts, you can count on at least
@@ -653,17 +656,6 @@ depth is .72~:~.28 by default. Linespacing alters when a new
 bodyfont is used or when linespacing is defined explicitly
 by \type {\setupinterlinespace} (which is explained later):
 
-\starthiding
-\starttyping
-\bfd \setupinterlinespace Now, the interline spacing is larger ... \par
-\stoptyping
-
-One has to consider the fact that \TEX\ operates on
-paragraphs and within a group one has to close the paragraph
-explicitly with an empty line or \type {\par}. However, in
-most cases \CONTEXT\ will take care of this.
-\stophiding
-
 Sometimes a line does not have the maximum height or depth.
 The next example illustrates this:
 
@@ -744,18 +736,22 @@ the following input:
 
 \startexample
 \starttyping
-\start \tfa \setupinterlinespace 
-In books meant for children we often find
-a somewhat ... when needed. \par \stop
+  \start \tfa \setupinterlinespace 
+  In books meant for children we often find
+  a somewhat ... when needed. \par \stop
 \stoptyping
 \stopexample
 
-In this example the \type {\par} is necessary because
+In this example the \type {\par} is necessary because \TEX\
+operates on whole paragraphs.  Within a group one has to 
+close the paragraph explicitly with an empty line or \type {\par}
 otherwise \TEX\ will have forgotten the linespacing before
-the paragraph is finished (in that case, the paragraph is
-ended by the empty line after the \type {\stop}).
+the paragraph is finished (as in that case, the paragraph is
+ended by the empty line after the \type {\stop}). 
 
-
+The word \type{height} is typeset inside a bare \type{\tfd} 
+group, to illustrate why \type{\setupinterlinespace} is required.
+ 
 \start 
 \startnarrower
 \tfa \setupinterlinespace In books meant for children
@@ -777,7 +773,7 @@ when needed. \par
 Instead of a keyword, one can pass a key||value pair to
 define the characteristics of a line. 
 
-\showsetup{setupinterlinespace2}
+\showsetup{setupinterlinespace:2}
 
 The default settings are:
 
@@ -945,6 +941,14 @@ font type. The command \type {\cap} on the other hand adapts
 itself to the actual typeface: {\sl \cap {kap}}, {\bf \cap
 {kap}}, {\bs \cap {kap}}, etc.
 
+
+\section[stretching]{Character spacing}
+\index{inter character spacing}
+\index{character spacing}
+\index{stretching}
+\macro{\tex{stretched}}
+
+
 Some typesetting packages stretch words (inter character
 spacing) to reach an acceptable alignment. In \CONTEXT\
 this not supported. On purpose! Words in titles can be
@@ -977,7 +981,6 @@ This chapter will not go into the details of underlining because
 using underlining for typographical purposes is a bad practice.
 Instead, the commands related to under- and over-lining are discussed
 in \in {section} [underline] (\over [underline]).
-
 
 \section[bodyfontswitch]{Selecting bodyfonts}
 \index{bodyfont}
@@ -2514,8 +2517,11 @@ The characters that stick into the margin are taken into
 account when breaking the paragraph into lines, but in the
 final result, they do not count in the width. Here we used
 an ugly three column layout so that we got a few more
-hyphens to illustrate the principle, but in the next
-examples we will stick to two columns.
+hyphens to illustrate the principle.
+
+
+When that same text is typeset in the traditional way in two columns,
+it looks like this: 
 
 \blank
 
@@ -2526,9 +2532,9 @@ examples we will stick to two columns.
 
 \blank
 
-In this previous example the text was typeset in the
-traditional way. The hyphens and punctuation fit into the
-margin.
+As you can see, the hyphens and punctuation fit snugly into the line
+and as a result the line endings look a bit ragged.
+With protrusion turned on, it looks like this: 
 
 \blank
 
@@ -2540,34 +2546,9 @@ margin.
 
 \blank
 
-\iffalse
-% this is pdftex-only.
-In this example, the protruding machinery is put to work.
-The hyphens and punctuation may now stick into the margin
-completely. The next two examples shows what happens when we
-limit the protruding to 75\% and 50\% respectively.
-
-\blank
-
-\startsimplecolumns[n=2]
-\setupfontsynonym [Serif] [handling=pure]
-\setupfonthandling[normal][left=.75,right=.75]
-\setupalign[verytolerant,stretch,hanging]
-\switchtobodyfont[modern,9pt] \noindent \input zapf \par
-\stopsimplecolumns
-
-\blank
-
-\startsimplecolumns[n=2]
-\setupfontsynonym [Serif] [handling=pure]
-\setupfonthandling[normal][left=.5,right=.5]
-\setupalign[verytolerant,stretch,hanging]
-\switchtobodyfont[modern,9pt] \noindent \input zapf \par
-\stopsimplecolumns
-
-\blank
-\fi
-
+Now the punctuation protrudes a little into the margin.  Although the margin 
+is now geometrically uneven it looks straighter to the human eye because 
+not so much whitespace \quote{pushes into} the text.
 
 \subsection [sec:hz]{Font expansion}
 
