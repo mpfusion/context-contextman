@@ -90,7 +90,7 @@ and tools.
 \index[context]{\CONTEXT}
 
 The development of \CONTEXT\ started in 1990. A number
-of \TEX\ based macropackages had been used to our
+of \TEX\ based macro packages had been used to our
 satisfaction. However, the non||technical users at our
 company were not accustomed to rather complex and non||Dutch
 interfaces. For this reason we initiated the development of
@@ -99,13 +99,14 @@ that are easy to understand. Initially the user interface
 was only available in Dutch.
 
 The functionality of \CONTEXT\ was developed during the
-production of a great number of complex educational
-materials and workplace manuals and handbooks. In 1994 the
+production of many complex educational
+materials, workplace manuals and handbooks. In 1994 the
 package was stable enough to warrant a Dutch user manual.
-Over the years \CONTEXT\ has been upgraded with many
-features and German and English interfaces were added.
+Over the years many new features and 
+a multi-lingual interface have been added (currently 
+English, German, \unknown\ interfaces are supported).
 Though \CONTEXT\ is as (un|)|stable as any other
-macropackage there are still a great number of wishes. These
+macro package there are still a great number of wishes. These
 will be implemented in the spirit of the existing \CONTEXT\
 commands.
 
@@ -127,20 +128,21 @@ A \CONTEXT\ document is normally coded in \UTF\ or another plain text encoding l
 the actual document text is interspersed with \CONTEXT\ commands.
 These commands tell the system how the text should be
 typeset. A \CONTEXT\ command begins with a backslash 
-(\type {\}). An example of a command is \type {\sl}. Most
+(\type {\}). An example of a command is \type {\italic}. Most
 of the time a command does something with the text that
 comes after the command. The text after the command \type
-{\sl} will be typeset {\sl slanted}.
+{\italic} will be typeset {\italic text it italic}.
 
-When you use a command like \type{\sl} you acting as a  typesetter,
-and when you are writing paragraps you are acting as an author.
+When you use a command like \type{\italic} you acting as a  typesetter,
+and when you are writing paragraphs you are acting as an author.
 Typesetting and writing are conflicting activities; as an
 author you would probably rather spend as little time as possible
 typesetting. When you are actually writing text and you have 
 to indicate that something special has to happen with the text, 
 it is therefore best to use generic commands than specific typesetting commands. 
 An example of such a generic command is \type{\em} ({\em emphasis}). 
-By using \type{\em} instead of \type{\sl}, you enable the typesetter (who could also be you) to change the typeset result without him or her having to alter the text.
+By using \type{\em} instead of \type{\italic}, you enable the typesetter 
+(who could also be you) to change the typeset result without him or her having to alter the text.
 
 {\setupcaption[figure][width=fit]
 \placefigure[right][fig:cohesion tex]
@@ -151,7 +153,7 @@ A \TEX\ user normally speaks of macros instead of commands.
 A macro is a (normally small) program. Although this manual uses
 both \quote {command} and \quote {macro},  we will try
 consistently use the word command for users and macro for
-programmers. A collection of macros is called a macropackage. 
+programmers. A collection of macros is called a macro package. 
 
 A command is often followed by setups and / or 
 argument text. Setups are placed between brackets (\type{[]},
@@ -287,7 +289,7 @@ These setups can also be defined in a later stage with:
 
 \typebuffer
 
-An example of such a name coupled definiton and setup is:
+An example of such a name coupled definition and setup is:
 
 \startbuffer
 \definehead[section][chapter]
@@ -381,7 +383,7 @@ these optional arguments are left out the default values
 become operative.
 
 You may have noticed that a spacy layout of your \ASCII\
-text is allowed. In our opnion, this increases readability
+text is allowed. In our opinion, this increases readability
 considerably, but you may of course decide to format your
 document otherwise. When the \CONTEXT\ commands in this
 manual are discussed they are displayed in the following
@@ -402,7 +404,7 @@ current chapter. We call this kind of information {\sl
 mark}, so the command \type {\setupfootertexts} accept
 references to marks, like those belonging to sectioning
 commands: \type{chapter}, \type{section}, etc. The argument
-\type{date} results in the current systemdate.
+\type{date} results in the current system date.
 
 When the setup of some commands are displayed you will
 notice a $\blacktriangleleft \blacktriangleright$ in the
