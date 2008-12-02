@@ -394,14 +394,14 @@ way:
 The command \type{\setupfootertexts}, which we will discuss
 in detail in a later chapter, has three arguments of which
 the first is optional. The first argument defaults to
-\type{[text]}. Optional arguments are displayed as {\sl
-slanted} text. Default values are \underbar{underlined} and
-possible alternatives are typeset {\it slanted}. In this
-example {\sl text} means that you can provide any
-footertext. \CONTEXT\ is able to keep track of the status of
-information on the page, for instance the name of the
-current chapter. We call this kind of information {\sl
-mark}, so the command \type {\setupfootertexts} accept
+\type{[text]}. Optional arguments are displayed with the word
+ {\ttxx OPTIONAL} below the brackets. Default values are
+\underbar{underlined} and placeholders (as opposed to literal
+keywords) are typeset in {\ttx UPPERCASE}. In this example {\ttx TEXT}
+means that you can provide any footer text. \CONTEXT\ is able to keep
+track of the status of information on the page, for instance the name of the
+current chapter. We call this kind of information {\ttx
+MARK}, so the command \type {\setupfootertexts} accepts
 references to marks, like those belonging to sectioning
 commands: \type{chapter}, \type{section}, etc. The argument
 \type{date} results in the current system date.
