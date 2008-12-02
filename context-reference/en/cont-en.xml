@@ -80,7 +80,7 @@
 
   <cd:define name="texts">
     <cd:constant type="cd:text"/>
-    <cd:constant type="cd:section"/>
+    <!--<cd:constant type="cd:section"/>-->
     <cd:constant type="date"/>
     <cd:constant type="cd:mark"/>
     <cd:constant type="pagenumber"/>
