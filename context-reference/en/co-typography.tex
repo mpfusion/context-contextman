@@ -232,7 +232,7 @@ found together within a single book design (such as for a software manual).
 \startbuffer[styles]
 \vskip1ex
 \starttabulate[|l|l|l|]
-\NC \bf \rlap{terms}  \NC \qquad \NC \bf example        \NC \NR
+\NC \bf \rlap{terms}  \NC \qquad \NC \bf intented usage        \NC \NR
 \NC regular, serif, roman   \NC            \NC \rmtf main text          \NC \NR
 \NC support, sans            \NC             \NC \sstf section headings   \NC \NR
 \NC teletype, mono, type \NC          \NC \tttf code examples      \NC \NR
@@ -250,8 +250,10 @@ typographers and book designers, the later ones are commonly used in
 \TEX. In \CONTEXT\ all of these terms can be used intermixed
 because they are all remapped to the same set of internal commands. As
 will be explained later, the command \type {\rm} is used to switch to
-a roman|/|serif|/|regular style, and \type {\tt} to switch to
-monospaced or typewriter style, etcetera.
+the style used for the main text (this is usually a font style with
+serifs), \type{\ss} to switch to the support style (usually a style
+without serifs) and \type {\tt} to switch to the code example style
+(for which usually monospaced fonts are used).
 
 Text can be typeset in different font sizes. The unit \type {pt},
 short for \quote{printer's point}, is normally used to specify the
