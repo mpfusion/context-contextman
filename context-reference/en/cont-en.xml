@@ -108,7 +108,7 @@
     <cd:constant type="big"/>
   </cd:define>
 
-  <cd:command name="installlanguage" file="lang-ini.tex" category="language">
+  <cd:command id="cd:1" name="installlanguage" file="lang-ini.tex" category="language">
     <cd:sequence>
       <cd:string value="installlanguage"/>
     </cd:sequence>
@@ -186,7 +186,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuplanguage" file="lang-ini.tex" category="language">
+  <cd:command id="cd:2" name="setuplanguage" file="lang-ini.tex" category="language">
     <cd:sequence>
       <cd:string value="setuplanguage"/>
     </cd:sequence>
@@ -195,12 +195,12 @@
         <cd:resolve name="language"/>
       </cd:keywords>
       <cd:assignments n="2" list="yes">
-        <cd:inherit name="installlanguage" n="2"/>
+        <cd:inherit ref="cd:1" name="installlanguage" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="language" file="lang-ini.tex" category="language">
+  <cd:command id="cd:3" name="language" file="lang-ini.tex" category="language">
     <cd:sequence>
       <cd:string value="language"/>
     </cd:sequence>
@@ -211,7 +211,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="mainlanguage" file="lang-ini.tex" category="language">
+  <cd:command id="cd:4" name="mainlanguage" file="lang-ini.tex" category="language">
     <cd:sequence>
       <cd:string value="mainlanguage"/>
     </cd:sequence>
@@ -222,7 +222,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="translate" file="lang-lab.tex" category="language">
+  <cd:command id="cd:5" name="translate" file="lang-lab.tex" category="language">
     <cd:sequence>
       <cd:string value="translate"/>
     </cd:sequence>
@@ -235,7 +235,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="useencoding" file="enco-ini.tex" category="encoding"> <!-- engine="pdftex" -->
+  <cd:command id="cd:6" name="useencoding" file="enco-ini.tex" category="encoding"> <!-- engine="pdftex" -->
     <cd:sequence>
       <cd:string value="useencoding"/>
     </cd:sequence>
@@ -246,7 +246,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="usespecials" file="spec-ini.tex">
+  <cd:command id="cd:7" name="usespecials" file="spec-ini.tex">
     <cd:sequence>
       <cd:string value="usespecials"/>
     </cd:sequence>
@@ -258,7 +258,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="defineoutput" file="spec-ini.tex">
+  <cd:command id="cd:8" name="defineoutput" file="spec-ini.tex">
     <cd:sequence>
       <cd:string value="defineoutput"/>
     </cd:sequence>
@@ -272,7 +272,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupoutput" file="spec-ini.tex">
+  <cd:command id="cd:9" name="setupoutput" file="spec-ini.tex">
     <cd:sequence>
       <cd:string value="setupoutput"/>
     </cd:sequence>
@@ -283,7 +283,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definebodyfontenvironment" file="font-ini.tex" category="fonts">
+  <cd:command id="cd:10" name="definebodyfontenvironment" file="font-ini.tex" category="fonts">
     <cd:sequence>
       <cd:string value="definebodyfontenvironment"/>
     </cd:sequence>
@@ -341,35 +341,35 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupbodyfontenvironment" file="font-ini.tex" category="fonts">
+  <cd:command id="cd:11" name="setupbodyfontenvironment" file="font-ini.tex" category="fonts">
     <cd:sequence>
       <cd:string value="setupbodyfontenvironment"/>
     </cd:sequence>
     <cd:arguments>
       <cd:keywords n="1" optional="yes"> <!-- same as definebodyfontenvironment; you can define the whole commant to inherit, not only parameters-->
-        <cd:inherit name="definebodyfontenvironment" n="1"/>
+        <cd:inherit ref="cd:10" name="definebodyfontenvironment" n="1"/>
       </cd:keywords>
       <cd:keywords n="2" optional="no">
-        <cd:inherit name="definebodyfontenvironment" n="2" optional="no"/>
+        <cd:inherit ref="cd:10" name="definebodyfontenvironment" n="2" optional="no"/>
       </cd:keywords>
       <cd:assignments n="3" optional="yes" list="yes">
-        <cd:inherit name="definebodyfontenvironment" n="3"/>
+        <cd:inherit ref="cd:10" name="definebodyfontenvironment" n="3"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="showbodyfontenvironment" file="font-run.tex" category="fonts"> <!-- and debug -->
+  <cd:command id="cd:12" name="showbodyfontenvironment" file="font-run.tex" category="fonts"> <!-- and debug -->
     <cd:sequence>
       <cd:string value="showbodyfontenvironment"/>
     </cd:sequence>
     <cd:arguments>
       <cd:keywords n="1" optional="yes" list="yes">
-        <cd:inherit name="setupbodyfont" n="1"/>
+        <cd:inherit ref="cd:17" name="setupbodyfont" n="1"/>
       </cd:keywords>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definebodyfont" file="font-ini.tex" category="fonts">
+  <cd:command id="cd:13" name="definebodyfont" file="font-ini.tex" category="fonts">
     <cd:sequence>
       <cd:string value="definebodyfont"/>
     </cd:sequence>
@@ -435,7 +435,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definebodyfontDEF" file="font-ini.tex" category="fonts">
+  <cd:command id="cd:14" name="definebodyfontDEF" file="font-ini.tex" category="fonts">
     <cd:sequence>
       <cd:string value="definebodyfont"/>
     </cd:sequence>
@@ -444,24 +444,24 @@
         <cd:constant type="cd:name"/> 
       </cd:keywords>
       <cd:keywords n="2">
-        <cd:inherit name="setupbodyfont" n="2"/>
+        <cd:inherit ref="cd:17" name="setupbodyfont" n="2"/>
       </cd:keywords>
       <cd:keywords n="1"> 
-        <cd:inherit name="setupbodyfont" n="3"/>
+        <cd:inherit ref="cd:17" name="setupbodyfont" n="3"/>
       </cd:keywords>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definebodyfontREF" file="font-ini.tex" category="fonts">
+  <cd:command id="cd:15" name="definebodyfontREF" file="font-ini.tex" category="fonts">
     <cd:sequence>
       <cd:string value="definebodyfont"/>
     </cd:sequence>
     <cd:arguments>
       <cd:keywords n="1">
-        <cd:inherit name="setupbodyfont" n="1"/>
+        <cd:inherit ref="cd:17" name="setupbodyfont" n="1"/>
       </cd:keywords>
       <cd:keywords n="2">
-        <cd:inherit name="setupbodyfont" n="2"/>
+        <cd:inherit ref="cd:17" name="setupbodyfont" n="2"/>
       </cd:keywords>
       <cd:keywords n="3"> 
         <cd:constant type="cd:name"/>
@@ -470,18 +470,18 @@
   </cd:command>
 
 
-  <cd:command name="showbodyfont" file="font-run.tex" category="fonts"> <!-- visual debugging -->
+  <cd:command id="cd:16" name="showbodyfont" file="font-run.tex" category="fonts"> <!-- visual debugging -->
     <cd:sequence>
       <cd:string value="showbodyfont"/>
     </cd:sequence>
     <cd:arguments>
       <cd:keywords n="1" optional="yes" list="yes">
-        <cd:inherit name="setupbodyfont" n="1"/>
+        <cd:inherit ref="cd:17" name="setupbodyfont" n="1"/>
       </cd:keywords>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupbodyfont" file="font-run.tex" category="fonts">
+  <cd:command id="cd:17" name="setupbodyfont" file="font-run.tex" category="fonts">
     <cd:sequence>
       <cd:string value="setupbodyfont"/>
     </cd:sequence>
@@ -506,7 +506,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="switchtobodyfont" file="font-ini.tex" category="fonts">
+  <cd:command id="cd:18" name="switchtobodyfont" file="font-ini.tex" category="fonts">
     <cd:sequence>
       <cd:string value="switchtobodyfont"/>
     </cd:sequence>
@@ -533,7 +533,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definefont" file="font-ini.tex" category="fonts">
+  <cd:command id="cd:19" name="definefont" file="font-ini.tex" category="fonts">
     <cd:sequence>
       <cd:string value="definefont"/>
     </cd:sequence>
@@ -550,7 +550,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupcolor" file="colo-ini.tex" category="colors">
+  <cd:command id="cd:20" name="setupcolor" file="colo-ini.tex" category="colors">
     <cd:sequence>
       <cd:string value="setupcolor"/>
     </cd:sequence>
@@ -561,7 +561,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupcolors" file="colo-ini.tex" category="colors">
+  <cd:command id="cd:21" name="setupcolors" file="colo-ini.tex" category="colors">
     <cd:sequence>
       <cd:string value="setupcolors"/>
     </cd:sequence>
@@ -619,7 +619,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definecolor" file="colo-ini.tex" category="colors">
+  <cd:command id="cd:22" name="definecolor" file="colo-ini.tex" category="colors">
     <cd:sequence>
       <cd:string value="definecolor"/>
     </cd:sequence>
@@ -671,7 +671,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="color" type="environment" file="colo-ini.tex" category="colors">
+  <cd:command id="cd:23" name="color" type="environment" file="colo-ini.tex" category="colors">
     <cd:sequence>
       <cd:string value="color"/>
     </cd:sequence>
@@ -682,7 +682,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="color" file="colo-ini.tex">
+  <cd:command id="cd:24" name="color" file="colo-ini.tex">
     <cd:sequence>
       <cd:string value="color"/>
     </cd:sequence>
@@ -694,7 +694,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="graycolor" file="colo-ini.tex" category="colors">
+  <cd:command id="cd:25" name="graycolor" file="colo-ini.tex" category="colors">
     <cd:sequence>
       <cd:string value="graycolor"/>
     </cd:sequence>
@@ -705,7 +705,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="showcolor" file="colo-run.tex" category="colors"> <!-- and debug -->
+  <cd:command id="cd:26" name="showcolor" file="colo-run.tex" category="colors"> <!-- and debug -->
     <cd:sequence>
       <cd:string value="showcolor"/>
     </cd:sequence>
@@ -716,7 +716,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definepalet" file="colo-ini.tex" category="colors">
+  <cd:command id="cd:27" name="definepalet" file="colo-ini.tex" category="colors">
     <cd:sequence>
       <cd:string value="definepalet"/>
     </cd:sequence>
@@ -732,7 +732,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuppalet" file="colo-ini.tex" category="colors">
+  <cd:command id="cd:28" name="setuppalet" file="colo-ini.tex" category="colors">
     <cd:sequence>
       <cd:string value="setuppalet"/>
     </cd:sequence>
@@ -743,7 +743,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definecolorgroup" file="colo-ini.tex" category="colors">
+  <cd:command id="cd:29" name="definecolorgroup" file="colo-ini.tex" category="colors">
     <cd:sequence>
       <cd:string value="definecolorgroup"/>
     </cd:sequence>
@@ -761,7 +761,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="showpalet" file="colo-run.tex" category="colors"> <!-- and debug -->
+  <cd:command id="cd:30" name="showpalet" file="colo-run.tex" category="colors"> <!-- and debug -->
     <cd:sequence>
       <cd:string value="showpalet"/>
     </cd:sequence>
@@ -778,7 +778,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="showcolorgroup" file="colo-run.tex" category="colors"> <!-- and debug-->
+  <cd:command id="cd:31" name="showcolorgroup" file="colo-run.tex" category="colors"> <!-- and debug-->
     <cd:sequence>
       <cd:string value="showcolorgroup"/>
     </cd:sequence>
@@ -796,7 +796,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="comparepalet" file="colo-run.tex" category="colors"> <!-- and debug? -->
+  <cd:command id="cd:32" name="comparepalet" file="colo-run.tex" category="colors"> <!-- and debug? -->
     <cd:sequence>
       <cd:string value="comparepalet"/>
     </cd:sequence>
@@ -807,7 +807,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="comparecolorgroup" file="colo-run.tex" category="colors">
+  <cd:command id="cd:33" name="comparecolorgroup" file="colo-run.tex" category="colors">
     <cd:sequence>
       <cd:string value="comparecolorgroup"/>
     </cd:sequence>
@@ -818,13 +818,13 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="showmakeup" file="supp-vis.tex" category="debug">
+  <cd:command id="cd:34" name="showmakeup" file="supp-vis.tex" category="debug">
     <cd:sequence>
       <cd:string value="showmakeup"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="definetype" file="core-ver.tex" category="verbatim">
+  <cd:command id="cd:35" name="definetype" file="core-ver.tex" category="verbatim">
     <cd:sequence>
       <cd:string value="definetype"/>
     </cd:sequence>
@@ -833,12 +833,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" list="yes">
-        <cd:inherit name="setuptype" n="1"/>
+        <cd:inherit ref="cd:36" name="setuptype" n="1"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuptype" file="core-ver.tex" category="verbatim"> <!-- TODO -->
+  <cd:command id="cd:36" name="setuptype" file="core-ver.tex" category="verbatim"> <!-- TODO -->
     <cd:sequence>
       <cd:string value="setuptype"/>
     </cd:sequence>
@@ -863,7 +863,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="type" file="verb-ini.tex" category="verbatim">
+  <cd:command id="cd:37" name="type" file="verb-ini.tex" category="verbatim">
     <cd:sequence>
       <cd:string value="type"/>
     </cd:sequence>
@@ -872,7 +872,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="typ" file="core-ver.tex" category="verbatim">
+  <cd:command id="cd:38" name="typ" file="core-ver.tex" category="verbatim">
     <cd:sequence>
       <cd:string value="typ"/>
     </cd:sequence>
@@ -881,7 +881,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="tex" file="core-ver.tex" category="verbatim">
+  <cd:command id="cd:39" name="tex" file="core-ver.tex" category="verbatim">
     <cd:sequence>
       <cd:string value="tex"/>
     </cd:sequence>
@@ -899,21 +899,21 @@
   </cd:arguments>
 </cd:command -->
 
-  <cd:command name="definetyping" file="core-ver.tex" category="verbatim">
+  <cd:command id="cd:40" name="definetyping" file="core-ver.tex" category="verbatim">
     <cd:sequence>
       <cd:string value="definetyping"/>
     </cd:sequence>
     <cd:arguments>
       <cd:keywords n="1">
-        <cd:inherit name="setuptyping" n="1"/>
+        <cd:inherit ref="cd:41" name="setuptyping" n="1"/>
       </cd:keywords>
       <cd:assignments n="2" list="yes">
-        <cd:inherit name="setuptyping" n="2"/>
+        <cd:inherit ref="cd:41" name="setuptyping" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuptyping" file="core-ver.tex" category="verbatim">
+  <cd:command id="cd:41" name="setuptyping" file="core-ver.tex" category="verbatim">
     <cd:sequence>
       <cd:string value="setuptyping"/>
     </cd:sequence>
@@ -1029,14 +1029,13 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="typing" type="environment" generated="yes" file="verb-ini.tex"
-    category="verbatim">
+  <cd:command id="cd:42" name="typing" type="environment" generated="yes" file="verb-ini.tex" category="verbatim">
     <cd:sequence>
       <cd:variable value="typing"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="typefile" file="verb-ini.tex" category="verbatim">
+  <cd:command id="cd:43" name="typefile" file="verb-ini.tex" category="verbatim">
     <cd:sequence>
       <cd:string value="typefile"/>
     </cd:sequence>
@@ -1048,7 +1047,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupfootnotes" file="core-not.tex" category="footnotes">
+  <cd:command id="cd:44" name="setupfootnotes" file="core-not.tex" category="footnotes">
     <cd:sequence>
       <cd:string value="setupfootnotes"/>
     </cd:sequence>
@@ -1133,23 +1132,23 @@
         <cd:parameter name="factor">
           <cd:constant type="cd:number"/>
         </cd:parameter>
-        <cd:inherit name="setupframed" n="2"/>
+        <cd:inherit ref="cd:99" name="setupframed" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupfootnotedefinition" file="core-not.tex" category="footnotes">
+  <cd:command id="cd:45" name="setupfootnotedefinition" file="core-not.tex" category="footnotes">
     <cd:sequence>
       <cd:string value="setupfootnotedefinition"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" list="yes">
-        <cd:inherit name="setupdescriptions" n="2"/>
+        <cd:inherit ref="cd:185" name="setupdescriptions" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="footnote" file="core-not.tex" category="footnotes">
+  <cd:command id="cd:46" name="footnote" file="core-not.tex" category="footnotes">
     <cd:sequence>
       <cd:string value="footnote"/>
     </cd:sequence>
@@ -1159,7 +1158,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="footnotetext" file="core-not.tex" category="footnotes">
+  <cd:command id="cd:47" name="footnotetext" file="core-not.tex" category="footnotes">
     <cd:sequence>
       <cd:string value="footnotetext"/>
     </cd:sequence>
@@ -1169,7 +1168,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="note" file="core-not.tex" category="footnotes">
+  <cd:command id="cd:48" name="note" file="core-not.tex" category="footnotes">
     <cd:sequence>
       <cd:string value="note"/>
     </cd:sequence>
@@ -1178,35 +1177,35 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="localfootnotes" type="environment" file="core-not.tex" category="footnotes">
+  <cd:command id="cd:49" name="localfootnotes" type="environment" file="core-not.tex" category="footnotes">
     <cd:sequence>
       <cd:string value="localfootnotes"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="placelocalfootnotes" file="core-not.tex" category="footnotes">
+  <cd:command id="cd:50" name="placelocalfootnotes" file="core-not.tex" category="footnotes">
     <cd:sequence>
       <cd:string value="placelocalfootnotes"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" optional="yes" list="yes">
-        <cd:inherit name="setupfootnotes" n="1"/>
+        <cd:inherit ref="cd:44" name="setupfootnotes" n="1"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="placefootnotes" file="core-not.tex" category="footnotes">
+  <cd:command id="cd:51" name="placefootnotes" file="core-not.tex" category="footnotes">
     <cd:sequence>
       <cd:string value="placefootnotes"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" optional="yes" list="yes">
-        <cd:inherit name="setupfootnotes" n="1"/>
+        <cd:inherit ref="cd:44" name="setupfootnotes" n="1"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupunderbar" file="core-fnt.tex">
+  <cd:command id="cd:52" name="setupunderbar" file="core-fnt.tex">
     <cd:sequence>
       <cd:string value="setupunderbar"/>
     </cd:sequence>
@@ -1233,7 +1232,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="underbar" file="core-fnt.tex">
+  <cd:command id="cd:53" name="underbar" file="core-fnt.tex">
     <cd:sequence>
       <cd:string value="underbar"/>
     </cd:sequence>
@@ -1242,7 +1241,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="underbars" file="core-fnt.tex">
+  <cd:command id="cd:54" name="underbars" file="core-fnt.tex">
     <cd:sequence>
       <cd:string value="underbars"/>
     </cd:sequence>
@@ -1251,7 +1250,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="overbar" file="core-fnt.tex">
+  <cd:command id="cd:55" name="overbar" file="core-fnt.tex">
     <cd:sequence>
       <cd:string value="overbar"/>
     </cd:sequence>
@@ -1260,7 +1259,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="overbars" file="core-fnt.tex">
+  <cd:command id="cd:56" name="overbars" file="core-fnt.tex">
     <cd:sequence>
       <cd:string value="overbars"/>
     </cd:sequence>
@@ -1269,7 +1268,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="overstrike" file="core-fnt.tex">
+  <cd:command id="cd:57" name="overstrike" file="core-fnt.tex">
     <cd:sequence>
       <cd:string value="overstrike"/>
     </cd:sequence>
@@ -1278,7 +1277,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="overstrikes" file="core-fnt.tex">
+  <cd:command id="cd:58" name="overstrikes" file="core-fnt.tex">
     <cd:sequence>
       <cd:string value="overstrikes"/>
     </cd:sequence>
@@ -1287,7 +1286,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="romannumerals" file="core-con.tex">
+  <cd:command id="cd:59" name="romannumerals" file="core-con.tex">
     <cd:sequence>
       <cd:string value="romannumerals"/>
     </cd:sequence>
@@ -1296,7 +1295,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="Romannumerals" file="core-con.tex">
+  <cd:command id="cd:60" name="Romannumerals" file="core-con.tex">
     <cd:sequence>
       <cd:string value="Romannumerals"/>
     </cd:sequence>
@@ -1305,7 +1304,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="numbers" file="core-con.tex">
+  <cd:command id="cd:61" name="numbers" file="core-con.tex">
     <cd:sequence>
       <cd:string value="numbers"/>
     </cd:sequence>
@@ -1314,7 +1313,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="character" file="core-con.tex">
+  <cd:command id="cd:62" name="character" file="core-con.tex">
     <cd:sequence>
       <cd:string value="character"/>
     </cd:sequence>
@@ -1323,7 +1322,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="Character" file="core-con.tex">
+  <cd:command id="cd:63" name="Character" file="core-con.tex">
     <cd:sequence>
       <cd:string value="Character"/>
     </cd:sequence>
@@ -1332,7 +1331,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="characters" file="core-con.tex">
+  <cd:command id="cd:64" name="characters" file="core-con.tex">
     <cd:sequence>
       <cd:string value="characters"/>
     </cd:sequence>
@@ -1341,7 +1340,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="Characters" file="core-con.tex">
+  <cd:command id="cd:65" name="Characters" file="core-con.tex">
     <cd:sequence>
       <cd:string value="Characters"/>
     </cd:sequence>
@@ -1350,7 +1349,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="mediaeval" file="core-con.tex">
+  <cd:command id="cd:66" name="mediaeval" file="core-con.tex">
     <cd:sequence>
       <cd:string value="mediaeval"/>
     </cd:sequence>
@@ -1359,7 +1358,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="month" file="core-con.tex">
+  <cd:command id="cd:67" name="month" file="core-con.tex">
     <cd:sequence>
       <cd:string value="month"/>
     </cd:sequence>
@@ -1368,7 +1367,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="MONTH" file="core-con.tex">
+  <cd:command id="cd:68" name="MONTH" file="core-con.tex">
     <cd:sequence>
       <cd:string value="MONTH"/>
     </cd:sequence>
@@ -1377,7 +1376,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="weekday" file="core-con.tex">
+  <cd:command id="cd:69" name="weekday" file="core-con.tex">
     <cd:sequence>
       <cd:string value="weekday"/>
     </cd:sequence>
@@ -1386,7 +1385,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="WEEKDAY" file="core-con.tex">
+  <cd:command id="cd:70" name="WEEKDAY" file="core-con.tex">
     <cd:sequence>
       <cd:string value="WEEKDAY"/>
     </cd:sequence>
@@ -1395,7 +1394,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupcapitals" file="core-fnt.tex" category="Fonts">
+  <cd:command id="cd:71" name="setupcapitals" file="core-fnt.tex" category="Fonts">
     <cd:sequence>
       <cd:string value="setupcapitals"/>
     </cd:sequence>
@@ -1413,7 +1412,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="cap" file="core-fnt.tex" category="Fonts">
+  <cd:command id="cd:72" name="cap" file="core-fnt.tex" category="Fonts">
     <cd:sequence>
       <cd:string value="cap"/>
     </cd:sequence>
@@ -1422,7 +1421,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="nocap" file="core-fnt.tex" category="Fonts">
+  <cd:command id="cd:73" name="nocap" file="core-fnt.tex" category="Fonts">
     <cd:sequence>
       <cd:string value="nocap"/>
     </cd:sequence>
@@ -1431,7 +1430,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="CAP" file="core-fnt.tex" category="Fonts">
+  <cd:command id="cd:74" name="CAP" file="core-fnt.tex" category="Fonts">
     <cd:sequence>
       <cd:string value="CAP"/>
     </cd:sequence>
@@ -1440,7 +1439,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="Cap" file="core-fnt.tex" category="Fonts">
+  <cd:command id="cd:75" name="Cap" file="core-fnt.tex" category="Fonts">
     <cd:sequence>
       <cd:string value="Cap"/>
     </cd:sequence>
@@ -1449,7 +1448,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="Caps" file="core-fnt.tex" category="Fonts">
+  <cd:command id="cd:76" name="Caps" file="core-fnt.tex" category="Fonts">
     <cd:sequence>
       <cd:string value="Caps"/>
     </cd:sequence>
@@ -1458,7 +1457,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="WORD" file="core-fnt.tex" category="Fonts">
+  <cd:command id="cd:77" name="WORD" file="core-fnt.tex" category="Fonts">
     <cd:sequence>
       <cd:string value="WORD"/>
     </cd:sequence>
@@ -1467,7 +1466,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="WORDS" file="core-fnt.tex" category="Fonts">
+  <cd:command id="cd:78" name="WORDS" file="core-fnt.tex" category="Fonts">
     <cd:sequence>
       <cd:string value="WORDS"/>
     </cd:sequence>
@@ -1476,7 +1475,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="Word" file="core-fnt.tex" category="Fonts">
+  <cd:command id="cd:79" name="Word" file="core-fnt.tex" category="Fonts">
     <cd:sequence>
       <cd:string value="Word"/>
     </cd:sequence>
@@ -1485,7 +1484,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="Words" file="core-fnt.tex" category="Fonts">
+  <cd:command id="cd:80" name="Words" file="core-fnt.tex" category="Fonts">
     <cd:sequence>
       <cd:string value="Words"/>
     </cd:sequence>
@@ -1494,7 +1493,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="stretched" file="core-fnt.tex">
+  <cd:command id="cd:81" name="stretched" file="core-fnt.tex">
     <cd:sequence>
       <cd:string value="stretched"/>
     </cd:sequence>
@@ -1503,7 +1502,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definesymbol" file="symb-ini.tex">
+  <cd:command id="cd:82" name="definesymbol" file="symb-ini.tex">
     <cd:sequence>
       <cd:string value="definesymbol"/>
     </cd:sequence>
@@ -1517,7 +1516,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definefiguresymbol" file="symb-ini.tex">
+  <cd:command id="cd:83" name="definefiguresymbol" file="symb-ini.tex">
     <cd:sequence>
       <cd:string value="definefiguresymbol"/>
     </cd:sequence>
@@ -1529,12 +1528,12 @@
         <cd:constant type="cd:text"/>
       </cd:keywords>
       <cd:assignments n="3" optional="yes" list="yes">
-        <cd:inherit name="setupexternalfigures" n="1"/>
+        <cd:inherit ref="cd:431" name="setupexternalfigures" n="1"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="symbol" file="symb-ini.tex">
+  <cd:command id="cd:84" name="symbol" file="symb-ini.tex">
     <cd:sequence>
       <cd:string value="symbol"/>
     </cd:sequence>
@@ -1548,7 +1547,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="symbolset" type="environment" file="symb-ini.tex" category="symbols">
+  <cd:command id="cd:85" name="symbolset" type="environment" file="symb-ini.tex" category="symbols">
     <cd:sequence>
       <cd:string value="symbolset"/>
     </cd:sequence>
@@ -1559,7 +1558,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupsymbolset" file="symb-ini.tex" category="symbols">
+  <cd:command id="cd:86" name="setupsymbolset" file="symb-ini.tex" category="symbols">
     <cd:sequence>
       <cd:string value="setupsymbolset"/>
     </cd:sequence>
@@ -1570,7 +1569,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="usesymbols" file="symb-ini.tex" category="symbols">
+  <cd:command id="cd:87" name="usesymbols" file="symb-ini.tex" category="symbols">
     <cd:sequence>
       <cd:string value="usesymbols"/>
     </cd:sequence>
@@ -1581,7 +1580,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="showsymbolset" file="symb-run.tex" category="symbols"> <!-- and symbols -->
+  <cd:command id="cd:88" name="showsymbolset" file="symb-run.tex" category="symbols"> <!-- and symbols -->
     <cd:sequence>
       <cd:string value="showsymbolset"/>
     </cd:sequence>
@@ -1592,7 +1591,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="defineconversion" file="core-con.tex">
+  <cd:command id="cd:89" name="defineconversion" file="core-con.tex">
     <cd:sequence>
       <cd:string value="defineconversion"/>
     </cd:sequence>
@@ -1607,7 +1606,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="convertnumber" file="core-con.tex">
+  <cd:command id="cd:90" name="convertnumber" file="core-con.tex">
     <cd:sequence>
       <cd:string value="convertnumber"/>
     </cd:sequence>
@@ -1617,7 +1616,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupheadtext" file="lang-lab.tex">
+  <cd:command id="cd:91" name="setupheadtext" file="lang-lab.tex">
     <cd:sequence>
       <cd:string value="setupheadtext"/>
     </cd:sequence>
@@ -1633,7 +1632,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuplabeltext" file="lang-lab.tex">
+  <cd:command id="cd:92" name="setuplabeltext" file="lang-lab.tex">
     <cd:sequence>
       <cd:string value="setuplabeltext"/>
     </cd:sequence>
@@ -1649,7 +1648,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="headtext" file="lang-lab.tex">
+  <cd:command id="cd:93" name="headtext" file="lang-lab.tex">
     <cd:sequence>
       <cd:string value="headtext"/>
     </cd:sequence>
@@ -1658,7 +1657,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="labeltext" file="lang-lab.tex">
+  <cd:command id="cd:94" name="labeltext" file="lang-lab.tex">
     <cd:sequence>
       <cd:string value="labeltext"/>
     </cd:sequence>
@@ -1667,7 +1666,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupmarginrules" file="core-rul.tex">
+  <cd:command id="cd:95" name="setupmarginrules" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="setupmarginrules"/>
     </cd:sequence>
@@ -1683,7 +1682,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="marginrule" type="environment" file="core-rul.tex">
+  <cd:command id="cd:96" name="marginrule" type="environment" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="marginrule"/>
     </cd:sequence>
@@ -1694,7 +1693,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="marginrule" file="core-rul.tex">
+  <cd:command id="cd:97" name="marginrule" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="marginrule"/>
     </cd:sequence>
@@ -1706,7 +1705,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuplinewidth" file="core-rul.tex">
+  <cd:command id="cd:98" name="setuplinewidth" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="setuplinewidth"/>
     </cd:sequence>
@@ -1717,7 +1716,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupframed" file="core-rul.tex">
+  <cd:command id="cd:99" name="setupframed" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="setupframed"/>
     </cd:sequence>
@@ -1871,42 +1870,42 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="framed" file="core-rul.tex">
+  <cd:command id="cd:100" name="framed" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="framed"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" optional="yes" list="yes">
-        <cd:inherit name="setupframed" n="2"/>
+        <cd:inherit ref="cd:99" name="setupframed" n="2"/>
       </cd:assignments>
       <cd:content n="2"/>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="inframed" file="core-rul.tex">
+  <cd:command id="cd:101" name="inframed" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="inframed"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" optional="yes" list="yes">
-        <cd:inherit name="setupframed" n="2"/>
+        <cd:inherit ref="cd:99" name="setupframed" n="2"/>
       </cd:assignments>
       <cd:content n="2"/>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="thinrules" file="core-rul.tex">
+  <cd:command id="cd:102" name="thinrules" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="thinrules"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" optional="yes">
-        <cd:inherit name="setupthinrules" n="1"/>
+        <cd:inherit ref="cd:103" name="setupthinrules" n="1"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupthinrules" file="core-rul.tex">
+  <cd:command id="cd:103" name="setupthinrules" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="setupthinrules"/>
     </cd:sequence>
@@ -1965,19 +1964,19 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="hairline" file="core-rul.tex">
+  <cd:command id="cd:104" name="hairline" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="hairline"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="thinrule" file="core-rul.tex">
+  <cd:command id="cd:105" name="thinrule" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="thinrule"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="defineframedtext" file="core-rul.tex">
+  <cd:command id="cd:106" name="defineframedtext" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="defineframedtext"/>
     </cd:sequence>
@@ -1986,12 +1985,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setupframedtexts" n="2"/>
+        <cd:inherit ref="cd:108" name="setupframedtexts" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="defineframed" file="core-rul.tex">
+  <cd:command id="cd:107" name="defineframed" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="defineframed"/>
     </cd:sequence>
@@ -2000,12 +1999,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setupframedtexts" n="2"/>
+        <cd:inherit ref="cd:108" name="setupframedtexts" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupframedtexts" file="core-rul.tex">
+  <cd:command id="cd:108" name="setupframedtexts" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="setupframedtexts"/>
     </cd:sequence>
@@ -2057,12 +2056,12 @@
         <cd:parameter name="indenting">
           <cd:resolve name="indenting"/>
         </cd:parameter>
-        <cd:inherit name="setupframed" n="2"/>
+        <cd:inherit ref="cd:99" name="setupframed" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="framedtext" type="environment" generated="yes" file="core-rul.tex">
+  <cd:command id="cd:109" name="framedtext" type="environment" generated="yes" file="core-rul.tex">
     <cd:sequence>
       <cd:variable value="framedtext"/>
     </cd:sequence>
@@ -2074,23 +2073,23 @@
         <cd:constant type="none"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setupframedtexts" n="2"/>
+        <cd:inherit ref="cd:108" name="setupframedtexts" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="framedtext" generated="yes" file="core-rul.tex">
+  <cd:command id="cd:110" name="framedtext" generated="yes" file="core-rul.tex">
     <cd:sequence>
       <cd:variable value="framedtext"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" optional="yes" list="yes">
-        <cd:inherit name="setupframedtexts" n="2"/>
+        <cd:inherit ref="cd:108" name="setupframedtexts" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="background" type="environment" file="core-rul.tex">
+  <cd:command id="cd:111" name="background" type="environment" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="background"/>
     </cd:sequence>
@@ -2099,7 +2098,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="background" file="core-rul.tex">
+  <cd:command id="cd:112" name="background" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="background"/>
     </cd:sequence>
@@ -2108,7 +2107,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupbackground" file="core-rul.tex">
+  <cd:command id="cd:113" name="setupbackground" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="setupbackground"/>
     </cd:sequence>
@@ -2136,38 +2135,38 @@
           <cd:constant type="start"/>
           <cd:constant type="stop"/>
         </cd:parameter>
-        <cd:inherit name="setupframed" n="2"/>
+        <cd:inherit ref="cd:99" name="setupframed" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="fillinrules" file="core-rul.tex">
+  <cd:command id="cd:114" name="fillinrules" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="fillinrules"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" optional="yes" list="yes">
-        <cd:inherit name="setupfillinrules" n="1"/>
+        <cd:inherit ref="cd:116" name="setupfillinrules" n="1"/>
       </cd:assignments>
       <cd:content n="2"/>
       <cd:content n="3" optional="yes"/>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="fillintext" file="core-rul.tex">
+  <cd:command id="cd:115" name="fillintext" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="fillintext"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" optional="yes" list="yes">
-        <cd:inherit name="setupfillinrules" n="1"/>
+        <cd:inherit ref="cd:116" name="setupfillinrules" n="1"/>
       </cd:assignments>
       <cd:content n="2"/>
       <cd:content n="3" optional="yes"/>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupfillinrules" file="core-rul.tex">
+  <cd:command id="cd:116" name="setupfillinrules" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="setupfillinrules"/>
     </cd:sequence>
@@ -2205,19 +2204,19 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="fillinline" file="core-rul.tex">
+  <cd:command id="cd:117" name="fillinline" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="fillinline"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" optional="yes" list="yes">
-        <cd:inherit name="setupfillinlines" n="1"/>
+        <cd:inherit ref="cd:118" name="setupfillinlines" n="1"/>
       </cd:assignments>
       <cd:nothing n="2"/>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupfillinlines" file="core-rul.tex">
+  <cd:command id="cd:118" name="setupfillinlines" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="setupfillinlines"/>
     </cd:sequence>
@@ -2242,7 +2241,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuptextrules" file="core-rul.tex">
+  <cd:command id="cd:119" name="setuptextrules" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="setuptextrules"/>
     </cd:sequence>
@@ -2283,7 +2282,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="textrule" file="core-rul.tex">
+  <cd:command id="cd:120" name="textrule" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="textrule"/>
     </cd:sequence>
@@ -2296,7 +2295,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="textrule" type="environment" file="core-rul.tex">
+  <cd:command id="cd:121" name="textrule" type="environment" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="textrule"/>
     </cd:sequence>
@@ -2309,29 +2308,29 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="blackrule" file="core-rul.tex">
+  <cd:command id="cd:122" name="blackrule" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="blackrule"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" optional="yes" list="yes">
-        <cd:inherit name="setupblackrules" n="1"/>
+        <cd:inherit ref="cd:124" name="setupblackrules" n="1"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="blackrules" file="core-rul.tex">
+  <cd:command id="cd:123" name="blackrules" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="blackrules"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" list="yes">
-        <cd:inherit name="setupblackrules" n="1"/>
+        <cd:inherit ref="cd:124" name="setupblackrules" n="1"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupblackrules" file="core-rul.tex">
+  <cd:command id="cd:124" name="setupblackrules" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="setupblackrules"/>
     </cd:sequence>
@@ -2366,7 +2365,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="defineoverlay" file="core-rul.tex">
+  <cd:command id="cd:125" name="defineoverlay" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="defineoverlay"/>
     </cd:sequence>
@@ -2380,7 +2379,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="usemodule" file="core-fil.tex"> <!-- TODO -->
+  <cd:command id="cd:126" name="usemodule" file="core-fil.tex"> <!-- TODO -->
     <cd:sequence>
       <cd:string value="usemodule"/>
     </cd:sequence>
@@ -2391,7 +2390,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="reset" file="core-num.tex">
+  <cd:command id="cd:127" name="reset" file="core-num.tex">
     <cd:sequence>
       <cd:string value="reset"/>
     </cd:sequence>
@@ -2408,13 +2407,13 @@
   </cd:sequence>
 </cd:command> -->
 
-  <cd:command name="localenvironment" type="environment" file="core-job.tex">
+  <cd:command id="cd:128" name="localenvironment" type="environment" file="core-job.tex">
     <cd:sequence>
       <cd:string value="localenvironment"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="setupsystem" file="core-sys.tex">
+  <cd:command id="cd:129" name="setupsystem" file="core-sys.tex">
     <cd:sequence>
       <cd:string value="setupsystem"/>
     </cd:sequence>
@@ -2440,7 +2439,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="usedirectory" file="core-job.mkii"> <!-- usepath, todo: more than one file -->
+  <cd:command id="cd:130" name="usedirectory" file="core-job.mkii"> <!-- usepath, todo: more than one file -->
     <cd:sequence>
       <cd:string value="usedirectory"/>
     </cd:sequence>
@@ -2452,7 +2451,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="low" file="core-fnt.tex">
+  <cd:command id="cd:131" name="low" file="core-fnt.tex">
     <cd:sequence>
       <cd:string value="low"/>
     </cd:sequence>
@@ -2461,7 +2460,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="high" file="core-fnt.tex">
+  <cd:command id="cd:132" name="high" file="core-fnt.tex">
     <cd:sequence>
       <cd:string value="high"/>
     </cd:sequence>
@@ -2470,7 +2469,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="lohi" file="core-fnt.tex">
+  <cd:command id="cd:133" name="lohi" file="core-fnt.tex">
     <cd:sequence>
       <cd:string value="lohi"/>
     </cd:sequence>
@@ -2483,7 +2482,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="showframe" file="page-run.tex">
+  <cd:command id="cd:134" name="showframe" file="page-run.tex">
     <cd:sequence>
       <cd:string value="showframe"/>
     </cd:sequence>
@@ -2496,7 +2495,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="leftaligned" file="core-spa.tex">
+  <cd:command id="cd:135" name="leftaligned" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="leftaligned"/>
     </cd:sequence>
@@ -2505,7 +2504,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="rightaligned" file="core-spa.tex">
+  <cd:command id="cd:136" name="rightaligned" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="rightaligned"/>
     </cd:sequence>
@@ -2514,7 +2513,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="midaligned" file="core-spa.tex">
+  <cd:command id="cd:137" name="midaligned" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="midaligned"/>
     </cd:sequence>
@@ -2523,7 +2522,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="wordright" file="core-spa.tex">
+  <cd:command id="cd:138" name="wordright" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="wordright"/>
     </cd:sequence>
@@ -2532,7 +2531,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="inmargin" file="core-sec.tex">
+  <cd:command id="cd:139" name="inmargin" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="inmargin"/>
     </cd:sequence>
@@ -2547,7 +2546,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="inothermargin" file="page-mar.tex">
+  <cd:command id="cd:140" name="inothermargin" file="page-mar.tex">
     <cd:sequence>
       <cd:string value="inothermargin"/>
     </cd:sequence>
@@ -2562,7 +2561,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="inleft" file="page-mar.tex">
+  <cd:command id="cd:141" name="inleft" file="page-mar.tex">
     <cd:sequence>
       <cd:string value="inleft"/>
     </cd:sequence>
@@ -2577,7 +2576,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="inright" file="page-mar.tex">
+  <cd:command id="cd:142" name="inright" file="page-mar.tex">
     <cd:sequence>
       <cd:string value="inright"/>
     </cd:sequence>
@@ -2592,7 +2591,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="ininner" file="page-mar.tex">
+  <cd:command id="cd:143" name="ininner" file="page-mar.tex">
     <cd:sequence>
       <cd:string value="ininner"/>
     </cd:sequence>
@@ -2607,7 +2606,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="inouter" file="page-mar.tex">
+  <cd:command id="cd:144" name="inouter" file="page-mar.tex">
     <cd:sequence>
       <cd:string value="inouter"/>
     </cd:sequence>
@@ -2622,31 +2621,31 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="column" file="page-ini.tex">
+  <cd:command id="cd:145" name="column" file="page-ini.tex">
     <cd:sequence>
       <cd:string value="column"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="showstruts" file="core-spa.tex">
+  <cd:command id="cd:146" name="showstruts" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="showstruts"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="showsetups" file="page-run.tex">
+  <cd:command id="cd:147" name="showsetups" file="page-run.tex">
     <cd:sequence>
       <cd:string value="showsetups"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="showlayout" file="page-run.tex">
+  <cd:command id="cd:148" name="showlayout" file="page-run.tex">
     <cd:sequence>
       <cd:string value="showlayout"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="margintext" file="page-mar.tex">
+  <cd:command id="cd:149" name="margintext" file="page-mar.tex">
     <cd:sequence>
       <cd:string value="margintext"/>
     </cd:sequence>
@@ -2661,7 +2660,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupmarginblocks" file="page-flt.tex">
+  <cd:command id="cd:150" name="setupmarginblocks" file="page-flt.tex">
     <cd:sequence>
       <cd:string value="setupmarginblocks"/>
     </cd:sequence>
@@ -2707,13 +2706,13 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="marginblock" type="environment" file="page-flt.tex">
+  <cd:command id="cd:151" name="marginblock" type="environment" file="page-flt.tex">
     <cd:sequence>
       <cd:string value="marginblock"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="part" file="core-sec.tex">
+  <cd:command id="cd:152" name="part" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="part"/>
     </cd:sequence>
@@ -2723,7 +2722,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="title" file="core-sec.tex">
+  <cd:command id="cd:153" name="title" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="title"/>
     </cd:sequence>
@@ -2733,7 +2732,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="chapter" file="core-sec.tex">
+  <cd:command id="cd:154" name="chapter" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="chapter"/>
     </cd:sequence>
@@ -2743,7 +2742,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="section" file="core-sec.tex">
+  <cd:command id="cd:155" name="section" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="section"/>
     </cd:sequence>
@@ -2753,7 +2752,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="subsection" file="core-sec.tex">
+  <cd:command id="cd:156" name="subsection" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="subsection"/>
     </cd:sequence>
@@ -2763,7 +2762,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="subsubsection" file="core-sec.tex">
+  <cd:command id="cd:157" name="subsubsection" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="subsubsection"/>
     </cd:sequence>
@@ -2773,7 +2772,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="subject" file="core-sec.tex">
+  <cd:command id="cd:158" name="subject" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="subject"/>
     </cd:sequence>
@@ -2783,7 +2782,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="subsubject" file="core-sec.tex">
+  <cd:command id="cd:159" name="subsubject" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="subsubject"/>
     </cd:sequence>
@@ -2793,7 +2792,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="subsubsubject" file="core-sec.tex">
+  <cd:command id="cd:160" name="subsubsubject" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="subsubsubject"/>
     </cd:sequence>
@@ -2803,7 +2802,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="appendix" file="core-sec.tex">
+  <cd:command id="cd:161" name="appendix" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="appendix"/>
     </cd:sequence>
@@ -2813,7 +2812,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="in" file="core-ref.tex" category="references">
+  <cd:command id="cd:162" name="in" file="core-ref.tex" category="references">
     <cd:sequence>
       <cd:string value="in"/>
     </cd:sequence>
@@ -2824,7 +2823,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="at" file="core-ref.tex" category="references">
+  <cd:command id="cd:163" name="at" file="core-ref.tex" category="references">
     <cd:sequence>
       <cd:string value="at"/>
     </cd:sequence>
@@ -2835,7 +2834,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="about" file="core-ref.tex" category="references">
+  <cd:command id="cd:164" name="about" file="core-ref.tex" category="references">
     <cd:sequence>
       <cd:string value="about"/>
     </cd:sequence>
@@ -2845,7 +2844,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="somewhere" file="core-ref.tex" category="references">
+  <cd:command id="cd:165" name="somewhere" file="core-ref.tex" category="references">
     <cd:sequence>
       <cd:string value="somewhere"/>
     </cd:sequence>
@@ -2856,7 +2855,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="atpage" file="core-ref.tex" category="references">
+  <cd:command id="cd:166" name="atpage" file="core-ref.tex" category="references">
     <cd:sequence>
       <cd:string value="atpage"/>
     </cd:sequence>
@@ -2865,7 +2864,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="ref" file="core-ref.tex" category="references">
+  <cd:command id="cd:167" name="ref" file="core-ref.tex" category="references">
     <cd:sequence>
       <cd:string value="ref"/>
     </cd:sequence>
@@ -2881,7 +2880,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="textreference" file="core-ref.tex" category="references">
+  <cd:command id="cd:168" name="textreference" file="core-ref.tex" category="references">
     <cd:sequence>
       <cd:string value="textreference"/>
     </cd:sequence>
@@ -2891,7 +2890,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="pagereference" file="core-ref.tex" category="references">
+  <cd:command id="cd:169" name="pagereference" file="core-ref.tex" category="references">
     <cd:sequence>
       <cd:string value="pagereference"/>
     </cd:sequence>
@@ -2900,7 +2899,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="reference" file="core-ref.tex" category="references">
+  <cd:command id="cd:170" name="reference" file="core-ref.tex" category="references">
     <cd:sequence>
       <cd:string value="reference"/>
     </cd:sequence>
@@ -2910,7 +2909,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="usereferences" file="core-ref.tex" category="references">
+  <cd:command id="cd:171" name="usereferences" file="core-ref.tex" category="references">
     <cd:sequence>
       <cd:string value="usereferences"/>
     </cd:sequence>
@@ -2921,7 +2920,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definereference" file="core-ref.tex" category="references">
+  <cd:command id="cd:172" name="definereference" file="core-ref.tex" category="references">
     <cd:sequence>
       <cd:string value="definereference"/>
     </cd:sequence>
@@ -2933,7 +2932,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definereferenceformat" file="core-ref.tex" category="references">
+  <cd:command id="cd:173" name="definereferenceformat" file="core-ref.tex" category="references">
     <cd:sequence>
       <cd:string value="definereferenceformat"/>
     </cd:sequence>
@@ -2958,7 +2957,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="hl" file="core-rul.tex">
+  <cd:command id="cd:174" name="hl" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="hl"/>
     </cd:sequence>
@@ -2969,7 +2968,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="vl" file="core-rul.tex">
+  <cd:command id="cd:175" name="vl" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="vl"/>
     </cd:sequence>
@@ -2980,7 +2979,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="godown" file="core-spa.tex">
+  <cd:command id="cd:176" name="godown" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="godown"/>
     </cd:sequence>
@@ -2991,37 +2990,37 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="whitespace" file="core-spa.tex">
+  <cd:command id="cd:177" name="whitespace" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="whitespace"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="nowhitespace" file="core-spa.tex">
+  <cd:command id="cd:178" name="nowhitespace" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="nowhitespace"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="crlf" file="core-spa.tex">
+  <cd:command id="cd:179" name="crlf" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="crlf"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="space" file="syst-pln.tex">
+  <cd:command id="cd:180" name="space" file="syst-pln.tex">
     <cd:sequence>
       <cd:string value="space"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="fixedspaces" file="core-spa.tex">
+  <cd:command id="cd:181" name="fixedspaces" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="fixedspaces"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="emptylines" file="page-lin.tex">
+  <cd:command id="cd:182" name="emptylines" file="page-lin.tex">
     <cd:sequence>
       <cd:string value="emptylines"/>
     </cd:sequence>
@@ -3032,19 +3031,19 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="nospace" file="core-spa.tex">
+  <cd:command id="cd:183" name="nospace" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="nospace"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="packed" file="core-spa.tex">
+  <cd:command id="cd:184" name="packed" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="packed"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="setupdescriptions" file="core-des.tex">
+  <cd:command id="cd:185" name="setupdescriptions" file="core-des.tex">
     <cd:sequence>
       <cd:string value="setupdescriptions"/>
     </cd:sequence>
@@ -3152,7 +3151,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupenumerations" file="core-des.tex">
+  <cd:command id="cd:186" name="setupenumerations" file="core-des.tex">
     <cd:sequence>
       <cd:string value="setupenumerations"/>
     </cd:sequence>
@@ -3161,12 +3160,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" list="yes">
-        <cd:inherit name="setupdescriptions" n="2"/>
+        <cd:inherit ref="cd:185" name="setupdescriptions" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="defineenumeration" file="core-des.tex">
+  <cd:command id="cd:187" name="defineenumeration" file="core-des.tex">
     <cd:sequence>
       <cd:string value="defineenumeration"/>
     </cd:sequence>
@@ -3178,12 +3177,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="3" optional="yes" list="yes">
-        <cd:inherit name="setupenumerations" n="2"/>
+        <cd:inherit ref="cd:186" name="setupenumerations" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="enumeration" generated="yes" file="core-des.tex">
+  <cd:command id="cd:188" name="enumeration" generated="yes" file="core-des.tex">
     <cd:sequence>
       <cd:variable value="enumeration"/>
     </cd:sequence>
@@ -3192,13 +3191,13 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="enumeration" type="environment" generated="yes" file="core-des.tex">
+  <cd:command id="cd:189" name="enumeration" type="environment" generated="yes" file="core-des.tex">
     <cd:sequence>
       <cd:variable value="enumeration"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="definedescription" file="core-des.tex">
+  <cd:command id="cd:190" name="definedescription" file="core-des.tex">
     <cd:sequence>
       <cd:string value="definedescription"/>
     </cd:sequence>
@@ -3207,12 +3206,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setupdescriptions" n="2"/>
+        <cd:inherit ref="cd:185" name="setupdescriptions" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="description" generated="yes" file="core-des.tex">
+  <cd:command id="cd:191" name="description" generated="yes" file="core-des.tex">
     <cd:sequence>
       <cd:variable value="description"/>
     </cd:sequence>
@@ -3222,7 +3221,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="description" type="environment" generated="yes" file="core-des.tex">
+  <cd:command id="cd:192" name="description" type="environment" generated="yes" file="core-des.tex">
     <cd:sequence>
       <cd:variable value="description"/>
     </cd:sequence>
@@ -3231,7 +3230,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupindentations" file="core-des.tex">
+  <cd:command id="cd:193" name="setupindentations" file="core-des.tex">
     <cd:sequence>
       <cd:string value="setupindentations"/>
     </cd:sequence>
@@ -3272,7 +3271,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="defineindenting" file="core-des.tex">
+  <cd:command id="cd:194" name="defineindenting" file="core-des.tex">
     <cd:sequence>
       <cd:string value="defineindenting"/>
     </cd:sequence>
@@ -3281,12 +3280,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" list="yes">
-        <cd:inherit name="setupindentations" n="2"/>
+        <cd:inherit ref="cd:193" name="setupindentations" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="indentation" generated="yes" file="core-spa.tex">
+  <cd:command id="cd:195" name="indentation" generated="yes" file="core-spa.tex">
     <cd:sequence>
       <cd:variable value="indentation"/>
     </cd:sequence>
@@ -3295,7 +3294,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definelabel" file="core-des.tex">
+  <cd:command id="cd:196" name="definelabel" file="core-des.tex">
     <cd:sequence>
       <cd:string value="definelabel"/>
     </cd:sequence>
@@ -3335,7 +3334,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="labeling" generated="yes" file="core-des.tex">
+  <cd:command id="cd:197" name="labeling" generated="yes" file="core-des.tex">
     <cd:sequence>
       <cd:variable value="labeling"/>
     </cd:sequence>
@@ -3344,7 +3343,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupcolumns" file="page-mul.tex">
+  <cd:command id="cd:198" name="setupcolumns" file="page-mul.tex">
     <cd:sequence>
       <cd:string value="setupcolumns"/>
     </cd:sequence>
@@ -3399,23 +3398,23 @@
           <cd:constant type="left"/>
           <cd:constant type="right"/>
         </cd:parameter>
-        <cd:inherit name="setupframed" n="2"/>
+        <cd:inherit ref="cd:99" name="setupframed" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="columns" type="environment" file="page-mul.tex">
+  <cd:command id="cd:199" name="columns" type="environment" file="page-mul.tex">
     <cd:sequence>
       <cd:string value="columns"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" optional="yes" list="yes">
-        <cd:inherit name="setupcolumns" n="1"/>
+        <cd:inherit ref="cd:198" name="setupcolumns" n="1"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definetext" file="page-txt.tex">
+  <cd:command id="cd:200" name="definetext" file="page-txt.tex">
     <cd:sequence>
       <cd:string value="definetext"/>
     </cd:sequence>
@@ -3439,7 +3438,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupheader" file="page-txt.tex">
+  <cd:command id="cd:201" name="setupheader" file="page-txt.tex">
     <cd:sequence>
       <cd:string value="setupheader"/>
     </cd:sequence>
@@ -3489,75 +3488,75 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupfooter" file="page-txt.tex">
+  <cd:command id="cd:202" name="setupfooter" file="page-txt.tex">
     <cd:sequence>
       <cd:string value="setupfooter"/>
     </cd:sequence>
     <cd:arguments>
       <cd:keywords n="1" optional="yes">
-        <cd:inherit name="setupheader" n="1"/>
+        <cd:inherit ref="cd:201" name="setupheader" n="1"/>
       </cd:keywords>
       <cd:assignments n="2" list="yes">
-        <cd:inherit name="setupheader" n="2"/>
+        <cd:inherit ref="cd:201" name="setupheader" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuptext" file="page-txt.tex">
+  <cd:command id="cd:203" name="setuptext" file="page-txt.tex">
     <cd:sequence>
       <cd:string value="setuptext"/>
     </cd:sequence>
     <cd:arguments>
       <cd:keywords n="1" optional="yes">
-        <cd:inherit name="setupheader" n="1"/>
+        <cd:inherit ref="cd:201" name="setupheader" n="1"/>
       </cd:keywords>
       <cd:assignments n="2" list="yes">
-        <cd:inherit name="setupheader" n="2"/>
+        <cd:inherit ref="cd:201" name="setupheader" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuptop" file="page-txt.tex">
+  <cd:command id="cd:204" name="setuptop" file="page-txt.tex">
     <cd:sequence>
       <cd:string value="setuptop"/>
     </cd:sequence>
     <cd:arguments>
       <cd:keywords n="1" optional="yes">
-        <cd:inherit name="setupheader" n="1"/>
+        <cd:inherit ref="cd:201" name="setupheader" n="1"/>
       </cd:keywords>
       <cd:assignments n="2" list="yes">
-        <cd:inherit name="setupheader" n="2"/>
+        <cd:inherit ref="cd:201" name="setupheader" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupbottom" file="page-txt.tex">
+  <cd:command id="cd:205" name="setupbottom" file="page-txt.tex">
     <cd:sequence>
       <cd:string value="setupbottom"/>
     </cd:sequence>
     <cd:arguments>
       <cd:keywords n="1" optional="yes">
-        <cd:inherit name="setupheader" n="1"/>
+        <cd:inherit ref="cd:201" name="setupheader" n="1"/>
       </cd:keywords>
       <cd:assignments n="2" list="yes">
-        <cd:inherit name="setupheader" n="2"/>
+        <cd:inherit ref="cd:201" name="setupheader" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="noheaderandfooterlines" file="page-txt.tex">
+  <cd:command id="cd:206" name="noheaderandfooterlines" file="page-txt.tex">
     <cd:sequence>
       <cd:string value="noheaderandfooterlines"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="notopandbottomlines" file="page-txt.tex">
+  <cd:command id="cd:207" name="notopandbottomlines" file="page-txt.tex">
     <cd:sequence>
       <cd:string value="notopandbottomlines"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="setupheadertexts" file="page-txt.tex">
+  <cd:command id="cd:208" name="setupheadertexts" file="page-txt.tex">
     <cd:sequence>
       <cd:string value="setupheadertexts"/>
     </cd:sequence>
@@ -3574,7 +3573,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupfootertexts" file="page-txt.tex">
+  <cd:command id="cd:209" name="setupfootertexts" file="page-txt.tex">
     <cd:sequence>
       <cd:string value="setupfootertexts"/>
     </cd:sequence>
@@ -3591,7 +3590,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuptexttexts" file="page-txt.tex">
+  <cd:command id="cd:210" name="setuptexttexts" file="page-txt.tex">
     <cd:sequence>
       <cd:string value="setuptexttexts"/>
     </cd:sequence>
@@ -3608,7 +3607,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuptoptexts" file="page-txt.tex">
+  <cd:command id="cd:211" name="setuptoptexts" file="page-txt.tex">
     <cd:sequence>
       <cd:string value="setuptoptexts"/>
     </cd:sequence>
@@ -3625,7 +3624,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupbottomtexts" file="page-txt.tex">
+  <cd:command id="cd:212" name="setupbottomtexts" file="page-txt.tex">
     <cd:sequence>
       <cd:string value="setupbottomtexts"/>
     </cd:sequence>
@@ -3642,7 +3641,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="settextcontent" file="page-txt.tex">
+  <cd:command id="cd:213" name="settextcontent" file="page-txt.tex">
     <cd:sequence>
       <cd:string value="settextcontent"/>
     </cd:sequence>
@@ -3665,7 +3664,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="resettextcontent" file="page-txt.tex">
+  <cd:command id="cd:214" name="resettextcontent" file="page-txt.tex">
     <cd:sequence>
       <cd:string value="resettextcontent"/>
     </cd:sequence>
@@ -3684,7 +3683,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definemarking" file="core-mar.tex">
+  <cd:command id="cd:215" name="definemarking" file="core-mar.tex">
     <cd:sequence>
       <cd:string value="definemarking"/>
     </cd:sequence>
@@ -3698,7 +3697,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="couplemarking" file="core-sec.tex">
+  <cd:command id="cd:216" name="couplemarking" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="couplemarking"/>
     </cd:sequence>
@@ -3712,7 +3711,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="decouplemarking" file="core-mar.tex">
+  <cd:command id="cd:217" name="decouplemarking" file="core-mar.tex">
     <cd:sequence>
       <cd:string value="decouplemarking"/>
     </cd:sequence>
@@ -3723,7 +3722,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="resetmarking" file="core-mar.tex">
+  <cd:command id="cd:218" name="resetmarking" file="core-mar.tex">
     <cd:sequence>
       <cd:string value="resetmarking"/>
     </cd:sequence>
@@ -3734,7 +3733,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupmarking" file="core-mar.tex">
+  <cd:command id="cd:219" name="setupmarking" file="core-mar.tex">
     <cd:sequence>
       <cd:string value="setupmarking"/>
     </cd:sequence>
@@ -3758,7 +3757,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="marking" file="core-mar.tex">
+  <cd:command id="cd:220" name="marking" file="core-mar.tex">
     <cd:sequence>
       <cd:string value="marking"/>
     </cd:sequence>
@@ -3770,7 +3769,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="getmarking" file="core-mar.tex">
+  <cd:command id="cd:221" name="getmarking" file="core-mar.tex">
     <cd:sequence>
       <cd:string value="getmarking"/>
     </cd:sequence>
@@ -3789,7 +3788,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="nomarking" file="core-mar.tex">
+  <cd:command id="cd:222" name="nomarking" file="core-mar.tex">
     <cd:sequence>
       <cd:string value="nomarking"/>
     </cd:sequence>
@@ -3798,7 +3797,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuplayout" file="page-ini.tex">
+  <cd:command id="cd:223" name="setuplayout" file="page-ini.tex">
     <cd:sequence>
       <cd:string value="setuplayout"/>
     </cd:sequence>
@@ -3955,7 +3954,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="adaptlayout" file="page-lay.tex">
+  <cd:command id="cd:224" name="adaptlayout" file="page-lay.tex">
     <cd:sequence>
       <cd:string value="adaptlayout"/>
     </cd:sequence>
@@ -3975,7 +3974,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="showgrid" file="page-ini.tex">
+  <cd:command id="cd:225" name="showgrid" file="page-ini.tex">
     <cd:sequence>
       <cd:string value="showgrid"/>
     </cd:sequence>
@@ -3996,19 +3995,19 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="placeongrid" file="core-grd.tex">
+  <cd:command id="cd:226" name="placeongrid" file="core-grd.tex">
     <cd:sequence>
       <cd:string value="placeongrid"/>
     </cd:sequence>
     <cd:arguments>
       <cd:keywords n="1" optional="yes">
-        <cd:inherit name="moveongrid" n="1"/>
+        <cd:inherit ref="cd:227" name="moveongrid" n="1"/>
       </cd:keywords>
       <cd:content n="2"/>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="moveongrid" file="core-grd.tex">
+  <cd:command id="cd:227" name="moveongrid" file="core-grd.tex">
     <cd:sequence>
       <cd:string value="moveongrid"/>
     </cd:sequence>
@@ -4037,7 +4036,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="project" type="environment" file="core-job.tex">
+  <cd:command id="cd:228" name="project" type="environment" file="core-job.tex">
     <cd:sequence>
       <cd:string value="project"/>
     </cd:sequence>
@@ -4046,7 +4045,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="environment" type="environment" file="core-job.tex">
+  <cd:command id="cd:229" name="environment" type="environment" file="core-job.tex">
     <cd:sequence>
       <cd:string value="environment"/>
     </cd:sequence>
@@ -4055,7 +4054,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="product" type="environment" file="core-job.tex">
+  <cd:command id="cd:230" name="product" type="environment" file="core-job.tex">
     <cd:sequence>
       <cd:string value="product"/>
     </cd:sequence>
@@ -4064,7 +4063,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="component" type="environment" file="core-job.tex">
+  <cd:command id="cd:231" name="component" type="environment" file="core-job.tex">
     <cd:sequence>
       <cd:string value="component"/>
     </cd:sequence>
@@ -4073,13 +4072,13 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="nomorefiles" file="core-job.tex">
+  <cd:command id="cd:232" name="nomorefiles" file="core-job.tex">
     <cd:sequence>
       <cd:string value="nomorefiles"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="setupinterlinespace" variant="1" file="core-spa.tex">
+  <cd:command id="cd:233" name="setupinterlinespace" variant="1" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="setupinterlinespace"/>
     </cd:sequence>
@@ -4096,7 +4095,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupinterlinespace" variant="2" file="core-spa.tex"> 
+  <cd:command id="cd:234" name="setupinterlinespace" variant="2" file="core-spa.tex"> 
     <cd:sequence>
       <cd:string value="setupinterlinespace"/>
     </cd:sequence>
@@ -4121,7 +4120,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuppagenumbering" file="page-num.tex">
+  <cd:command id="cd:235" name="setuppagenumbering" file="page-num.tex">
     <cd:sequence>
       <cd:string value="setuppagenumbering"/>
     </cd:sequence>
@@ -4196,7 +4195,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupnarrower" file="core-spa.tex">
+  <cd:command id="cd:236" name="setupnarrower" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="setupnarrower"/>
     </cd:sequence>
@@ -4215,7 +4214,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="define" file="syst-ext.tex">
+  <cd:command id="cd:237" name="define" file="syst-ext.tex">
     <cd:sequence>
       <cd:string value="define"/>
     </cd:sequence>
@@ -4228,7 +4227,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="usecommands" file="core-sys.tex">
+  <cd:command id="cd:238" name="usecommands" file="core-sys.tex">
     <cd:sequence>
       <cd:string value="usecommands"/>
     </cd:sequence>
@@ -4237,7 +4236,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definestartstop" file="core-sys.tex">
+  <cd:command id="cd:239" name="definestartstop" file="core-sys.tex">
     <cd:sequence>
       <cd:string value="definestartstop"/>
     </cd:sequence>
@@ -4262,7 +4261,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupheads" file="core-sec.tex">
+  <cd:command id="cd:240" name="setupheads" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="setupheads"/>
     </cd:sequence>
@@ -4314,7 +4313,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupcaptions" file="page-flt.tex">
+  <cd:command id="cd:241" name="setupcaptions" file="page-flt.tex">
     <cd:sequence>
       <cd:string value="setupcaptions"/>
     </cd:sequence>
@@ -4391,7 +4390,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupcaption" file="page-flt.tex">
+  <cd:command id="cd:242" name="setupcaption" file="page-flt.tex">
     <cd:sequence>
       <cd:string value="setupcaption"/>
     </cd:sequence>
@@ -4400,12 +4399,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" list="yes">
-        <cd:inherit name="setupcaptions" n="1"/>
+        <cd:inherit ref="cd:241" name="setupcaptions" n="1"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupfloats" file="page-flt.tex">
+  <cd:command id="cd:243" name="setupfloats" file="page-flt.tex">
     <cd:sequence>
       <cd:string value="setupfloats"/>
     </cd:sequence>
@@ -4487,12 +4486,12 @@
           <cd:constant type="yes"/>
           <cd:constant type="nocheck"/>
         </cd:parameter>
-        <cd:inherit name="setupframed" n="2"/>
+        <cd:inherit ref="cd:99" name="setupframed" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupfloatsplitting" file="core-tsp.tex">
+  <cd:command id="cd:244" name="setupfloatsplitting" file="core-tsp.tex">
     <cd:sequence>
       <cd:string value="setupfloatsplitting"/>
     </cd:sequence>
@@ -4512,20 +4511,20 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="splitfloat" file="core-tsp.tex">
+  <cd:command id="cd:245" name="splitfloat" file="core-tsp.tex">
     <cd:sequence>
       <cd:string value="splitfloat"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" optional="yes" list="yes">
-        <cd:inherit name="setupfloatsplitting" n="1"/>
+        <cd:inherit ref="cd:244" name="setupfloatsplitting" n="1"/>
       </cd:assignments>
       <cd:content n="2"/>
       <cd:content n="3"/>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupoppositeplacing" file="page-ini.tex">
+  <cd:command id="cd:246" name="setupoppositeplacing" file="page-ini.tex">
     <cd:sequence>
       <cd:string value="setupoppositeplacing"/>
     </cd:sequence>
@@ -4548,13 +4547,13 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="opposite" type="environment" file="page-ini.tex">
+  <cd:command id="cd:247" name="opposite" type="environment" file="page-ini.tex">
     <cd:sequence>
       <cd:string value="opposite"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="setuphyphenmark" file="core-mis.tex">
+  <cd:command id="cd:248" name="setuphyphenmark" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="setuphyphenmark"/>
     </cd:sequence>
@@ -4574,7 +4573,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuppositioning" file="page-lyr.tex">
+  <cd:command id="cd:249" name="setuppositioning" file="page-lyr.tex">
     <cd:sequence>
       <cd:string value="setuppositioning"/>
     </cd:sequence>
@@ -4615,13 +4614,13 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="positioning" type="environment" file="page-lyr.tex">
+  <cd:command id="cd:250" name="positioning" type="environment" file="page-lyr.tex">
     <cd:sequence>
       <cd:string value="positioning"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="grid" file="core-spa.tex">
+  <cd:command id="cd:251" name="grid" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="grid"/>
     </cd:sequence>
@@ -4678,7 +4677,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="page" file="page-ini.tex">
+  <cd:command id="cd:252" name="page" file="page-ini.tex">
     <cd:sequence>
       <cd:string value="page"/>
     </cd:sequence>
@@ -4705,7 +4704,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupreferencing" file="core-ref.tex" category="references">
+  <cd:command id="cd:253" name="setupreferencing" file="core-ref.tex" category="references">
     <cd:sequence>
       <cd:string value="setupreferencing"/>
     </cd:sequence>
@@ -4761,7 +4760,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupurl" file="core-ref.tex" category="references">
+  <cd:command id="cd:254" name="setupurl" file="core-ref.tex" category="references">
     <cd:sequence>
       <cd:string value="setupurl"/>
     </cd:sequence>
@@ -4784,7 +4783,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="writetoreferencelist" file="core-lst.tex">
+  <cd:command id="cd:255" name="writetoreferencelist" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="writetoreferencelist"/>
     </cd:sequence>
@@ -4797,7 +4796,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="placereferencelist" file="core-lst.tex">
+  <cd:command id="cd:256" name="placereferencelist" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="placereferencelist"/>
     </cd:sequence>
@@ -4808,7 +4807,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definereferencelist" file="core-lst.tex">
+  <cd:command id="cd:257" name="definereferencelist" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="definereferencelist"/>
     </cd:sequence>
@@ -4817,12 +4816,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setupreferencelist" n="2"/>
+        <cd:inherit ref="cd:258" name="setupreferencelist" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupreferencelist" file="core-lst.tex">
+  <cd:command id="cd:258" name="setupreferencelist" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="setupreferencelist"/>
     </cd:sequence>
@@ -4854,7 +4853,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="writetolist" file="core-lst.tex">
+  <cd:command id="cd:259" name="writetolist" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="writetolist"/>
     </cd:sequence>
@@ -4868,7 +4867,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="writebetweenlist" file="core-lst.tex">
+  <cd:command id="cd:260" name="writebetweenlist" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="writebetweenlist"/>
     </cd:sequence>
@@ -4881,7 +4880,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="nolist" file="core-lst.tex">
+  <cd:command id="cd:261" name="nolist" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="nolist"/>
     </cd:sequence>
@@ -4890,7 +4889,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="listsymbol" file="core-lst.tex">
+  <cd:command id="cd:262" name="listsymbol" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="listsymbol"/>
     </cd:sequence>
@@ -4902,7 +4901,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="placelist" file="core-lst.tex">
+  <cd:command id="cd:263" name="placelist" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="placelist"/>
     </cd:sequence>
@@ -4911,12 +4910,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setuplist" n="2"/>
+        <cd:inherit ref="cd:267" name="setuplist" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="determinelistcharacteristics" file="core-lst.tex">
+  <cd:command id="cd:264" name="determinelistcharacteristics" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="determinelistcharacteristics"/>
     </cd:sequence>
@@ -4925,12 +4924,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setuplist" n="2"/>
+        <cd:inherit ref="cd:267" name="setuplist" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="placecombinedlist" variant="1" file="core-lst.tex">
+  <cd:command id="cd:265" name="placecombinedlist" variant="1" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="placecombinedlist"/>
     </cd:sequence>
@@ -4939,12 +4938,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setupcombinedlist" n="2"/>
+        <cd:inherit ref="cd:270" name="setupcombinedlist" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definelist" file="core-lst.tex">
+  <cd:command id="cd:266" name="definelist" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="definelist"/>
     </cd:sequence>
@@ -4956,12 +4955,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="3" optional="yes" list="yes">
-        <cd:inherit name="setuplist" n="2"/>
+        <cd:inherit ref="cd:267" name="setuplist" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuplist" file="core-lst.tex">
+  <cd:command id="cd:267" name="setuplist" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="setuplist"/>
     </cd:sequence>
@@ -5110,12 +5109,12 @@
         <cd:parameter name="maxwidth">
           <cd:constant type="cd:dimension"/>
         </cd:parameter>
-        <cd:inherit name="setupframed" n="2"/>
+        <cd:inherit ref="cd:99" name="setupframed" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuplistalternative" file="core-lst.tex">
+  <cd:command id="cd:268" name="setuplistalternative" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="setuplistalternative"/>
     </cd:sequence>
@@ -5143,7 +5142,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definecombinedlist" file="core-lst.tex">
+  <cd:command id="cd:269" name="definecombinedlist" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="definecombinedlist"/>
     </cd:sequence>
@@ -5155,12 +5154,12 @@
         <cd:constant type="cd:list"/>
       </cd:keywords>
       <cd:assignments n="3" optional="yes" list="yes">
-        <cd:inherit name="setupcombinedlist" n="2"/>
+        <cd:inherit ref="cd:270" name="setupcombinedlist" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupcombinedlist" file="core-lst.tex">
+  <cd:command id="cd:270" name="setupcombinedlist" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="setupcombinedlist"/>
     </cd:sequence>
@@ -5177,12 +5176,12 @@
           <cd:constant type="cd:section"/>
           <cd:constant type="current"/>
         </cd:parameter>
-        <cd:inherit name="setuplist" n="2"/>
+        <cd:inherit ref="cd:267" name="setuplist" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="placecombinedlist" variant="2" generated="yes" file="core-lst.tex">
+  <cd:command id="cd:271" name="placecombinedlist" variant="2" generated="yes" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="place"/>
       <cd:variable value="combinedlist"/>
@@ -5192,12 +5191,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setupcombinedlist" n="2"/>
+        <cd:inherit ref="cd:270" name="setupcombinedlist" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="completecombinedlist" generated="yes" file="core-lst.tex">
+  <cd:command id="cd:272" name="completecombinedlist" generated="yes" file="core-lst.tex">
     <cd:sequence>
       <cd:string value="complete"/>
       <cd:variable value="combinedlist"/>
@@ -5207,12 +5206,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setupcombinedlist" n="2"/>
+        <cd:inherit ref="cd:270" name="setupcombinedlist" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupnumbering" file="core-num.tex">
+  <cd:command id="cd:273" name="setupnumbering" file="core-num.tex">
     <cd:sequence>
       <cd:string value="setupnumbering"/>
     </cd:sequence>
@@ -5230,7 +5229,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupformulas" file="core-mat.tex">
+  <cd:command id="cd:274" name="setupformulas" file="core-mat.tex">
     <cd:sequence>
       <cd:string value="setupformulas"/>
     </cd:sequence>
@@ -5304,7 +5303,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="publication" file="core-mis.tex">
+  <cd:command id="cd:275" name="publication" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="publication"/>
     </cd:sequence>
@@ -5313,7 +5312,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuppublications" file="core-mis.tex">
+  <cd:command id="cd:276" name="setuppublications" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="setuppublications"/>
     </cd:sequence>
@@ -5323,12 +5322,12 @@
           <cd:constant type="apa"/>
           <cd:constant type="normal"/>
         </cd:parameter>
-        <cd:inherit name="setupenumerations" n="2"/>
+        <cd:inherit ref="cd:186" name="setupenumerations" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuplines" file="page-lin.tex">
+  <cd:command id="cd:277" name="setuplines" file="page-lin.tex">
     <cd:sequence>
       <cd:string value="setuplines"/>
     </cd:sequence>
@@ -5354,13 +5353,13 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="lines" type="environment">
+  <cd:command id="cd:278" name="lines" type="environment">
     <cd:sequence>
       <cd:string value="lines"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="setupparagraphnumbering" file="page-lin.tex">
+  <cd:command id="cd:279" name="setupparagraphnumbering" file="page-lin.tex">
     <cd:sequence>
       <cd:string value="setupparagraphnumbering"/>
     </cd:sequence>
@@ -5382,7 +5381,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuplinenumbering" file="page-lin.tex">
+  <cd:command id="cd:280" name="setuplinenumbering" file="page-lin.tex">
     <cd:sequence>
       <cd:string value="setuplinenumbering"/>
     </cd:sequence>
@@ -5423,7 +5422,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="linenumbering" type="environment" file="page-lin.tex"> <!-- mkii/mkiv -->
+  <cd:command id="cd:281" name="linenumbering" type="environment" file="page-lin.tex"> <!-- mkii/mkiv -->
     <cd:sequence>
       <cd:string value="linenumbering"/>
     </cd:sequence>
@@ -5434,7 +5433,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="line" type="environment">
+  <cd:command id="cd:282" name="line" type="environment">
     <cd:sequence>
       <cd:string value="line"/>
     </cd:sequence>
@@ -5443,7 +5442,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="someline" file="page-lin.tex">
+  <cd:command id="cd:283" name="someline" file="page-lin.tex">
     <cd:sequence>
       <cd:string value="someline"/>
     </cd:sequence>
@@ -5452,7 +5451,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="inline" file="page-lin.tex">
+  <cd:command id="cd:284" name="inline" file="page-lin.tex">
     <cd:sequence>
       <cd:string value="inline"/>
     </cd:sequence>
@@ -5461,7 +5460,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupinmargin" file="page-mar.tex">
+  <cd:command id="cd:285" name="setupinmargin" file="page-mar.tex">
     <cd:sequence>
       <cd:string value="setupinmargin"/>
     </cd:sequence>
@@ -5508,12 +5507,12 @@
           <cd:constant type="yes"/>
           <cd:constant type="no"/>
         </cd:parameter>
-        <cd:inherit name="setupframed" n="2"/>
+        <cd:inherit ref="cd:99" name="setupframed" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuppagenumber" file="page-num.tex">
+  <cd:command id="cd:286" name="setuppagenumber" file="page-num.tex">
     <cd:sequence>
       <cd:string value="setuppagenumber"/>
     </cd:sequence>
@@ -5531,7 +5530,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupsubpagenumber" file="page-num.tex">
+  <cd:command id="cd:287" name="setupsubpagenumber" file="page-num.tex">
     <cd:sequence>
       <cd:string value="setupsubpagenumber"/>
     </cd:sequence>
@@ -5550,7 +5549,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupblank" file="core-spa.tex">
+  <cd:command id="cd:288" name="setupblank" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="setupblank"/>
     </cd:sequence>
@@ -5573,7 +5572,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="defineblank" file="core-spa.tex">
+  <cd:command id="cd:289" name="defineblank" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="defineblank"/>
     </cd:sequence>
@@ -5582,12 +5581,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:keywords n="2">
-        <cd:inherit name="setupblank" n="1"/>
+        <cd:inherit ref="cd:288" name="setupblank" n="1"/>
       </cd:keywords>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definepapersize" file="page-lay.tex">
+  <cd:command id="cd:290" name="definepapersize" file="page-lay.tex">
     <cd:sequence>
       <cd:string value="definepapersize"/>
     </cd:sequence>
@@ -5612,7 +5611,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuppaper" file="page-lay.tex">
+  <cd:command id="cd:291" name="setuppaper" file="page-lay.tex">
     <cd:sequence>
       <cd:string value="setuppaper"/>
     </cd:sequence>
@@ -5650,7 +5649,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuppapersize" file="page-lay.tex">
+  <cd:command id="cd:292" name="setuppapersize" file="page-lay.tex">
     <cd:sequence>
       <cd:string value="setuppapersize"/>
     </cd:sequence>
@@ -5673,12 +5672,12 @@
       </cd:keywords>
       <cd:keywords n="2" optional="yes" list="yes">
         <cd:constant type="negative"/>
-        <cd:inherit name="setuppapersize" n="1"/>
+        <cd:inherit ref="cd:292" name="setuppapersize" n="1"/>
       </cd:keywords>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuparranging" file="page-imp.tex">
+  <cd:command id="cd:293" name="setuparranging" file="page-imp.tex">
     <cd:sequence>
       <cd:string value="setuparranging"/>
     </cd:sequence>
@@ -5708,24 +5707,24 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="showprint" file="page-run.tex"> <!-- page-lay.tex -->
+  <cd:command id="cd:294" name="showprint" file="page-run.tex"> <!-- page-lay.tex -->
     <cd:sequence>
       <cd:string value="showprint"/>
     </cd:sequence>
     <cd:arguments>
       <cd:keywords n="1" list="yes">
-        <cd:inherit name="setuppapersize" n="1"/>
+        <cd:inherit ref="cd:292" name="setuppapersize" n="1"/>
       </cd:keywords>
       <cd:keywords n="2" list="yes">
-        <cd:inherit name="setuppapersize" n="2"/>
+        <cd:inherit ref="cd:292" name="setuppapersize" n="2"/>
       </cd:keywords>
       <cd:assignments n="3" list="yes">
-        <cd:inherit name="setuplayout" n="1"/>
+        <cd:inherit ref="cd:223" name="setuplayout" n="1"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definelogo" file="page-log.tex">
+  <cd:command id="cd:295" name="definelogo" file="page-log.tex">
     <cd:sequence>
       <cd:string value="definelogo"/>
     </cd:sequence>
@@ -5763,7 +5762,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="placelogos" file="page-log.tex">
+  <cd:command id="cd:296" name="placelogos" file="page-log.tex">
     <cd:sequence>
       <cd:string value="placelogos"/>
     </cd:sequence>
@@ -5774,7 +5773,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupwhitespace">
+  <cd:command id="cd:297" name="setupwhitespace">
     <cd:sequence>
       <cd:string value="setupwhitespace"/>
     </cd:sequence>
@@ -5792,7 +5791,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupindenting">
+  <cd:command id="cd:298" name="setupindenting">
     <cd:sequence>
       <cd:string value="setupindenting"/>
     </cd:sequence>
@@ -5803,21 +5802,21 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definesectionblock" file="core-sec.tex">
+  <cd:command id="cd:299" name="definesectionblock" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="definesectionblock"/>
     </cd:sequence>
     <cd:arguments>
       <cd:keywords n="1">
-        <cd:inherit name="setupsectionblock" n="1"/>
+        <cd:inherit ref="cd:300" name="setupsectionblock" n="1"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setupsectionblock" n="2"/>
+        <cd:inherit ref="cd:300" name="setupsectionblock" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupsectionblock" file="core-sec.tex">
+  <cd:command id="cd:300" name="setupsectionblock" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="setupsectionblock"/>
     </cd:sequence>
@@ -5844,7 +5843,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definesection" file="core-sec.tex">
+  <cd:command id="cd:301" name="definesection" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="definesection"/>
     </cd:sequence>
@@ -5855,7 +5854,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupsection" file="core-sec.tex">
+  <cd:command id="cd:302" name="setupsection" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="setupsection"/>
     </cd:sequence>
@@ -5882,7 +5881,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuphead" file="core-sec.tex">
+  <cd:command id="cd:303" name="setuphead" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="setuphead"/>
     </cd:sequence>
@@ -6013,12 +6012,12 @@
           <cd:constant type="yes"/>
           <cd:constant type="no"/>
         </cd:parameter>
-        <cd:inherit name="setupheads" n="1"/>
+        <cd:inherit ref="cd:240" name="setupheads" n="1"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupheadnumber" file="core-sec.tex">
+  <cd:command id="cd:304" name="setupheadnumber" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="setupheadnumber"/>
     </cd:sequence>
@@ -6034,7 +6033,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="headnumber">
+  <cd:command id="cd:305" name="headnumber">
     <cd:sequence>
       <cd:string value="headnumber"/>
     </cd:sequence>
@@ -6045,7 +6044,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="determineheadnumber" file="core-sec.tex">
+  <cd:command id="cd:306" name="determineheadnumber" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="determineheadnumber"/>
     </cd:sequence>
@@ -6056,20 +6055,20 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="currentheadnumber" file="core-sec.tex">
+  <cd:command id="cd:307" name="currentheadnumber" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="currentheadnumber"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="nextsection" generated="yes" file="core-sec.tex">
+  <cd:command id="cd:308" name="nextsection" generated="yes" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="next"/>
       <cd:variable value="section"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="definehead" file="core-sec.tex">
+  <cd:command id="cd:309" name="definehead" file="core-sec.tex">
     <cd:sequence>
       <cd:string value="definehead"/>
     </cd:sequence>
@@ -6083,7 +6082,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupitemgroup" file="core-itm.tex">
+  <cd:command id="cd:310" name="setupitemgroup" file="core-itm.tex">
     <cd:sequence>
       <cd:string value="setupitemgroup"/>
     </cd:sequence>
@@ -6200,7 +6199,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="itemgroup" type="environment" generated="yes" file="core-itm.tex">
+  <cd:command id="cd:311" name="itemgroup" type="environment" generated="yes" file="core-itm.tex">
     <cd:sequence>
       <cd:variable value="itemgroup"/>
     </cd:sequence>
@@ -6235,12 +6234,12 @@
         <cd:constant type="repeat"/>
       </cd:keywords>
       <cd:assignments n="3" optional="yes" list="yes">
-        <cd:inherit name="setupitemgroup" n="4"/>
+        <cd:inherit ref="cd:310" name="setupitemgroup" n="4"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="item" file="core-itm.tex">
+  <cd:command id="cd:312" name="item" file="core-itm.tex">
     <cd:sequence>
       <cd:string value="item"/>
     </cd:sequence>
@@ -6249,7 +6248,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="but">
+  <cd:command id="cd:313" name="but">
     <cd:sequence>
       <cd:string value="but"/>
     </cd:sequence>
@@ -6258,7 +6257,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="its">
+  <cd:command id="cd:314" name="its">
     <cd:sequence>
       <cd:string value="its"/>
     </cd:sequence>
@@ -6267,7 +6266,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="ran">
+  <cd:command id="cd:315" name="ran">
     <cd:sequence>
       <cd:string value="ran"/>
     </cd:sequence>
@@ -6276,7 +6275,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="head">
+  <cd:command id="cd:316" name="head">
     <cd:sequence>
       <cd:string value="head"/>
     </cd:sequence>
@@ -6285,7 +6284,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="mar">
+  <cd:command id="cd:317" name="mar">
     <cd:sequence>
       <cd:string value="mar"/>
     </cd:sequence>
@@ -6295,7 +6294,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="sub">
+  <cd:command id="cd:318" name="sub">
     <cd:sequence>
       <cd:string value="sub"/>
     </cd:sequence>
@@ -6304,7 +6303,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="sym" file="core-itm.tex">
+  <cd:command id="cd:319" name="sym" file="core-itm.tex">
     <cd:sequence>
       <cd:string value="sym"/>
     </cd:sequence>
@@ -6313,13 +6312,13 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="nop">
+  <cd:command id="cd:320" name="nop">
     <cd:sequence>
       <cd:string value="nop"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="defineregister" file="core-reg.tex">
+  <cd:command id="cd:321" name="defineregister" file="core-reg.tex">
     <cd:sequence>
       <cd:string value="defineregister"/>
     </cd:sequence>
@@ -6333,7 +6332,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupregister" file="core-reg.tex">
+  <cd:command id="cd:322" name="setupregister" file="core-reg.tex">
     <cd:sequence>
       <cd:string value="setupregister"/>
     </cd:sequence>
@@ -6443,7 +6442,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="register" generated="yes" file="core-reg.tex">
+  <cd:command id="cd:323" name="register" generated="yes" file="core-reg.tex">
     <cd:sequence>
       <cd:variable value="register"/>
     </cd:sequence>
@@ -6455,7 +6454,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="startregister" generated="yes" file="core-reg.tex">
+  <cd:command id="cd:324" name="startregister" generated="yes" file="core-reg.tex">
     <cd:sequence>
       <cd:string value="start"/>
       <cd:variable value="register"/>
@@ -6468,7 +6467,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="writetoregister" file="core-reg.tex">
+  <cd:command id="cd:325" name="writetoregister" file="core-reg.tex">
     <cd:sequence>
       <cd:string value="writetoregister"/>
     </cd:sequence>
@@ -6483,7 +6482,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="coupledregister" generated="yes">
+  <cd:command id="cd:326" name="coupledregister" generated="yes">
     <cd:sequence>
       <cd:string value="coupled"/>
       <cd:variable value="register"/>
@@ -6496,7 +6495,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="coupleregister" file="core-reg.tex">
+  <cd:command id="cd:327" name="coupleregister" file="core-reg.tex">
     <cd:sequence>
       <cd:string value="coupleregister"/>
     </cd:sequence>
@@ -6507,7 +6506,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="placeregister" variant="1" file="core-reg.tex">
+  <cd:command id="cd:328" name="placeregister" variant="1" file="core-reg.tex">
     <cd:sequence>
       <cd:string value="placeregister"/>
     </cd:sequence>
@@ -6516,12 +6515,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setupregister" n="3"/>
+        <cd:inherit ref="cd:322" name="setupregister" n="3"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="seeregister" generated="yes">
+  <cd:command id="cd:329" name="seeregister" generated="yes">
     <cd:sequence>
       <cd:string value="see"/>
       <cd:variable value="register"/>
@@ -6535,31 +6534,31 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="completeregister" generated="yes" file="core-reg.tex">
+  <cd:command id="cd:330" name="completeregister" generated="yes" file="core-reg.tex">
     <cd:sequence>
       <cd:string value="complete"/>
       <cd:variable value="register"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" interactive="yes" optional="yes" list="yes">
-        <cd:inherit name="setupregister" n="3"/>
+        <cd:inherit ref="cd:322" name="setupregister" n="3"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="placeregister" variant="2" generated="yes" file="core-reg.tex">
+  <cd:command id="cd:331" name="placeregister" variant="2" generated="yes" file="core-reg.tex">
     <cd:sequence>
       <cd:string value="place"/>
       <cd:variable value="register"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" interactive="yes" optional="yes" list="yes">
-        <cd:inherit name="setupregister" n="3"/>
+        <cd:inherit ref="cd:322" name="setupregister" n="3"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definesynonyms" file="core-syn.tex">
+  <cd:command id="cd:332" name="definesynonyms" file="core-syn.tex">
     <cd:sequence>
       <cd:string value="definesynonyms"/>
     </cd:sequence>
@@ -6579,7 +6578,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupsynonyms" file="core-syn.tex">
+  <cd:command id="cd:333" name="setupsynonyms" file="core-syn.tex">
     <cd:sequence>
       <cd:string value="setupsynonyms"/>
     </cd:sequence>
@@ -6630,7 +6629,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="synonym" generated="yes">
+  <cd:command id="cd:334" name="synonym" generated="yes">
     <cd:sequence>
       <cd:variable value="synonym"/>
     </cd:sequence>
@@ -6643,28 +6642,28 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="completelistofsynonyms" generated="yes">
+  <cd:command id="cd:335" name="completelistofsynonyms" generated="yes">
     <cd:sequence>
       <cd:string value="completelistof"/>
       <cd:variable value="synonyms"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="placelistofsynonyms" generated="yes">
+  <cd:command id="cd:336" name="placelistofsynonyms" generated="yes">
     <cd:sequence>
       <cd:string value="placelistof"/>
       <cd:variable value="synonyms"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="loadsynonyms" generated="yes">
+  <cd:command id="cd:337" name="loadsynonyms" generated="yes">
     <cd:sequence>
       <cd:string value="load"/>
       <cd:variable value="synonyms"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="definesorting" file="core-syn.tex">
+  <cd:command id="cd:338" name="definesorting" file="core-syn.tex">
     <cd:sequence>
       <cd:string value="definesorting"/>
     </cd:sequence>
@@ -6681,7 +6680,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupsorting" file="core-syn.tex">
+  <cd:command id="cd:339" name="setupsorting" file="core-syn.tex">
     <cd:sequence>
       <cd:string value="setupsorting"/>
     </cd:sequence>
@@ -6719,7 +6718,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="sort" generated="yes">
+  <cd:command id="cd:340" name="sort" generated="yes">
     <cd:sequence>
       <cd:variable value="sort"/>
     </cd:sequence>
@@ -6731,28 +6730,28 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="completelistofsorts" generated="yes">
+  <cd:command id="cd:341" name="completelistofsorts" generated="yes">
     <cd:sequence>
       <cd:string value="completelistof"/>
       <cd:variable value="sorts"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="placelistofsorts" generated="yes">
+  <cd:command id="cd:342" name="placelistofsorts" generated="yes">
     <cd:sequence>
       <cd:string value="placelistof"/>
       <cd:variable value="sorts"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="loadsorts" generated="yes">
+  <cd:command id="cd:343" name="loadsorts" generated="yes">
     <cd:sequence>
       <cd:string value="load"/>
       <cd:variable value="sorts"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="definemakeup" file="page-mak.tex">
+  <cd:command id="cd:344" name="definemakeup" file="page-mak.tex">
     <cd:sequence>
       <cd:string value="definemakeup"/>
     </cd:sequence>
@@ -6761,12 +6760,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" list="yes">
-        <cd:inherit name="setupmakeup" n="2"/>
+        <cd:inherit ref="cd:346" name="setupmakeup" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="makeup" type="environment">
+  <cd:command id="cd:345" name="makeup" type="environment">
     <cd:sequence>
       <cd:string value="makeup"/>
     </cd:sequence>
@@ -6775,12 +6774,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setupmakeup" n="2"/>
+        <cd:inherit ref="cd:346" name="setupmakeup" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupmakeup" file="page-mak.tex">
+  <cd:command id="cd:346" name="setupmakeup" file="page-mak.tex">
     <cd:sequence>
       <cd:string value="setupmakeup"/>
     </cd:sequence>
@@ -6857,14 +6856,14 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="namemakeup" type="environment" generated="yes">
+  <cd:command id="cd:347" name="namemakeup" type="environment" generated="yes">
     <cd:sequence>
       <cd:variable value="name"/>
       <cd:string value="makeup"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="version">
+  <cd:command id="cd:348" name="version">
     <cd:sequence>
       <cd:string value="version"/>
     </cd:sequence>
@@ -6877,18 +6876,18 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="currentdate">
+  <cd:command id="cd:349" name="currentdate">
     <cd:sequence>
       <cd:string value="currentdate"/>
     </cd:sequence>
     <cd:arguments>
       <cd:keywords n="1" list="yes">
-        <cd:inherit name="date" n="2"/> <!-- or vice versa :) -->
+        <cd:inherit ref="cd:350" name="date" n="2"/> <!-- or vice versa :) -->
       </cd:keywords>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="date" file="core-con.tex">
+  <cd:command id="cd:350" name="date" file="core-con.tex">
     <cd:sequence>
       <cd:string value="date"/>
     </cd:sequence>
@@ -6927,13 +6926,13 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="referraldate" file="core-mis.tex">
+  <cd:command id="cd:351" name="referraldate" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="referraldate"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="indenting" file="core-spa.tex">
+  <cd:command id="cd:352" name="indenting" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="indenting"/>
     </cd:sequence>
@@ -6944,13 +6943,13 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="noindenting" file="core-spa.tex">
+  <cd:command id="cd:353" name="noindenting" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="noindenting"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="blank" file="core-spa.tex">
+  <cd:command id="cd:354" name="blank" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="blank"/>
     </cd:sequence>
@@ -6978,7 +6977,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="packed" type="environment" file="core-spa.tex">
+  <cd:command id="cd:355" name="packed" type="environment" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="packed"/>
     </cd:sequence>
@@ -6989,19 +6988,19 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="unpacked" type="environment">
+  <cd:command id="cd:356" name="unpacked" type="environment">
     <cd:sequence>
       <cd:string value="unpacked"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="linecorrection" type="environment">
+  <cd:command id="cd:357" name="linecorrection" type="environment">
     <cd:sequence>
       <cd:string value="linecorrection"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="correctwhitespace" file="core-spa.tex">
+  <cd:command id="cd:358" name="correctwhitespace" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="correctwhitespace"/>
     </cd:sequence>
@@ -7010,19 +7009,19 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="postponing" type="environment">
+  <cd:command id="cd:359" name="postponing" type="environment">
     <cd:sequence>
       <cd:string value="postponing"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="local" type="environment">
+  <cd:command id="cd:360" name="local" type="environment">
     <cd:sequence>
       <cd:string value="local"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="narrower" type="environment">
+  <cd:command id="cd:361" name="narrower" type="environment">
     <cd:sequence>
       <cd:string value="narrower"/>
     </cd:sequence>
@@ -7035,13 +7034,13 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="hiding" type="environment">
+  <cd:command id="cd:362" name="hiding" type="environment">
     <cd:sequence>
       <cd:string value="hiding"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="setupalign" file="core-spa.tex">
+  <cd:command id="cd:363" name="setupalign" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="setupalign"/>
     </cd:sequence>
@@ -7087,18 +7086,18 @@
   </cd:command>
 
 
-  <cd:command name="alignment" type="environment" file="core-spa.tex">
+  <cd:command id="cd:364" name="alignment" type="environment" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="alignment"/>
     </cd:sequence>
     <cd:arguments>
       <cd:keywords n="1" optional="yes" list="yes">
-        <cd:inherit name="setupalign" n="1"/>
+        <cd:inherit ref="cd:363" name="setupalign" n="1"/>
       </cd:keywords>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupspacing">
+  <cd:command id="cd:365" name="setupspacing">
     <cd:sequence>
       <cd:string value="setupspacing"/>
     </cd:sequence>
@@ -7110,7 +7109,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuptolerance" file="core-spa.tex">
+  <cd:command id="cd:366" name="setuptolerance" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="setuptolerance"/>
     </cd:sequence>
@@ -7128,7 +7127,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="pagetype" file="page-ini.tex">
+  <cd:command id="cd:367" name="pagetype" file="page-ini.tex">
     <cd:sequence>
       <cd:string value="pagetype"/>
     </cd:sequence>
@@ -7139,7 +7138,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="processpage" file="page-ini.tex">
+  <cd:command id="cd:368" name="processpage" file="page-ini.tex">
     <cd:sequence>
       <cd:string value="processpage"/>
     </cd:sequence>
@@ -7154,7 +7153,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="couplepage" file="page-ini.tex">
+  <cd:command id="cd:369" name="couplepage" file="page-ini.tex">
     <cd:sequence>
       <cd:string value="couplepage"/>
     </cd:sequence>
@@ -7176,7 +7175,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="position" file="page-lyr.tex">
+  <cd:command id="cd:370" name="position" file="page-lyr.tex">
     <cd:sequence>
       <cd:string value="position"/>
     </cd:sequence>
@@ -7186,7 +7185,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupscreens" file="core-rul.tex">
+  <cd:command id="cd:371" name="setupscreens" file="core-rul.tex">
     <cd:sequence>
       <cd:string value="setupscreens"/>
     </cd:sequence>
@@ -7210,7 +7209,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupbackgrounds" file="page-bck.tex">
+  <cd:command id="cd:372" name="setupbackgrounds" file="page-bck.tex">
     <cd:sequence>
       <cd:string value="setupbackgrounds"/>
     </cd:sequence>
@@ -7239,12 +7238,12 @@
           <cd:constant type="stop"/>
           <cd:constant type="cd:repeat"/>
         </cd:parameter>
-        <cd:inherit name="setupframed" n="2"/>
+        <cd:inherit ref="cd:99" name="setupframed" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="buffer" type="environment" generated="yes" file="core-buf.tex">
+  <cd:command id="cd:373" name="buffer" type="environment" generated="yes" file="core-buf.tex">
     <cd:sequence>
       <cd:variable value="buffer"/>
     </cd:sequence>
@@ -7255,7 +7254,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="buffer" type="environment" file="core-buf.tex">
+  <cd:command id="cd:374" name="buffer" type="environment" file="core-buf.tex">
     <cd:sequence>
       <cd:string value="buffer"/>
     </cd:sequence>
@@ -7266,7 +7265,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="getbuffer">
+  <cd:command id="cd:375" name="getbuffer">
     <cd:sequence>
       <cd:string value="getbuffer"/>
     </cd:sequence>
@@ -7277,7 +7276,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="typebuffer" file="core-buf.tex">
+  <cd:command id="cd:376" name="typebuffer" file="core-buf.tex">
     <cd:sequence>
       <cd:string value="typebuffer"/>
     </cd:sequence>
@@ -7288,7 +7287,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definebuffer" file="core-buf.tex">
+  <cd:command id="cd:377" name="definebuffer" file="core-buf.tex">
     <cd:sequence>
       <cd:string value="definebuffer"/>
     </cd:sequence>
@@ -7299,7 +7298,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupbuffer" file="core-buf.tex">
+  <cd:command id="cd:378" name="setupbuffer" file="core-buf.tex">
     <cd:sequence>
       <cd:string value="setupbuffer"/>
     </cd:sequence>
@@ -7321,7 +7320,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="defineblock" file="core-buf.tex">
+  <cd:command id="cd:379" name="defineblock" file="core-buf.tex">
     <cd:sequence>
       <cd:string value="defineblock"/>
     </cd:sequence>
@@ -7332,13 +7331,13 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="nomoreblocks" file="core-buf.tex">
+  <cd:command id="cd:380" name="nomoreblocks" file="core-buf.tex">
     <cd:sequence>
       <cd:string value="nomoreblocks"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="hideblocks" file="core-buf.tex">
+  <cd:command id="cd:381" name="hideblocks" file="core-buf.tex">
     <cd:sequence>
       <cd:string value="hideblocks"/>
     </cd:sequence>
@@ -7352,7 +7351,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="keepblocks" file="core-buf.tex">
+  <cd:command id="cd:382" name="keepblocks" file="core-buf.tex">
     <cd:sequence>
       <cd:string value="keepblocks"/>
     </cd:sequence>
@@ -7367,7 +7366,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="useblocks" file="core-buf.tex">
+  <cd:command id="cd:383" name="useblocks" file="core-buf.tex">
     <cd:sequence>
       <cd:string value="useblocks"/>
     </cd:sequence>
@@ -7381,7 +7380,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="processblocks" file="core-buf.tex">
+  <cd:command id="cd:384" name="processblocks" file="core-buf.tex">
     <cd:sequence>
       <cd:string value="processblocks"/>
     </cd:sequence>
@@ -7395,7 +7394,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="bypassblocks" file="core-buf.tex">
+  <cd:command id="cd:385" name="bypassblocks" file="core-buf.tex">
     <cd:sequence>
       <cd:string value="bypassblocks"/>
     </cd:sequence>
@@ -7409,7 +7408,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="forceblocks">
+  <cd:command id="cd:386" name="forceblocks">
     <cd:sequence>
       <cd:string value="forceblocks"/>
     </cd:sequence>
@@ -7423,7 +7422,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="selectblocks" file="core-buf.tex">
+  <cd:command id="cd:387" name="selectblocks" file="core-buf.tex">
     <cd:sequence>
       <cd:string value="selectblocks"/>
     </cd:sequence>
@@ -7443,7 +7442,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupblock" file="core-buf.tex">
+  <cd:command id="cd:388" name="setupblock" file="core-buf.tex">
     <cd:sequence>
       <cd:string value="setupblock"/>
     </cd:sequence>
@@ -7471,13 +7470,13 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="formula" type="environment" generated="yes">
+  <cd:command id="cd:389" name="formula" type="environment" generated="yes">
     <cd:sequence>
       <cd:variable value="formula"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="mathematics" file="supp-mat.tex">
+  <cd:command id="cd:390" name="mathematics" file="supp-mat.tex">
     <cd:sequence>
       <cd:string value="mathematics"/>
     </cd:sequence>
@@ -7486,7 +7485,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="placeformula" file="core-mat.tex">
+  <cd:command id="cd:391" name="placeformula" file="core-mat.tex">
     <cd:sequence>
       <cd:string value="placeformula"/>
     </cd:sequence>
@@ -7497,7 +7496,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="placesubformula" file="core-mat.tex">
+  <cd:command id="cd:392" name="placesubformula" file="core-mat.tex">
     <cd:sequence>
       <cd:string value="placesubformula"/>
     </cd:sequence>
@@ -7508,7 +7507,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="placefloat" generated="yes" file="page-flt.tex">
+  <cd:command id="cd:393" name="placefloat" generated="yes" file="page-flt.tex">
     <cd:sequence>
       <cd:string value="place"/>
       <cd:variable value="float"/>
@@ -7561,7 +7560,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="reservefloat" generated="yes">
+  <cd:command id="cd:394" name="reservefloat" generated="yes">
     <cd:sequence>
       <cd:string value="reserve"/>
       <cd:variable value="float"/>
@@ -7587,7 +7586,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definefloat" file="page-flt.tex">
+  <cd:command id="cd:395" name="definefloat" file="page-flt.tex">
     <cd:sequence>
       <cd:string value="definefloat"/>
     </cd:sequence>
@@ -7601,7 +7600,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupfloat" file="page-flt.tex">
+  <cd:command id="cd:396" name="setupfloat" file="page-flt.tex">
     <cd:sequence>
       <cd:string value="setupfloat"/>
     </cd:sequence>
@@ -7642,12 +7641,12 @@
           <cd:constant type="middle"/>
           <cd:constant type="right"/>
         </cd:parameter>
-        <cd:inherit name="setupframed" n="2"/>
+        <cd:inherit ref="cd:99" name="setupframed" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="floattext" type="environment" generated="yes">
+  <cd:command id="cd:397" name="floattext" type="environment" generated="yes">
     <cd:sequence>
       <cd:variable value="float"/>
       <cd:string value="text"/>
@@ -7668,21 +7667,21 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="placelistoffloats" generated="yes">
+  <cd:command id="cd:398" name="placelistoffloats" generated="yes">
     <cd:sequence>
       <cd:string value="placelistof"/>
       <cd:variable value="floats"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="completelistoffloats" generated="yes">
+  <cd:command id="cd:399" name="completelistoffloats" generated="yes">
     <cd:sequence>
       <cd:string value="completelistof"/>
       <cd:variable value="floats"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="referral" file="core-mis.tex">
+  <cd:command id="cd:400" name="referral" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="referral"/>
     </cd:sequence>
@@ -7710,7 +7709,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="selectpaper">
+  <cd:command id="cd:401" name="selectpaper">
     <cd:sequence>
       <cd:string value="selectpaper"/>
     </cd:sequence>
@@ -7724,7 +7723,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="couplepaper">
+  <cd:command id="cd:402" name="couplepaper">
     <cd:sequence>
       <cd:string value="couplepaper"/>
     </cd:sequence>
@@ -7735,7 +7734,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="chem" file="core-mis.tex">
+  <cd:command id="cd:403" name="chem" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="chem"/>
     </cd:sequence>
@@ -7746,7 +7745,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="fraction" file="core-mis.tex">
+  <cd:command id="cd:404" name="fraction" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="fraction"/>
     </cd:sequence>
@@ -7756,7 +7755,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="periods" file="core-mis.tex">
+  <cd:command id="cd:405" name="periods" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="periods"/>
     </cd:sequence>
@@ -7767,19 +7766,19 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="items">
+  <cd:command id="cd:406" name="items">
     <cd:sequence>
       <cd:string value="items"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" optional="yes" list="yes">
-        <cd:inherit name="setupitems" n="1"/>
+        <cd:inherit ref="cd:407" name="setupitems" n="1"/>
       </cd:assignments>
       <cd:content n="2" list="yes"/>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupitems" file="core-mis.tex">
+  <cd:command id="cd:407" name="setupitems" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="setupitems"/>
     </cd:sequence>
@@ -7825,7 +7824,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="quotation" type="environment" file="core-mis.tex">
+  <cd:command id="cd:408" name="quotation" type="environment" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="quotation"/>
     </cd:sequence>
@@ -7838,7 +7837,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="quotation" file="core-mis.tex">
+  <cd:command id="cd:409" name="quotation" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="quotation"/>
     </cd:sequence>
@@ -7847,7 +7846,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="quote" file="core-mis.tex">
+  <cd:command id="cd:410" name="quote" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="quote"/>
     </cd:sequence>
@@ -7856,7 +7855,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupquote" file="core-mis.tex">
+  <cd:command id="cd:411" name="setupquote" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="setupquote"/>
     </cd:sequence>
@@ -7882,7 +7881,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="defineparagraphs" file="core-mis.tex">
+  <cd:command id="cd:412" name="defineparagraphs" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="defineparagraphs"/>
     </cd:sequence>
@@ -7928,19 +7927,19 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="paragraph" generated="yes">
+  <cd:command id="cd:413" name="paragraph" generated="yes">
     <cd:sequence>
       <cd:variable value="paragraph"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="paragraph" type="environment" generated="yes">
+  <cd:command id="cd:414" name="paragraph" type="environment" generated="yes">
     <cd:sequence>
       <cd:variable value="paragraph"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="setupparagraphs" file="core-mis.tex">
+  <cd:command id="cd:415" name="setupparagraphs" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="setupparagraphs"/>
     </cd:sequence>
@@ -7995,7 +7994,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuptab" file="core-mis.tex">
+  <cd:command id="cd:416" name="setuptab" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="setuptab"/>
     </cd:sequence>
@@ -8018,7 +8017,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="tab">
+  <cd:command id="cd:417" name="tab">
     <cd:sequence>
       <cd:string value="tab"/>
     </cd:sequence>
@@ -8028,7 +8027,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="document" type="environment">
+  <cd:command id="cd:418" name="document" type="environment">
     <cd:sequence>
       <cd:string value="document"/>
     </cd:sequence>
@@ -8039,7 +8038,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="labels">
+  <cd:command id="cd:419" name="labels">
     <cd:sequence>
       <cd:string value="labels"/>
     </cd:sequence>
@@ -8050,7 +8049,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definetabulate" file="core-tbl.tex">
+  <cd:command id="cd:420" name="definetabulate" file="core-tbl.tex">
     <cd:sequence>
       <cd:string value="definetabulate"/>
     </cd:sequence>
@@ -8067,7 +8066,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="tabulate" type="environment" generated="yes">
+  <cd:command id="cd:421" name="tabulate" type="environment" generated="yes">
     <cd:sequence>
       <cd:variable value="tabulate"/>
     </cd:sequence>
@@ -8076,12 +8075,12 @@
         <cd:constant type="cd:text"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setupexternalfigures" n="1"/>
+        <cd:inherit ref="cd:431" name="setupexternalfigures" n="1"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuptabulate" file="core-tbl.tex">
+  <cd:command id="cd:422" name="setuptabulate" file="core-tbl.tex">
     <cd:sequence>
       <cd:string value="setuptabulate"/>
     </cd:sequence>
@@ -8142,7 +8141,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuptables" file="core-tab.tex">
+  <cd:command id="cd:423" name="setuptables" file="core-tab.tex">
     <cd:sequence>
       <cd:string value="setuptables"/>
     </cd:sequence>
@@ -8211,7 +8210,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="table" type="environment">
+  <cd:command id="cd:424" name="table" type="environment">
     <cd:sequence>
       <cd:string value="table"/>
     </cd:sequence>
@@ -8223,7 +8222,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="tables" type="environment">
+  <cd:command id="cd:425" name="tables" type="environment">
     <cd:sequence>
       <cd:string value="tables"/>
     </cd:sequence>
@@ -8235,7 +8234,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definetabletemplate" file="core-tab.tex">
+  <cd:command id="cd:426" name="definetabletemplate" file="core-tab.tex">
     <cd:sequence>
       <cd:string value="definetabletemplate"/>
     </cd:sequence>
@@ -8255,7 +8254,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="useexternalfiles" file="core-mis.tex">
+  <cd:command id="cd:427" name="useexternalfiles" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="useexternalfiles"/>
     </cd:sequence>
@@ -8274,7 +8273,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="useexternalfile" file="core-mis.tex">
+  <cd:command id="cd:428" name="useexternalfile" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="useexternalfile"/>
     </cd:sequence>
@@ -8296,7 +8295,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="useexternalfigure" file="core-fig.tex">
+  <cd:command id="cd:429" name="useexternalfigure" file="core-fig.tex">
     <cd:sequence>
       <cd:string value="useexternalfigure"/>
     </cd:sequence>
@@ -8311,12 +8310,12 @@
         <cd:constant type="cd:name"/> <!-- parent -->
       </cd:keywords>
       <cd:assignments n="4" optional="yes" list="yes">
-        <cd:inherit name="setupexternalfigures" n="1"/>
+        <cd:inherit ref="cd:431" name="setupexternalfigures" n="1"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="externalfigure" file="core-fig.tex">
+  <cd:command id="cd:430" name="externalfigure" file="core-fig.tex">
     <cd:sequence>
       <cd:string value="externalfigure"/>
     </cd:sequence>
@@ -8325,12 +8324,12 @@
         <cd:constant type="cd:file"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setupexternalfigures" n="1"/>
+        <cd:inherit ref="cd:431" name="setupexternalfigures" n="1"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupexternalfigures" file="core-fig.tex">
+  <cd:command id="cd:431" name="setupexternalfigures" file="core-fig.tex">
     <cd:sequence>
       <cd:string value="setupexternalfigures"/>
     </cd:sequence>
@@ -8451,7 +8450,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="showexternalfigures" file="core-fig.tex">
+  <cd:command id="cd:432" name="showexternalfigures" file="core-fig.tex">
     <cd:sequence>
       <cd:string value="showexternalfigures"/>
     </cd:sequence>
@@ -8466,7 +8465,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="useexternalsoundtrack" file="core-fig.tex">
+  <cd:command id="cd:433" name="useexternalsoundtrack" file="core-fig.tex">
     <cd:sequence>
       <cd:string value="useexternalsoundtrack"/>
     </cd:sequence>
@@ -8480,7 +8479,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="name" file="syst-gen.tex">
+  <cd:command id="cd:434" name="name" file="syst-gen.tex">
     <cd:sequence>
       <cd:string value="name"/>
     </cd:sequence>
@@ -8489,7 +8488,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="legend" type="environment">
+  <cd:command id="cd:435" name="legend" type="environment">
     <cd:sequence>
       <cd:string value="legend"/>
     </cd:sequence>
@@ -8505,7 +8504,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="fact" type="environment">
+  <cd:command id="cd:436" name="fact" type="environment">
     <cd:sequence>
       <cd:string value="fact"/>
     </cd:sequence>
@@ -8518,19 +8517,19 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="rotate" file="core-mis.tex">
+  <cd:command id="cd:437" name="rotate" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="rotate"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" optional="yes" list="yes">
-        <cd:inherit name="setuprotate" n="1"/>
+        <cd:inherit ref="cd:438" name="setuprotate" n="1"/>
       </cd:assignments>
       <cd:content n="2"/>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuprotate" file="core-mis.tex">
+  <cd:command id="cd:438" name="setuprotate" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="setuprotate"/>
     </cd:sequence>
@@ -8546,12 +8545,12 @@
           <cd:constant type="broad"/>
           <cd:constant type="depth"/>
         </cd:parameter>
-        <cd:inherit name="setupframed" n="2"/>
+        <cd:inherit ref="cd:99" name="setupframed" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="mirror" file="core-mis.tex">
+  <cd:command id="cd:439" name="mirror" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="mirror"/>
     </cd:sequence>
@@ -8560,7 +8559,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="scale" file="core-mis.tex">
+  <cd:command id="cd:440" name="scale" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="scale"/>
     </cd:sequence>
@@ -8577,7 +8576,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupcombinations" file="core-mis.tex">
+  <cd:command id="cd:441" name="setupcombinations" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="setupcombinations"/>
     </cd:sequence>
@@ -8623,7 +8622,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="combination" type="environment">
+  <cd:command id="cd:442" name="combination" type="environment">
     <cd:sequence>
       <cd:string value="combination"/>
     </cd:sequence>
@@ -8634,7 +8633,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="placesidebyside" file="core-mis.tex">
+  <cd:command id="cd:443" name="placesidebyside" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="placesidebyside"/>
     </cd:sequence>
@@ -8644,7 +8643,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="placeontopofeachother" file="core-mis.tex">
+  <cd:command id="cd:444" name="placeontopofeachother" file="core-mis.tex">
     <cd:sequence>
       <cd:string value="placeontopofeachother"/>
     </cd:sequence>
@@ -8654,7 +8653,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="overlay" type="environment">
+  <cd:command id="cd:445" name="overlay" type="environment">
     <cd:sequence>
       <cd:string value="overlay"/>
     </cd:sequence>
@@ -8664,7 +8663,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="overview" type="environment">
+  <cd:command id="cd:446" name="overview" type="environment">
     <cd:sequence>
       <cd:string value="overview"/>
     </cd:sequence>
@@ -8675,7 +8674,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupinteractionscreen" file="core-int.tex">
+  <cd:command id="cd:447" name="setupinteractionscreen" file="core-int.tex">
     <cd:sequence>
       <cd:string value="setupinteractionscreen"/>
     </cd:sequence>
@@ -8717,13 +8716,13 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="screen" file="core-int.tex">
+  <cd:command id="cd:448" name="screen" file="core-int.tex">
     <cd:sequence>
       <cd:string value="screen"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="setuppagetransitions" file="core-int.tex">
+  <cd:command id="cd:449" name="setuppagetransitions" file="core-int.tex">
     <cd:sequence>
       <cd:string value="setuppagetransitions"/>
     </cd:sequence>
@@ -8735,7 +8734,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupinteraction" file="core-nav.tex">
+  <cd:command id="cd:450" name="setupinteraction" file="core-nav.tex">
     <cd:sequence>
       <cd:string value="setupinteraction"/>
     </cd:sequence>
@@ -8828,7 +8827,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupinteractionmenu" file="core-int.tex">
+  <cd:command id="cd:451" name="setupinteractionmenu" file="core-int.tex">
     <cd:sequence>
       <cd:string value="setupinteractionmenu"/>
     </cd:sequence>
@@ -8902,12 +8901,12 @@
           <cd:constant type="yes"/>
           <cd:constant type="no"/>
         </cd:parameter>
-        <cd:inherit name="setupframed" n="2"/> <!-- maybe not all parameters from framed -->
+        <cd:inherit ref="cd:99" name="setupframed" n="2"/> <!-- maybe not all parameters from framed -->
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="defineinteractionmenu" variant="1" file="core-int.tex">
+  <cd:command id="cd:452" name="defineinteractionmenu" variant="1" file="core-int.tex">
     <cd:sequence>
       <cd:string value="defineinteractionmenu"/>
     </cd:sequence>
@@ -8920,12 +8919,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setupinteractionmenu" n="2"/>
+        <cd:inherit ref="cd:451" name="setupinteractionmenu" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="defineinteractionmenu" variant="2" file="core-int.tex">
+  <cd:command id="cd:453" name="defineinteractionmenu" variant="2" file="core-int.tex">
     <cd:sequence>
       <cd:string value="defineinteractionmenu"/>
     </cd:sequence>
@@ -8945,12 +8944,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="3" optional="yes" list="yes">
-        <cd:inherit name="setupinteractionmenu" n="2"/>
+        <cd:inherit ref="cd:451" name="setupinteractionmenu" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="interactionmenu" type="environment">
+  <cd:command id="cd:454" name="interactionmenu" type="environment">
     <cd:sequence>
       <cd:string value="interactionmenu"/>
     </cd:sequence>
@@ -8961,7 +8960,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="disableinteractionmenu" file="core-int.tex">
+  <cd:command id="cd:455" name="disableinteractionmenu" file="core-int.tex">
     <cd:sequence>
       <cd:string value="disableinteractionmenu"/>
     </cd:sequence>
@@ -8977,7 +8976,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="useexternaldocument" file="core-ref.tex">
+  <cd:command id="cd:456" name="useexternaldocument" file="core-ref.tex">
     <cd:sequence>
       <cd:string value="useexternaldocument"/>
     </cd:sequence>
@@ -8994,7 +8993,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="useURL" file="core-ref.tex">
+  <cd:command id="cd:457" name="useURL" file="core-ref.tex">
     <cd:sequence>
       <cd:string value="useURL"/>
     </cd:sequence>
@@ -9014,7 +9013,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="coupledocument" file="core-ref.tex">
+  <cd:command id="cd:458" name="coupledocument" file="core-ref.tex">
     <cd:sequence>
       <cd:string value="coupledocument"/>
     </cd:sequence>
@@ -9031,7 +9030,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="from" file="core-ref.tex">
+  <cd:command id="cd:459" name="from" file="core-ref.tex">
     <cd:sequence>
       <cd:string value="from"/>
     </cd:sequence>
@@ -9040,24 +9039,24 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="interactionbar">
+  <cd:command id="cd:460" name="interactionbar">
     <cd:sequence>
       <cd:string value="interactionbar"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" interactive="exclusive" list="yes">
-        <cd:inherit name="setupinteractionbar" n="1"/>
+        <cd:inherit ref="cd:462" name="setupinteractionbar" n="1"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="interactionbuttons" file="core-ref.tex">
+  <cd:command id="cd:461" name="interactionbuttons" file="core-ref.tex">
     <cd:sequence>
       <cd:string value="interactionbuttons"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" interactive="exclusive" optional="yes" list="yes">
-        <cd:inherit name="setupinteractionbar" n="1"/>
+        <cd:inherit ref="cd:462" name="setupinteractionbar" n="1"/>
       </cd:assignments>
       <cd:keywords n="2" list="yes">
         <cd:constant type="cd:name"/>
@@ -9065,7 +9064,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupinteractionbar" file="core-int.tex">
+  <cd:command id="cd:462" name="setupinteractionbar" file="core-int.tex">
     <cd:sequence>
       <cd:string value="setupinteractionbar"/>
     </cd:sequence>
@@ -9110,24 +9109,24 @@
           <cd:constant type="medium"/>
           <cd:constant type="big"/>
         </cd:parameter>
-        <cd:inherit name="setupframed" n="2"/>
+        <cd:inherit ref="cd:99" name="setupframed" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="synchronize" file="core-int.tex">
+  <cd:command id="cd:463" name="synchronize" file="core-int.tex">
     <cd:sequence>
       <cd:string value="synchronize"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="synchronization" type="environment">
+  <cd:command id="cd:464" name="synchronization" type="environment">
     <cd:sequence>
       <cd:string value="synchronization"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="setupsynchronizationbar" file="core-int.tex">
+  <cd:command id="cd:465" name="setupsynchronizationbar" file="core-int.tex">
     <cd:sequence>
       <cd:string value="setupsynchronizationbar"/>
     </cd:sequence>
@@ -9151,12 +9150,12 @@
         <cd:parameter name="color">
           <cd:constant type="cd:name"/>
         </cd:parameter>
-        <cd:inherit name="setupframed" n="2"/>
+        <cd:inherit ref="cd:99" name="setupframed" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="synchronizationbar" file="core-int.tex">
+  <cd:command id="cd:466" name="synchronizationbar" file="core-int.tex">
     <cd:sequence>
       <cd:string value="synchronizationbar"/>
     </cd:sequence>
@@ -9169,12 +9168,12 @@
           <cd:constant type="page"/>
           <cd:constant type="local"/>
         </cd:parameter>
-        <cd:inherit name="setupsynchronizationbar" n="1"/>
+        <cd:inherit ref="cd:465" name="setupsynchronizationbar" n="1"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupsynchronization" file="core-int.tex">
+  <cd:command id="cd:467" name="setupsynchronization" file="core-int.tex">
     <cd:sequence>
       <cd:string value="setupsynchronization"/>
     </cd:sequence>
@@ -9188,7 +9187,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="defineprofile" file="core-int.tex">
+  <cd:command id="cd:468" name="defineprofile" file="core-int.tex">
     <cd:sequence>
       <cd:string value="defineprofile"/>
     </cd:sequence>
@@ -9202,7 +9201,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupprofiles" file="core-int.tex">
+  <cd:command id="cd:469" name="setupprofiles" file="core-int.tex">
     <cd:sequence>
       <cd:string value="setupprofiles"/>
     </cd:sequence>
@@ -9215,7 +9214,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="profile" type="environment">
+  <cd:command id="cd:470" name="profile" type="environment">
     <cd:sequence>
       <cd:string value="profile"/>
     </cd:sequence>
@@ -9226,7 +9225,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="followprofile" file="core-int.tex">
+  <cd:command id="cd:471" name="followprofile" file="core-int.tex">
     <cd:sequence>
       <cd:string value="followprofile"/>
     </cd:sequence>
@@ -9238,7 +9237,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="placebookmarks" file="core-int.tex">
+  <cd:command id="cd:472" name="placebookmarks" file="core-int.tex">
     <cd:sequence>
       <cd:string value="placebookmarks"/>
     </cd:sequence>
@@ -9253,7 +9252,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="bookmark" file="core-int.tex">
+  <cd:command id="cd:473" name="bookmark" file="core-int.tex">
     <cd:sequence>
       <cd:string value="bookmark"/>
     </cd:sequence>
@@ -9265,7 +9264,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="version" type="environment">
+  <cd:command id="cd:474" name="version" type="environment">
     <cd:sequence>
       <cd:string value="version"/>
     </cd:sequence>
@@ -9276,7 +9275,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupversions" file="core-int.tex">
+  <cd:command id="cd:475" name="setupversions" file="core-int.tex">
     <cd:sequence>
       <cd:string value="setupversions"/>
     </cd:sequence>
@@ -9292,19 +9291,19 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="markversion" file="core-int.tex">
+  <cd:command id="cd:476" name="markversion" file="core-int.tex">
     <cd:sequence>
       <cd:string value="markversion"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="selectversion" file="core-int.tex">
+  <cd:command id="cd:477" name="selectversion" file="core-int.tex">
     <cd:sequence>
       <cd:string value="selectversion"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="defineversion" file="core-int.tex">
+  <cd:command id="cd:478" name="defineversion" file="core-int.tex">
     <cd:sequence>
       <cd:string value="defineversion"/>
     </cd:sequence>
@@ -9318,7 +9317,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="followversion" file="core-int.tex">
+  <cd:command id="cd:479" name="followversion" file="core-int.tex">
     <cd:sequence>
       <cd:string value="followversion"/>
     </cd:sequence>
@@ -9330,7 +9329,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="followprofileversion" file="core-int.tex">
+  <cd:command id="cd:480" name="followprofileversion" file="core-int.tex">
     <cd:sequence>
       <cd:string value="followprofileversion"/>
     </cd:sequence>
@@ -9345,7 +9344,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="defineprogram" file="core-ref.tex">
+  <cd:command id="cd:481" name="defineprogram" file="core-ref.tex">
     <cd:sequence>
       <cd:string value="defineprogram"/>
     </cd:sequence>
@@ -9362,7 +9361,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupprograms" file="core-ref.tex">
+  <cd:command id="cd:482" name="setupprograms" file="core-ref.tex">
     <cd:sequence>
       <cd:string value="setupprograms"/>
     </cd:sequence>
@@ -9375,7 +9374,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="program" file="core-ref.tex">
+  <cd:command id="cd:483" name="program" file="core-ref.tex">
     <cd:sequence>
       <cd:string value="program"/>
     </cd:sequence>
@@ -9386,7 +9385,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="figure" type="environment">
+  <cd:command id="cd:484" name="figure" type="environment">
     <cd:sequence>
       <cd:string value="figure"/>
     </cd:sequence>
@@ -9415,7 +9414,7 @@
 
   <!-- remark skipped -->
 
-  <cd:command name="goto" file="core-ref.tex">
+  <cd:command id="cd:485" name="goto" file="core-ref.tex">
     <cd:sequence>
       <cd:string value="goto"/>
     </cd:sequence>
@@ -9426,7 +9425,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="gotobox" file="core-ref.tex">
+  <cd:command id="cd:486" name="gotobox" file="core-ref.tex">
     <cd:sequence>
       <cd:string value="gotobox"/>
     </cd:sequence>
@@ -9436,20 +9435,20 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="button" file="core-ref.tex">
+  <cd:command id="cd:487" name="button" file="core-ref.tex">
     <cd:sequence>
       <cd:string value="button"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" interactive="exclusive" optional="yes" list="yes">
-        <cd:inherit name="setupbuttons" n="1"/>
+        <cd:inherit ref="cd:488" name="setupbuttons" n="1"/>
       </cd:assignments>
       <cd:content n="2"/>
       <cd:reference n="3" list="yes"/>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupbuttons" file="core-ref.tex">
+  <cd:command id="cd:488" name="setupbuttons" file="core-ref.tex">
     <cd:sequence>
       <cd:string value="setupbuttons"/>
     </cd:sequence>
@@ -9459,14 +9458,14 @@
           <cd:constant type="start"/>
           <cd:constant type="stop"/>
         </cd:parameter>
-        <cd:inherit name="setupframed" n="2"/>
+        <cd:inherit ref="cd:99" name="setupframed" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
   <!-- menubutton skipped -->
 
-  <cd:command name="setupcomment" file="core-int.tex">
+  <cd:command id="cd:489" name="setupcomment" file="core-int.tex">
     <cd:sequence>
       <cd:string value="setupcomment"/>
     </cd:sequence>
@@ -9516,7 +9515,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="comment" type="environment">
+  <cd:command id="cd:490" name="comment" type="environment">
     <cd:sequence>
       <cd:string value="comment"/>
     </cd:sequence>
@@ -9525,12 +9524,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setupcomment" n="1"/>
+        <cd:inherit ref="cd:489" name="setupcomment" n="1"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="comment">
+  <cd:command id="cd:491" name="comment">
     <cd:sequence>
       <cd:string value="comment"/>
     </cd:sequence>
@@ -9539,13 +9538,13 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2" optional="yes" list="yes">
-        <cd:inherit name="setupcomment" n="1"/>
+        <cd:inherit ref="cd:489" name="setupcomment" n="1"/>
       </cd:assignments>
       <cd:content n="3"/>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definefield" file="core-fld.tex">
+  <cd:command id="cd:492" name="definefield" file="core-fld.tex">
     <cd:sequence>
       <cd:string value="definefield"/>
     </cd:sequence>
@@ -9575,7 +9574,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definesubfield" file="core-fld.tex">
+  <cd:command id="cd:493" name="definesubfield" file="core-fld.tex">
     <cd:sequence>
       <cd:string value="definesubfield"/>
     </cd:sequence>
@@ -9592,7 +9591,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="copyfield" file="core-fld.tex">
+  <cd:command id="cd:494" name="copyfield" file="core-fld.tex">
     <cd:sequence>
       <cd:string value="copyfield"/>
     </cd:sequence>
@@ -9606,7 +9605,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="clonefield" file="core-fld.tex">
+  <cd:command id="cd:495" name="clonefield" file="core-fld.tex">
     <cd:sequence>
       <cd:string value="clonefield"/>
     </cd:sequence>
@@ -9626,7 +9625,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="field" file="core-fld.tex">
+  <cd:command id="cd:496" name="field" file="core-fld.tex">
     <cd:sequence>
       <cd:string value="field"/>
     </cd:sequence>
@@ -9637,7 +9636,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="fitfield" file="core-fld.tex">
+  <cd:command id="cd:497" name="fitfield" file="core-fld.tex">
     <cd:sequence>
       <cd:string value="fitfield"/>
     </cd:sequence>
@@ -9648,7 +9647,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="fillinfield" file="core-fld.tex">
+  <cd:command id="cd:498" name="fillinfield" file="core-fld.tex">
     <cd:sequence>
       <cd:string value="fillinfield"/>
     </cd:sequence>
@@ -9660,7 +9659,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="tooltip" file="core-fld.tex">
+  <cd:command id="cd:499" name="tooltip" file="core-fld.tex">
     <cd:sequence>
       <cd:string value="tooltip"/>
     </cd:sequence>
@@ -9675,7 +9674,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="showfields" file="core-fld.tex">
+  <cd:command id="cd:500" name="showfields" file="core-fld.tex">
     <cd:sequence>
       <cd:string value="showfields"/>
     </cd:sequence>
@@ -9686,13 +9685,13 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="logfields" file="core-fld.tex">
+  <cd:command id="cd:501" name="logfields" file="core-fld.tex">
     <cd:sequence>
       <cd:string value="logfields"/>
     </cd:sequence>
   </cd:command>
 
-  <cd:command name="setupfield" file="core-fld.tex">
+  <cd:command id="cd:502" name="setupfield" file="core-fld.tex">
     <cd:sequence>
       <cd:string value="setupfield"/>
     </cd:sequence>
@@ -9707,14 +9706,14 @@
         <cd:constant type="frame"/>
       </cd:keywords>
       <cd:assignments n="3" list="yes">
-        <cd:inherit name="setupfields" n="2"/>
+        <cd:inherit ref="cd:503" name="setupfields" n="2"/>
       </cd:assignments>
       <cd:assignments n="4" list="yes"> </cd:assignments>
       <cd:assignments n="5" list="yes"> </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupfields" file="core-fld.tex">
+  <cd:command id="cd:503" name="setupfields" file="core-fld.tex">
     <cd:sequence>
       <cd:string value="setupfields"/>
     </cd:sequence>
@@ -9793,18 +9792,18 @@
         <cd:parameter name="fieldbackgroundcolor">
           <cd:constant type="cd:name"/>
         </cd:parameter>
-        <cd:inherit name="setupframed" n="2"/>
+        <cd:inherit ref="cd:99" name="setupframed" n="2"/>
       </cd:assignments>
       <cd:assignments n="3" list="yes">
-        <cd:inherit name="setupfields" n="2"/>
+        <cd:inherit ref="cd:503" name="setupfields" n="2"/>
       </cd:assignments>
       <cd:assignments n="4" list="yes">
-        <cd:inherit name="setupfields" n="2"/>
+        <cd:inherit ref="cd:503" name="setupfields" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupforms" file="core-fld.tex">
+  <cd:command id="cd:504" name="setupforms" file="core-fld.tex">
     <cd:sequence>
       <cd:string value="setupforms"/>
     </cd:sequence>
@@ -9818,7 +9817,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definefieldstack" file="core-fld.tex">
+  <cd:command id="cd:505" name="definefieldstack" file="core-fld.tex">
     <cd:sequence>
       <cd:string value="definefieldstack"/>
     </cd:sequence>
@@ -9830,12 +9829,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="3" list="yes">
-        <cd:inherit name="setupfields" n="2"/>
+        <cd:inherit ref="cd:503" name="setupfields" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="fieldstack" file="core-fld.tex">
+  <cd:command id="cd:506" name="fieldstack" file="core-fld.tex">
     <cd:sequence>
       <cd:string value="fieldstack"/>
     </cd:sequence>
@@ -9847,24 +9846,24 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="3" optional="yes" list="yes">
-        <cd:inherit name="setupfields" n="2"/>
+        <cd:inherit ref="cd:503" name="setupfields" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="clip" file="core-trf.tex">
+  <cd:command id="cd:507" name="clip" file="core-trf.tex">
     <cd:sequence>
       <cd:string value="clip"/>
     </cd:sequence>
     <cd:arguments>
       <cd:assignments n="1" optional="yes" list="yes">
-        <cd:inherit name="setupclipping" n="1"/>
+        <cd:inherit ref="cd:508" name="setupclipping" n="1"/>
       </cd:assignments>
       <cd:content n="2"/>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupclipping" file="core-trf.tex">
+  <cd:command id="cd:508" name="setupclipping" file="core-trf.tex">
     <cd:sequence>
       <cd:string value="setupclipping"/>
     </cd:sequence>
@@ -9929,7 +9928,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="placelegend">
+  <cd:command id="cd:509" name="placelegend">
     <cd:sequence>
       <cd:string value="placelegend"/>
     </cd:sequence>
@@ -9939,7 +9938,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setuplegend">
+  <cd:command id="cd:510" name="setuplegend">
     <cd:sequence>
       <cd:string value="setuplegend"/>
     </cd:sequence>
@@ -9971,7 +9970,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupstrut" file="core-spa.tex">
+  <cd:command id="cd:511" name="setupstrut" file="core-spa.tex">
     <cd:sequence>
       <cd:string value="setupstrut"/>
     </cd:sequence>
@@ -9985,18 +9984,18 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="usetypescriptfile" file="type-ini.tex"> 
+  <cd:command id="cd:512" name="usetypescriptfile" file="type-ini.tex"> 
     <cd:sequence>
       <cd:string value="usetypescriptfile"/>
     </cd:sequence>
     <cd:arguments>
-      <cd:keywords n="1"  list="yes">
+      <cd:keywords n="1" list="yes">
         <cd:constant type="cd:file"/>
       </cd:keywords>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="usetypescript" file="type-ini.tex"> 
+  <cd:command id="cd:513" name="usetypescript" file="type-ini.tex"> 
     <cd:sequence>
       <cd:string value="usetypescript"/>
     </cd:sequence>
@@ -10013,7 +10012,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definetypeface" file="type-ini.tex"> 
+  <cd:command id="cd:514" name="definetypeface" file="type-ini.tex"> 
     <cd:sequence>
       <cd:string value="definetypeface"/>
     </cd:sequence>
@@ -10055,7 +10054,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definefontfeature" file="type-ini.tex"> 
+  <cd:command id="cd:515" name="definefontfeature" file="type-ini.tex"> 
     <cd:sequence>
       <cd:string value="definefontfeature"/>
     </cd:sequence>
@@ -10097,7 +10096,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definefonthandling" file="hand-ini.mkii"> 
+  <cd:command id="cd:516" name="definefonthandling" file="hand-ini.mkii"> 
     <cd:sequence>
       <cd:string value="definefonthandling"/>
     </cd:sequence>
@@ -10137,7 +10136,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupfonthandling" file="hand-ini.mkii"> 
+  <cd:command id="cd:517" name="setupfonthandling" file="hand-ini.mkii"> 
     <cd:sequence>
       <cd:string value="setupfonthandling"/>
     </cd:sequence>
@@ -10146,12 +10145,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2">
-        <cd:inherit name="definefonthandling" n="2"/>
+        <cd:inherit ref="cd:516" name="definefonthandling" n="2"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definefontsynonym" file="font-ini.tex"> 
+  <cd:command id="cd:518" name="definefontsynonym" file="font-ini.tex"> 
     <cd:sequence>
       <cd:string value="definefontsynonym"/>
     </cd:sequence>
@@ -10179,7 +10178,7 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="setupfontsynonym" file="font-ini.tex"> 
+  <cd:command id="cd:519" name="setupfontsynonym" file="font-ini.tex"> 
     <cd:sequence>
       <cd:string value="setupfontsynonym"/>
     </cd:sequence>
@@ -10188,12 +10187,12 @@
         <cd:constant type="cd:name"/>
       </cd:keywords>
       <cd:assignments n="2">
-        <cd:inherit name="definefontsynonym" n="3"/>
+        <cd:inherit ref="cd:518" name="definefontsynonym" n="3"/>
       </cd:assignments>
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="mapfontsize" file="font-ini.tex" category="fonts">
+  <cd:command id="cd:520" name="mapfontsize" file="font-ini.tex" category="fonts">
     <cd:sequence>
       <cd:string value="mapfontsize"/>
     </cd:sequence>
@@ -10207,13 +10206,13 @@
     </cd:arguments>
   </cd:command>
 
-  <cd:command name="definedfont" file="font-ini.tex" category="fonts">
+  <cd:command id="cd:521" name="definedfont" file="font-ini.tex" category="fonts">
     <cd:sequence>
       <cd:string value="definedfont"/>
     </cd:sequence>
     <cd:arguments>
       <cd:keywords n="1">
-        <cd:inherit name="definefont" n="2"/>
+        <cd:inherit ref="cd:19" name="definefont" n="2"/>
       </cd:keywords>
     </cd:arguments>
   </cd:command>
