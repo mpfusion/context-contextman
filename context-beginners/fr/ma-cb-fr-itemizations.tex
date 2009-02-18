@@ -1,0 +1,399 @@
+%% 2006-11-10 VZ fix of broad parameter: vertical->horizontal
+\startcomponent ma-cb-fr-itemizations
+
+\product ma-cb-fr
+
+%\chapter[itemize]{Itemize}
+\chapter[listes]{Listes}
+
+% \index{itemize}
+% \index{columns in itemize}
+\index{listes}
+\index{colonnes dans une liste}
+
+\Command{\tex{startitemize}}
+\Command{\tex{setupitemize}}
+\Command{\tex{definesymbol}}
+\Command{\tex{item}}
+\Command{\tex{head}}
+
+% One way of structuring your information is by way of
+% enumeration or summing up items. The itemize command looks
+% like this:
+Les énumérations ou les listes permettent de structurer l'information
+que vous souhaitez transmettre à vos lecteurs. La commande qui permet de
+bâtir de telles listes ressemble à ceci :
+
+\shortsetup{startitemize}
+
+% For example:
+Par exemple :
+
+% \startbuffer
+% \startitemize[R,packed,broad]
+% \item Hasselt was founded in the 14th century.
+% \item Hasselt is known as a so called Hanze town.
+% \item Hasselt's name stems from a tree.
+% \stopitemize
+% \stopbuffer
+
+\startbuffer
+\startitemize[R,packed,broad]
+% \item Hasselt was founded in the 14th century.
+% \item Hasselt is known as a so called Hanze town.
+% \item Hasselt's name stems from a tree.
+\stopitemize
+\stopbuffer
+
+
+\typebuffer
+
+
+% Within the \type{\startitemize} $\cdots$ \type{\stopitemize}
+% pair you start a new item with \type{\item}. The space after
+% \type{\item} is required. In the example above \type{R}
+% specifies Roman numbering and \type{packed} keeps line
+% spacing to a minimum. The parameter \type{broad} takes care
+% %%of vertical spacing after the item separator. The example % VZ 2006-11-10
+% of horizontal spacing after the item separator. The example
+% would produce:
+
+Pour saisir une nouvel \type{\item}, on doit se placer entre
+\type{\startitemize} $\cdots$ \type{\stopitemize}. L'espace après
+\type{\item} est obligatoire. Dans l'exemple ci-dessus, \type{R} indique
+une numérotation en chiffres romains, en lettres capitales, tandis que
+\type{packed} indique que l'espace entre les items sera réduit au
+minimum possible.
+
+\getbuffer
+
+% Itemization is a two pass job. This means that you have to
+% run your file twice for an optimal layout. The bracket pair
+% contains information on item seperators and local set up
+% variables.
+
+Pour obtenir une présentation correcte des listes, deux compilations
+successives sont nécessaires. La paire de crochets contient de
+l'information concernant les séparateurs entre les items et la
+configuration de variables locales.
+
+% \placetable
+%   [here]
+%   [tab:itemsetup]
+%   {Item separators in itemize.}
+% \starttable[|l|l|]
+% \HL
+% \NC \bf Argument \NC \bf Item separator   \NC\SR
+% \HL
+% \NC 1            \NC $\bullet$            \NC\FR
+% \NC 2            \NC $-$                  \NC\MR
+% \NC 3            \NC $\star$              \NC\MR
+% \NC $\vdots$     \NC $\vdots$             \NC\MR
+% \NC n            \NC 1 2 3 4 $\cdots$     \NC\MR
+% \NC a            \NC a b c d $\cdots$     \NC\MR
+% \NC A            \NC A B C D $\cdots$     \NC\MR
+% \NC r            \NC i ii iii iv $\cdots$ \NC\MR
+% \NC R            \NC I II III IV $\cdots$ \NC\LR
+% \HL
+% \stoptable
+\placetable
+  [here]
+  [tab:itemsetup]
+  {Séparateurs d'items dans une liste.}
+\starttable[|l|l|]
+\HL
+\NC \bf Argument \NC \bf Séparateur d'item\NC\SR
+\HL
+\NC 1            \NC $\bullet$            \NC\FR
+\NC 2            \NC $-$                  \NC\MR
+\NC 3            \NC $\star$              \NC\MR
+\NC $\vdots$     \NC $\vdots$             \NC\MR
+\NC n            \NC 1 2 3 4 $\cdots$     \NC\MR
+\NC a            \NC a b c d $\cdots$     \NC\MR
+\NC A            \NC A B C D $\cdots$     \NC\MR
+\NC r            \NC i ii iii iv $\cdots$ \NC\MR
+\NC R            \NC I II III IV $\cdots$ \NC\LR
+\HL
+\stoptable
+
+% You can also define your own item separator by means of
+% \type{\definesymbol}. For example if you try this:
+
+Vous pouvez également définir votre propre séparateur d'item avec la
+commande \type{\definesymbol}. Par exemple, si vous essayer ceci :
+
+% \startbuffer
+% \definesymbol[5][$\clubsuit$]
+
+% \startitemize[5,packed]
+% \item Hasselt was built on a riverdune.
+% \item Hasselt lies at the crossing of two rivers.
+% \stopitemize
+% \stopbuffer
+
+\startbuffer
+\definesymbol[5][$\clubsuit$]
+
+\startitemize[5,packed]
+\item Hasselt was built on a riverdune.
+\item Hasselt lies at the crossing of two rivers.
+\stopitemize
+\stopbuffer
+
+\typebuffer
+
+% You will get:
+Vous obtiendrez :
+
+\getbuffer
+
+% Sometimes you would like to have headers within an
+% enumeration. In that case you should use \type{\head} instead
+% of \type{\item}.
+
+Il est parfois souhaitable de pouvoir insérer un titre de section au
+sein d'une énumération. Dans ce cas, vous devriez utiliser la commande
+\type{\head} à la place de \type{\item}.
+
+\startbuffer
+Hasselt lies in the province of Overijssel and there are a number of
+customs that are typical of this province.
+
+\startitemize
+
+\head kraamschudden \hfill (child welcoming)
+
+      When a child is born the neighbours come to visit the new
+      parents. The women come to admire the baby and the men come to
+      judge the baby (if it is a boy) on other aspects.
+      The neighbours will bring a {\em krentenwegge} along. A
+      krentenwegge is a loaf of currant bread of about 1 \Meter\
+      long. Of course the birth is celebrated with {\em jenever}.
+
+\head nabuurschap (naberschop) \hfill (neighbourship)
+
+      Smaller communities used to be very dependent on the
+      cooperation among the members for their well being. Members of
+      the {\em nabuurschap} helped each other in difficult times
+      during harvest times, funerals or any hardship that fell upon
+      the community.
+
+\head Abraham \& Sarah  \hfill (identical)
+
+      When people turn 50 in Hasselt it is said that they see Abraham
+      or Sarah. The custom is to give these people a {\em speculaas}
+      Abraham or a Sarah. Speculaas is a kind of hard spiced biscuit.
+
+\stopitemize
+\stopbuffer
+
+\typebuffer
+
+% The \type{\head} can be set up with \type{\setupitemize}.
+% In case of a page breaking a \type{\head} will appear on a
+% new page. (The \type {\Meter} command is explained in \in
+% {chapter} [units].)
+
+La commande \type{\head} peut être configurée avec
+\type{\setupitemize}. Si une coupure de page intervient, le contenu de
+la commande \type{\head} apparaîtra sur une nouvelle page. (La commande
+\type{\Meter} est définie au \in{chapitre}[units].)
+
+% The example of old customs will look like this:
+
+L'exemple de liste des coutumes anciennes de Hasselt aura donc cet
+aspect :
+
+\getbuffer
+
+% The set up parameters of itemize are described in
+% \in{table}[tab:tablesetup].
+
+Les paramètres de configuration des listes sont décrits dans le
+\in{tableau}[tab:tablesetup].
+
+% \placetable
+%   [here,force]
+%   [tab:tablesetup]
+%   {Set up parameters in itemize.}
+% \starttable[|l|l|]
+% \HL
+% \NC \bf Set up \NC \bf Meaning                                      \NC\SR
+% \HL
+% \NC standard   \NC standard (global) set up                  \NC\FR
+% \NC packed     \NC no vertical spacing between items                \NC\MR
+% \NC serried    \NC no horizontal spacing between separator and text \NC\MR
+% \NC joinedup   \NC no vertical spacing before and after itemize     \NC\MR
+% \NC broad      \NC horizontal spacing between separator and text    \NC\MR
+% \NC inmargin   \NC place separator in margin                        \NC\MR
+% \NC atmargin   \NC place separator on margin                        \NC\MR
+% \NC stopper    \NC place full stop after separator                  \NC\MR
+% \NC columns    \NC put items in columns                             \NC\MR
+% \NC intro      \NC prevent page breaking after introduction line      \NC\MR
+% \NC continue   \NC continue numbering or lettering                  \NC\LR
+% \HL
+% \stoptable
+
+\placetable
+  [here,force]
+  [tab:tablesetup]
+  {Paramètres de configuration des listes.}
+\starttable[|l|l|]
+\HL
+\NC \bf Paramètre \NC \bf Signification                              \NC\SR
+\HL
+\NC standard   \NC configuration standard (globale)                  \NC\FR
+\NC packed     \NC pas d'espace vertical entre les items             \NC\MR
+\NC serried    \NC pas d'espace horizontal entre le séparateur et le texte \NC\MR
+\NC joinedup   \NC pas d'espace vertical avant et après la liste     \NC\MR
+\NC broad      \NC espace horizontal entre le séparateur et le texte \NC\MR
+\NC inmargin   \NC place le séparateur dans la marge                 \NC\MR
+\NC atmargin   \NC place le séparateur sur la marge                  \NC\MR
+\NC stopper    \NC place un point final après le séparateur          \NC\MR
+\NC columns    \NC compose les items en colonne                      \NC\MR
+\NC intro      \NC empêche les coupures de page après les lignes d'introduction \NC\MR
+\NC continue   \NC continue la numérotation                          \NC\LR
+\HL
+\stoptable
+
+% You can use the set up parameters in \type{\startitemize},
+% but for reasons of consistency you can make them valid for
+% the complete document with \type{\setupitemize}.
+
+On peut définir les paramètres de configuration dans
+\type{\startitemize} mais, pour des raisons de cohérence au sein de
+votre document, vous devriez utiliser la commande \type{\setupitemize},
+qui définira ces paramètre de manière globale.
+
+% The parameter \type{columns} is used in conjunction with
+% a number. If you type this:
+
+Le paramètre \type{columns} est utilisé conjointement avec un nombre. Si
+vous saisissez ceci :
+
+\startbuffer
+\startitemize[n,columns,four]
+\item Achter 't Werk
+.
+.
+.
+\item Justitiebastion
+\stopitemize
+\stopbuffer
+
+\typebuffer
+
+% You will get:
+Vous obtiendrez
+
+\startbuffer
+\startitemize[n,columns,four]
+\item Achter 't Werk
+\item Baangracht
+\item Brouwersgracht
+\item Eikenlaan
+\item Eiland
+\item Gasthuisstraat
+\item Heerengracht
+\item Hofstraat
+\item Hoogstraat
+\item Julianakade
+\item Justitiebastion
+\stopitemize
+\stopbuffer
+
+\getbuffer
+
+% Sometimes you want to continue the enumeration after a short
+% intermezzo. Then you type for example
+% \type{\startitemize[continue,columns,three,broad]} and
+% numbering will continue in a three column format.
+
+Il arrive parfois qu'on souhaite poursuivre une énumération après un
+court paragaphe de texte. Il suffit, pour ce faire, de saisir (par
+exemple) \type{\startitemize[continue,columns,three,broad]}, et la
+numérotation des items reprendra là où elle s'était arrêtée.
+
+\startbuffer
+\startitemize[continue, columns, three, broad]
+\item Kaai
+\item Kalverstraat
+\item Kastanjelaan
+\item Keppelstraat
+\item Markt
+\item Meestersteeg
+\item Prinsengracht
+\item Raamstraat
+\item Ridderstraat
+\item Rosmolenstraat
+\item Royenplein
+\item Van Nahuijsweg
+\item Vicariehof
+\item Vissteeg
+\item Watersteeg
+\item Wilhelminalaan
+\item Ziekenhuisstraat
+\stopitemize
+\stopbuffer
+
+\getbuffer
+
+% The parameter \type{broad} enlarges the horizontal space
+% between item separator and itemtext.
+
+Le paramètre \type{broad} augmente l'espace horizontal entre le
+séparateur d'item et le texte de l'item.
+
+\shortsetup{setupitemize}
+
+% An itemize within an itemize is automatically typeset in a
+% correct way. For example if you type:
+
+Une liste dans une liste est automatiquement composée correctement. Par
+exemple, si vous saisissez :
+
+\startbuffer
+In the Netherlands the cities can determine the size of a number of
+taxes. So the cost of living can differ from town to town. There are
+differences of up to 50\% in taxes such as:
+
+\setupitemize[2][width=5em]
+\startitemize[n]
+
+\item real estate tax
+
+      The real estate tax is divided into two components:
+
+      \startitemize[a,packed]
+      \item the ownership tax
+      \item the tenant tax
+      \stopitemize
+
+      If the real estate has no tenant the owner pays both components.
+
+\item dog licence fee
+
+      The owner of one or more dogs pays a fee. When a dog has died
+      or been sold the owner has to inform city hall.
+
+\stopitemize
+\stopbuffer
+
+\typebuffer
+
+% then the horizontal space between item separator and text at
+% the second level is set with
+% \type{\setupitemize[2][width=5em]}.
+
+l'espace horizontal entre le séparateur d'item et le texte de la liste
+de second niveau sera paramétré avec \type{\setupitemize[2]{width=5em}}.
+
+% The example will look like this:
+
+L'exemple ressemblera à cela :
+
+\start
+\getbuffer
+\stop
+
+\stopcomponent

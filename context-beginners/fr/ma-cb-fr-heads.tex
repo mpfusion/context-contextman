@@ -1,14 +1,17 @@
-\startcomponent ma-cb-en-heads
+\startcomponent ma-cb-fr-heads
 
-\product ma-cb-en
+\product ma-cb-fr
 
 % TODO: Pluriel d'en-tête ?
 
+% Attention, il y a confusion entre heads et headers (dans la version
+% anglaise aussi, apparemment) : titres (heads) et en-têtes (headers).
+
 % \chapter[headers]{Headers}
-\chapter[headers]{En-têtes}
+\chapter[titres]{Titres}
 
 % \index{headers}
-\index{en-têtes}
+\index{titres}
 
 \Command{\tex{chapter}}
 \Command{\tex{paragraph}}
@@ -23,13 +26,15 @@
 % Headers (heads) are created with the commands shown in
 % \in{table}[tab:headers]:
 
-La structure d'un document est définie par ses en-têtes (headers, heads). Elles sont crées au moyen des commandes de la table \in{table}[tab:headers]:
+La structure d'un document est définie par ses titres ({\em heads}).
+Ils sont créés au moyen des commandes de la table
+\in{table}[tab:headers]:
 
 % \placetable[here][tab:headers]{Headers.}
-\placetable[here][tab:headers]{En-têtes.}
+\placetable[here][tab:headers]{Titres}
 \starttable[|l|l|]
 \HL
-\NC \bf En-têtes numérotés \NC \bf En-têtes non numérotés \NC\SR
+\NC \bf Titres numérotés \NC \bf Titres non numérotés \NC\SR
 \HL
 \NC \type{\chapter}        \NC \type{\title}              \NC\FR
 \NC \type{\section}        \NC \type{\subject}            \NC\MR
@@ -49,8 +54,8 @@ La structure d'un document est définie par ses en-têtes (headers, heads). Elles 
 % These commands will produce a header in a
 % predefined fontsize and fonttype with some vertical
 % spacing before and after the header.
-Ces commandes produisent un en-tête avec une taille et un style de police, et
-un espacement vertical et part et d'autre d'icelui.
+Ces commandes produisent un titre dans un corps et un style de police
+prédéfinis, avec un espacement vertical avant et après le titre.
 
 % The heading commands can take several arguments, like in:
 % TODO: Plusieurs <- 1 ou 2 ?
@@ -78,29 +83,29 @@ nuit », on utilisera \type{\at{page}[hasselt-de-nuit]}.
 % Of course these headers can be set to your own preferences
 % and you can even define your own headers. This is done by
 % the command \type{\setuphead} and \type{\definehead}.
-Bien entendu, ces en-têtes peuvent être personnalisés, et vous pouvez même
-définir vos propres commandes pour créer des en-têtes. On utilise pour cela les commandes \type{\definehead} et \type{\setuphead}.
+Bien entendu, ces titres peuvent être personnalisés. Vous pouvez même
+définir vos propres commandes pour créer de nouveaux types de titres. On
+utilise pour cela les commandes \type{\definehead} et \type{\setuphead}.
 
 \shortsetup{definehead}
-
 \shortsetup{setuphead}
 
-Ainsi, les commandes ci-dessous définissent l'en-tête \type{\myheader}, et
-donnent un exemple d'utilisation :
+Ainsi, les commandes ci-dessous définissent le titre \type{\montitre},
+et donnent un exemple d'utilisation :
 
 \startbuffer
 \definehead
-  [myheader]
+  [montitre]
   [section]
 
 \setuphead
-  [myheader]
+  [montitre]
   [numberstyle=bold,
    textstyle=bold,
    before=\hairline\blank,
    after=\nowhitespace\hairline]
 
-\myheader[myhead]{Hasselt fait la une}
+\montitre[refmontitre]{Hasselt fait la une}
 \stopbuffer
 % \myheader[myhead]{Hasselt makes headlines}
 % TODO: les grands titres?
@@ -110,17 +115,18 @@ donnent un exemple d'utilisation :
 % A new header \type{\myheader} is defined and it inherits the
 % properties of \type{\section}. It would look something
 % like this:
-Cet en-tête hérite des propriétés de \type{\section}, et la commande
-\type{\setuphead} en modifie certaines. % TODO: préciser ?
+Un nouveau titre \type{\montitre} hérite des propriétés de
+\type{\section}, et la commande \type{\setuphead} en modifie certaines.
+% TODO: préciser ?
 
 \getbuffer
 
 % There is one other command you should know now, and that is
 % \type{\setupheads}. You can use this command to set up the
 % numbering of the numbered headers. If you type:
-Une autre commande permet de modified l'apparence des en-têtes, c'est
-\type{\setupheads} (au pluriel). On peut l'utiliser pour régler la numérotation
-des en-têtes numérotés. L'instruction
+Une autre commande permet de modifier l'apparence des titres, c'est
+\type{\setupheads} (au pluriel). On peut l'utiliser pour régler la
+numérotation des titres numérotés. L'instruction
 
 % TODO: inmargin or margin?
 \startbuffer
@@ -133,13 +139,13 @@ des en-têtes numérotés. L'instruction
 
 % all numbers will appear in the margin. Section 1.1 would
 % look like 1--1.
-placera les numéros dans la marge, séparé par le symbole -- le cas
-échéant ; ainsi la section 1.1 apparaîtra comme 1--1.
+placera les numéros dans la marge, séparé par le symbole «~--~», le cas
+échéant. Ainsi, la section 1.1 apparaîtra comme 1--1.
 % TODO: add a note explaining \type{--} types --?
 
 % Commands like \type{\setupheads} are typed in the
 % set up area of your input file.
-Ces commandes sont à placer dans les préambules de votre document.
+Ces commandes sont à placer dans le préambule de votre document.
 
 \shortsetup{setupheads}
 
