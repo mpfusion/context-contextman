@@ -1,0 +1,132 @@
+\startcomponent ma-cb-fr-enumerations
+
+\product ma-cb-fr
+
+%\chapter{Numbered definitions}
+\chapter{Listes numérotées}
+
+\index{listes numérotées}
+
+\Command{\tex{defineenumeration}}
+\Command{\tex{setupenumerations}}
+
+% With \type{\defineenumeration} you can number text elements
+% like remarks or questions. If you want to make numbered
+% remarks in your document you use:
+
+Avec la commande \type{\defineenumeration}, il est possible de numéroter
+certains éléments de texte tels que les remarques ou les questions. Pour
+numéroter des remarques dans un document, on utilise :
+
+\shortsetup{defineenumeration}
+
+%For example:
+
+Par exemple :
+
+\startbuffer[a]
+\defineenumeration
+  [remark]
+  [location=top,
+   text=Remark,
+   inbetween=\blank,
+   after=\blank]
+\stopbuffer
+
+\typebuffer[a]
+
+% Now the new commands \type{\remark}, \type{\subremark},
+% \type{\resetremark} and \type{\nextremark} are available and
+% you can type remarks like this:
+
+Maintenant, les nouvelles commandes \type{\remark}, \type{\subremark},
+\type{\resetremark} et \type{\nextremark} sont disponibles et l'on peut
+saisir des remarques de la manière suivante :
+
+\startbuffer[b]
+\remark In the early medieval times Hasselt was a place of
+pilgrimage. The {\em Heilige Stede} (Holy Place) was torn down during
+the Reformation. In 1930, after 300 years the {\em Heilige Stede} was
+reopened.
+
+\subremark Nowadays the {\em Heilige Stede} is closed again but once
+a year an open air service is held on the same spot. \par
+\stopbuffer
+
+\typebuffer[b]
+
+\start
+\getbuffer[a]\getbuffer[b]
+\stop
+
+% You can reset numbering with \type{\resetremark} or
+% \type{\resetsubremark} or increment a number with
+% \type{\nextremark} or \type{\nextsubremark}. This is
+% normally done automatically per chapter, section or
+% whatever.
+
+On utilise \type{\resetremark} ou \type{\resetsubremark} pour remettre à
+zéro la numérotation. Pour incrémenter la numérotation, on utilise
+\type{\nextremark} ou \type{\nextsubremark}. Tout ceci est a priori
+effectué automatiquement lors de chaque nouveau chapitre, section, etc.
+
+% You can set up the layout of \type{\defineenumeration} with:
+
+On peut configurer la présentation de \type{\defineenumeration} avec :
+
+\shortsetup{setupenumerations}
+
+% You can also vary the layout of {\bf Remark} and {\bf
+% Subremark} in the example above by:
+
+Il est également possible de modifier la présentation de {\bf Remark} et
+de {\bf Subremark} dans l'exemple ci-dessus, avec les commandes
+suivantes :
+
+\starttyping
+\setupenumeration[remark][headstyle=bold]
+\setupenumeration[subremark][headstyle=slanted]
+\stoptyping
+
+%If a number becomes obsolete you can type:
+
+Si un nombre devient obsolète, on peut saisir :
+
+\starttyping
+\remark[-]
+\stoptyping
+
+% If the remark contains more than one paragraph you will
+% have to use the command pair
+% \type{\startremark} $\cdots$ \type{\stopremark} that becomes
+% available after defining {\bf Remark} with
+% \type{\defineenumeration[remark]}.
+
+Si une remarque devait contenir plusieurs paragraphes, on devrait
+la saisir au sein de la paire de commandes \type{\startremark}
+$\cdots$ \type{\stopremark}. Ces commandes sont disponibles après avoir
+défini {\bf Remark}, par le biais de \type{\defineenumeration[remark]}.
+
+%So the example above would look like this:
+
+Ainsi, l'exemple ci-dessus ressemblerait à cela :
+
+\startbuffer[c]
+\startremark
+In the early medieval times Hasselt was a place of pilgrimage. The
+{\em Heilige Stede} (Holy Place) was torn down during the
+Reformation.
+
+After 300 years in 1930 the {\em Heilige Stede} was reopened.
+Nowadays the {\em Heilige Stede} is closed again but once a year an
+open air service is held on the same spot.
+\stopremark
+\stopbuffer
+
+\typebuffer[c]
+
+\start
+\getbuffer[a]\getbuffer[c] \par
+\stop
+
+\stopcomponent
