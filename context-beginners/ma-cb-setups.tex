@@ -9,12 +9,15 @@
 % \type{\ifnum} and \type{\ifdim} afterwards. Nevertheless,
 % we load the whole bunch now!
 
-\doiffileelse{t-setup.tex}
-  {\message{Using t-setup}
-    \usemodule[setup]}      % third party t-setup.tex
-  % \input t-setup.tex
-  {\message{Using set-11}
-    \usemodule[set-11]}
+% \doiffileelse{t-setup.tex}
+%   {\message{Using t-setup}
+%   % \usemodule[setup]}      % third party t-setup.tex
+%     \input t-setup.tex
+%   {\message{Using set-11}
+%     \usemodule[set-11]}
+
+% Since t-setup is present, there is no need to explicity check for it.
+\environment t-setup
 
 \pushmacro\checkdefined
 \def\checkdefined#1#2#3{}  % do not check macro redefinition (warnings

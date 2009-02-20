@@ -46,7 +46,7 @@ CURR_LANG = $(strip $(foreach L,$(LANGS),$(if $(findstring $(L)-,$@),$(L))))
 CURR_MODE = $(subst $(CURR_LANG)-,,$@)
 
 CONTEXT = texmfstart texexec --pdf
-CLEAN   = texmfstart texexec --purgeall
+CLEAN   = texmfstart ctxtools --purge --all
 
 $(ALL):
 	$(info ===== Language=$(CURR_LANG)   Mode=$(CURR_MODE) =====)
@@ -56,4 +56,4 @@ cp -f ma-cb-$(CURR_LANG)-$(CURR_MODE).pdf .. ; \
 cd ..
 
 clean:
-	$(foreach L,$(LANGS),$(shell cd $(L);$(CLEAN);cd ..))
+	$(foreach L,$(LANGS),cd $(L);$(CLEAN);cd ..;)
