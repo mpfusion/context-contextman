@@ -1,0 +1,87 @@
+\startcomponent ma-cb-fr-processingfiles
+
+\product ma-cb-fr
+
+\enableregime[il1]
+
+%\chapter{Processing steps}
+\chapter{Les étapes de la compilation}
+
+\index[texutil]{\TEXUTIL}
+% \index[tuo]{{\tt tuo}--file}
+\index[tuo]{{\tt tuo}--fichier}
+% \index{input file+processing}
+\index{inclusion de fichier+compilation}
+
+% During processing \CONTEXT\ writes information in the file
+% \type{myfile.tui}. This information is used in the next
+% pass. Part of this information is processed by the program
+% \TEXUTIL. Information on registers and lists are written in
+% the file \type{myfile.tuo}. The information in this file is
+% filtered and used (when necessary) by \CONTEXT.
+
+Au cours de la compilation, \CONTEXT\ écrit des informations dans le
+fichier \type{monfichier.tui}. Ces informations sont utilisées lors de
+la «~passe~» suivante. Une partie de cette information est utilisée par le
+programme \TEXUTIL. L'information concernant les index et les listes
+sont écrits dans le fichier \type{monfichier.tuo}. L'information dans ce
+fichier est filtrée et utilisée (si nécessaire) par \CONTEXT.
+
+\starttyping
+texutil --references filename
+\stoptyping
+
+% When \CONTEXT\ cannot find a figure, you can generate a
+% figure auxilliary file by saying:
+
+Quand \CONTEXT\ ne peut pas trouver une figure, on peut générer un
+fichier auxiliaire de figure en saisissant :
+
+\starttyping
+texutil --figures *.*
+\stoptyping
+
+% or whatever specification suits.
+
+ou n'importe quelle autre spécification qui convient.
+
+% When one wants to convert \EPS\ illustrations to \PDF\ ones,
+% there is:
+
+Si l'on veut convertir une illustration \EPS\ en \PDF\, on peut passer
+la commande :
+
+\starttyping
+texutil --figures --epspage --epspdf
+\stoptyping
+
+% One can use \TEXEXEC\ to run \CONTEXT:
+
+On peut utiliser \TEXEXEC\ pour lancer \CONTEXT\ :
+
+\starttyping
+texexec filename
+\stoptyping
+
+% \CONTEXT\ runs as many times as needed to get the references
+% straight. One can also specify specific needs on the command
+% line. For instance if pdf output is desired you type:
+
+\CONTEXT\ effectuera toutes les passes nécessaires pour établir
+correctement les références croisées du document. Certaines options sont
+disponibles. Par exemple, si le format de sortie désiré est pdf, on
+saisira :
+
+\starttyping
+texexec --pdf filename
+\stoptyping
+
+% When in doubt, say \type{--help} and you get all the
+% information needed to proceed. A \TEXEXEC\ manual is
+% available.
+
+En cas de doute, choisissez l'option \type{--help} et vous obtiendrez
+toute l'information nécessaire pour compiler votre document. Un manuel
+pour \TEXEXEC\ est également disponible.
+
+\stopcomponent
