@@ -350,7 +350,7 @@
         <cd:inherit ref="cd:10" name="definebodyfontenvironment" n="1"/>
       </cd:keywords>
       <cd:keywords n="2" optional="no">
-        <cd:inherit ref="cd:10" name="definebodyfontenvironment" n="2" optional="no"/>
+        <cd:inherit ref="cd:10" name="definebodyfontenvironment" n="2"/>
       </cd:keywords>
       <cd:assignments n="3" optional="yes" list="yes">
         <cd:inherit ref="cd:10" name="definebodyfontenvironment" n="3"/>
@@ -10104,8 +10104,8 @@
       <cd:keywords n="1">
         <cd:constant type="cd:name"/>
       </cd:keywords>
-      <cd:keywords n="2">
-        <cd:constant type="cd:name" list="yes"/>
+      <cd:keywords n="2" list="yes">
+        <cd:constant type="cd:name" />
       </cd:keywords>
       <cd:assignments n="3">
         <cd:parameter name="type">
