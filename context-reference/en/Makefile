@@ -82,7 +82,7 @@ columns_sources =      \
   columns/cols-806.tex
 
 contextref.pdf: contextref.tex contextref-env.tex $(sources)
-	context contextref
+	texexec contextref
 
 clean:
 	texutil --purgeall

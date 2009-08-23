@@ -13,10 +13,9 @@ english language manuals are included / merged:
   * Texmfstart
   * Hyphenation patterns
 
-You should be able to go to the 'en' directory and run 'make'.
-If this gives errors for the 'fonts' chapter, you have add the
-contents of 'texmf' to the font search path.
-
+You have to add the contents of 'en/texmf' to the font search path.
+After that, you should be able to go to the 'en' directory and 
+run 'make'.
 
 The home page of this project is 
 
