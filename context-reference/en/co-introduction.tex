@@ -514,14 +514,12 @@ directly.
 \subsection{Characters}
 \index{characters}
 
-\fixme{This manual is not coded in utf8!}
-
 A traditional \TEX\ source file contains only \ASCII\ characters. Higher \ASCII\
-values to produce characters like \"e, \^o and \~n can also
+values to produce characters like ë, ô and ñ can also
 be used in this version of \TEX\ (in preference to the traditional
 mechanism of escaped sequences such as \type {\"e}, \type {\^o}, etc.).
 However, some characters in \TEX\
-have special meanings (such as \%, \$, and of course \{, \}, \ldots).
+have special meanings (such as \%, \$, and of course \{\}).
 These characters can be typeset by
 putting a \type {\} in front of it. A \% is obtained by
 typing \type {\%} (if one would type only a \type {%} the
@@ -529,11 +527,12 @@ result would be undesirable because \TEX\ interprets text
 after a \% as comment that should not be processed), a \$ is
 produced by \type {\$} (a \type {$} without a \type {\}
 indicates the beginning of the mathemathical mode), and
-a pair of \{ and \} without a \type {\}
+a pair of \{ and \} without leading backslashes
 define the opening and closing of a group.
 
 \todo{Entering a \backslash\ is special.
-What about other \quote{reserved} symbols?}
+What about other \quote{reserved} symbols?
+Need to say something about \type{\enableregime[utf]} in mkii.}
 
 \subsection{Paragraphs}
 \index{paragraphs}
