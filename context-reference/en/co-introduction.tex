@@ -69,22 +69,51 @@ that the complete text is processed from beginning to end
 during which typesetting commands are interpreted. Because
 you tell your typesetting intentions to \TEX, the system can
 also be qualified as an intentional typesetting system.
-
-\fixme{Next paragraph is messy, and introduces \CONTEXT\ prematurely}
-
 In most documents one can stick to commands that define the
-structure and leave the typographic details to \CONTEXT. One
+structure and leave the typographic details to \TEX. One
 can concentrate on the content, instead of on makeup; the
 author can concentrate on his reader and his intentions with
-the text. In this respect one can classify \CONTEXT\ as an
-intentional system. We prefer such a system over a
+the text. We prefer such an intentional system over a
 page||oriented system, especially in situations where you
-have to process bulky documents of with regularly changing
+have to process bulky documents with regularly changing
 content. Furthermore an intentional typesetting system is
 rather flexible and makes it possible to change layout
-properties depending on its application. It can also
+properties depending on its application. Thus, the same
+text source can be used to produce various results,
+for example, both on||line and printed output. It can also
 cooperate quite well with other text||processing programs
 and tools.
+
+% from http://en.wikipedia.org/wiki/LaTeX
+Developed in the early 1980s,
+\LATEX\ was intended to provide a high-level language
+that accesses the power of \TEX.
+\LATEX\ essentially comprises a collection of \TEX\ macros
+and a program to process \LATEX\ documents.
+Because the \TEX\ formatting commands are very low-level,
+it is usually much simpler for end-users to use \LATEX.
+\LATEX\ is based on the idea that it is better
+to leave document design to document designers,
+and to let authors get on with writing documents.
+
+% from http://wiki.contextgarden.net/What_is_ConTeXt:
+\CONTEXT\ is a document markup language and document preparation system
+also based on the \TEX\ typesetting system.
+It was designed with the same general-purpose aims as \LATEX\ %
+of providing an easy to use interface
+to the high quality typesetting engine provided by \TEX.
+However, while \LATEX\ insulates the writer from typographical details,
+\CONTEXT\ takes a complementary approach
+by providing structured interfaces for handling typography,
+including extensive support for colors, backgrounds, hyperlinks,
+presentations, figure-text integration, and conditional compilation.
+It gives the user extensive control over formatting
+while making it easy to create new layouts and styles
+without learning the \TEX\ macro language.
+{\CONTEXT}'s unified design avoids the package clashes
+that can happen with \LATEX.
+\CONTEXT\ also attempts to more closely respect the syntactical style
+of plain \TEX.
 
 \section[context]{\CONTEXT}
 \index[context]{\CONTEXT}
@@ -92,7 +121,7 @@ and tools.
 The development of \CONTEXT\ started in 1990. A number
 of \TEX\ based macro packages had been used to our
 satisfaction. However, the non||technical users at our
-company were not accustomed to rather complex and non||Dutch
+company were not accustomed to rather complex and, in particular, non||Dutch
 interfaces. For this reason we initiated the development of
 \CONTEXT\ with a parameter driven interface and commands
 that are easy to understand. Initially the user interface
@@ -104,9 +133,10 @@ materials, workplace manuals and handbooks. In 1994 the
 package was stable enough to warrant a Dutch user manual.
 Over the years many new features and 
 a multi-lingual interface have been added (currently 
-English, German, \unknown\ interfaces are supported).
-Though \CONTEXT\ is as (un|)|stable as any other
-macro package there are still a great number of wishes. These
+English, German, French, Italian, Romanian? \unknown\ interfaces are supported).
+Though \CONTEXT\ has matured and is as (un|)|stable as any other
+macro package, there are still a great number of wishes
+and development remains active. These
 will be implemented in the spirit of the existing \CONTEXT\
 commands.
 
@@ -124,7 +154,7 @@ structures.
 \index{macros}
 \index{brackets}
 
-A \CONTEXT\ document is normally coded in \UTF\ or another plain text encoding like ISO~Latin1. Inside such a file,
+A \CONTEXT\ document is normally coded in \UTF\ or another plain text encoding like ISO~Latin1. Any preferred text editor may be used. Inside such a file,
 the actual document text is interspersed with \CONTEXT\ commands.
 These commands tell the system how the text should be
 typeset. A \CONTEXT\ command begins with a backslash 
@@ -133,7 +163,7 @@ of the time a command does something with the text that
 comes after the command. The text after the command \type
 {\italic} will be typeset {\italic text it italic}.
 
-When you use a command like \type{\italic} you acting as a  typesetter,
+When you use a command like \type{\italic} you acting as a typesetter,
 and when you are writing paragraphs you are acting as an author.
 Typesetting and writing are conflicting activities; as an
 author you would probably rather spend as little time as possible
@@ -151,13 +181,13 @@ By using \type{\em} instead of \type{\italic}, you enable the typesetter
 
 A \TEX\ user normally speaks of macros instead of commands.
 A macro is a (normally small) program. Although this manual uses
-both \quote {command} and \quote {macro},  we will try
+both \quote {command} and \quote {macro}, we will try
 consistently use the word command for users and macro for
 programmers. A collection of macros is called a macro package. 
 
-A command is often followed by setups and / or 
+A command is often followed by setups and/or 
 argument text. Setups are placed between brackets (\type{[]},
-there may be more than one sets of those).  The scope or range
+are optional and there may be more than one set). The scope or range
 of the command (the text acted upon) is placed between curly
 brackets (\type{{}}, there may be more than one of those as well). 
 
@@ -170,6 +200,18 @@ An example of a command with setups and an argument text is
 \typebuffer
 
 When this input is processed by \CONTEXT, the result will look like this:
+
+\startbaselinecorrection
+\getbuffer
+\stopbaselinecorrection
+
+Alternatively, using the default setups:
+
+\startbuffer
+\framed{that's it}
+\stopbuffer
+
+\typebuffer
 
 \startbaselinecorrection
 \getbuffer
@@ -193,7 +235,7 @@ Second, there can be a comma-separated list of just values
 
 \typebuffer
 
-In both cases the setups are placed between \type{[]}.  Spaces, tabs and  even a newline between the command and the opening \type{[} or after any of the separation commas are ignored. But multiple newlines are disallowed, and whitespace before commas, around the equals sign and before the closing~\type{]} is significant. 
+In both cases the setups are placed between \type{[]}. Spaces, tabs and even a newline between the command and the opening \type{[} or after any of the separation commas are ignored. But multiple newlines are disallowed, and whitespace before commas, around the equals sign and before the closing~\type{]} is significant. 
 
 Some practical examples of correct command invocations are:
 
@@ -422,7 +464,7 @@ gray arrows.
 processing. However, some manipulations are carried out by
 \TEXUTIL. This program helps \TEX\ to produce registers,
 lists, tables of contents, tables of formulas, pictures etc.
-This program is a \PERL\ script.
+This program is implemented as a \PERL\ script.
 
 Document processing can best be done with \TEXEXEC. This
 \PERL\ script enables the user to use different processing
@@ -440,11 +482,17 @@ needed to get the references and lists right.
 international standardized computer alphabet. The \ASCII\
 file with the prescribed extension \type{tex} is processed
 by \TEX. During this process \TEX\ produces a file with
-graphical commands. This file has the extension \type{dvi}.
+graphical commands. This file has the extension \type{dvi},
+intended to be output||device independent.
 A machine||specific driver transforms this file into a
 format that is accepted by photosetters and printers.
 Usually, \POSTSCRIPT\ drivers are used to produce
-\POSTSCRIPT\ files.
+\POSTSCRIPT\ files. Alternatively, \PDFTEX\ can be used
+to process \TEX\ source generating \PDF\ output directly.
+
+\todo{The rest of this section is not clear. It was already stated above
+that \CONTEXT\ is coded in \UTF\ or ISO~Latin1. Also, \type{dvi}
+and \type{fmt} files are no||longer produced.}
 
 \CONTEXT\ relies on plain \TEX. Plain \TEX, \CONTEXT\ and a
 third package \TABLE\ are brought together in a so called
@@ -466,24 +514,34 @@ directly.
 \subsection{Characters}
 \index{characters}
 
-A \TEX\ text contains \ASCII\ characters. Higher \ASCII\
+\fixme{This manual is not coded in utf8!}
+
+A traditional \TEX\ source file contains only \ASCII\ characters. Higher \ASCII\
 values to produce characters like \"e, \^o and \~n can also
-be used in this version of \TEX. Some characters in \TEX\
-have a special meaning. These characters can be typeset by
+be used in this version of \TEX\ (in preference to the traditional
+mechanism of escaped sequences such as \type {\"e}, \type {\^o}, etc.).
+However, some characters in \TEX\
+have special meanings (such as \%, \$, and of course \{, \}, \ldots).
+These characters can be typeset by
 putting a \type {\} in front of it. A \% is obtained by
-typing \type {\%}. If one would type only a \type {%} the
+typing \type {\%} (if one would type only a \type {%} the
 result would be undesirable because \TEX\ interprets text
-after a \% as comment that should not be processed. A \$ is
-produced by \type {\$}. A \type {$} without a \type {\}
-indicates the beginning of the mathemathical mode.
+after a \% as comment that should not be processed), a \$ is
+produced by \type {\$} (a \type {$} without a \type {\}
+indicates the beginning of the mathemathical mode), and
+a pair of \{ and \} without a \type {\}
+define the opening and closing of a group.
+
+\todo{Entering a \backslash\ is special.
+What about other \quote{reserved} symbols?}
 
 \subsection{Paragraphs}
 \index{paragraphs}
 
 \TEX\ performs its operations mostly upon the text element
-{\em paragraph}. A paragraph is ended by \type{\par} or
-preferably by an empty line. Empty lines in an \ASCII\ text
-are preferred because of readability.
+{\em paragraph}. A paragraph is ended by \type{\par} or,
+preferably, by an empty line. Empty lines in an \ASCII\ text
+are preferred because of readability of the source.
 
 \subsection{Boxes}
 \index{boxes}
@@ -497,7 +555,7 @@ character\with \ruledhbox} is a box, a \ruledhbox
 boxes, a line is \unknown
 
 When \TEX\ is processing a document many messages may occur
-on the screen. Some of these messages relate to overfull or
+on the screen. Some of these messages are warnings related to overfull or
 underful boxes. Horizontal and vertical boxes can be typeset
 by the \TEX\ commands \type{\hbox} and \type{\vbox}.
 Displacements can be achieved by using \type {\hskip} and
@@ -509,13 +567,13 @@ headers.
 \subsection{Fonts}
 \index{fonts}
 
-\TEX\ is one of the few typesetting systems that does math
+\TEX\ is one of the few typesetting systems that does mathematical
 typesetting right. To do so \TEX\ needs a complete
-fontfamily. This means not only the characters and numbers
-but also the mathematical symbols. Complete fontfamilies are
+font||family. This means not only the characters and numbers
+but also full mathematical symbols. Complete fontfamilies are
 Computer Modern Roman and Lucida Bright. Both come in serif
 and sans serif characters and a monospaced character is also
-available. Other fontfamilies are available.
+available. Other fontfamilies are available, more or less complete.
 
 \subsection{Dimensions}
 \index{dimensions}
@@ -535,9 +593,9 @@ linespacing in this document is \the\baselineskip.
 \VL \bf dimension  \VL \bf meaning \VL \bf equivalent   \VL \SR
 \HL
 \VL \type{pt} \VL point         \VL $\rm 72.27pt=1in$   \VL \FR
+\VL \type{bp} \VL big point     \VL $\rm 72bp=1in$      \VL \MR
 \VL \type{pc} \VL pica          \VL $\rm 1pc=12pt$      \VL \MR
 \VL \type{in} \VL inch          \VL $\rm 1in=2.54cm$    \VL \MR
-\VL \type{bp} \VL big point     \VL $\rm 72bp=1in$      \VL \MR
 \VL \type{cm} \VL centimeter    \VL $\rm 2.54cm=1in$    \VL \MR
 \VL \type{mm} \VL millimeter    \VL $\rm 10mm=1cm$      \VL \MR
 \VL \type{dd} \VL didot point   \VL $\rm 1157dd=1238pt$ \VL \MR
@@ -547,9 +605,11 @@ linespacing in this document is \the\baselineskip.
 \stoptable
 
 We will often specify layout dimensions in points or
-centimeters or milimeters. A point is about $\rm.35 mm$.
-Most dimensions are rather American. The European Didot
-point is equivalent to $\rm 1/2660 m = 3.759398496 mm$.
+centimeters or milimeters. A point is about $\rm 0.3515~mm$
+is an American publishing standard.
+The European Didot point, equivalent to
+$\rm 0.254\cdot1238/1157/72.27 = 0.376065~mm$,
+is about 7\%\ larger.
 
 Next to the mentioned dimension \TEX\ also uses \type{em}
 and \type{ex}. Both are font dependant. An \type {ex} has
@@ -562,8 +622,8 @@ $1/2$em, while a --- (\type{---}) is one em.
 \index{stopping}
 
 While processing a document, \TEX\ generates status messages
-(what is \TEX\ doing), warning messages (what could \TEX\ do
-better) and error messages (what considers \TEX\ wrong). An
+(what \TEX\ is doing), warning messages (what \TEX\ could do
+better) and error messages (what \TEX\ considers wrong). An
 error message is always followed by a \type{halt} and
 processing will be stopped. A linenumber and a \type{?} will
 appear on screen. At the commandline you can type \type{H}
@@ -585,26 +645,26 @@ would be added from that time on. However, exceptions were
 made for the processing of multi||language documents, the
 use of 8-bits \ASCII||values and composed characters.
 Additionally some bugs were corrected. At this moment \TEX\
-version 3.141592 is being used. The final \TEX\ version
+version 3.141592 is being used. The ultimate \TEX\ version
 number will be~$\pi$, while \METAFONT\ will become the Euler
 number~$e$.
 
 \CONTEXT\ can handle both \ETEX\ and \PDFTEX, which are
-extensions to \TEX. Both are still under development, so we
-suggest using the latest versions available. This manual is
+extensions to \TEX. Both are still under development so we
+suggest using the latest versions available. This manual was
 typeset using \ifx \eTeXversion \undefined \else \PDFETEX,
 with \ETEX\ version \the \eTeXversion \eTeXrevision\ and
 \fi \PDFTEX\ version \the \pdftexversion \pdftexrevision.
 
 \CONTEXT\ is still under development. Macros are continually
 improved in terms of functionality and processing speed.
-Improvements are made within existing macros. For example
+Improvements are also made within existing macros. For example
 the possibility to produce highly interactive \PDF\
 documents has altered some low||level functionality of
 \CONTEXT\ but did not alter the interface. We hope that in
 due time \CONTEXT\ will be a reasonable complete document
-processing system, and we hope this manual shows enough of
-its possibilities. This document was processed with version
+processing system, and we hope that this manual shows much of
+its possibilities. This document was processed with \CONTEXT\ version
 \contextversion.
 
 \section{Top ten}
@@ -649,10 +709,10 @@ only using the next ten groups of commands:
 
 \section{Warning}
 
-\CONTEXT\ users can define their own commands. These newly
-defined commands may conflict with plain \TEX\ or \CONTEXT\
-commands. Therefore it is advisable to use capital characters
-in your own command definitions.
+\CONTEXT\ users have the possibility to define their own commands. These newly
+defined commands may come into conflict with plain \TEX\ or \CONTEXT\
+commands. To avoid this, it is advisable to use capitalized characters
+in your own command definitions, such as:
 
 \startexample
 \starttyping
