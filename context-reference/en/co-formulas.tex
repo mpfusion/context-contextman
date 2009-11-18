@@ -80,6 +80,12 @@ like \type{\displaylines}. In the examples we use \type
 {$$} to save some space; however we advise you to use the
 command \type {\startformula}.
 
+\startmode[mkiv]
+\fixme{Mark IV doesn't have a \tex{formulanumber} command at the
+moment, the rest of this paragraph is suppressed}
+\stopmode
+
+\startnotmode[mkiv]
 \start
 
 \def\ShowMathExample[#1]%
@@ -243,6 +249,7 @@ command \type {\startformula}.
 \ShowMathExample[w,x]
 
 \stop
+\stopnotmode
 
 When we want {\em no} numbers we have to indicate that
 explicitly by means of \type{[-]}:
@@ -303,7 +310,8 @@ referencing.
 
 This becomes:
 
-\getbuffer
+\doifnotmode{mkiv}{\getbuffer}
+\doifmode{mkiv}{\fixme{getbuffer suppressed}}
 
 \section{Legends}
 \index{formulas+legends}
@@ -563,7 +571,7 @@ for switching to some specialized fonts:
 
 \starttabulate[|l|l|l|]
 \NC \type {\frak} \NC fraktur      \NC \frak ABC \NC\NR
-\NC \type {\goth} \NC gothic       \NC \goth abc \NC\NR
+\doifnotmode{mkiv}{\NC \type {\goth} \NC gothic       \NC \goth abc \NC\NR}
 \NC \type {\cal}  \NC calligraphic \NC \cal  ABC \NC\NR
 \stoptabulate
 
@@ -677,7 +685,7 @@ the math module.
 You can generate a list of the current math character set
 with the command \type {\showmathcharacters}.
 
-\showmathcharacters
-
+\doifnotmode{mkiv}{\showmathcharacters}
+\doifmode{mkiv}{command does not exist in mkiv}
 \stopcomponent
 

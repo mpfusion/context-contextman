@@ -100,8 +100,13 @@
    \c!after=]
 
 \def\yes      {$\star$}
-\def\argchars {\hbox{\arg{ }}}
+\def\argchars{\hbox{{\tt\{\}}}}
 \def\setchars {\hbox{\type{[ ]}}}
+\def\arg#1{\hbox{\tt\{#1\}}}
+
+\startmode[mkiv]
+\let\dimenexpr \dimexpr % bugfix
+\stopmode
 
 \definecolor[maincolor][g=.6]
 \definecolor[textcolor][r=.6]

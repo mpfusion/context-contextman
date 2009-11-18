@@ -799,7 +799,7 @@ An example of sorting is:
 \city {Paris}
 \city {Hasselt}
 
-\placelistofcities
+\placelistofcities[] % temp, mkiv bugfix
 \stopbuffer
 
 \startexample
@@ -881,7 +881,7 @@ record of three other marks per mark (see
 \in{table}[tab:marks]).
 
 \placetable
-  [hier][tab:marks]
+  [here][tab:marks]
   {Recorded marks, completed with some combinations.}
 \starttable[|l|l|]
 \HL

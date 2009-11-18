@@ -720,7 +720,7 @@ The setup of the itemization commands are presented in
 
 \placetable
   [here][tab:setupitemize]
-  {Setup of \type{\setupitemize}.}
+  {Setup of \tex{setupitemize}.}
 \starttable[|l|l|]
 \HL
 \VL \bf setup            \VL \bf result                                  \VL\SR
@@ -902,6 +902,7 @@ permitted when you use \type {\head}.
 
 \showsetup{head}
 
+\startmode[mkii]
 When an itemization consists of only one item we can leave
 out the commands \type {\startitemize} and \type
 {\stopitemize} and the level~1 symbol is used.
@@ -924,6 +925,7 @@ In each case, we get the following output:
 
 Only the text directly following the command and ended by an
 empty line or \type{\par} is indented.
+\stopmode
 
 When you want to re-use the last number instead of
 increasing the next item you can use \type{\sub}.

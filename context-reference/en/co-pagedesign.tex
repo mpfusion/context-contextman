@@ -656,7 +656,7 @@ the parameters width and height.
 \index{columns}
 \index{align}
 \macro{\tex{placeongrid}}
-\macro{\tex{moveongrid}}
+\doifmode{mkii}{\macro{\tex{moveongrid}}}
 \macro{\tex{showgrid}}
 
 There are many ways to align text on a page. Look at the
@@ -752,12 +752,22 @@ account.
 Because line correction takes care of the grid we have to use
 yet another command to stretch the framed text:
 
+\startnotmode[mkiv]
 \startbuffer
 \moveongrid[both]
 \startlinecorrection
 \framed{Anyhow it is good to know how this works.}
 \stoplinecorrection
 \stopbuffer
+\stopnotmode
+
+\startmode[mkiv]
+\startbuffer
+\startlinecorrection
+\framed{Anyhow it is good to know how this works.}
+\stoplinecorrection
+\stopbuffer
+\stopmode
 
 \startexample
 \typebuffer
@@ -774,7 +784,7 @@ For test purposes one can display the grid with the command
 
 \showsetup{placeongrid}
 
-\showsetup{moveongrid}
+\doifmode{mkii}{\showsetup{moveongrid}}
 
 \showsetup{showgrid}
 
@@ -782,14 +792,16 @@ For test purposes one can display the grid with the command
 \setuplayout[grid=no]
 \egroup
 
+
 \section[printing]{Printing}
 \index{printing}
-\macro{\tex{showprint}}
+\doifmode{mkii}{\macro{\tex{showprint}}}
 
 In an earlier section we used page and paper dimensions. In
 this section we will discuss how these two can be manipulated
 to yield a good output on paper.
 
+\startnotmode[mkiv]
 \startpostponing
 
 \placefigure
@@ -803,6 +815,8 @@ to yield a good output on paper.
   {\switchtobodyfont[7pt]\getbuffer[print-2]}
 
 \stoppostponing
+\stopnotmode
+
 
 In \in{figure}[fig:page composition 1] \in{and}[fig:page
 composition 2] we see some alternatives to manipulate the
@@ -879,6 +893,7 @@ mirroring and page and paper size are set up at the same
 time. The other operations are set up with
 \type{\setuplayout}.
 
+\startmode[mkii]
 \showsetup{showprint}
 
 You can use \type{\showprint} to get an idea of how your
@@ -890,17 +905,17 @@ real page as is shown in the examples above.
 \showprint[mirrored][90][location=middle]
 \stoptyping
 \stopexample
-
+\stopmode
+
 \section{Arranging pages}
 \index{arranging}
-\index{inslagschemas}
-\macro{\tex{setuparrangin}}
+\doifmode{mkii}{\macro{\tex{setuparranging}}}
 
 By means of \type{\setuplayout} one can arrange pages on a
 sheet of paper. A special arrangement for example is that
 for booklets.
 
-\showsetup{setuparranging}
+\doifmode{mkii}{\showsetup{setuparranging}}
 
 We will show some page arrangements on the next pages. If you
 want to understand how it really works you should try this
@@ -932,9 +947,12 @@ generated.
 \section[logo types]{Logo types}
 \index{logo types}
 \index{letter heads}
-\macro{\tex{definelogo}}
+\doifmode{mkii}{\macro{\tex{definelogo}}}
 \macro{\tex{placelogos}}
 
+\doifmode[mkiv]{Logos were removed in mkiv.}
+
+\startnotmode[mkiv]
 It is possible to place for example company logos at the top
 or the bottom of a page. We show some examples on the next
 pages. It is advisable to define a command for typesetting a
@@ -1133,5 +1151,7 @@ do this with the command:
      backgroundraster=1,frame=on,framecolor=PlusColor]}
 
 \chardef\logostatus=0 % make logos go away again
+
+\stopnotmode
 
 \stopcomponent

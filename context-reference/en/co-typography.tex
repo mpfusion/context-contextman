@@ -3,12 +3,15 @@
 \environment contextref-env
 \product contextref
 
+
 % this chapter runs in mkii and mkiv modes now, but the output 
 % is not always the same.
 
 % needed for mkiv:
 
 \startmode[mkiv]
+
+\def\savedfont{}
 
 \definefontfeature[default][default]
      [protrusion=pure,expansion=quality,mode=node,script=latn]
@@ -17,7 +20,7 @@
 % the next hack shortens the font name (in mkiv, the \fontname is the
 % full path to the disk file)
 
-\input enco-run
+\input enco-run.mkii
 \unexpanded\gdef\visualizecharacterslegend
   {\hbox
      {\edef\banner{\currentencoding\space\ctxlua{tex.sprint(file.basename('\fontname\font'))}}%
@@ -3076,7 +3079,7 @@ a couple of tables. The (current) composition is shown by
 
 \placefigure
   [here][fig:show accents]
-  {Output of \type{\showaccents} for the current (palatino) font in \PDFTEX}
+  {Output of \tex{showaccents} for the current (palatino) font in \PDFTEX}
   {\externalfigure[typography/encodings.pdf][page=5]}
 
 \page
