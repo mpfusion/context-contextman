@@ -1,3 +1,4 @@
+TEXMFFONTS=./texmf
 
 sources =                  \
   co-backgrounds.tex       \
@@ -81,8 +82,8 @@ columns_sources =      \
   columns/cols-805.tex \
   columns/cols-806.tex
 
-contextref.pdf: contextref.tex contextref-env.tex $(sources)
-	texexec contextref
+contextref.pdf: contextref.tex contextref-env.tex $(sources) Makefile
+	context contextref
 
 clean:
 	texutil --purgeall
