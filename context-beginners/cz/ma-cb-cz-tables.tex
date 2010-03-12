@@ -1,4 +1,4 @@
-% Translation: 2006-07-21 Vít Zýka
+% Translation: 2006-07-21 V?t Z?ka
 % Checking:    2006-11-13 zyka
 \startcomponent ma-cb-cz-tables
 \project ma-cb
@@ -11,7 +11,7 @@
 %\index{tables}
 %\index{floating blocks}
 \index{tabulky}
-\index{plovoucí objekt}
+\index{plovouc? objekt}
 
 \Command{\tex{placetable}}
 \Command{\tex{setuptables}}
@@ -40,11 +40,11 @@
 %% columns or groups of columns. Table entries may contain
 %% equations or several rows of text. Horizontal and vertical
 %% lines may be drawn wholly or partially across the table.}
-{\em Tabulka se obecnì skládá ze sloupcù. Jejich obsah mù¾e být
-  zarovnán vlevo, vpravo, na støed èi k~desetinné èárce.
-  Záhlaví mù¾e zaujímat jeden nebo více sloupcù. Buòky tabulky
-  mohou obsahovat rovnice nebo nìkolik øádkù textu. Horizontální a
-  vertikální linky mohou vést pøes celou tabulku nebo jen pøes její èást.}
+{\em Tabulka se obecn? skl?d? ze sloupc?. Jejich obsah m??e b?t
+  zarovn?n vlevo, vpravo, na st?ed ?i k~desetinn? ??rce.
+  Z?hlav? m??e zauj?mat jeden nebo v?ce sloupc?. Bu?ky tabulky
+  mohou obsahovat rovnice nebo n?kolik ??dk? textu. Horizont?ln? a
+  vertik?ln? linky mohou v?st p?es celou tabulku nebo jen p?es jej? ??st.}
 
 %% This is what Michael J. Wichura wrote in the preface of the
 %% manual of \TABLE\ (\TABLE\ manual, 1988.). Michael Wichura
@@ -56,21 +56,21 @@
 %% era. Therefore a user friendly interface and easy file and
 %% command handling were needed, and cryptic commands,
 %% programming and logical reasoning had to be avoided.}
-Toto napsal J. Wichura v~pøedmluvì manuálu o~\TABLE\ (\TABLE\ manual,
-1988). Michael Wichura je také autorem jedné ze sady maker \TABLE, kterou
-\CONTEXT\ pou¾ívá k~sazbì tabulek.\footnote{\CONTEXT\ nabízí je¹tì jiné
-sady. Velmi zajímavé jsou \quote{pøirozené tabulky}
-\type{\bTABLE}. Umo¾òují podobnou syntaxi jako \HTML{} tabulky
-s~velkou variabilitou sdru¾ování bunìk a bohatými grafickými
-mo¾nostmi. Øádkování je v¹ak ménì pøirozené. Viz
-manuál \from[manual:nattab] a~magazín \from[myway:nattab]. Pozn. pøekl.}
+Toto napsal J. Wichura v~p?edmluv? manu?lu o~\TABLE\ (\TABLE\ manual,
+1988). Michael Wichura je tak? autorem jedn? ze sady maker \TABLE, kterou
+\CONTEXT\ pou??v? k~sazb? tabulek.\footnote{\CONTEXT\ nab?z? je?t? jin?
+sady. Velmi zaj?mav? jsou \quote{p?irozen? tabulky}
+\type{\bTABLE}. Umo??uj? podobnou syntaxi jako \HTML{} tabulky
+s~velkou variabilitou sdru?ov?n? bun?k a bohat?mi grafick?mi
+mo?nostmi. ??dkov?n? je v?ak m?n? p?irozen?. Viz
+manu?l \from[manual:nattab] a~magaz?n \from[myway:nattab]. Pozn. p?ekl.}
 
-Do~definic \TABLE\ bylo oproti originálu pøidáno nìkolik maker
-zaji¹»ujících konzistentnìj¹í øádkování a bylo
-zjednodu¹eno u¾ivatelské rozhraní.\footnote{\CONTEXT\ byl vyvinut
-  (také) pro u¾ivatele bez technického nadání v~éøe \cap{WYSIWIG}. Proto
-  bylo doplnìno pøívìtivé u¾ivatelské rozhraní se snadnou manipulací
-  se soubory a byly vypu¹tìny kryptické pøíkazy a programové i~logické
+Do~definic \TABLE\ bylo oproti origin?lu p?id?no n?kolik maker
+zaji??uj?c?ch konzistentn?j?? ??dkov?n? a bylo
+zjednodu?eno u?ivatelsk? rozhran?.\footnote{\CONTEXT\ byl vyvinut
+  (tak?) pro u?ivatele bez technick?ho nad?n? v~??e \cap{WYSIWIG}. Proto
+  bylo dopln?no p??v?tiv? u?ivatelsk? rozhran? se snadnou manipulac?
+  se soubory a byly vypu?t?ny kryptick? p??kazy a programov? i~logick?
   konstrukce.}
 
 %For placing a table the command \type{\placetable} is used
@@ -79,12 +79,12 @@ zjednodu¹eno u¾ivatelské rozhraní.\footnote{\CONTEXT\ byl vyvinut
 %\shortsetup{placeblock}
 %
 %For defining the table you use:
-Tabulku umístíme pøíkazem \type{\placetable}. Definujeme ji pomocí
+Tabulku um?st?me p??kazem \type{\placetable}. Definujeme ji pomoc?
 
 \shortsetup{starttable}
 
 %The definition of a table could look something like this:
-Definice tabulky mù¾e vypadat následovnì:
+Definice tabulky m??e vypadat n?sledovn?:
 
 %% \startbuffer
 %% \placetable[here][tab:ships]{Ships that moored at Hasselt.}
@@ -100,10 +100,10 @@ Definice tabulky mù¾e vypadat následovnì:
 %% \stoptable
 %% \stopbuffer
 \startbuffer
-\placetable[here][tab:ships]{Lodì kotvící v~Hasseltu.}
+\placetable[here][tab:ships]{Lod? kotv?c? v~Hasseltu.}
 \starttable[|c|c|]
 \HL
-\NC \bf Rok \NC \bf Poèet lodí \NC\SR
+\NC \bf Rok \NC \bf Po?et lod? \NC\SR
 \HL
 \NC 1645    \NC 450            \NC\FR
 \NC 1671    \NC 480            \NC\MR
@@ -116,7 +116,7 @@ Definice tabulky mù¾e vypadat následovnì:
 \typebuffer
 
 %This table is typeset as \in{table}[tab:ships].
-Tato tabulka je vysázena jako \in{tabulka}[tab:ships].
+Tato tabulka je vys?zena jako \in{tabulka}[tab:ships].
 
 \getbuffer
 
@@ -125,19 +125,19 @@ Tato tabulka je vysázena jako \in{tabulka}[tab:ships].
 %% after the table and numbering. Furthermore the floating
 %% mechanism is initialized so the table will be placed at the
 %% most optimal location of the page.
-První pøíkaz \type{\placetable} má stejnou funkci jako
-\type{\placefigure}. Postará se o~vertikální odsazení tabulky
-a~o~její èíslo. Dále spustí mechanismus umístìní plovoucího
-objektu a ten nalezne optimální polohu tabulky na stránce.
+Prvn? p??kaz \type{\placetable} m? stejnou funkci jako
+\type{\placefigure}. Postar? se o~vertik?ln? odsazen? tabulky
+a~o~jej? ??slo. D?le spust? mechanismus um?st?n? plovouc?ho
+objektu a ten nalezne optim?ln? polohu tabulky na str?nce.
 
 %% The table entries are placed between the \type{\starttable}
 %% $\cdots$ \type{\stoptable} pair. Between the bracket pair
 %% your can specify the table format with the column separators
 %% \type{|} and the format keys (see
 %% \in{table}[tab:formatkeys]).
-Polo¾ky tabulky se zadávají dovnitø dvojice \type{\starttable} $\cdots$
-\type{\stoptable}. Do hranatých závorek vkládáme znaèky pro
-formátování tabulky, viz \in{tabulku}[tab:formatkeys].
+Polo?ky tabulky se zad?vaj? dovnit? dvojice \type{\starttable} $\cdots$
+\type{\stoptable}. Do hranat?ch z?vorek vkl?d?me zna?ky pro
+form?tov?n? tabulky, viz \in{tabulku}[tab:formatkeys].
 
 %% \placetable
 %%   []
@@ -158,26 +158,26 @@ formátování tabulky, viz \in{tabulku}[tab:formatkeys].
 \placetable
   []
   [tab:formatkeys]
-  {Znaèky pro formátování tabulky.}
+  {Zna?ky pro form?tov?n? tabulky.}
 \starttable[|l|l|]
 \HL
-\NC \bf Znaèka       \NC \bf Význam                                  \NC\SR
+\NC \bf Zna?ka       \NC \bf V?znam                                  \NC\SR
 \HL
-\NC \type{|}         \NC oddìlovaè sloupcù                           \NC\FR
-\NC \type{c}         \NC sloupec se zarovnáním na støed              \NC\MR
-\NC \type{l}         \NC sloupec se zarovnáním vlevo                 \NC\MR
-\NC \type{r}         \NC sloupec se zarovnáním vpravo                \NC\MR
-\NC \type{s<n>}      \NC mezisloupcová mezera o~hodnotì $n = 0, 1,2$ \NC\MR
-\NC \type{w<rozmìr>} \NC minimální ¹íøka sloupce o~dané hodnotì      \NC\LR
+\NC \type{|}         \NC odd?lova? sloupc?                           \NC\FR
+\NC \type{c}         \NC sloupec se zarovn?n?m na st?ed              \NC\MR
+\NC \type{l}         \NC sloupec se zarovn?n?m vlevo                 \NC\MR
+\NC \type{r}         \NC sloupec se zarovn?n?m vpravo                \NC\MR
+\NC \type{s<n>}      \NC mezisloupcov? mezera o~hodnot? $n = 0, 1,2$ \NC\MR
+\NC \type{w<rozm?r>} \NC minim?ln? ???ka sloupce o~dan? hodnot?      \NC\LR
 \HL
 \stoptable
 
 %% In addition to the format keys there are format commands.
 %% \in{Table}[tab:formatcommands] shows a few of the essential
 %% commands.
-Jak jsme ji¾ vidìli, existují kromì formátovacích znaèek je¹tì
-formátovací pøíkazy. Vkládají se pøímo do jednotlivých bunìk. Ty
-základní ukazuje \in{tabulka}[tab:formatcommands].
+Jak jsme ji? vid?li, existuj? krom? form?tovac?ch zna?ek je?t?
+form?tovac? p??kazy. Vkl?daj? se p??mo do jednotliv?ch bun?k. Ty
+z?kladn? ukazuje \in{tabulka}[tab:formatcommands].
 
 %% \placetable
 %%   [here]
@@ -224,43 +224,43 @@ základní ukazuje \in{tabulka}[tab:formatcommands].
 \placetable
   [here]
   [tab:formatcommands]
-  {Pøíkazy pro formátování tabulky.}
+  {P??kazy pro form?tov?n? tabulky.}
 {\setuptables[bodyfont=small]
 \starttable[s1|l|l|l|l|]
 \HL
-\NC \bf Pøíkaz       \NC 
-    \NC \bf Význam                                \NC\SR
+\NC \bf P??kaz       \NC 
+    \NC \bf V?znam                                \NC\SR
 \HL
-\NC \type{\NR}        \NC dal¹í øádka
-    \NC udìlìj øádku bez vertikálního vyrovnání    \NC\FR
-\NC \type{\FR}        \NC první øádka
-    \NC udìlìj øádku s~horním vyrovnáním           \NC\MR
-\NC \type{\LR}        \NC poslední øádka
-    \NC udìlej øádku s~dolním vyrovnáním           \NC\MR
-\NC \type{\MR}        \NC prostøední øádka
-    \NC udìlej øádku s~horním i~dolním vyrovnáním  \NC\MR
-\NC \type{\SR}        \NC oddìlovací øádka
-    \NC udìlej øádku s~horním i~dolním vyrovnáním  \NC\MR
-\NC \type{\VL}        \NC svislá linka
-    \NC nakresli svislou linku a~jdi na dal¹í sloupec \NC\MR
-\NC \type{\NC}        \NC dal¹í sloupec
-    \NC jsi na dal¹í sloupec                       \NC\MR
-\NC \type{\HL}        \NC vodorovná linka
+\NC \type{\NR}        \NC dal?? ??dka
+    \NC ud?l?j ??dku bez vertik?ln?ho vyrovn?n?    \NC\FR
+\NC \type{\FR}        \NC prvn? ??dka
+    \NC ud?l?j ??dku s~horn?m vyrovn?n?m           \NC\MR
+\NC \type{\LR}        \NC posledn? ??dka
+    \NC ud?lej ??dku s~doln?m vyrovn?n?m           \NC\MR
+\NC \type{\MR}        \NC prost?edn? ??dka
+    \NC ud?lej ??dku s~horn?m i~doln?m vyrovn?n?m  \NC\MR
+\NC \type{\SR}        \NC odd?lovac? ??dka
+    \NC ud?lej ??dku s~horn?m i~doln?m vyrovn?n?m  \NC\MR
+\NC \type{\VL}        \NC svisl? linka
+    \NC nakresli svislou linku a~jdi na dal?? sloupec \NC\MR
+\NC \type{\NC}        \NC dal?? sloupec
+    \NC jsi na dal?? sloupec                       \NC\MR
+\NC \type{\HL}        \NC vodorovn? linka
     \NC nakresli vodorovnou linku                  \NC\MR
-\NC \type{\DL}        \NC oddìlovací linka$^\star$
-    \NC nakresli linku pøes následující sloupec    \NC\MR
-\NC \type{\DL[n]}     \NC oddìlovací linka$^\star$
-    \NC nakresli odìlovací linku pøes $n$ sloupcù  \NC\MR
-\NC \type{\DC}        \NC oddìlovací linka$^\star$
-    \NC udìlej mezeru pøes následující sloupec   \NC\MR
-\NC \type{\DR}        \NC oddìlovací øádka$^\star$
-    \NC udìlej øádku s~horním i~dolním vyrovnáním  \NC\MR
+\NC \type{\DL}        \NC odd?lovac? linka$^\star$
+    \NC nakresli linku p?es n?sleduj?c? sloupec    \NC\MR
+\NC \type{\DL[n]}     \NC odd?lovac? linka$^\star$
+    \NC nakresli od?lovac? linku p?es $n$ sloupc?  \NC\MR
+\NC \type{\DC}        \NC odd?lovac? linka$^\star$
+    \NC ud?lej mezeru p?es n?sleduj?c? sloupec   \NC\MR
+\NC \type{\DR}        \NC odd?lovac? ??dka$^\star$
+    \NC ud?lej ??dku s~horn?m i~doln?m vyrovn?n?m  \NC\MR
 \NC \type{\LOW{text}} \NC ---
-    \NC napi¹ {\em text\/} ní¾e                    \NC\MR
+    \NC napi? {\em text\/} n??e                    \NC\MR
 \NC \type{\TWO}, \type{\THREE} etc. \NC ---
-    \NC udìlej mezeru pøes {\em dva}, {\em tøi}, \dots sloupce \NC\LR
+    \NC ud?lej mezeru p?es {\em dva}, {\em t?i}, \dots sloupce \NC\LR
 \HL
-\NC \use3 \JustLeft{Pøíkazy $^\star$ \type{\DL, \DC} a \type{\DR}
+\NC \use3 \JustLeft{P??kazy $^\star$ \type{\DL, \DC} a \type{\DR}
     lze kombinovat.}                      \NC\FR
 \stoptable}
 
@@ -270,10 +270,10 @@ základní ukazuje \in{tabulka}[tab:formatcommands].
 %% also handle a lot of table typography. In
 %% \in{table}[tab:contextformatcommands] an overview of these
 %% commands is given.
-V~dal¹ích pøíkladech uvidíme formátovací pøíkazy \CONTEXT{}u.
-Jejich jména jsou del¹í a ménì kryptická a øídí dal¹í formátovací
+V~dal??ch p??kladech uvid?me form?tovac? p??kazy \CONTEXT{}u.
+Jejich jm?na jsou del?? a m?n? kryptick? a ??d? dal?? form?tovac?
 funkce tabulek. V~\in{tabulce}[tab:contextformatcommands] je jejich
-pøehled.
+p?ehled.
 
 %% \placetable
 %%   [here]
@@ -293,24 +293,24 @@ pøehled.
 \placetable
   [here]
   [tab:contextformatcommands]
-  {\CONTEXT{}ové formátovací pøíkazy tabulky.}
+  {\CONTEXT{}ov? form?tovac? p??kazy tabulky.}
 \starttable[|l|l|]
 \HL
-\NC \bf Pøíkaz                \NC \bf Význam                                    \NC\SR
+\NC \bf P??kaz                \NC \bf V?znam                                    \NC\SR
 \HL
-\NC \type{\JustLeft}          \NC zarovnej vlevo a ignoruj formátování sloupce  \NC\FR
-\NC \type{\JustRight}         \NC zarovnej vpravo a ignoruj formátování sloupce \NC\MR
-\NC \type{\JustCenter}        \NC vycentruj a ignoruj formátování sloupce       \NC\MR
-\NC \type{\SetTableToWidth{}} \NC nastav pevnou ¹íøku tabulky                   \NC\MR
-\NC \type{\use{n}}            \NC pøeskoè pøí¹tích $n$ sloupcù                  \NC\LR
+\NC \type{\JustLeft}          \NC zarovnej vlevo a ignoruj form?tov?n? sloupce  \NC\FR
+\NC \type{\JustRight}         \NC zarovnej vpravo a ignoruj form?tov?n? sloupce \NC\MR
+\NC \type{\JustCenter}        \NC vycentruj a ignoruj form?tov?n? sloupce       \NC\MR
+\NC \type{\SetTableToWidth{}} \NC nastav pevnou ???ku tabulky                   \NC\MR
+\NC \type{\use{n}}            \NC p?esko? p???t?ch $n$ sloupc?                  \NC\LR
 \HL
 \stoptable
 
 %% The tables below are shown with their sources. You can
 %% always read the \TABLE\ manual by M.J. Wichura for more
 %% sophisticated examples.
-Tabulky ukázané dále jsou uvedené se zdrojovými texty. Pro
-slo¾itìj¹í ukázky si lze také pøeèíst \TABLE\ manuál M.\,J.~Wichury.
+Tabulky uk?zan? d?le jsou uveden? se zdrojov?mi texty. Pro
+slo?it?j?? uk?zky si lze tak? p?e??st \TABLE\ manu?l M.\,J.~Wichury.
 
 %% \startbuffer
 %% \placetable
@@ -344,21 +344,21 @@ slo¾itìj¹í ukázky si lze také pøeèíst \TABLE\ manuál M.\,J.~Wichury.
 \placetable
   [here,force]
   [tab:effects of commands]
-  {Vliv formátovacích pøíkazù.}
+  {Vliv form?tovac?ch p??kaz?.}
   {\startcombination[2*1]
      {\starttable[|c|c|]
       \HL
-      \VL \bf Rok \VL \bf Poèet obyvatel \VL\SR
+      \VL \bf Rok \VL \bf Po?et obyvatel \VL\SR
       \HL
       \VL 1675     \VL  ~428        \VL\FR
       \VL 1795     \VL  1124        \VL\MR
       \VL 1880     \VL  2405        \VL\MR
       \VL 1995     \VL  7408        \VL\LR
       \HL
-      \stoptable}{standardní}
+      \stoptable}{standardn?}
      {\starttable[|c|c|]
       \HL
-      \VL \bf Rok \VL \bf Poèet obyvatel \VL\NR
+      \VL \bf Rok \VL \bf Po?et obyvatel \VL\NR
       \HL
       \VL 1675     \VL  ~428        \VL\NR
       \VL 1795     \VL  1124        \VL\NR
@@ -375,15 +375,15 @@ slo¾itìj¹í ukázky si lze také pøeèíst \TABLE\ manuál M.\,J.~Wichury.
 %% \type{\MR} and \type{\LR} are used. These commands take care
 %% of line spacing within a table. As you can see below
 %% the command \type{\NR} only starts a new row.
-Ve vý¹e uvedeném pøíkladu jsou v~první tabulce pou¾ity \type{\SR}, \type{\FR},
-\type{\MR} a \type{\LR}. Tyto pøíkazy se starají o~vkládání mezer
-uvnitø tabulky. Jak je vidìt, pøíkaz \type{\NR} pouze zaèíná novou øádku.
+Ve v??e uveden?m p??kladu jsou v~prvn? tabulce pou?ity \type{\SR}, \type{\FR},
+\type{\MR} a \type{\LR}. Tyto p??kazy se staraj? o~vkl?d?n? mezer
+uvnit? tabulky. Jak je vid?t, p??kaz \type{\NR} pouze za??n? novou ??dku.
 
 \getbuffer
 
 %% In the example below column interspacing with the \type{s0}
 %% and \type{s1} keys is shown.
-V~dal¹ím pøíkladì je ukázáno vyrovnání sloupcù pomocí znaèek \type{s0}
+V~dal??m p??klad? je uk?z?no vyrovn?n? sloupc? pomoc? zna?ek \type{s0}
 a~\type{s1}.
 
 %% \startbuffer[one]
@@ -534,9 +534,9 @@ a~\type{s1}.
 \placetable
   [here,force]
   [tab:example-format-commands]
-  {Vliv formátovacích znaèek.}
+  {Vliv form?tovac?ch zna?ek.}
   {\startcombination[3*2]
-    {\getbuffer[one]}   {standardní}
+    {\getbuffer[one]}   {standardn?}
     {\getbuffer[two]}   {\type{s0}}
     {\getbuffer[three]} {\type{s0} ve sloupci~1}
     {\getbuffer[four]}  {\type{s0} ve sloupci~2}
@@ -550,16 +550,16 @@ a~\type{s1}.
 %% After processing these tables come out as
 %% \in{table}[tab:example formatcommands]. The default table
 %% has a column interspacing of \type{s2}.
-Po zpracování tìchto pøíkladù dostaneme
-\in{tabulku}[tab:example-format-commands]. Implicitní tabulka má
-mezerování sloupcù pomocí znaèek \type{s2}.
+Po zpracov?n? t?chto p??klad? dostaneme
+\in{tabulku}[tab:example-format-commands]. Implicitn? tabulka m?
+mezerov?n? sloupc? pomoc? zna?ek \type{s2}.
 
 \getbuffer
 
 %% Columns are often separated with a vertical line $|$ and
 %% rows by a horizontal line.
-Sloupce bývají obèas oddìleny svislými linkami $|$ a~øádky
-vodorovnými.
+Sloupce b?vaj? ob?as odd?leny svisl?mi linkami $|$ a~??dky
+vodorovn?mi.
 
 %% \startbuffer
 %% \placetable
@@ -578,7 +578,7 @@ vodorovnými.
 \placetable
   [here,force]
   [tab:divisions]
-  {Vyvolání dojmu volby.}
+  {Vyvol?n? dojmu volby.}
 \starttable[|c|c|c|]
 \NC Steenwijk  \NC Zwartsluis \NC Hasselt    \NC\SR
 \DC            \DL            \DC               \DR
@@ -594,7 +594,7 @@ vodorovnými.
 
 %% A more sensible example is given in the
 %% \in{table}[tab:example contextcommands].
-Praktiètìj¹í pøíklad je v~\in{tabulce}[tab:example contextcommands].
+Prakti?t?j?? p??klad je v~\in{tabulce}[tab:example contextcommands].
 
 %% \startbuffer
 %% \placetable
@@ -621,10 +621,10 @@ Praktiètìj¹í pøíklad je v~\in{tabulce}[tab:example contextcommands].
 \placetable
   [here,force]
   [tab:example contextcommands]
-  {Vliv formátovacích pøíkazù \CONTEXT{}u.}
+  {Vliv form?tovac?ch p??kaz? \CONTEXT{}u.}
 \starttable[|l|c|c|c|c|]
 \HL
-\VL \FIVE \JustCenter{Volby do mìstské rady v~roce 1994}    \VL\SR
+\VL \FIVE \JustCenter{Volby do m?stsk? rady v~roce 1994}    \VL\SR
 \HL
 \VL \LOW{Strana} \VL \THREE{Okrsky}   \VL \LOW{Celkem}  \VL\SR
 \DC             \DL[3]                  \DC                \DR
@@ -643,20 +643,20 @@ Praktiètìj¹í pøíklad je v~\in{tabulce}[tab:example contextcommands].
 
 %% In the last column a \type{~} is used to simulate a four
 %% digit number. The \type{~} has the width of a digit.
-V~posledním sloupci je znak \type{~} pou¾it k~simulaci ètyøciferného
-èísla. Znak \type{~} má ¹íøku cifry. 
+V~posledn?m sloupci je znak \type{~} pou?it k~simulaci ?ty?cifern?ho
+??sla. Znak \type{~} m? ???ku cifry. 
 
 \getbuffer
 
 %% Sometimes your tables get too big and you want to adjust, for
 %% example, the body font or the vertical and/or horizontal spacing
 %% around vertical and horizontal lines. This is done by:
-Nìkdy se nám tabulka pøíli¹ rozroste. Abychom ji vysadili s~textem,
-mù¾eme napøíklad zmen¹it pou¾ité písmo. Pomocí pøíkazu
+N?kdy se n?m tabulka p??li? rozroste. Abychom ji vysadili s~textem,
+m??eme nap??klad zmen?it pou?it? p?smo. Pomoc? p??kazu
 
 \shortsetup{setuptables}
 
-to udìláme takto:
+to ud?l?me takto:
 
 %% \startbuffer
 %% \placetable
@@ -724,20 +724,20 @@ to udìláme takto:
 \placetable
   [here,force]
   [tab:setuptable]
-  {Pou¾ití \type{\setuptables}.}
+  {Pou?it? \type{\setuptables}.}
 {\startcombination[1*3]
 {\setuptables[bodyfont=10pt]
 \starttable[|c|c|c|c|c|c|]
 \HL
 \VL \use6
-    \JustCenter{Pokles bohatství v~holandských guldenech (Dfl)}
+    \JustCenter{Pokles bohatstv? v~holandsk?ch guldenech (Dfl)}
     \VL\SR
 \HL
 \VL Year \VL 1.000--2.000
          \VL 2.000--3.000
          \VL 3.000--5.000
          \VL 5.000--10.000
-         \VL   pøes 10.000 \VL\SR
+         \VL   p?es 10.000 \VL\SR
 \HL
 \VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
 \VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
@@ -749,7 +749,7 @@ to udìláme takto:
 \starttable[|c|c|c|c|c|c|]
 \HL
 \VL \use6
-    \JustCenter{Pokles bohatství v~holandských guldenech (Dfl)}
+    \JustCenter{Pokles bohatstv? v~holandsk?ch guldenech (Dfl)}
     \VL\SR
 \HL
 \VL Year \VL 1.000--2.000
@@ -768,14 +768,14 @@ to udìláme takto:
 \starttable[|c|c|c|c|c|c|]
 \HL
 \VL \use6
-    \JustCenter{Pokles bohatství v~holandských guldenech (Dfl)}
+    \JustCenter{Pokles bohatstv? v~holandsk?ch guldenech (Dfl)}
     \VL\SR
 \HL
 \VL Year \VL 1.000--2.000
          \VL 2.000--3.000
          \VL 3.000--5.000
          \VL 5.000--10.000
-         \VL   pøes 10.000 \VL\SR
+         \VL   p?es 10.000 \VL\SR
 \HL
 \VL 1675 \VL 22 \VL 7 \VL 5  \VL 4  \VL 5  \VL\FR
 \VL 1724 \VL ~4 \VL 4 \VL -- \VL 4  \VL 3  \VL\MR
@@ -791,23 +791,23 @@ to udìláme takto:
 \getbuffer
 
 %% You can also set up the layout of tables with:
-Nastavit umístìní tabulek mù¾eme také pomocí ji¾ známého
+Nastavit um?st?n? tabulek m??eme tak? pomoc? ji? zn?m?ho
 
 \shortsetup{setupfloats}
 
 %% You can set up the numbering and the labels with:
-Èíslování a popisky nastavíme pøíkazem
+??slov?n? a popisky nastav?me p??kazem
 
 \shortsetup{setupcaptions}
 
 %% These  commands are typed in the set up area of your
 %% input file and have a global effect on all floating blocks.
-Tyto pøíkazy pou¾íváme v~deklaraèní oblasti na¹eho vstupního souboru
-a~mají globální platnost.
+Tyto p??kazy pou??v?me v~deklara?n? oblasti na?eho vstupn?ho souboru
+a~maj? glob?ln? platnost.
 
 %% \startbuffer
 %% \setupfloats[location=left]
-%% \setupcaption[style=boldslanted]
+%% \setupcaptions[style=boldslanted]
 
 %% \placetable[here][tab:opening hours]{Library opening hours.}
 %% \starttable[|l|c|c|]
@@ -825,18 +825,18 @@ a~mají globální platnost.
 %% \stopbuffer
 \startbuffer
 \setupfloats[location=left]
-\setupcaption[style=boldslanted]
+\setupcaptions[style=boldslanted]
 
-\placetable[here][tab:opening hours]{Otevírací hodiny knihovny.}
+\placetable[here][tab:opening hours]{Otev?rac? hodiny knihovny.}
 \starttable[|l|c|c|]
 \HL
-\VL \bf Den   \VL \use2 \bf Otevírací hodiny        \VL\SR
+\VL \bf Den   \VL \use2 \bf Otev?rac? hodiny        \VL\SR
 \HL
-\VL pondìlí   \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\FR
-\VL úterý     \VL                \VL                \VL\MR
-\VL støeda    \VL 10.00 -- 12.00 \VL 14.00 -- 17.30 \VL\MR
-\VL ètvrtek   \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\MR
-\VL pátek     \VL 14.00 -- 17.30 \VL                \VL\MR
+\VL pond?l?   \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\FR
+\VL ?ter?     \VL                \VL                \VL\MR
+\VL st?eda    \VL 10.00 -- 12.00 \VL 14.00 -- 17.30 \VL\MR
+\VL ?tvrtek   \VL 14.00 -- 17.30 \VL 18.30 -- 20.30 \VL\MR
+\VL p?tek     \VL 14.00 -- 17.30 \VL                \VL\MR
 \VL sobota    \VL 10.00 -- 12.30 \VL                \VL\LR
 \HL
 \stoptable
@@ -845,7 +845,7 @@ a~mají globální platnost.
 \typebuffer
 
 %% The result is displayed in \in{table}[tab:opening hours].
-Výsledek zobrazuje \in{tabulka}[tab:opening hours].
+V?sledek zobrazuje \in{tabulka}[tab:opening hours].
 
 \start
 \getbuffer
