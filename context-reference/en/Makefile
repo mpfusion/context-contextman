@@ -86,8 +86,7 @@ contextref.pdf: contextref.tex contextref-env.tex $(sources) Makefile
 	context contextref
 
 clean:
-	texutil --purgeall
-	rm -f contextref-mp.{mpy,pdf,tex}
+	context --purgeall
 
 clear: clean
 	rm -f contextref.pdf
