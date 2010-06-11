@@ -94,30 +94,32 @@ installation work.
 
 \section {Font files and synonyms}
 \macro{\tex{definefontsynonym}}
+\macro{\tex{setupfontsynonym}}
 
 
 In \CONTEXT, whenever possible you should define symbolic names for fonts.
 The mapping from such symbolic names onto real font names can be done such
-that it takes place unnoticed for the user. This is good since the name
-depends on the encoding and therefore not seldom is obscure and hard to
+that it takes place unnoticed by the user. This is good, since the name can
+depend on the encoding, in which case the name is obscure and hard to
 remember. The trick is knowing how to use the \type{\definefontsynonym}
 command.
 
 \placefloat[][]{none}{\showsetup{definefontsynonym}}
 
-The first argument is the synonym that is being defined or redefined.
-Redefinition is not only allowed but often very useful. The second
-argument is the replacement of the synonym.  This replacement can be a
-real font name, but it can also be another synonym.  The optional third
-argument can be used for to specify font settings.
+The first argument is the synonym that is being defined or redefined. This
+synonym should be something simpler than the original name that's easier to
+use. Redefinition is not only allowed but often very useful. The second
+argument is the replacement of the synonym.  This replacement can be a real
+font name, but it can also be another synonym.  The optional third argument
+can be used for to specify font settings.
 
-There is no limit on the number of indirection levels, but the last one
-in the chain has to be a valid font name. \CONTEXT\ knows it has reached
-the bottom level when there is no longer any replacement possible. 
+There is no limit on the number of synonyms that can chained together, but the
+last one in the chain has to be a valid font name. \CONTEXT\ knows it has
+reached the bottom level when there is no longer any replacement possible.
 
 Font settings actually take place at the bottom level, since they are
-closely related to specific instances of fonts.  Any settings that are
-defined higher up in the chain perculate down, unless they are already
+closely related to specific instances of fonts. Any settings that are
+defined higher up in the chain percolate down, unless they are already
 defined at the lower level.
 
 \startbuffer[synonymargs]
@@ -151,16 +153,18 @@ further font definitions to identify this font, instead of the
 dreadfully low||level (and hard to remember) name \type{uplr8t} and its
 accompanying encoding.
 
-A note on font names: In \PDFTEX, the real font is the name of the \TEX\ metrics file,
-minus the extension, as we saw already. In \XETEX\ and \MKIV\ a font name is a bit
-more complex, because in both cases OpenType fonts can be accessed directly by their
-official font name (but with any embedded spaces stripped out) as well as via the disk
-file name.
+\subsection{Font names}
+
+In \PDFTEX, the real font is the name of the \TEX\ metrics file, minus the
+extension, as we saw already. In \XETEX\ and \MKIV\ a font name is a bit more
+complex, because in both cases OpenType fonts can be accessed directly by
+their official font name (but with any embedded spaces stripped out) as well
+as via the disk file name.
 
 In these two systems, \CONTEXT\ first attempts to find the font using the
 official font name. If that doesn't work, then it tries to use the font by
 file name as a fallback. Since this is not very efficient and also because
-it may generate |<|harmless, but alarming looking|>| warnings it is possible to
+it may generate (harmless, but alarming looking) warnings, it is possible to
 force \CONTEXT\ into one or the other mode by using a prefix, so you will
 most often see synonym definitions like this:
 
@@ -257,15 +261,17 @@ in~\in{table}[tab:symbolic font names]
 \vskip 1ex
 \stopbuffer
 
+%this table almost takes up a page, so we should give it one to itself
 \placetable
-  [here]
+  [page]
   [tab:symbolic font names]
   {Standard symbolic font names, and the style||alternative pair they belong to.}
   {\getbuffer[symfontnames]}
 
+\subsection{Adjusting font settings}
 
 As mentioned earlier, the items in the third argument of
-\type{\definefontsynonym} perculate down the chain of
+\type{\definefontsynonym} percolate down the chain of
 synonyms. Occasionally, you may want to splice some settings into that
 chain, and that is where \type{\setupfontsynonym} comes in handy. 
 
@@ -279,7 +285,18 @@ the previous chapter contain a sequence of commands like this:
 \setupfontsynonym [Serif]       [handling=pure]
 \setupfontsynonym [SerifBold]   [handling=pure]
 \setupfontsynonym [SerifItalic] [handling=pure]
-....
+...
+\stoptyping
+\stopexample
+
+The first line means \quote{adjust the \type{handling} setting of only the
+  \type{Serif} font to \type{pure}}. Any font lower down in the synonym chain
+won't receive this setting. Another example might be setting a font variant
+for {\sc small caps}:
+
+\startexample
+\starttyping
+\setupfontsynonym [SerifSmallCaps]       [features=smallcaps]
 \stoptyping
 \stopexample
 
