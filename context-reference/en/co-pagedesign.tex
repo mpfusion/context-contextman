@@ -1,7 +1,7 @@
 % interface=en 
 
 \startcomponent co-pagedesign
-
+\setupexternalfigures[directory={./arranging}]
 \startbuffer[fig-layo]
 
 \unprotect
@@ -225,10 +225,10 @@
      {\tttf\c!nx=2,\c!ny=2}
   {\showprint[][][\c!nx=2,\c!ny=2,\c!location=\v!middle]}
      {\tttf\c!nx=2,\c!ny=2\break\c!location=\v!middle}
-  {\showprint[][][\c!horoffset=3pt]}
-     {\tttf\c!horoffset=.5cm}
-  {\showprint[][][\c!veroffset=3pt]}
-     {\tttf\c!veroffset=.5cm}
+  % {\showprint[][][\c!horoffset=3pt]}
+  %    {\tttf\c!horoffset=.5cm}
+  % {\showprint[][][\c!veroffset=3pt]}
+  %     {\tttf\c!veroffset=.5cm}   
   {\showprint[][][\c!scale=1.5]}
      {\tttf\c!scale=1.5}
   {\showprint[][][\c!scale=0.8]}
@@ -355,7 +355,7 @@ The dimensions of \kap{DIN} formats are given in
 
 \placetable
   [here][tab:dindimensions]
-  {Default paper dimensions.}
+  {Default paper dimensions}
 \startcombination[2]
   {\starttable[|c|c|]
    \HL
@@ -381,11 +381,12 @@ The dimensions of \kap{DIN} formats are given in
    \stoptable} {}
 \stopcombination
 
-Other formats like \type {B0}||\type {B9} and \type
-{C0}||\type {C9} are also available. You could also use:
+There are a great number of standardized formats like \type {B0}||\type {B9} and \type
+{C0}||\type {C9}. These formats are predefined in\CONTEXT\ as well. You can also use:
 \type {letter}, \type {legal}, \type {folio} and \type
-{executive}, \type {envelop 9}||\type {14}, \type {monarch},
+{executive}, \type {envelope 9}||\type {14}, \type {monarch},
 \type {check}, \type {DL} and \type {CD}.
+Another series of predefined formats comprise the \type{RA} and \type{SRA} types of paper sizes.
 
 A new format can be defined by:
 
@@ -421,6 +422,14 @@ width.
 
 When one chooses another paper format than \type{A4}, the
 default settings are scaled to fit the new size.
+
+All defined paper sizes can be used either in portrait or landscape orientation. You can tell \CONTEXT\ the orientation of the paper in the \type{\setupapersize} command:
+
+\startexample
+\starttyping
+\setuppapersize[CD][A4,landscape]
+\stoptyping
+\stopexample
 
 \section{Page texts}
 \index{headers}
@@ -494,51 +503,50 @@ dimensions (see \in {picture} [fig:typesetting area]).
     \hbox{text} + \hbox{footer}$).}
   {\getbuffer[fig-layo]}
 
-\stoppostponing
+\stoppostponing 
 
 \startbuffer
 \inleft  {\inframed[background=color,backgroundcolor=GrayColor,framecolor=FrameColor]{left}}%
 \inright {\inframed[background=color,backgroundcolor=GrayColor,framecolor=FrameColor]{right}}%
-\stopbuffer
+\stopbuffer    
 
-The header is located on top of the main text area, and the
-footer comes after it. Normally, in the header and footer
+The header is located on top and the
+footer below of the main text area. Normally, in the header and footer
 page numbers and running titles are placed. The left
-and|/|or right margin are often used for structural
+and|/|or right margins are often used for structural
 components like marginal notes and|/|or chapter and section
-numbers. The margins are located in the backspace. Their
-{\getbuffer} width has {\em no} influence on the location
+numbers. The margins are located in the backspace (along the spine) and in the white space to the right|/|left of the main text area. Their {\getbuffer} width has {\em no} influence on the location
 of the typesetting area on the page. 
 
 On the contrary, the height of the header and footer
-influence the height of the text area. When we talk about
-the height, we mean the sum of the header, text and footer
-areas. When one occasionally hides the header or footer, 
-this guarantees a consistent layout. 
+influences the height of the text area. When talking about
+the height, we think of the sum of the header, text and footer
+areas. This approach enables you to occasionally hide the header and|/|or footer, 
+without introducing inconsistency in the layout. 
 
 The dimensions and location of all those areas are set up
 with \type{\setuplayout}. 
 
 \startpostponing
 \showsetup{setuplayout}
-\stoppostponing
+\stoppostponing 
 
 Setting up the left or right margin has no influence on the
 typesetting area. In paper documents this parameter is only
 of use when keywords or other text are placed in the margin
 (hyphenation).
 
-In paper documents it is sufficient to set up the height,
-header, footer, top space and back space. In electronic
-documents and screen documents however we need some room for
+For paper documents it is sufficient to set up the height,
+header, footer, top space and back space. For electronic
+and screen documents however we need some extra space for
 navigational tools (see \in{chapter}[interaction]). In
 screen documents it is common practice to use backgrounds.
 Therefore it is also possible to set up the space between
 the text area and the header and footer on a page, and
 thereby visually separating those areas. 
 
-It is possible to trace the setting by using the following
-commands: 
+On order to get information on the current settings the following
+commands can be issued: 
 
 \showsetup{showframe}
 
@@ -552,7 +560,7 @@ A multi||page combination of both is generated with:
 
 The width of a text is available as \type{\hsize} and the
 height as \type{\vsize}. To be on the safe side one can
-better use the \type{\dimen}||registers \type{\textwidth}
+better use \CONTEXT 's \type{\dimen}||registers \type{\textwidth}
 and \type{\textheight}, \type{\makeupwidth} and
 \type{\makeupheight}.
 
@@ -563,7 +571,7 @@ somewhat less than half the \type{makeupwidth}. The
 \type{\textheight} is the \type{\makeupheight} minus the
 height of the header and footer.
 
-\placetable{Some \type{\dimen} variables.}
+\placetable{Some \type{\dimen} variables}
 \starttable[|l|l|]
 \HL
 \VL \bf variable         \VL \bf meaning                  \VL\SR
@@ -581,16 +589,16 @@ of the fact that you can only use these variables, you can
 not set them up. The width of a figure could for instance be
 specified as \type {width=.9\leftmarginwidth}. 
 
-In principal documents are typeset automatically. However,
+Basically documents are typeset automatically. However,
 in some cases the output would become much better if a line
 would be moved to another page. For these situations you can
-adjust the layout momentarily (just for that page) by
+adjust the layout temporarily (just for that page) by
 typing:
 
 \showsetup{adaptlayout}
 
-The use of these commands should be avoided because if you
-alter your document the adjustment would not be necessary
+The use of this command should be avoided inside a text, because after
+altering your document the adjustment could possibly not be necessary
 anymore. So, if you use this command, use it at the top of
 your document. For example: 
 
@@ -602,7 +610,7 @@ your document. For example:
 
 The layout of page~21 and~38 will temporarily be 0.5~cm
 higher though the footer will be maintained at the same
-height. The numbers to be specified are the numbers in the
+height. The numbers to be specified are the page numbers in the
 output file.
 
 If the layout is disturbed you can reset the layout by:
@@ -621,7 +629,7 @@ On the next pages we will show a number of \cap{A5} page
 layouts centered on an \cap{A4}. The default setups
 (dimensions) are adequate for standard documents like
 manuals and papers. The setup adjusts automatically to the
-paper size. Notice the use of \type{middle} while setting up
+paper size. Note the use of \type{middle} while setting up
 the parameters width and height.
 
 %\ShowArrangementA {co-en-1} {The default text||on||page (single sided).}
@@ -631,7 +639,9 @@ the parameters width and height.
 %\ShowArrangementA {co-en-5} {A non symmetric text||on||page.}
 %\ShowArrangementA {co-en-6} {A text without \type{footerheight}.}
 %\ShowArrangementA {co-en-7} {A text placed on a grid.}
-
+
+\page
+
 \bgroup
 
 \setuplayout
@@ -801,7 +811,7 @@ In an earlier section we used page and paper dimensions. In
 this section we will discuss how these two can be manipulated
 to yield a good output on paper.
 
-\startnotmode[mkiv]
+% \startnotmode[mkiv]
 \startpostponing
 
 \placefigure
@@ -815,7 +825,7 @@ to yield a good output on paper.
   {\switchtobodyfont[7pt]\getbuffer[print-2]}
 
 \stoppostponing
-\stopnotmode
+% \stopnotmode
 
 
 In \in{figure}[fig:page composition 1] \in{and}[fig:page
@@ -825,7 +835,7 @@ and\type {\setuplayout}. So it is possible to put a page in
 a corner or in the middle of the paper, to copy a page and
 to use cutting marks.
 
-When the parameter papersize is set to \type{landscape}
+When the parameter paper size is set to \type{landscape}
 width and height are interchanged. This is not the same as
 rotation! Rotation is done by typing \type{90}, \type{180}
 and \type{270} in the first argument of
@@ -909,32 +919,382 @@ real page as is shown in the examples above.
 
 \section{Arranging pages}
 \index{arranging}
-\doifmode{mkii}{\macro{\tex{setuparranging}}}
+% \doifmode{mkii}{\macro{\tex{setuparranging}}}
+% 
+% By means of \type{\setuplayout} one can arrange pages on a
+% sheet of paper. A special arrangement for example is that
+% for booklets.
+% 
+% \doifmode{mkii}{\showsetup{setuparranging}}
+% 
+% We will show some page arrangements on the next pages. If you
+% want to understand how it really works you should try this
+% yourself one day.
+% 
+% \startpostponing
+% 
+% \placefigure {The \type{2*8}   arrangement.} {\getbuffer[pag-16]}
+% \placefigure {The \type{2*4}   arrangement.} {\getbuffer[pag-8]}
+% \placefigure {The \type{2*2}   arrangement.} {\getbuffer[pag-4]}
+% \placefigure {The \type{2UP}   arrangement.} {\getbuffer[pag-2up]}
+% \placefigure {The \type{2DOWN} arrangement.} {\getbuffer[pag-2down]}
 
-By means of \type{\setuplayout} one can arrange pages on a
-sheet of paper. A special arrangement for example is that
-for booklets.
+% \stoppostponing 
 
-\doifmode{mkii}{\showsetup{setuparranging}}
+Simplified we can say that \TEX\ typesets pages. If the typeset material should become a book, then there are two options. Firstly the book will be produced on multiple sheets carrying only one page either on one or on both sides of the sheet. Second option is to produce arrangements of multiple pages per sheet of paper which will be folded into sections, using imposition schemes.
 
-We will show some page arrangements on the next pages. If you
-want to understand how it really works you should try this
-yourself one day.
+\CONTEXT\ offers tools to achieve both options.
+
+When talking about book-printing the industry produces different kinds of sections, consisting commonly out of 32 or 16 pages. Consider, that sections of 32 pages may be quite thick. At binding if the sections are sewn and the spine is rounded the fore edge can become stepped. This is aesthetically less satisfying. Best results are normally obtained with sections of 16 pages.
+
+For special purposes or in case of special papers also less than 16 pages per section are arranged.
+
+The command to arrange pages with \CONTEXT\ is 
+
+\macro{\tex{setuparranging}}
+
+For (standard) sections the following list of schemes is available: 
+
+\setuptabulate[EQ={=}]
+\starttabulate[|l|l|r|]
+	\NC \bf Arrangement \NC \bf Result \NC \bf Number of pages \NC\NR
+	\NC \type{\setuparranging[2*16] } \NC section: one sheet $2 \times 16$ pages \EQ 32 pages \NC\NR
+	\NC \type{\setuparranging[2*8]  } \NC section: one sheet $2 \times  8$ pages \EQ 16 pages \NC\NR
+	\NC \type{\setuparranging[2*4]  } \NC section: one sheet $2 \times  4$ pages \EQ 8 pages \NC\NR
+	\NC \type{\setuparranging[2*2]  } \NC section: one sheet $2 \times  2$ pages \EQ 4 pages \NC\NR
+	% \NC \type{\setuparranging[2**2] } \NC section: one sheet $2 \times  2$ pages \EQ 4 pages \NC\NR 
+\stoptabulate
+
+On the following pages we show pictures of arranged pages for the mentioned imposition schemes.
 
 \startpostponing
+\placefigure
+	[middle]
+	[]
+	{32 pages} %\type{\setuparranging[2*16]}}
+	{\startcombination[2*1]
+		{\externalfigure[2*16][page=1,width=.45\textwidth]}{recto}
+		{\externalfigure[2*16][page=2,width=.45\textwidth]}{verso}
+	\stopcombination}
 
-\placefigure {The \type{2*8}   arrangement.} {\getbuffer[pag-16]}
-\placefigure {The \type{2*4}   arrangement.} {\getbuffer[pag-8]}
-\placefigure {The \type{2*2}   arrangement.} {\getbuffer[pag-4]}
-\placefigure {The \type{2UP}   arrangement.} {\getbuffer[pag-2up]}
-\placefigure {The \type{2DOWN} arrangement.} {\getbuffer[pag-2down]}
+\placefigure
+	[middle]
+	[]
+	{16 pages} % \type{\setuparranging[2*8]}}
+	{\startcombination[2*1]
+		{\externalfigure[2*8][page=1,width=.45\textwidth]}{recto}
+		{\externalfigure[2*8][page=2,width=.45\textwidth]}{verso}
+	\stopcombination}
+	
+\placefigure
+	[middle]
+	[]
+	{8 pages} % \type{\setuparranging[2*4]}}
+	{\startcombination[2*1]
+		{\externalfigure[2*4][page=1,width=.45\textwidth]}{recto}
+		{\externalfigure[2*4][page=2,width=.45\textwidth]}{verso}
+	\stopcombination}
+
+\placefigure
+	[middle]
+	[]
+	{4 pages} % \type{\setuparranging[2*4]}}
+	{\startcombination[2*1]
+		{\externalfigure[2*2][page=1,width=.45\textwidth]}{recto}
+		{\externalfigure[2*2][page=2,width=.45\textwidth]}{verso}
+	\stopcombination}
+\stoppostponing
+
+The above mentioned imposition schemes are meant for the professional printing industry. -- But also with an office printer one can produce sections. The simplest version is booklet-printing. In this case all pages are arranged in such a way, that with a single fold a booklet is formed.
+
+\starttabulate[|l|p|]
+\NC \type{\setuparranging[2UP]  } \NC 2 pages next to each other, n sheets arranged for a single booklet \NC\NR
+\NC \type{\setuparranging[2DOWN]} \NC 2 pages above each other,  n sheets arranged for a single booklet  \NC\NR
+\stoptabulate
+
+\quote{2UP} results in a booklet with the fold on the long egde of the page. \quote{2DOWN} gives a booklet with a short-edge binding of the pages.
+
+\startpostponing
+\placefigure
+	[middle]
+	[]
+	{2 UP booklet: long edge binding} % \type{\setuparranging[2UP]}}
+	{\startcombination[2*1]
+		{\externalfigure[2UP][page=1,width=.45\textwidth]}{recto}
+		{\externalfigure[2UP][page=2,width=.45\textwidth]}{verso}
+	\stopcombination}
+\placefigure
+	[middle]
+	[]
+	{2 DOWN booklet: short edge binding} % \type{\setuparranging[2DOWN]}}
+	{\startcombination[2*1]
+		{\externalfigure[2DOWN][page=1,width=.45\textwidth]}{recto}
+		{\externalfigure[2DOWN][page=2,width=.45\textwidth]}{verso}
+	\stopcombination}
+\stoppostponing
+
+For those who want to print their own book with sections on the office printer \CONTEXT\ offers two schemes which use 2 and 4 sheets of paper respectively to form a section of 16 pages.
+
+
+\starttabulate[|l|l|r|]
+	\NC \bf Arrangement \NC \bf Result \NC \bf Number of pages \NC\NR
+	\NC \type{\setuparranging[2*4*2] } \NC section: $2 \times 4$ pages on 2 sheets \EQ 16 pages \NC\NR
+	\NC \type{\setuparranging[2*2*4] } \NC section: $2 \times 2$ pages on 4 sheets \EQ 16 pages \NC\NR 
+\stoptabulate
+
+\startpostponing
+\placefigure
+	[middle]
+	[]
+	{16 pages, 2 sheets} % \type{\setuparranging[2*4*2]}}
+	{\startcombination[2*2]
+		{\externalfigure[2*4*2][page=1,width=.45\textwidth]}{1\high{st} sheet recto}
+		{\externalfigure[2*4*2][page=2,width=.45\textwidth]}{1\high{st} sheet verso}
+		{\externalfigure[2*4*2][page=3,width=.45\textwidth]}{2\high{nd} sheet recto}
+		{\externalfigure[2*4*2][page=4,width=.45\textwidth]}{2\high{nd} sheet verso}
+	\stopcombination}
+
+\placefigure
+	[middle]
+	[]
+	{16 pages, 4 sheets} % \type{\setuparranging[2*2*4]}}
+	{\startcombination[2*4]
+		{\externalfigure[2*2*4][page=1,height=.2\textheight]}{1\high{st} sheet recto}
+		{\externalfigure[2*2*4][page=2,height=.2\textheight]}{1\high{st} sheet verso}
+		{\externalfigure[2*2*4][page=3,height=.2\textheight]}{2\high{nd} sheet recto}
+		{\externalfigure[2*2*4][page=4,height=.2\textheight]}{2\high{nd} sheet verso}
+		{\externalfigure[2*2*4][page=5,height=.2\textheight]}{3\high{rd} sheet recto}
+		{\externalfigure[2*2*4][page=6,height=.2\textheight]}{3\high{rd} sheet verso}
+		{\externalfigure[2*2*4][page=7,height=.2\textheight]}{4\high{th} sheet recto}
+		{\externalfigure[2*2*4][page=8,height=.2\textheight]}{4\high{th} sheet verso}
+	\stopcombination}
+\stoppostponing
+
+Next to the imposition schemes involving folding \CONTEXT\ offers possibilities to arrange pages in such a way, that after cutting the pile of sheets book blocks can be assembled. The resulting bookblock consists of loose sheets of paper and will be glued along the spine to prepare e.g. a paperback.
+
+\CONTEXT\ has an arranging scheme for two odd pages above each other and two even pages on the backside of the sheet. In order to build the book block the sheets need to be cut and the the two piles must be merged.
+
+\starttabulate[|l|p|r|]
+	\NC \bf Arrangement \NC \bf Result \NC \bf Number of pages \NC\NR
+	\NC \type{\setuparranging[2TOPSIDE] } \NC recto 2 odd pages, verso 2 even pages per sheet \EQ 4 pages \NC\NR
+\stoptabulate
+
+\startpostponing
+\placefigure
+	[middle]
+	[]
+	{4 pages, 1 sheet} %\type{\setuparranging[2TOPSIDE]}}
+	{\startcombination[2*1]
+		{\externalfigure[2TOPSIDE][page=1,width=.45\textwidth]}{recto}
+		{\externalfigure[2TOPSIDE][page=2,width=.45\textwidth]}{verso} 
+	\stopcombination}
+\stoppostponing
+
+For building book blocks from single sided printed sheets \CONTEXT\ offers three different schemes. The first scheme arranges 4 pages on the front side of the sheet. The pages are arranged in such a way that they can be folded, however the verso face of the sheet is blank. An other option is to cut the sheet in four parts. The book block must be assembled from the 4 piles of cut sheets.
+
+The second scheme puts two pages on the front side of a sheet next to each other. After cutting the book block is build through merging the two piles.
+The third scheme works like the previous one but instead of putting the pages next to each other the pages are placed on top of each other.
+
+\starttabulate[|l|l|r|]
+	\NC \bf Arrangement \NC \bf Result \NC \bf Number of pages \NC\NR
+	\NC \type{\setuparranging[1*4] }  \NC one sheet recto $4$ pages \EQ  4 pages \NC\NR
+	\NC \type{\setuparranging[2SIDE]} \NC one sheet recto $2$ pages \EQ  2 pages \NC\NR
+	\NC \type{\setuparranging[2TOP] } \NC one sheet recto $2$ pages \EQ  2 pages \NC\NR
+\stoptabulate
+
+\startpostponing
+\placefigure
+	[middle]
+	[]
+	{4 pages, singlesided, 1 sheet} % \type{\setuparranging[1*4]}}
+		{\externalfigure[1*4][page=1,width=.45\textwidth]}
+
+\placefigure
+	[middle]
+	[]
+	{2 pages, single sided, 1 sheet}
+	{\startcombination[2*1]
+		{\externalfigure[2SIDE][page=1,width=.45\textwidth]}{\type{\setuparranging[2SIDE]}}
+		{\externalfigure[2TOP][page=1,width=.45\textwidth]}{\type{\setuparranging[2TOP]}} 
+	\stopcombination}
 
 \stoppostponing
 
+Last but not least is the X-Y-arrangement of pages.
+This scheme is not intended for the production of book blocks but for the placement of pages e.g. on sheets carrying labels or for the placement of other information which must return several times on a sheet.
+
+\starttabulate[|l|l|r|]
+	\NC \bf Arrangement \NC \bf Result \NC \bf Number of pages \NC\NR
+	\NC \type{\setuparranging[XY] } \NC $nx \times my$ pages, single sided \EQ n $\times$ m pages \NC\NR
+\stoptabulate
+
+\startpostponing
+\placefigure
+	[middle,here]
+	[]
+	{8 pages, singlesided, 1 sheet, XY-arrangement}
+		{\externalfigure[XY][page=1,width=.4\textwidth]}
+\stoppostponing
+
+There is another culprit in arranging pages. If multiple layers of paper are folded, the outermost paper will require more width because it has to turn around the inner paper layers. This effect occurs as well in the spine folds as also in the head folds. How much width is required depends on the number of folds and the thickness of the paper. In professional book printing this effect is accounted for by displacing the pages depending on their position in horizontal and vertical direction. The result is that there will be a perfect look-through registering of all pages. There are no simple rules to indicate the required amount of displacement. Mostly it is a matter of experience to set up the page shift information.
+
+\CONTEXT\ is equipped with a mechanism, which allows to move pages on a sheet apart from each other in horizontal as well as in vertical direction. The mechanism is build on two shift-lists, one for horizontal and one for vertical page shifting. The mechanism works through cycling over the lists which contain a shift amount for each page in a section. For filling in such a shift-list knowledge and understanding the position of a page on the printed sheet is necessary.
+
+In order to use a horizontal shift list this list must be defined and setup.
+
+For a section of 16 pages a horizontal shift list is filled in where for each page the amount of displacement is given. Such a list could look as follows:
+
+\starttyping
+\definepageshift[Hor][horizontal]
+   [0.25mm, %1
+   -0.25mm, %2
+   0.15mm,  %3
+   -0.15mm, %4
+   0.05mm,  %5
+   -0.05mm, %6
+   0mm,     %7
+   0mm,     %8
+   0mm,     %9
+   0mm,     %10
+   0.05mm,  %11
+   -0.05mm, %12
+   0.15mm,  %13
+   -0.15mm, %14
+   0.25mm,  %15
+   -0.25mm] %16
+\stoptyping
+
+For illustration purposes the following list for horizontal page-shift with exaggerated values is used in a Z-folding with 12 pages.
+
+\starttyping
+\definepageshift[Hor][horizontal]
+    [1mm,   %1
+    -1mm,   %2
+    0.5mm,  %3
+    -0.5mm, %4                                   
+    0mm,    %5
+    0mm,    %6
+    0mm,    %7
+    0mm,    %8
+    0.5mm,  %9
+    -0.5mm, %10
+    1mm,    %11
+    -1mm]   %12
+\stoptyping
+
+\startpostponing
+\placefigure
+	[middle]
+	[]
+	{Horizontal page-shift} % \type{\setuparranging[2*6*Z]}}
+	{\startcombination[2*1]
+		{\externalfigure[2*6*Z-HOR][page=1,width=.45\textwidth]}{recto}
+		{\externalfigure[2*6*Z-HOR][page=2,width=.45\textwidth]}{verso} 
+	\stopcombination}
+\stoppostponing
+
+In a similar fashion also vertical shift lists can be defined.
+
+\starttyping 
+\definepageshift[Vert][vertical]
+    [1.5mm, %1
+    1.25mm, %2
+    0.75mm, %3
+    1.0mm,  %4
+    1.0mm,  %5
+    0.75mm, %6
+    1.25mm, %7
+    1.5mm,  %8
+    1.5mm,  %9
+    1.25mm, %10
+    0.75mm, %11
+    1.0mm,  %12
+    1.0mm,  %13
+    0.75mm, %14
+    1.25mm, %15
+    1.5mm]  %16
+\stoptyping
+
+For each page in a section the shift amount must be indicated. The above presented list has exaggerated values just for making clear what happens:
+
+\startpostponing
+\placefigure
+	[middle]
+	[]
+	{Vertical page-shift} %\type{\setuparranging[2*8]}}
+	{\startcombination[2*1]
+		{\externalfigure[2*8-VER][page=1,width=.45\textwidth]}{recto}
+		{\externalfigure[2*8-VER][page=2,width=.45\textwidth]}{verso} 
+	\stopcombination}
+\stoppostponing
+
+
+While arranging these lists can be used in the following way:
+
+Only one list is used:     
+
+\startexample
+\starttyping
+\setuppageshift[paper][Hor]
+\stoptyping
+\stopexample
+
+or
+
+\startexample
+\starttyping
+\setuppageshift[paper][Vert]
+\stoptyping
+\stopexample
+
+Both lists are used:
+
+% \startpostponing
+\startexample 
+\starttyping
+\setuppageshift[paper][Hor][Vert]
+\stoptyping
+\stopexample
+% \stoppostponing
+
 The next examples show the cooperation of the commands
 \type{\setuppapersize}, \type{\setuplayout} and
-\type{\setuparranging}. Notice how these tests were
-generated.
+\type{\setuparranging}.
+
+
+\startexample
+\starttyping
+\setuppapersize     [A7][A3,mirrored] %negative creates an out of memory error in Acrobat 8.2.2. on the MAc OSX 10.6.3
+\setuparranging     [2*8,rotated,doublesided]
+\setuppagenumbering [alternative=doublesided]
+\stoptyping
+\stopexample
+
+With the above shown preamble you get sections of 16 pages of the size of A7, where both sides of the A3 paper carry 8 pages \type{[2*8]}. For two reasons the A7 pages must be rotated on the paper. First in this imposition scheme there will be 4 A7 pages next to each other so they need to be aligned along the long edge of the A3. Secondly and this is important for book-printing, the grain direction of the paper must be in the direction of the spine i.e. in the height of the A7. Since A3 has its grain direction normally along the short edge it is correct to rotate the A7 pages. Further more there is the \quote{doublesided} directive in the \type{\setuparranging} command. This is to rotate the whole content of the verso side of the A3 paper by 180\Degrees in order to enable automatic double sided printing on the printing machine. \type{\setuppagenumbering} tells \CONTEXT\ to use a doublesided lay-out, resulting in left and right pages.
+
+Yet there is inside the \type{\setuppapersize} command the directive \quote{mirrored}. Using this directive, the content of the A3 paper is mirrored along the long edge of the paper, this results in mirrored typeset text.
+
+\startexample
+\starttyping
+\setuppapersize     [A5][A3]
+\setuparranging     [2UP,rotated,doublesided]
+\setuppagenumbering [alternative=doublesided]
+\stoptyping
+\stopexample
+
+What this does is placing two A5 pages side by side on a A3 sheet of paper. Both the page and the paper are in portrait orientation. Because A5 fits better on a A3 when the page is rotated the \type{\setuparranging} command carries the \quote{rotated} directive. The resulting sheet of paper will be printed on an automatic double-sided printing machine. Often these machines require, that the verso side of the paper is printed reversed, this is achieved with \quote{doublesided} in the \type{\setuparranging} command.
+
+Instead of using the \quote{rotated} directive in \type{\setuparanging} you can also say:
+
+\startexample
+\starttyping
+\setuppapersize     [A7][A3,landscape]
+\setuparranging     [2*8,doublesided]
+\setuppagenumbering [alternative=doublesided]
+\stoptyping
+\stopexample
+
+You rotate the A3 paper by means of the \quote{rotated} directive in \type{\setuppapersize}.
 
 %\ShowArrangementB {co-en-1p} {Arranging: 16.}
 %\ShowArrangementB {co-en-2p} {Arranging: negative mirrored 16.}
@@ -943,14 +1303,16 @@ generated.
 %\ShowArrangementB {co-en-5p} {Arranging: 2UP (1).}
 %\ShowArrangementB {co-en-6p} {Arranging: 2UP (2).}
 %\ShowArrangementB {co-en-7p} {Arranging: 2DOWN.}
-
+
+There is one thing which should be kept in mind when using \type{\setuparranging}: \TEX\ compilations with \CONTEXT\ are most of the time multi-pass runs. If there is a table of content or other lists, this information is stored in auxiliary files or tables in \LUATEX. In order not to loose the content of those lists it is important to run the file first without the \type{\setuparranging} command enabled. If all went well, run the file a single time with the \type{\setuparranging} command enabled.
+
 \section[logo types]{Logo types}
 \index{logo types}
 \index{letter heads}
 \doifmode{mkii}{\macro{\tex{definelogo}}}
 \macro{\tex{placelogos}}
 
-\doifmode[mkiv]{Logos were removed in mkiv.}
+\doifmode{mkiv}{Logos were removed in mkiv.}
 
 \startnotmode[mkiv]
 It is possible to place for example company logos at the top

@@ -1,0 +1,37 @@
+% Context file
+% Filename: 2*6*Z.tex
+% Willi Egger
+% 11-01-2010
+% Copyright (c) 2010 BOEDE. All rights reserved.
+
+\input figures-base-file
+%\showframe
+
+\starttext
+\showframe
+\definepageshift[Hor][horizontal]
+    [1mm, %1
+    -1mm, %2
+    .5mm,  %3
+    -.5mm, %4                                   
+    0mm,     %5
+    0mm,     %6
+    0mm,     %7
+    0mm,     %8
+    .5mm,  %9
+    -.5mm, %10
+    1mm,  %11
+    -1mm] %12
+
+\setuppageshift[paper][Hor]
+\setvariables
+	[Arranging]
+	[Arrangement={2*6*Z},
+	Pages=12,
+	x=2,
+	y=3]
+\setuparranging[\getvariable{Arranging}{Arrangement}]
+\definepapersize[Printpaper][width=\dimexpr37mm*\getvariable{Arranging}{x}+32mm,height=\dimexpr52mm*\getvariable{Arranging}{y}+32mm]
+\setuppapersize[A9][Printpaper]	
+\dorecurse{\getvariable{Arranging}{Pages}}{\getbuffer[Fakepage]\page}
+\stoptext
