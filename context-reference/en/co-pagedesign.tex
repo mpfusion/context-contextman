@@ -545,7 +545,80 @@ Therefore it is also possible to set up the space between
 the text area and the header and footer on a page, and
 thereby visually separating those areas. 
 
-On order to get information on the current settings the following
+\starttabulate[|lw(3.5cm)|p(5cm)|p|]
+\NC \bf Parameter       \NC \bf Value \NC Comment \NC\NR
+\NC width               \NC dimension 
+\NC Determines the width of the typesetting area. \type{Middle} sets the white space right to the typesetting area to the value of the backspace. type{Fit} takes values set for margins, edges and margin and edge distances into account. \NC\NR
+\NC height              \NC dimension 
+\NC The \type{height} is the sum of the text height, header, footer, headerdistance, footerdistance. Middle sets the bottom white space to the value of the topspace. \type{Fit} calculates the text height based on the other vertical height-elements. \NC\NR
+\NC backspace           \NC dimension 
+\NC \type{Backspace} determines the left boundary of the typesetting area. \NC\NR
+\NC topspace            \NC dimension 
+\NC \type{Topspace} determines the top boundary of the typesetting area. Together \type{backspace} and \type{topspace} determine the left top corner of the typesetting area.  \NC\NR
+\NC margin              \NC dimension 
+\NC Setting this parameters makes left and right margin equally large. \NC\NR
+\NC leftmargin          \NC dimension 
+\NC For documents with different size of the left and right margin, the left margin size is determined.  \NC\NR
+\NC rightmargin         \NC dimension 
+\NC For documents with different size of the left and right margin, the right margin size is determined. \NC\NR 
+\NC header              \NC dimension 
+\NC Determines the height of a running header. The header height is part of the \type{height} parameter. \NC\NR
+\NC footer              \NC dimension 
+\NC Determines the height of the footer. The footer height is part of the \type{height} parameter. \NC\NR
+\NC top                 \NC dimension 
+\NC Makes space available in the \type{topspace} area. This parameter is not part of the text height. \NC\NR
+\NC bottom              \NC dimension 
+\NC Makes space available underneath the typesetting area. This parameter is not part of the text height. \NC\NR
+\NC leftedge            \NC dimension 
+\NC This space located left to the left margin is for screen documents only. \NC\NR
+\NC rightedge           \NC dimension 
+\NC This space located right to the right margin is for screen documents only. \NC\NR
+\NC headerdistance      \NC dimension 
+\NC All parameters ending on \dots\type{distance} create white space between adjacent elements. \NC\NR
+\NC footerdistance      \NC dimension \NC \NC\NR
+\NC leftmargindistance  \NC dimension \NC \NC\NR
+\NC rightmargindistance \NC dimension \NC \NC\NR
+\NC leftedgedistance    \NC dimension \NC \NC\NR
+\NC rightedgedistance   \NC dimension \NC \NC\NR
+\NC topdistance         \NC dimension \NC \NC\NR
+\NC bottomdistance      \NC dimension \NC \NC\NR
+\NC horoffset           \NC dimension 
+\NC A horizontal offset moves the complete layout horizontally, starting from the place indicated by the parameter \type{location}. \NC\NR
+\NC veroffset           \NC dimension 
+\NC A vertical offset moves the complete layout vertically, starting from the place indicated by the parameter \type{location}. \NC\NR
+\NC style               \NC normal bold slanted boldslanted type cap small... COMMAND
+\NC With the style parameter one can setup the general style of the font(s) used in the document.\NC\NR
+\NC marking             \NC on off color screen TEXT
+\NC When this parameter is set to \type{on}, then crop marks are placed around the page. \type{Color} displays a color bar, whereas \type{screen} shows a gray-values bar.\NC\NR %TEXT geeft nog in MKII nog in MKIV resultaat. 
+\NC location            \NC left middle right bottom top singlesided doublesided duplex %duplex ontbreekt in de paramter lijst
+\NC \type{location} determines where the page is placed on the paper. It allows to typeset single and double sided documents and documents for duplex printing (\in{see:}[printing]). \NC\NR
+\NC scale               \NC number    
+\NC With \type{scale} it is possible to scale a page before placing it on the defined paper. \NC\NR
+\NC nx                  \NC number    
+\NC In case that a given text should be placed multiple times on a defined paper, \type{nx} gives the number of pages on the x-axis and \type{ny} the number of pages on the y-axis. \NC\NR
+\NC ny                  \NC number    \NC  \NC\NR
+\NC dx                  \NC dimension 
+\NC With \type{dx} and \type{dy} the distances of the pages indicated in \type{nx} and \type{ny} can be manipulated. \NC\NR
+\NC dy                  \NC dimension  \NC  \NC\NR
+\NC lines               \NC number    
+\NC Determines the textheight in terms of the number of lines-heights. \NC\NR
+\NC columns             \NC number    \NC \NC\NR % Geen effect nog in MKII nog in MKIV
+\NC columndistance      \NC dimension \NC \NC\NR % Geen effect nog in MKII nog in MKIV
+\NC grid                \NC yes no    
+\NC Typsetting on the grid is activated with grid=on. \NC\NR
+\NC bottomspace         \NC dimension
+\NC \type{Bottomspace} increases the white space at the bottom of the page without altering the page-layout. \NC\NR 
+\NC cutspace            \NC dimension
+\NC \type{Cutspace} increases the white space at the right side of the page without altering the page-layout. \NC\NR 
+\NC textdistance        \NC dimension  \NC  \NC\NR
+\NC textwidth           \NC dimension  \NC  \NC\NR
+\NC textmargin          \NC dimension  \NC  \NC\NR
+\NC clipoffset          \NC dimension  \NC  \NC\NR
+\NC page                \NC identifier \NC  \NC\NR
+\NC paper               \NC identifier \NC  \NC\NR
+\stoptabulate
+
+In order to get information on the current settings the following
 commands can be issued: 
 
 \showsetup{showframe}
@@ -826,6 +899,7 @@ to yield a good output on paper.
 
 \stoppostponing
 % \stopnotmode
+
 
 
 In \in{figure}[fig:page composition 1] \in{and}[fig:page
