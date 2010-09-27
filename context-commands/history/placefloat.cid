@@ -1,0 +1,60 @@
+local t = {
+    name = placefloat,
+    comment = "Insert a floating element.",
+    description = [[This command must be followed by a new paragraph
+                    (empty line).]],
+    fixpart = "place",
+    varpart = "float",
+    generator = "definefloat",
+    categories = {"Structure", "Graphic"}, -- First category is main category,
+    arguments = {        -- in the other categories, there are just references.
+        keywords = {
+            comment = "Where to place the float.",
+            type = "keywords",
+            default = "here",
+        },
+        label = {
+            comment = "Label for referencing.",
+            type = "label",
+        },
+        caption = {
+            comment = "Text of the caption.",
+            description = "If \quote{none}, then no caption is placed.",
+            type = "text",
+        },
+        content = {
+            comment = "Content of the float.",
+            type = "text",
+        },
+    },
+    variants = {
+        {
+            comment = "No placement option, no label.",
+            "caption", "content",
+        },
+        {
+            comment = "With placement option.",
+            "keywords", "caption", "content",
+        },
+        {
+            comment = "With placement and label.",
+            description = [[If you need a label, but you do not want to
+                        use the placement option, just leave the first
+                        brackets empty.]],
+            "keywords", "label", "caption", "content",
+        },
+    },
+}
+
+-- better readable if outside the arguments-table:
+t.arguments.keywords.keywords = {
+    left = "place float on left side",
+    right = "place float on right side",
+    here = "place float right here",
+}
+
+return t
+
+-- Local Variables:
+-- mode:lua
+-- End:

@@ -1,0 +1,36 @@
+local t = {
+    name = "startchapter",
+    comment = "Defines a new chapter.",  -- short description (one-liner)
+    description = "Perhaps longer description...",
+    environment = true,         -- default is false
+    categories = {"Structure"},
+    arguments = {
+        settings = {
+            comment = "Settings for the chapter.",
+            type = "settings",
+        },
+    },
+    variants = {
+        {
+            comment = "The only variant.",
+            "settings",
+        },
+    },
+}
+
+t.arguments.settings.settings = { -- don't clutter the arguments-table...
+    title = {
+        comment = "The title of the chapter.",
+        values = {"text"},
+    },
+    incrementnumber = {
+        values = {"yes", "no", "list"},
+        default = "yes",
+    },
+}
+
+return t
+
+-- Local Variables:
+-- mode:lua
+-- End:

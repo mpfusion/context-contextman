@@ -1,0 +1,84 @@
+\environment e-context-reference
+\starttext
+\startstandardmakeup
+  \setupalign[middle] \color[darkgreen] \bfd \setupinterlinespace \vfil
+  \getvariable{pm}{title} \vfil
+  \bfb \getvariable{pm}{author} \vfil
+  \tfx \date[m=9, d=14, y=2010] \vfil\vfil\vfil
+\stopstandardmakeup
+
+\Topics
+
+\chapter{Introduction}
+The following slides present a possibility, to group all details about a
+\ConTeXt\ command in a well structured and readable “command-description-file”.
+
+The language of this file is Lua, because
+\startitemize
+\item it's a native language of \LuaTeX
+\item and it's convenient to read and to edit by human beings (better than
+  XML)
+\stopitemize
+
+\chapter{Motivation}
+Main goal: getting one day the {\em Complete \ConTeXt\ Command Reference}.
+With:
+\startitemize
+\item detailed descriptions of the macros and their arguments
+\item classification in categories (chapters and sections)
+\item index
+\item cross-references
+\item perhaps various output formats (PDF, HTML, various styles, ...)
+\stopitemize
+
+There are several hundreds of commands to describe, so in order to get there
+in the most efficient way, we must be able to concentrate on the content:
+\startitemize
+\item ergonomic editing environment (using your favorite editor)
+\item not too verbose structuring syntax (Lua is nice!)
+\item avoidance of redundancy (description of inheritance)
+\stopitemize
+
+Furthermore, the command descriptions can be used for a future \ConTeXt\
+syntax checker!
+
+\chapter{Examples}
+In the following examples, you will see, that there is no concept for optional
+arguments.
+
+This is so, because in \ConTeXt
+\startitemize
+\item sometimes you need to add argument 1 to make use of argument 2 (e.g.
+  \tex{placefigure})
+\item sometimes the meaning of arguments depends on the number of supplied
+  arguments (e.g. \tex{setupheadertexts})
+\item sometimes the position of an argument varies (e.g.
+  \tex{externalfigure[ref][file]} and \tex{externalfigure[file][parent]})
+\stopitemize
+
+Instead, we use {\em variants} to describe the different possibilities to call
+a macro.
+
+\PrintExamples
+
+\chapter{Perspectives for the future}
+When this syntax is generally accepted, we can:
+\startitemize
+\item put these files on a public svn-server
+\item integrate the content of the \type{cont-en.xml} file and the wiki
+\item add a \LuaTeX\ script that generates a nice looking PDF (once per night
+  for example)
+\item and then add more and more content
+\stopitemize
+
+We hope, that this command description syntax will make it a pleasure to add
+explanations of macros and their arguments.
+
+\startalignment[flushright]
+  \em Thanks for your attention!\crlf Taco and Peter
+\stopalignment
+
+\stoptext
+
+% LocalWords:  darkgreen Lua PDF placefigure setupheadertexts externalfigure
+% LocalWords:  svn xml wiki flushright

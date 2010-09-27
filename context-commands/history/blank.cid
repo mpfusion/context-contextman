@@ -1,0 +1,30 @@
+return {
+    name = "blank", -- redundant (same as filename), but nice to see at top
+    comment = "Adds space between 2 paragraphs.", -- short description
+    categories = {"Spacing"},
+    arguments = {              -- list of all arguments, order doesn't matter
+        keyword_list = {       -- just an arbitrary name for this argument
+            type = "keywords",
+            default = "big",
+            keywords = {
+                small = "insert small space",
+                big = "insert big space",
+                samepage = "no page break here",
+            },
+        },
+    },
+    --~ \page
+    variants = {  -- one variant for each possibility to call the macro
+        {
+            comment = "Just use the default setting.",
+        },
+        {
+            comment = "Specify some keywords.",
+            "keyword_list",
+        },
+    }
+}
+
+-- Local Variables:
+-- mode:lua
+-- End:

@@ -1,0 +1,78 @@
+local t = {
+    name = "setupframed",
+    comment = "Setting up \cmd{framed}.",
+    categories = {"Packaging"},
+    arguments = {
+        name = {
+            comment = "Name of command defined with \cmd{defineframed}",
+            type = "label",
+        },
+        settings = {
+            comment = "Some settings.",
+            type = "settings",
+        },
+    },
+    variants = {
+        {
+            comment = "The simple variant.",
+            "settings",
+        },
+        {
+            comment = "Setting up a command defined with \cmd{defineframed}.",
+            "name", "settings",
+        },
+    },
+}
+
+-- better readable if outside the arguments-table:
+t.arguments.settings.settings = {
+    height = {
+        values = {"fit", "broad", "dimension",},
+    },
+    width = {
+        values = {"fit", "broad", "fixed", "local", "dimension",},
+    },
+    autowidth = {
+        values = {"yes", "no", "force",},
+    },
+    offset = {
+        values = {"none", "overlay", "default", "dimension",},
+    },
+    location = general_settings"location",
+    option = {
+        values = {"none", "empty",},
+    },
+    strut = general_settings"strut",
+    align = general_settings"align",
+    bottom = {
+        values = {"command",},
+    },
+    top = {
+        values = {"command",},
+    },
+    frame = {
+        values = {"on", "off", "none", "overlay",},
+        default = "on",
+    },
+    topframe = {
+        values = {"on", "off",},
+    },
+    background = {
+        values = {"screen", "color", "none", "foreground", "name",},
+    },
+    backgroundscreen = {
+        values = {"number",},
+    },
+    backgroundcolor = {
+        values = {"name",},
+    },
+    depth = {
+        values = {"dimension",},
+    },
+}
+
+return t
+
+-- Local Variables:
+-- mode:lua
+-- End:

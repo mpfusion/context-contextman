@@ -1,0 +1,11 @@
+commands:
+    One file per command (or environment)
+
+Makefile:
+    main entry point for creation of pdf and html files
+
+general-keywords.cid and general-settings.cid:
+    collection of keywords and settings, that can be inherited by any command
+
+history:
+    initial presentation at the ConTeXt conference 2010

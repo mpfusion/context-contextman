@@ -1,0 +1,16 @@
+1.) Keywords with special meaning
+- dimension    ->   value is a TeX-dimension
+- command      ->   value is a TeX-command
+
+2.) Macros with special meaning
+- \cmd{} make reference to other command
+
+3.) Comment and description
+Perhaps the following general rule is useful:
+- when you want to describe something (command, variant, option,
+  keyword, setting, etc), then begin with a short "comment"
+- when more text is needed, then provide a "description"
+
+4.) Categories
+First category is main category, in the other categories, there are
+just references.

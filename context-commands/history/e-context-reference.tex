@@ -1,0 +1,88 @@
+\startenvironment e-context-reference
+
+%% Interaction:
+\def\setupPMvars{\setvariables[pm]}
+\setupPMvars[title=Structured description of \ConTeXt\ commands,
+  author=Peter Münster, keywords={context, lua, reference, syntax, commands,
+    macros, descriptions, documentation}, subject=Presentation]
+%\usemodule[pre-stepwise]
+\setupinteraction[state=start, focus=minwidth,
+  author=\getvariable{pm}{author}, title=\getvariable{pm}{title},
+  keyword=\getvariable{pm}{keywords}, subtitle=\getvariable{pm}{subject}]
+\setupinteractionscreen[option=max]
+\placebookmarks[chapter, section][chapter]
+
+%% Fonts:
+\setupbodyfont[pagella, ss, 14pt]
+
+%% Colors:
+\definecolor[brightgreen][r=.6, g=.8, b=0]
+\definecolor[grayline]   [s=.78]
+
+%% Header:
+\startsetups[header]
+  \framed[width=\makeupwidth, align=flushleft, frame=off, bottomframe=on,
+    foregroundcolor=brightgreen, framecolor=grayline, rulethickness=2pt]{%
+    \tfc\doiftextelse{\getmarking[chapter]}
+                     {\getmarking[chapter]}{\getmarking[title]}
+                     \doiftext{\placeheadtext[section]}{%
+                       \hfill\placeheadtext[section]}}
+\stopsetups
+\setupheadertexts[\setups{header}]
+
+%% Footer:
+\setupfootertexts[\txx\expanded{\type{\getvariable{pm}{svn-id}}}]
+                 [{\tx\color[darkgreen]{\pagenumber/\lastpagenumber}}]
+
+%% Lists:
+\def\Topics{\dosingleempty\doTopics}
+\def\doTopics[#1]{%
+  \edef\TTitle{\iffirstargument#1\else Topics\fi}%
+  \start
+    \switchtobodyfont[18pt]
+    \title[topics]{\TTitle}
+    \startcolumns\placelist[chapter]\stopcolumns
+  \stop}
+\setuplist[chapter][alternative=f, criterium=all]
+
+%% Layout:
+\setuppapersize[S6][S6]
+\setuplayout[topspace=3mm, header=5ex, headerdistance=2mm, backspace=3mm,
+  footer=3ex, footerdistance=2mm, width=middle, height=fit]
+\setuphead[chapter, title, section][number=no]
+\setuphead[section][page=yes, continue=no, style=\tfb]
+\setupwhitespace[big]
+
+%% Printing the cid files:
+\setupnarrower[middle=2em]
+\setuptyping[file][before=\startnarrower, after=\stopnarrower,
+  option=LUA, style=\tx\tt, escape=--~]
+\def\PrintExamples{\usercode{print_examples()}}
+\startusercode
+global.setmetatable(global.getfenv(), {__index = global})
+function print_examples()
+    local file_list = {
+        "blank",
+        "placefloat",
+        "startchapter",
+        "externalfigure",
+        "setupframed",
+        "framed",
+        "placebookmarks",
+        "setupheadertexts",
+        "startitemgroup",
+        "general-keywords",
+        "general-settings",
+    }
+    for _, f in ipairs(file_list) do
+        context.section(f)
+        context.typefile(f .. ".cid")
+    end
+end
+\stopusercode
+
+\stopenvironment
+
+% Local Variables:
+% TeX-master: "context-reference"
+% End:
