@@ -1,8 +1,10 @@
 local t = {
     name = "startchapter",
-    comment = "Defines a new chapter.",  -- short description (one-liner)
+    vc_id = "$Id$",
+    status = "initial",
+    comment = "Defines a new chapter.",
     description = "Perhaps longer description...",
-    environment = true,         -- default is false
+    environment = true,
     categories = {"Structure"},
     arguments = {
         settings = {

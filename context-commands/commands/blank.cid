@@ -1,9 +1,11 @@
 return {
-    name = "blank", -- redundant (same as filename), but nice to see at top
-    comment = "Adds space between 2 paragraphs.", -- short description
+    name = "blank",
+    vc_id = "$Id$",
+    status = "initial",
+    comment = "Adds space between 2 paragraphs.",
     categories = {"Spacing"},
-    arguments = {              -- list of all arguments, order doesn't matter
-        keyword_list = {       -- just an arbitrary name for this argument
+    arguments = {
+        keywords = {
             type = "keywords",
             default = "big",
             keywords = {
@@ -13,14 +15,13 @@ return {
             },
         },
     },
-    --~ \page
-    variants = {  -- one variant for each possibility to call the macro
+    variants = {
         {
             comment = "Just use the default setting.",
         },
         {
             comment = "Specify some keywords.",
-            "keyword_list",
+            "keywords",
         },
     }
 }

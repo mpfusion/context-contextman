@@ -1,11 +1,11 @@
 return {
     name = "framed",
+    vc_id = "$Id$",
+    status = "initial",
     comment = "Make box with a frame.",
     categories = {"Packaging"},
-    validated = false, -- only qualified people (Hans, Wolfgang, etc.)
-                       -- should set this to true
     arguments = {
-        settings = { -- it must be just the same as the name in setupframed
+        settings = {
             comment = "short comment for this option",
             description = "long description for this option",
             type = "settings",

@@ -1,8 +1,9 @@
 return {
     name = "placebookmarks",
+    vc_id = "$Id$",
+    status = "initial",
     comment = "Specify heads for which bookmarks should be created.",
     categories = {"Interaction"},
-    validated = false,
     arguments = {
         head_list = {
             comment = "List with heads to create bookmarks for.",

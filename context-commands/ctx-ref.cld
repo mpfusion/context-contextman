@@ -1,0 +1,6 @@
+local C = context -- just shorter ...
+
+C("\\input e-ctx-ref")  -- todo: \environment does not work (bug-report)
+C.starttext()
+C("todo")
+C.stoptext()

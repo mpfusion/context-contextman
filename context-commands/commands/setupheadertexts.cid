@@ -1,5 +1,7 @@
 return {
     name = "setupheadertexts",
+    vc_id = "$Id$",
+    status = "initial",
     comment = "Insert text in the header line."
     description = "A lot of text..."
     categories = {"Layout"},
@@ -7,8 +9,7 @@ return {
         text_middle = {
             comment = "Text placed in the centre of the header.",
             type = "text",
-            square_brackets = true, -- needed because
-                                    -- type = "text" implies braces
+            square_brackets = true,
         },
         text_left = {
             comment = "Text placed at the left side.",

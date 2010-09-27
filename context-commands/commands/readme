@@ -1,6 +1,12 @@
 1.) Keywords with special meaning
-- dimension    ->   value is a TeX-dimension
-- command      ->   value is a TeX-command
+- values in settings:
+  - dimension    ->   value is a TeX-dimension
+  - command      ->   value is a TeX-command
+- status:
+  - initial      ->   still work in progress (not to be included in pdf)
+  - unverified   ->   perhaps with some hint in pdf, that there can be errors
+  - validated    ->   a context-expert has approuved the cid-file, it's now in
+                      sync with the latest context-version
 
 2.) Macros with special meaning
 - \cmd{} make reference to other command

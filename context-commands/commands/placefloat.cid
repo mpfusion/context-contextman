@@ -1,13 +1,15 @@
 local t = {
     name = placefloat,
+    vc_id = "$Id$",
+    status = "initial",
     comment = "Insert a floating element.",
     description = [[This command must be followed by a new paragraph
                     (empty line).]],
     fixpart = "place",
     varpart = "float",
     generator = "definefloat",
-    categories = {"Structure", "Graphic"}, -- First category is main category,
-    arguments = {        -- in the other categories, there are just references.
+    categories = {"Structure", "Graphic"},
+    arguments = {
         keywords = {
             comment = "Where to place the float.",
             type = "keywords",
@@ -46,7 +48,6 @@ local t = {
     },
 }
 
--- better readable if outside the arguments-table:
 t.arguments.keywords.keywords = {
     left = "place float on left side",
     right = "place float on right side",

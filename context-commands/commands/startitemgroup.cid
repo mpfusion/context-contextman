@@ -1,5 +1,7 @@
 local t = {
     name = "startitemgroup",
+    vc_id = "$Id$",
+    status = "initial",
     comment = "Creates an item list.",
     environment = true,
     varpart = "itemgroup",
@@ -14,15 +16,7 @@ local t = {
         settings = {
             comment = "Many settings.",
             type = "settings",
-            inherit = "setupitemgroup", -- inherit "settings"
-                                        -- from setupitemgroup
-            settings = {    -- just to show, inherit + further settings
-                dummy = {
-                    values = {"foo", "bar"},
-                    comment =
-                        "Setting that is not inherited from setupitemgroup.",
-                },
-            },
+            inherit = "setupitemgroup",
         },
     },
     variants = {

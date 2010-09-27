@@ -8,4 +8,16 @@ general-keywords.cid and general-settings.cid:
     collection of keywords and settings, that can be inherited by any command
 
 history:
-    initial presentation at the ConTeXt conference 2010
+    initial presentation at the ConTeXt meeting 2010
+
+todo:
+    to do!
+
+categories.lua:
+    structure of the categories
+
+e-ctx-ref.tex:
+    settings for the pdf-output (style-file)
+
+ctx-ref.cld:
+    lua function for pdf-creation

@@ -1,5 +1,7 @@
 return {
     name = "externalfigure",
+    vc_id = "$Id$",
+    status = "initial",
     comment = "Insert a figure from an external file.",
     categories = {"Graphic"},
     arguments = {
@@ -29,7 +31,7 @@ return {
         {"reference", "file", "settings"},
         {"file", "parent"}, 
     },
-    examples = { -- to be put perhaps into externalfigure-examples.tex
+    examples = {
         [=[\externalfigure[hacker][width=3cm]]=],
         [=[\externalfigure[my label][hacker][frame=on]]=],
     }

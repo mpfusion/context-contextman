@@ -1,5 +1,7 @@
 local t = {
     name = "setupframed",
+    vc_id = "$Id$",
+    status = "initial",
     comment = "Setting up \cmd{framed}.",
     categories = {"Packaging"},
     arguments = {
@@ -24,7 +26,6 @@ local t = {
     },
 }
 
--- better readable if outside the arguments-table:
 t.arguments.settings.settings = {
     height = {
         values = {"fit", "broad", "dimension",},
