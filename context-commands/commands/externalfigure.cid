@@ -1,0 +1,40 @@
+return {
+    name = "externalfigure",
+    comment = "Insert a figure from an external file.",
+    categories = {"Graphic"},
+    arguments = {
+        reference = {
+            comment = "For referencing a predefined setting.",
+            type = "label",
+        },
+        file = {
+            comment = "Filename with the figure to insert.",
+            description = "The name does not need a suffix."
+            type = "file",
+        },
+        settings = {
+            comment = "short comment for this option",
+            description = "long description for this option",
+            type = "settings",
+            inherit = "useexternalfigure",
+        },
+        parent = {
+            comment = "I don't know...",
+            type = "parent",
+        },
+    },
+    variants = {
+        {"file"},
+        {"reference", "file"},
+        {"reference", "file", "settings"},
+        {"file", "parent"}, 
+    },
+    examples = { -- to be put perhaps into externalfigure-examples.tex
+        [=[\externalfigure[hacker][width=3cm]]=],
+        [=[\externalfigure[my label][hacker][frame=on]]=],
+    }
+}
+
+-- Local Variables:
+-- mode:lua
+-- End:

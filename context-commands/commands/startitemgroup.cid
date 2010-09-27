@@ -1,0 +1,58 @@
+local t = {
+    name = "startitemgroup",
+    comment = "Creates an item list.",
+    environment = true,
+    varpart = "itemgroup",
+    generator = "defineitemgroup",
+    categories = {"Structure"},
+    arguments = {
+        keywords = {
+            comment = "Control the layout.",
+            type = "keywords",
+            default = "standard",
+        },
+        settings = {
+            comment = "Many settings.",
+            type = "settings",
+            inherit = "setupitemgroup", -- inherit "settings"
+                                        -- from setupitemgroup
+            settings = {    -- just to show, inherit + further settings
+                dummy = {
+                    values = {"foo", "bar"},
+                    comment =
+                        "Setting that is not inherited from setupitemgroup.",
+                },
+            },
+        },
+    },
+    variants = {
+        {
+            comment = "Use default setup.",
+        },
+        {
+            comment = "Use some keywords.",
+            "keywords",
+        },
+        {
+            comment = "Use some settings.",
+            "settings",
+        },
+        {
+            comment = "Use keywords and settings.",
+            "keywords", "settings",
+        },
+    },
+}
+
+t.arguments.keywords.keywords = {
+    a = "Alphabetic numerating.",
+    A = "Uppercase alphabetic numerating.",
+    KA = "todo",
+    n = "todo",
+}
+
+return t
+
+-- Local Variables:
+-- mode:lua
+-- End:

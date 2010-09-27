@@ -1,0 +1,63 @@
+return {
+    name = "setupheadertexts",
+    comment = "Insert text in the header line."
+    description = "A lot of text..."
+    categories = {"Layout"},
+    arguments = {
+        text_middle = {
+            comment = "Text placed in the centre of the header.",
+            type = "text",
+            square_brackets = true, -- needed because
+                                    -- type = "text" implies braces
+        },
+        text_left = {
+            comment = "Text placed at the left side.",
+            type = "text",
+            square_brackets = true,
+        },
+        text_right = {
+            comment = "Text placed at the right side.",
+            type = "text",
+            square_brackets = true,
+        },
+        text_left_odd = {
+            comment = "Text placed at the left side of odd pages.",
+            type = "text",
+            square_brackets = true,
+        },
+        text_right_odd = {
+            comment = "Text placed at the right side of odd pages.",
+            type = "text",
+            square_brackets = true,
+        },
+        text_left_even = {
+            comment = "Text placed at the left side of even pages.",
+            type = "text",
+            square_brackets = true,
+        },
+        text_right_even = {
+            comment = "Text placed at the right side of even pages.",
+            type = "text",
+            square_brackets = true,
+        },
+    },
+    variants = {
+        {
+            comment = "Very simple usage.",
+            "text_middle",
+        },
+        {
+            comment = "Two elements are placed in the header.",
+            "text_left", "text_right",
+        },
+        {
+            comment = "Usage for double-sided layout.",
+            "text_left_odd", "text_right_odd",
+            "text_left_even", "text_right_even",
+        },
+    },
+}
+
+-- Local Variables:
+-- mode:lua
+-- End:

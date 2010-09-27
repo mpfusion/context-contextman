@@ -1,0 +1,33 @@
+return {
+    name = "framed",
+    comment = "Make box with a frame.",
+    categories = {"Packaging"},
+    validated = false, -- only qualified people (Hans, Wolfgang, etc.)
+                       -- should set this to true
+    arguments = {
+        settings = { -- it must be just the same as the name in setupframed
+            comment = "short comment for this option",
+            description = "long description for this option",
+            type = "settings",
+            inherit = "setupframed",
+        },
+        content = {
+            comment = "Stuff to put into the box.",
+            type = "text",
+        },
+    },
+    variants = {
+        {
+            comment = "No special settings.",
+            "content"
+        },
+        {
+            comment = "With some local settings.",
+            "settings", "content"
+        },
+    },
+}
+
+-- Local Variables:
+-- mode:lua
+-- End:
