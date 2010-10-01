@@ -1,3 +1,7 @@
-How to manage examples?
+- How to manage examples?
     - external tex-files
     - example types: inline, tex-page, source + output side by side, etc.
+
+- Import cid-files from third party modules.
+
+- Perhaps support main-categories and sub-categories.

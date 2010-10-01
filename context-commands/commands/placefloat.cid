@@ -1,5 +1,5 @@
 local t = {
-    name = placefloat,
+    name = "placefloat",
     vc_id = "$Id$",
     status = "initial",
     comment = "Insert a floating element.",
@@ -8,7 +8,7 @@ local t = {
     fixpart = "place",
     varpart = "float",
     generator = "definefloat",
-    categories = {"Structure", "Graphic"},
+    categories = {"struct", "graphic"},
     arguments = {
         keywords = {
             comment = "Where to place the float.",

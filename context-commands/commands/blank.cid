@@ -3,7 +3,7 @@ return {
     vc_id = "$Id$",
     status = "initial",
     comment = "Adds space between 2 paragraphs.",
-    categories = {"Spacing"},
+    categories = {"space"},
     arguments = {
         keywords = {
             type = "keywords",

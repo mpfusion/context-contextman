@@ -20,4 +20,4 @@ e-ctx-ref.tex:
     settings for the pdf-output (style-file)
 
 ctx-ref.cld:
-    lua function for pdf-creation
+    lua functions for pdf-creation

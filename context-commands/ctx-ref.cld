@@ -1,6 +1,79 @@
-local C = context -- just shorter ...
+-- do not pollute the global environment
+local t = {}
+package.seeall(t)
+setfenv(0, t)
 
-C("\\input e-ctx-ref")  -- todo: \environment does not work (bug-report)
+-- short-cuts
+local C = context
+local format = string.format
+
+-- main table
+local cats = dofile"categories.lua"
+
+-- Call back for cid-files.
+-- todo
+function general_settings(...)
+end
+
+-- Call back for cid-files.
+-- todo
+function general_keywords(...)
+end
+
+-- Print a section with a command description.
+-- c: the command table
+local function print_command(c)
+    C.startsection{title = c.name}
+    C(c.comment)
+    C.stopsection()
+end
+
+-- Print a category with it's commands.
+-- cat: category table
+local function print_category(cat)
+    C.startchapter{title = cat.title}
+    for _, c in ipairs(cat.commands) do
+        print_command(c)
+    end
+    C.stopchapter()
+end
+
+-- Extend the category table with references by labels.
+-- And add commands table to each entry.
+local function prepare_cats_table()
+    for i, c in ipairs(cats) do
+        c.commands = {}
+        cats[c.label] = c
+    end
+end
+
+-- Read the cid files and put the content into the category table.
+local function read_cid_files()
+    local d = "commands"
+	for f in lfs.dir(d) do
+        local b = f:match("^(.*)%.cid$")
+        if b then
+            local cid = dofile(d .. "/" .. f)
+            local cat = cid.categories[1]
+            table.insert(cats[cat].commands, cid)
+            if type(cid.name) ~= "string" then
+                print(b)
+            end
+        end
+	end
+    for _, c in ipairs(cats) do
+        table.sort(c.commands, function(a, b) return a.name < b.name end)
+    end
+end
+
+-- do the real job
+prepare_cats_table()
+read_cid_files()
+C("\\environment e-ctx-ref ")
 C.starttext()
-C("todo")
+-- C.titlepage()
+for _, c in ipairs(cats) do
+    print_category(c)
+end
+-- print_index()
 C.stoptext()

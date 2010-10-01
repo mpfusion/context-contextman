@@ -3,7 +3,7 @@ return {
     vc_id = "$Id$",
     status = "initial",
     comment = "Insert a figure from an external file.",
-    categories = {"Graphic"},
+    categories = {"graphic"},
     arguments = {
         reference = {
             comment = "For referencing a predefined setting.",
@@ -11,7 +11,7 @@ return {
         },
         file = {
             comment = "Filename with the figure to insert.",
-            description = "The name does not need a suffix."
+            description = "The name does not need a suffix.",
             type = "file",
         },
         settings = {

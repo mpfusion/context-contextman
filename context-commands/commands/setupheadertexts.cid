@@ -2,9 +2,9 @@ return {
     name = "setupheadertexts",
     vc_id = "$Id$",
     status = "initial",
-    comment = "Insert text in the header line."
-    description = "A lot of text..."
-    categories = {"Layout"},
+    comment = "Insert text in the header line.",
+    description = "A lot of text...",
+    categories = {"layout"},
     arguments = {
         text_middle = {
             comment = "Text placed in the centre of the header.",

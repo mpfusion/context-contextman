@@ -10,3 +10,9 @@ pdf: ctx-ref.pdf
 
 %-debug.pdf: %.cld $(sources) Makefile
 	context --mode=debug --result=$(basename $@) $<
+
+clean:
+	context --purgeall
+
+clear: clean
+	rm -f ctx-ref.pdf

@@ -3,7 +3,7 @@ return {
     vc_id = "$Id$",
     status = "initial",
     comment = "Make box with a frame.",
-    categories = {"Packaging"},
+    categories = {"packaging"},
     arguments = {
         settings = {
             comment = "short comment for this option",
