@@ -37,7 +37,3 @@ return {
         {"head_list", "settings"},
     }
 }
-
--- Local Variables:
--- mode:lua
--- End:

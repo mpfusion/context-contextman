@@ -73,7 +73,3 @@ t.arguments.settings.settings = {
 }
 
 return t
-
--- Local Variables:
--- mode:lua
--- End:

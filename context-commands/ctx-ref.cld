@@ -20,12 +20,48 @@ end
 function general_keywords(...)
 end
 
+-- Format the command name.
+-- Add backslach, add start-stop and so on
+-- c: command table
+-- return: tex-string for nice looking command name
+local function format_cmd_name(c)
+    local s = "\\textbackslash " .. c.name
+    if c.environment then
+        s = s .. " ... \\textbackslash "
+        local stop = "ERROR"
+        if c.name:find("^b") then
+            stop = c.name:gsub("^(b)", "e")
+        elseif c.name:find("^start") then
+            stop = c.name:gsub("^(start)", "stop")
+        end
+        s = s .. stop
+    end
+    return format("\\mono{%s}", s)
+end
+
 -- Print a section with a command description.
 -- c: the command table
 local function print_command(c)
-    C.startsection{title = c.name}
+    local date = c.vc_id:match("^%$Id: .- (%d%d%d%d%-%d%d%-%d%d) .-%$$")
+    C.startsection{title = format_cmd_name(c), reference = c.name}
+    C.inmargin(format("Last update: %s, Status: %s", date, c.status))
     C(c.comment)
     C.stopsection()
+end
+
+-- Print related commands.
+-- r: table with related commands
+local function print_related_commands(r)
+    if #r > 0 then
+        C.startsection{title = "Related commands"}
+        C.startRelatedCommands()
+        for _, c in ipairs(r) do
+            C.RelatedCommand{name = format_cmd_name(c),
+                             comment = c.comment, reference = c.name}
+        end
+        C.stopRelatedCommands()
+        C.stopsection()
+    end
 end
 
 -- Print a category with it's commands.
@@ -35,14 +71,15 @@ local function print_category(cat)
     for _, c in ipairs(cat.commands) do
         print_command(c)
     end
+    print_related_commands(cat.related)
     C.stopchapter()
 end
 
 -- Extend the category table with references by labels.
--- And add commands table to each entry.
+-- And add commands and related tables to each entry.
 local function prepare_cats_table()
     for i, c in ipairs(cats) do
-        c.commands = {}
+        c.commands, c.related = {}, {}
         cats[c.label] = c
     end
 end
@@ -54,15 +91,15 @@ local function read_cid_files()
         local b = f:match("^(.*)%.cid$")
         if b then
             local cid = dofile(d .. "/" .. f)
-            local cat = cid.categories[1]
-            table.insert(cats[cat].commands, cid)
-            if type(cid.name) ~= "string" then
-                print(b)
+            for i, c in ipairs(cid.categories) do
+                table.insert(cats[c][i == 1 and "commands" or "related"], cid)
             end
         end
-	end
+    end
     for _, c in ipairs(cats) do
-        table.sort(c.commands, function(a, b) return a.name < b.name end)
+        local function sort_by_name(a, b) return a.name < b.name end
+        table.sort(c.commands, sort_by_name)
+        table.sort(c.related, sort_by_name)
     end
 end
 

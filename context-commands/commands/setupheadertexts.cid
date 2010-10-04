@@ -58,7 +58,3 @@ return {
         },
     },
 }
-
--- Local Variables:
--- mode:lua
--- End:

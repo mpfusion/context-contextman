@@ -32,7 +32,3 @@ t.arguments.settings.settings = { -- don't clutter the arguments-table...
 }
 
 return t
-
--- Local Variables:
--- mode:lua
--- End:

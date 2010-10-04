@@ -1,5 +1,21 @@
 % settings for the pdf output
 
 \startenvironment e-ctx-ref
-% todo
+
+\setupinteraction[state=start]
+\setupinmargin[style=\small\small]
+
+\def\startRelatedCommands{%
+  \bTABLE[setups=related-tab]
+  \bTR \bTH Name \eTH \bTH Meaning \eTH \bTH Page \eTH \eTR}
+\def\stopRelatedCommands{\eTABLE}
+\def\RelatedCommand{\dosingleempty\doRelatedCommand}
+\def\doRelatedCommand[#1]{\getparameters[RC][#1]%
+  \bTR \bTD \RCname \eTD \bTD \RCcomment \eTD \bTD \at[\RCreference] \eTD \eTR}
+
+\startsetups[related-tab]
+  \setupTABLE[option=stretch, align=middle, frame=off]
+  \setupTABLE[r][1][bottomframe=on, rulethickness=1.2pt]
+\stopsetups
+
 \stopenvironment

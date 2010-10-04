@@ -1,7 +1,7 @@
 return {
     name = "blank",
     vc_id = "$Id$",
-    status = "initial",
+    status = "unverified",
     comment = "Adds space between 2 paragraphs.",
     categories = {"space"},
     arguments = {
@@ -10,8 +10,24 @@ return {
             default = "big",
             keywords = {
                 small = "insert small space",
+                medium = "insert medium space",
                 big = "insert big space",
                 samepage = "no page break here",
+                nowhite = "do not add normal inter-paragraph white-space",
+                back = "",
+                white = "",
+                disable = "",
+                force = "",
+                reset = "",
+                line = "",
+                halfline = "",
+                formula = "",
+                fixed = "",
+                flexible = "",
+                none = "",
+                always = "",
+                outer = "",
+                joinedup = "",
             },
         },
     },
@@ -25,7 +41,3 @@ return {
         },
     }
 }
-
--- Local Variables:
--- mode:lua
--- End:

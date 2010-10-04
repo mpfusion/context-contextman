@@ -36,7 +36,3 @@ return {
         [=[\externalfigure[my label][hacker][frame=on]]=],
     }
 }
-
--- Local Variables:
--- mode:lua
--- End:

@@ -46,7 +46,3 @@ t.arguments.keywords.keywords = {
 }
 
 return t
-
--- Local Variables:
--- mode:lua
--- End:
