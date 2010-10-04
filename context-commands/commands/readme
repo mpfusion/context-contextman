@@ -1,10 +1,11 @@
 1.) Keywords with special meaning
 - values in settings:
   - dimension    ->   value is a TeX-dimension
+  - number       ->   value is a real number
   - command      ->   value is a TeX-command
 - status:
-  - initial      ->   still work in progress (not to be included in pdf)
-  - unverified   ->   perhaps with some hint in pdf, that there can be errors
+  - initial      ->   still work in progress
+  - unverified   ->   not yet verified by context-expert
   - validated    ->   a context-expert has approuved the cid-file, it's now in
                       sync with the latest context-version
 
@@ -20,3 +21,7 @@ Perhaps the following general rule is useful:
 4.) Categories
 First category is main category, in the other categories, there are
 just references.
+
+5.) Call-back functions
+- general_keywords()    (perhaps we can do this in another way)
+- general_settings()    (perhaps we can do this in another way)
