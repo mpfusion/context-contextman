@@ -1,14 +1,12 @@
 \unprotect
 
-\doifmode{mkii}{\enableregime[utf]}
-
 \usemodule[set-11] \loadsetups
 
 \usemodule[chart,chemic,unit,abr-04]
 
 \preloadtypescripts
 
-\setupcolors[state=start]
+\doifmode{screen}{\setupinteraction[state=start]}
 
 \setupsystem
   [\c!random=\v!big]
@@ -103,10 +101,6 @@
 \def\argchars{\hbox{{\tt\{\}}}}
 \def\setchars {\hbox{\type{[ ]}}}
 \def\arg#1{\hbox{\tt\{#1\}}}
-
-\startmode[mkiv]
-\let\dimenexpr \dimexpr % bugfix
-\stopmode
 
 \definecolor[maincolor][g=.6]
 \definecolor[textcolor][r=.6]

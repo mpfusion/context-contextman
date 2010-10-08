@@ -82,8 +82,13 @@ columns_sources =      \
   columns/cols-805.tex \
   columns/cols-806.tex
 
-contextref.pdf: contextref.tex contextref-env.tex $(sources) Makefile
-	context contextref
+contextref-%.pdf: contextref.tex contextref-env.tex $(sources) Makefile
+	context --mode=$* --result=$(basename $@) contextref
+
+# default target:
+contextref: contextref-screen.pdf
+
+all: contextref-screen.pdf contextref-print.pdf
 
 clean:
 	context --purgeall
