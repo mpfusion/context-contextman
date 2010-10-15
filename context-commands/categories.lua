@@ -18,6 +18,10 @@ return {
         label = "graphic",
     },
     {
+        title = "Floating objects",
+        label = "float",
+    },
+    {
         title = "Packaging",
         label = "packaging",
     },

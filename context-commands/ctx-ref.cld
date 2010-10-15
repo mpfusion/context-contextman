@@ -6,6 +6,7 @@ setfenv(0, t)
 -- short-cuts
 local C = context
 local format = string.format
+local debug = tex.modes.debug
 
 -- main table
 local cats = dofile"categories.lua"
@@ -23,9 +24,13 @@ end
 -- Format the command name.
 -- Add backslach, add start-stop and so on
 -- c: command table
+-- o: options string
 -- return: tex-string for nice looking command name
-local function format_cmd_name(c)
+local function format_cmd_name(c, o)
     local s = "\\textbackslash " .. c.name
+    if o then
+        s = s .. o
+    end
     if c.environment then
         s = s .. " ... \\textbackslash "
         local stop = "ERROR"
@@ -39,13 +44,83 @@ local function format_cmd_name(c)
     return format("\\mono{%s}", s)
 end
 
+-- Build a nice string for presentation of an argument.
+-- t: type of argument
+-- n: name of argument
+-- return: nice TeX-string
+-- todo: metatable for square_brackets and so on
+-- todo: put n somewhere
+local function build_arg_string(t, n)
+    local s = {
+        keywords = "[...]",
+        settings = "[..,..=..,..]",
+        text = "\\{...\\}",
+    }
+    return s[t] or format("[%s]", n)
+end
+
+-- Print one variants of the command.
+-- c: command table
+-- v: variant table
+local function print_variant(c, v)
+    local s = ""
+    for i, a in ipairs(v) do
+        s = s .. build_arg_string(c.arguments[a].type, a)
+    end
+    C(format_cmd_name(c, s))
+    C.par()
+    C(v.comment)
+    C.par()
+    C(v.description)
+end
+
+-- Print the syntax description of the command.
+-- c: command table
+local function print_syntax(c)
+    C.startsubsection{title = "Invocation"}
+    if #c.variants > 1 then
+        for i, v in ipairs(c.variants) do
+            C.startsubsubsection{title = "Variant " .. i}
+            print_variant(c, v)
+            C.stopsubsubsection()
+        end
+    else
+        print_variant(c, c.variants[1])
+    end
+    C.stopsubsection()
+    C.startsubsection{title = "Arguments"}
+    for a, t in pairs(c.arguments) do
+        C.relax()
+        C.mono(build_arg_string(t.type, a) .. ": ")
+        C(t.comment)
+        C.par()
+        C(t.description)
+        C.blank()
+    end
+    C.stopsubsection()
+end
+
 -- Print a section with a command description.
 -- c: the command table
 local function print_command(c)
-    local date = c.vc_id:match("^%$Id: .- (%d%d%d%d%-%d%d%-%d%d) .-%$$")
+    if c.status == "initial" and not debug then
+        return
+    end
+    local date, author =
+        c.vc_id:match("^%$Id: .- (%d%d%d%d%-%d%d%-%d%d) .- (%w+) %$$")
+    if not date then
+        date, author = "???", "???"
+    end
     C.startsection{title = format_cmd_name(c), reference = c.name}
-    C.inmargin(format("Last update: %s, Status: %s", date, c.status))
+    if debug then
+        C.inmargin(format("%s: %s,\\crlf %s: %s,\\crlf %s: %s",
+                          "Last update", date, "Status", c.status,
+                          "Last author", author))
+    end
     C(c.comment)
+    C.par()
+    C(c.description)
+    print_syntax(c)
     C.stopsection()
 end
 

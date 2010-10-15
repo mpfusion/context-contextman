@@ -5,3 +5,9 @@
 - Import cid-files from third party modules.
 
 - Perhaps support main-categories and sub-categories.
+
+- Nice colors in output.
+
+- More compact output, better stylesheet.
+
+- A much better ctx-ref.cld (today just quick hacks...)
