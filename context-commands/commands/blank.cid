@@ -14,6 +14,7 @@ return {
                 big = "insert big space",
                 samepage = "no page break here",
                 nowhite = "do not add normal inter-paragraph white-space",
+                preference = "allow page break here",
                 back = "",
                 white = "",
                 disable = "",

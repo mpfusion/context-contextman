@@ -21,6 +21,18 @@ end
 function general_keywords(...)
 end
 
+-- Print a warning on stdout and log-file if condition is true.
+-- c: condition
+-- n: some name (for example command name)
+-- s: string to print
+-- return: the condition
+local function warn(c, n, s)
+    if c then
+        texio.write_nl("term and log", format("Error [%s]: %s", n, s))
+    end
+    return c
+end
+
 -- Format the command name.
 -- Add backslach, add start-stop and so on
 -- c: command table
@@ -59,7 +71,7 @@ local function build_arg_string(t, n)
     return s[t] or format("[%s]", n)
 end
 
--- Print one variants of the command.
+-- Print one variant of the command.
 -- c: command table
 -- v: variant table
 local function print_variant(c, v)
@@ -108,14 +120,13 @@ local function print_command(c)
     end
     local date, author =
         c.vc_id:match("^%$Id: .- (%d%d%d%d%-%d%d%-%d%d) .- (%w+) %$$")
-    if not date then
+    if warn(not date, c.name, "wrong vc_id") then
         date, author = "???", "???"
     end
     C.startsection{title = format_cmd_name(c), reference = c.name}
     if debug then
-        C.inmargin(format("%s: %s,\\crlf %s: %s,\\crlf %s: %s",
-                          "Last update", date, "Status", c.status,
-                          "Last author", author))
+        C.inmargin(format("Last~update: %s, Status: %s, Last~author: %s",
+                          date, c.status, author))
     end
     C(c.comment)
     C.par()
@@ -166,7 +177,10 @@ local function read_cid_files()
         local b = f:match("^(.*)%.cid$")
         if b then
             local cid = dofile(d .. "/" .. f)
+            warn(cid.name ~= file.removesuffix(f), f,
+                 "command name does not match filename")
             for i, c in ipairs(cid.categories) do
+                warn(not cats[c], c, "category does not exist")
                 table.insert(cats[c][i == 1 and "commands" or "related"], cid)
             end
         end
