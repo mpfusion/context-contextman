@@ -291,7 +291,45 @@ Hello World!
 
 \section {Running \CONTEXT}
 
-\todo{Explain basic use of \type{texexec} and \type{context} here, maybe from a text editor or environment like texworks. }
+For basic usage, running
+
+\startbuffer
+context myfile
+\stopbuffer
+\typebuffer
+
+or
+
+\startbuffer
+context myfile.tex
+\stopbuffer
+\typebuffer
+
+is sufficient to convert your \ConTeXt\ source in \type{myfile.tex} to the
+\PDF\ file \type{myfile.pdf}. Several command line options control the
+\ConTeXt\ run. For a complete list of options, you can run
+
+\startbuffer
+context --help
+\stopbuffer
+\typebuffer
+
+Here some examples:
+\starttabulate[|lT|lp|]
+\HL
+\NC \bf option \NC \bf meaning \NC \NR
+\HL
+\NC --result=name \NC rename the resulting output to the given name \NC \NR
+\NC --mode=list   \NC enable given the modes (conditional processing
+in styles \NC \NR
+\NC --once \NC only run once (no multipass data file is produced) \NC \NR
+\NC --nonstopmode   \NC run without stopping \NC \NR
+\NC --version   \NC report installed context version \NC \NR
+\HL
+\stoptabulate
+
+\todo{Maybe some more explainations about \type{texexec} and \type{context}
+  here, maybe from a text editor or environment like texworks.}
 
 \section{Advanced commands}
 
@@ -413,7 +451,7 @@ Commands come in many formats. Take for example:
 
 This command places a picture at the left hand side of a
 text while the text flows around the picture. The picture
-has a reference \type {fig:logo}, i.e. a logical name. The
+has a reference \type {fig:logo}, i.e.\ a logical name. The
 third argument contains the title and the fourth calls the
 picture. In this case the picture is a figure defined
 earlier as \type {Logo}. \in {Figure} [fig:cohesion tex] is
@@ -474,40 +512,38 @@ needed to get the references and lists right.
 
 \section{Files}
 \index{files}
-\index{extensions}
-\index[ascii]{\ASCII}
-\index[table]{\TABLE}
-
-\TEX\ is used with \ASCII\ source files. \ASCII\ is an
-international standardized computer alphabet. The \ASCII\
-file with the prescribed extension \type{tex} is processed
-by \TEX. During this process \TEX\ produces a file with
-graphical commands. This file has the extension \type{dvi},
-intended to be output||device independent.
-A machine||specific driver transforms this file into a
-format that is accepted by photosetters and printers.
-Usually, \POSTSCRIPT\ drivers are used to produce
-\POSTSCRIPT\ files. Alternatively, \PDFTEX\ can be used
-to process \TEX\ source generating \PDF\ output directly.
-
-\todo{The rest of this section is not clear. It was already stated above
-that \CONTEXT\ is coded in \UTF\ or ISO~Latin1. Also, \type{dvi}
-and \type{fmt} files are no||longer produced.}
+%\index{extensions}
+\index[utf]{\UTF}
+\todo{Where is a better place to write about \TABLE? The old paragraph:
 
 \CONTEXT\ relies on plain \TEX. Plain \TEX, \CONTEXT\ and a
 third package \TABLE\ are brought together in a so called
 format file. \TABLE\ is a powerful package for typesetting
 tables. A format file can be recognized by its suffix
 \type{fmt}. \TEX\ can load format files rather fast and
-efficiently.
+efficiently.}
 
-A \type{dvi} file can be viewed on screen with a dedicated
-program. For electronic distribution \POSTSCRIPT\ files can
-be transformed (distilled) into Portable Document Format
-(\PDF) files. \PDF\ files are of high graphical quality and
-are also interactive (hyperlinked). \CONTEXT\ fully supports
-\PDFTEX, which means that you can generate \PDF\ output
-directly.
+\CONTEXT\ is used with \UTF-8 source files. \UTF-8 is a character encoding,
+that can represent every character in the Unicode character set, and that is
+backward-compatible with \ASCII. The \UTF-8 file with the prescribed extension
+\type{tex} is processed by \CONTEXT. During this process \CONTEXT\ produces a
+\PDF\ (Portable Document Format) output file. \PDF\ files are of high
+graphical quality and are also interactive (hyperlinked).
+
+With the command
+\startbuffer
+\enableregime[encoding]
+\stopbuffer
+\typebuffer
+\CONTEXT\ supports also other character encodings such as ISO~Latin1.
+
+It is highly recommended, that all input files, i.e.\ the \ConTeXt\ source
+and other included files such as image files, have only the letters a--z,
+digits, dashes and dots in their names, otherwise you can easily get into
+problems. Especially the characters *, ?, the space character and some more
+are known to cause problems, sometimes because of \ConTeXt\ itself (internal
+pattern matching), sometimes because of issues with the underlying operating
+system.
 
 \section{Texts}
 
