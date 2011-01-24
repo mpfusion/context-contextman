@@ -1,19 +1,27 @@
-local t = {
+return {
     name = "startitemgroup",
     vc_id = "$Id$",
-    status = "initial",
+    status = "draft",
     comment = "Creates an item list.",
     environment = true,
     varpart = "itemgroup",
     generator = "defineitemgroup",
     categories = {"struct"},
     arguments = {
-        keywords = {
+        {
+            name = "keywords",
             comment = "Control the layout.",
             type = "keywords",
             default = "standard",
+            keywords = {
+                a = "Alphabetic numerating.",
+                A = "Uppercase alphabetic numerating.",
+                KA = "todo",
+                n = "todo",
+            },
         },
-        settings = {
+        {
+            name = "settings",
             comment = "Many settings.",
             type = "settings",
             inherit = "setupitemgroup",
@@ -37,12 +45,3 @@ local t = {
         },
     },
 }
-
-t.arguments.keywords.keywords = {
-    a = "Alphabetic numerating.",
-    A = "Uppercase alphabetic numerating.",
-    KA = "todo",
-    n = "todo",
-}
-
-return t

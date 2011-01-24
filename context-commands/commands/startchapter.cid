@@ -1,15 +1,26 @@
-local t = {
+return {
     name = "startchapter",
     vc_id = "$Id$",
-    status = "initial",
+    status = "draft",
     comment = "Defines a new chapter.",
     description = "Perhaps longer description...",
     environment = true,
     categories = {"struct"},
     arguments = {
-        settings = {
+        {
+            name = "settings",
             comment = "Settings for the chapter.",
             type = "settings",
+            settings = {
+                title = {
+                    comment = "The title of the chapter.",
+                    values = {"text"},
+                },
+                incrementnumber = {
+                    values = {"yes", "no", "list"},
+                    default = "yes",
+                },
+            },
         },
     },
     variants = {
@@ -19,16 +30,3 @@ local t = {
         },
     },
 }
-
-t.arguments.settings.settings = { -- don't clutter the arguments-table...
-    title = {
-        comment = "The title of the chapter.",
-        values = {"text"},
-    },
-    incrementnumber = {
-        values = {"yes", "no", "list"},
-        default = "yes",
-    },
-}
-
-return t

@@ -1,19 +1,22 @@
 return {
     name = "placebookmarks",
     vc_id = "$Id$",
-    status = "initial",
+    status = "draft",
     comment = "Specify heads for which bookmarks should be created.",
     categories = {"interaction"},
     arguments = {
-        head_list = {
+        {
+            name = "head_list",
             comment = "List with heads to create bookmarks for.",
             type = "label",
         },
-        open_list = {
+        {
+            name = "open_list",
             comment = "List with heads whose bookmarks are open.",
             type = "label",
         },
-        settings = {
+        {
+            name = "settings",
             comment = "Some settings.",
             type = "settings",
             settings = {

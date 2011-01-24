@@ -14,6 +14,10 @@ return {
         label = "space",
     },
     {
+        title = "Buffers",
+        label = "buffers",
+    },
+    {
         title = "Graphic",
         label = "graphic",
     },

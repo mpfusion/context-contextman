@@ -1,0 +1,21 @@
+return {
+    name = "typesetbuffer",
+    vc_id = "$Id$",
+    status = "draft",
+    comment = "Insert a typeset buffer as figure.",
+    categories = {"graphic", "buffers"},
+    arguments = {
+        {
+            name = "name",
+            comment = "Name of the buffer.",
+            type = "name",
+        },
+        {
+            name = "settings",
+            comment = "Settings passed to \cmd{externalfigure}.",
+            type = "settings",
+            inherit = "useexternalfigure",
+        },
+    },
+    variants = {{}, {"name"}, {"settings"}, {"name", "settings"}},
+}

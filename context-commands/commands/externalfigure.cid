@@ -1,26 +1,30 @@
 return {
     name = "externalfigure",
     vc_id = "$Id$",
-    status = "initial",
+    status = "draft",
     comment = "Insert a figure from an external file.",
     categories = {"graphic"},
     arguments = {
-        reference = {
+        {
+            name = "reference",
             comment = "For referencing a predefined setting.",
             type = "label",
         },
-        file = {
+        {
+            name = "file",
             comment = "Filename with the figure to insert.",
             description = "The name does not need a suffix.",
             type = "file",
         },
-        settings = {
+        {
+            name = "settings",
             comment = "short comment for this option",
             description = "long description for this option",
             type = "settings",
             inherit = "useexternalfigure",
         },
-        parent = {
+        {
+            name = "parent",
             comment = "I don't know...",
             type = "parent",
         },

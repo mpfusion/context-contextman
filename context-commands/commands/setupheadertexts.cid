@@ -1,42 +1,49 @@
 return {
     name = "setupheadertexts",
     vc_id = "$Id$",
-    status = "initial",
+    status = "draft",
     comment = "Insert text in the header line.",
     description = "A lot of text...",
     categories = {"layout"},
     arguments = {
-        text_middle = {
+        {
+            name = "text_middle",
             comment = "Text placed in the centre of the header.",
             type = "text",
             square_brackets = true,
         },
-        text_left = {
+        {
+            name = "text_left",
             comment = "Text placed at the left side.",
             type = "text",
             square_brackets = true,
         },
-        text_right = {
+        {
+            name = "text_right",
             comment = "Text placed at the right side.",
             type = "text",
             square_brackets = true,
         },
-        text_left_odd = {
+        {
+            name = "text_left_odd",
             comment = "Text placed at the left side of odd pages.",
             type = "text",
             square_brackets = true,
         },
-        text_right_odd = {
+        {
+            name = "text_right_odd",
             comment = "Text placed at the right side of odd pages.",
             type = "text",
             square_brackets = true,
         },
-        text_left_even = {
+        {
+            name = "text_left_even",
             comment = "Text placed at the left side of even pages.",
             type = "text",
             square_brackets = true,
         },
-        text_right_even = {
+        {
+            name = "text_right_even",
             comment = "Text placed at the right side of even pages.",
             type = "text",
             square_brackets = true,

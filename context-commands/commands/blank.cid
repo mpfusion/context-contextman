@@ -1,11 +1,12 @@
 return {
     name = "blank",
     vc_id = "$Id$",
-    status = "unverified",
+    status = "draft",
     comment = "Adds space between 2 paragraphs.",
     categories = {"space"},
     arguments = {
-        keywords = {
+        {
+            name = "keywords",
             type = "keywords",
             default = "big",
             keywords = {

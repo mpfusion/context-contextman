@@ -1,17 +1,19 @@
 return {
     name = "framed",
     vc_id = "$Id$",
-    status = "initial",
+    status = "draft",
     comment = "Make box with a frame.",
     categories = {"packaging"},
     arguments = {
-        settings = {
+        {
+            name = "settings",
             comment = "short comment for this option",
             description = "long description for this option",
             type = "settings",
             inherit = "setupframed",
         },
-        content = {
+        {
+            name = "content",
             comment = "Stuff to put into the box.",
             type = "text",
         },

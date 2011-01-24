@@ -1,7 +1,7 @@
-local t = {
+return {
     name = "placefloat",
     vc_id = "$Id$",
-    status = "initial",
+    status = "draft",
     comment = "Insert a floating element.",
     description = [[This command must be followed by a new paragraph
                     (empty line).]],
@@ -10,21 +10,30 @@ local t = {
     generator = "definefloat",
     categories = {"struct", "graphic"},
     arguments = {
-        keywords = {
+        {
+            name = "keywords",
             comment = "Where to place the float.",
             type = "keywords",
             default = "here",
+            keywords = {
+                left = "place float on left side",
+                right = "place float on right side",
+                here = "place float right here",
+            },
         },
-        label = {
+        {
+            name = "label",
             comment = "Label for referencing.",
             type = "label",
         },
-        caption = {
+        {
+            name = "caption",
             comment = "Text of the caption.",
             description = "If \quote{none}, then no caption is placed.",
             type = "text",
         },
-        content = {
+        {
+            name = "content",
             comment = "Content of the float.",
             type = "text",
         },
@@ -47,11 +56,3 @@ local t = {
         },
     },
 }
-
-t.arguments.keywords.keywords = {
-    left = "place float on left side",
-    right = "place float on right side",
-    here = "place float right here",
-}
-
-return t

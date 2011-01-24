@@ -1,8 +1,0 @@
-return {
-    nowhite = [[Don't apply whitespace that has been setup with
-            \cmd{setupwhitespace}]],
-}
-
--- Local Variables:
--- mode:lua
--- End:
