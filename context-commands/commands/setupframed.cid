@@ -1,87 +1,87 @@
 return {
-    name = "setupframed",
-    vc_id = "$Id$",
-    status = "draft",
-    comment = "Setting up \cmd{framed}.",
-    categories = {"packaging"},
-    arguments = {
-        {
-            name = "name",
-            comment = "Name of command defined with \cmd{defineframed}",
-            type = "label",
-        },
-        {
-            name = "settings",
-            comment = "Some settings.",
-            type = "settings",
-            settings = {
-                height = {
-                    values = {"fit", "broad", "dimension",},
-                },
-                width = {
-                    values = {"fit", "broad", "fixed", "local", "dimension",},
-                },
-                autowidth = {
-                    values = {"yes", "no", "force",},
-                },
-                offset = {
-                    values = {"none", "overlay", "default", "dimension",},
-                },
-                location = {
-                    comment = "The location of an element.",
-                    description = "More text to explain the details.",
-                    values = {"depth", "hanging", "high", "lohi", "low", "top",
-                              "middle", "bottom"},
-                },
-                option = {
-                    values = {"none", "empty",},
-                },
-                align = {
-                    comment = "How to align something.",
-                    values = {"no", "flushleft", "flushright", "middle", "normal",
-                              "high", "low", "lohi"},
-                },
-                strut = {
-                    comment = "Management of a strut.",
-                    description = "More text to explain the details.",
-                    values = {"yes", "no", "global", "local"},
-                },
-                bottom = {
-                    values = {"command",},
-                },
-                top = {
-                    values = {"command",},
-                },
-                frame = {
-                    values = {"on", "off", "none", "overlay",},
-                    default = "on",
-                },
-                topframe = {
-                    values = {"on", "off",},
-                },
-                background = {
-                    values = {"screen", "color", "none", "foreground", "name",},
-                },
-                backgroundscreen = {
-                    values = {"number",},
-                },
-                backgroundcolor = {
-                    values = {"name",},
-                },
-                depth = {
-                    values = {"dimension",},
-                },
-            },
-        },
+  name = "setupframed",
+  vc_id = "$Id$",
+  status = "draft",
+  comment = "Setting up \cmd{framed}.",
+  categories = {"packaging"},
+  arguments = {
+    {
+      name = "name",
+      comment = "Name of command defined with \cmd{defineframed}",
+      type = "label",
     },
-    variants = {
-        {
-            comment = "The simple variant.",
-            "settings",
+    {
+      name = "settings",
+      comment = "Some settings.",
+      type = "settings",
+      settings = {
+        height = {
+          values = {"fit", "broad", "dimension",},
         },
-        {
-            comment = "Setting up a command defined with \cmd{defineframed}.",
-            "name", "settings",
+        width = {
+          values = {"fit", "broad", "fixed", "local", "dimension",},
         },
+        autowidth = {
+          values = {"yes", "no", "force",},
+        },
+        offset = {
+          values = {"none", "overlay", "default", "dimension",},
+        },
+        location = {
+          comment = "The location of an element.",
+          description = "More text to explain the details.",
+          values = {"depth", "hanging", "high", "lohi", "low", "top",
+                    "middle", "bottom"},
+        },
+        option = {
+          values = {"none", "empty",},
+        },
+        align = {
+          comment = "How to align something.",
+          values = {"no", "flushleft", "flushright", "middle", "normal",
+                    "high", "low", "lohi"},
+        },
+        strut = {
+          comment = "Management of a strut.",
+          description = "More text to explain the details.",
+          values = {"yes", "no", "global", "local"},
+        },
+        bottom = {
+          values = {"command",},
+        },
+        top = {
+          values = {"command",},
+        },
+        frame = {
+          values = {"on", "off", "none", "overlay",},
+          default = "on",
+        },
+        topframe = {
+          values = {"on", "off",},
+        },
+        background = {
+          values = {"screen", "color", "none", "foreground", "name",},
+        },
+        backgroundscreen = {
+          values = {"number",},
+        },
+        backgroundcolor = {
+          values = {"name",},
+        },
+        depth = {
+          values = {"dimension",},
+        },
+      },
     },
+  },
+  variants = {
+    {
+      comment = "The simple variant.",
+      "settings",
+    },
+    {
+      comment = "Setting up a command defined with \cmd{defineframed}.",
+      "name", "settings",
+    },
+  },
 }

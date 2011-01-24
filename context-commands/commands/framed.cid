@@ -1,31 +1,31 @@
 return {
-    name = "framed",
-    vc_id = "$Id$",
-    status = "draft",
-    comment = "Make box with a frame.",
-    categories = {"packaging"},
-    arguments = {
-        {
-            name = "settings",
-            comment = "short comment for this option",
-            description = "long description for this option",
-            type = "settings",
-            inherit = "setupframed",
-        },
-        {
-            name = "content",
-            comment = "Stuff to put into the box.",
-            type = "text",
-        },
+  name = "framed",
+  vc_id = "$Id$",
+  status = "draft",
+  comment = "Make box with a frame.",
+  categories = {"packaging"},
+  arguments = {
+    {
+      name = "settings",
+      comment = "short comment for this option",
+      description = "long description for this option",
+      type = "settings",
+      inherit = "setupframed",
     },
-    variants = {
-        {
-            comment = "No special settings.",
-            "content"
-        },
-        {
-            comment = "With some local settings.",
-            "settings", "content"
-        },
+    {
+      name = "content",
+      comment = "Stuff to put into the box.",
+      type = "text",
     },
+  },
+  variants = {
+    {
+      comment = "No special settings.",
+      "content"
+    },
+    {
+      comment = "With some local settings.",
+      "settings", "content"
+    },
+  },
 }

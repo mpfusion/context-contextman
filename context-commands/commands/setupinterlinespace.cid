@@ -1,79 +1,79 @@
 return {
-    name = "setupinterlinespace",
-    vc_id = "$Id$",
-    status = "draft",
-    comment = "Sets the space between lines.",
-    description = [[Mostly, you use this command in the preamble, but
-            sometimes you need this command also in the running test, for
-            example to readjust the baseline-skip after a switch of the
-            font-size.]],
-    categories = {"space"},
-    arguments = {
-        {
-            name = "keywords",
-            type = "keywords",
-            default = "small",
-            keywords = {
-                small = "equal to line=2.8ex",
-                reset = "",
-                yes = "",
-                medium = "25% bigger than small",
-                auto = "",
-                big = "50% bigger than small",
-                on = "",
-                off = "",
-            },
-        },
-        {
-            name = "settings",
-            type = "settings",
-            settings = {
-                line = {
-                    comment = "Distance between 2 lines.",
-                    values = {"dimension",},
-                    default = "2.8ex",
-                },
-                stretch = {
-                    values = {"dimension",},
-                },
-                height = {
-                    comment =
-                        "Ratio of height of the line to total line-height.",
-                    values = {"number",},
-                    default = "0.72",
-                },
-                depth = {
-                    comment =
-                        "Ratio of depth of the line to total line-height.",
-                    values = {"number",},
-                    default = "0.28",
-                },
-                top = {
-                    comment = [[Ratio of height of first line of a page to
-                            body-font size.]],
-                    values = {"number",},
-                    default = "1",
-                },
-                bottom = {
-                    comment = [[Ratio of depth of last line of a page to
-                            body-font size.]],
-                    values = {"number",},
-                    default = "0.4",
-                },
-            },
-        },
+  name = "setupinterlinespace",
+  vc_id = "$Id$",
+  status = "draft",
+  comment = "Sets the space between lines.",
+  description = [[Mostly, you use this command in the preamble, but
+      sometimes you need this command also in the running test, for
+        example to readjust the baseline-skip after a switch of the
+      font-size.]],
+  categories = {"space"},
+  arguments = {
+    {
+      name = "keywords",
+      type = "keywords",
+      default = "small",
+      keywords = {
+        small = "equal to line=2.8ex",
+        reset = "",
+        yes = "",
+        medium = "25% bigger than small",
+        auto = "",
+        big = "50% bigger than small",
+        on = "",
+        off = "",
+      },
     },
-    variants = {
-        {
-            comment = "Just use the default setting, i.e. small.",
+    {
+      name = "settings",
+      type = "settings",
+      settings = {
+        line = {
+          comment = "Distance between 2 lines.",
+          values = {"dimension",},
+          default = "2.8ex",
         },
-        {
-            comment = "Specify keywords.",
-            "keywords",
+        stretch = {
+          values = {"dimension",},
         },
-        {
-            comment = "Specify settings.",
-            "settings",
+        height = {
+          comment =
+            "Ratio of height of the line to total line-height.",
+          values = {"number",},
+          default = "0.72",
         },
-    }
+        depth = {
+          comment =
+            "Ratio of depth of the line to total line-height.",
+          values = {"number",},
+          default = "0.28",
+        },
+        top = {
+          comment = [[Ratio of height of first line of a page to
+              body-font size.]],
+          values = {"number",},
+          default = "1",
+        },
+        bottom = {
+          comment = [[Ratio of depth of last line of a page to
+              body-font size.]],
+          values = {"number",},
+          default = "0.4",
+        },
+      },
+    },
+  },
+  variants = {
+    {
+      comment = "Just use the default setting, i.e. small.",
+    },
+    {
+      comment = "Specify keywords.",
+      "keywords",
+    },
+    {
+      comment = "Specify settings.",
+      "settings",
+    },
+  }
 }

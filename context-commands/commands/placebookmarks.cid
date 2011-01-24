@@ -1,42 +1,42 @@
 return {
-    name = "placebookmarks",
-    vc_id = "$Id$",
-    status = "draft",
-    comment = "Specify heads for which bookmarks should be created.",
-    categories = {"interaction"},
-    arguments = {
-        {
-            name = "head_list",
-            comment = "List with heads to create bookmarks for.",
-            type = "label",
-        },
-        {
-            name = "open_list",
-            comment = "List with heads whose bookmarks are open.",
-            type = "label",
-        },
-        {
-            name = "settings",
-            comment = "Some settings.",
-            type = "settings",
-            settings = {
-                force = {
-                    comment = "Why is this needed?",
-                    values = {"no", "yes",},
-                    default = "no",
-                },
-                number = {
-                    comment = "Whether to place the section numbers.",
-                    values = {"no", "yes",},
-                    default = "no",
-                },
-            },
-        },
+  name = "placebookmarks",
+  vc_id = "$Id$",
+  status = "draft",
+  comment = "Specify heads for which bookmarks should be created.",
+  categories = {"interaction"},
+  arguments = {
+    {
+      name = "head_list",
+      comment = "List with heads to create bookmarks for.",
+      type = "label",
     },
-    variants = {
-        {"head_list"},
-        {"head_list", "open_list"},
-        {"head_list", "open_list", "settings"},
-        {"head_list", "settings"},
-    }
+    {
+      name = "open_list",
+      comment = "List with heads whose bookmarks are open.",
+      type = "label",
+    },
+    {
+      name = "settings",
+      comment = "Some settings.",
+      type = "settings",
+      settings = {
+        force = {
+          comment = "Why is this needed?",
+          values = {"no", "yes",},
+          default = "no",
+        },
+        number = {
+          comment = "Whether to place the section numbers.",
+          values = {"no", "yes",},
+          default = "no",
+        },
+      },
+    },
+  },
+  variants = {
+    {"head_list"},
+    {"head_list", "open_list"},
+    {"head_list", "open_list", "settings"},
+    {"head_list", "settings"},
+  }
 }

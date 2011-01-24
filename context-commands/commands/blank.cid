@@ -1,45 +1,45 @@
 return {
-    name = "blank",
-    vc_id = "$Id$",
-    status = "draft",
-    comment = "Adds space between 2 paragraphs.",
-    categories = {"space"},
-    arguments = {
-        {
-            name = "keywords",
-            type = "keywords",
-            default = "big",
-            keywords = {
-                small = "insert small space",
-                medium = "insert medium space",
-                big = "insert big space",
-                samepage = "no page break here",
-                nowhite = "do not add normal inter-paragraph white-space",
-                preference = "allow page break here",
-                back = "",
-                white = "",
-                disable = "",
-                force = "",
-                reset = "",
-                line = "",
-                halfline = "",
-                formula = "",
-                fixed = "",
-                flexible = "",
-                none = "",
-                always = "",
-                outer = "",
-                joinedup = "",
-            },
-        },
+  name = "blank",
+  vc_id = "$Id$",
+  status = "draft",
+  comment = "Adds space between 2 paragraphs.",
+  categories = {"space"},
+  arguments = {
+    {
+      name = "keywords",
+      type = "keywords",
+      default = "big",
+      keywords = {
+        small = "insert small space",
+        medium = "insert medium space",
+        big = "insert big space",
+        samepage = "no page break here",
+        nowhite = "do not add normal inter-paragraph white-space",
+        preference = "allow page break here",
+        back = "",
+        white = "",
+        disable = "",
+        force = "",
+        reset = "",
+        line = "",
+        halfline = "",
+        formula = "",
+        fixed = "",
+        flexible = "",
+        none = "",
+        always = "",
+        outer = "",
+        joinedup = "",
+      },
     },
-    variants = {
-        {
-            comment = "Just use the default setting.",
-        },
-        {
-            comment = "Specify some keywords.",
-            "keywords",
-        },
-    }
+  },
+  variants = {
+    {
+      comment = "Just use the default setting.",
+    },
+    {
+      comment = "Specify some keywords.",
+      "keywords",
+    },
+  }
 }

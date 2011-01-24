@@ -1,42 +1,42 @@
 return {
-    name = "externalfigure",
-    vc_id = "$Id$",
-    status = "draft",
-    comment = "Insert a figure from an external file.",
-    categories = {"graphic"},
-    arguments = {
-        {
-            name = "reference",
-            comment = "For referencing a predefined setting.",
-            type = "label",
-        },
-        {
-            name = "file",
-            comment = "Filename with the figure to insert.",
-            description = "The name does not need a suffix.",
-            type = "file",
-        },
-        {
-            name = "settings",
-            comment = "short comment for this option",
-            description = "long description for this option",
-            type = "settings",
-            inherit = "useexternalfigure",
-        },
-        {
-            name = "parent",
-            comment = "I don't know...",
-            type = "parent",
-        },
+  name = "externalfigure",
+  vc_id = "$Id$",
+  status = "draft",
+  comment = "Insert a figure from an external file.",
+  categories = {"graphic"},
+  arguments = {
+    {
+      name = "reference",
+      comment = "For referencing a predefined setting.",
+      type = "label",
     },
-    variants = {
-        {"file"},
-        {"reference", "file"},
-        {"reference", "file", "settings"},
-        {"file", "parent"}, 
+    {
+      name = "file",
+      comment = "Filename with the figure to insert.",
+      description = "The name does not need a suffix.",
+      type = "file",
     },
-    examples = {
-        [=[\externalfigure[hacker][width=3cm]]=],
-        [=[\externalfigure[my label][hacker][frame=on]]=],
-    }
+    {
+      name = "settings",
+      comment = "short comment for this option",
+      description = "long description for this option",
+      type = "settings",
+      inherit = "useexternalfigure",
+    },
+    {
+      name = "parent",
+      comment = "I don't know...",
+      type = "parent",
+    },
+  },
+  variants = {
+    {"file"},
+    {"reference", "file"},
+    {"reference", "file", "settings"},
+    {"file", "parent"}, 
+  },
+  examples = {
+    [=[\externalfigure[hacker][width=3cm]]=],
+    [=[\externalfigure[my label][hacker][frame=on]]=],
+  }
 }

@@ -1,32 +1,32 @@
 return {
-    name = "startchapter",
-    vc_id = "$Id$",
-    status = "draft",
-    comment = "Defines a new chapter.",
-    description = "Perhaps longer description...",
-    environment = true,
-    categories = {"struct"},
-    arguments = {
-        {
-            name = "settings",
-            comment = "Settings for the chapter.",
-            type = "settings",
-            settings = {
-                title = {
-                    comment = "The title of the chapter.",
-                    values = {"text"},
-                },
-                incrementnumber = {
-                    values = {"yes", "no", "list"},
-                    default = "yes",
-                },
-            },
+  name = "startchapter",
+  vc_id = "$Id$",
+  status = "draft",
+  comment = "Defines a new chapter.",
+  description = "Perhaps longer description...",
+  environment = true,
+  categories = {"struct"},
+  arguments = {
+    {
+      name = "settings",
+      comment = "Settings for the chapter.",
+      type = "settings",
+      settings = {
+        title = {
+          comment = "The title of the chapter.",
+          values = {"text"},
         },
-    },
-    variants = {
-        {
-            comment = "The only variant.",
-            "settings",
+        incrementnumber = {
+          values = {"yes", "no", "list"},
+          default = "yes",
         },
+      },
     },
+  },
+  variants = {
+    {
+      comment = "The only variant.",
+      "settings",
+    },
+  },
 }

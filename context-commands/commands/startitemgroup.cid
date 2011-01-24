@@ -1,47 +1,47 @@
 return {
-    name = "startitemgroup",
-    vc_id = "$Id$",
-    status = "draft",
-    comment = "Creates an item list.",
-    environment = true,
-    varpart = "itemgroup",
-    generator = "defineitemgroup",
-    categories = {"struct"},
-    arguments = {
-        {
-            name = "keywords",
-            comment = "Control the layout.",
-            type = "keywords",
-            default = "standard",
-            keywords = {
-                a = "Alphabetic numerating.",
-                A = "Uppercase alphabetic numerating.",
-                KA = "todo",
-                n = "todo",
-            },
-        },
-        {
-            name = "settings",
-            comment = "Many settings.",
-            type = "settings",
-            inherit = "setupitemgroup",
-        },
+  name = "startitemgroup",
+  vc_id = "$Id$",
+  status = "draft",
+  comment = "Creates an item list.",
+  environment = true,
+  varpart = "itemgroup",
+  generator = "defineitemgroup",
+  categories = {"struct"},
+  arguments = {
+    {
+      name = "keywords",
+      comment = "Control the layout.",
+      type = "keywords",
+      default = "standard",
+      keywords = {
+        a = "Alphabetic numerating.",
+        A = "Uppercase alphabetic numerating.",
+        KA = "todo",
+        n = "todo",
+      },
     },
-    variants = {
-        {
-            comment = "Use default setup.",
-        },
-        {
-            comment = "Use some keywords.",
-            "keywords",
-        },
-        {
-            comment = "Use some settings.",
-            "settings",
-        },
-        {
-            comment = "Use keywords and settings.",
-            "keywords", "settings",
-        },
+    {
+      name = "settings",
+      comment = "Many settings.",
+      type = "settings",
+      inherit = "setupitemgroup",
     },
+  },
+  variants = {
+    {
+      comment = "Use default setup.",
+    },
+    {
+      comment = "Use some keywords.",
+      "keywords",
+    },
+    {
+      comment = "Use some settings.",
+      "settings",
+    },
+    {
+      comment = "Use keywords and settings.",
+      "keywords", "settings",
+    },
+  },
 }
