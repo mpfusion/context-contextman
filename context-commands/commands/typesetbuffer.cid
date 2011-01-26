@@ -3,7 +3,7 @@ return {
   vc_id = "$Id$",
   status = "draft",
   comment = "Insert a typeset buffer as figure.",
-  categories = {"graphic", "buffers"},
+  categories = {"buffers", "graphic"},
   arguments = {
     {
       name = "name",

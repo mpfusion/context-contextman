@@ -1,0 +1,16 @@
+return {
+  name = "mainlanguage",
+  vc_id = "$Id$",
+  status = "draft",
+  comment = "Set the main language of the document.",
+  description = [[Language elements, like the title of the
+      table of contents or the appendix will be auto-generated in this
+      language. Hyphenation patterns are set to this language.]],
+  categories = {"language"},
+  arguments = {
+    {name = "language", type = "keywords", resolve = "language"},
+  },
+  variants = {
+    {comment = "The only variant.", "language"},
+  }
+}

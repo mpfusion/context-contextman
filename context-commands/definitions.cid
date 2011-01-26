@@ -1,0 +1,23 @@
+-- General definitions for keywords and settings.
+return {
+  settings = {
+    align = {
+      comment = "How to align something.",
+      values = {"no", "flushleft", "flushright", "middle", "normal",
+                "high", "low", "lohi"}
+    }
+  },
+  keywords = {
+    language = {
+      comment = "The language.",
+      default = "en",
+      keywords = {
+        {name = "nl", comment = "Dutch",},
+        {name = "fr", comment = "French",},
+        {name = "en", comment = "English",},
+        {name = "de", comment = "German",},
+        {name = "es", comment = "Spanish",},
+      },
+    },
+  }
+}

@@ -3,7 +3,7 @@ return {
     {
         title = "Structure macros",
         label = "struct",
---      description = "Perhaps a lot of text here.",
+--      description = "Perhaps a lot of text here (introduction).",
     },
     {
         title = "Layout",
@@ -12,6 +12,10 @@ return {
     {
         title = "Spacing",
         label = "space",
+    },
+    {
+        title = "Language",
+        label = "language",
     },
     {
         title = "Buffers",

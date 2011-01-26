@@ -5,6 +5,9 @@ local format = string.format
 -- main table
 local cats = dofile"categories.lua"
 
+-- general definitions
+local defs = dofile"definitions.cid"
+
 -- Print a warning on stdout and log-file if condition is true.
 -- c: condition
 -- n: some name (for example command name)
@@ -86,6 +89,9 @@ local function print_settings(t)
     if t.settings then
         C.StartSettings()
         for _, s in ipairs(t.settings) do
+            if s.resolve then
+                setmetatable(s, {__index = defs.settings[s.resolve]})
+            end
             C.Setting(s.name, table.concat(s.values, " "),
                       texify(s.comment or ""), texify(s.description or ""))
         end
@@ -99,9 +105,12 @@ end
 -- Print the keywords of an argument.
 -- t: argument table
 local function print_keywords(t)
-    if t.type ~= "keywords" then
-        return
+    if t.resolve then
+        print(t.resolve)
+        setmetatable(t, {__index = defs.keywords[t.resolve]})
     end
+    C("%s %s", t.comment or "", t.description or "")
+    C.par()
     if t.keywords then
         C.StartKeywords()
         for _, k in ipairs(t.keywords) do
@@ -123,10 +132,13 @@ local function print_syntax(c)
     C.blank()
     for _, t in ipairs(c.arguments) do
         C.mono(build_arg_string(t) .. ": ")
-        C("%s %s", t.comment or "", t.description or "")
-        C.par()
-        print_settings(t)
-        print_keywords(t)
+        if t.type == "keywords" then
+            print_keywords(t)
+        else
+            C("%s %s", t.comment or "", t.description or "")
+            C.par()
+            print_settings(t)
+        end
         C.blank{"small"}
     end
 end
