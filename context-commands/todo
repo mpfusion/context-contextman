@@ -18,6 +18,3 @@
   general_keywords()
   general_settings()
   ???  (dropped in commit 301)
-
-- Order of settings and keywords should perhaps be defined, so do something
-  similar as for "arguments" in commit 301

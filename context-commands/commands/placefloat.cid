@@ -16,9 +16,9 @@ return {
       type = "keywords",
       default = "here",
       keywords = {
-        left = "place float on left side",
-        right = "place float on right side",
-        here = "place float right here",
+        {name = "left", comment = "place float on left side",},
+        {name = "right", comment = "place float on right side",},
+        {name = "here", comment = "place float right here",},
       },
     },
     {
@@ -53,6 +53,6 @@ return {
             use the placement option, just leave the first
             brackets empty.]],
         "keywords", "label", "caption", "content",
-      },
-        },
-        }
+    },
+  },
+}

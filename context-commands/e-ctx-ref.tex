@@ -4,9 +4,26 @@
 
 \nonknuthmode
 
+\definelayout
+  [titlepage]
+  [backspace=1cm,
+    topspace=1cm,
+    width=middle,
+    height=middle,
+    header=0pt,
+    footer=0pt]
+
+\setuplayout
+  [backspace=2cm,
+    topspace=1.5cm,
+    header=0cm,
+    footer=1cm,
+    width=middle,
+    height=middle]
+
 \setupinteraction[state=start]
 \setupinmargin[style=\small\small, align=nothyphenated]
-\setuplayout[margin=18mm]
+\setuppagenumbering[location=footer]
 
 \def\startRelatedCommands{%
   \bTABLE[setups=related-tab]
@@ -20,5 +37,38 @@
   \setupTABLE[option=stretch, align=middle, frame=off]
   \setupTABLE[r][1][bottomframe=on, rulethickness=1.2pt]
 \stopsetups
+
+\startsetups[settings-tab]
+  \setupTABLE[frame=off, distance=0.7em]
+  \setupTABLE[c][1][style=\tt\bf]
+\stopsetups
+
+\definecolor[ArgCol1][r=0.8, g=1, b=1]
+\definecolor[ArgCol2][r=1, g=0.8, b=1]
+\definecolor[ArgCol3][r=1, g=1, b=0.8]
+\definecolor[ArgCol4][r=1, g=0.9, b=0.9]
+\definecolor[ArgCol5][r=0.9, g=1, b=0.9]
+\definecolor[ArgCol6][r=0.9, g=0.9, b=1]
+\definecolor[ArgCol7][r=1, g=0.95, b=0.85]
+\definecolor[ArgCol8][r=1, g=0.85, b=0.95]
+\definecolor[ArgCol9][r=0.85, g=0.95, b=1]
+
+\def\Arg[#1]{\dontleavehmode\framed[offset=overlay, frame=off,
+    backgroundcolor=ArgCol#1, background=color]}
+
+\def\Variant#1#2#3{#1: #2 #3\blank[small]}
+
+\definedescription[Keyword][headstyle=\tt\bf, width=fit,
+  align=flushleft, location=serried, before=, after=, inbetween=]
+
+\def\StartKeywords{\startcolumns[n=2]}
+\def\Keyword#1#2{\framed[align=left, offset=0pt, frame=off]{%
+    \startKeyword{#1}#2\stopKeyword}}
+\def\StopKeywords{\stopcolumns}
+\def\Inherit#1{#1} % todo
+
+\def\StartSettings{\par\bTABLE[setups=settings-tab]}
+\def\Setting#1#2#3#4{\bTR\bTD#1\eTD\bTD#2\eTD\bTD#3 #4\eTD\eTR}
+\def\StopSettings{\eTABLE}
 
 \stopenvironment

@@ -20,16 +20,10 @@ return {
       comment = "Some settings.",
       type = "settings",
       settings = {
-        force = {
-          comment = "Why is this needed?",
-          values = {"no", "yes",},
-          default = "no",
-        },
-        number = {
-          comment = "Whether to place the section numbers.",
-          values = {"no", "yes",},
-          default = "no",
-        },
+        {name = "force", comment = "Why is this needed?",
+         values = {"no", "yes",}, default = "no",},
+        {name = "number", comment = "Whether to place the section numbers.",
+         values = {"no", "yes",}, default = "no",},
       },
     },
   },

@@ -1,7 +1,6 @@
 -- short-cuts
 local C = context
 local format = string.format
-local debug = tex.modes.debug
 
 -- main table
 local cats = dofile"categories.lua"
@@ -42,18 +41,19 @@ local function format_cmd_name(c, o)
 end
 
 -- Build a nice string for presentation of an argument.
--- t: type of argument
--- n: name of argument
+-- a: argument table
 -- return: nice TeX-string
--- todo: metatable for square_brackets and so on
--- todo: put n somewhere
-local function build_arg_string(t, n)
-    local s = {
-        keywords = "[...]",
-        settings = "[..,..=..,..]",
-        text = "\\{...\\}",
-    }
-    return s[t] or format("[%s]", n)
+local function build_arg_string(a)
+    local s = {keywords = {left = "[", right = "]"},
+               settings = {left = "[", right = "]"},
+               text = {left = "\\{", right = "\\}"}}
+    local t = s[a.type] or {left = "[", right = "]"}
+    if a.square_brackets then
+        t.left, t.right = "[", "]"
+    elseif a.braces then
+        t.left, t.right = "\\{", "\\}"
+    end
+    return format("\\Arg[%d]{%s%s%s}", a.number, t.left, a.name, t.right)
 end
 
 -- Print one variant of the command.
@@ -62,39 +62,73 @@ end
 local function print_variant(c, v)
     local s = ""
     for i, a in ipairs(v) do
-        s = s .. build_arg_string(c.arguments[a].type, a)
+        s = s .. build_arg_string(c.arguments[a])
     end
-    C(format_cmd_name(c, s))
-    C.par()
-    C(v.comment)
-    C.par()
-    C(v.description)
+    C.Variant(format_cmd_name(c, s), v.comment or "missing comment",
+              v.description or "")
+end
+
+-- Texify the string.
+-- s: normal text input string
+-- return same string with some enhancements for TeX
+-- todo: can be certainly done better and cleaner
+local function texify(s)
+    s = s:gsub("(%d)%%", "%1\\,\\%%")
+    return s
+end
+
+-- Print the settings of an argument.
+-- t: argument table
+local function print_settings(t)
+    if t.type ~= "settings" then
+        return
+    end
+    if t.settings then
+        C.StartSettings()
+        for _, s in ipairs(t.settings) do
+            C.Setting(s.name, table.concat(s.values, " "),
+                      texify(s.comment or ""), texify(s.description or ""))
+        end
+        C.StopSettings()
+    end
+    if t.inherit then
+        C.Inherit(t.inherit)
+    end
+end
+
+-- Print the keywords of an argument.
+-- t: argument table
+local function print_keywords(t)
+    if t.type ~= "keywords" then
+        return
+    end
+    if t.keywords then
+        C.StartKeywords()
+        for _, k in ipairs(t.keywords) do
+            C.Keyword(k.name, texify(k.comment))
+        end
+        C.StopKeywords()
+    end
+    if t.inherit then
+        C.Inherit(t.inherit)
+    end
 end
 
 -- Print the syntax description of the command.
 -- c: command table
 local function print_syntax(c)
-    C.startsubsection{title = "Invocation"}
-    if #c.variants > 1 then
-        for i, v in ipairs(c.variants) do
-            C.startsubsubsection{title = "Variant " .. i}
-            print_variant(c, v)
-            C.stopsubsubsection()
-        end
-    else
-        print_variant(c, c.variants[1])
+    for i, v in ipairs(c.variants) do
+        print_variant(c, v)
     end
-    C.stopsubsection()
-    C.startsubsection{title = "Arguments"}
+    C.blank()
     for _, t in ipairs(c.arguments) do
-        C.relax()
-        C.mono(build_arg_string(t.type, t.name) .. ": ")
-        C(t.comment)
+        C.mono(build_arg_string(t) .. ": ")
+        C("%s %s", t.comment or "", t.description or "")
         C.par()
-        C(t.description)
-        C.blank()
+        print_settings(t)
+        print_keywords(t)
+        C.blank{"small"}
     end
-    C.stopsubsection()
 end
 
 -- Print a section with a command description.
@@ -106,14 +140,17 @@ local function print_command(c)
         date, author = "???", "???"
     end
     C.startsection{title = format_cmd_name(c), reference = c.name}
-    if debug then
-        C.inmargin(format("Last~update: %s, Status: %s, Last~author: %s",
-                          date, c.status, author))
-    end
     C(c.comment)
-    C.par()
+    C" "
     C(c.description)
+    C.par()
     print_syntax(c)
+    if c.status == "draft" then
+        C.par()
+        C("{\\txx This command description is work in progress and has " ..
+          "not been approuved yet (last update: %s, last author: %s).}",
+          date, author)
+    end
     C.stopsection()
 end
 
@@ -155,6 +192,7 @@ end
 -- Extend the command table with references by labels.
 local function prepare_cid_table(cid)
     for i, a in ipairs(cid.arguments) do
+        a.number = i
         cid.arguments[a.name] = a
     end
 end
@@ -185,7 +223,7 @@ end
 -- do the real job
 prepare_cats_table()
 read_cid_files()
-C("\\environment e-ctx-ref ")
+C.environment{"e-ctx-ref"}
 C.starttext()
 -- C.titlepage()
 for _, c in ipairs(cats) do

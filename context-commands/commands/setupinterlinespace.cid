@@ -14,47 +14,47 @@ return {
       type = "keywords",
       default = "small",
       keywords = {
-        small = "equal to line=2.8ex",
-        reset = "",
-        yes = "",
-        medium = "25% bigger than small",
-        auto = "",
-        big = "50% bigger than small",
-        on = "",
-        off = "",
+        {name = "small", comment = "equal to line=2.8ex",},
+        {name = "reset", comment = "",},
+        {name = "yes", comment = "",},
+        {name = "medium", comment = "25% bigger than small",},
+        {name = "auto", comment = "",},
+        {name = "big", comment = "50% bigger than small",},
+        {name = "on", comment = "",},
+        {name = "off", comment = "",},
       },
     },
     {
       name = "settings",
       type = "settings",
       settings = {
-        line = {
+        {name = "line",
           comment = "Distance between 2 lines.",
           values = {"dimension",},
           default = "2.8ex",
         },
-        stretch = {
+        {name = "stretch",
           values = {"dimension",},
         },
-        height = {
+        {name = "height",
           comment =
             "Ratio of height of the line to total line-height.",
           values = {"number",},
           default = "0.72",
         },
-        depth = {
+        {name = "depth",
           comment =
             "Ratio of depth of the line to total line-height.",
           values = {"number",},
           default = "0.28",
         },
-        top = {
+        {name = "top",
           comment = [[Ratio of height of first line of a page to
               body-font size.]],
           values = {"number",},
           default = "1",
         },
-        bottom = {
+        {name = "bottom",
           comment = [[Ratio of depth of last line of a page to
               body-font size.]],
           values = {"number",},

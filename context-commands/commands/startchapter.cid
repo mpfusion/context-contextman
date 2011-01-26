@@ -12,11 +12,11 @@ return {
       comment = "Settings for the chapter.",
       type = "settings",
       settings = {
-        title = {
+        {name = "title",
           comment = "The title of the chapter.",
           values = {"text"},
         },
-        incrementnumber = {
+        {name = "incrementnumber",
           values = {"yes", "no", "list"},
           default = "yes",
         },

@@ -8,9 +8,6 @@ pdf: ctx-ref.pdf
 %.pdf: %.cld $(sources) Makefile
 	context $<
 
-%-debug.pdf: %.cld $(sources) Makefile
-	context --mode=debug --result=$(basename $@) $<
-
 clean:
 	context --purgeall
 

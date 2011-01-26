@@ -14,10 +14,10 @@ return {
       type = "keywords",
       default = "standard",
       keywords = {
-        a = "Alphabetic numerating.",
-        A = "Uppercase alphabetic numerating.",
-        KA = "todo",
-        n = "todo",
+        {name = "a", comment = "Alphabetic numerating.",},
+        {name = "A", comment = "Uppercase alphabetic numerating.",},
+        {name = "KA", comment = "todo",},
+        {name = "n", comment = "todo",},
       },
     },
     {

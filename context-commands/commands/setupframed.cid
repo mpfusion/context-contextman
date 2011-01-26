@@ -15,60 +15,60 @@ return {
       comment = "Some settings.",
       type = "settings",
       settings = {
-        height = {
+        {name = "height",
           values = {"fit", "broad", "dimension",},
         },
-        width = {
+        {name = "width",
           values = {"fit", "broad", "fixed", "local", "dimension",},
         },
-        autowidth = {
+        {name = "autowidth",
           values = {"yes", "no", "force",},
         },
-        offset = {
+        {name = "offset",
           values = {"none", "overlay", "default", "dimension",},
         },
-        location = {
+        {name = "location",
           comment = "The location of an element.",
           description = "More text to explain the details.",
           values = {"depth", "hanging", "high", "lohi", "low", "top",
                     "middle", "bottom"},
         },
-        option = {
+        {name = "option",
           values = {"none", "empty",},
         },
-        align = {
+        {name = "align",
           comment = "How to align something.",
           values = {"no", "flushleft", "flushright", "middle", "normal",
                     "high", "low", "lohi"},
         },
-        strut = {
+        {name = "strut",
           comment = "Management of a strut.",
           description = "More text to explain the details.",
           values = {"yes", "no", "global", "local"},
         },
-        bottom = {
+        {name = "bottom",
           values = {"command",},
         },
-        top = {
+        {name = "top",
           values = {"command",},
         },
-        frame = {
+        {name = "frame",
           values = {"on", "off", "none", "overlay",},
           default = "on",
         },
-        topframe = {
+        {name = "topframe",
           values = {"on", "off",},
         },
-        background = {
+        {name = "background",
           values = {"screen", "color", "none", "foreground", "name",},
         },
-        backgroundscreen = {
+        {name = "backgroundscreen",
           values = {"number",},
         },
-        backgroundcolor = {
+        {name = "backgroundcolor",
           values = {"name",},
         },
-        depth = {
+        {name = "depth",
           values = {"dimension",},
         },
       },
