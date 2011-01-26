@@ -1,20 +1,15 @@
 - How to manage examples?
-    - external tex-files
-    - example types: inline, tex-page, source + output side by side, etc.
-
+  - external tex-files
+  - example types: inline, tex-page, source + output side by side, etc.
+  - perhaps no example at all: examples are for the context-manual,
+    let's keep this reference dry, just for look-ups
 - Import cid-files from third party modules.
-
 - Perhaps support main-categories and sub-categories.
-
-- Nice colors in output.
-
+- more nice colors
 - More compact layout, better stylesheet
-
 - Perhaps 2-column layout
-
 - A much better ctx-ref.cld (today just quick hacks...)
-
-- Perhaps call-back functions like
-  general_keywords()
-  general_settings()
-  ???  (dropped in commit 301)
+- \cmd{} (cross-referencing)
+- titlepage
+- index
+- no need for variants = {} when there is only one variant (automatic in cld)
