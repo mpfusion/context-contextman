@@ -13,3 +13,7 @@
 - titlepage
 - index
 - no need for variants = {} when there is only one variant (automatic in cld)
+- use "fixpart", "varpart", "generator"
+- use "default" values
+- use "inherit" with cross-links
+- perhaps "inherit" should list the keywords/settings recursively?

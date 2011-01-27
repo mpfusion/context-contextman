@@ -8,7 +8,7 @@ return {
   fixpart = "place",
   varpart = "float",
   generator = "definefloat",
-  categories = {"struct", "graphic"},
+  categories = {"float", "graphic"},
   arguments = {
     {
       name = "keywords",
