@@ -467,23 +467,42 @@ table is scaled to the pagewidth. The result is typeset in
 \placefigure
   [here][fig:table]
   {An example of a \TEX\ figure.}
-  {\externalfigure[table.tmp][width=\textwidth]}
+  {\externalfigure[table.buffer][width=\textwidth]}
 
 \placefigure
   {An example of a \TEX\ figure.}
-  {\externalfigure[table.tmp][width=.5\textwidth]}
+  {\externalfigure[table][width=.5\textwidth, type=buffer]}
 \stopbuffer
+
+% todo: type=buffer and table.buffer are broken in today's context version...
 
 \typebuffer
 
 \getbuffer
 
-Buffers are written to a file with the extension \type
-{tmp}, so we recall the table with \type{table.tmp}. Other
-types of figures are searched on the directories
-automatically. With \TEX\ figures this is not the case. This
-might lead to conflicting situations when an \EPS\ figure is
-meant and not found, but a \TEX\ file of that name is.
+With \type{\typesetbuffer} you go a step further: not just one text element
+but a whole document can be typeset and inserted as figure. As an example, the
+second page of some text on A7-paper with landscape orientation is shown in
+\in{figure}[fig:a7-landscape-layout].
+
+\startbuffer
+\startbuffer[a7-buf]
+\setuppapersize[A7, landscape][A7, landscape]
+\showframe
+\input tufte
+\stopbuffer
+
+\placefigure[][fig:a7-landscape-layout]
+  {An example for \tex{typesetbuffer}.}
+  {\typesetbuffer[a7-buf][page=2]}
+\stopbuffer
+
+% todo: second option to \setuppapersize should not be needed with
+% recent context
+
+\typebuffer
+
+\getbuffer
 
 \section{Extensions of figures}
 \index{figures+extensions}

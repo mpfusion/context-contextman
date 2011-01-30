@@ -65,7 +65,7 @@ local function scan_dir(dir)
 	context.stopsection()
 end
 
-local root = file.dirname(file.dirname(resolvers.find_file("context.tex")))
+local root = file.dirname(file.dirname(resolvers.findfile"context.mkiv"))
 for entry in lfs.dir(root) do
 	if entry:match("^[^.]") then
 		local dir = root .. "/" .. entry

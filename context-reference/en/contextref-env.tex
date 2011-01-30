@@ -355,5 +355,14 @@
    location=serried,
    width=broad]
 
+\startluacode
+userdata = userdata or {}
+function userdata.pipe(c)
+    local h = io.popen(c)
+    context(h:read"*a")
+    h:close()
+end
+\stopluacode
+\def\Pipe#1{\ctxlua{userdata.pipe"#1"}}
 
 \protect
