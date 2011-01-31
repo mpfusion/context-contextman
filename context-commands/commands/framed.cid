@@ -2,25 +2,26 @@ return {
   name = "framed",
   vc_id = "$Id$",
   status = "draft",
-  comment = "Make box with a frame.",
+  comment = [[Typeset the contents in a box (either an hbox or a vbox) with the
+              ability to add a frame, configure the alignment, offsets, etc.]],
   categories = {"packaging"},
   arguments = {
     {
       name = "settings",
-      comment = "short comment for this option",
+      comment = "Modify specific settings; the rest are inherited from \\type{\\setupframed}:",
       description = "long description for this option",
       type = "settings",
       inherit = "setupframed",
     },
     {
       name = "content",
-      comment = "Stuff to put into the box.",
+      comment = "Contents of the box.",
       type = "text",
-    },
+    }, 
   },
   variants = {
     {
-      comment = "No special settings.",
+      comment = "All settings inherited from \\type{\\setupframed}.",
       "content"
     },
     {
