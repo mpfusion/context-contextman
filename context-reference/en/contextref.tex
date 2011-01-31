@@ -44,7 +44,7 @@
   A copy of the license is included in the section entitled `GNU
   Free Documentation License'.
   \blank[big]
-  \rightaligned{\txx\tt svnversion: \Pipe{svnversion}}
+  \rightaligned{\txx\tt svnversion: \cldcontext{os.resultof"svnversion"}}
 \stopmakeup
 
 \startfrontmatter
@@ -59,11 +59,9 @@
   \component co-layout 
   \component co-typography
   \component co-fonts
-% todo: color and backgrounds commented because of bug:
-% http://www.ntg.nl/pipermail/ntg-context/2011/056342.html
-%  \component co-colors
+  \component co-colors
   \component co-verbatim
-%  \component co-backgrounds
+  \component co-backgrounds
   \component co-language
   \component co-textelements
   \component co-references
@@ -73,8 +71,7 @@
   \component co-figures
 %  \component co-tables  % deprecated, and does not compile
   \component co-tabulate
-% todo: what should be done with \suber and \super ?
-%  \component co-formulas
+  \component co-formulas
   \component co-metapost
   \component co-layers
   \component co-interactive % \...interaction.. and widgets

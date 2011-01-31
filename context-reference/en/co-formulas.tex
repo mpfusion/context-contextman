@@ -16,7 +16,7 @@ functionality of \TEX\ relates to math typesetting since
 the main reason for developing \TEX\ was the need for
 typesetting math.
 
-In \CONTEXT\ math typesetting is not really an isue.
+In \CONTEXT\ math typesetting is not really an issue.
 \CONTEXT\ was developed for typesetting educational
 materials and not necessarily math. Therefore more attention
 was paid to chemical formulas and consistent use of units
@@ -597,6 +597,8 @@ give some examples:
   y + \maframed{y} + y^{2} + y^{\maframed{2}}
 \stopformula
 
+\nonknuthmode % todo: one day this can be removed
+
 \startformula
   x \times \maframed{y} \times y^{\maframed{z}_{\maframed{z}}}
 \stopformula
@@ -606,24 +608,6 @@ give some examples:
 
 \getbuffer
 
-In this example we can see that the superscript~2 is rather
-big. This can be prevented by using the commands \type
-{\super} and \type {\suber} in stead of \type {^} and \type
-{_}.
-
-\startbuffer
-\startformula
-  x \times \maframed{y} \times y\super{\maframed{z}\suber{\maframed{z}}}
-\stopformula
-\stopbuffer
-
-\typebuffer
-
-\getbuffer
-
-If you want to use \type {^} and \type {_} anyhow, than you
-can use \type {\enablesupersub} to reach the same effect.
-
 To obtain a good spacing in framed math texts the \type
 {offset} equals \type {overlay}. The offset is produced by
 giving \type {frameoffset} an adequate value. Other setups
@@ -631,7 +615,7 @@ are also possible:
 
 \startbuffer
 \startformula
-  x \times y\super{\maframed[framecolor=red]{z}\suber{z}}
+  x \times y^{\maframed[framecolor=red]{z}_z}
 \stopformula
 \stopbuffer
 
