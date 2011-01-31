@@ -1,5 +1,5 @@
 -- short-cuts
-local C = context
+local C = tex.modes.html and dofile"ctxref-html.lua" or context
 local format = string.format
 
 -- main table

@@ -1,23 +1,74 @@
-commands:
-    One file per command (or environment)
+Introduction
+------------
 
-Makefile:
-    main entry point for creation of pdf and html files
+The ideas behind this project can be found in history/context-reference.pdf.
+The ctx-ref.cld shows, what can be done quite easily with the cid-files
+(cid = context interface description).
 
-general-keywords.cid and general-settings.cid:
-    collection of keywords and settings, that can be inherited by any command
+Some threads in public mailing lists:
+- http://www.ntg.nl/mailman/private/dev-context/2010/002192.html
+- http://www.ntg.nl/mailman/private/dev-context/2010/002260.html
 
-history:
-    initial presentation at the ConTeXt meeting 2010
 
-todo:
-    to do!
+Roadmap
+-------
 
-categories.lua:
-    structure of the categories
+1. Transform cont-en.xml to cid-files without information loss.
+- That means also, to add more argument types.
+- I've no experience with xml, but I'm willing to do that, if nobody else
+  does. I hope to get help from the x-set-12.mkiv file. (-- Peter)
+- Before doing that, we should ask Hans for feedback. He should feel
+  comfortable with the cid-files.
 
-e-ctx-ref.tex:
-    settings for the pdf-output (style-file)
+2. Update ctx-ref.cld.
+- It should treat all kinds of commands and arguments.
+- Some cleanup.
 
-ctx-ref.cld:
-    lua functions for pdf-creation
+3. Integrate all information from the wiki.
+- Only mkiv.
+- Verify before integration.
+- No deprecated commands.
+
+4. context --mode=html ctx-ref.cld
+- Then put the files on a web-server.
+- Think about best integration with the wiki.
+
+5. Complete description of all commands.
+- Just some few hundreds commands to describe...
+- And all arguments of course!
+
+
+Description of the files and directories
+----------------------------------------
+commands:          One file per command (or environment)
+Makefile:          main entry point for creation of pdf and html files
+definitions.cid:   collection of keywords and settings, that can be inherited
+                   by any command (-> resolve)
+history:           initial presentation at the ConTeXt meeting 2010
+categories.lua:    structure of the categories
+e-ctx-ref.tex:     settings for the pdf-output (style-file)
+ctx-ref.cld:       lua functions for pdf-creation
+
+
+Some unordered todo-items
+-------------------------
+
+- How to manage examples?
+  - external tex-files
+  - example types: inline, tex-page, source + output side by side, etc.
+  - perhaps no example at all: examples are for the context-manual,
+    let's keep this reference dry, just for look-ups
+- Import cid-files from third party modules.
+- Perhaps support main-categories and sub-categories.
+- more nice colors
+- More compact layout, better stylesheet
+- Perhaps 2-column layout
+- A much better ctx-ref.cld (today just quick hacks...)
+- \cmd{} (cross-referencing)
+- titlepage
+- index
+- no need for variants = {} when there is only one variant (automatic in cld)
+- use "fixpart", "varpart", "generator"
+- use "default" values
+- use "inherit" with cross-links
+- perhaps "inherit" should list the keywords/settings recursively?
