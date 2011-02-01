@@ -537,13 +537,15 @@ With the command
 \typebuffer
 \CONTEXT\ supports also other character encodings such as ISO~Latin1.
 
-It is highly recommended, that all input files, i.e.\ the \ConTeXt\ source
-and other included files such as image files, have only the letters a--z,
-digits, dashes and dots in their names, otherwise you can easily get into
-problems. Especially the characters *, ?, the space character and some more
-are known to cause problems, sometimes because of \ConTeXt\ itself (internal
-pattern matching), sometimes because of issues with the underlying operating
-system.
+It is highly recommended, that all input files, i.e.\ the \ConTeXt\ source and
+other included files such as image files, have only the letters a--z, digits
+and dashes in their names, that is in the names of their full paths, otherwise
+you can easily get into problems. Especially the characters *, ?, the space
+character and some more are known to cause problems, sometimes because of
+\ConTeXt\ itself (internal pattern matching), sometimes because of issues with
+the underlying operating system. The dot \quote{.} is somewhat special: it's
+used to separate the suffix from the rest of the file-name, but at other
+places in the path it can cause trouble just like \quote{*} or \quote{?}.
 
 \section{Texts}
 
