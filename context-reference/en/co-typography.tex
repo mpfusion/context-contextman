@@ -13,9 +13,6 @@
 
 \def\savedfont{}
 
-\def\textasciicircum{\char`\~} % for \showcharacters
-\let\localcolortrue\relax  % for \showcharacters
-
 \definefontfeature[default][default]
      [protrusion=pure,expansion=quality,mode=node,script=latn]
 \usetypescript[modern][ec]
@@ -3084,13 +3081,5 @@ a couple of tables. The (current) composition is shown by
   [here][fig:show accents]
   {Output of \tex{showaccents} for the current (palatino) font in \PDFTEX}
   {\externalfigure[typography/encodings.pdf][page=5]}
-
-\page
-
-With \type {\showcharacters}, you get a list of named characters (and
-glyphs) as known to the system. Note: the following table will look
-different in each of the three typesetting engines. 
-
-\showcharacters
 
 \stopcomponent
