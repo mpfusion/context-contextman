@@ -655,14 +655,16 @@ with the command:
 \section[text in margin]{Text in the margin}
 \index{margin+text}
 \index{titles+margins}
-\macro{\tex{setupinmargin}}
+\macro{\tex{setupmargindata}}
 \macro{\tex{inmargin}}
 \macro{\tex{inothermargin}}
 \macro{\tex{inleft}}
 \macro{\tex{inright}}
 \macro{\tex{margintext}}
 
-Texts can be place in the margins with:
+\fixme{The syntax of the margin commands has changed in mark~IV.}
+
+Texts can be placed in the margins with:
 
 \showsetup{inmargin}
 
@@ -741,10 +743,10 @@ somewhat lower. This is done by adding the keyword \type
 It is possible to set up the way margin texts are typeset by
 means of the command:
 
-\showsetup{setupinmargin}
+\showsetup{setupmargindata}
 
 \start
-\setupinmargin[align=middle]
+\setupmargindata[align=middle]
 
 \inleft{a rather\\marginal\\effect\\}With \type {align} we
 define the left or right alignment of the margin text.
@@ -759,19 +761,19 @@ text may ask for more than one processing step. In the
 example below you see some of the possible setups.
 
 \startlines
-\setupinmargin [align=left]
+\setupmargindata [align=left]
 \inmargin{left}   This is \type {left} aligned
-\setupinmargin [align=middle]
+\setupmargindata [align=middle]
 \inmargin{middle} but this goes in the \type {middle}. Don't forget that
-\setupinmargin [align=right]
+\setupmargindata [align=right]
 \inmargin{right} \type {right} in this sense, align means a ragged right margin.
-\setupinmargin [align=yes]
+\setupmargindata [align=yes]
 \inmargin{yes}   Just to be complete, there is \type {yes}
-\setupinmargin [align=no]
+\setupmargindata [align=no]
 \inmargin{no}    and \type {no}.
-\setupinmargin [align=inner]
+\setupmargindata [align=inner]
 \inmargin{inner} The outsiders \type {inner} and
-\setupinmargin [align=outer]
+\setupmargindata [align=outer]
 \inmargin{outer} \type {outer} adapt themselvs to a doublesided design.
 \stoplines
 
@@ -781,7 +783,7 @@ The left and right margin can be set up separately by adding
 \start
 
 \startbuffer
-\setupinmargin
+\setupmargindata
   [style=\bfx\setupinterlinespace]
 \stopbuffer
 
@@ -852,9 +854,9 @@ width is set up by means of: \type {\setuplayout} (see \in
 \stopbuffer
 
 \startbuffer[settings]
-\setupinmargin[1][align=right, line=1,style=slanted]
-\setupinmargin[2][align=middle,line=2,style=boldslanted]
-\setupinmargin[3][align=left,  line=3,style=bold]
+\setupmargindata[1][align=right, line=1,style=slanted]
+\setupmargindata[2][align=middle,line=2,style=boldslanted]
+\setupmargindata[3][align=left,  line=3,style=bold]
 \stopbuffer
 
 \start
