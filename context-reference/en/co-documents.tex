@@ -237,10 +237,10 @@ documents that are placed on several subdirectories.
     \bf project     \VL
     \bf environment \VL
     \bf product     \VL
-    \bf componnent  \VL\SR
+    \bf component  \VL\SR
 \HL
 \VL \type{\project <<name>>}
-    \VL           \VL        \VL  \yes  \VL  \yes  \VL\FR
+    \VL           \VL        \VL (\yes) \VL (\yes) \VL\FR
 \VL \type{\environment <<name>>}
     \VL    (\yes) \VL (\yes) \VL (\yes) \VL (\yes) \VL\MR
 \VL \type{\product <<name>>}
@@ -323,10 +323,12 @@ independently, given that the stucture is defined properly.
 In principal a project file contains only a list of products
 and environments. If you would process the project file all
 products will be placed in one document. This is seldom
-wanted. This manual for example has a project structure.
-Every part is a product and every chapter is a component.
-There are several environments that are loaded in the main
-project file.
+wanted.
+
+If you have only one product, you don't really need a project file.
+This manual for example has a product/component structure without a project
+file. Every chapter is a component and the product file loads some
+environments.
 
 Schematically the coherence between files could be
 displayed as illustrated in \in {figures} [fig:structure
@@ -445,6 +447,9 @@ Below you will find an example of a project structure.
 \startbuffer
 \startcomponent first
 
+\environment environ
+\product example
+
 \part{One}
 
 \completecontent
@@ -476,6 +481,9 @@ Below you will find an example of a project structure.
 \startbuffer
 \startcomponent second
 
+\environment environ
+\product example
+
 \part{Two}
 
 \completecontent
@@ -505,10 +513,8 @@ Below you will find an example of a project structure.
 \stopfiguretext
 
 The files \type{first.tex}, \type{second.tex} and
-\type{example.tex} can be processed separately. As long as
-there is one product in this project you can also process
-\type{project.tex}. If you process an environment there will
-be no pages of output.
+\type{example.tex} can be processed separately. If you process an environment
+there will be no pages of output.
 
 \section[directories]{Directories}
 \index{files+directories}
@@ -669,7 +675,7 @@ we spoil the document source with output and mode settings,
 the more flexible we are.
 
 To enable users to develop a style that adapts itself to
-certain circumstances, \CONTEXT\ provide system modes. For
+certain circumstances, \CONTEXT\ provides system modes. For
 the moment there are:
 
 \starttabulate[|lT|p|]
