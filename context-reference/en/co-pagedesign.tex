@@ -1019,6 +1019,41 @@ Simplified we can say that \TEX\ typesets pages. If the typeset material should 
 
 \CONTEXT\ offers tools to achieve both options.
 
+In the following table an overview is given about all currently available arranging schemes.
+
+\starttabulate[|l|p|]
+\NC Key for \type{\setuparranging} \NC Meaning \NC\NR
+\HL
+\NC \type{[2SIDE]}	       \NC 2 pages next to each other single sided only! \NC\NR
+\NC \type{[2TOP]}		   \NC 2 pages above each other, single sided only!  \NC\NR 
+\NC \type{[1*8]}           \NC 1 sheet 1 x 8 pages = 8 pages single sided!   \NC\NR
+\NC \type{[1*4]}	       \NC 1 sheet 1 x 4 pages = 4 pages single sided!	\NC\NR
+\NC \type{[1*2*Conference]} \NC 2 pages on top of each other, 1 page rotated \NC\NR
+\NC \type{[1*4*Conference]} \NC 2 odd pages next to each other, even page rotated on top \NC\NR
+\NC \type{[XY]}            \NC Arrangement in nx columns and ny rows, uses the setup \type{\setuppaper[dx=,dy=,nx=,ny=]}           \NC\NR
+\NC \type{[2UP]}           \NC 2 pages next to each other, n sheets arranged for a single booklet! \NC\NR
+\NC \type{[2DOWN]}         \NC 2 pages above each other,  n sheets arranged for a single booklet!  \NC\NR
+\NC \type{[2TOPSIDE]}      \NC 2 odd pages on one side, 2 even pages verso, above each other \NC\NR
+\NC \type{[2*16]}	       \NC Section: one sheet 2 x 16 pages = 32 pages \NC\NR
+\NC \type{[2*8]}	       \NC Section: one sheet 2 x 8 pages = 16 pages \NC\NR
+\NC \type{[2*8*Z]}         \NC Section: one sheet 2 x 8 pages = 16 pages, special folding: zig-zag \NC\NR
+\NC \type{[2*6*Z]}         \NC Section: one sheet 2 x 6 pages = 12 pages, special folding: zig-zag \NC\NR
+\NC \type{[2*4]}	       \NC Section: one sheet 2 x 4 pages = 8 pages \NC\NR
+\NC \type{[2*2]}	       \NC Section: one sheet 2 x 2 pages = 4 pages \NC\NR
+\NC \type{[2**2]}	       \NC Section: one sheet 2 x 2 pages = 4 pages \NC\NR
+\NC \type{[2*4*2]}	       \NC Section of 16 pages: 2 sheets, 4 pages front and backside \NC\NR
+\NC \type{[2*2*4]}         \NC Section of 16 pages: 4 sheets, 2 pages front and backside  \NC\NR
+\NC \type{[3SIDE]}         \NC 3 odd pages recto, 3 even pages verso \NC\NR
+\NC \type{[2*2*2]}	       \NC Section: two sheets 2 x 2 pages = 8 pages \NC\NR
+\NC \type{[2*2*3]}	       \NC Section: three sheets 2 x 2 pages = 12 pages \NC\NR
+\NC \type{[TRYPTICHON]}    \NC Leaflet: one sheet 2 x 3 pages = 6 pages  \NC\NR
+\NC \type{[DOUBLEWINDOW]}  \NC Leaflet: one sheet 2 x 4 pages = 8 pages  \NC\NR
+\NC \type{[ZFLYER-8]}    \NC Leaflet: one sheet 2 x 4 pages = 8 pages   \NC\NR
+\NC \type{[ZFLYER-10]}   \NC Leaflet: one sheet 2 x 5 pages = 10 pages  \NC\NR
+\NC \type{[ZFLYER-12]}   \NC Leaflet: one sheet 2 x 6 pages = 12 pages  \NC\NR
+\NC \type{[MAPFLYER-12]} \NC Leaflet: one sheet 2 x 6 pages = 12 pages  \NC\NR
+\stoptabulate
+
 When talking about book-printing the industry produces different kinds of sections, consisting commonly out of 32 or 16 pages. Consider, that sections of 32 pages may be quite thick. At binding if the sections are sewn and the spine is rounded the fore edge can become stepped. This is aesthetically less satisfying. Best results are normally obtained with sections of 16 pages.
 
 For special purposes or in case of special papers also less than 16 pages per section are arranged.
@@ -1030,14 +1065,20 @@ The command to arrange pages with \CONTEXT\ is
 For (standard) sections the following list of schemes is available: 
 
 \setuptabulate[EQ={=}]
-\starttabulate[|l|l|r|]
+\starttabulate[|l|p|p|]
 	\NC \bf Arrangement \NC \bf Result \NC \bf Number of pages \NC\NR
 	\NC \type{\setuparranging[2*16] } \NC section: one sheet $2 \times 16$ pages \EQ 32 pages \NC\NR
 	\NC \type{\setuparranging[2*8]  } \NC section: one sheet $2 \times  8$ pages \EQ 16 pages \NC\NR
 	\NC \type{\setuparranging[2*4]  } \NC section: one sheet $2 \times  4$ pages \EQ 8 pages \NC\NR
 	\NC \type{\setuparranging[2*2]  } \NC section: one sheet $2 \times  2$ pages \EQ 4 pages \NC\NR
-	% \NC \type{\setuparranging[2**2] } \NC section: one sheet $2 \times  2$ pages \EQ 4 pages \NC\NR 
-\stoptabulate
+	\NC \type{\setuparranging[2**2] } \NC section: one sheet $2 \times  2$ pages \EQ 4 pages \NC\NR 
+	\NC \type{\setuparranging[2*8*Z]} \NC section: one sheet $2 \times 8$ pages \EQ 16 pages, special folding: zig-zag \NC\NR
+	\NC \type{\setuparranging[2*6*Z]} \NC section: one sheet $2 \times 6$ pages \EQ 12 pages, special folding: zig-zag \NC\NR
+	\NC \type{\setuparranging[2*4*2]} \NC section: 2 sheets, 4 pages front and backside \EQ 16 pages\NC\NR
+	\NC \type{\setuparranging[2*2*4]} \NC section: 4 sheets, 2 pages front and backside \EQ 16 pages \NC\NR
+	\NC \type{\setuparranging[2*2*2]} \NC section: 2 sheets $2 \times 2$ pages          \EQ 8 pages \NC\NR
+	\NC \type{\setuparranging[2*2*3]} \NC section: 3 sheets $2 \times 2$ pages          \EQ 12 pages \NC\NR	
+ \stoptabulate
 
 On the following pages we show pictures of arranged pages for the mentioned imposition schemes.
 
@@ -1060,6 +1101,12 @@ On the following pages we show pictures of arranged pages for the mentioned impo
 		{\externalfigure[2x8][page=2,width=.45\textwidth]}{verso}
 	\stopcombination}
 	
+\stoppostponing
+
+The above mentioned imposition schemes are meant for the professional printing industry. 
+
+But also with an office printer one can produce sections. Sections with less than 16 pages can be produced with the following folding schemes:
+
 \placefigure
 	[middle]
 	[]
@@ -1071,18 +1118,29 @@ On the following pages we show pictures of arranged pages for the mentioned impo
 
 \placefigure
 	[middle]
-	[]
-	{4 pages} % \type{\setuparranging[2*4]}}
+	[fig:2x2]
+	{4 pages} % \type{\setuparranging[2*2]}}
 	{\startcombination[2*1]
 		{\externalfigure[2x2][page=1,width=.45\textwidth]}{recto}
 		{\externalfigure[2x2][page=2,width=.45\textwidth]}{verso}
 	\stopcombination}
-\stoppostponing
+	
+\placefigure
+	[middle]
+	[fig:2xx2]
+	{4 pages} % \type{\setuparranging[2**2]}}
+	{\startcombination[2*1]
+		{\externalfigure[2xx2][page=1,width=.45\textwidth]}{recto}
+		{\externalfigure[2xx2][page=2,width=.45\textwidth]}{verso}
+	\stopcombination}
+	
+The last two examples (\in{Figure}[fig:2x2] and \in{}[fig:2xx2]) differ only in the fact, that the verso side carries the two pages in reversed order.
 
-The above mentioned imposition schemes are meant for the professional printing industry. -- But also with an office printer one can produce sections. The simplest version is booklet-printing. In this case all pages are arranged in such a way, that with a single fold a booklet is formed.
+The simplest version of a section is booklet-printing. In this case all pages are arranged in such a way, that with a single fold a booklet is formed.
 
 \starttabulate[|l|p|]
-\NC \type{\setuparranging[2UP]  } \NC 2 pages next to each other, n sheets arranged for a single booklet \NC\NR
+\NC \bf Arrangement \NC \bf Result \NC \bf Number of pages \NC\NR
+\NC \type{\setuparranging[2UP]}   \NC 2 pages next to each other, n sheets arranged for a single booklet \NC\NR
 \NC \type{\setuparranging[2DOWN]} \NC 2 pages above each other,  n sheets arranged for a single booklet  \NC\NR
 \stoptabulate
 
@@ -1097,6 +1155,7 @@ The above mentioned imposition schemes are meant for the professional printing i
 		{\externalfigure[2UP][page=1,width=.45\textwidth]}{recto}
 		{\externalfigure[2UP][page=2,width=.45\textwidth]}{verso}
 	\stopcombination}
+
 \placefigure
 	[middle]
 	[]
@@ -1107,13 +1166,14 @@ The above mentioned imposition schemes are meant for the professional printing i
 	\stopcombination}
 \stoppostponing
 
-For those who want to print their own book with sections on the office printer \CONTEXT\ offers two schemes which use 2 and 4 sheets of paper respectively to form a section of 16 pages.
-
+For those who want to print their own book with sections on the office printer \CONTEXT\ offers four schemes which use 2, 3 and 4 sheets of paper respectively to form a section.
 
 \starttabulate[|l|l|r|]
 	\NC \bf Arrangement \NC \bf Result \NC \bf Number of pages \NC\NR
-	\NC \type{\setuparranging[2x4x2] } \NC section: $2 \times 4$ pages on 2 sheets \EQ 16 pages \NC\NR
-	\NC \type{\setuparranging[2x2x4] } \NC section: $2 \times 2$ pages on 4 sheets \EQ 16 pages \NC\NR 
+	\NC \type{\setuparranging[2*4*2]} \NC section: 2 sheets, 4 pages front and backside \EQ 16 pages\NC\NR
+	\NC \type{\setuparranging[2*2*4]} \NC section: 4 sheets, 2 pages front and backside \EQ 16 pages \NC\NR
+	\NC \type{\setuparranging[2*2*2]} \NC section: 2 sheets $2 \times 2$ pages          \EQ 8 pages \NC\NR
+	\NC \type{\setuparranging[2*2*3]} \NC section: 3 sheets $2 \times 2$ pages          \EQ 12 pages \NC\NR
 \stoptabulate
 
 \startpostponing
@@ -1142,9 +1202,58 @@ For those who want to print their own book with sections on the office printer \
 		{\externalfigure[2x2x4][page=7,height=.2\textheight]}{4\high{th} sheet recto}
 		{\externalfigure[2x2x4][page=8,height=.2\textheight]}{4\high{th} sheet verso}
 	\stopcombination}
+
+\placefigure
+	[middle]
+	[]
+	{8 pages, 2 sheets} % \type{\setuparranging[2*2*2]}}
+	{\startcombination[2*2]
+		{\externalfigure[2x2x2][page=1,height=.2\textheight]}{1\high{st} sheet recto}
+		{\externalfigure[2x2x2][page=2,height=.2\textheight]}{1\high{st} sheet verso}
+		{\externalfigure[2x2x2][page=3,height=.2\textheight]}{2\high{nd} sheet recto}
+		{\externalfigure[2x2x2][page=4,height=.2\textheight]}{2\high{nd} sheet verso}
+	\stopcombination}
+
+\placefigure
+	[middle]
+	[]
+	{12 pages, 3 sheets} % \type{\setuparranging[2*2*3]}}
+	{\startcombination[2*3]
+		{\externalfigure[2x2x3][page=1,height=.2\textheight]}{1\high{st} sheet recto}
+		{\externalfigure[2x2x3][page=2,height=.2\textheight]}{1\high{st} sheet verso}
+		{\externalfigure[2x2x3][page=3,height=.2\textheight]}{2\high{nd} sheet recto}
+		{\externalfigure[2x2x3][page=4,height=.2\textheight]}{2\high{nd} sheet verso}
+		{\externalfigure[2x2x3][page=5,height=.2\textheight]}{3\high{rd} sheet recto}
+		{\externalfigure[2x2x3][page=6,height=.2\textheight]}{3\high{rd} sheet verso}
+	\stopcombination}
 \stoppostponing
 
-Next to the imposition schemes involving folding \CONTEXT\ offers possibilities to arrange pages in such a way, that after cutting the pile of sheets book blocks can be assembled. The resulting bookblock consists of loose sheets of paper and will be glued along the spine to prepare e.g. a paperback.
+
+
+Yet another way to print sections is to use z-folding, which is a zig-zag folding combined with a single fold in the spine. \CONTEXT\ comes with two types of sections, one with 12 pages and one with 16 pages.
+
+\startpostponing
+\placefigure
+	[middle]
+	[]
+	{12 pages z-folding} % \type{\setuparranging[2*6*Z]}}
+	{\startcombination[2*1]
+		{\externalfigure[2x6xZ][page=1,width=.45\textwidth]}{recto}
+		{\externalfigure[2x6xZ][page=2,width=.45\textwidth]}{verso}
+	\stopcombination}
+
+\placefigure
+	[middle]
+	[]
+	{16 pages z-folding} % \type{\setuparranging[2*6*Z]}}
+	{\startcombination[2*1]
+		{\externalfigure[2x8xZ][page=1,width=.45\textwidth]}{recto}
+		{\externalfigure[2x8xZ][page=2,width=.45\textwidth]}{verso}
+	\stopcombination}
+\stoppostponing
+
+
+Next to the imposition schemes involving folding \CONTEXT\ offers possibilities to arrange pages in such a way, that after cutting the pile of sheets book blocks can be assembled. The resulting book block consists of loose sheets of paper and will be glued along the spine to prepare e.g. a paperback.
 
 \CONTEXT\ has an arranging scheme for two odd pages above each other and two even pages on the backside of the sheet. In order to build the book block the sheets need to be cut and the the two piles must be merged.
 
@@ -1164,9 +1273,12 @@ Next to the imposition schemes involving folding \CONTEXT\ offers possibilities 
 	\stopcombination}
 \stoppostponing
 
-For building book blocks from single sided printed sheets \CONTEXT\ offers three different schemes. The first scheme arranges 4 pages on the front side of the sheet. The pages are arranged in such a way that they can be folded, however the verso face of the sheet is blank. An other option is to cut the sheet in four parts. The book block must be assembled from the 4 piles of cut sheets.
+The following schemes can be used for the preparation of handouts from presentations. They also can be used to assemble book blocks after cutting and merging the piles.
 
-The second scheme puts two pages on the front side of a sheet next to each other. After cutting the book block is build through merging the two piles.
+The first scheme arranges 4 pages on the front side of the sheet.
+
+The second scheme puts two pages on the front side of a sheet next to each other.
+
 The third scheme works like the previous one but instead of putting the pages next to each other the pages are placed on top of each other.
 
 \starttabulate[|l|l|r|]
@@ -1180,37 +1292,151 @@ The third scheme works like the previous one but instead of putting the pages ne
 \placefigure
 	[middle]
 	[]
-	{4 pages, singlesided, 1 sheet} % \type{\setuparranging[1*4]}}
+	{4 pages, singlesided, 1 sheet} % \type{\setuparranging[1*4]
 		{\externalfigure[1x4][page=1,width=.45\textwidth]}
 
 \placefigure
 	[middle]
 	[]
-	{2 pages, single sided, 1 sheet}
+	{2 pages, single sided, 1 sheet} % \type{\setuparranging[2Side]} and \type{\setuparranging[2TOP]}
 	{\startcombination[2*1]
 		{\externalfigure[2SIDE][page=1,width=.45\textwidth]}{\type{\setuparranging[2SIDE]}}
 		{\externalfigure[2TOP][page=1,width=.45\textwidth]}{\type{\setuparranging[2TOP]}} 
 	\stopcombination}
-
 \stoppostponing
 
-Last but not least is the X-Y-arrangement of pages.
-This scheme is not intended for the production of book blocks but for the placement of pages e.g. on sheets carrying labels or for the placement of other information which must return several times on a sheet.
+
+There are a couple of arranging schemes for special purposes. The first one places 8 pages on the recto side of the
+paper. It is intentioned for single sided prints only. The arrangement is made in such a way, that it is possible to fold the paper into a booklet, where while turning the pages now empty pages are shown.
 
 \starttabulate[|l|l|r|]
-	\NC \bf Arrangement \NC \bf Result \NC \bf Number of pages \NC\NR
-	\NC \type{\setuparranging[XY] } \NC $nx \times my$ pages, single sided \EQ n $\times$ m pages \NC\NR
+\NC \bf Arrangement \NC \bf Result \NC \bf Number of pages \NC\NR
+\NC \type{\setuparranging[1*8]}    \NC \quotation{section}: one sheet $1 \times 8$ pages \EQ 8 pages \NC\NR
 \stoptabulate
 
 \startpostponing
 \placefigure
-	[middle,here]
+	[middle]
 	[]
-	{8 pages, singlesided, 1 sheet, XY-arrangement}
-		{\externalfigure[XY][page=1,width=.4\textwidth]}
+	{8 pages, single sided, 1 sheet} % \type{\setuparranging[1*8]}
+	{\externalfigure[1x8][page=1,width=.45\textwidth]}
 \stoppostponing
 
-There is another culprit in arranging pages. If multiple layers of paper are folded, the outermost paper will require more width because it has to turn around the inner paper layers. This effect occurs as well in the spine folds as also in the head folds. How much width is required depends on the number of folds and the thickness of the paper. In professional book printing this effect is accounted for by displacing the pages depending on their position in horizontal and vertical direction. The result is that there will be a perfect look-through registering of all pages. There are no simple rules to indicate the required amount of displacement. Mostly it is a matter of experience to set up the page shift information.
+For those who will have to produce name-card displays for e.g. conferences or for the preparation of menue-displays in a restaurant the following schemes might be of use.
+
+\starttabulate[|l|p|]
+\NC \bf Arrangement \NC \bf Result \NC\NR 
+\NC \type{\setuparranging[1*2*Conference]} \NC one sheet 2 pages on top of each other, 1 page rotated \NC\NR
+\NC \type{\setuparranging[1*4*Conference]} \NC one sheet 2 odd pages next to each other, even page rotated on top \NC\NR
+\stoptabulate
+
+\startpostponing
+\placefigure
+	[middle]
+	[]
+	{Display cards} % \type{\setuparranging[1*2*Conference]} and \type{\setuparranging[1*4*Conference]} 
+	{\startcombination[2*1]
+		{\externalfigure[1x2xConference][page=1,width=.45\textwidth]}{1 card with 2 pages}
+		{\externalfigure[1x4xConference][page=1,width=.45\textwidth]}{1 card with 4 pages}
+	\stopcombination}		
+\stoppostponing
+
+There are diary systems, where three pages are place next to each other. The following scheme provides this arranging scheme:
+
+\starttabulate[|l|l|r|]
+\NC \bf Arrangement \NC \bf Result \NC \bf Number of pages \NC\NR 
+\NC \type{\setuparranging[3SIDE]} \NC 3 odd pages recto, 3 even pages verso \EQ 6 pages \NC\NR
+\stoptabulate
+
+\startpostponing
+\placefigure
+	[middle]
+	[]
+	{3 pages per side} % \type{\setuparranging[3SIDE]}
+	{\startcombination[2*1]
+		{\externalfigure[3SIDE][page=1,width=.45\textwidth]}{3 pages recto}
+		{\externalfigure[3SIDE][page=1,width=.45\textwidth]}{3 pages verso}
+	\stopcombination}	
+\stoppostponing
+
+\CONTEXT\ can also arrange pages for the production of flyers. There is a great variety of such flyers. \CONTEXT\ supports flyers with 6, 8, 10 and 12 pages. It is also possible to make a flyer with 12 pages which is folded like a map.
+
+\starttabulate[|l|l|r|]
+\NC \bf Arrangement \NC \bf Result \NC \bf Number of pages \NC\NR
+\NC \type{\setuparranging[TRYPTICHON]}  \NC Leaflet: one sheet $2 \times 3$ pages \EQ 6 pages  \NC\NR
+\NC \type{\setuparranging[DOUBLEWINDOW]}\NC Leaflet: one sheet $2 \times 4$ pages \EQ 8 pages  \NC\NR
+\NC \type{\setuparranging[ZFLYER-8]}    \NC Leaflet: one sheet $2 \times 4$ pages \EQ 8 pages   \NC\NR
+\NC \type{\setuparranging[ZFLYER-10]}   \NC Leaflet: one sheet $2 \times 5$ pages \EQ 10 pages  \NC\NR
+\NC \type{\setuparranging[ZFLYER-12]}   \NC Leaflet: one sheet $2 \times 6$ pages \EQ 12 pages  \NC\NR
+\NC \type{\setuparranging[MAPFLYER-12]} \NC Leaflet: one sheet $2 \times 6$ pages \EQ 12 pages  \NC\NR
+\stoptabulate
+
+\startpostponing
+\placefigure
+	[middle]
+	[]
+	{Tryptichon type of flyer} % \type{\setuparranging[TRYPTICHON]}
+	{\startcombination[1*2]
+		{\externalfigure[Tryptichon][page=1,width=.45\textwidth]}{3 pages recto}
+		{\externalfigure[Tryptichon][page=1,width=.45\textwidth]}{3 pages verso}
+	\stopcombination}	
+	
+\placefigure
+	[middle]
+	[]
+	{Double window type of flyer} % \type{\setuparranging[DOUBLEWINDOW]}
+	{\startcombination[1*2]
+		{\externalfigure[Doublewindow][page=1,width=.45\textwidth]}{4 pages recto}
+		{\externalfigure[Doublewindow][page=1,width=.45\textwidth]}{4 pages verso}
+	\stopcombination}	
+\stoppostponing
+
+As a representative of the Z-folded flyers the flyer with 8 pages is shown.
+
+\startpostponing
+\placefigure
+	[middle]
+	[]
+	{Z-folded type of flyer} % \type{\setuparranging[ZFLYER-8]}
+	{\startcombination[1*2]
+		{\externalfigure[Zflyer-8][page=1,width=.45\textwidth]}{4 pages recto}
+		{\externalfigure[Zflyer-8][page=1,width=.45\textwidth]}{4 pages verso}
+	\stopcombination}
+
+\placefigure
+	[middle]
+	[]
+	{Map type of flyer} % \type{\setuparranging[3SIDE]}
+	{\startcombination[1*2]
+		{\externalfigure[Mapflyer-12][page=1,width=.45\textwidth]}{6 pages recto}
+		{\externalfigure[Mapflyer-12][page=1,width=.45\textwidth]}{6 pages verso}
+	\stopcombination}
+\stoppostponing
+
+Last but not least is the X-Y-arrangement of pages.
+This scheme is intended for the placement of a number of pages in sequence on a single sided sheet of paper e.g. on sheets carrying labels or for the placement of other information which must return several times on a sheet.
+
+Before issuing the command \type{\setuparranging[XY]} the xy-arrangement must be setup. For this purpose the command
+\type{\setuppaper[...]} is used.
+
+\showsetup{setuppaper}
+
+\quote{nx} denominates the number of pages in the x-direction and \quote{ny} determines the number of pages in the y-direction. With \quote{dx} and \quote{dy} the whitespace between the pages in x and y direction can be set.
+
+\starttabulate[|p|l|r|]
+	\NC \bf Arrangement \NC \bf Result \NC \bf Number of pages \NC\NR
+	\NC \type{\setuparranging[XY]} + \par \type{\setuppaper[dx=,dy=,nx=,ny=]} \NC $nx \times ny$ pages, single sided \EQ n $\times$ m pages \NC\NR
+\stoptabulate
+
+\startpostponing
+\placefigure
+	[middle]
+	[]
+	{8 pages, singlesided, 1 sheet, XY-arrangement}
+	{\externalfigure[XY][page=1,width=.4\textwidth]}
+\stoppostponing
+
+There is culprit in arranging pages. If multiple layers of paper are folded, the outermost paper will require more width because it has to turn around the inner paper layers. This effect occurs as well in the spine folds as also in the head folds. How much width is required depends on the number of folds and the thickness of the paper. In professional book printing this effect is accounted for by displacing the pages depending on their position in horizontal and vertical direction. The result is that there will be a perfect look-through registering of all pages. There are no simple rules to indicate the required amount of displacement. Mostly it is a matter of experience to set up the page shift information.
 
 \CONTEXT\ is equipped with a mechanism, which allows to move pages on a sheet apart from each other in horizontal as well as in vertical direction. The mechanism is build on two shift-lists, one for horizontal and one for vertical page shifting. The mechanism works through cycling over the lists which contain a shift amount for each page in a section. For filling in such a shift-list knowledge and understanding the position of a page on the printed sheet is necessary.
 

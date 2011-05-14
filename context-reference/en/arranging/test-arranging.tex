@@ -1,0 +1,24 @@
+% Context file
+% Filename: test-arranging.tex
+% 
+% 14-05-2011
+% Copyright (c) 2011 BOEDE. All rights reserved.
+
+\setupbodyfont[libertine,rm,12pt]
+\setuplayout
+	[topspace=2.5cm,
+	backspace=1.5cm,
+	header=0pt,
+	footer=1.5\bodyfontsize,
+	height=middle,
+	width=middle,
+	location=]
+\mainlanguage[nl]
+\setuppapersize[A6][A4]
+\setuppagenumbering[location=footer]
+%\showframe
+% \setuparranging[1*4]
+\setuparranging[1*4-Conference]
+\starttext
+\dorecurse{30}{\input tufte \blank}
+\stoptext

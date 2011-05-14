@@ -1,0 +1,59 @@
+% Context file
+% Filename: figures-base-file.tex
+% Willi Egger
+% 11-01-2010
+% Copyright (c) 2010 BOEDE. All rights reserved.
+
+% \usetypescriptfile[type-seravek]
+% \usetypescript[Seravek]
+% \setupbodyfont[Seravek,ss,8pt]   
+
+% Instellen op Libertine
+\setupbodyfont[libertine,rm,9pt]
+\setupcolors[state=stop,rgb=no,cmyk=no,reduce=yes]
+
+\startusableMPgraphic{Pagenumber}
+	StartPage;
+	draw textext("\pagenumber") xsized (.3*\overlaywidth) ysized (.3*\overlayheight) shifted (.7*\overlaywidth,.6*\overlayheight);  
+	StopPage;
+\stopusableMPgraphic
+
+\defineoverlay[Pagenumber][\useMPgraphic{Pagenumber}]
+
+\setuppapersize[A9][A4,landscape]
+\setuppagenumbering[alternative=doublesided,location=footer]
+\setuplayout
+	[margin=5mm,
+	 width=middle,
+	 backspace=5.5mm,
+	 height=middle,
+	 footer=5mm,
+	header=5mm]
+\setupbackgrounds[text][state=start] 
+\setupbackgrounds [text][background={screen,Pagenumber},backgroundscreen=0.8,state=repeat] 
+\setupcolors [state=start] 
+\setuplayout [location=middle,marking=on]
+\setuptolerance [tolerant] 
+
+\def\Style{[\getvariable{Arranging}{Arrangement}]}
+
+\def\Pages{\getvariable{Arranging}{Pages}}
+
+\startbuffer[Fakepage]
+	\strut
+	\blank
+	\midaligned{\Style}
+	\vfill
+	\midaligned{Example page}
+\stopbuffer
+\setupheadertexts[\tfx Section folding]
+
+% \starttext
+% \showframe
+% \setvariables
+% 	[Arranging]
+% 	[Arrangement={2*16},
+% 	Pages=32]
+% \setuparranging[\getvariable{Arranging}{Arrangement}]	
+% \dorecurse{\Pages}{\getbuffer[Fakepage]\page} 
+% \stoptext
