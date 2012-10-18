@@ -605,7 +605,7 @@ thereby visually separating those areas.
 \NC columns             \NC number    \NC \NC\NR % Geen effect nog in MKII nog in MKIV
 \NC columndistance      \NC dimension \NC \NC\NR % Geen effect nog in MKII nog in MKIV
 \NC grid                \NC yes no    
-\NC Typsetting on the grid is activated with grid=on. \NC\NR
+\NC Typesetting on the grid is activated with grid=yes. \NC\NR
 \NC bottomspace         \NC dimension
 \NC \type{Bottomspace} increases the white space at the bottom of the page without altering the page-layout. \NC\NR 
 \NC cutspace            \NC dimension
@@ -766,6 +766,19 @@ means to do this in \TEX\ are very limited but \CONTEXT\ has
 some features to support grid typesetting.\footnote{Finally,
 the last footnote!}
 \stopcolumns
+
+Grid typesetting is part of the page layout.
+To enable it globally, the parameter \type{grid} needs to be
+set to \type{yes} (or \type{normal}), which starts snapping
+with the default behavior. If this does not lead to the
+desired results, the value \type{strict} will adjust the
+grid more rigidly and \type{tolerant} more loosely.
+
+\startexample
+\starttyping
+\setuplayout[grid=yes]
+\stoptyping
+\stopexample
 
 During typesetting on a grid the heads, figures, formulas
 and the running text are set on a fixed line spacing. If a
