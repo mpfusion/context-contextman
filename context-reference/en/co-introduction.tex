@@ -161,9 +161,9 @@ typeset. A \CONTEXT\ command begins with a backslash
 (\type {\}). An example of a command is \type {\italic}. Most
 of the time a command does something with the text that
 comes after the command. The text after the command \type
-{\italic} will be typeset {\italic text it italic}.
+{\italic} will be typeset {\italic text in italic}.
 
-When you use a command like \type{\italic} you acting as a typesetter,
+When you use a command like \type{\italic} you are acting as a typesetter,
 and when you are writing paragraphs you are acting as an author.
 Typesetting and writing are conflicting activities; as an
 author you would probably rather spend as little time as possible
@@ -186,10 +186,10 @@ consistently use the word command for users and macro for
 programmers. A collection of macros is called a macro package. 
 
 A command is often followed by setups and/or 
-argument text. Setups are placed between brackets (\type{[]},
-are optional and there may be more than one set). The scope or range
+argument text. Setups are placed between brackets (\type{[]}),
+are optional and there may be more than one set. The scope or range
 of the command (the text acted upon) is placed between curly
-brackets (\type{{}}, there may be more than one of those as well). 
+brackets (\type{{}}); there may be more than one of those as well. 
 
 An example of a command with setups and an argument text is
 
@@ -259,8 +259,8 @@ is enclosed within a \type{start-stop} construction:
 
 \typebuffer
 
-And often keywords or key||value pairs can be passed, that inform
-\CONTEXT\ of the users wishes like
+where \type{something} indicates a predefined keyword such as \type{narrower}. Often, keywords or key||value pairs can be passed, that inform
+\CONTEXT\ of the user's wishes, like
 
 \startbuffer
 \startnarrower[2*left,right]
@@ -342,6 +342,16 @@ For example:
 
 \typebuffer
 
+defines a \type{something} command called \type{\name}. For example,
+
+\startbuffer
+\definehead[section]
+\stopbuffer
+
+\typebuffer
+
+defines a \type{head} command called \type{\section}. The name can be arbitrarily chosen by the user; but the type of command must be a predefined one.
+
 Sometimes a definition inherits its characteristics from
 another (existing) one. In those situations a definition
 looks like:
@@ -378,6 +388,8 @@ An example of such a name coupled definition and setup is:
 
 \typebuffer
 
+This defines a \type{head} command called \type{\section}, which inherits characteristics from the existing \type{head} command called \type{\chapter}. It then defines setups for the new \type{\section} command.
+
 The alternatives shown above are the most common appearances
 of the commands. But there are exceptions:
 
@@ -393,9 +405,9 @@ of the commands. But there are exceptions:
 After the first command the newly defined command \type
 {\Question} is available which we can use for numbered
 questions and to place numbers in the margin. With the
-second command we define a picture that is scaled to a \type
+second command we define a picture named \type{Logo}, to be called later, that is scaled to a \type
 {width} of 4cm. After the third command a new command \type
-{\procedure} is available that inherits its characteristics
+{\Procedure} is available that inherits its characteristics
 from the predefined command \type {\section}. The last
 command alters the characteristics of the newly defined
 head. Later we will discuss these commands in more detail.
@@ -425,9 +437,9 @@ chapter with:
 .............................
 \chapter{........}
 .............................
-\beginofAnswer
+\beginAnswer
 .............................
-\endofAnswer
+\endAnswer
 .............................
 \stopbuffer
 
@@ -457,13 +469,12 @@ picture. In this case the picture is a figure defined
 earlier as \type {Logo}. \in {Figure} [fig:cohesion tex] is
 typeset this way.
 
-The last example has arguments between optional brackets
+The last example has optional arguments between optional 
 (\type{[]}). Many commands have optional arguments. In case
 these optional arguments are left out the default values
 become operative.
 
-You may have noticed that a spacy layout of your \ASCII\
-text is allowed. In our opinion, this increases readability
+You may have noticed that you are allowed to have plenty of whitespace in your \ASCII\ text (within certain limits). In our opinion, this increases readability
 considerably, but you may of course decide to format your
 document otherwise. When the \CONTEXT\ commands in this
 manual are discussed they are displayed in the following
