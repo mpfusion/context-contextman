@@ -189,7 +189,7 @@ A command is often followed by setups and/or
 argument text. Setups are placed between brackets (\type{[]}),
 are optional and there may be more than one set. The scope or range
 of the command (the text acted upon) is placed between curly
-brackets (\type{{}}); there may be more than one of those as well. 
+brackets (\type{{}}); there may be more than one of those as well.  (Note that the word \quote{argument} in this manual is sometimes used both for setups and for the text acted upon.)
 
 An example of a command with setups and an argument text is
 
@@ -483,12 +483,12 @@ way:
 \showsetup{setupfootertexts}
 
 The command \type{\setupfootertexts}, which we will discuss
-in detail in a later chapter, has three arguments of which
-the first is optional. The first argument defaults to
-\type{[text]}. Optional arguments are displayed with the word
- {\ttxx OPTIONAL} below the brackets. Default values are
+in detail in a later chapter, has three (or more) setup arguments, of which
+the first is optional. Optional arguments are displayed with the word
+ {\ttxx OPTIONAL} below the brackets. Multiple alternative values are listed for each argument; the first argument can either \type{[text]}, \type{[margin]}, or \type{[edge]}. It defaults to \type{[text]}. Default values are
 \underbar{underlined} and placeholders (as opposed to literal
-keywords) are typeset in {\ttx UPPERCASE}. In this example {\ttx TEXT}
+keywords) are typeset in {\ttx UPPERCASE}.
+In this example, {\ttx TEXT}
 means that you can provide any footer text. \CONTEXT\ is able to keep
 track of the status of information on the page, for instance the name of the
 current chapter. We call this kind of information {\ttx
