@@ -114,13 +114,27 @@ The next example shows an attempt at such a font collection:  the fonts were pic
 \stoplinecorrection
 
 Fonts from a single source often already come in a few variations that are 
-intended to be used together.  Such a set of fonts with  the same basic design is known as a \definition{font family}. In the example below there are a normal, a bold, an italic, and a bold italic \definition{alternative} of a font. 
+intended to be used together.  Such a set of fonts with  the same basic design is known as a \definition{font family}. For example, Computer Modern is a font family, as is Lucida.
+
+Within a font family there can be multiple \definition{styles}.
+In the example below you see five font styles of the Latin Modern family: the Roman,
+Sans, Typewriter, Smallcaps and Variable Typewriter. 
+
+\startlinecorrection
+\ruledhbox to \hsize
+  {\hss
+   \definefont[test][LMRoman-Regular           at 48pt]\test ok\setstrut\strut\hss
+   \definefont[test][LMSans-Regular            at 48pt]\test ok\hss
+   \definefont[test][LMTypewriter-Regular      at 48pt]\test ok\hss
+   \definefont[test][LMRoman-CapsRegular       at 48pt]\test ok\hss
+   \definefont[test][LMTypewriterVarWd-Regular at 48pt]\test ok\hss}
+\stoplinecorrection
+
+Within a given style, there can be multiple \definition{alternatives} of a font. The example below shows a normal, a bold, an italic, and a bold italic alternative.
 
 \startlinecorrection
 \externalfigure[typography/glyphs.pdf][page=2]
 \stoplinecorrection
-
-
 
 The distance between the individual glyphs in a word and the actual
 glyphs that are used depends on the combinations of these glyphs.  In
@@ -182,7 +196,7 @@ shape: \quote{modern} fonts have a high contrast between thick and
 thin strokes, and their stress axis is perfectly vertical.
 
 At the same time, specific fonts in the Computer Modern family can be
-classified as \quote{serif} (glyphs strokes have embellishments at the
+classified as to their style: \quote{serif} (glyphs strokes have embellishments at the
 end), \quote{sans serif} (shapes end abruptly), or \quote{monospaced}
 (all glyphs have the same width). 
 
@@ -190,24 +204,13 @@ The Computer Modern family is in fact inspired by one font in particular:
 \quote{Modern 8a} by the Monotype corporation. Knuth implemented
 Computer Modern in \METAFONT\ using parameters so that he could
 generate a whole collection of fonts all closely matching each other in
-style. In \CONTEXT\ you will normally use a reimplementation of
+overall style (not necessarily in {\em style}). In \CONTEXT\ you will normally use a reimplementation of
 Computer Modern using a more modern file format (Type~1 or OpenType).
 This new version is called \quote{Latin Modern}, and also features an
 extended glyph set making it usable for languages that could not be
 typeset with Knuth's original fonts.
 
-\startlinecorrection
-\ruledhbox to \hsize
-  {\hss
-   \definefont[test][LMRoman-Regular           at 48pt]\test ok\setstrut\strut\hss
-   \definefont[test][LMSans-Regular            at 48pt]\test ok\hss
-   \definefont[test][LMTypewriter-Regular      at 48pt]\test ok\hss
-   \definefont[test][LMRoman-CapsRegular       at 48pt]\test ok\hss
-   \definefont[test][LMTypewriterVarWd-Regular at 48pt]\test ok\hss}
-\stoplinecorrection
-
-In this example you see five font styles of Latin Modern: the Roman,
-Sans, Typewriter, Smallcaps and Variable Typewriter. Computer Modern
+Computer Modern
 is one of the few font families that comes with dedicated design
 sizes.  The example below shows the differences of a 5, 7, 9, 12 and
 17~point design scaled up to 48 points. Such nuances in font size are
@@ -233,7 +236,7 @@ found together within a single book design (such as for a software manual).
 \startbuffer[styles]
 \vskip1ex
 \starttabulate[|l|l|l|]
-\NC \bf \rlap{terms}  \NC \qquad \NC \bf intented usage        \NC \NR
+\NC \bf \rlap{terms}  \NC \qquad \NC \bf intended usage        \NC \NR
 \NC regular, serif, roman   \NC            \NC \rmtf main text          \NC \NR
 \NC support, sans            \NC             \NC \sstf section headings   \NC \NR
 \NC teletype, mono, type \NC          \NC \tttf code examples      \NC \NR
@@ -301,13 +304,16 @@ mechanism:
       switching of family, style and alternative.
 \item It should be possible to combine all of these requirements
       into a single definition unit called a {\em body font}.
+      % Need a reference here to a definition of `body font'. It's not clear.
 \item Changing the global font collection as well as the size must 
       also be easy, and so sizes between 8pt and 14.4pt must be
       available by default.
 \stopitemize
 
 Before reading further, please stop for a moment to make sure you
-thoroughly comprehend the above paragraphs. \CONTEXT's terminology
+thoroughly comprehend the above paragraphs.
+% It's not possible to thoroughly comprehend yet! Especially the term `body font'.
+\CONTEXT's terminology
 probably differs from what you are accustomed to, especially if you
 were previously a \LATEX\ user.
 
@@ -324,27 +330,32 @@ were previously a \LATEX\ user.
 
 The mechanism to switch from one style to another is somewhat complex,
 not in the least because the terminology is a bit fuzzy.  A quick
-recap: we call a collection of fonts, like Lucida or Computer Modern
+recap: we call a set of fonts from the same source, with the same basic design, like Lucida or Computer Modern
 Roman, a {\em family}.  Within such a family, the members can be
-grouped according to characteristics. Such a group is called a {\em
+grouped according to characteristics such as the presence of serifs, or the variability of width. Such a group is called a {\em
 style}. Examples of styles within a family are: \quote{roman},
 \quote{sans serif} and \quote{teletype}. We saw already that there can
-be alternative classifications, but they all refer to the presence of
-serifs and the glyphs having equal widths. Within a style there
+be other  % Careful of the term ''alternative''.
+classifications.
+% It used to say ''but they all refer to the presence of serifs and the glyphs having equal widths'',
+% but that's not true... e.g. handwriting, calligraphic, math.
+Within a style there
 can be {\em alternatives}, like \quote{boldface} and \quote{italic}.
 
 There are different ways to change into a new a style or
 alternative. You can use \type {\ss} to switch to a sans
 serif font style and \type {\bf} to get a bold alternative.
 When a different style is chosen, the alternatives adapt
-themselves to this style. Often a document will be mostly typeset 
-using just one combination of family and style. 
-This is called the bodyfont.
+themselves to this style.
 
-Consistent use of commands like \type {\bf} and \type
+Often a document will be mostly typeset 
+using just one combination of family and style. 
+This is called the \definition{bodyfont}.
+Consistent use of alternative commands like \type {\bf} and \type
 {\it} in the text will automatically result in the desired
 bold and italic alternatives when you change the family or
-style in the setup area of your input file. 
+style in the setup area of your input file, since these commands
+adapt to the specified family and style. 
 
 \subsection[font style switching]{Font style switching}
 
@@ -354,7 +365,9 @@ two-letter commands that are listed in~\in{table}[tab:style switches].
 \startbuffer[styleswitch]
 \vskip 1ex
 \starttabulate[|l|l|]
-%\NC \bf style  \NC \bf Long names and aliases    \NC\NR
+% The following row was commented out before, but it's needed.
+% Otherwise there's no way to know what the stuff in the right column really means.
+\NC \bf command \NC \bf keyword equivalents   \NC\NR
 \NC \type{\rm} \NC serif, regular, roman, rm     \NC\NR
 \NC \type{\ss} \NC sans, support, sansserif, ss  \NC\NR
 \NC \type{\tt} \NC mono, type, teletype, tt      \NC\NR
@@ -368,7 +381,7 @@ two-letter commands that are listed in~\in{table}[tab:style switches].
 \placetable
   [here]
   [tab:style switches]
-  {Font style switching commands}
+  {Font style switching commands and their keyword equivalents. For more on keywords, see ~\in{subsection}[subsec:styleKeywords].}
 {\getbuffer[styleswitch]}
 
 The \quote{handwritten} and \quote{calligraphic} font styles are
@@ -397,6 +410,7 @@ alternative may be used for if slanted is not available or vice versa.
 \startbuffer[alternativeswitch]
 \vskip 1ex
 \starttabulate[|l|l|]
+\NC \bf command \NC \bf keyword equivalents   \NC\NR
 \NC \type{\bf} \NC bold                                \NC\NR
 \NC \type{\it} \NC italic                              \NC\NR
 \NC \type{\bi} \NC bolditalic, italicbold              \NC\NR
@@ -417,8 +431,14 @@ alternative may be used for if slanted is not available or vice versa.
    old||style numbers as in {\os 139} over~{\rm 139}.}
 {\getbuffer[alternativeswitch]}
 
+Note that, while these alternatives can sometimes seem to be \quote{combined,} as in \type{bolditalic},
+it is important to recognize that only one alternative can actually be active at a time. In this regard
+alternatives are like \quote{radio buttions.} \type{bolditalic} is
+in fact one predefined alternative, not a combination of two. Alternatives cannot be arbitrarily combined,
+or turned on and off independently of each other.
+
 Besides these two-letter commands, there is a series of font selector
-commands with a suffix attached. Some examples of that are:
+commands with a size suffix attached. Some examples of that are:
 
 \startexample
 \starttyping
@@ -427,11 +447,16 @@ commands with a suffix attached. Some examples of that are:
 \stoptyping
 \stopexample
 
+The \type{a} suffix selects a somewhat larger font size than the default.
+% Is there a more correct way to describe this than ``the default''? Is it the body font size?
 Each of the ordered alphabetic suffixes \type{a}, \type{b}, \dots\
-select a somewhat larger actual font than the previous one. The
+select a somewhat larger actual font than the previous suffix. The
 \type{x} and \type{xx} suffixes select smaller and yet smaller 
 versions.
+Note that these commands select font sizes relative to the default, not
+relative to whatever font size is currently in effect.
 
+% Is there a command for selecting the default font size?
 
 \startbuffer[xalternativeswitch]
 \vskip 1ex
@@ -453,8 +478,8 @@ versions.
 {\getbuffer[xalternativeswitch]}
 
 
-The \quote{small} switches mentioned 
-in~\in{table}[tab:small alternative switches] are always available. 
+The \quote{small} (single \type{x} suffix) switches mentioned 
+in~\in{table}[tab:small alternative switches], such as \type {\tfx}, are always available. 
 The availability of other
 commands like \type {\ita}, \type {\bfxx}, \type {\bfc}, etc.
 depends on the completeness of the font definition files. 
@@ -464,8 +489,9 @@ being defined. For the others, just try and see what happens.
 
 When you have chosen a larger character size,
 for example \type {\tfb}, then \type {\tf} equals \type {\tfb},
-\type {\bf} equals \type {\bfb}, etc. This method is almost always
-preferable over returning to the original character size, but it 
+\type {\bf} equals \type {\bfb}, etc. This behavior
+% It used to say ``This method'', but that's very confusing.
+ is almost always preferable over returning to the original character size, but it 
 may catch you off-guard.
 
 More generic font scaling commands are also available:
@@ -528,7 +554,7 @@ The plain \TeX\ compatible font switches
 \type {\xii} are also defined, these have local effects 
 like \type{\tfx} and \type{\tfa}. 
 
-\subsection{Switching font styles in setup commands}
+\subsection[subsec:styleKeywords]{Switching font styles in setup commands}
 
 A number of \CONTEXT\ commands use the parameter \type {style} to set
 the used font.  The parameter mechanism is rather flexible so that 
