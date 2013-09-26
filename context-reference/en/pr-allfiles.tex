@@ -3,6 +3,8 @@
 \product contextref
 \environment contextref-env
 
+\definebreakpoint[compound][.][nleft=3, nright=3, type=1]
+
 \def\contextfile{\dodoubleempty\docontextfile}
 \def\docontextfile[#1][#2]%
   {\getparameters[module][file=,title=,subtitle=,plusfiles=,#2]
