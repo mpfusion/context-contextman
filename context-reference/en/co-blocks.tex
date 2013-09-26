@@ -172,7 +172,7 @@ anyway. When the number is not needed you type \type {none},
 like in:
 
 \starttyping
-\placefigure{none}{.....}
+\placefigure[none]{}{.....}
 \stoptyping
 
 It is mandatory to end this command by an empty line or a
@@ -374,7 +374,7 @@ next to the running text. This looks like:
 
 \startexample
 \starttyping
-\placefigure[right]{none}{}
+\placefigure[right,none]{}{}
 
 ... here is where the text starts ....
 \stoptyping
@@ -391,10 +391,10 @@ document. When \type{\version[temporary]} is set, you can
 get information on the float mechanism. By consulting that
 information you get some insight into the process.
 
-\placefigure[right]{none}{\externalfigure[rb00006]}
+\placefigure[right,none]{}{\externalfigure[rb00006]}
 
 Floats can be surrounded by text. The float at the right was
-set with \type {\placefigureright[right]{none}{...}}. The
+set with \type {\placefigureright[right,none]{}{...}}. The
 float mechanism works automatically. Should it occur that
 pages are left blank as a result of poor float placement,
 you will need to make some adaptations manually. You can
@@ -408,7 +408,7 @@ at that exact location. Tables or figures that are preceded
 by text like: \quote{as we can see in the figure below} may
 be defined with this option.
 
-\placefigure[left]{none}{\externalfigure[rb00008]}
+\placefigure[left,none]{}{\externalfigure[rb00008]}
 
 In manuals and study books we encounter many illustrations.
 It is almost unavoidable to manually adapt these for optimal
@@ -432,21 +432,21 @@ top, inbetween, of under existing text. There is a mechanism
 to place figures on the right or left of a page. And there
 is a third mechanism to typeset text next to a figure.
 
-\startfiguretext[right]{none}{\externalfigure[rb00015]}
+\startfiguretext[right]{}{\externalfigure[rb00015]}
 
 We see an example of the last mechanism. The text is
 enclosed by the commands:
 
 \starttyping
 \startfiguretext
-   [right]{none}{\externalfigure[rb00015]}
+   [right]{}{\externalfigure[rb00015]}
 ....
 \stopfiguretext
 \stoptyping
 
 \stopfiguretext
 
-\startfiguretext[left,offset]{none}{\externalfigure[vos1082]}
+\startfiguretext[left,offset]{}{\externalfigure[vos1082]}
 
 It is obvious that we can also place the figure at the left.
 With \type {\start...text} we can add the key \type
@@ -460,7 +460,7 @@ can type the key \type{always}. The actual float will get
 priority.
 \stopfiguretext
 
-\startfiguretext[right,middle]{none}{\externalfigure[vos1083]}
+\startfiguretext[right,middle]{}{\externalfigure[vos1083]}
 
 There are more options. In this case the setup \type
 {[right,middle]} is given. In the same way we place text
