@@ -487,7 +487,7 @@ end or reinstate this adaptive characteristic. In columns it
 is recommended to use the setup \type {[fixed,line]} or the
 opposite setup \type {[flexible,standard]}.
 
-This text is typeset a bodyfont of \the \bodyfontpoints pt
+This text is typeset a bodyfont of \numberofpoints\bodyfontsize\,pt
 and is downscaled by a few percent. The setup that is used
 in this document is shown in \in {table} [tab:skips]. We see
 some stretch in the vertical spacing. The stretching enables
@@ -500,7 +500,7 @@ maximal of 25\%.
 \placetable
   [here]
   [tab:skips]
-  {The whitespace values to a \the\bodyfontpoints pt bodyfont.}
+  {The whitespace values to a \numberofpoints\bodyfontsize\,pt bodyfont.}
 \starttable[|l|l|]
 \HL
 \VL \bf setup       \VL \bf value            \VL\SR
@@ -1060,7 +1060,7 @@ In \in {section} [grids] typesetting on a grid is explained.
 This mechanism works quite well within columns.
 
 \startbuffer[column-1]
-\def\FramedColumn#1{\ruledhbox{\box#1}}
+\unexpanded\def\FramedColumn#1{\ruledhbox{\box#1}}
 
 \setupcolumns[command=\FramedColumn]
 \stopbuffer

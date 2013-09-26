@@ -516,8 +516,7 @@ components in a different way.
 
 \setuphead
   [subsection]
-  [command=\normalplacehead,
-   commandbefore=,
+  [commandbefore=,
    style=\tfb,textstyle=,numberstyle=]
 
 \getbuffer
@@ -548,7 +547,7 @@ show the steps in the design process.
   [commandbefore=]
 
 \startbuffer
-\def\HeadTitle#1#2%
+\unexpanded\def\HeadTitle#1#2%
   {\hbox to \hsize
      {\hfill % the % after {#1} suppresses a space
       \framed[height=1cm,width=2cm,align=left]{#1}%
@@ -571,7 +570,7 @@ is at the right hand side. One of the advantages of using
 insight can be gained in what is happening.
 
 \startbuffer
-\def\HeadTitle#1#2%
+\unexpanded\def\HeadTitle#1#2%
   {\hbox to \hsize \bgroup
    \hfill
    \setupframed[height=1cm,offset=.5em,frame=off]
@@ -607,7 +606,7 @@ in the next alternative. A \type {\tbox} provides a top
 aligned box.
 
 \startbuffer
-\def\HeadTitle#1#2%
+\unexpanded\def\HeadTitle#1#2%
   {\hbox to \hsize \bgroup
    \hfill
    \setupframed[offset=.5em,frame=off]

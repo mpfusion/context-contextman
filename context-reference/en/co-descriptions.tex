@@ -347,7 +347,8 @@ hand side.
 but is placed at the right hand side. In case of three arguments the first
 one is the copy and the second the original.
 
-\defineenumeration[third,fourth][location=inright]
+\defineenumeration[third][location=inright]
+\defineenumeration[fourth][location=inright]
 
 \third The numbered elements \type {third} and \type {fourth} are both
 unique and are placed in right margin.
@@ -355,7 +356,8 @@ unique and are placed in right margin.
 \fourth  Both are defined in one command but they do have own
 counters that are in no way coupled.
 
-\defineenumeration[fifth,sixth][first]
+\defineenumeration[fifth][first]
+\defineenumeration[sixth][first]
 
 \fifth The elements \type {fifth} and \type {sixth} inherit the properties
 and counters of \type {first}.
@@ -391,7 +393,7 @@ setting the parameter \type {way} to \type {bychapter}.
 \index{tabulate}
 \index{indenting}
 \macro{\tex{indentation}}
-\macro{\tex{setupindentations}}
+\doifmode{mkii}{\macro{\tex{setupindentations}}}
 \macro[name]{\tex{<<name>>}}
 \macro[indentation]{\tex{<<indentation>>}}
 
@@ -406,6 +408,8 @@ After this command \type{\<<name>>}, \type{\sub<<name>>} and
 \showsetup{<<indentation>>}
 
 The parameters can be set up with the command:
+
+\startmode [mkii]
 
 \showsetup{setupindentations}
 
@@ -460,7 +464,9 @@ commands:
 \stopindentation
 \stoptyping
 \stopexample
-
+
+\stopmode
+
 \section[label]{Numbered labels}
 \index{label}
 \index{numbering+label}

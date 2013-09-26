@@ -137,9 +137,7 @@ the~i have been combined into a single one. This is called ligaturing.
    \hbox{box}
    \vskip-36pt
    \def\\#1%
-     {\toprulefalse
-      \bottomrulefalse
-      \ruledhbox{\vrule width 0pt height 72pt#1}}
+     {\ruledhbox{\vrule width 0pt height 72pt#1}}
    \hbox{\\b\\o\\x}}
 \kern 2cm
 \vbox
@@ -3069,7 +3067,7 @@ have consequences for the language specific hyphenation
 patterns. Fortunately \CONTEXT\ handles this for you
 automatically.
 
-\doflushfloats
+\placefloats
 \page
 
 If you want to know to what extent a font is complete and

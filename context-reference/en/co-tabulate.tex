@@ -150,7 +150,7 @@ With the letter \type {f} we can specify a body font, like
 The \type{h}||command (hook) allows some tricks like:
 
 \startbuffer
-\starttabulate[|w(2cm)h\inframed|b{(}a{)}|p|]
+\starttabulate[|w(2cm)h{\inframed}|b{(}a{)}|p|]
 \HC {Uggly}     \NC isn't it?       \NC he says.     \NC \NR
 \HC {Beautiful} \NC but meaningless \NC I would say. \NC \NR
 \stoptabulate
@@ -213,7 +213,7 @@ no formatting is needed there are the commands: \type {\RC}
 and \type {\RQ}.
 
 \startbuffer
-\starttabulate[|*{4}{cBh\type|}]
+\starttabulate[|*{4}{cBh{\type}|}]
 \NC     separator \NC normal \NC raw   \NC command \NC \NR
 \RC \bf yes       \HC {\EQ}  \HC {\RQ} \HC {\HQ}   \NC \NR
 \RC \bf no        \HC {\NC}  \HC {\RC} \HC {\HC}   \NC \NR

@@ -558,7 +558,7 @@ complete freedom is provided by alternative \type {none}.
 \typebuffer \blank {\getbuffer} \blank
 
 \startbuffer
-\def\ListCommand#1#2#3%
+\unexpanded\def\ListCommand#1#2#3%
   {at page {\bf #3} we discuss {\bf #2}}
 
 \placelist
@@ -574,7 +574,7 @@ functionality. Alternative \type {command} leaves nearly
 everything to the macro writer.
 
 \startbuffer
-\def\ListCommand#1#2#3%
+\unexpanded\def\ListCommand#1#2#3%
   {At p~#3 we discuss {\em #2}; }
 
 \placelist
