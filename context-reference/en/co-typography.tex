@@ -118,7 +118,9 @@ intended to be used together.  Such a set of fonts with  the same basic design i
 
 Within a font family there can be multiple \definition{styles}.
 In the example below you see five font styles of the Latin Modern family: the Roman,
-Sans, Typewriter, Smallcaps and Variable Typewriter. 
+Sans, Typewriter, Smallcaps and Variable Typewriter. (However, this manual will often continue to
+use the word \em{style} in a more generic sense. Hopefully the context will make clear which
+sense is intended.)
 
 \startlinecorrection
 \ruledhbox to \hsize
@@ -457,6 +459,7 @@ Note that these commands select font sizes relative to the default, not
 relative to whatever font size is currently in effect.
 
 % Is there a command for selecting the default font size?
+% E.g. within a macro where you don't know what's come before.
 
 \startbuffer[xalternativeswitch]
 \vskip 1ex
@@ -490,7 +493,7 @@ being defined. For the others, just try and see what happens.
 When you have chosen a larger character size,
 for example \type {\tfb}, then \type {\tf} equals \type {\tfb},
 \type {\bf} equals \type {\bfb}, etc. This behavior
-% It used to say ``This method'', but that's very confusing.
+% It used to say ``This method'', but that doesn't seem to make sense.
  is almost always preferable over returning to the original character size, but it 
 may catch you off-guard.
 
@@ -551,8 +554,23 @@ etc.
 
 The plain \TeX\ compatible font switches 
 \type {\vi}, \type {\vii}, \type {\viii}, \type {\ix}, \type {\x}, and 
-\type {\xii} are also defined, these have local effects 
-like \type{\tfx} and \type{\tfa}. 
+\type {\xii}
+% Information about these switches is hard to find. What is this referring to?
+% Maybe de Wijn's fnts.tex (http://www.staff.science.uu.nl/~wijn0104/fnts.html)?
+% However, de Wijn's fnts.tex defines \vii@ and \viipt, but not \vii.
+% The latest version of plain.tex (http://www-cs-faculty.stanford.edu/~uno/plain.tex)
+% doesn't define these switches.
+are also defined; these have local effects like \type{\tfx} and \type{\tfa}. 
+% In what sense are the effects local? From what I can tell,
+% the effect of \tfx lasts permanently, unless you make it local
+% by using a group or something.
+
+A \quote{local} font change means that \type{\tfx} in running text will only change the
+font in the running text, not in headers etc.; and will only change the font from
+that point, to the end of the enclosing group. In other words, it does not change the
+font for the whole document.
+
+
 
 \subsection[subsec:styleKeywords]{Switching font styles in setup commands}
 
@@ -1021,19 +1039,36 @@ The bodyfont (main font), font style and size is set up with:
 
 \showsetup{setupbodyfont}
 
-In a running text a temporary font switch is done with the
-command:
+In a running text a 
+% Used to say: ``a *temporary* font switch''
+% I don't think this is correct. \switchtobodyfont is only temporary if you
+% make it temporary by using a group around it, or by following it with another
+% command that changes things back. Right?
+font switch is done with the command:
 
 \showsetup{switchtobodyfont}
 
-This command doesn't change the bodyfont in headers and
-footers. With \type {small} and \type {big} you switch to a
+This command changes the bodyfont in the running text where it occurs,
+% when it occurs in running text?
+but not in headers and footers. % unless the command occurs in headers and footers?
+With \type {small} and \type {big} you switch to a
 smaller or larger font.
 
 In most cases, the command \type {\setupbodyfont} is only used once:
 in the style definition, and font switching inside the document is
 done with \type {\switchtobodyfont}. Don't confuse these two because
 that may lead to some rather strange but legitimate effects. 
+
+\type{\switchtobodyfont} differs from the use of font selector commands like \type{\ss}, \type{\it} and \type{\tfa}
+in a few significant ways. For one, \type{\switchtobodyfont} is ``heavier'': it results in more thorough
+changes, for example, adjusting the interlinespace to suit the change
+(if the change lasts until the end of a paragraph).
+As such, switching the body font is slower. In general, \type{\switchtobodyfont} is intended for longer-lasting
+changes, e.g. at least a paragraph, whereas  \type{\it} and the like are meant for changes of short duration,
+such as a phrase. Moreover, it's useful to know that \type{\switchtobodyfont}
+controls and changes the sizes for commands like \type{\tfa}.
+% I think we need more information on that last point.
+
 
 \subsection{Body font sizes}
 
