@@ -119,7 +119,7 @@ intended to be used together.  Such a set of fonts with  the same basic design i
 Within a font family there can be multiple \definition{styles}.
 In the example below you see five font styles of the Latin Modern family: the Roman,
 Sans, Typewriter, Smallcaps and Variable Typewriter. (However, this manual will often continue to
-use the word \em{style} in a more generic sense. Hopefully the context will make clear which
+use the word {\em style} in a more generic sense. Hopefully the context will make clear which
 sense is intended.)
 
 \startlinecorrection
@@ -768,9 +768,10 @@ the right conclusion. \par
 \stopnarrower
 \stopreality
 
-When you make a font switch the linespacing is adapted when you give
+When you make a font switch without changing the bodyfont, e.g using \type {\tfa},
+ the linespacing is not adapted unless you give
 the command \hbox{\type {\setupinterlinespace}} without any setup
-parameters and also when you add the key \type {reset}, for example
+parameters, or if you add the key \type {reset}. For example
 
 \startexample
 \starttyping
@@ -783,23 +784,23 @@ the following input:
 
 \startexample
 \starttyping
-  \start \tfa \setupinterlinespace 
+  { \tfa \setupinterlinespace 
   In books meant for children we often find
-  a somewhat ... when needed. \par \stop
+  a somewhat ... when needed. \par }
 \stoptyping
 \stopexample
 
 In this example the \type {\par} is necessary because \TEX\
-operates on whole paragraphs.  Within a group one has to 
-close the paragraph explicitly with an empty line or \type {\par}
+operates on whole paragraphs.  Within a group, one has to 
+close the paragraph explicitly with an empty line or \type {\par};
 otherwise \TEX\ will have forgotten the linespacing before
-the paragraph is finished (as in that case, the paragraph is
-ended by the empty line after the \type {\stop}). 
+the paragraph is finished (in which case, the paragraph is
+ended by the empty line after the end of the group). 
 
-The word \type{height} is typeset inside a bare \type{\tfd} 
-group, to illustrate why \type{\setupinterlinespace} is required.
+In the following example, the word \type{height} is typeset inside a bare \type{\tfd} 
+group without \type{\setupinterlinespace}, to illustrate why \type{\setupinterlinespace} is required:
  
-\start 
+{
 \startnarrower
 \tfa \setupinterlinespace In books meant for children
 we often find a somewhat bigger typeface, for instance
@@ -815,7 +816,28 @@ Therefore, when changing the style, something that should
 only be done on purpose, also change the baseline distance
 when needed. \par 
 \stopnarrower 
-\stop
+}
+
+%Here's how it would look {\em with} \type {\setupinterlinespace}:
+%
+%{
+%\startnarrower
+%\tfa \setupinterlinespace In books meant for children
+%we often find a somewhat bigger typeface, for instance
+%because we are convinced that this enables them to read the
+%book themselves. On the other hand, I can also imagine that
+%it is a cheap way to increase the number of pages.
+%Unfortunately scaling up will also uncover the lack of
+%quality of the typesetting used and|/|or the lack of
+%typographic knowledge of the user of such a system. The
+%interline space sometimes differs on a line by line basis,
+%and depends on the {\tfd\setupinterlinespace height} of the current line.
+%Therefore, when changing the style, something that should
+%only be done on purpose, also change the baseline distance
+%when needed. \par 
+%\stopnarrower 
+%}
+% It looks the same to me. What is supposed to be the difference?
 
 Instead of a keyword, one can pass a key||value pair to
 define the characteristics of a line. 
