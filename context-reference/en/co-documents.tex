@@ -697,14 +697,15 @@ is \type {*frontmatter}. One can use these modes like:
 \todo{Merge with previous section}
 
 Every user will at one moment run into modes. Modes are used for
-conditional processing. You enable or disable modes:
+conditional processing.  You enable or disable modes:
 
 \starttyping
 \enablemode[screen]
 \disablemode[proof]
 \stoptyping
 
-as well as prevent modes being set:
+Multiple modes can be enabled at the same time,
+and are independent of each other. You can also prevent modes being set:
 
 \starttyping
 \preventmode[doublesided]
@@ -714,6 +715,7 @@ Later on you can act upon this mode using:
 
 \starttyping
 \startmode[screen]
+  % This code will execute only if 'screen' mode is enabled.
   \setupinteraction[state=start]
 \stopmode
 \stoptyping
@@ -722,11 +724,12 @@ The counterpart of this command is:
 
 \starttyping
 \startnotmode[screen]
+  % This code will be skipped if 'screen' mode is enabled.
   \setupinteraction[state=start]
 \stopnotmode
 \stoptyping
 
-You can set modes in your document or in styles, but you can
+You can set (enable) modes in your document or in styles, but you can
 also do that at runtime:
 
 \starttyping
@@ -739,6 +742,8 @@ You can test for more modes at the same time:
 
 \starttyping
 \startmode[color,colour]
+  % This code will execute if mode 'color' or mode 'colour'
+  % is enabled (or both).
   \setupcolors[state=start]
 \stopmode
 \stoptyping
@@ -750,6 +755,7 @@ If you want to satisfy a combination of modes, you use:
   \setuplayout[markings=on]
 \stopmode
 \startallmodes[final,color]
+  % This code will execute if modes 'final' and 'color' are both enabled.
   \setuplayout[markings=color]
 \stopallmodes
 \stoptyping
@@ -778,11 +784,16 @@ can be nested.
 Mode can be combined with variables:
 
 \starttyping
+% Assign the value 'print' to the variable 'alternative'
+% in the 'document' namespace.
 \setupvariables[document][alternative=print]
 
+% Get the value of the 'alternative' variable in the 'document' namespace,
+% and use that value as the name of the mode to enable.
 \enablemode[document:\getvariable{document}{alternative}]
 
 \startmode[document:print]
+  % This code will execute.
   ...
 \stopmode
 
@@ -794,16 +805,24 @@ Mode can be combined with variables:
 An alternative for such an selective approach is to use setups:
 
 \starttyping
+
+% Assign the value 'print' to the variable 'alternative'
+% in the 'document' namespace.
 \setupvariables[document][alternative=print]
 
+% Define a setup called document:print
 \startsetups[document:print]
   ...
 \stopsetups
 
+% Define a setup called document:screen
 \startsetups[document:screen]
   ...
 \stopsetups
 
+% Retrieve the value of the variable 'alternavite', and use it as
+% the name of the setup to invoke,
+% which will be either document:print or document:screen.
 \setups[document:\getvariable{document}{alternative}]
 \stoptyping
 
