@@ -221,11 +221,8 @@ commands:
 \showsetup{startenvironment}
 \showsetup{startcomponent}
 
-Before a \type{\start}||\type{\stop}||pair commands can be
-added. When a file is not found on the directory \CONTEXT\
-looks for the files on higher level directories. This
-enables the user to use one or more environments for
-documents that are placed on several subdirectories.
+Before a \type{\start}||\type{\stop}||pair, commands can be
+added.
 
 \placetable
   [here][tab:structure commands]
@@ -291,7 +288,7 @@ typed before the \type{\stop} command.
     \typebuffer
   \stopMiniFile
   The product \type{teacher.tex} (a teacher manual)
-  can be defined as shown on the opposite site.
+  can be defined as shown here.
 \stopfiguretext
 
 \startbuffer
@@ -309,8 +306,15 @@ typed before the \type{\stop} command.
   \startMiniFile
     \typebuffer
   \stopMiniFile
-  Here we see the component.
+  Here we see the \type{teacher2} component.
 \stopfiguretext
+
+When a referenced file is not found in the current directory, \CONTEXT\
+looks for the files in higher level directories. This
+enables the user to use the same environments for
+documents that are placed in several different subdirectories.
+For example, \type{\environment layout} may reference a file called 
+\type{layout.tex} in the current directory or in an ancestor directory.
 
 In most cases working with only \type {\starttext} and
 \type {\stoptext} in combination with \type {\input} or
